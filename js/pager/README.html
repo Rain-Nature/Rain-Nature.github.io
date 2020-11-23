@@ -1,0 +1,54 @@
+<h1 id="SinglePager"><a href="#SinglePager" class="headerlink" title="SinglePager"></a>SinglePager</h1><p>Functional similar to <a href="https://github.com/dieulot/instantclick/">InstantClick</a>, makes simple static pages dynamic and instant just like a single-page-application. Only change the content of specified container.</p>
+<p>For use with Hexo, Jekyll, etc.</p>
+<p>Released in ES2015 without any transformation or polyfill such as Babel.</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h3 id="Initialize"><a href="#Initialize" class="headerlink" title="Initialize"></a>Initialize</h3><p>Include and initialize it.</p>
+<pre><code class="html">...
+&lt;div data-pager-shell&gt;
+  ...
+&lt;/div&gt;
+...
+
+&lt;script src=&quot;singlepager.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  var sp = new Pager(&#39;data-pager-shell&#39;)
+&lt;/script&gt;</code></pre>
+<p>The parameter of construct could be an attribute name string, or a configure object.</p>
+<pre><code class="typescript">interface PagerConfig {
+  shellMark?: string,     // The mark attribute to replace content
+  disableMark?: string,   // Attribute mark links not be load
+  ignoreScript?: string,  // Ignore this `&lt;script&gt;` tag
+  runBefore?: string,     // Run script in the `&lt;script&gt;` tag before page switch
+  triggerTime?: number,   // Not implement
+  historyToSave?: number  // Number of histories to save
+}
+
+const defaultConfig = &lt;PagerConfig&gt;{
+  shellMark: &#39;data-single-pager&#39;,
+  disableMark: &#39;data-pager-disabled&#39;,
+  ignoreScript: &#39;data-pager-ignore&#39;,
+  runBefore: &#39;data-run-before&#39;,
+  triggerTime: 100,
+  historyToSave: 3
+}
+</code></pre>
+<h3 id="lt-script-gt-Hook-Tag"><a href="#lt-script-gt-Hook-Tag" class="headerlink" title="&lt;script&gt; Hook Tag"></a><code>&lt;script&gt;</code> Hook Tag</h3><p>While <code>&lt;script&gt;</code> tags in container will default run after the page switching, it can be specified to run before or after the page switching.</p>
+<p>Remember that <code>&lt;script&gt;</code> with <code>data-run-before</code> (or other name setted in config) would run before the content changes, so do not make references to the target page elements.</p>
+<pre><code class="html">&lt;div data-pager-shell&gt;
+  ...
+  &lt;div id=&quot;tag&quot;&gt;&lt;/div&gt;
+  &lt;script&gt;
+    document.getElementById(&#39;tag&#39;).innerHTML += &#39;&lt;p&gt;Run after mount&lt;/p&gt;&#39;
+  &lt;/script&gt;
+  &lt;script data-run-before&gt;
+    // Error!
+    // document.getElementById(&#39;tag&#39;).innerHTML += &#39;&lt;p&gt;Run before mount&lt;/p&gt;&#39;
+    alert(&#39;Run before mount&#39;)
+  &lt;/script&gt;
+  &lt;script data-pager-disabled&gt;
+    alert(&#39;Do not run this&#39;)
+  &lt;/script&gt;
+&lt;/div&gt;
+</code></pre>
+<h2 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h2><p>Run <code>make</code> to dist, <code>make comile</code> to compile typescript (ts 2.2.1+ required)</p>
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><p>Python 3.4+ required</p>
+<p>Run <code>python -m http.server</code> then open <code>http://127.0.0.1:8000/test/test.html</code></p>
