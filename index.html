@@ -68,6 +68,108 @@
     <header class="title">
       
         <h1>
+          <a href="/2020/11/26/%E5%BB%BA%E7%AB%8BC#%E7%B1%BB%E5%BA%93/">建立C#类库</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2020-11-26T14:36:57.000Z" itemprop="datePublished">
+    2020-11-26
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/C/">C#</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="用VS2019-在C-新建一个算术类库"><a href="#用VS2019-在C-新建一个算术类库" class="headerlink" title="用VS2019 在C#新建一个算术类库"></a>用VS2019 在C#新建一个算术类库</h2><p>1.在VS2019中新建一个类库程序<br>using System;</p>
+<p>namespace Tools<br>{<br>    public class Tools<br>    {<br>        public static double Add(double a, double b)<br>        {<br>            return a + b;<br>        }<br>        public static double Sub(double a, double b)<br>        {<br>            return a - b;<br>        }<br>        public static double Mul(double a, double b)<br>        {<br>            return a * b;<br>        }<br>        public static double Div(double a, double b)<br>        {<br>            return a / b;<br>        }<br>    }<br>}</p>
+<p>2.在编写完成后点击F6在下面的生成中可以看见路径</p>
+<p>3.一般是在bin这个文件夹中，点击进入找到一个dll的文件，此就为生成的类库</p>
+<hr>
+<h2 id="使用生成的类库"><a href="#使用生成的类库" class="headerlink" title="使用生成的类库"></a>使用生成的类库</h2><p>1.新建一个控制台应用程序<br>2.在引用中添加引用，在浏览处选择浏览，找到想要引用的类库添加即可</p>
+<hr>
+<h2 id="类库的修改"><a href="#类库的修改" class="headerlink" title="类库的修改"></a>类库的修改</h2><p>由于依赖性类库需要在现有框架下修改，使用文件.csproj结尾的，添加现有项目XXX.csproj即可在文件中修改，即可以看见该类库的源代码，显示后可以在添加引用项目，解决方案中引用这个类库，修改后先移除原先的再重新引用即可生效。</p>
+<p><strong>使用自己类库的方式和系统给的类库的方式一样</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2020/11/24/%E4%B8%BB%E9%A2%98-icalm%E7%9A%84%E6%9B%B4%E6%8D%A2/">主题-icalm的更换</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2020-11-24T06:35:11.000Z" itemprop="datePublished">
+    2020-11-24
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%9D%82%E8%AE%B0/">杂记</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h3 id="1-更换主题的代码储存"><a href="#1-更换主题的代码储存" class="headerlink" title="1.更换主题的代码储存"></a>1.更换主题的代码储存</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;D:\blog中的themes中存放blog的主题，在themes的文件夹中有一个本身hexo默认自带的丑主题，现在自己下载了一个叫做hexo-theme-icalm的主题的文件夹也是放在这里，现在对这个主题进行修改。</p>
+<h3 id="2-主题的个性化设置"><a href="#2-主题的个性化设置" class="headerlink" title="2.主题的个性化设置"></a>2.主题的个性化设置</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;打开hexo-theme-icalm文件夹中有 _ config.yml的代码，最后使用win+r，在cmd中打开，如果有下载node.js可以直接用记事本打开，进入后<br>#Links on sidebar<br>menu:<br>  Home: /<br>  Archive: /archives/<br>  #Tags: /tags/<br>  #Categories: /categories/<br>  #About: /about/</p>
+<p>#Pictures shown on the sidebar<br>#Use the absolute URL after generating<br>#avatar: /assets/tree_small.png<br>#sidebar_background: /assets/header.png</p>
+<p>rss: /atom.xml</p>
+<p>#Content<br>excerpt_link: Read On »</p>
+<p>#Will be shown on the bottom.<br>##To add new icon, just copy .svg to source/assets/ and add entries below.<br>media:<br>  #github: <a target="_blank" rel="noopener" href="https://github.com/nameoverflow">https://github.com/nameoverflow</a><br>  #facebook: <a target="_blank" rel="noopener" href="https://www.facebook.com/profile.php?id=100004252391322">https://www.facebook.com/profile.php?id=100004252391322</a></p>
+<p>source_han_font: true</p>
+<p>#Disqus settings<br>disqus:<br>  #’disabled’ | ‘all’ | ‘post’<br>  enable: disabled<br>  #Shortname of your disqus website.<br>  #See disqus admin<br>  shortname:</p>
+<p>#Miscellaneous<br>favicon:</p>
+<p><strong>这里#后面都是有一个空格，为了md的可读性我就删了</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;第一行中的menu是文件格式的菜单一共有5个功能，一般现在我能使用的就是前面两个，如果要把这句话启用，则去除前面的# 就可以了<strong>注意是#和之后的一个空格都需要去掉</strong></p>
+<p>如果需要设置头像可以看到**#avatar: /assets/tree_small.png**这一行，在同路径下可以看到一个叫source的文件夹，在这个文件夹中可以看见有一个assets的文件夹，如HTML一样，把需要的头像改名放在里面，再把这句话启用，把后面照片文件名改成你的，即可以发现照片引用完毕</p>
+<p>还有一个**#sidebar_background: /assets/header.png**大胆的猜测这个是照片后面的背景，但是我觉得没有的话也是很好看就没有启用这个了</p>
+<p>后面的内容待发掘</p>
+<h4 id="待更"><a href="#待更" class="headerlink" title="待更"></a>待更</h4><h3 id="3-需要设置博客的名字与引用主题"><a href="#3-需要设置博客的名字与引用主题" class="headerlink" title="3.需要设置博客的名字与引用主题"></a>3.需要设置博客的名字与引用主题</h3><p>回到blog文件夹中，里面有一个名叫 _ config.yml的文件，一样的方式打开后</p>
+<ul>
+<li>在title中更改你的blog名字</li>
+<li>在subtitle添加你的副标题</li>
+<li>把language改为zh-‘CN’</li>
+<li>找到后面的theme改为你刚刚弄得主题的文件夹名</li>
+</ul>
+<p>至此blog的初始化完成<br><strong>后续功能待更</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2020/11/23/markdown%E7%AC%94%E8%AE%B0/">markdown笔记</a>
         </h1>
       
