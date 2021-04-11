@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>wxss常用属性 | Blog of Rain</title>
+  <title>编码的规则 | Blog of Magician-Snow</title>
   
   
   
@@ -25,7 +25,7 @@
         </div>
     </section>
     <section class='menu'>
-        <div>Blog of Rain</div>
+        <div>Blog of Magician-Snow</div>
         
         <ul>
           
@@ -63,16 +63,17 @@
             <div>
   <article class='ContentView'>
     <header class='PageTitle'>
-        <h1>wxss常用属性</h1>
+        <h1>编码的规则</h1>
     </header>
 
     <section>
-      <h2 id="WXSS常用的属性"><a href="#WXSS常用的属性" class="headerlink" title="WXSS常用的属性"></a>WXSS常用的属性</h2><h3 id="1-文字修饰"><a href="#1-文字修饰" class="headerlink" title="1.文字修饰"></a>1.文字修饰</h3><pre><code>文本对齐：text-align:&quot;left/center/right/justify&quot;
-汉字间距：letter-spacing:10rpx(一般用rpx这样可以随编译器)
-英文间距：word-spacing:10rpx
-行距：line-height:10rpx
-下划线：text-decoration:underline
-下划线颜色：text-decoration-color:red/#000FFF</code></pre>
+      <h2 id="记事本的四种编码规则"><a href="#记事本的四种编码规则" class="headerlink" title="记事本的四种编码规则"></a>记事本的四种编码规则</h2><h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h3><p>在C语言程序中当调用记事本文件时，当里面含有汉字时可能会产生乱码，导致程序的运行失败，写这篇bolg的目的是为了记录一下记事本的四种编码区别</p>
+<h3 id="ANSI编码"><a href="#ANSI编码" class="headerlink" title="ANSI编码"></a>ANSI编码</h3><ol>
+<li>若为英文操作系统则为ASCII码<br> 每个字符用一个字节（8位）表示，最高位恒为0，剩下7位（2^7次方=128）。因为128个值就足够表示所有英文字符，数字字符，英文标点字符，和控制字符了。</li>
+<li>若为中文操作系统则为GBK码<br> 兼容ASCII码表示的字符以外，延伸0x80-0xff。用2个字节表示一个中文字符。解析的时候，如果第一个字节大于127，直接再往后读取一个字节，显示为对应的中文字符。（GBK码的字符集包含了简体和繁体）。</li>
+<li>若为日文操作系统则为JIS码<br> 里面为日文字符</li>
+</ol>
+<p><strong>所以在不同语种的操作系统下，打开同一个通过ANSI编码的txt，除了ASCII所表示的字符正常显示外，其他字符会有出现乱码的情况，因为解码和编码方式就是不一样的，如修改windows的默认语言为日语，即ANSI编码即为JIS编码</strong></p>
 
 
       
@@ -82,8 +83,8 @@
       <section class='ArticleMeta'>
           <div>
             发布于&nbsp;
-            <time datetime="2021-03-26T12:38:08.000Z" itemprop="datePublished">
-              2021-03-26
+            <time datetime="2021-04-09T13:59:14.000Z" itemprop="datePublished">
+              2021-04-09
             </time>
           </div>
           
