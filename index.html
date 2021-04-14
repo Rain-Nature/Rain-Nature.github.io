@@ -68,7 +68,7 @@
     <header class="title">
       
         <h1>
-          <a href="/2021/04/11/%E5%9B%BE%E7%81%B503/">图灵03</a>
+          <a href="/2021/04/11/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day03/">图灵工作室day03</a>
         </h1>
       
       <div class='ListMeta'>
@@ -93,22 +93,14 @@
     <div>
       
         <h2 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h2><p>1.任何一个容器都可以启用flex布局<br>2.flex布局也叫弹性布局</p>
-<pre><code>1.display:flex  //启用flex布局
-2.flex-direction属性决定主轴方向
-  flex-direction：column //设置垂直方向为主轴
-  flex-direction：raw //设置横轴方向为主轴
-  交叉轴等于法向量，主轴于盒子方向相同
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">(1).display:flex  &#x2F;&#x2F;启用flex布局</span><br><span class="line">(2).flex-direction属性决定主轴方向</span><br><span class="line">    flex-direction：column &#x2F;&#x2F;设置垂直方向为主轴</span><br><span class="line">    flex-direction：raw &#x2F;&#x2F;设置横轴方向为主轴</span><br><span class="line">    交叉轴等于法向量，主轴于盒子方向相同</span><br><span class="line"></span><br><span class="line">(3).对盒子先设置大盒子，justity-content：center;对主轴居中对齐</span><br><span class="line">                     他的其他属性</span><br><span class="line">                     flex-start（默认值）：左对齐</span><br><span class="line">                     flex-end：右对齐</span><br><span class="line">                     center： 居中</span><br><span class="line">                     space-between：两端对齐，项目之间的间隔都相等。</span><br><span class="line">                     space-around：每个项目两侧的间隔相等。所以，项目之间                                    的间隔比项目与边框的间隔大一倍。</span><br><span class="line">                     </span><br><span class="line">                     align-items：center；对交叉轴居中对齐</span><br><span class="line">              	     他的其他属性</span><br><span class="line">              	     flex-start：交叉轴的起点对齐。</span><br><span class="line">                     flex-end：交叉轴的终点对齐。</span><br><span class="line">                     center：交叉轴的中点对齐。</span><br><span class="line">                     baseline: 项目的第一行文字的基线对齐。</span><br><span class="line">                     stretch（默认值）：如果项目未设置高度或设为auto，将占                                       满整个容器的高度。</span><br><span class="line">    </span><br><span class="line">    在此之后每制造一个小盒子都会按照设定方式排列</span><br><span class="line"></span><br><span class="line">(4).flex-wrap属性决定盒子排不下的时候是否换行</span><br><span class="line">    flex-wrap:nowrap(默认); &#x2F;&#x2F;不换行，如果放不下的情况下会让所有盒子等比例缩小来放</span><br><span class="line">    flex-wrap:wrap;        &#x2F;&#x2F;换行，第一行在上方</span><br><span class="line">    flex-wrap:wrap-reverse &#x2F;&#x2F;换行，第一行在下方</span><br><span class="line"></span><br><span class="line">(5).order属性</span><br><span class="line">    order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0</span><br><span class="line">    order &#x3D; 1;</span><br><span class="line">    </span><br><span class="line">(6).flex-grow属性</span><br><span class="line">    flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</span><br><span class="line"></span><br><span class="line">当一个flex-grow为1，而其他为0时，该盒子会占去除那些为0盒子占的空间外的全部空间</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-3.对盒子先设置大盒子，justity-content：center;对主轴居中对齐
-                   align-items：center；对交叉轴居中对齐
-  在此之后每制造一个小盒子都会按照设定方式排列
-
-4.flex-wrap属性决定盒子排不下的时候是否换行
-  flex-wrap:nowrap(默认); //不换行
-  flex-wrap:wrap;        //换行，第一行在上方
-  flex-wrap:wrap-reverse //换行，第一行在下方
-
-</code></pre>
+<p><strong>其他的暂时没有用上就先不补了</strong></p>
+<h2 id="js部分语法"><a href="#js部分语法" class="headerlink" title="js部分语法"></a>js部分语法</h2><p>1.js中不分’ ‘,” “,一般用’ ‘</p>
+<p>2.let 块作用域，var 函数作用域（整个函数中在哪定义生命周期为整个函数）</p>
+<p>3.控制台打印<br>console.log()函数 //普通文本<br>console.warn()函数 //警告文本<br>console.error()函数 //出错文本</p>
+<p>4.input控件disable控制是否允许输入</p>
+<p>5.转浮点和整型来做差来判断精度是否丢失</p>
 
       
     </div>
@@ -146,6 +138,7 @@
     <div>
       
         <h2 id="记事本的四种编码规则"><a href="#记事本的四种编码规则" class="headerlink" title="记事本的四种编码规则"></a>记事本的四种编码规则</h2><h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h3><p>在C语言程序中当调用记事本文件时，当里面含有汉字时可能会产生乱码，导致程序的运行失败，写这篇bolg的目的是为了记录一下记事本的四种编码区别</p>
+<h3 id="2-getchar-函数来抓取字符"><a href="#2-getchar-函数来抓取字符" class="headerlink" title="2.getchar()函数来抓取字符"></a>2.getchar()函数来抓取字符</h3><p>当程序从文件中读字符时，如果遇到了文件末尾，就会得到 EOF，EOF 并不是一个字符。但是，从标准输入（就是你的终端）读字符的时候，不可能出现文件末尾的情况，所以终端提供了一个功能，就是当你按下 ctrl+z（Windows）/ ctrl+d（Linux）时，终端告诉程序“标准输入”到了文件末尾，此时你的程序 getchar 会得到 EOF(不一定是-1)</p>
 <h3 id="ANSI编码"><a href="#ANSI编码" class="headerlink" title="ANSI编码"></a>ANSI编码</h3><ol>
 <li>若为英文操作系统则为ASCII码<br> 每个字符用一个字节（8位）表示，最高位恒为0，剩下7位（2^7次方=128）。因为128个值就足够表示所有英文字符，数字字符，英文标点字符，和控制字符了。</li>
 <li>若为中文操作系统则为GBK码<br> 兼容ASCII码表示的字符以外，延伸0x80-0xff。用2个字节表示一个中文字符。解析的时候，如果第一个字节大于127，直接再往后读取一个字节，显示为对应的中文字符。（GBK码的字符集包含了简体和繁体）。</li>
@@ -350,7 +343,7 @@
   <ul>
     
   <li class="meta-text">
-  { <a href="/tags/%E6%9D%82%E8%AE%B0/">杂记</a> }
+  { <a href="/tags/%E6%B8%B8%E6%88%8F/">游戏</a> }
   </li>
 
 
