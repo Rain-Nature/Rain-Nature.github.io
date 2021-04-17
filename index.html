@@ -217,13 +217,19 @@
     <div>
       
         <h2 id="记事本的四种编码规则"><a href="#记事本的四种编码规则" class="headerlink" title="记事本的四种编码规则"></a>记事本的四种编码规则</h2><h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h3><p>在C语言程序中当调用记事本文件时，当里面含有汉字时可能会产生乱码，导致程序的运行失败，写这篇bolg的目的是为了记录一下记事本的四种编码区别</p>
-<h3 id="2-getchar-函数来抓取字符"><a href="#2-getchar-函数来抓取字符" class="headerlink" title="2.getchar()函数来抓取字符"></a>2.getchar()函数来抓取字符</h3><p>当程序从文件中读字符时，如果遇到了文件末尾，就会得到 EOF，EOF 并不是一个字符。但是，从标准输入（就是你的终端）读字符的时候，不可能出现文件末尾的情况，所以终端提供了一个功能，就是当你按下 ctrl+z（Windows）/ ctrl+d（Linux）时，终端告诉程序“标准输入”到了文件末尾，此时你的程序 getchar 会得到 EOF(不一定是-1，目前在CB上是-1)<br><strong>注意：getchar是从缓存中读数据，也就是说，你输入a，程序并不反映，只是把a存到缓存中，直到你输入结束，输了回车，程序才反映</strong></p>
+<h3 id="2-getchar-函数来抓取字符"><a href="#2-getchar-函数来抓取字符" class="headerlink" title="2.getchar()函数来抓取字符"></a>2.getchar()函数来抓取字符</h3><p>当程序从文件中读字符时，如果遇到了文件末尾，就会得到 EOF，EOF 并不是一个字符。但是，从标准输入（就是你的终端）读字符的时候，不可能出现文件末尾的情况，所以终端提供了一个功能，就是当你按下 ctrl+z（Windows）/ ctrl+d（Linux）时，终端告诉程序“标准输入”到了文件末尾，此时你的程序 getchar 会得到 EOF(不一定是-1，目前在CB上是-1)<br><strong>注意：getchar是从缓存中读数据（getchar是以行为单位进行存取的），也就是说，你输入a，程序并不反映，只是把a存到缓存中，直到你输入结束，输了回车，程序才反映</strong></p>
 <h3 id="ANSI编码"><a href="#ANSI编码" class="headerlink" title="ANSI编码"></a>ANSI编码</h3><ol>
 <li>若为英文操作系统则为ASCII码<br> 每个字符用一个字节（8位）表示，最高位恒为0，剩下7位（2^7次方=128）。因为128个值就足够表示所有英文字符，数字字符，英文标点字符，和控制字符了。</li>
 </ol>
 <p><strong>2. 若为中文操作系统则为GBK码<br>    兼容ASCII码表示的字符以外，延伸0x80-0xff。用2个字节表示一个中文字符。解析的时候，如果第一个字节大于127，直接再往后读取一个字节，显示为对应的中文字符。（GBK码的字符集包含了简体和繁体）。</strong><br>3. 若为日文操作系统则为JIS码<br>    里面为日文字符</p>
 <p><strong>所以在不同语种的操作系统下，打开同一个通过ANSI编码的txt，除了ASCII所表示的字符正常显示外，其他字符会有出现乱码的情况，因为解码和编码方式就是不一样的，如修改windows的默认语言为日语，即ANSI编码即为JIS编码</strong></p>
-<h3 id="UTF-8编码"><a href="#UTF-8编码" class="headerlink" title="UTF-8编码"></a>UTF-8编码</h3>
+<h3 id="UTF-8编码"><a href="#UTF-8编码" class="headerlink" title="UTF-8编码"></a>UTF-8编码</h3><ol>
+<li><p>UTF8是一种变长编码，根据不同的Unicode码值采用不同的存储长度。</p>
+</li>
+<li><p>. </p>
+</li>
+</ol>
+
       
     </div>
 </article>
