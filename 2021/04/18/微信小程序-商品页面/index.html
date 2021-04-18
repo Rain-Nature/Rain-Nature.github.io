@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>微信小程序-商品页面 | Blog of Magician-Snow</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/tree_small.jpg)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of Magician-Snow</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>微信小程序-商品页面</h1>
+    </header>
+
+    <section>
+      <h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;swiper class&#x3D;&quot;myswiper&quot; bindchange&#x3D;&quot;changeImg&quot; indicator-dots&#x3D;&quot;ture&quot; autoplay&#x3D;&quot;ture&quot; circular&#x3D;&quot;ture&quot;&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;租借图片&#x2F;毕业季.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;apple.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;hw1.jpg?sign&#x3D;fee0f936bbe930fb6d94b51747d7a213&amp;t&#x3D;1618020235&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;parent&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color1&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text1&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;money&quot;&gt;￥&#123;&#123;price&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text2&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;people&quot;&gt;0人买过&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color2&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text3&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple&quot;&gt;&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text4&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple_computer&quot;&gt;这是&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;bottom&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture1&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;server&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-question.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;bottom_text&quot;&gt;客服&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture2&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;shop&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-shop.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;bottom_text&quot;&gt;商店&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;last&quot;&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;button&quot;&gt;立即购买&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h3><p>.picture{<br>  width: 100%;<br>}</p>
+<p>.myswiper{<br>  width: 100%;<br>  height: 750rpx;<br>}</p>
+<p>.parent{<br>  width: 100%;<br>  height: 250rpx;<br>  display: flex;<br>  flex-direction: column;<br>  /* background-color:blue; */<br>}</p>
+<p>.color1{<br>  width: 100%;<br>  display: flex;<br>  flex-direction: row;<br>  /* background-color: yellow; */<br>  flex-grow: 1;<br>}</p>
+<p>.color2{<br>  width: 100%;<br>  display: flex;<br>  flex-direction:column;<br>  /* background-color:green; */<br>  flex-grow: 2;<br>}</p>
+<p>.text1{<br>  /* background-color: red; */<br>  padding-left: 25rpx;<br>  display: flex;<br>  flex-direction: column;<br>  align-items: flex-start;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
+<p>.text2{<br>  /* background-color: blue; */<br>  display: flex;<br>  flex-direction: column;<br>  padding-right: 25rpx;<br>  align-items: flex-end;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
+<p>.text3{<br>  /* background-color: blue; */<br>  display: flex;<br>  padding-left: 20rpx;<br>  flex-direction: column;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
+<p>.text4{<br>  /* background-color: brown; */<br>  display: flex;<br>  padding-left: 20rpx;<br>  flex-direction: column;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
+<p>.money{<br>  color: red;<br>  font-size: 40rpx;<br>  font-weight: bold;<br>}</p>
+<p>.people{<br>  color:#DCDCDC;<br>  font-size: 25rpx;<br>}</p>
+<p>.apple{<br>  font-size: 40rpx;<br>  font-weight: bold;<br>}</p>
+<p>.apple_computer{<br>  color:#DCDCDC;<br>  font-size: 25rpx;<br>}</p>
+<p>.bottom{<br>  position: fixed;<br>  bottom: 0;<br>  width: 100%;<br>  height: 100rpx;<br>  /* background:yellow; */<br>  display:flex;<br>  flex-direction: row;<br>}</p>
+<p>.bottom_picture1{<br>  /* background-color: aqua; */<br>  padding-left: 14rpx;<br>  width: 13%;<br>  height: 100rpx;<br>  display: flex;<br>  flex-direction:column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
+<p>.server{<br>  width: 55rpx;<br>}</p>
+<p>.shop{<br>  width: 55rpx;<br>}</p>
+<p>.bottom_picture2{<br>  /* background-color: rgb(71, 127, 190); */<br>  width: 13%;<br>  height: 100rpx;<br>  display: flex;<br>  flex-direction:column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
+<p>.bottom_text{<br>  font-size: 28rpx;<br>}</p>
+<p>.last{<br>  padding-left: 30rpx;<br>  display: flex;<br>  flex-direction: column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
+<p>.button{<br>  width: 460rpx !important;<br>  background: #f12711;  /* fallback for old browsers <em>/<br>  background: -webkit-linear-gradient(to right, #f5af19, #f12711);  /</em> Chrome 10-25, Safari 5.1-6 <em>/<br>  background: linear-gradient(to right, #f5af19, #f12711); /</em> W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */</p>
+<p>  border-radius: 140rpx;<br>  color: white !important;<br>  font-weight: normal;<br>  font-size: 14px;<br>}</p>
+<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><p>Page({<br>  data:{<br>    price:200,<br>    shopname:’我们毕业了’<br>  },<br>  changeImg:function(e){<br>    console.log(e.detail.current)<br>    var currentIndex=e.detail.current<br>    if(currentIndex==0){<br>      this.setData({<br>        price:200,<br>        shopname:’我们毕业了’<br>      })<br>    }else if(currentIndex==1){<br>      this.setData({<br>        price:5700,<br>        shopname:’苹果电脑’<br>      })<br>    }else{<br>      this.setData({<br>        price:12000,<br>        shopname:’华为笔记本’<br>      })<br>    }<br>  }<br>})</p>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2021-04-18T09:56:15.000Z" itemprop="datePublished">
+              2021-04-18
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/wx%E5%AE%9E%E8%B7%B5/">wx实践</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2021 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>

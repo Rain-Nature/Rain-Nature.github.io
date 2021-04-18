@@ -72,6 +72,44 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/04/18/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A404/">图灵工作室04</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-04-18T09:56:30.000Z" itemprop="datePublished">
+    2021-04-18
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/wx/">wx</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="底端固定的方式-css"><a href="#底端固定的方式-css" class="headerlink" title="底端固定的方式(css)"></a>底端固定的方式(css)</h2><p>position: fixed; //固定定位<br>bottom: 0;  //0表示底部</p>
+<p><strong>注意：line-height为行高，当行高等于行的高度时，里面的东西居中,用于文字</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/04/11/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day03/">图灵工作室day03</a>
         </h1>
       
@@ -97,7 +135,7 @@
     <div>
       
         <h2 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h2><p>1.任何一个容器都可以启用flex布局<br>2.flex布局也叫弹性布局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">(1).display:flex  &#x2F;&#x2F;启用flex布局</span><br><span class="line">(2).flex-direction属性决定主轴方向</span><br><span class="line">    flex-direction：column &#x2F;&#x2F;设置垂直方向为主轴</span><br><span class="line">    flex-direction：raw &#x2F;&#x2F;设置横轴方向为主轴</span><br><span class="line">    交叉轴等于法向量，主轴于盒子方向相同</span><br><span class="line"></span><br><span class="line">(3).对盒子先设置大盒子，justity-content：center;对主轴居中对齐</span><br><span class="line">                     他的其他属性</span><br><span class="line">                     flex-start（默认值）：左对齐</span><br><span class="line">                     flex-end：右对齐</span><br><span class="line">                     center： 居中</span><br><span class="line">                     space-between：两端对齐，项目之间的间隔都相等。</span><br><span class="line">                     space-around：每个项目两侧的间隔相等。所以，项目之间                                    的间隔比项目与边框的间隔大一倍。</span><br><span class="line">                     </span><br><span class="line">                     align-items：center；对交叉轴居中对齐</span><br><span class="line">              	     他的其他属性</span><br><span class="line">              	     flex-start：交叉轴的起点对齐。</span><br><span class="line">                     flex-end：交叉轴的终点对齐。</span><br><span class="line">                     center：交叉轴的中点对齐。</span><br><span class="line">                     baseline: 项目的第一行文字的基线对齐。</span><br><span class="line">                     stretch（默认值）：如果项目未设置高度或设为auto，将占                                       满整个容器的高度。</span><br><span class="line">    </span><br><span class="line">    在此之后每制造一个小盒子都会按照设定方式排列</span><br><span class="line"></span><br><span class="line">(4).flex-wrap属性决定盒子排不下的时候是否换行</span><br><span class="line">    flex-wrap:nowrap(默认); &#x2F;&#x2F;不换行，如果放不下的情况下会让所有盒子等比例缩小来放</span><br><span class="line">    flex-wrap:wrap;        &#x2F;&#x2F;换行，第一行在上方</span><br><span class="line">    flex-wrap:wrap-reverse &#x2F;&#x2F;换行，第一行在下方</span><br><span class="line"></span><br><span class="line">(5).order属性</span><br><span class="line">    order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0</span><br><span class="line">    order &#x3D; 1;</span><br><span class="line">    </span><br><span class="line">(6).flex-grow属性</span><br><span class="line">    flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</span><br><span class="line"></span><br><span class="line">当一个flex-grow为1，而其他为0时，该盒子会占去除那些为0盒子占的空间外的全部空间</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">(1).display:flex  &#x2F;&#x2F;启用flex布局</span><br><span class="line">(2).flex-direction属性决定主轴方向</span><br><span class="line">    flex-direction：column &#x2F;&#x2F;设置垂直方向为主轴</span><br><span class="line">    flex-direction：raw &#x2F;&#x2F;设置横轴方向为主轴</span><br><span class="line">    交叉轴等于法向量，主轴于盒子方向相同</span><br><span class="line"></span><br><span class="line">(3).对盒子先设置大盒子，justity-content：center;对主轴居中对齐</span><br><span class="line">                     他的其他属性</span><br><span class="line">                     flex-start（默认值）：左对齐</span><br><span class="line">                     flex-end：右对齐</span><br><span class="line">                     center： 居中</span><br><span class="line">                     space-between：两端对齐，项目之间的间隔都相等。</span><br><span class="line">                     space-around：每个项目两侧的间隔相等。所以，项目之间                                    的间隔比项目与边框的间隔大一倍。</span><br><span class="line">                     </span><br><span class="line">                     align-items：center；对交叉轴居中对齐</span><br><span class="line">              	     他的其他属性</span><br><span class="line">              	     flex-start：交叉轴的起点对齐。</span><br><span class="line">                     flex-end：交叉轴的终点对齐。</span><br><span class="line">                     center：交叉轴的中点对齐。</span><br><span class="line">                     baseline: 项目的第一行文字的基线对齐。</span><br><span class="line">                     stretch（默认值）：如果项目未设置高度或设为auto，将占                                       满整个容器的高度。</span><br><span class="line">    </span><br><span class="line">    在此之后每制造一个小盒子都会按照设定方式排列</span><br><span class="line"></span><br><span class="line">(4).flex-wrap属性决定盒子排不下的时候是否换行</span><br><span class="line">    flex-wrap:nowrap(默认); &#x2F;&#x2F;不换行，如果放不下的情况下会让所有盒子等比例缩小来放</span><br><span class="line">    flex-wrap:wrap;        &#x2F;&#x2F;换行，第一行在上方</span><br><span class="line">    flex-wrap:wrap-reverse &#x2F;&#x2F;换行，第一行在下方</span><br><span class="line"></span><br><span class="line">(5).order属性</span><br><span class="line">    order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0</span><br><span class="line">    order &#x3D; 1;</span><br><span class="line">    </span><br><span class="line">(6).flex-grow属性</span><br><span class="line">    flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</span><br><span class="line"></span><br><span class="line">当一个flex-grow为1，而其他为0时，该盒子会占去除那些为0盒子占的空间外的全部空间</span><br><span class="line"></span><br><span class="line">(7).flex布局自动计算高度不需要去手动分配，会适得其反</span><br></pre></td></tr></table></figure>
 
 <p><strong>其他的暂时没有用上就先不补了</strong></p>
 <h2 id="js部分语法"><a href="#js部分语法" class="headerlink" title="js部分语法"></a>js部分语法</h2><p>1.js中不分’ ‘,” “,一般用’ ‘</p>
@@ -106,89 +144,6 @@
 <p>4.input控件disable控制是否允许输入</p>
 <p>5.转浮点和整型来做差来判断精度是否丢失</p>
 
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E8%BD%AE%E6%92%AD%E5%9B%BE/">微信小程序-轮播图</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-07T00:25:02.000Z" itemprop="datePublished">
-    2021-04-07
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/wx/">wx</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="微信小程序-轮播图"><a href="#微信小程序-轮播图" class="headerlink" title="微信小程序-轮播图"></a>微信小程序-轮播图</h2><h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;test&quot;&gt;</span><br><span class="line">  &lt;image class&#x3D;&quot;picture&quot; src&#x3D;&quot;..&#x2F;image&#x2F;unity.jpeg&quot; mode&#x3D;&quot;widthFix&quot;&gt;</span><br><span class="line">  &lt;&#x2F;image&gt;</span><br><span class="line">  &lt;view&gt;</span><br><span class="line">    unity的游戏开发view</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line"></span><br><span class="line">&lt;swiper class&#x3D;&quot;myswiper&quot; indicator-dots&#x3D;&quot;true&quot; autoplay&#x3D;&quot;true&quot; circular&#x3D;&quot;true&quot;&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image src&#x3D;&quot;..&#x2F;image&#x2F;2020.jpg&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image src&#x3D;&quot;..&#x2F;image&#x2F;2020.jpg&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image src&#x3D;&quot;..&#x2F;image&#x2F;2020.jpg&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h3><p>.test{<br>  text-align:center;<br>  font-size: 30rpx;<br>  text-decoration: underline;<br>  text-decoration-color: blue;</p>
-<p>}</p>
-<p>.picture{<br>   width: 90%;</p>
-<p>}</p>
-<p>.myswiper{<br>  height: 540rpx;<br>  text-align: center;<br>}<br>.myswiper swiper-item &gt;image{<br>  width: 98%;<br>}</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A8/">微信小程序-加法计算器</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-07T00:20:46.000Z" itemprop="datePublished">
-    2021-04-07
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/wx/">wx</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="微信小程序-加法计算器"><a href="#微信小程序-加法计算器" class="headerlink" title="微信小程序:加法计算器"></a>微信小程序:加法计算器</h2><h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;head&quot;&gt;加法计算器&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;body&quot;&gt;</span><br><span class="line">  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; placeholder&#x3D;&quot;请输入数据&quot; bindinput&#x3D;&quot;count1&quot;&#x2F;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text2&quot;&gt;+&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; placeholder&#x3D;&quot;请输入数据&quot; bindinput&#x3D;&quot;count2&quot;&#x2F;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text2&quot;&gt;&#x3D;&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text1&quot;&gt;&#123;&#123;a&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view&gt;</span><br><span class="line">  &lt;button class&#x3D;&quot;button&quot; bindtap&#x3D;&quot;button1&quot;&gt;等于&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="wsss"><a href="#wsss" class="headerlink" title="wsss"></a>wsss</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">.head&#123;</span><br><span class="line">  text-align: center;</span><br><span class="line">  letter-spacing: 10rpx;</span><br><span class="line">  font-size: 80rpx;</span><br><span class="line">  color: deepskyblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.body&#123;</span><br><span class="line">  margin-top: 80rpx;</span><br><span class="line">  width: 100%;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction:&quot;row&quot;;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.text1&#123;</span><br><span class="line">  width: 200rpx;</span><br><span class="line">  height: 53rpx;</span><br><span class="line">  border: 4rpx solid green;</span><br><span class="line">  margin-left: 15rpx; &#x2F;*外边距*&#x2F;</span><br><span class="line">  font-size: 36rpx;</span><br><span class="line">  padding-left: 14rpx; &#x2F;*内边距*&#x2F;</span><br><span class="line">  border-radius: 10rpx; &#x2F;*设置圆角*&#x2F;</span><br><span class="line">  color: aqua;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.text2&#123;</span><br><span class="line">  font-size: 36rpx;</span><br><span class="line">  margin-left: 10rpx;</span><br><span class="line">  font-weight: bolder;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.button&#123;</span><br><span class="line">  margin-top: 50rpx;</span><br><span class="line">  width: 200rpx !important;</span><br><span class="line">  color: black !important;</span><br><span class="line">  background-color: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var b;</span><br><span class="line">var c;</span><br><span class="line">Page(&#123;</span><br><span class="line">  data:(&#123;</span><br><span class="line">    a:Number.parseFloat(0)</span><br><span class="line">  &#125;),</span><br><span class="line">  count1(e)&#123; &#x2F;*带参是把控件的值传进来 *&#x2F;</span><br><span class="line">    console.log(e)</span><br><span class="line">    b &#x3D; e.detail.value</span><br><span class="line">    b &#x3D; Number.parseFloat(b)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  count2(e)&#123; &#x2F;*带参是把控件的值传进来 *&#x2F;</span><br><span class="line">    console.log(e)</span><br><span class="line">    c&#x3D;e.detail.value</span><br><span class="line">    c &#x3D; Number.parseFloat(c)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  button1(e)&#123;</span><br><span class="line">    let d&#x3D;Number.parseFloat(this.data.a)</span><br><span class="line">    d&#x3D;b+c</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      a:d</span><br><span class="line">    &#125;)</span><br><span class="line">    console.warn(d)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
       
     </div>
 </article>
@@ -226,7 +181,7 @@
       
         <h2 id="WXSS属性笔记"><a href="#WXSS属性笔记" class="headerlink" title="WXSS属性笔记"></a>WXSS属性笔记</h2><h3 id="1-文字修饰"><a href="#1-文字修饰" class="headerlink" title="1.文字修饰"></a>1.文字修饰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">文本对齐：text-align:&quot;left&#x2F;center&#x2F;right&#x2F;justify&quot;</span><br><span class="line">汉字间距：letter-spacing:10rpx(一般用rpx这样可以随编译器变化)</span><br><span class="line">英文间距：word-spacing:10rpx</span><br><span class="line">行距：line-height:10rpx  &#x2F;&#x2F;当行距等于行的距离时，文字为居中状态</span><br><span class="line">文字颜色：color:red; &#x2F;&#x2F;文字颜色为红色</span><br><span class="line">文字加粗：font-weight：bold; </span><br><span class="line">下划线：text-decoration:underline;</span><br><span class="line">下划线颜色：text-decoration-color:red&#x2F;#000FFF;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-盒子修饰"><a href="#2-盒子修饰" class="headerlink" title="2.盒子修饰"></a>2.盒子修饰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">设置背景颜色：background-color:red; &#x2F;&#x2F;背景色为红色</span><br><span class="line">设置内边距对于外部盒子而言：padding-left: 30rpx;</span><br></pre></td></tr></table></figure>
+<h3 id="2-盒子修饰"><a href="#2-盒子修饰" class="headerlink" title="2.盒子修饰"></a>2.盒子修饰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设置背景颜色：background-color:red; &#x2F;&#x2F;背景色为红色</span><br><span class="line">设置内边距对于外部盒子而言：padding-left: 30rpx; &#x2F;&#x2F;左边距为30rpx</span><br><span class="line">					   padding-right: 30rpx  &#x2F;&#x2F;右边距为30rpx</span><br><span class="line">设置外左边距：margin-left:10rpx;  &#x2F;&#x2F;其他依次类推</span><br><span class="line">设置圆角：border-radius: 10rpx;</span><br></pre></td></tr></table></figure>
 
       
     </div>
