@@ -68,6 +68,74 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/04/26/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-04-26T03:48:13.000Z" itemprop="datePublished">
+    2021-04-26
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="1-网络编程的概念"><a href="#1-网络编程的概念" class="headerlink" title="1.网络编程的概念"></a>1.网络编程的概念</h2><p>像邮件需要对方的邮编，对方的地址，对方的姓名，自己的地址，自己的姓名<br>即对方的信息，对方的地址，自己的地址</p>
+<p>打电话，连接-接了-通话   TCP连接<br>发短信，-发送就完事了-接收  UDP连接</p>
+<h2 id="2-计算机网络"><a href="#2-计算机网络" class="headerlink" title="2.计算机网络"></a>2.计算机网络</h2><p><strong>概念：计算机网络是指将==地理位置==不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统</strong></p>
+<p>你的计算机没有与外界沟通，实现资源共享和信息传递那就是单机</p>
+<h2 id="3-网络编程的目的"><a href="#3-网络编程的目的" class="headerlink" title="3.网络编程的目的"></a>3.网络编程的目的</h2><p>无线电台：传播交流信息    ；进行了数据交换，通信</p>
+<h2 id="4-想要打到达到这个效果需要什么"><a href="#4-想要打到达到这个效果需要什么" class="headerlink" title="4.想要打到达到这个效果需要什么"></a>4.想要打到达到这个效果需要什么</h2><ul>
+<li>如何准确定位网络上的一台主机？</li>
+</ul>
+<p>192.168.16.124，即端口号，你的和他的；定位到计算机上的某个应用</p>
+<ul>
+<li>找到了主机，如何传输数据？<br>需要介质<h2 id="5-网络编程与javaweb的区别"><a href="#5-网络编程与javaweb的区别" class="headerlink" title="5.网络编程与javaweb的区别"></a>5.网络编程与javaweb的区别</h2>网络编程：TCP/IP   C/S架构   客户端<br>javaweb：网页编程   B/S架构   浏览器</li>
+</ul>
+<h2 id="6-如何实现网络通信-网络通信的要素"><a href="#6-如何实现网络通信-网络通信的要素" class="headerlink" title="6.如何实现网络通信(网络通信的要素)"></a>6.如何实现网络通信(网络通信的要素)</h2><ol>
+<li><p>通信双方的地址<br> IP：稀缺<br> 端口号：局域网<br> IP加端口可以：网络定位到一个具体的计算机</p>
+</li>
+<li><p>规则：网络通信的协议<br>HTTP(超文本传输协议):HTTP是基于B/S架构进行通信的，<br>ftp(文件传输协议)<br>SMTP(电子邮件传输的协议)<br>tcp(基于字节流的传输层通信协议):是为了在不可靠的互联网络上提供可靠的端到端字节流而专门设计的一个传输协议<br>udp(用户数据报协议):UDP协议与TCP协议一样用于处理数据包</p>
+</li>
+<li><p>tcp/IP模型一个七层一个四层</p>
+</li>
+<li><p>小结<br> (1).网络编程中有两个主要的问题</p>
+<ul>
+<li><p>如何准确的定位到网络上的一台或多台主机<br>例如<br>打开cmd，输入ping <a target="_blank" rel="noopener" href="http://www.bajdu.com,www是域名ping命令/">www.bajdu.com，www是域名ping命令</a><br>会弹出百度的IP地址</p>
+<p>(2).找到主机之后如何进行通信 </p>
+</li>
+<li><p>IP和端口号</p>
+</li>
+<li><p>网络通信协议</p>
+<p>(3).对于Java的学习<br>在Java中万物皆对象<br>要学习IP的类，端口的类<br>学习udp，tcp的一些类</p>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/04/19/%E7%8E%8B%E8%80%85%E8%A1%8C/">王者行</a>
         </h1>
       
@@ -470,45 +538,6 @@
 <h3 id="wsss"><a href="#wsss" class="headerlink" title="wsss"></a>wsss</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">.head&#123;</span><br><span class="line">  text-align: center;</span><br><span class="line">  letter-spacing: 10rpx;</span><br><span class="line">  font-size: 80rpx;</span><br><span class="line">  color: deepskyblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.body&#123;</span><br><span class="line">  margin-top: 80rpx;</span><br><span class="line">  width: 100%;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction:&quot;row&quot;;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.text1&#123;</span><br><span class="line">  width: 200rpx;</span><br><span class="line">  height: 53rpx;</span><br><span class="line">  border: 4rpx solid green;</span><br><span class="line">  margin-left: 15rpx; &#x2F;*外边距*&#x2F;</span><br><span class="line">  font-size: 36rpx;</span><br><span class="line">  padding-left: 14rpx; &#x2F;*内边距*&#x2F;</span><br><span class="line">  border-radius: 10rpx; &#x2F;*设置圆角*&#x2F;</span><br><span class="line">  color: aqua;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.text2&#123;</span><br><span class="line">  font-size: 36rpx;</span><br><span class="line">  margin-left: 10rpx;</span><br><span class="line">  font-weight: bolder;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.button&#123;</span><br><span class="line">  margin-top: 50rpx;</span><br><span class="line">  width: 200rpx !important;</span><br><span class="line">  color: black !important;</span><br><span class="line">  background-color: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var b;</span><br><span class="line">var c;</span><br><span class="line">Page(&#123;</span><br><span class="line">  data:(&#123;</span><br><span class="line">    a:Number.parseFloat(0)</span><br><span class="line">  &#125;),</span><br><span class="line">  count1(e)&#123; &#x2F;*带参是把控件的值传进来 *&#x2F;</span><br><span class="line">    console.log(e)</span><br><span class="line">    b &#x3D; e.detail.value</span><br><span class="line">    b &#x3D; Number.parseFloat(b)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  count2(e)&#123; &#x2F;*带参是把控件的值传进来 *&#x2F;</span><br><span class="line">    console.log(e)</span><br><span class="line">    c&#x3D;e.detail.value</span><br><span class="line">    c &#x3D; Number.parseFloat(c)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  button1(e)&#123;</span><br><span class="line">    let d&#x3D;Number.parseFloat(this.data.a)</span><br><span class="line">    d&#x3D;b+c</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      a:d</span><br><span class="line">    &#125;)</span><br><span class="line">    console.warn(d)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/03/26/wxss%E5%B1%9E%E6%80%A7%E7%AC%94%E8%AE%B0/">wxss属性笔记</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-03-26T12:38:08.000Z" itemprop="datePublished">
-    2021-03-26
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/wx/">wx</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="WXSS属性笔记"><a href="#WXSS属性笔记" class="headerlink" title="WXSS属性笔记"></a>WXSS属性笔记</h2><h3 id="1-文字修饰"><a href="#1-文字修饰" class="headerlink" title="1.文字修饰"></a>1.文字修饰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">文本对齐：text-align:&quot;left&#x2F;center&#x2F;right&#x2F;justify&quot;</span><br><span class="line">汉字间距：letter-spacing:10rpx(一般用rpx这样可以随编译器变化)</span><br><span class="line">英文间距：word-spacing:10rpx</span><br><span class="line">行距：line-height:10rpx  &#x2F;&#x2F;当行距等于行的距离时，文字为居中状态</span><br><span class="line">文字颜色：color:red; &#x2F;&#x2F;文字颜色为红色</span><br><span class="line">文字加粗：font-weight：bold; </span><br><span class="line">下划线：text-decoration:underline;</span><br><span class="line">下划线颜色：text-decoration-color:red&#x2F;#000FFF;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-盒子修饰"><a href="#2-盒子修饰" class="headerlink" title="2.盒子修饰"></a>2.盒子修饰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设置背景颜色：background-color:red; &#x2F;&#x2F;背景色为红色</span><br><span class="line">设置内边距对于外部盒子而言：padding-left: 30rpx; &#x2F;&#x2F;左边距为30rpx</span><br><span class="line">					   padding-right: 30rpx  &#x2F;&#x2F;右边距为30rpx</span><br><span class="line">设置外左边距：margin-left:10rpx;  &#x2F;&#x2F;其他依次类推</span><br><span class="line">设置圆角：border-radius: 10rpx;</span><br></pre></td></tr></table></figure>
-
       
     </div>
 </article>
