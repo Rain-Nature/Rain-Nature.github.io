@@ -68,6 +68,96 @@
     <header class="title">
       
         <h1>
+          <a href="/2020/12/27/Csharp%E7%9A%84%E6%97%B6%E9%92%9F%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0-%E7%AA%97%E4%BD%93/">Csharp的时钟功能的实现(窗体)</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2020-12-27T13:22:18.000Z" itemprop="datePublished">
+    2020-12-27
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/C/">C#</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h3 id="小程序（制作了一个简易的数字时钟）-lt-C-gt"><a href="#小程序（制作了一个简易的数字时钟）-lt-C-gt" class="headerlink" title="小程序（制作了一个简易的数字时钟）&lt;C#&gt;"></a>小程序（制作了一个简易的数字时钟）&lt;C#&gt;</h3><h4 id="锻炼"><a href="#锻炼" class="headerlink" title="锻炼"></a>锻炼</h4><ol>
+<li>对Tostring()的熟练使用<br> 在使用Tostring的过程中括号内可不加东西，为直接转换为字符串，在括号内加入引号，在写格式码，可以对转换的字符串的格式输出再做转化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如ToString(&quot;D2&quot;);    &#x2F;&#x2F;D大小写随意,表示未达到两位数时，按两位数格式输出前面补0</span><br></pre></td></tr></table></figure></li>
+<li>对于textBox.text属性的掌握<br>字符串在该属性上显示字符串的格式为<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tetBox.text1&#x3D;变量名(变量须为字符串类型)+&#39;常字符串&#39;; &#x2F;&#x2F;这两个不同的格式按需求使用，用&#39;+&#39;连接</span><br></pre></td></tr></table></figure></li>
+<li>对方法DateTime方法的理解</li>
+</ol>
+<hr>
+<h4 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h4><p>当点击一键查询按钮时会在对应位置显示今日的日期和时间</p>
+<hr>
+<h4 id="窗体"><a href="#窗体" class="headerlink" title="窗体"></a>窗体</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/rIBx1I"><img src="https://s3.ax1x.com/2020/12/27/rIBx1I.md.png" alt="rIBx1I.md.png"></a></p>
+<hr>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.ComponentModel;</span><br><span class="line">using System.Data;</span><br><span class="line">using System.Drawing;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Windows.Forms;</span><br><span class="line"></span><br><span class="line">namespace _2021</span><br><span class="line">&#123;</span><br><span class="line">    public partial class Form1 : Form</span><br><span class="line">    &#123;</span><br><span class="line">        public Form1()</span><br><span class="line">        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void button1_Click(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            int year,month,day;</span><br><span class="line">            year &#x3D; DateTime.Now.Year;</span><br><span class="line">            month &#x3D; DateTime.Now.Month;</span><br><span class="line">            day &#x3D; DateTime.Now.Day;</span><br><span class="line"></span><br><span class="line">            int hour, min, Second;</span><br><span class="line">            hour &#x3D; DateTime.Now.Hour;</span><br><span class="line">            min &#x3D; DateTime.Now.Minute;</span><br><span class="line">            Second &#x3D; DateTime.Now.Second;</span><br><span class="line"></span><br><span class="line">            textBox1.Text &#x3D; year.ToString()+&#39;年&#39;+month.ToString(&quot;D2&quot;)+&#39;月&#39;+day.ToString(&quot;D2&quot;)+&#39;日&#39;;</span><br><span class="line">            textBox2.Text &#x3D; hour.ToString(&quot;D2&quot;) + &#39;:&#39;+min.ToString(&quot;D2&quot;) + &#39;:&#39; + Second.ToString(&quot;D2&quot;);</span><br><span class="line">        &#125;                                                                                      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/rIy0ET"><img src="https://s3.ax1x.com/2020/12/27/rIy0ET.png" alt="rIy0ET.png"></a></p>
+<p><strong>完结</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2020/12/16/C%E8%AF%AD%E8%A8%80%E5%AF%92%E5%81%87%E5%A4%8D%E4%B9%A0-1/">C语言寒假复习(1)</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2020-12-16T14:15:13.000Z" itemprop="datePublished">
+    2020-12-16
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/C/">C</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="C语言寒假复习-1"><a href="#C语言寒假复习-1" class="headerlink" title="C语言寒假复习(1)"></a>C语言寒假复习(1)</h2><h3 id="C语言基础代码（Hello-world）"><a href="#C语言基础代码（Hello-world）" class="headerlink" title="C语言基础代码（Hello world）"></a>C语言基础代码（Hello world）</h3><p><strong>使用记事本来完成，在Linux环境下编译</strong><br>#include &lt;stdio.h&gt;<br>int main(void){<br>    printf(“Hello world”);<br>    return 0;<br>}</p>
+<p><strong>错误的将头文件stdio.h写成了studio.h，要多练，不练必废</strong><br>成功生成<br><img src="https://s3.ax1x.com/2020/12/17/rGrlVK.jpg" alt="Hello world" title="Hello world"></p>
+<hr>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2020/12/08/%E6%9C%88%E4%B8%8B%E7%8B%AC%E9%85%8C%E5%9B%9B%E9%A6%96-%E5%85%B6%E4%B8%80/">月下独酌四首_其一</a>
         </h1>
       
