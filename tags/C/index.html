@@ -21,7 +21,7 @@
 <div class="Shell">
     <aside class='SideBar'>
     <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/tree_small.png)">
+        <div class='av-pic' style="background-image: url(/assets/tree_small.jpg)">
         </div>
     </section>
     <section class='menu'>
@@ -63,7 +63,7 @@
             <ul class="Index">
   
     <header class='PageTitle'>
-        <h1>{ C# }</h1>
+        <h1>{ C }</h1>
     </header>
   
   
@@ -72,19 +72,19 @@
     <header class="title">
       
         <h1>
-          <a href="/2021/02/11/elo-rating-system/">elo rating system</a>
+          <a href="/2021/04/09/%E7%BC%96%E7%A0%81%E7%9A%84%E8%A7%84%E5%88%99/">编码的规则</a>
         </h1>
       
       <div class='ListMeta'>
-  <time datetime="2021-02-11T03:00:56.000Z" itemprop="datePublished">
-    2021-02-11
+  <time datetime="2021-04-09T13:59:14.000Z" itemprop="datePublished">
+    2021-04-09
   </time>
   
   | 
   <ul>
     
   <li class="meta-text">
-  { <a href="/tags/C/">C#</a> }
+  { <a href="/tags/C/">C</a> }
   </li>
 
 
@@ -96,67 +96,39 @@
     </header>
     <div>
       
-        <h2 id="elo-rating-system"><a href="#elo-rating-system" class="headerlink" title="elo rating system"></a>elo rating system</h2><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>ELO等级分制度 是美国物理学家 Arpad Elo 创建的一个衡量各类对弈活动选手水平的评分方法，是当今对弈水平评估的公认的权威方法。被广泛应用于国际象棋、围棋、足球等运动，以及很多网游与电子竞技产业（如王者荣耀）。</p>
-<h3 id="2-主要用途"><a href="#2-主要用途" class="headerlink" title="2.主要用途"></a>2.主要用途</h3><p>ELO机制主要应用在排位或者某些匹配上，可以为你寻找到和你水平相近的对手，但是在多人组队时对中高水平者不友好。</p>
-<h3 id="3-ELO的计算方法"><a href="#3-ELO的计算方法" class="headerlink" title="3.ELO的计算方法"></a>3.ELO的计算方法</h3><p>Ra：A玩家当前的积分<br>Rb：B玩家当前的积分<br>Sa：实际胜负值，胜=1，平=0.5，负=0<br>Ea：预期A选手的胜负值<br>Eb：预期B选手的胜负值<br>因为E值也为预估，则Ea+ Eb=1<br><a target="_blank" rel="noopener" href="https://imgchr.com/i/yBV99s"><img src="https://s3.ax1x.com/2021/02/11/yBV99s.png" alt="yBV99s.png"></a></p>
-<p>如果选手的表现比期望要好，那么此选手的排名应该上升。相反，若表现不如期望，则排名会下降。</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/yBVUCd"><img src="https://s3.ax1x.com/2021/02/11/yBVUCd.png" alt="yBVUCd.png"></a></p>
-<p>次Ra为比赛完后A玩家的积分</p>
-<h3 id="4-程序：王者荣耀巅峰赛积分模拟"><a href="#4-程序：王者荣耀巅峰赛积分模拟" class="headerlink" title="4.程序：王者荣耀巅峰赛积分模拟"></a>4.程序：王者荣耀巅峰赛积分模拟</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _2020</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            string result1;</span><br><span class="line">            double result;</span><br><span class="line">            string grand1, grand2;</span><br><span class="line">            double a, b;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;无限循环</span><br><span class="line">            while (true)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;Two person are grand&quot;);</span><br><span class="line">                grand1 &#x3D; Console.ReadLine();</span><br><span class="line">                grand2 &#x3D; Console.ReadLine();</span><br><span class="line">                a &#x3D; double.Parse(grand1);</span><br><span class="line">                b &#x3D; double.Parse(grand2);</span><br><span class="line">                Console.WriteLine(&quot;Please enter a numbr such as, 1 is A win , 0.5 is flat, 0 is A lost&quot;);</span><br><span class="line">                result1 &#x3D; Console.ReadLine();</span><br><span class="line">                result &#x3D; double.Parse(result1);</span><br><span class="line">                </span><br><span class="line">                &#x2F;&#x2F;跳出循环</span><br><span class="line">                if (result &#x3D;&#x3D; -1)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine(&quot;Esc is ok&quot;);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                switch (result)</span><br><span class="line">                &#123;</span><br><span class="line">                    case 1:</span><br><span class="line">                        Player.liu(1, a, b);</span><br><span class="line">                        break;</span><br><span class="line">                    case 0:</span><br><span class="line">                        Player.liu(0, a, b);</span><br><span class="line">                        break;</span><br><span class="line">                    case 0.5:</span><br><span class="line">                        Player.liu(0.5, a, b);</span><br><span class="line">                        break;</span><br><span class="line">                    default:</span><br><span class="line">                        Console.WriteLine(&quot;it is not right number&quot;);</span><br><span class="line">                        break;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Player</span><br><span class="line">    &#123;</span><br><span class="line">        public Player(double player1)</span><br><span class="line">        &#123;</span><br><span class="line">            this.score &#x3D; player1;</span><br><span class="line">        &#125;</span><br><span class="line">        double score;</span><br><span class="line"></span><br><span class="line">        public static void liu(double result, double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            Player person1 &#x3D; new Player(a);</span><br><span class="line">            Player person2 &#x3D; new Player(b);</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;K值给了24</span><br><span class="line">            double c &#x3D; person1.score + 24 * (result - 1 &#x2F; (1 + Math.Pow(10, (person2.score - person1.score) &#x2F; 400)));</span><br><span class="line">            double d &#x3D; person2.score + 24 * ((1 - result) - 1 &#x2F; (1 + Math.Pow(10, (person1.score - person2.score) &#x2F; 400)));</span><br><span class="line"></span><br><span class="line">            Console.WriteLine(&quot;So the person1 of score &#123;0&#125; the person2 of score &#123;1&#125;&quot;, c, d);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2020/12/27/Csharp%E7%9A%84%E6%97%B6%E9%92%9F%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0-%E7%AA%97%E4%BD%93/">Csharp的时钟功能的实现(窗体)</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2020-12-27T13:22:18.000Z" itemprop="datePublished">
-    2020-12-27
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/C/">C#</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h3 id="小程序（制作了一个简易的数字时钟）-lt-C-gt"><a href="#小程序（制作了一个简易的数字时钟）-lt-C-gt" class="headerlink" title="小程序（制作了一个简易的数字时钟）&lt;C#&gt;"></a>小程序（制作了一个简易的数字时钟）&lt;C#&gt;</h3><h4 id="锻炼"><a href="#锻炼" class="headerlink" title="锻炼"></a>锻炼</h4><ol>
-<li>对Tostring()的熟练使用<br> 在使用Tostring的过程中括号内可不加东西，为直接转换为字符串，在括号内加入引号，在写格式码，可以对转换的字符串的格式输出再做转化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如ToString(&quot;D2&quot;);    &#x2F;&#x2F;D大小写随意,表示未达到两位数时，按两位数格式输出前面补0</span><br></pre></td></tr></table></figure></li>
-<li>对于textBox.text属性的掌握<br>字符串在该属性上显示字符串的格式为<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tetBox.text1&#x3D;变量名(变量须为字符串类型)+&#39;常字符串&#39;; &#x2F;&#x2F;这两个不同的格式按需求使用，用&#39;+&#39;连接</span><br></pre></td></tr></table></figure></li>
-<li>对方法DateTime方法的理解</li>
+        <h2 id="记事本的四种编码规则"><a href="#记事本的四种编码规则" class="headerlink" title="记事本的四种编码规则"></a>记事本的四种编码规则</h2><h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h3><p>在C语言程序中当调用记事本文件时，当里面含有汉字时可能会产生乱码，导致程序的运行失败，写这篇bolg的目的是为了记录一下记事本的四种编码区别</p>
+<h3 id="2-getchar-函数来抓取字符"><a href="#2-getchar-函数来抓取字符" class="headerlink" title="2.getchar()函数来抓取字符"></a>2.getchar()函数来抓取字符</h3><p>当程序从文件中读字符时，如果遇到了文件末尾，就会得到 EOF，EOF 并不是一个字符。但是，从标准输入（就是你的终端）读字符的时候，不可能出现文件末尾的情况，所以终端提供了一个功能，就是当你按下 ctrl+z（Windows）/ ctrl+d（Linux）时，终端告诉程序“标准输入”到了文件末尾，此时你的程序 getchar 会得到 EOF(不一定是-1，目前在CB上是-1)<br><strong>注意：getchar是从缓存中读数据（getchar是以行为单位进行存取的），也就是说，你输入a，程序并不反映，只是把a存到缓存中，直到你输入结束，输了回车，程序才反映</strong></p>
+<h2 id="ANSI编码"><a href="#ANSI编码" class="headerlink" title="ANSI编码"></a>ANSI编码</h2><ol>
+<li>若为英文操作系统则为ASCII码<br> 每个字符用一个字节（8位）表示，最高位恒为0，剩下7位（2^7次方=128）。因为128个值就足够表示所有英文字符，数字字符，英文标点字符，和控制字符了。</li>
 </ol>
-<hr>
-<h4 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h4><p>当点击一键查询按钮时会在对应位置显示今日的日期和时间</p>
-<hr>
-<h4 id="窗体"><a href="#窗体" class="headerlink" title="窗体"></a>窗体</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/rIBx1I"><img src="https://s3.ax1x.com/2020/12/27/rIBx1I.md.png" alt="rIBx1I.md.png"></a></p>
-<hr>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.ComponentModel;</span><br><span class="line">using System.Data;</span><br><span class="line">using System.Drawing;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Windows.Forms;</span><br><span class="line"></span><br><span class="line">namespace _2021</span><br><span class="line">&#123;</span><br><span class="line">    public partial class Form1 : Form</span><br><span class="line">    &#123;</span><br><span class="line">        public Form1()</span><br><span class="line">        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void button1_Click(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            int year,month,day;</span><br><span class="line">            year &#x3D; DateTime.Now.Year;</span><br><span class="line">            month &#x3D; DateTime.Now.Month;</span><br><span class="line">            day &#x3D; DateTime.Now.Day;</span><br><span class="line"></span><br><span class="line">            int hour, min, Second;</span><br><span class="line">            hour &#x3D; DateTime.Now.Hour;</span><br><span class="line">            min &#x3D; DateTime.Now.Minute;</span><br><span class="line">            Second &#x3D; DateTime.Now.Second;</span><br><span class="line"></span><br><span class="line">            textBox1.Text &#x3D; year.ToString()+&#39;年&#39;+month.ToString(&quot;D2&quot;)+&#39;月&#39;+day.ToString(&quot;D2&quot;)+&#39;日&#39;;</span><br><span class="line">            textBox2.Text &#x3D; hour.ToString(&quot;D2&quot;) + &#39;:&#39;+min.ToString(&quot;D2&quot;) + &#39;:&#39; + Second.ToString(&quot;D2&quot;);</span><br><span class="line">        &#125;                                                                                      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/rIy0ET"><img src="https://s3.ax1x.com/2020/12/27/rIy0ET.png" alt="rIy0ET.png"></a></p>
-<p><strong>完结</strong></p>
+<p><strong>2. 若为中文操作系统则为GBK码<br>    兼容ASCII码表示的字符以外，延伸0x80-0xff。用2个字节表示一个中文字符。解析的时候，如果第一个字节大于127，直接再往后读取一个字节，显示为对应的中文字符。（GBK码的字符集包含了简体和繁体）。</strong><br>3. 若为日文操作系统则为JIS码<br>    里面为日文字符</p>
+<p><strong>所以在不同语种的操作系统下，打开同一个通过ANSI编码的txt，除了ASCII所表示的字符正常显示外，其他字符会有出现乱码的情况，因为解码和编码方式就是不一样的，如修改windows的默认语言为日语，即ANSI编码即为JIS编码</strong></p>
+<h2 id="Unicode编码（把地球上所有的语言的符号，都用统一的字符集来表示）"><a href="#Unicode编码（把地球上所有的语言的符号，都用统一的字符集来表示）" class="headerlink" title="Unicode编码（把地球上所有的语言的符号，都用统一的字符集来表示）"></a>Unicode编码（把地球上所有的语言的符号，都用统一的字符集来表示）</h2><h3 id="UTF-8编码"><a href="#UTF-8编码" class="headerlink" title="UTF-8编码"></a>UTF-8编码</h3><ol>
+<li><p>UTF8是一种变长编码，根据不同的Unicode码值采用不同的存储长度。</p>
+</li>
+<li><p>0xxxxxxx,如果是这样的01串,也就是以0开头后面是啥就不用管了XX代表任意bit.就表示把一个字节做为一个单元.就跟ASCII完全一样.<br> 110xxxxx 10xxxxxx.如果是这样的格式，以110开头则把两个字节当一个单元</p>
+<p> 1110xxxx 10xxxxxx 10xxxxxx 如果是这种格式，以1110开头则是三个字节当一个单元.（正好x的个数是16个）</p>
+</li>
+<li><p>UTF-8的好处是在网络环境下，比较节约流量，毕竟网络里英文的数据还是最多的</p>
+</li>
+</ol>
+<h3 id="UTF-16编码"><a href="#UTF-16编码" class="headerlink" title="UTF-16编码"></a>UTF-16编码</h3><ol>
+<li><p>UTF-16就是Windows模式的编码模式(Windows里说的Unicode一般都是指这种编码），用2个字节表示任意字符</p>
+</li>
+<li><p>UTF-16分为大端序和小端序（就是字节序，主要是与硬件相关（处理器的架构），与编程语言无关）</p>
+</li>
+</ol>
+<ul>
+<li>Big-endian（大端序）：       数据的高位字节存放在地址的低端 低位字节存放在地址高端(按原来顺序存储)</li>
+<li>Little-endian（小端序）：    数据的高位字节存放在地址的高端 低位字节存放在地址低端(颠倒顺序存储)</li>
+</ul>
+<p>##记事本中的BOM标签</p>
+<ol>
+<li><p>记事本要支持Unicode，就需要使用BOM标签</p>
+</li>
+<li><p>一段二进制编码，如何确定它是GBK还是BIG5还是UTF-16/UTF-8？记事本的做法是在TXT文件的最前面保存一个标签，如果记事本打开一个TXT，发现这个标签，就说明是unicode。标签叫BOM，如果是0xFF 0xFE，是UTF16LE，如果是0xFE 0xFF则UTF16BE，如果是0xEF 0xBB 0xBF，则是UTF-8。如果没有这三个东西，那么就是ANSI，使用操作系统的默认语言编码来解释。</p>
+</li>
+</ol>
 
       
     </div>
@@ -169,19 +141,19 @@
     <header class="title">
       
         <h1>
-          <a href="/2020/12/08/MyBirthday-do/">MyBirthday do</a>
+          <a href="/2021/03/08/%E8%BD%B0%E7%82%B8%E4%BB%A3%E7%A0%81/">轰炸代码</a>
         </h1>
       
       <div class='ListMeta'>
-  <time datetime="2020-12-08T09:53:03.000Z" itemprop="datePublished">
-    2020-12-08
+  <time datetime="2021-03-08T11:52:33.000Z" itemprop="datePublished">
+    2021-03-08
   </time>
   
   | 
   <ul>
     
   <li class="meta-text">
-  { <a href="/tags/C/">C#</a> }
+  { <a href="/tags/C/">C</a> }
   </li>
 
 
@@ -193,9 +165,18 @@
     </header>
     <div>
       
-        <h2 id="送给生日的代码"><a href="#送给生日的代码" class="headerlink" title="送给生日的代码"></a>送给生日的代码</h2><h3 id="希望之后努力一点，不要再写这种偏落水的代码"><a href="#希望之后努力一点，不要再写这种偏落水的代码" class="headerlink" title="希望之后努力一点，不要再写这种偏落水的代码"></a>希望之后努力一点，不要再写这种偏落水的代码</h3><p>在未来的一年，希望把握住时间，改掉拖延的习惯</p>
-<hr>
-<h3 id="程序（送给2020的自己的代码）"><a href="#程序（送给2020的自己的代码）" class="headerlink" title="程序（送给2020的自己的代码）"></a>程序（送给2020的自己的代码）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Windows.Forms;</span><br><span class="line"></span><br><span class="line">namespace _2021</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            int a;</span><br><span class="line">            Console.WriteLine(&quot;how time is do this ? , It is my birthday&quot;);</span><br><span class="line">            string year1,month1,day1;</span><br><span class="line">            int year,month,day;</span><br><span class="line">            Console.Write(&quot;The year is:&quot;);</span><br><span class="line">            year1&#x3D;Console.ReadLine();</span><br><span class="line">            year &#x3D; int.Parse(year1);</span><br><span class="line">            Console.Write(&quot;The month is:&quot;);</span><br><span class="line">            month1&#x3D;Console.ReadLine();</span><br><span class="line">            month &#x3D; int.Parse(month1);</span><br><span class="line">            Console.Write(&quot;The day is:&quot;);</span><br><span class="line">            day1 &#x3D; Console.ReadLine();</span><br><span class="line">            day &#x3D; int.Parse(day1);</span><br><span class="line">            birth liu &#x3D; new birth();</span><br><span class="line">            a&#x3D;liu.Liu(year, month, day);</span><br><span class="line">            if (a &#x3D;&#x3D; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                MessageBox.Show(&quot;no is not&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class birth</span><br><span class="line">    &#123;</span><br><span class="line">        public int Liu(int a, int b, int c)</span><br><span class="line">        &#123;</span><br><span class="line">            if (a &#x3D;&#x3D; 2020)</span><br><span class="line">            &#123;</span><br><span class="line">                if (b &#x3D;&#x3D; 12)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (c &#x3D;&#x3D; 8)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Console.WriteLine(&quot;Happy Birthday LXS&quot;);</span><br><span class="line">                        MessageBox.Show(&quot;The timely Wind and Rain have to happen in 2021, Let&#39;s to see&quot;);</span><br><span class="line">                        return 1;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        return 0;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    return 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                return 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="C语言实现QQ的代码轰炸"><a href="#C语言实现QQ的代码轰炸" class="headerlink" title="C语言实现QQ的代码轰炸"></a>C语言实现QQ的代码轰炸</h2><h3 id="1-原理"><a href="#1-原理" class="headerlink" title="1.原理"></a>1.原理</h3><p>通过使用Windows的句柄来实现对桌面窗口的控制，获取QQ界面发送的句柄，然后通过虚拟键盘来控制，来实现键盘控制QQ消息的发送</p>
+<h3 id="2-代码"><a href="#2-代码" class="headerlink" title="2.代码"></a>2.代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;Windows.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a&#x3D;0,i,j;</span><br><span class="line">    char name[100];</span><br><span class="line">    char sentence[100];</span><br><span class="line"></span><br><span class="line">    printf(&quot;Window of name:&quot;);</span><br><span class="line">    scanf(&quot;%s&quot;,name);</span><br><span class="line">    HWND h &#x3D; FindWindow(0,name);</span><br><span class="line">    printf(&quot;The once:&quot;);</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;a);</span><br><span class="line">    printf(&quot;The Sentence is:&quot;);</span><br><span class="line">    scanf(&quot;%s&quot;,sentence);</span><br><span class="line">    for(i&#x3D;0;i&lt;a;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        for(j&#x3D;0;j&lt;strlen(sentence);j++)</span><br><span class="line">        &#123;</span><br><span class="line">            SendMessage(h,WM_CHAR,sentence[j]&amp;0xff,0);</span><br><span class="line">        &#125;</span><br><span class="line">        SendMessage(h,WM_KEYDOWN,VK_RETURN,0);</span><br><span class="line">        SendMessage(h,WM_KEYUP,VK_RETURN,0);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n\nfinish&quot;);</span><br><span class="line">    return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用方法"><a href="#3-使用方法" class="headerlink" title="3.使用方法"></a>3.使用方法</h3><ul>
+<li>首先打开QQ打开想要轰炸的代码窗口<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/6lbHZ4"><img src="https://s3.ax1x.com/2021/03/08/6lbHZ4.jpg" alt="6lbHZ4.jpg"></a></li>
+<li>输入窗体名称（将窗口最小化后把鼠标放在最小化窗口上）</li>
+<li>输入轰炸次数</li>
+<li>输入轰炸内容<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/6lqkFA"><img src="https://s3.ax1x.com/2021/03/08/6lqkFA.jpg" alt="6lqkFA.jpg"></a></li>
+<li>确保要轰炸的窗口保持在黑窗口下</li>
+<li>按Enter键开始轰炸</li>
+</ul>
+
       
     </div>
 </article>
@@ -207,19 +188,19 @@
     <header class="title">
       
         <h1>
-          <a href="/2020/11/26/%E5%BB%BA%E7%AB%8BC(sharp)%E7%B1%BB%E5%BA%93/">建立C(sharp)类库</a>
+          <a href="/2020/12/16/C%E8%AF%AD%E8%A8%80%E5%AF%92%E5%81%87%E5%A4%8D%E4%B9%A0-1/">C语言寒假复习(1)</a>
         </h1>
       
       <div class='ListMeta'>
-  <time datetime="2020-11-26T14:36:57.000Z" itemprop="datePublished">
-    2020-11-26
+  <time datetime="2020-12-16T14:15:13.000Z" itemprop="datePublished">
+    2020-12-16
   </time>
   
   | 
   <ul>
     
   <li class="meta-text">
-  { <a href="/tags/C/">C#</a> }
+  { <a href="/tags/C/">C</a> }
   </li>
 
 
@@ -231,17 +212,9 @@
     </header>
     <div>
       
-        <h2 id="用VS2019-在C-新建一个算术类库"><a href="#用VS2019-在C-新建一个算术类库" class="headerlink" title="用VS2019 在C#新建一个算术类库"></a>用VS2019 在C#新建一个算术类库</h2><p>1.在VS2019中新建一个类库程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line"></span><br><span class="line">namespace Tools</span><br><span class="line">&#123;</span><br><span class="line">    public class Tools</span><br><span class="line">    &#123;</span><br><span class="line">        public static double Add(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a + b;</span><br><span class="line">        &#125;</span><br><span class="line">        public static double Sub(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a - b;</span><br><span class="line">        &#125;</span><br><span class="line">        public static double Mul(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a * b;</span><br><span class="line">        &#125;</span><br><span class="line">        public static double Div(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a &#x2F; b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.在编写完成后点击F6在下面的生成中可以看见路径</p>
-<p>3.一般是在bin这个文件夹中，点击进入找到一个dll的文件，此就为生成的类库</p>
+        <h2 id="C语言寒假复习-1"><a href="#C语言寒假复习-1" class="headerlink" title="C语言寒假复习(1)"></a>C语言寒假复习(1)</h2><h3 id="C语言基础代码（Hello-world）"><a href="#C语言基础代码（Hello-world）" class="headerlink" title="C语言基础代码（Hello world）"></a>C语言基础代码（Hello world）</h3><p><strong>使用记事本来完成，在Linux环境下编译</strong><br>#include &lt;stdio.h&gt;<br>int main(void){<br>    printf(“Hello world”);<br>    return 0;<br>}</p>
+<p><strong>错误的将头文件stdio.h写成了studio.h，要多练，不练必废</strong><br>成功生成<br><img src="https://s3.ax1x.com/2020/12/17/rGrlVK.jpg" alt="Hello world" title="Hello world"></p>
 <hr>
-<h2 id="使用生成的类库"><a href="#使用生成的类库" class="headerlink" title="使用生成的类库"></a>使用生成的类库</h2><p>1.新建一个控制台应用程序<br>2.在引用中添加引用，在浏览处选择浏览，找到想要引用的类库添加即可</p>
-<hr>
-<h2 id="类库的修改"><a href="#类库的修改" class="headerlink" title="类库的修改"></a>类库的修改</h2><p>由于依赖性类库需要在现有框架下修改，使用文件.csproj结尾的，添加现有项目XXX.csproj即可在文件中修改，即可以看见该类库的源代码，显示后可以在添加引用项目，解决方案中引用这个类库，修改后先移除原先的再重新引用即可生效。</p>
-<p><strong>使用自己类库的方式和系统给的类库的方式一样</strong></p>
-<p><strong>完结</strong></p>
 
       
     </div>
