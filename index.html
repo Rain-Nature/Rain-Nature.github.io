@@ -68,6 +68,32 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/05/03/%E9%9F%B3%E4%B9%90%E5%B0%8F%E7%A8%8B%E5%BA%8F01/">音乐小程序01</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-05-03T13:34:16.000Z" itemprop="datePublished">
+    2021-05-03
+  </time>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/05/02/Java01/">Java01</a>
         </h1>
       
@@ -532,49 +558,6 @@
 <li><p>一段二进制编码，如何确定它是GBK还是BIG5还是UTF-16/UTF-8？记事本的做法是在TXT文件的最前面保存一个标签，如果记事本打开一个TXT，发现这个标签，就说明是unicode。标签叫BOM，如果是0xFF 0xFE，是UTF16LE，如果是0xFE 0xFF则UTF16BE，如果是0xEF 0xBB 0xBF，则是UTF-8。如果没有这三个东西，那么就是ANSI，使用操作系统的默认语言编码来解释。</p>
 </li>
 </ol>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E8%BD%AE%E6%92%AD%E5%9B%BE/">微信小程序-轮播图</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-07T00:25:02.000Z" itemprop="datePublished">
-    2021-04-07
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/wx%E5%AE%9E%E8%B7%B5/">wx实践</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="微信小程序-轮播图"><a href="#微信小程序-轮播图" class="headerlink" title="微信小程序-轮播图"></a>微信小程序-轮播图</h2><h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;test&quot;&gt;</span><br><span class="line">  &lt;image class&#x3D;&quot;picture&quot; src&#x3D;&quot;..&#x2F;image&#x2F;unity.jpeg&quot; mode&#x3D;&quot;widthFix&quot;&gt;</span><br><span class="line">  &lt;&#x2F;image&gt;</span><br><span class="line">  &lt;view&gt;</span><br><span class="line">    unity的游戏开发view</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line"></span><br><span class="line">&lt;swiper class&#x3D;&quot;myswiper&quot; indicator-dots&#x3D;&quot;true&quot; autoplay&#x3D;&quot;true&quot; circular&#x3D;&quot;true&quot;&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image src&#x3D;&quot;..&#x2F;image&#x2F;2020.jpg&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image src&#x3D;&quot;..&#x2F;image&#x2F;2020.jpg&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image src&#x3D;&quot;..&#x2F;image&#x2F;2020.jpg&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h3><p>.test{<br>  text-align:center;<br>  font-size: 30rpx;<br>  text-decoration: underline;<br>  text-decoration-color: blue;</p>
-<p>}</p>
-<p>.picture{<br>   width: 90%;</p>
-<p>}</p>
-<p>.myswiper{<br>  height: 540rpx;<br>  text-align: center;<br>}<br>.myswiper swiper-item &gt;image{<br>  width: 98%;<br>}</p>
 
       
     </div>
