@@ -107,6 +107,225 @@
 
     </li>
   
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/04/18/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A404/">图灵工作室04</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-04-18T09:56:30.000Z" itemprop="datePublished">
+    2021-04-18
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="底端固定的方式-css"><a href="#底端固定的方式-css" class="headerlink" title="底端固定的方式(css)"></a>底端固定的方式(css)</h2><p>position: fixed; //固定定位<br>bottom: 0;  //0表示底部</p>
+<p><strong>注意：line-height为行高，当行高等于行的高度时，里面的东西居中,用于文字</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/04/11/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day03/">图灵工作室day03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-04-11T08:51:34.000Z" itemprop="datePublished">
+    2021-04-11
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h2><p>1.任何一个容器都可以启用flex布局<br>2.flex布局也叫弹性布局</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">(1).display:flex  &#x2F;&#x2F;启用flex布局</span><br><span class="line">(2).flex-direction属性决定主轴方向</span><br><span class="line">    flex-direction：column &#x2F;&#x2F;设置垂直方向为主轴</span><br><span class="line">    flex-direction：raw &#x2F;&#x2F;设置横轴方向为主轴</span><br><span class="line">    交叉轴等于法向量，主轴于盒子方向相同</span><br><span class="line"></span><br><span class="line">(3).对盒子先设置大盒子，justity-content：center;对主轴居中对齐</span><br><span class="line">                     他的其他属性</span><br><span class="line">                     flex-start（默认值）：左对齐</span><br><span class="line">                     flex-end：右对齐</span><br><span class="line">                     center： 居中</span><br><span class="line">                     space-between：两端对齐，项目之间的间隔都相等。</span><br><span class="line">                     space-around：每个项目两侧的间隔相等。所以，项目之间                                    的间隔比项目与边框的间隔大一倍。</span><br><span class="line">                     </span><br><span class="line">                     align-items：center；对交叉轴居中对齐</span><br><span class="line">              	     他的其他属性</span><br><span class="line">              	     flex-start：交叉轴的起点对齐。</span><br><span class="line">                     flex-end：交叉轴的终点对齐。</span><br><span class="line">                     center：交叉轴的中点对齐。</span><br><span class="line">                     baseline: 项目的第一行文字的基线对齐。</span><br><span class="line">                     stretch（默认值）：如果项目未设置高度或设为auto，将占                                       满整个容器的高度。</span><br><span class="line">    </span><br><span class="line">    在此之后每制造一个小盒子都会按照设定方式排列</span><br><span class="line"></span><br><span class="line">(4).flex-wrap属性决定盒子排不下的时候是否换行</span><br><span class="line">    flex-wrap:nowrap(默认); &#x2F;&#x2F;不换行，如果放不下的情况下会让所有盒子等比例缩小来放</span><br><span class="line">    flex-wrap:wrap;        &#x2F;&#x2F;换行，第一行在上方</span><br><span class="line">    flex-wrap:wrap-reverse &#x2F;&#x2F;换行，第一行在下方</span><br><span class="line"></span><br><span class="line">(5).order属性</span><br><span class="line">    order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0</span><br><span class="line">    order &#x3D; 1;</span><br><span class="line">    </span><br><span class="line">(6).flex-grow属性</span><br><span class="line">    flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</span><br><span class="line"></span><br><span class="line">当一个flex-grow为1，而其他为0时，该盒子会占去除那些为0盒子占的空间外的全部空间</span><br><span class="line"></span><br><span class="line">(7).flex布局自动计算高度不需要去手动分配，会适得其反</span><br></pre></td></tr></table></figure>
+
+<p><strong>其他的暂时没有用上就先不补了</strong></p>
+<h2 id="js部分语法"><a href="#js部分语法" class="headerlink" title="js部分语法"></a>js部分语法</h2><p>1.js中不分’ ‘,” “,一般用’ ‘</p>
+<p>2.let 块作用域，var 函数作用域（整个函数中在哪定义生命周期为整个函数）</p>
+<p>3.控制台打印<br>console.log()函数 //普通文本<br>console.warn()函数 //警告文本<br>console.error()函数 //出错文本</p>
+<p>4.input控件disable控制是否允许输入</p>
+<p>5.转浮点和整型来做差来判断精度是否丢失</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/03/26/wxss%E5%B1%9E%E6%80%A7%E7%AC%94%E8%AE%B0/">wxss属性笔记</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-03-26T12:38:08.000Z" itemprop="datePublished">
+    2021-03-26
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="WXSS属性笔记"><a href="#WXSS属性笔记" class="headerlink" title="WXSS属性笔记"></a>WXSS属性笔记</h2><h3 id="1-文字修饰"><a href="#1-文字修饰" class="headerlink" title="1.文字修饰"></a>1.文字修饰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">文本对齐：text-align:&quot;left&#x2F;center&#x2F;right&#x2F;justify&quot;</span><br><span class="line">汉字间距：letter-spacing:10rpx(一般用rpx这样可以随编译器变化)</span><br><span class="line">英文间距：word-spacing:10rpx</span><br><span class="line">行距：line-height:10rpx  &#x2F;&#x2F;当行距等于行的距离时，文字为居中状态</span><br><span class="line">文字颜色：color:red; &#x2F;&#x2F;文字颜色为红色</span><br><span class="line">文字加粗：font-weight：bold; </span><br><span class="line">下划线：text-decoration:underline;</span><br><span class="line">下划线颜色：text-decoration-color:red&#x2F;#000FFF;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-盒子修饰"><a href="#2-盒子修饰" class="headerlink" title="2.盒子修饰"></a>2.盒子修饰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设置背景颜色：background-color:red; &#x2F;&#x2F;背景色为红色</span><br><span class="line">设置内边距对于外部盒子而言：padding-left: 30rpx; &#x2F;&#x2F;左边距为30rpx</span><br><span class="line">					   padding-right: 30rpx  &#x2F;&#x2F;右边距为30rpx</span><br><span class="line">设置外左边距：margin-left:10rpx;  &#x2F;&#x2F;其他依次类推</span><br><span class="line">设置圆角：border-radius: 10rpx;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/03/25/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day02/">图灵工作室day02</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-03-25T14:39:23.000Z" itemprop="datePublished">
+    2021-03-25
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>1.选择器的优先级<br>id&gt;class&gt;标签选择器<br>可以提供样式的多元化</p>
+<p>2.class可以多次使用，id只能使用一次</p>
+<p>3.最外层为id选择器可以逐步进入层次修改样式,当用父子的时候只可以高的向低的层次调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#39;&gt;&#39;为父子级的所有的调用</span><br><span class="line">&#39; &#39;为跨级的调用，底下所有的都会跨级调用</span><br><span class="line">&#39;&gt;&#39;优先级大于&#39; &#39;</span><br><span class="line"></span><br><span class="line">4.只有文字可以进行样式渗透</span><br><span class="line"></span><br><span class="line">5.!important强制优先显示，但同时有还是看优先级</span><br></pre></td></tr></table></figure>
+
+<p>6.js基础格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">	data:(&#123;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>7.各种标签的使用<br>(1)view标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;view&gt;&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最常使用的标签（方便简洁）</p>
+<p>(2)input标签（显示文本框）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;input &#x2F;&gt;</span><br><span class="line">内置一般属性</span><br><span class="line">type&#x3D;&quot;text&quot; 点击文本框时弹出键盘  &#x2F;&#x2F;还有其他三种弹出方式，详情见开发者文档</span><br><span class="line">value&#x3D;&quot;&quot; 里面放置的文字直接显示在文本框上</span><br><span class="line">placeholder&#x3D;&quot;&quot; 里面放置的文字为文本框前的提示</span><br><span class="line">bindinput&#x3D;&quot;&quot; 里面自己起名字是连接js用的类似前面的选择器，在js调用时，直接写名字加一个参数</span><br></pre></td></tr></table></figure>
+
+<p>(3)button标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;button&gt;&lt;&#x2F;button&gt;</span><br><span class="line">内置一般属性</span><br><span class="line">type&#x3D;&quot;&quot; 设置按钮的样式，自定义的话要加最高级</span><br><span class="line">bindtap&#x3D;&quot;&quot; bindinput&#x3D;&quot;&quot; 里面自己起名字是连接js用的类似前面的选择器，在js调用时，直接写名字加一个参数</span><br></pre></td></tr></table></figure>
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/03/13/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day01/">图灵工作室day01</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-03-13T12:12:25.000Z" itemprop="datePublished">
+    2021-03-13
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h3 id="微信小程序简介"><a href="#微信小程序简介" class="headerlink" title="微信小程序简介"></a>微信小程序简介</h3><p>1.微信小程序是以微信为载体，使用微信内置的浏览器</p>
+<p>2.微信开创了二维码时代</p>
+<p>3.微信公众平台是微信开发的一个综合性平台</p>
+<p>4.微信小商店(新)可以去玩下</p>
+<h3 id="微信小程序开发"><a href="#微信小程序开发" class="headerlink" title="微信小程序开发"></a>微信小程序开发</h3><p>1.初学者一般使用pages文件下的文件组进行开发,常用的是index.wxml,index.wxss<br>2.image的属性中除了src还有代码mode=”widthFix”等比例缩放<br>3.swiper滚动特效(轮播器),swiper标签下面必须要跟多组swiper-item标签,在swiper-item中可以继续使用    其他标签<br>4.html与css关系<br>属性(html)=&gt;样式(css)<br>class=&gt;.<br>id=&gt;#<br>5.插入图片(html部分)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;image src&#x3D;&quot;..&#x2F;xxxx&#x2F;xxxx&#x2F;xxx.png&quot;&gt;     &#x2F;&#x2F;图片格式随意</span><br></pre></td></tr></table></figure>
+<p>6.css的一些样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.text-align:center;居中 &#x2F;&#x2F;注意这个需要在外部盒子中写,影响内部盒子</span><br><span class="line">2.font-size:30rpx; 设置字体大小 &#x2F;&#x2F;rpx结尾则字体可随设备变化而比例变化,px就不行</span><br><span class="line">3.text-decoration:underline; 设置下划线 &#x2F;&#x2F;引用则产生下划线</span><br><span class="line">4.text-decoration-color:blue; 设置下划线颜色 &#x2F;&#x2F;这里为蓝色,可以用#加数字来弄颜色</span><br><span class="line">5.width:90%; 宽度为屏幕的90% </span><br></pre></td></tr></table></figure>
+<p>7.用QQ截取颜色<br>打开QQ的截图功能,放在电脑屏幕中要的颜色上,按ctrl+c复制色号在剪贴板</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
 </ul>
 
 
