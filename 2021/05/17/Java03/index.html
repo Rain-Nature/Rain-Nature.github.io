@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java03 | Blog of yuanfang</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/tree_small.jpg)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of yuanfang</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>Java03</h1>
+    </header>
+
+    <section>
+      <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ol>
+<li>前面的char类型只可以表示单个字符</li>
+</ol>
+<p><strong>2. java语言将字符串作为对象来处理，可以通过java.lang包中的String类来创建字符串对</strong></p>
+<ol start="3">
+<li><p>java中由双引号(“”)包围的都是字符串，不能作为其他数据类型来使用</p>
+</li>
+<li><p>声明字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>注意：声明的字符串变量必须经过初始化才可以使用，否则编译器报错</strong></p>
+<p><strong>5. 创建字符串对象</strong><br>由于java是按照对象来处理字符串，所以创建方式和对象一样</p>
+<p>==String类常用的构造方法==<br>​    (1).String(char a[])<br>​    用一个字符数组a创建String对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char a[] &#x3D; &#123;&#39;g&#39;,&#39;o&#39;,&#39;o&#39;,&#39;d&#39;&#125;; 等价于    </span><br><span class="line">String s &#x3D; new String(a);	  &#x3D;&#x3D;&#x3D;&#x3D;&gt;   String s &#x3D; new String(&quot;good&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>​    (2).String(char a[],int offset,int length)  <strong>//从第offse个元素向后取length个元素</strong></p>
+<p>​    提取字符数组a中的一部分创建一个字符串对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char a[] &#x3D; &#123;&#39;s&#39;,&#39;t&#39;,&#39;u&#39;,&#39;d&#39;,&#39;e&#39;,&#39;n&#39;,&#39;t&#39;&#125;; 等价</span><br><span class="line">String s&#x3D;new String(a,2,4)               &#x3D;&#x3D;&#x3D;&gt;String s&#x3D;new String(&quot;uden&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>​    (3).引用字符串常量来创建字符串变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1,str2;</span><br><span class="line">str1 &#x3D; &quot;We are students&quot;;</span><br><span class="line">str2 &#x3D; &quot;We are students&quot;;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：str1和str2引用相同的字符串常量，所以指向同一个实体所在的内存</strong></p>
+<ol start="6">
+<li>连接字符串<br>使用”+”运算符可以实现连接多个字符串，”+”连接多个字符串后产生一个String对象</li>
+</ol>
+<p><strong>注意：字符串也可以与其他基本数据类型连接，连接后这些数据将转化为字符串，当基本数据类型与字符串连接时会自动调用toString()方法将其转为字符串形式</strong></p>
+<ol start="7">
+<li><p>获取字符串的长度<br>​    使用String类型下的length()方法可以获取声明的字符串对象的长度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.length()      &#x2F;&#x2F;str为字符串对象</span><br></pre></td></tr></table></figure>
+<p>​    字符串的下标是0~length()-1</p>
+</li>
+<li><p>字符串查找的方法<br>(1).indexOf(String s)<br>返回值为int型，在里面填想要查找的字符串，返回整个字符串中第一次出现的这个字符串的第一个元素的数组下标对应的位置(索引位置)，如果没有检索到字符串s，则返回-1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.indexOf(the_str1)  &#x2F;&#x2F;字符用单(双)引号，字符串用双引号</span><br></pre></td></tr></table></figure>
+<p>​    (2).lastIndexOf(String str)<br>​    返回值为int型，在里面填想要查找的字符串，返回整个字符串中最后一次出现的这个字符串的第一个元素的数组下标对应的位置(索引位置)，如果没有检索到字符串s，则返回-1</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.lastIndexOf(the_str1)</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>注意：如果lastIndexOf方法中的参数是空字符串””，则返回结果和调用该字符串的length()方法返回结果相同，indexOf方法中的参数是空字符串””，则返回结果为0</strong></p>
+<ol start="9">
+<li><p>获取指定索引位置的字符<br>​    使用charAt()方法，可以将指定索引处的字符返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.charAt(int index)  &#x2F;&#x2F;返回值为char</span><br></pre></td></tr></table></figure>
+<p>​    注意：若索引值超出本身字符串的长度则报错</p>
+</li>
+<li><p>字符串操作</p>
+</li>
+</ol>
+<p>​    (1).获取子字符串<br>​    通过String类下的substring()方法（两种方法重载），返回值String类型</p>
+<ul>
+<li>substring(int beginIndex)<br>​    从指定的索引位置开始截取直到该字符串结尾的子串，beginIndex指指定的索引位置<br>​    </li>
+<li>substring(int beginIndex , int endIndex)<br>​      从字符串某一索引位置开始截取至某一索引位置结束的子串<br>​      <strong>注意：取得到第beginIndex这里的字符，取不到第endIndex这里的字符，即在这里结束</strong></li>
+</ul>
+<p>​    (2).去除空格<br>​    通过trim()方法返回字符串的副本,作用是忽略前导空格和尾部空格,注意:字符串中间的空格不忽略,返回值为String</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.trim()  &#x2F;&#x2F;str为字符串对象</span><br></pre></td></tr></table></figure>
+<p>​<br>​    (3).字符串替换<br>​    通过replace()方法来实现将指定的字符或者字符串替换成新的字符或字符串,返回值为String</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">str.replace(char oldChar , char newChar)</span><br><span class="line">&#x2F;*</span><br><span class="line">oldChar:要替换的字符或字符串</span><br><span class="line">newChar:用于替换原来字符串的内容</span><br><span class="line">*&#x2F;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>注意:<br>​    [1].如果字符串oldChar没有出现在原字符串中,则将原字符串返回<br>​    [2].如果要替换的oldChar在原字符串中出现多次,则会被全部替换成newChar<br>​    [3].切记大小写是区分的</strong></p>
+<p>​    (4).判断字符串以什么开头与结尾<br>​    [1].startsWith()方法<br>​    该方法用于判断当前字符串是否为原字符串的开头，返回值为Boolean类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.startsWith(String prefix)  &#x2F;&#x2F;prefix指作为前缀的字符或字符串</span><br></pre></td></tr></table></figure>
+<p>​    [2].endsWith()方法<br>​    该方法用于判断当前字符串是否为原字符串的结束，返回值为Boolean类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.endsWith(String suffix)  &#x2F;&#x2F;suffix指作为后缀的字符或字符串</span><br></pre></td></tr></table></figure>
+
+<p>​    (5).判断字符串是否相等<br>​    对于字符串的比较不可以使用’==’来进行判断，因为比较运算符是比较两个字符串的地址，即使字符串内容相同但地址也是不同的<br>​    通过equals()方法或者equalsIgnoreCase()方法<br>​    [1].equals()方法<br>​    如果两个字符串具有相同的字符和长度，返回值为ture，即返回值为Boolean类型<br>​    <strong>注意：equals()方法严格区分大小写</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.equals(String otherstr)  &#x2F;&#x2F;str和otherstr相比较</span><br></pre></td></tr></table></figure>
+<p>​    [2].equalsIgnoreCase()方法<br>​    在忽略字符串大小写的情况下比较字符串是否相等，返回值为Boolean类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.equalsIgnoreCase(String otherstr)  &#x2F;&#x2F;str和otherstr相比较</span><br></pre></td></tr></table></figure>
+
+<p>​    (6).字符串分割<br>​    使用split()方法对给定原字符串指定的分割字符或分割字符串进行分割，将分割后的结果放在字符串数组中，返回值为字符串数组<br>​    [1].split(String sign)<br>​    对给定分隔符对字符串拆分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.split(String sign)  &#x2F;&#x2F;sign为分割符为String类型，即注意必须用&quot;&quot;,不能使用&#39;&#39;</span><br></pre></td></tr></table></figure>
+
+<p>​    [2].split(String sign,int limit)<br>​    对给定分隔符对字符串拆分，并限制拆分次数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.split(String sign,int limit)  &#x2F;&#x2F;sign为分割符为String类型，即注意必须用&quot;&quot;,不能使用&#39;&#39;,limit为分割次数</span><br></pre></td></tr></table></figure>
+<p>​    **注意：如果想定义多个分割符，可以使用’|’来隔开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如：</span><br><span class="line">str.split(&quot;+|&#x3D;&quot;)  &#x2F;&#x2F;以+和&#x3D;进行分割</span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li>格式化字符串<br>​    String类的静态format()方法用于创建格式化字符串，返回值为String类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s &#x3D; String.format(&quot;转换符&quot;,变量); &#x2F;&#x2F;对变量进行格式化，变量参数只要是类类型就可以</span><br></pre></td></tr></table></figure>
+​    与C语言中printf的转化类似</li>
+</ol>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2021-05-17T11:00:52.000Z" itemprop="datePublished">
+              2021-05-17
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2021 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>
