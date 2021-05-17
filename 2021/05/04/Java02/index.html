@@ -86,6 +86,11 @@
 </li>
 <li><p>for循环语句<br>与c一样</p>
 </li>
+</ol>
+<p>**注意：for循环里第一个表达式里是填初始化表达式，可以为空，但不可以直接填一个变量，哪怕这个变量前面已经定义赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(i;i&lt;12;i++) &#x2F;&#x2F;错误的，i因改为i&#x3D;0，若i是已经定义赋值的这个第一个表达式也可以直接为空不写东西</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
 <li><p>foreach语句<br>foreach是for语句的特殊简化版本，不能完全取代for语句，任何foreach语句都可以改写为for语句版本，foreach语句一般用于遍历数组等方面,在这种方面给与程序员很大的方便</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(元素变量x:遍历对象obj)&#123;</span><br><span class="line">	引用了x的java语句;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>例：输出一维数组中全部元素</p>
