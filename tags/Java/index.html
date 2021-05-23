@@ -119,10 +119,11 @@
 <li><p>二维数组的初始化(与一维类似)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组数据类型 数组名[][] &#x3D; &#123;&#123;值1,值2&#125;,&#123;..&#125;,&#123;..&#125;&#125;; &#x2F;&#x2F;注意：每一个大的项要用花括号&#123;&#125;起来,不需要每一项元素个数相等</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>数组的基本操作<br>​    (1).遍历数组<br>​    通过数组的length属性来获得数组的长度<br>​    **注意：数组的元素只取到length-1</p>
+<li><p>数组的基本操作</p>
 </li>
 </ol>
-<p>​    (n).剩下的都是一些对数组的函数可以自己用算法来完成，到时要用再看看就行</p>
+<p>​    (1).遍历数组<br>​    通过数组的length属性来获得数组的长度<br>​    **注意：数组的元素只取到length-1</p>
+<p>​    (2).剩下的都是一些对数组的函数可以自己用算法来完成，到时要用再看看就行，我觉得可能是方法重写的时候用的上</p>
 <ol start="9">
 <li>数组排序算法<br>​    (1).冒泡排序法<br>​    <strong>主要思想：把相邻两个元素进行比较，不满足则交换，每次循环将最大或是最小的元素排在最后，下一次循环进行类似操作</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;外层循环控制排序轮数，一般比数组长度减一因为最后一次只剩一个数组元素了</span><br><span class="line">for(int i &#x3D; 1;i &lt; arr.length;i++) &#123;</span><br><span class="line">	&#x2F;&#x2F;内层循环用于对比临近元素的大小，对比交换次数随着排序轮数减少</span><br><span class="line">	for(int j &#x3D; 0;j &lt; arr.length-i;j++) &#123;</span><br><span class="line">		if(arr[j]&gt;arr[j+1]) &#123;</span><br><span class="line">			int tmp &#x3D; arr[j];</span><br><span class="line">			arr[j] &#x3D; arr[j+1];</span><br><span class="line">			arr[j+1] &#x3D; tmp;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
