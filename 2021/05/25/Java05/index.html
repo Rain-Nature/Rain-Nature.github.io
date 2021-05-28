@@ -67,24 +67,13 @@
     </header>
 
     <section>
-      <h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><ol>
-<li><p>在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;成员方法的语法格式</span><br><span class="line">	权限修饰符 返回值类型 方法名(参数类型 参数名)&#123;</span><br><span class="line">	&#x2F;&#x2F;方法体</span><br><span class="line">	return 返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>权限修饰符</p>
-</li>
-</ol>
-<p><strong>类权限(注意：类权限会约束类成员的权限设定，大于类的权限的类成员都会默认为类的权限进行约束)</strong><br>访问包位置|private|protected|public<br>:–:|:–:|:–:|:–:<br>本类|可见|可见|可见<br>同包其他类或者子类|不可见|可见|可见<br>其他包的类或子类|不可见|不可见|可见</p>
+      <h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><h4 id="1-在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法"><a href="#1-在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法" class="headerlink" title="1. 在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法"></a>1. 在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;成员方法的语法格式</span><br><span class="line">	权限修饰符 返回值类型 方法名(参数类型 参数名)&#123;</span><br><span class="line">	&#x2F;&#x2F;方法体</span><br><span class="line">	return 返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-权限修饰符"><a href="#2-权限修饰符" class="headerlink" title="2. 权限修饰符"></a>2. 权限修饰符</h4><p><strong>类权限(注意：类权限会约束类成员的权限设定，大于类的权限的类成员都会默认为类的权限进行约束)</strong><br>访问包位置|private|protected|public<br>:–:|:–:|:–:|:–:<br>本类|可见|可见|可见<br>同包其他类或者子类|不可见|可见|可见<br>其他包的类或子类|不可见|不可见|可见</p>
 <p><strong>注意：声明类时不使用上述三个修饰符设置权限，则这个类预设为friendly，可以本类，同包其他类但不能子类，其他包即子类也不行</strong></p>
-<ol start="3">
-<li><p>局部变量<br>​    在成员方法内定义的变量叫做局部变量，方法是形参也是局部变量<br>​    <strong>局部变量在方法内使用时必须进行赋值和初始化不然会报错</strong></p>
-</li>
-<li><p>局部变量的作用域(有效范围)<br>​    在相互不嵌套使用的作用域中可以同时声明两个名称和类型相同的局部变量<br>​    一个花括号括起来的表示一个作用域</p>
-</li>
-<li><p>this关键字</p>
-</li>
-</ol>
-<p>​    在Java语言中规定使用this关键字来代表本类对象的引用，即引用对象的成员变量和方法<br>​    <strong>(1).在局部变量与类的成员变量重名时，就需要添加this关键字来明确引用的是类</strong></p>
+<h4 id="3-局部变量"><a href="#3-局部变量" class="headerlink" title="3. 局部变量"></a>3. 局部变量</h4><p>​    在成员方法内定义的变量叫做局部变量，方法是形参也是局部变量<br>​    <strong>局部变量在方法内使用时必须进行赋值和初始化不然会报错</strong></p>
+<h4 id="4-局部变量的作用域-有效范围"><a href="#4-局部变量的作用域-有效范围" class="headerlink" title="4. 局部变量的作用域(有效范围)"></a>4. 局部变量的作用域(有效范围)</h4><p>​    在相互不嵌套使用的作用域中可以同时声明两个名称和类型相同的局部变量<br>​    一个花括号括起来的表示一个作用域</p>
+<h4 id="5-this关键字"><a href="#5-this关键字" class="headerlink" title="5. this关键字"></a>5. this关键字</h4><p>​    在Java语言中规定使用this关键字来代表本类对象的引用，即引用对象的成员变量和方法<br>​    <strong>(1).在局部变量与类的成员变量重名时，就需要添加this关键字来明确引用的是类</strong></p>
 <p>​    (2).this关键字还可以作为方法的返回值</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Book getBook()&#123;</span><br><span class="line">	return this;      &#x2F;&#x2F;返回Book类的对象等同于return Book</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -92,25 +81,17 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class Student &#123; &#x2F;&#x2F;定义一个类，类的名字为student。  </span><br><span class="line">	public Student() &#123; &#x2F;&#x2F;定义一个方法，名字与类相同故为构造方法</span><br><span class="line">		this(“Hello!”);   &#x2F;&#x2F;this来引用下面的带形参的构造方法，因为this关键字里面带有一个参数</span><br><span class="line">		&#125;</span><br><span class="line">	public Student(String name) &#123;</span><br><span class="line">		&#x2F;&#x2F;定义一个带形式参数的构造方法 </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    <strong>注意：this()只能出现在构造方法非注释语句的第一行</strong></p>
 <p>​    (4). this关键字不能使用在静态方法当中</p>
-<ol start="6">
-<li><p>类的构造方法<br>类中除了成员方法外，还存在着构造方法<br>​    ==构造方法是一个与类同名的方法==，对象的创建就是构造方法完成的，每当实例化对象(new 对象)时，类会自动调用构造方法<br>​    <strong>注意：构造方法没有返回值，但方法前不需要void关键字修饰，类中没有明确定义构造方法时编译器会自动创建一个不带参数的默认构造方法</strong></p>
+<h4 id="6-类的构造方法"><a href="#6-类的构造方法" class="headerlink" title="6. 类的构造方法"></a>6. 类的构造方法</h4><p>类中除了成员方法外，还存在着构造方法<br>​    ==构造方法是一个与类同名的方法==，对象的创建就是构造方法完成的，每当实例化对象(new 对象)时，类会自动调用构造方法<br>​    <strong>注意：构造方法没有返回值，但方法前不需要void关键字修饰，类中没有明确定义构造方法时编译器会自动创建一个不带参数的默认构造方法</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;构造方法的定义格式</span><br><span class="line">public book()&#123; &#x2F;&#x2F;里面可以放参数</span><br><span class="line">	&#x2F;&#x2F;构造方法体; &#x2F;&#x2F;可以初始化成员变量</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>static关键字<br>​    由static修饰的变量、常量和方法被称为静态变量、常量和方法，即静态成员，静态成员属于类所有，使用类名+’.’运算符调用静态成员<br>​    当需要两个或以上的类要在同一个内存区域共享一个数据，可以使用静态变量来存储该数据<br>​    实例化后的对象依然可以调用静态XX，但不建议使用这样的形式，这样容易混淆静态成员和非静态成员<br>​    <strong>注意：静态方法中不可以直接调用非静态方法</strong><br>​    Java中规定不能将方法体内的局部变量声明为static</p>
-</li>
-</ol>
+
+<h4 id="7-static关键字"><a href="#7-static关键字" class="headerlink" title="7. static关键字"></a>7. static关键字</h4><p>​    由static修饰的变量、常量和方法被称为静态变量、常量和方法，即静态成员，静态成员属于类所有，使用类名+’.’运算符调用静态成员<br>​    当需要两个或以上的类要在同一个内存区域共享一个数据，可以使用静态变量来存储该数据<br>​    实例化后的对象依然可以调用静态XX，但不建议使用这样的形式，这样容易混淆静态成员和非静态成员<br>​    <strong>注意：静态方法中不可以直接调用非静态方法</strong><br>​    Java中规定不能将方法体内的局部变量声明为static</p>
 <p>​    <strong>类的初始化操作</strong><br>​    通过static定义静态区域(静态块)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class example&#123;</span><br><span class="line">	static&#123;</span><br><span class="line">		&#x2F;&#x2F;some;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    当这个类被引用时，首先自动执行static块中的程序，而且只会执行一次</p>
-<ol start="8">
-<li><p>类的主方法<br>​    主方法是类的入口点，Java编译器通过主方法来执行程序<br>​    主方法语法</p>
+<h4 id="8-类的主方法"><a href="#8-类的主方法" class="headerlink" title="8. 类的主方法"></a>8. 类的主方法</h4><p>​    主方法是类的入口点，Java编译器通过主方法来执行程序<br>​    主方法语法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">	&#x2F;&#x2F;方法体;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    主方法的特性<br>​    (1).主方法是静态的,在主方法中要直接调用其他方法,该方法也必须是静态的<br>​    (2).主方法没有返回值<br>​    (3).主方法的形参为数组,args[0]~args[n],表示第一到第n个参数,参数个数用args.length来获取</p>
-</li>
-<li><p>对象</p>
-</li>
-</ol>
-<p>​    (1).对象的创建<br>​    对象是由类抽象出来的某一个特例,每一个对象是相互独立的<br>​    Java语言中使用new操作符调用构造方法来创建对象,对象被创建出来时就是对一个对象的引用</p>
+<h4 id="9-对象"><a href="#9-对象" class="headerlink" title="9. 对象"></a>9. 对象</h4><p>​    (1).对象的创建<br>​    对象是由类抽象出来的某一个特例,每一个对象是相互独立的<br>​    Java语言中使用new操作符调用构造方法来创建对象,对象被创建出来时就是对一个对象的引用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Book a &#x3D; new Book(); &#x2F;&#x2F;对象的创建可以直接new Book()不需要前面的,但操作不了</span><br></pre></td></tr></table></figure>
 
 <p>​    (2).访问对象的属性和方法<br>​    在使用new操作符创建了一个对象后,可以使用”对象.类成员”来获取对象的属性和方法</p>
