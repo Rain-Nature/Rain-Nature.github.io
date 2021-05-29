@@ -286,6 +286,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s &#x3D; String.format(&quot;转换符&quot;,变量); &#x2F;&#x2F;对变量进行格式化，变量参数只要是类类型就可以</span><br></pre></td></tr></table></figure>
 <p>​    与C语言中printf的转化类似</p>
 <h4 id="12-了解"><a href="#12-了解" class="headerlink" title="12. 了解"></a>12. 了解</h4><p>​    (1).Date类来实现获取日期并通过格式化字符串来显示想要的数据<br>​    (2).正则表达式是用来检查某一字符串是否满足某一格式<br>​    (3).字符串生成器StringBuilder类，用来实现对字符串操作提高效率</p>
+<h4 id="13-StringBuilder类与String类型的转换"><a href="#13-StringBuilder类与String类型的转换" class="headerlink" title="13. StringBuilder类与String类型的转换"></a>13. StringBuilder类与String类型的转换</h4><ul>
+<li><p>将String类转为StringBuilder类(转为StringBuffer类同理)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s &#x3D; “xxxx”;</span><br><span class="line">StringBuilder sb &#x3D; new StringBuilder(s);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将StringBuilder类转为String类(StringBuffer类转String同理)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder s1 &#x3D; new StringBuilder(); &#x2F;&#x2F;初始化器里可以赋值</span><br><span class="line">String s &#x3D; s1.toString();</span><br></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
