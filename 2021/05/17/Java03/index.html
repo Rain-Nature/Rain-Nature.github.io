@@ -67,18 +67,9 @@
     </header>
 
     <section>
-      <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ol>
-<li>前面的char类型只可以表示单个字符</li>
-</ol>
-<p><strong>2. java语言将字符串作为对象来处理，可以通过java.lang包中的String类来创建字符串对象</strong></p>
-<ol start="3">
-<li><p>java中由双引号(“”)包围的都是字符串，不能作为其他数据类型来使用</p>
-</li>
-<li><p>声明字符串</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s;</span><br></pre></td></tr></table></figure></li>
-</ol>
+      <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h4 id="1-前面的char类型只可以表示单个字符"><a href="#1-前面的char类型只可以表示单个字符" class="headerlink" title="1. 前面的char类型只可以表示单个字符"></a>1. 前面的char类型只可以表示单个字符</h4><h4 id="2-java语言将字符串作为对象来处理，可以通过java-lang包中的String类来创建字符串对象"><a href="#2-java语言将字符串作为对象来处理，可以通过java-lang包中的String类来创建字符串对象" class="headerlink" title="2. java语言将字符串作为对象来处理，可以通过java.lang包中的String类来创建字符串对象"></a><strong>2. java语言将字符串作为对象来处理，可以通过java.lang包中的String类来创建字符串对象</strong></h4><h4 id="3-java中由双引号-“”-包围的都是字符串，不能作为其他数据类型来使用"><a href="#3-java中由双引号-“”-包围的都是字符串，不能作为其他数据类型来使用" class="headerlink" title="3. java中由双引号(“”)包围的都是字符串，不能作为其他数据类型来使用"></a>3. java中由双引号(“”)包围的都是字符串，不能作为其他数据类型来使用</h4><h4 id="4-声明字符串"><a href="#4-声明字符串" class="headerlink" title="4. 声明字符串"></a>4. 声明字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s;</span><br></pre></td></tr></table></figure>
 <p><strong>注意：声明的字符串变量必须经过初始化才可以使用，否则编译器报错</strong></p>
-<p><strong>5. 创建字符串对象</strong><br>由于java是按照对象来处理字符串，所以创建方式和对象一样</p>
+<h4 id="5-创建字符串对象"><a href="#5-创建字符串对象" class="headerlink" title="5. 创建字符串对象"></a><strong>5. 创建字符串对象</strong></h4><p>由于java是按照对象来处理字符串，所以创建方式和对象一样</p>
 <p>==String类常用的构造方法==<br>​    (1).String(char a[])<br>​    用一个字符数组a创建String对象</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char a[] &#x3D; &#123;&#39;g&#39;,&#39;o&#39;,&#39;o&#39;,&#39;d&#39;&#125;; 等价于    </span><br><span class="line">String s &#x3D; new String(a);	  &#x3D;&#x3D;&#x3D;&#x3D;&gt;   String s &#x3D; new String(&quot;good&quot;);</span><br></pre></td></tr></table></figure>
 
@@ -89,32 +80,20 @@
 <p>​    (3).引用字符串常量来创建字符串变量</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1,str2;</span><br><span class="line">str1 &#x3D; &quot;We are students&quot;;</span><br><span class="line">str2 &#x3D; &quot;We are students&quot;;</span><br></pre></td></tr></table></figure>
 <p><strong>注意：str1和str2引用相同的字符串常量，所以指向同一个实体所在的内存</strong></p>
-<ol start="6">
-<li>连接字符串<br>使用”+”运算符可以实现连接多个字符串，”+”连接多个字符串后产生一个String对象</li>
-</ol>
-<p><strong>注意：字符串也可以与其他基本数据类型连接，连接后这些数据将转化为字符串，当基本数据类型与字符串连接时会自动调用toString()方法将其转为字符串形式</strong></p>
-<ol start="7">
-<li><p>获取字符串的长度<br>​    使用String类型下的length()方法可以获取声明的字符串对象的长度</p>
+<h4 id="6-连接字符串"><a href="#6-连接字符串" class="headerlink" title="6. 连接字符串"></a>6. 连接字符串</h4><p>使用”+”运算符可以实现连接多个字符串，”+”连接多个字符串后产生一个String对象<br><strong>注意：字符串也可以与其他基本数据类型连接，连接后这些数据将转化为字符串，当基本数据类型与字符串连接时会自动调用toString()方法将其转为字符串形式</strong></p>
+<h4 id="7-获取字符串的长度"><a href="#7-获取字符串的长度" class="headerlink" title="7. 获取字符串的长度"></a>7. 获取字符串的长度</h4><p>​    使用String类型下的length()方法可以获取声明的字符串对象的长度</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.length()      &#x2F;&#x2F;str为字符串对象</span><br></pre></td></tr></table></figure>
 <p>​    字符串的下标是0~length()-1</p>
-</li>
-<li><p>字符串查找的方法<br>(1).indexOf(String s)<br>返回值为int型，在里面填想要查找的字符串，返回整个字符串中第一次出现的这个字符串的第一个元素的数组下标对应的位置(索引位置)，如果没有检索到字符串s，则返回-1</p>
+<h4 id="8-字符串查找的方法"><a href="#8-字符串查找的方法" class="headerlink" title="8. 字符串查找的方法"></a>8. 字符串查找的方法</h4><p>(1).indexOf(String s)<br>返回值为int型，在里面填想要查找的字符串，返回整个字符串中第一次出现的这个字符串的第一个元素的数组下标对应的位置(索引位置)，如果没有检索到字符串s，则返回-1</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.indexOf(the_str1)  &#x2F;&#x2F;字符用单(双)引号，字符串用双引号</span><br></pre></td></tr></table></figure>
 <p>​    (2).lastIndexOf(String str)<br>​    返回值为int型，在里面填想要查找的字符串，返回整个字符串中最后一次出现的这个字符串的第一个元素的数组下标对应的位置(索引位置)，如果没有检索到字符串s，则返回-1</p>
-</li>
-</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.lastIndexOf(the_str1)</span><br></pre></td></tr></table></figure>
 
 <p>​    <strong>注意：如果lastIndexOf方法中的参数是空字符串””，则返回结果和调用该字符串的length()方法返回结果相同，indexOf方法中的参数是空字符串””，则返回结果为0</strong></p>
-<ol start="9">
-<li><p>获取指定索引位置的字符<br>​    使用charAt()方法，可以将指定索引处的字符返回</p>
+<h4 id="9-获取指定索引位置的字符"><a href="#9-获取指定索引位置的字符" class="headerlink" title="9. 获取指定索引位置的字符"></a>9. 获取指定索引位置的字符</h4><p>​    使用charAt()方法，可以将指定索引处的字符返回</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.charAt(int index)  &#x2F;&#x2F;返回值为char</span><br></pre></td></tr></table></figure>
 <p>​    注意：若索引值超出本身字符串的长度则报错</p>
-</li>
-<li><p>字符串操作</p>
-</li>
-</ol>
-<p>​    (1).获取子字符串<br>​    通过String类下的substring()方法（两种方法重载），返回值String类型</p>
+<h4 id="10-字符串操作"><a href="#10-字符串操作" class="headerlink" title="10. 字符串操作"></a>10. 字符串操作</h4><p>​    (1).获取子字符串<br>​    通过String类下的substring()方法（两种方法重载），返回值String类型</p>
 <ul>
 <li>substring(int beginIndex)<br>​    从指定的索引位置开始截取直到该字符串结尾的子串，beginIndex指指定的索引位置<br>​    </li>
 <li>substring(int beginIndex , int endIndex)<br>​      从字符串某一索引位置开始截取至某一索引位置结束的子串<br>​      <strong>注意：取得到第beginIndex这里的字符，取不到第endIndex这里的字符，即在这里结束</strong></li>
@@ -142,14 +121,10 @@
 <p>​    **注意：如果想定义多个分割符，可以使用’|’来隔开</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如：</span><br><span class="line">str.split(&quot;+|&#x3D;&quot;)  &#x2F;&#x2F;以+和&#x3D;进行分割</span><br></pre></td></tr></table></figure>
 
-<ol start="11">
-<li><p>格式化字符串<br>​    String类的静态format()方法用于创建格式化字符串，返回值为String类型</p>
+<h4 id="11-格式化字符串"><a href="#11-格式化字符串" class="headerlink" title="11. 格式化字符串"></a>11. 格式化字符串</h4><p>​    String类的静态format()方法用于创建格式化字符串，返回值为String类型</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s &#x3D; String.format(&quot;转换符&quot;,变量); &#x2F;&#x2F;对变量进行格式化，变量参数只要是类类型就可以</span><br></pre></td></tr></table></figure>
 <p>​    与C语言中printf的转化类似</p>
-</li>
-<li><p>了解<br>​    (1).Date类来实现获取日期并通过格式化字符串来显示想要的数据<br>​    (2).正则表达式是用来检查某一字符串是否满足某一格式<br>​    (3).字符串生成器StringBuilder类，用来实现对字符串操作提高效率</p>
-</li>
-</ol>
+<h4 id="12-了解"><a href="#12-了解" class="headerlink" title="12. 了解"></a>12. 了解</h4><p>​    (1).Date类来实现获取日期并通过格式化字符串来显示想要的数据<br>​    (2).正则表达式是用来检查某一字符串是否满足某一格式<br>​    (3).字符串生成器StringBuilder类，用来实现对字符串操作提高效率</p>
 
 
       

@@ -172,39 +172,24 @@
     </header>
     <div>
       
-        <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><ol>
-<li><p>数组的声明(两种方式)<br>​    注意：数组在声明时并没有分配内存空间<br>​    注意：数组声明数组名后的[]里什么都不能写</p>
+        <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h4 id="1-数组的声明-两种方式"><a href="#1-数组的声明-两种方式" class="headerlink" title="1. 数组的声明(两种方式)"></a>1. 数组的声明(两种方式)</h4><p>​    注意：数组在声明时并没有分配内存空间<br>​    注意：数组声明数组名后的[]里什么都不能写</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;符号[]表面变量为一个数组变量，单个[]表示要创建的数组为一维数组</span><br><span class="line">数组元素类型 数组名字[]</span><br><span class="line">数组元素类型[] 数组名字</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组内存空间的分配</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组名字 &#x3D; new 数组元素的类型[数组元素的个数]  &#x2F;&#x2F;创建数组后未进行赋值则数组元素都为该类型的初始值</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一维数组声明并分配内存空间</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int a[] &#x3D; new int[10];  </span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
-<p><strong>4. 注意：数组一旦进行初始化不可以对数组手动分配内存空间</strong></p>
-<ol start="5">
-<li><p>一维数组的初始化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int a[] &#x3D; new int[]&#123;1,2,3,4&#125;;  &#x2F;&#x2F;第一种初始化方式，注意括号内不能写数字</span><br><span class="line">int a[] &#x3D; &#123;1,2,3,4&#125;;           &#x2F;&#x2F;第二种初始化方式</span><br><span class="line">int a[];                       &#x2F;&#x2F;第三种初始化方式</span><br><span class="line">a &#x3D; new int[]&#123;1,2,3,4&#125;;        </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>二维(高维)数组声明后的内存空间分配(2种)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;(1)为每一维分配内存空间</span><br><span class="line">	a &#x3D; new int[2][4];</span><br><span class="line">	</span><br><span class="line">&#x2F;&#x2F;(2)分别为每一维分配内存空间</span><br><span class="line">	a &#x3D; new int[2][];</span><br><span class="line">	a[0] &#x3D; new int[2];</span><br><span class="line">	a[1] &#x3D; new int[3];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>二维数组的初始化(与一维类似)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组数据类型 数组名[][] &#x3D; &#123;&#123;值1,值2&#125;,&#123;..&#125;,&#123;..&#125;&#125;; &#x2F;&#x2F;注意：每一个大的项要用花括号&#123;&#125;起来,不需要每一项元素个数相等</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组的基本操作</p>
-</li>
-</ol>
-<p>​    (1).遍历数组<br>​    通过数组的length属性来获得数组的长度<br>​    **注意：数组的元素只取到length-1</p>
+<h4 id="2-数组内存空间的分配"><a href="#2-数组内存空间的分配" class="headerlink" title="2. 数组内存空间的分配"></a>2. 数组内存空间的分配</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组名字 &#x3D; new 数组元素的类型[数组元素的个数]  &#x2F;&#x2F;创建数组后未进行赋值则数组元素都为该类型的初始值</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-一维数组声明并分配内存空间"><a href="#3-一维数组声明并分配内存空间" class="headerlink" title="3. 一维数组声明并分配内存空间"></a>3. 一维数组声明并分配内存空间</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int a[] &#x3D; new int[10];  </span><br></pre></td></tr></table></figure>
+
+<h4 id="4-注意：数组一旦进行初始化不可以对数组手动分配内存空间"><a href="#4-注意：数组一旦进行初始化不可以对数组手动分配内存空间" class="headerlink" title="4. 注意：数组一旦进行初始化不可以对数组手动分配内存空间"></a><strong>4. 注意：数组一旦进行初始化不可以对数组手动分配内存空间</strong></h4><h4 id="5-一维数组的初始化"><a href="#5-一维数组的初始化" class="headerlink" title="5. 一维数组的初始化"></a>5. 一维数组的初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int a[] &#x3D; new int[]&#123;1,2,3,4&#125;;  &#x2F;&#x2F;第一种初始化方式，注意括号内不能写数字</span><br><span class="line">int a[] &#x3D; &#123;1,2,3,4&#125;;           &#x2F;&#x2F;第二种初始化方式</span><br><span class="line">int a[];                       &#x2F;&#x2F;第三种初始化方式</span><br><span class="line">a &#x3D; new int[]&#123;1,2,3,4&#125;;        </span><br></pre></td></tr></table></figure>
+
+<h4 id="6-二维-高维-数组声明后的内存空间分配-2种"><a href="#6-二维-高维-数组声明后的内存空间分配-2种" class="headerlink" title="6. 二维(高维)数组声明后的内存空间分配(2种)"></a>6. 二维(高维)数组声明后的内存空间分配(2种)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;(1)为每一维分配内存空间</span><br><span class="line">	a &#x3D; new int[2][4];</span><br><span class="line">	</span><br><span class="line">&#x2F;&#x2F;(2)分别为每一维分配内存空间</span><br><span class="line">	a &#x3D; new int[2][];</span><br><span class="line">	a[0] &#x3D; new int[2];</span><br><span class="line">	a[1] &#x3D; new int[3];</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-二维数组的初始化-与一维类似"><a href="#7-二维数组的初始化-与一维类似" class="headerlink" title="7. 二维数组的初始化(与一维类似)"></a>7. 二维数组的初始化(与一维类似)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组数据类型 数组名[][] &#x3D; &#123;&#123;值1,值2&#125;,&#123;..&#125;,&#123;..&#125;&#125;; &#x2F;&#x2F;注意：每一个大的项要用花括号&#123;&#125;起来,不需要每一项元素个数相等</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-数组的基本操作"><a href="#8-数组的基本操作" class="headerlink" title="8. 数组的基本操作"></a>8. 数组的基本操作</h4><p>​    (1).遍历数组<br>​    通过数组的length属性来获得数组的长度<br>​    **注意：数组的元素只取到length-1</p>
 <p>​    (2).剩下的都是一些对数组的函数可以自己用算法来完成，到时要用再看看就行，我觉得可能是方法重写的时候用的上</p>
-<ol start="9">
-<li>数组排序算法<br>​    (1).冒泡排序法<br>​    <strong>主要思想：把相邻两个元素进行比较，不满足则交换，每次循环将最大或是最小的元素排在最后，下一次循环进行类似操作</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;外层循环控制排序轮数，一般比数组长度减一因为最后一次只剩一个数组元素了</span><br><span class="line">for(int i &#x3D; 1;i &lt; arr.length;i++) &#123;</span><br><span class="line">	&#x2F;&#x2F;内层循环用于对比临近元素的大小，对比交换次数随着排序轮数减少</span><br><span class="line">	for(int j &#x3D; 0;j &lt; arr.length-i;j++) &#123;</span><br><span class="line">		if(arr[j]&gt;arr[j+1]) &#123;</span><br><span class="line">			int tmp &#x3D; arr[j];</span><br><span class="line">			arr[j] &#x3D; arr[j+1];</span><br><span class="line">			arr[j+1] &#x3D; tmp;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="9-数组排序算法"><a href="#9-数组排序算法" class="headerlink" title="9. 数组排序算法"></a>9. 数组排序算法</h4><p>​    (1).冒泡排序法<br>​    <strong>主要思想：把相邻两个元素进行比较，不满足则交换，每次循环将最大或是最小的元素排在最后，下一次循环进行类似操作</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;外层循环控制排序轮数，一般比数组长度减一因为最后一次只剩一个数组元素了</span><br><span class="line">for(int i &#x3D; 1;i &lt; arr.length;i++) &#123;</span><br><span class="line">	&#x2F;&#x2F;内层循环用于对比临近元素的大小，对比交换次数随着排序轮数减少</span><br><span class="line">	for(int j &#x3D; 0;j &lt; arr.length-i;j++) &#123;</span><br><span class="line">		if(arr[j]&gt;arr[j+1]) &#123;</span><br><span class="line">			int tmp &#x3D; arr[j];</span><br><span class="line">			arr[j] &#x3D; arr[j+1];</span><br><span class="line">			arr[j+1] &#x3D; tmp;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
 <p>​    (2).直接选择排序法(选择排序的一种)<br>​    <strong>主要思想：将指定排序位置与其他数组元素分别对比，如果满足条件就交换元素的值</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;index是用来寻找当前数组中最大或最小的值的索引位置</span><br><span class="line">int index &#x3D; 0;</span><br><span class="line">&#x2F;&#x2F;外层循环控制排序轮数，一般比数组长度减一因为最后一次只剩一个数组元素了</span><br><span class="line">for(int i &#x3D; 1;i&lt;arr.length;i++) &#123;</span><br><span class="line">	&#x2F;&#x2F;index在每次循环时都应该清零</span><br><span class="line">	index &#x3D; 0;</span><br><span class="line">	&#x2F;&#x2F;内循环用来获取当前数组中最大的值，在下一次循环时不计入该数值</span><br><span class="line">	for(int j &#x3D; 1;j&lt;&#x3D;arr.length - i;j++) &#123;</span><br><span class="line">		if(arr[j]&gt;arr[index]) &#123;</span><br><span class="line">			index&#x3D;j;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	&#x2F;&#x2F;将数组最左或者最右的值与数组最大值交换</span><br><span class="line">	int tmp &#x3D; arr[arr.length - i];</span><br><span class="line">	arr[arr.length - i] &#x3D; arr[index];</span><br><span class="line">	arr[index] &#x3D; tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -243,18 +228,9 @@
     </header>
     <div>
       
-        <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ol>
-<li>前面的char类型只可以表示单个字符</li>
-</ol>
-<p><strong>2. java语言将字符串作为对象来处理，可以通过java.lang包中的String类来创建字符串对象</strong></p>
-<ol start="3">
-<li><p>java中由双引号(“”)包围的都是字符串，不能作为其他数据类型来使用</p>
-</li>
-<li><p>声明字符串</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s;</span><br></pre></td></tr></table></figure></li>
-</ol>
+        <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h4 id="1-前面的char类型只可以表示单个字符"><a href="#1-前面的char类型只可以表示单个字符" class="headerlink" title="1. 前面的char类型只可以表示单个字符"></a>1. 前面的char类型只可以表示单个字符</h4><h4 id="2-java语言将字符串作为对象来处理，可以通过java-lang包中的String类来创建字符串对象"><a href="#2-java语言将字符串作为对象来处理，可以通过java-lang包中的String类来创建字符串对象" class="headerlink" title="2. java语言将字符串作为对象来处理，可以通过java.lang包中的String类来创建字符串对象"></a><strong>2. java语言将字符串作为对象来处理，可以通过java.lang包中的String类来创建字符串对象</strong></h4><h4 id="3-java中由双引号-“”-包围的都是字符串，不能作为其他数据类型来使用"><a href="#3-java中由双引号-“”-包围的都是字符串，不能作为其他数据类型来使用" class="headerlink" title="3. java中由双引号(“”)包围的都是字符串，不能作为其他数据类型来使用"></a>3. java中由双引号(“”)包围的都是字符串，不能作为其他数据类型来使用</h4><h4 id="4-声明字符串"><a href="#4-声明字符串" class="headerlink" title="4. 声明字符串"></a>4. 声明字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s;</span><br></pre></td></tr></table></figure>
 <p><strong>注意：声明的字符串变量必须经过初始化才可以使用，否则编译器报错</strong></p>
-<p><strong>5. 创建字符串对象</strong><br>由于java是按照对象来处理字符串，所以创建方式和对象一样</p>
+<h4 id="5-创建字符串对象"><a href="#5-创建字符串对象" class="headerlink" title="5. 创建字符串对象"></a><strong>5. 创建字符串对象</strong></h4><p>由于java是按照对象来处理字符串，所以创建方式和对象一样</p>
 <p>==String类常用的构造方法==<br>​    (1).String(char a[])<br>​    用一个字符数组a创建String对象</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char a[] &#x3D; &#123;&#39;g&#39;,&#39;o&#39;,&#39;o&#39;,&#39;d&#39;&#125;; 等价于    </span><br><span class="line">String s &#x3D; new String(a);	  &#x3D;&#x3D;&#x3D;&#x3D;&gt;   String s &#x3D; new String(&quot;good&quot;);</span><br></pre></td></tr></table></figure>
 
@@ -265,32 +241,20 @@
 <p>​    (3).引用字符串常量来创建字符串变量</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1,str2;</span><br><span class="line">str1 &#x3D; &quot;We are students&quot;;</span><br><span class="line">str2 &#x3D; &quot;We are students&quot;;</span><br></pre></td></tr></table></figure>
 <p><strong>注意：str1和str2引用相同的字符串常量，所以指向同一个实体所在的内存</strong></p>
-<ol start="6">
-<li>连接字符串<br>使用”+”运算符可以实现连接多个字符串，”+”连接多个字符串后产生一个String对象</li>
-</ol>
-<p><strong>注意：字符串也可以与其他基本数据类型连接，连接后这些数据将转化为字符串，当基本数据类型与字符串连接时会自动调用toString()方法将其转为字符串形式</strong></p>
-<ol start="7">
-<li><p>获取字符串的长度<br>​    使用String类型下的length()方法可以获取声明的字符串对象的长度</p>
+<h4 id="6-连接字符串"><a href="#6-连接字符串" class="headerlink" title="6. 连接字符串"></a>6. 连接字符串</h4><p>使用”+”运算符可以实现连接多个字符串，”+”连接多个字符串后产生一个String对象<br><strong>注意：字符串也可以与其他基本数据类型连接，连接后这些数据将转化为字符串，当基本数据类型与字符串连接时会自动调用toString()方法将其转为字符串形式</strong></p>
+<h4 id="7-获取字符串的长度"><a href="#7-获取字符串的长度" class="headerlink" title="7. 获取字符串的长度"></a>7. 获取字符串的长度</h4><p>​    使用String类型下的length()方法可以获取声明的字符串对象的长度</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.length()      &#x2F;&#x2F;str为字符串对象</span><br></pre></td></tr></table></figure>
 <p>​    字符串的下标是0~length()-1</p>
-</li>
-<li><p>字符串查找的方法<br>(1).indexOf(String s)<br>返回值为int型，在里面填想要查找的字符串，返回整个字符串中第一次出现的这个字符串的第一个元素的数组下标对应的位置(索引位置)，如果没有检索到字符串s，则返回-1</p>
+<h4 id="8-字符串查找的方法"><a href="#8-字符串查找的方法" class="headerlink" title="8. 字符串查找的方法"></a>8. 字符串查找的方法</h4><p>(1).indexOf(String s)<br>返回值为int型，在里面填想要查找的字符串，返回整个字符串中第一次出现的这个字符串的第一个元素的数组下标对应的位置(索引位置)，如果没有检索到字符串s，则返回-1</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.indexOf(the_str1)  &#x2F;&#x2F;字符用单(双)引号，字符串用双引号</span><br></pre></td></tr></table></figure>
 <p>​    (2).lastIndexOf(String str)<br>​    返回值为int型，在里面填想要查找的字符串，返回整个字符串中最后一次出现的这个字符串的第一个元素的数组下标对应的位置(索引位置)，如果没有检索到字符串s，则返回-1</p>
-</li>
-</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.lastIndexOf(the_str1)</span><br></pre></td></tr></table></figure>
 
 <p>​    <strong>注意：如果lastIndexOf方法中的参数是空字符串””，则返回结果和调用该字符串的length()方法返回结果相同，indexOf方法中的参数是空字符串””，则返回结果为0</strong></p>
-<ol start="9">
-<li><p>获取指定索引位置的字符<br>​    使用charAt()方法，可以将指定索引处的字符返回</p>
+<h4 id="9-获取指定索引位置的字符"><a href="#9-获取指定索引位置的字符" class="headerlink" title="9. 获取指定索引位置的字符"></a>9. 获取指定索引位置的字符</h4><p>​    使用charAt()方法，可以将指定索引处的字符返回</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.charAt(int index)  &#x2F;&#x2F;返回值为char</span><br></pre></td></tr></table></figure>
 <p>​    注意：若索引值超出本身字符串的长度则报错</p>
-</li>
-<li><p>字符串操作</p>
-</li>
-</ol>
-<p>​    (1).获取子字符串<br>​    通过String类下的substring()方法（两种方法重载），返回值String类型</p>
+<h4 id="10-字符串操作"><a href="#10-字符串操作" class="headerlink" title="10. 字符串操作"></a>10. 字符串操作</h4><p>​    (1).获取子字符串<br>​    通过String类下的substring()方法（两种方法重载），返回值String类型</p>
 <ul>
 <li>substring(int beginIndex)<br>​    从指定的索引位置开始截取直到该字符串结尾的子串，beginIndex指指定的索引位置<br>​    </li>
 <li>substring(int beginIndex , int endIndex)<br>​      从字符串某一索引位置开始截取至某一索引位置结束的子串<br>​      <strong>注意：取得到第beginIndex这里的字符，取不到第endIndex这里的字符，即在这里结束</strong></li>
@@ -318,14 +282,10 @@
 <p>​    **注意：如果想定义多个分割符，可以使用’|’来隔开</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如：</span><br><span class="line">str.split(&quot;+|&#x3D;&quot;)  &#x2F;&#x2F;以+和&#x3D;进行分割</span><br></pre></td></tr></table></figure>
 
-<ol start="11">
-<li><p>格式化字符串<br>​    String类的静态format()方法用于创建格式化字符串，返回值为String类型</p>
+<h4 id="11-格式化字符串"><a href="#11-格式化字符串" class="headerlink" title="11. 格式化字符串"></a>11. 格式化字符串</h4><p>​    String类的静态format()方法用于创建格式化字符串，返回值为String类型</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s &#x3D; String.format(&quot;转换符&quot;,变量); &#x2F;&#x2F;对变量进行格式化，变量参数只要是类类型就可以</span><br></pre></td></tr></table></figure>
 <p>​    与C语言中printf的转化类似</p>
-</li>
-<li><p>了解<br>​    (1).Date类来实现获取日期并通过格式化字符串来显示想要的数据<br>​    (2).正则表达式是用来检查某一字符串是否满足某一格式<br>​    (3).字符串生成器StringBuilder类，用来实现对字符串操作提高效率</p>
-</li>
-</ol>
+<h4 id="12-了解"><a href="#12-了解" class="headerlink" title="12. 了解"></a>12. 了解</h4><p>​    (1).Date类来实现获取日期并通过格式化字符串来显示想要的数据<br>​    (2).正则表达式是用来检查某一字符串是否满足某一格式<br>​    (3).字符串生成器StringBuilder类，用来实现对字符串操作提高效率</p>
 
       
     </div>
@@ -489,39 +449,26 @@
     </header>
     <div>
       
-        <h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><ol>
-<li><p>if条件语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>if后面”()”内的值必须是boolean型的,若语句中仅有一条语句，则可以省略条件语句中的”{}”，书上说为增强程序可读性最好不要省略<br><strong>注意：if语句是从上到下执行，上面有满足条件就算下面满足条件也不执行</strong></p>
-</li>
-<li><p>if~else与三元运算符的转化<br>例：求绝对值</p>
+        <h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><h4 id="1-if条件语句"><a href="#1-if条件语句" class="headerlink" title="1. if条件语句"></a>1. if条件语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>   if后面”()”内的值必须是boolean型的,若语句中仅有一条语句，则可以省略条件语句中的”{}”，书上说为增强程序可读性最好不要省略<br>   <strong>注意：if语句是从上到下执行，上面有满足条件就算下面满足条件也不执行</strong></p>
+<h4 id="2-if-else与三元运算符的转化"><a href="#2-if-else与三元运算符的转化" class="headerlink" title="2. if~else与三元运算符的转化"></a>2. if~else与三元运算符的转化</h4><p>例：求绝对值</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(a&gt;0)</span><br><span class="line">	b &#x3D; a;</span><br><span class="line">else</span><br><span class="line">	b &#x3D; -a;</span><br><span class="line">可以转化为</span><br><span class="line">b &#x3D; a &gt; 0?a:-a; &#x2F;&#x2F;问号前面的表达式为真则返回问号与冒号之间的表达式，否则把冒号后面的表达式给b，注意：三元运算符是有一个返回值的</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>switch多分支语句</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">switch(表达式) &#x2F;*在JDK1.6以前常量值必须是整型或字符型，在JDK1.7中，常量值除了整型或字符型还可以是字符串类型，注意常量值绝对不能是实数*&#x2F;</span><br><span class="line">&#123;</span><br><span class="line">	注意：同一个switch语句，case的常量值必须不互相同</span><br><span class="line">	case 常量值1:</span><br><span class="line">	语句块1;</span><br><span class="line">	break;</span><br><span class="line">	...</span><br><span class="line">	case 常量值n:</span><br><span class="line">	语句块n;</span><br><span class="line">	break;</span><br><span class="line">	default:</span><br><span class="line">	语句块n+1; &#x2F;&#x2F;default不需要break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>while循环语句(先判断再执行)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while(条件表达式)&#123;  &#x2F;&#x2F;条件表达式返回值为真继续循环，为假退出循环</span><br><span class="line">	执行语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>do…while循环语句(先执行再判断)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">do</span><br><span class="line">&#123;</span><br><span class="line">	执行语句</span><br><span class="line">&#125;</span><br><span class="line">while(条件表达式);  &#x2F;&#x2F;注意这里是比while循环多一个分号</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>for循环语句<br>与c一样</p>
-</li>
-</ol>
-<p>**注意：for循环里第一个表达式里是填初始化表达式，可以为空，但不可以直接填一个变量，哪怕这个变量前面已经定义赋值</p>
+
+<h4 id="3-switch多分支语句"><a href="#3-switch多分支语句" class="headerlink" title="3. switch多分支语句"></a>3. switch多分支语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">switch(表达式) &#x2F;*在JDK1.6以前常量值必须是整型或字符型，在JDK1.7中，常量值除了整型或字符型还可以是字符串类型，注意常量值绝对不能是实数*&#x2F;</span><br><span class="line">&#123;</span><br><span class="line">	注意：同一个switch语句，case的常量值必须不互相同</span><br><span class="line">	case 常量值1:</span><br><span class="line">	语句块1;</span><br><span class="line">	break;</span><br><span class="line">	...</span><br><span class="line">	case 常量值n:</span><br><span class="line">	语句块n;</span><br><span class="line">	break;</span><br><span class="line">	default:</span><br><span class="line">	语句块n+1; &#x2F;&#x2F;default不需要break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-while循环语句-先判断再执行"><a href="#4-while循环语句-先判断再执行" class="headerlink" title="4. while循环语句(先判断再执行)"></a>4. while循环语句(先判断再执行)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while(条件表达式)&#123;  &#x2F;&#x2F;条件表达式返回值为真继续循环，为假退出循环</span><br><span class="line">	执行语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-do…while循环语句-先执行再判断"><a href="#5-do…while循环语句-先执行再判断" class="headerlink" title="5. do…while循环语句(先执行再判断)"></a>5. do…while循环语句(先执行再判断)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">do</span><br><span class="line">&#123;</span><br><span class="line">	执行语句</span><br><span class="line">&#125;</span><br><span class="line">while(条件表达式);  &#x2F;&#x2F;注意这里是比while循环多一个分号</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-for循环语句"><a href="#6-for循环语句" class="headerlink" title="6. for循环语句"></a>6. for循环语句</h4><p>与c一样<br>**注意：for循环里第一个表达式里是填初始化表达式，可以为空，但不可以直接填一个变量，哪怕这个变量前面已经定义赋值</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(i;i&lt;12;i++) &#x2F;&#x2F;错误的，i因改为i&#x3D;0，若i是已经定义赋值的这个第一个表达式也可以直接为空不写东西</span><br></pre></td></tr></table></figure>
 
-<ol start="7">
-<li><p>foreach语句<br>foreach是for语句的特殊简化版本，不能完全取代for语句，任何foreach语句都可以改写为for语句版本，foreach语句一般用于遍历数组等方面,在这种方面给与程序员很大的方便</p>
+<h4 id="7-foreach语句"><a href="#7-foreach语句" class="headerlink" title="7. foreach语句"></a>7. foreach语句</h4><p>foreach是for语句的特殊简化版本，不能完全取代for语句，任何foreach语句都可以改写为for语句版本，foreach语句一般用于遍历数组等方面,在这种方面给与程序员很大的方便</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(元素变量x:遍历对象obj)&#123;</span><br><span class="line">	引用了x的java语句;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>例：输出一维数组中全部元素</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String args[]) &#123;</span><br><span class="line">		int[] arr &#x3D; &#123;3,5,7,4&#125;;</span><br><span class="line">		for(int x:arr) &#123;</span><br><span class="line">			System.out.println(x);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>循环控制<br>(1).break<br>中断循环</p>
-</li>
-</ol>
-<p><strong>注意：break只能跳出一层循环，如果想直接跳到外层的循环，可以使用“标签”(java提供的功能)</strong></p>
+
+<h4 id="8-循环控制"><a href="#8-循环控制" class="headerlink" title="8. 循环控制"></a>8. 循环控制</h4><p>(1).break<br>中断循环<br><strong>注意：break只能跳出一层循环，如果想直接跳到外层的循环，可以使用“标签”(java提供的功能)</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标签名:循环体&#123;</span><br><span class="line">	break 标签名;  &#x2F;&#x2F;直接跳出有标签名的循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>(2).continue<br>跳过本次循环执行下一次循环<br>**注意：continue也支持标签功能</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标签名:循环体&#123;</span><br><span class="line">	continue 标签名;  &#x2F;&#x2F;直接跳出有标签名的循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -713,49 +660,48 @@
     </header>
     <div>
       
-        <h2 id="Java语言基础"><a href="#Java语言基础" class="headerlink" title="Java语言基础"></a>Java语言基础</h2><ol>
-<li><p>java中文件名和类名必须同名，注意：java是严格区分大小写</p>
-</li>
-<li><p>类属性称为类的全局变量，方法中的属性称为局部变量</p>
-</li>
-<li><p>Java中通过import关键字导入相关的类</p>
-</li>
-<li><p>long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数</p>
-</li>
-<li><p>默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型</p>
-</li>
-<li><p>char（字符类型）：用于存储单个字符，占两个字节的存储空间</p>
-</li>
-<li><p>常量声明：用final关键字<br> 语法：final 数据类型 常量名称[=值]<br> 常量名通常使用大写字母<br> final变量属于“成员变量”时，必须在定义时就设定它的初值<br> 常量一经赋值不给改变</p>
-</li>
-<li><p>成员变量与局部变量(根据变量的有效范围划定)<br> (1).成员变量<br> 在类体中定义的变量，成员变量又可以分为静态变量和实例变量<br> 静态变量是在类型前面加关键字static，<strong>静态变量的有效范围可以跨类，达到整个应用程序内，通过类名.静态变量的方式在其他类中使用</strong><br> 实例变量是实例化后可以使用</p>
-<p> (2).局部变量<br> 在类的方法体中定义的变量，局部变量只在当前代码块中有效<br> 当方法被调用时，Java虚拟机为方法中的局部变量分配内存空间<br> 局部变量可以与成员变量的名字相同，此时成员变量将被隐藏</p>
-</li>
-<li><p>进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常</p>
-</li>
-<li><p>逻辑运算符的操作元必须是Boolean型的变量</p>
-</li>
-<li><p>位运算符<br>位运算符除”按位与’’和”按位或”运算符外，其他只能用于处理整数的操作符<br>(1).“按位与”运算(&amp;):双目<br>运算法则：如果两个整型数据a,b的对应位都是1，则结果为1，否则为0；如果两个操作数精度不同，则结果的精度与精度高的操作数相同<br>(2).”按位或”运算(|):双目<br>运算法则：如果两个操作数的对应位都是0，则结果为0，否则为1；如果两个操作数精度不同，则结果的精度与精度高的操作数相同<br>(3).”按位取反”运算(~):单目<br>运算法则：将操作数二进制中的1改为0，0改为1<br>(4).”按位异或”运算(^):双目<br>运算法则：当两个操作数的二进制表示对应位相同时，结果为0，反之结果为1；如果两个操作数精度不同，则结果的精度与精度高的操作数相同<br>(5).位移操作</p>
+        <h2 id="Java语言基础"><a href="#Java语言基础" class="headerlink" title="Java语言基础"></a>Java语言基础</h2><h4 id="1-java中文件名和类名必须同名，注意：java是严格区分大小写"><a href="#1-java中文件名和类名必须同名，注意：java是严格区分大小写" class="headerlink" title="1. java中文件名和类名必须同名，注意：java是严格区分大小写"></a>1. java中文件名和类名必须同名，注意：java是严格区分大小写</h4><h4 id="2-类属性称为类的全局变量，方法中的属性称为局部变量"><a href="#2-类属性称为类的全局变量，方法中的属性称为局部变量" class="headerlink" title="2. 类属性称为类的全局变量，方法中的属性称为局部变量"></a>2. 类属性称为类的全局变量，方法中的属性称为局部变量</h4><h4 id="3-Java中通过import关键字导入相关的类"><a href="#3-Java中通过import关键字导入相关的类" class="headerlink" title="3. Java中通过import关键字导入相关的类"></a>3. Java中通过import关键字导入相关的类</h4><h4 id="4-long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数"><a href="#4-long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数" class="headerlink" title="4. long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数"></a>4. long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数</h4><h4 id="5-默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型"><a href="#5-默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型" class="headerlink" title="5. 默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型"></a>5. 默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型</h4><h4 id="6-char（字符类型）：用于存储单个字符，占两个字节的存储空间"><a href="#6-char（字符类型）：用于存储单个字符，占两个字节的存储空间" class="headerlink" title="6. char（字符类型）：用于存储单个字符，占两个字节的存储空间"></a>6. char（字符类型）：用于存储单个字符，占两个字节的存储空间</h4><h4 id="7-常量声明：用final关键字"><a href="#7-常量声明：用final关键字" class="headerlink" title="7. 常量声明：用final关键字"></a>7. 常量声明：用final关键字</h4><pre><code>语法：final 数据类型 常量名称[=值]
+常量名通常使用大写字母
+final变量属于“成员变量”时，必须在定义时就设定它的初值
+常量一经赋值不给改变</code></pre>
+<h4 id="8-成员变量与局部变量-根据变量的有效范围划定"><a href="#8-成员变量与局部变量-根据变量的有效范围划定" class="headerlink" title="8. 成员变量与局部变量(根据变量的有效范围划定)"></a>8. 成员变量与局部变量(根据变量的有效范围划定)</h4><pre><code>(1).成员变量
+在类体中定义的变量，成员变量又可以分为静态变量和实例变量
+静态变量是在类型前面加关键字static，**静态变量的有效范围可以跨类，达到整个应用程序内，通过类名.静态变量的方式在其他类中使用**
+实例变量是实例化后可以使用
+
+(2).局部变量
+在类的方法体中定义的变量，局部变量只在当前代码块中有效
+当方法被调用时，Java虚拟机为方法中的局部变量分配内存空间
+局部变量可以与成员变量的名字相同，此时成员变量将被隐藏</code></pre>
+<h4 id="9-进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常"><a href="#9-进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常" class="headerlink" title="9. 进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常"></a>9. 进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常</h4><h4 id="10-逻辑运算符的操作元必须是Boolean型的变量"><a href="#10-逻辑运算符的操作元必须是Boolean型的变量" class="headerlink" title="10. 逻辑运算符的操作元必须是Boolean型的变量"></a>10. 逻辑运算符的操作元必须是Boolean型的变量</h4><h4 id="11-位运算符"><a href="#11-位运算符" class="headerlink" title="11. 位运算符"></a>11. 位运算符</h4><pre><code>位运算符除&quot;按位与&#39;&#39;和&quot;按位或&quot;运算符外，其他只能用于处理整数的操作符
+(1).“按位与”运算(&amp;):双目
+运算法则：如果两个整型数据a,b的对应位都是1，则结果为1，否则为0；如果两个操作数精度不同，则结果的精度与精度高的操作数相同
+(2).&quot;按位或&quot;运算(|):双目
+运算法则：如果两个操作数的对应位都是0，则结果为0，否则为1；如果两个操作数精度不同，则结果的精度与精度高的操作数相同
+(3).&quot;按位取反&quot;运算(~):单目
+运算法则：将操作数二进制中的1改为0，0改为1
+(4).&quot;按位异或&quot;运算(^):双目
+运算法则：当两个操作数的二进制表示对应位相同时，结果为0，反之结果为1；如果两个操作数精度不同，则结果的精度与精度高的操作数相同
+(5).位移操作
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;:左移 &#x2F;&#x2F;将运算符左边的二进制数据，按照运算符右边操作数指定的位数向左移动移空的部分补0</span><br><span class="line">&gt;&gt;:右移 &#x2F;&#x2F;将运算符左边的二进制数据，按照运算符右边操作数指定的位数向右移动，如果最高位是0，右移空的位就填入0；如果最高位是1，右移空的位就填入1；右移时右边最低位被抛弃</span><br><span class="line">&gt;&gt;&gt;:无符号右移 &#x2F;&#x2F;无论最高位是0还是1，左侧被移动的高位都填入0</span><br></pre></td></tr></table></figure>
 
-<p><strong>注意：位移可以实现整数乘以或者除以2^n^的效果；如y&lt;&lt;2与y*4结果相同；y&gt;&gt;1的结果与y/2效果相同，即一个数左移n位，则将数乘以2^n^，一个数右移n位，就是将数除以2^n^</strong></p>
-</li>
-<li><p>在编写程序时尽量使用括号运算符来限定次序</p>
-</li>
-<li><p>数据类型转换<br>(1)隐式类型转换<br>低级类型向高级类型的转换，系统自动执行，无须程序员操作<br>基本数据类型按精度从低到高的排序<br>byte&lt;short&lt;int&lt;long&lt;float&lt;double<br>如：</p>
+**注意：位移可以实现整数乘以或者除以2^n^的效果；如y&lt;&lt;2与y*4结果相同；y&gt;&gt;1的结果与y/2效果相同，即一个数左移n位，则将数乘以2^n^，一个数右移n位，就是将数除以2^n^**</code></pre>
+<h4 id="12-在编写程序时尽量使用括号运算符来限定次序"><a href="#12-在编写程序时尽量使用括号运算符来限定次序" class="headerlink" title="12. 在编写程序时尽量使用括号运算符来限定次序"></a>12. 在编写程序时尽量使用括号运算符来限定次序</h4><h4 id="13-数据类型转换"><a href="#13-数据类型转换" class="headerlink" title="13. 数据类型转换"></a>13. 数据类型转换</h4><pre><code>(1)隐式类型转换
+低级类型向高级类型的转换，系统自动执行，无须程序员操作
+基本数据类型按精度从低到高的排序
+byte&lt;short&lt;int&lt;long&lt;float&lt;double
+如：
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">short a &#x3D; 5;</span><br><span class="line">int b &#x3D; a;</span><br></pre></td></tr></table></figure>
 
-<p>(2)显式类型转换<br>高精度的变量的值赋给低精度的变量时，必须使用显式类型的转换运算(又称强制类型转换)<br>语法：(类型名)要转换的值<br>如：</p>
+(2)显式类型转换
+高精度的变量的值赋给低精度的变量时，必须使用显式类型的转换运算(又称强制类型转换)
+语法：(类型名)要转换的值
+如：
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int a &#x3D; 5;</span><br><span class="line">short b &#x3D; (short)a;</span><br></pre></td></tr></table></figure>
-<p>**注意：强制类型转换可能会导致精度丢失，除boolean类型以外的其他基本类型，都能以显式类型的方法实现转换</p>
-</li>
-<li><p>代码注释与编码规范</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1).单行注释：&#x2F;&#x2F;</span><br><span class="line">(2).多行注释：&#x2F;*   *&#x2F;</span><br><span class="line">(3).文档注释：&#x2F;**  *&#x2F; 与多行注释格式相同，用在声明之前时会被Javadoc文档工具读取作为文档内容</span><br></pre></td></tr></table></figure>
-<p><strong>注意：可读性第一，效率第二，注释要占程序代码总量的20%~50%</strong></p>
-</li>
-</ol>
-<p><strong>15. 注意：Java语言的基本数据类型中并没有String类型</strong></p>
-
+**注意：强制类型转换可能会导致精度丢失，除boolean类型以外的其他基本类型，都能以显式类型的方法实现转换</code></pre>
+<h4 id="14-代码注释与编码规范"><a href="#14-代码注释与编码规范" class="headerlink" title="14. 代码注释与编码规范"></a>14. 代码注释与编码规范</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1).单行注释：&#x2F;&#x2F;</span><br><span class="line">(2).多行注释：&#x2F;*   *&#x2F;</span><br><span class="line">(3).文档注释：&#x2F;**  *&#x2F; 与多行注释格式相同，用在声明之前时会被Javadoc文档工具读取作为文档内容</span><br></pre></td></tr></table></figure>
+**注意：可读性第一，效率第二，注释要占程序代码总量的20%~50%**</code></pre>
+<h4 id="15-注意：Java语言的基本数据类型中并没有String类型"><a href="#15-注意：Java语言的基本数据类型中并没有String类型" class="headerlink" title="15. 注意：Java语言的基本数据类型中并没有String类型"></a><strong>15. 注意：Java语言的基本数据类型中并没有String类型</strong></h4>
       
     </div>
 </article>
