@@ -98,7 +98,35 @@
       
         <h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><h4 id="1-在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法"><a href="#1-在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法" class="headerlink" title="1. 在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法"></a>1. 在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;成员方法的语法格式</span><br><span class="line">	权限修饰符 返回值类型 方法名(参数类型 参数名)&#123;</span><br><span class="line">	&#x2F;&#x2F;方法体</span><br><span class="line">	return 返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-权限修饰符"><a href="#2-权限修饰符" class="headerlink" title="2. 权限修饰符"></a>2. 权限修饰符</h4><p><strong>类权限(注意：类权限会约束类成员的权限设定，大于类的权限的类成员都会默认为类的权限进行约束)</strong><br>访问包位置|private|protected|public<br>:–:|:–:|:–:|:–:<br>本类|可见|可见|可见<br>同包其他类或者子类|不可见|可见|可见<br>其他包的类或子类|不可见|不可见|可见</p>
+<h4 id="2-权限修饰符"><a href="#2-权限修饰符" class="headerlink" title="2. 权限修饰符"></a>2. 权限修饰符</h4><p><strong>类权限(注意：类权限会约束类成员的权限设定，大于类的权限的类成员都会默认为类的权限进行约束)</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">访问包位置</th>
+<th align="center">private</th>
+<th align="center">protected</th>
+<th align="center">public</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">本类</td>
+<td align="center">可见</td>
+<td align="center">可见</td>
+<td align="center">可见</td>
+</tr>
+<tr>
+<td align="center">同包其他类或者子类</td>
+<td align="center">不可见</td>
+<td align="center">可见</td>
+<td align="center">可见</td>
+</tr>
+<tr>
+<td align="center">其他包的类或子类</td>
+<td align="center">不可见</td>
+<td align="center">不可见</td>
+<td align="center">可见</td>
+</tr>
+</tbody></table>
 <p><strong>注意：声明类时不使用上述三个修饰符设置权限，则这个类预设为friendly，可以本类，同包其他类但不能子类，其他包即子类也不行</strong></p>
 <h4 id="3-局部变量"><a href="#3-局部变量" class="headerlink" title="3. 局部变量"></a>3. 局部变量</h4><p>​    在成员方法内定义的变量叫做局部变量，方法是形参也是局部变量<br>​    <strong>局部变量在方法内使用时必须进行赋值和初始化不然会报错</strong></p>
 <h4 id="4-局部变量的作用域-有效范围"><a href="#4-局部变量的作用域-有效范围" class="headerlink" title="4. 局部变量的作用域(有效范围)"></a>4. 局部变量的作用域(有效范围)</h4><p>​    在相互不嵌套使用的作用域中可以同时声明两个名称和类型相同的局部变量<br>​    一个花括号括起来的表示一个作用域</p>
