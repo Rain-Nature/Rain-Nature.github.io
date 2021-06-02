@@ -68,6 +68,46 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A8/">微信小程序-加法计算器</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-04-07T00:20:46.000Z" itemprop="datePublished">
+    2021-04-07
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/wx%E5%AE%9E%E8%B7%B5/">wx实践</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="微信小程序-加法计算器"><a href="#微信小程序-加法计算器" class="headerlink" title="微信小程序:加法计算器"></a>微信小程序:加法计算器</h2><h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;head&quot;&gt;加法计算器&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;body&quot;&gt;</span><br><span class="line">  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; placeholder&#x3D;&quot;请输入数据&quot; bindinput&#x3D;&quot;count1&quot;&#x2F;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text2&quot;&gt;+&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; placeholder&#x3D;&quot;请输入数据&quot; bindinput&#x3D;&quot;count2&quot;&#x2F;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text2&quot;&gt;&#x3D;&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text1&quot;&gt;&#123;&#123;a&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view&gt;</span><br><span class="line">  &lt;button class&#x3D;&quot;button&quot; bindtap&#x3D;&quot;button1&quot;&gt;等于&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="wsss"><a href="#wsss" class="headerlink" title="wsss"></a>wsss</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">.head&#123;</span><br><span class="line">  text-align: center;</span><br><span class="line">  letter-spacing: 10rpx;</span><br><span class="line">  font-size: 80rpx;</span><br><span class="line">  color: deepskyblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.body&#123;</span><br><span class="line">  margin-top: 80rpx;</span><br><span class="line">  width: 100%;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction:&quot;row&quot;;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.text1&#123;</span><br><span class="line">  width: 200rpx;</span><br><span class="line">  height: 53rpx;</span><br><span class="line">  border: 4rpx solid green;</span><br><span class="line">  margin-left: 15rpx; &#x2F;*外边距*&#x2F;</span><br><span class="line">  font-size: 36rpx;</span><br><span class="line">  padding-left: 14rpx; &#x2F;*内边距*&#x2F;</span><br><span class="line">  border-radius: 10rpx; &#x2F;*设置圆角*&#x2F;</span><br><span class="line">  color: aqua;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.text2&#123;</span><br><span class="line">  font-size: 36rpx;</span><br><span class="line">  margin-left: 10rpx;</span><br><span class="line">  font-weight: bolder;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.button&#123;</span><br><span class="line">  margin-top: 50rpx;</span><br><span class="line">  width: 200rpx !important;</span><br><span class="line">  color: black !important;</span><br><span class="line">  background-color: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var b;</span><br><span class="line">var c;</span><br><span class="line">Page(&#123;</span><br><span class="line">  data:(&#123;</span><br><span class="line">    a:Number.parseFloat(0)</span><br><span class="line">  &#125;),</span><br><span class="line">  count1(e)&#123; &#x2F;*带参是把控件的值传进来 *&#x2F;</span><br><span class="line">    console.log(e)</span><br><span class="line">    b &#x3D; e.detail.value</span><br><span class="line">    b &#x3D; Number.parseFloat(b)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  count2(e)&#123; &#x2F;*带参是把控件的值传进来 *&#x2F;</span><br><span class="line">    console.log(e)</span><br><span class="line">    c&#x3D;e.detail.value</span><br><span class="line">    c &#x3D; Number.parseFloat(c)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  button1(e)&#123;</span><br><span class="line">    let d&#x3D;Number.parseFloat(this.data.a)</span><br><span class="line">    d&#x3D;b+c</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      a:d</span><br><span class="line">    &#125;)</span><br><span class="line">    console.warn(d)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/03/26/wxss%E5%B1%9E%E6%80%A7%E7%AC%94%E8%AE%B0/">wxss属性笔记</a>
         </h1>
       
@@ -459,44 +499,6 @@
       
         <h2 id="致20岁生日的诗"><a href="#致20岁生日的诗" class="headerlink" title="致20岁生日的诗"></a>致20岁生日的诗</h2><p><strong>月下独酌四首.其一</strong><br>花间一壶酒，独酌无相亲。<br>举杯邀明月，对影成三人。<br>月既不解饮，影徒随我身。<br>暂伴月将影，行乐须及春。<br>我歌月徘徊，我舞影零乱。<br>醒时相交欢，醉后各分散。<br>永结无情游，相期邈云汉。</p>
 
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2020/12/08/MyBirthday-do/">MyBirthday do</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2020-12-08T09:53:03.000Z" itemprop="datePublished">
-    2020-12-08
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/C/">C#</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="送给生日的代码"><a href="#送给生日的代码" class="headerlink" title="送给生日的代码"></a>送给生日的代码</h2><h3 id="希望之后努力一点，不要再写这种偏落水的代码"><a href="#希望之后努力一点，不要再写这种偏落水的代码" class="headerlink" title="希望之后努力一点，不要再写这种偏落水的代码"></a>希望之后努力一点，不要再写这种偏落水的代码</h3><p>在未来的一年，希望把握住时间，改掉拖延的习惯</p>
-<hr>
-<h3 id="程序（送给2020的自己的代码）"><a href="#程序（送给2020的自己的代码）" class="headerlink" title="程序（送给2020的自己的代码）"></a>程序（送给2020的自己的代码）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Windows.Forms;</span><br><span class="line"></span><br><span class="line">namespace _2021</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            int a;</span><br><span class="line">            Console.WriteLine(&quot;how time is do this ? , It is my birthday&quot;);</span><br><span class="line">            string year1,month1,day1;</span><br><span class="line">            int year,month,day;</span><br><span class="line">            Console.Write(&quot;The year is:&quot;);</span><br><span class="line">            year1&#x3D;Console.ReadLine();</span><br><span class="line">            year &#x3D; int.Parse(year1);</span><br><span class="line">            Console.Write(&quot;The month is:&quot;);</span><br><span class="line">            month1&#x3D;Console.ReadLine();</span><br><span class="line">            month &#x3D; int.Parse(month1);</span><br><span class="line">            Console.Write(&quot;The day is:&quot;);</span><br><span class="line">            day1 &#x3D; Console.ReadLine();</span><br><span class="line">            day &#x3D; int.Parse(day1);</span><br><span class="line">            birth liu &#x3D; new birth();</span><br><span class="line">            a&#x3D;liu.Liu(year, month, day);</span><br><span class="line">            if (a &#x3D;&#x3D; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                MessageBox.Show(&quot;no is not&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class birth</span><br><span class="line">    &#123;</span><br><span class="line">        public int Liu(int a, int b, int c)</span><br><span class="line">        &#123;</span><br><span class="line">            if (a &#x3D;&#x3D; 2020)</span><br><span class="line">            &#123;</span><br><span class="line">                if (b &#x3D;&#x3D; 12)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (c &#x3D;&#x3D; 8)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Console.WriteLine(&quot;Happy Birthday LXS&quot;);</span><br><span class="line">                        MessageBox.Show(&quot;The timely Wind and Rain have to happen in 2021, Let&#39;s to see&quot;);</span><br><span class="line">                        return 1;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        return 0;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    return 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                return 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 </article>

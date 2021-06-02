@@ -68,6 +68,83 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/05/02/Java01/">Java01</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-05-02T14:44:08.000Z" itemprop="datePublished">
+    2021-05-02
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="Java语言基础"><a href="#Java语言基础" class="headerlink" title="Java语言基础"></a>Java语言基础</h2><h4 id="1-java中文件名和类名必须同名，注意：java是严格区分大小写"><a href="#1-java中文件名和类名必须同名，注意：java是严格区分大小写" class="headerlink" title="1. java中文件名和类名必须同名，注意：java是严格区分大小写"></a>1. java中文件名和类名必须同名，注意：java是严格区分大小写</h4><h4 id="2-类属性称为类的全局变量，方法中的属性称为局部变量"><a href="#2-类属性称为类的全局变量，方法中的属性称为局部变量" class="headerlink" title="2. 类属性称为类的全局变量，方法中的属性称为局部变量"></a>2. 类属性称为类的全局变量，方法中的属性称为局部变量</h4><h4 id="3-Java中通过import关键字导入相关的类"><a href="#3-Java中通过import关键字导入相关的类" class="headerlink" title="3. Java中通过import关键字导入相关的类"></a>3. Java中通过import关键字导入相关的类</h4><h4 id="4-long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数"><a href="#4-long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数" class="headerlink" title="4. long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数"></a>4. long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数</h4><h4 id="5-默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型"><a href="#5-默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型" class="headerlink" title="5. 默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型"></a>5. 默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型</h4><h4 id="6-char（字符类型）：用于存储单个字符，占两个字节的存储空间"><a href="#6-char（字符类型）：用于存储单个字符，占两个字节的存储空间" class="headerlink" title="6. char（字符类型）：用于存储单个字符，占两个字节的存储空间"></a>6. char（字符类型）：用于存储单个字符，占两个字节的存储空间</h4><h4 id="7-常量声明：用final关键字"><a href="#7-常量声明：用final关键字" class="headerlink" title="7. 常量声明：用final关键字"></a>7. 常量声明：用final关键字</h4><pre><code>语法：final 数据类型 常量名称[=值]
+常量名通常使用大写字母
+final变量属于“成员变量”时，必须在定义时就设定它的初值
+常量一经赋值不给改变</code></pre>
+<h4 id="8-成员变量与局部变量-根据变量的有效范围划定"><a href="#8-成员变量与局部变量-根据变量的有效范围划定" class="headerlink" title="8. 成员变量与局部变量(根据变量的有效范围划定)"></a>8. 成员变量与局部变量(根据变量的有效范围划定)</h4><pre><code>(1).成员变量
+在类体中定义的变量，成员变量又可以分为静态变量和实例变量
+静态变量是在类型前面加关键字static，**静态变量的有效范围可以跨类，达到整个应用程序内，通过类名.静态变量的方式在其他类中使用**
+实例变量是实例化后可以使用
+
+(2).局部变量
+在类的方法体中定义的变量，局部变量只在当前代码块中有效
+当方法被调用时，Java虚拟机为方法中的局部变量分配内存空间
+局部变量可以与成员变量的名字相同，此时成员变量将被隐藏</code></pre>
+<h4 id="9-进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常"><a href="#9-进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常" class="headerlink" title="9. 进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常"></a>9. 进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常</h4><h4 id="10-逻辑运算符的操作元必须是Boolean型的变量"><a href="#10-逻辑运算符的操作元必须是Boolean型的变量" class="headerlink" title="10. 逻辑运算符的操作元必须是Boolean型的变量"></a>10. 逻辑运算符的操作元必须是Boolean型的变量</h4><h4 id="11-位运算符"><a href="#11-位运算符" class="headerlink" title="11. 位运算符"></a>11. 位运算符</h4><pre><code>位运算符除&quot;按位与&#39;&#39;和&quot;按位或&quot;运算符外，其他只能用于处理整数的操作符
+(1).“按位与”运算(&amp;):双目
+运算法则：如果两个整型数据a,b的对应位都是1，则结果为1，否则为0；如果两个操作数精度不同，则结果的精度与精度高的操作数相同
+(2).&quot;按位或&quot;运算(|):双目
+运算法则：如果两个操作数的对应位都是0，则结果为0，否则为1；如果两个操作数精度不同，则结果的精度与精度高的操作数相同
+(3).&quot;按位取反&quot;运算(~):单目
+运算法则：将操作数二进制中的1改为0，0改为1
+(4).&quot;按位异或&quot;运算(^):双目
+运算法则：当两个操作数的二进制表示对应位相同时，结果为0，反之结果为1；如果两个操作数精度不同，则结果的精度与精度高的操作数相同
+(5).位移操作
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;:左移 &#x2F;&#x2F;将运算符左边的二进制数据，按照运算符右边操作数指定的位数向左移动移空的部分补0</span><br><span class="line">&gt;&gt;:右移 &#x2F;&#x2F;将运算符左边的二进制数据，按照运算符右边操作数指定的位数向右移动，如果最高位是0，右移空的位就填入0；如果最高位是1，右移空的位就填入1；右移时右边最低位被抛弃</span><br><span class="line">&gt;&gt;&gt;:无符号右移 &#x2F;&#x2F;无论最高位是0还是1，左侧被移动的高位都填入0</span><br></pre></td></tr></table></figure>
+
+**注意：位移可以实现整数乘以或者除以2^n^的效果；如y&lt;&lt;2与y*4结果相同；y&gt;&gt;1的结果与y/2效果相同，即一个数左移n位，则将数乘以2^n^，一个数右移n位，就是将数除以2^n^**</code></pre>
+<h4 id="12-在编写程序时尽量使用括号运算符来限定次序"><a href="#12-在编写程序时尽量使用括号运算符来限定次序" class="headerlink" title="12. 在编写程序时尽量使用括号运算符来限定次序"></a>12. 在编写程序时尽量使用括号运算符来限定次序</h4><h4 id="13-数据类型转换"><a href="#13-数据类型转换" class="headerlink" title="13. 数据类型转换"></a>13. 数据类型转换</h4><pre><code>(1)隐式类型转换
+低级类型向高级类型的转换，系统自动执行，无须程序员操作
+基本数据类型按精度从低到高的排序
+byte&lt;short&lt;int&lt;long&lt;float&lt;double
+如：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">short a &#x3D; 5;</span><br><span class="line">int b &#x3D; a;</span><br></pre></td></tr></table></figure>
+
+(2)显式类型转换
+高精度的变量的值赋给低精度的变量时，必须使用显式类型的转换运算(又称强制类型转换)
+语法：(类型名)要转换的值
+如：
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int a &#x3D; 5;</span><br><span class="line">short b &#x3D; (short)a;</span><br></pre></td></tr></table></figure>
+**注意：强制类型转换可能会导致精度丢失，除boolean类型以外的其他基本类型，都能以显式类型的方法实现转换</code></pre>
+<h4 id="14-代码注释与编码规范"><a href="#14-代码注释与编码规范" class="headerlink" title="14. 代码注释与编码规范"></a>14. 代码注释与编码规范</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1).单行注释：&#x2F;&#x2F;</span><br><span class="line">(2).多行注释：&#x2F;*   *&#x2F;</span><br><span class="line">(3).文档注释：&#x2F;**  *&#x2F; 与多行注释格式相同，用在声明之前时会被Javadoc文档工具读取作为文档内容</span><br></pre></td></tr></table></figure>
+**注意：可读性第一，效率第二，注释要占程序代码总量的20%~50%**</code></pre>
+<h4 id="15-注意：Java语言的基本数据类型中并没有String类型"><a href="#15-注意：Java语言的基本数据类型中并没有String类型" class="headerlink" title="15. 注意：Java语言的基本数据类型中并没有String类型"></a><strong>15. 注意：Java语言的基本数据类型中并没有String类型</strong></h4>
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/04/26/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a>
         </h1>
       
@@ -498,46 +575,6 @@
 <p>}</p>
 <p>.myswiper{<br>  height: 540rpx;<br>  text-align: center;<br>}<br>.myswiper swiper-item &gt;image{<br>  width: 98%;<br>}</p>
 
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A8/">微信小程序-加法计算器</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-07T00:20:46.000Z" itemprop="datePublished">
-    2021-04-07
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/wx%E5%AE%9E%E8%B7%B5/">wx实践</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="微信小程序-加法计算器"><a href="#微信小程序-加法计算器" class="headerlink" title="微信小程序:加法计算器"></a>微信小程序:加法计算器</h2><h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;head&quot;&gt;加法计算器&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;body&quot;&gt;</span><br><span class="line">  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; placeholder&#x3D;&quot;请输入数据&quot; bindinput&#x3D;&quot;count1&quot;&#x2F;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text2&quot;&gt;+&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; placeholder&#x3D;&quot;请输入数据&quot; bindinput&#x3D;&quot;count2&quot;&#x2F;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text2&quot;&gt;&#x3D;&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text1&quot;&gt;&#123;&#123;a&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view&gt;</span><br><span class="line">  &lt;button class&#x3D;&quot;button&quot; bindtap&#x3D;&quot;button1&quot;&gt;等于&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="wsss"><a href="#wsss" class="headerlink" title="wsss"></a>wsss</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">.head&#123;</span><br><span class="line">  text-align: center;</span><br><span class="line">  letter-spacing: 10rpx;</span><br><span class="line">  font-size: 80rpx;</span><br><span class="line">  color: deepskyblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.body&#123;</span><br><span class="line">  margin-top: 80rpx;</span><br><span class="line">  width: 100%;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction:&quot;row&quot;;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.text1&#123;</span><br><span class="line">  width: 200rpx;</span><br><span class="line">  height: 53rpx;</span><br><span class="line">  border: 4rpx solid green;</span><br><span class="line">  margin-left: 15rpx; &#x2F;*外边距*&#x2F;</span><br><span class="line">  font-size: 36rpx;</span><br><span class="line">  padding-left: 14rpx; &#x2F;*内边距*&#x2F;</span><br><span class="line">  border-radius: 10rpx; &#x2F;*设置圆角*&#x2F;</span><br><span class="line">  color: aqua;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.text2&#123;</span><br><span class="line">  font-size: 36rpx;</span><br><span class="line">  margin-left: 10rpx;</span><br><span class="line">  font-weight: bolder;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.button&#123;</span><br><span class="line">  margin-top: 50rpx;</span><br><span class="line">  width: 200rpx !important;</span><br><span class="line">  color: black !important;</span><br><span class="line">  background-color: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var b;</span><br><span class="line">var c;</span><br><span class="line">Page(&#123;</span><br><span class="line">  data:(&#123;</span><br><span class="line">    a:Number.parseFloat(0)</span><br><span class="line">  &#125;),</span><br><span class="line">  count1(e)&#123; &#x2F;*带参是把控件的值传进来 *&#x2F;</span><br><span class="line">    console.log(e)</span><br><span class="line">    b &#x3D; e.detail.value</span><br><span class="line">    b &#x3D; Number.parseFloat(b)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  count2(e)&#123; &#x2F;*带参是把控件的值传进来 *&#x2F;</span><br><span class="line">    console.log(e)</span><br><span class="line">    c&#x3D;e.detail.value</span><br><span class="line">    c &#x3D; Number.parseFloat(c)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  button1(e)&#123;</span><br><span class="line">    let d&#x3D;Number.parseFloat(this.data.a)</span><br><span class="line">    d&#x3D;b+c</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      a:d</span><br><span class="line">    &#125;)</span><br><span class="line">    console.warn(d)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
       
     </div>
 </article>
