@@ -68,6 +68,46 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/05/03/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A405/">图灵工作室05</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-05-03T14:18:27.000Z" itemprop="datePublished">
+    2021-05-03
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>在app.json中配置全局的属性，pages为你要的页面的种类，window为标题栏的样式。<br>配置下标栏关键字为tabBar，在这里面有list属性用来进行编写（最少是两个，最多不能超过五个）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;tabBar&quot;: &#123;</span><br><span class="line">	&quot;color&quot;:&quot;#474747&quot;,           &#x2F;&#x2F;文字未选中时的颜色</span><br><span class="line">	&quot;selectedColor&quot;:&quot;#d43c43&quot;    &#x2F;&#x2F;文字选中时的颜色</span><br><span class="line">    &quot;list&quot;: [&#123;</span><br><span class="line">      &quot;pagePath&quot;: &quot;pages&#x2F;home-page&#x2F;home-page&quot;,    &#x2F;&#x2F;页面路径</span><br><span class="line">      &quot;text&quot;: &quot;首页&quot;,                             &#x2F;&#x2F;页面下面名字</span><br><span class="line">      &quot;iconPath&quot;: &quot;.&#x2F;pages&#x2F;image&#x2F;icon-home-normal.png&quot;,  &#x2F;&#x2F;未点击时图标样式</span><br><span class="line">      &quot;selectedIconPath&quot;: &quot;.&#x2F;pages&#x2F;image&#x2F;icon-home-primary.png&quot; &#x2F;&#x2F;&#x2F;点击时图标样式</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    ]&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>js里不要随意加，</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/05/03/%E9%9F%B3%E4%B9%90%E5%B0%8F%E7%A8%8B%E5%BA%8F02/">音乐小程序02</a>
         </h1>
       
@@ -218,7 +258,7 @@
 <p>​    <strong>注意：可读性第一，效率第二，注释要占程序代码总量的20%~50%</strong></p>
 <h4 id="15-注意：Java语言的基本数据类型中并没有String类型"><a href="#15-注意：Java语言的基本数据类型中并没有String类型" class="headerlink" title="15. 注意：Java语言的基本数据类型中并没有String类型"></a><strong>15. 注意：Java语言的基本数据类型中并没有String类型</strong></h4><h4 id="16-main方法"><a href="#16-main方法" class="headerlink" title="16. main方法"></a>16. main方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;程序入口的main方法(必须有这个程序才能运行)</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">&#x2F;&#x2F;方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    当运行程序的时候，通常都是以程序入口的main方法作为起点，以main方法中的第一条语句作为程序的第一条语句。由于main方法是一个静态的方法，所以该方法放在任何一个类中都是可以执行的<br>​    写好一个类后，可以直接在该类中添加一个main方法，对该类的功能进行测试(Java允许多个main方法在不同的类中，程序启动时，需要指定哪一个main作为入口，一般光标在哪哪就是)<br>​    main方法是可以重载的，每个main方法的参数都是不同的，程序是可以运行的，可以输出应有的结果。但是，如果没有程序入口的main方法，只含有其他main方法。虽然编译此程序是可以的通过的，但是运行时会产生错误。这是因为程序运行时，Java虚拟机找不到对应的main方法，就会产生运行错误，其他main方法需要在入口main方法中进行调用才会运行<br>​    main方法也是可以被继承的，可以被重写</p>
-
+<h4 id="17-一个文件只能一个public-类，而且类名必须和文件名一样"><a href="#17-一个文件只能一个public-类，而且类名必须和文件名一样" class="headerlink" title="17. 一个文件只能一个public 类，而且类名必须和文件名一样"></a>17. 一个文件只能一个public 类，而且类名必须和文件名一样</h4>
       
     </div>
 </article>
@@ -502,51 +542,6 @@
 <p><strong>当一个人丧失了斗志，变得随遇而安，那必将离失败不远，而赌徒的心态和极高的欲望心会使得你向着地狱踩下油门。</strong></p>
 <hr>
 <p>至此，必须需要摆正自己的定位，不要老想着未来眼高手低，脚踏实地一步一个脚印。</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/11/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day03/">图灵工作室day03</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-11T08:51:34.000Z" itemprop="datePublished">
-    2021-04-11
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h2><p>1.任何一个容器都可以启用flex布局<br>2.flex布局也叫弹性布局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">(1).display:flex  &#x2F;&#x2F;启用flex布局</span><br><span class="line">(2).flex-direction属性决定主轴方向</span><br><span class="line">    flex-direction：column &#x2F;&#x2F;设置垂直方向为主轴</span><br><span class="line">    flex-direction：raw &#x2F;&#x2F;设置横轴方向为主轴</span><br><span class="line">    交叉轴等于法向量，主轴于盒子方向相同</span><br><span class="line"></span><br><span class="line">(3).对盒子先设置大盒子，justity-content：center;对主轴居中对齐</span><br><span class="line">                     他的其他属性</span><br><span class="line">                     flex-start（默认值）：左对齐</span><br><span class="line">                     flex-end：右对齐</span><br><span class="line">                     center： 居中</span><br><span class="line">                     space-between：两端对齐，项目之间的间隔都相等。</span><br><span class="line">                     space-around：每个项目两侧的间隔相等。所以，项目之间                                    的间隔比项目与边框的间隔大一倍。</span><br><span class="line">                     </span><br><span class="line">                     align-items：center；对交叉轴居中对齐</span><br><span class="line">              	     他的其他属性</span><br><span class="line">              	     flex-start：交叉轴的起点对齐。</span><br><span class="line">                     flex-end：交叉轴的终点对齐。</span><br><span class="line">                     center：交叉轴的中点对齐。</span><br><span class="line">                     baseline: 项目的第一行文字的基线对齐。</span><br><span class="line">                     stretch（默认值）：如果项目未设置高度或设为auto，将占                                       满整个容器的高度。</span><br><span class="line">    </span><br><span class="line">    在此之后每制造一个小盒子都会按照设定方式排列</span><br><span class="line"></span><br><span class="line">(4).flex-wrap属性决定盒子排不下的时候是否换行</span><br><span class="line">    flex-wrap:nowrap(默认); &#x2F;&#x2F;不换行，如果放不下的情况下会让所有盒子等比例缩小来放</span><br><span class="line">    flex-wrap:wrap;        &#x2F;&#x2F;换行，第一行在上方</span><br><span class="line">    flex-wrap:wrap-reverse &#x2F;&#x2F;换行，第一行在下方</span><br><span class="line"></span><br><span class="line">(5).order属性</span><br><span class="line">    order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0</span><br><span class="line">    order &#x3D; 1;</span><br><span class="line">    </span><br><span class="line">(6).flex-grow属性</span><br><span class="line">    flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</span><br><span class="line"></span><br><span class="line">当一个flex-grow为1，而其他为0时，该盒子会占去除那些为0盒子占的空间外的全部空间</span><br><span class="line"></span><br><span class="line">(7).flex布局自动计算高度不需要去手动分配，会适得其反</span><br></pre></td></tr></table></figure>
-
-<p><strong>其他的暂时没有用上就先不补了</strong></p>
-<h2 id="js部分语法"><a href="#js部分语法" class="headerlink" title="js部分语法"></a>js部分语法</h2><p>1.js中不分’ ‘,” “,一般用’ ‘</p>
-<p>2.let 块作用域，var 函数作用域（整个函数中在哪定义生命周期为整个函数）</p>
-<p>3.控制台打印<br>console.log()函数 //普通文本<br>console.warn()函数 //警告文本<br>console.error()函数 //出错文本</p>
-<p>4.input控件disable控制是否允许输入</p>
-<p>5.转浮点和整型来做差来判断精度是否丢失</p>
 
       
     </div>

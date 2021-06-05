@@ -72,6 +72,57 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/06/05/Java08/">Java08</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-06-05T11:46:05.000Z" itemprop="datePublished">
+    2021-06-05
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h2><h4 id="1-抽象类的引入"><a href="#1-抽象类的引入" class="headerlink" title="1. 抽象类的引入"></a>1. 抽象类的引入</h4><p>​    一般将父类定义为抽象类，然后对这个父类进行继承与多态处理，在继承树中越上方的类越抽象<br>​    在多态机制中，一般不需要将父类初始化对象，只需要子类对象，<strong>在Java中设置的抽象类不能实例化为对象</strong></p>
+<h4 id="2-abstract关键字"><a href="#2-abstract关键字" class="headerlink" title="2. abstract关键字"></a>2. abstract关键字</h4><p>​    abstract关键字定义的类为抽象类，定义的方法为抽象方法，抽象方法没有方法体，方法本身没有意义，但通过重写来获得意义，承载这个抽象方法的抽象类必须被继承，实际上抽象类除了被继承之外没有任何意义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Test&#123;  &#x2F;&#x2F;定义抽象类</span><br><span class="line">	abstract void textAbstract();  &#x2F;&#x2F;定义抽象方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    声明一个抽象的方法，则必须将承载这个抽象方法的类定义为抽象类，不可能在非抽象类获取抽象方法，只要类中有一个抽象方法，这个类就被标记为抽象类<br>​    抽象类被继承后子类若不是抽象类需要实现其中所有的抽象方法，要保证相同的方法名称、参数列表和相同的返回类型<br>​    abstract无法和final共存修饰类，但是抽象类里面可以用final与static修饰变量和方法，若你创建的类不想被创建对象，变量方法不想被继承，但又要可以直接调用，可以实现抽象类</p>
+<h4 id="3-接口的引入"><a href="#3-接口的引入" class="headerlink" title="3. 接口的引入"></a>3. 接口的引入</h4><p>​    当你需要的一系列子类既需要继承重写父类的抽象方法，同时还需要一个共同的方法但实现过程各子类不相同，有些甚至不需要，就可以把这个方法封装在接口中，需要的子类再去实现这个接口，不需要的就不用了<br>​    接口是抽象类的延伸，可以把它看作为一个纯粹的抽象类，接口中的所有方法都没有方法体<br>​    <strong>由于接口为抽象类，为父类，所以你也可以像之前多态一样去使用接口</strong><br>​    <strong>注意：接口内的方法省略abstract关键字</strong></p>
+<h4 id="4-interface关键字"><a href="#4-interface关键字" class="headerlink" title="4. interface关键字"></a>4. interface关键字</h4><p>​    接口使用interface关键字进行定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface drawTest&#123;&#x2F;&#x2F;public可以不要，有public类时就不需要了</span><br><span class="line">	void draw(); &#x2F;&#x2F;接口内的方法省略abstract关键字</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-implements关键字"><a href="#5-implements关键字" class="headerlink" title="5. implements关键字"></a>5. implements关键字</h4><p>​    一个类实现一个接口，可以使用implements关键字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;public可以不要，有public类时就不需要了</span><br><span class="line">public class child extends father implements drawTest&#123;&#x2F;&#x2F;可以不继承直接实现接口的，要实现多个接口每个接口用,隔开</span><br><span class="line">	&#x2F;&#x2F;something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-接口的注意事项"><a href="#6-接口的注意事项" class="headerlink" title="6. 接口的注意事项"></a>6. 接口的注意事项</h4><ul>
+<li>在接口中方法必须定义为public或者abstract形式，其他权限修饰符不被Java编译器认可</li>
+<li>在接口中定义的任何字段都自动是static和final的</li>
+</ul>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/06/04/Java07/">Java07</a>
         </h1>
       
@@ -618,7 +669,7 @@
 <p>​    <strong>注意：可读性第一，效率第二，注释要占程序代码总量的20%~50%</strong></p>
 <h4 id="15-注意：Java语言的基本数据类型中并没有String类型"><a href="#15-注意：Java语言的基本数据类型中并没有String类型" class="headerlink" title="15. 注意：Java语言的基本数据类型中并没有String类型"></a><strong>15. 注意：Java语言的基本数据类型中并没有String类型</strong></h4><h4 id="16-main方法"><a href="#16-main方法" class="headerlink" title="16. main方法"></a>16. main方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;程序入口的main方法(必须有这个程序才能运行)</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">&#x2F;&#x2F;方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    当运行程序的时候，通常都是以程序入口的main方法作为起点，以main方法中的第一条语句作为程序的第一条语句。由于main方法是一个静态的方法，所以该方法放在任何一个类中都是可以执行的<br>​    写好一个类后，可以直接在该类中添加一个main方法，对该类的功能进行测试(Java允许多个main方法在不同的类中，程序启动时，需要指定哪一个main作为入口，一般光标在哪哪就是)<br>​    main方法是可以重载的，每个main方法的参数都是不同的，程序是可以运行的，可以输出应有的结果。但是，如果没有程序入口的main方法，只含有其他main方法。虽然编译此程序是可以的通过的，但是运行时会产生错误。这是因为程序运行时，Java虚拟机找不到对应的main方法，就会产生运行错误，其他main方法需要在入口main方法中进行调用才会运行<br>​    main方法也是可以被继承的，可以被重写</p>
-
+<h4 id="17-一个文件只能一个public-类，而且类名必须和文件名一样"><a href="#17-一个文件只能一个public-类，而且类名必须和文件名一样" class="headerlink" title="17. 一个文件只能一个public 类，而且类名必须和文件名一样"></a>17. 一个文件只能一个public 类，而且类名必须和文件名一样</h4>
       
     </div>
 </article>

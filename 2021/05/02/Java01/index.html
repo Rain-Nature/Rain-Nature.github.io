@@ -83,7 +83,7 @@
 <p>​    <strong>注意：可读性第一，效率第二，注释要占程序代码总量的20%~50%</strong></p>
 <h4 id="15-注意：Java语言的基本数据类型中并没有String类型"><a href="#15-注意：Java语言的基本数据类型中并没有String类型" class="headerlink" title="15. 注意：Java语言的基本数据类型中并没有String类型"></a><strong>15. 注意：Java语言的基本数据类型中并没有String类型</strong></h4><h4 id="16-main方法"><a href="#16-main方法" class="headerlink" title="16. main方法"></a>16. main方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;程序入口的main方法(必须有这个程序才能运行)</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">&#x2F;&#x2F;方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    当运行程序的时候，通常都是以程序入口的main方法作为起点，以main方法中的第一条语句作为程序的第一条语句。由于main方法是一个静态的方法，所以该方法放在任何一个类中都是可以执行的<br>​    写好一个类后，可以直接在该类中添加一个main方法，对该类的功能进行测试(Java允许多个main方法在不同的类中，程序启动时，需要指定哪一个main作为入口，一般光标在哪哪就是)<br>​    main方法是可以重载的，每个main方法的参数都是不同的，程序是可以运行的，可以输出应有的结果。但是，如果没有程序入口的main方法，只含有其他main方法。虽然编译此程序是可以的通过的，但是运行时会产生错误。这是因为程序运行时，Java虚拟机找不到对应的main方法，就会产生运行错误，其他main方法需要在入口main方法中进行调用才会运行<br>​    main方法也是可以被继承的，可以被重写</p>
-
+<h4 id="17-一个文件只能一个public-类，而且类名必须和文件名一样"><a href="#17-一个文件只能一个public-类，而且类名必须和文件名一样" class="headerlink" title="17. 一个文件只能一个public 类，而且类名必须和文件名一样"></a>17. 一个文件只能一个public 类，而且类名必须和文件名一样</h4>
 
       
 
