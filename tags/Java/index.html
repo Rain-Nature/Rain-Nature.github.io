@@ -100,7 +100,7 @@
 <h4 id="2-abstract关键字"><a href="#2-abstract关键字" class="headerlink" title="2. abstract关键字"></a>2. abstract关键字</h4><p>​    abstract关键字定义的类为抽象类，定义的方法为抽象方法，抽象方法没有方法体，方法本身没有意义，但通过重写来获得意义，承载这个抽象方法的抽象类必须被继承，实际上抽象类除了被继承之外没有任何意义</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Test&#123;  &#x2F;&#x2F;定义抽象类</span><br><span class="line">	abstract void textAbstract();  &#x2F;&#x2F;定义抽象方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    声明一个抽象的方法，则必须将承载这个抽象方法的类定义为抽象类，不可能在非抽象类获取抽象方法，只要类中有一个抽象方法，这个类就被标记为抽象类<br>​    抽象类被继承后子类若不是抽象类需要实现其中所有的抽象方法，要保证相同的方法名称、参数列表和相同的返回类型<br>​    abstract无法和final共存修饰类，但是抽象类里面可以用final与static修饰变量和方法，若你创建的类不想被创建对象，变量方法不想被继承，但又要可以直接调用，可以实现抽象类</p>
-<h4 id="3-接口的引入"><a href="#3-接口的引入" class="headerlink" title="3. 接口的引入"></a>3. 接口的引入</h4><p>​    当你需要的一系列子类既需要继承重写父类的抽象方法，同时还需要一个共同的方法但实现过程各子类不相同，有些甚至不需要，就可以把这个方法封装在接口中，需要的子类再去实现这个接口，不需要的就不用了<br>​    接口是抽象类的延伸，可以把它看作为一个纯粹的抽象类，接口中的所有方法都没有方法体<br>​    <strong>由于接口为抽象类，为父类，所以你也可以像之前多态一样去使用接口</strong><br>​    <strong>注意：接口内的方法省略abstract关键字</strong></p>
+<h4 id="3-接口的引入"><a href="#3-接口的引入" class="headerlink" title="3. 接口的引入"></a>3. 接口的引入</h4><p>​    当你需要的一系列子类既需要继承重写父类的抽象方法，同时还需要一个共同的方法但实现过程各子类不相同，有些甚至不需要，就可以把这个方法封装在接口中，需要的子类再去实现这个接口，不需要的就不用了<br>​    接口是抽象类的延伸，可以把它看作为一个纯粹的抽象类，接口中的所有方法都没有方法体<br>​    接口用来弥补类无法实现多继承的局限<br>​    由于接口为抽象类，为父类，所以你也可以像之前多态一样去使用接口，具体见<strong>7</strong><br>​    <strong>注意：接口内的方法省略abstract关键字</strong><br>​    如果一个类实现了一个接口中要求的所有的方法，然而没有提供方法体而仅仅只有方法标识，那么这个类一定是一个抽象类</p>
 <h4 id="4-interface关键字"><a href="#4-interface关键字" class="headerlink" title="4. interface关键字"></a>4. interface关键字</h4><p>​    接口使用interface关键字进行定义</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface drawTest&#123;&#x2F;&#x2F;public可以不要，有public类时就不需要了</span><br><span class="line">	void draw(); &#x2F;&#x2F;接口内的方法省略abstract关键字</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -108,10 +108,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;public可以不要，有public类时就不需要了</span><br><span class="line">public class child extends father implements drawTest&#123;&#x2F;&#x2F;可以不继承直接实现接口的，要实现多个接口每个接口用,隔开</span><br><span class="line">	&#x2F;&#x2F;something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="6-接口的注意事项"><a href="#6-接口的注意事项" class="headerlink" title="6. 接口的注意事项"></a>6. 接口的注意事项</h4><ul>
-<li>在接口中方法必须定义为public或者abstract形式，其他权限修饰符不被Java编译器认可</li>
-<li>在接口中定义的任何字段都自动是static和final的</li>
+<li>在接口中方法必须定义为public或者abstract形式，其他权限修饰符不被Java编译器认可，如果未注明默认就是public and abstract的</li>
+<li>在接口中定义的任何字段都自动是static和final和public的</li>
 <li>继承一个接口时需要实现接口中所有的方法</li>
+<li>一个类可以实现不止一个接口，语法见<strong>5</strong></li>
 </ul>
+<h4 id="7-接口的进阶"><a href="#7-接口的进阶" class="headerlink" title="7. 接口的进阶"></a>7. 接口的进阶</h4><p>​    <strong>我们不能直接去实例化一个接口，因为接口中的方法都是抽象的，是没有方法体的，这样怎么可能产生具体的实例呢？但是，我们可以使用接口类型的引用指向一个实现了该接口的对象，并且可以调用这个接口中的方法</strong></p>
+<p>​    应该优先使用接口而不是类来引用对象。如果有适合的接口类型存在，那么对于参数、返回值、变量和域来说，就都应该使用接口类型进行声明。只有当你利用构造器创建某个对象的时候，才真正需要引用这个对象的类。<br>​    如果你养成了用接口作为类型的习惯，你的程序将会更加灵活</p>
 
       
     </div>
