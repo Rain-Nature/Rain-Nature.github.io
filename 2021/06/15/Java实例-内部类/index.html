@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java实例-内部类 | Blog of chiffun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/tree_small.jpg)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of chiffun</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>Java实例-内部类</h1>
+    </header>
+
+    <section>
+      <h2 id="Java实例-内部类的基本作用"><a href="#Java实例-内部类的基本作用" class="headerlink" title="Java实例-内部类的基本作用"></a>Java实例-内部类的基本作用</h2><h4 id="1-实例内部类–内部类在外部类中，内部类修饰为private"><a href="#1-实例内部类–内部类在外部类中，内部类修饰为private" class="headerlink" title="1. 实例内部类–内部类在外部类中，内部类修饰为private"></a>1. 实例内部类–内部类在外部类中，内部类修饰为private</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface Food&#123;</span><br><span class="line">	public void doing();</span><br><span class="line">&#125;</span><br><span class="line">public class First&#123;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Outside o &#x3D; new Outside();</span><br><span class="line">		Food i &#x3D; o.create(); &#x2F;&#x2F;用接口引用类型来接内部类实现接口的实例</span><br><span class="line">		i.doing();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outside&#123;</span><br><span class="line">	private class Inside implements Food&#123; &#x2F;&#x2F;private只能在外部类访问</span><br><span class="line">		public void doing() &#123;</span><br><span class="line">			System.out.println(&quot;eat egg&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public Inside create() &#123;</span><br><span class="line">		return new Inside();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-局部内部类–内部类在外部类的方法中，内部类无修饰符"><a href="#2-局部内部类–内部类在外部类的方法中，内部类无修饰符" class="headerlink" title="2. 局部内部类–内部类在外部类的方法中，内部类无修饰符"></a>2. 局部内部类–内部类在外部类的方法中，内部类无修饰符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface Food&#123;</span><br><span class="line">	public void doing();</span><br><span class="line">&#125;</span><br><span class="line">public class First&#123;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Outside b &#x3D; new Outside();</span><br><span class="line">		Food c &#x3D; b.a();</span><br><span class="line">		c.doing();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outside&#123;</span><br><span class="line">	public Food a() &#123; &#x2F;&#x2F;方法返回值类型为接口类型</span><br><span class="line">		class Inside implements Food&#123;</span><br><span class="line">			public void doing() &#123;</span><br><span class="line">				System.out.println(&quot;hello&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return new Inside();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2021-06-15T11:32:57.000Z" itemprop="datePublished">
+              2021-06-15
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2021 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>
