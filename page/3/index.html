@@ -68,6 +68,67 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/04/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%95%86%E5%93%81%E9%A1%B5%E9%9D%A2/">微信小程序-商品页面</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-04-18T09:56:15.000Z" itemprop="datePublished">
+    2021-04-18
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/wx%E5%AE%9E%E8%B7%B5/">wx实践</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;swiper class&#x3D;&quot;myswiper&quot; bindchange&#x3D;&quot;changeImg&quot; indicator-dots&#x3D;&quot;ture&quot; autoplay&#x3D;&quot;ture&quot; circular&#x3D;&quot;ture&quot;&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;租借图片&#x2F;毕业季.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;apple.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;hw1.jpg?sign&#x3D;fee0f936bbe930fb6d94b51747d7a213&amp;t&#x3D;1618020235&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;parent&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color1&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text1&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;money&quot;&gt;￥&#123;&#123;price&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text2&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;people&quot;&gt;0人买过&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color2&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text3&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple&quot;&gt;&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text4&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple_computer&quot;&gt;这是&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;bottom&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture1&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;server&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-question.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;bottom_text&quot;&gt;客服&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture2&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;shop&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-shop.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;bottom_text&quot;&gt;商店&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;last&quot;&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;button&quot;&gt;立即购买&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h3><p>.picture{<br>  width: 100%;<br>}</p>
+<p>.myswiper{<br>  width: 100%;<br>  height: 750rpx;<br>}</p>
+<p>.parent{<br>  width: 100%;<br>  height: 250rpx;<br>  display: flex;<br>  flex-direction: column;<br>  /* background-color:blue; */<br>}</p>
+<p>.color1{<br>  width: 100%;<br>  display: flex;<br>  flex-direction: row;<br>  /* background-color: yellow; */<br>  flex-grow: 1;<br>}</p>
+<p>.color2{<br>  width: 100%;<br>  display: flex;<br>  flex-direction:column;<br>  /* background-color:green; */<br>  flex-grow: 2;<br>}</p>
+<p>.text1{<br>  /* background-color: red; */<br>  padding-left: 25rpx;<br>  display: flex;<br>  flex-direction: column;<br>  align-items: flex-start;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
+<p>.text2{<br>  /* background-color: blue; */<br>  display: flex;<br>  flex-direction: column;<br>  padding-right: 25rpx;<br>  align-items: flex-end;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
+<p>.text3{<br>  /* background-color: blue; */<br>  display: flex;<br>  padding-left: 20rpx;<br>  flex-direction: column;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
+<p>.text4{<br>  /* background-color: brown; */<br>  display: flex;<br>  padding-left: 20rpx;<br>  flex-direction: column;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
+<p>.money{<br>  color: red;<br>  font-size: 40rpx;<br>  font-weight: bold;<br>}</p>
+<p>.people{<br>  color:#DCDCDC;<br>  font-size: 25rpx;<br>}</p>
+<p>.apple{<br>  font-size: 40rpx;<br>  font-weight: bold;<br>}</p>
+<p>.apple_computer{<br>  color:#DCDCDC;<br>  font-size: 25rpx;<br>}</p>
+<p>.bottom{<br>  position: fixed;<br>  bottom: 0;<br>  width: 100%;<br>  height: 100rpx;<br>  /* background:yellow; */<br>  display:flex;<br>  flex-direction: row;<br>}</p>
+<p>.bottom_picture1{<br>  /* background-color: aqua; */<br>  padding-left: 14rpx;<br>  width: 13%;<br>  height: 100rpx;<br>  display: flex;<br>  flex-direction:column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
+<p>.server{<br>  width: 55rpx;<br>}</p>
+<p>.shop{<br>  width: 55rpx;<br>}</p>
+<p>.bottom_picture2{<br>  /* background-color: rgb(71, 127, 190); */<br>  width: 13%;<br>  height: 100rpx;<br>  display: flex;<br>  flex-direction:column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
+<p>.bottom_text{<br>  font-size: 28rpx;<br>}</p>
+<p>.last{<br>  padding-left: 30rpx;<br>  display: flex;<br>  flex-direction: column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
+<p>.button{<br>  width: 460rpx !important;<br>  background: #f12711;  /* fallback for old browsers <em>/<br>  background: -webkit-linear-gradient(to right, #f5af19, #f12711);  /</em> Chrome 10-25, Safari 5.1-6 <em>/<br>  background: linear-gradient(to right, #f5af19, #f12711); /</em> W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */</p>
+<p>  border-radius: 140rpx;<br>  color: white !important;<br>  font-weight: normal;<br>  font-size: 14px;<br>}</p>
+<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><p>Page({<br>  data:{<br>    price:200,<br>    shopname:’我们毕业了’<br>  },<br>  changeImg:function(e){<br>    console.log(e.detail.current)<br>    var currentIndex=e.detail.current<br>    if(currentIndex==0){<br>      this.setData({<br>        price:200,<br>        shopname:’我们毕业了’<br>      })<br>    }else if(currentIndex==1){<br>      this.setData({<br>        price:5700,<br>        shopname:’苹果电脑’<br>      })<br>    }else{<br>      this.setData({<br>        price:12000,<br>        shopname:’华为笔记本’<br>      })<br>    }<br>  }<br>})</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/04/16/%E8%87%B3%E7%8E%B0%E5%9C%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E8%AF%97/">至现在自己的诗</a>
         </h1>
       
@@ -476,56 +537,11 @@
 
     </li>
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/03/13/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day01/">图灵工作室day01</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-03-13T12:12:25.000Z" itemprop="datePublished">
-    2021-03-13
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h3 id="微信小程序简介"><a href="#微信小程序简介" class="headerlink" title="微信小程序简介"></a>微信小程序简介</h3><p>1.微信小程序是以微信为载体，使用微信内置的浏览器</p>
-<p>2.微信开创了二维码时代</p>
-<p>3.微信公众平台是微信开发的一个综合性平台</p>
-<p>4.微信小商店(新)可以去玩下</p>
-<h3 id="微信小程序开发"><a href="#微信小程序开发" class="headerlink" title="微信小程序开发"></a>微信小程序开发</h3><p>1.初学者一般使用pages文件下的文件组进行开发,常用的是index.wxml,index.wxss<br>2.image的属性中除了src还有代码mode=”widthFix”等比例缩放<br>3.swiper滚动特效(轮播器),swiper标签下面必须要跟多组swiper-item标签,在swiper-item中可以继续使用    其他标签<br>4.html与css关系<br>属性(html)=&gt;样式(css)<br>class=&gt;.<br>id=&gt;#<br>5.插入图片(html部分)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;image src&#x3D;&quot;..&#x2F;xxxx&#x2F;xxxx&#x2F;xxx.png&quot;&gt;     &#x2F;&#x2F;图片格式随意</span><br></pre></td></tr></table></figure>
-<p>6.css的一些样式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.text-align:center;居中 &#x2F;&#x2F;注意这个需要在外部盒子中写,影响内部盒子</span><br><span class="line">2.font-size:30rpx; 设置字体大小 &#x2F;&#x2F;rpx结尾则字体可随设备变化而比例变化,px就不行</span><br><span class="line">3.text-decoration:underline; 设置下划线 &#x2F;&#x2F;引用则产生下划线</span><br><span class="line">4.text-decoration-color:blue; 设置下划线颜色 &#x2F;&#x2F;这里为蓝色,可以用#加数字来弄颜色</span><br><span class="line">5.width:90%; 宽度为屏幕的90% </span><br></pre></td></tr></table></figure>
-<p>7.用QQ截取颜色<br>打开QQ的截图功能,放在电脑屏幕中要的颜色上,按ctrl+c复制色号在剪贴板</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
 </ul>
 
   <section id="nav-wrapper">
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">« prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">next »</a>
+      <a class="extend prev" rel="prev" href="/page/2/">« prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">next »</a>
     </nav>
   </section>
 
