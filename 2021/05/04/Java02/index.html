@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Java02 | Blog of chiffun</title>
+  <title>Java02 | Blog of ChiFun</title>
   
   
   
@@ -25,7 +25,7 @@
         </div>
     </section>
     <section class='menu'>
-        <div>Blog of chiffun</div>
+        <div>Blog of ChiFun</div>
         
         <ul>
           
@@ -72,13 +72,13 @@
 <h4 id="2-if-else与三元运算符的转化"><a href="#2-if-else与三元运算符的转化" class="headerlink" title="2. if~else与三元运算符的转化"></a>2. if~else与三元运算符的转化</h4><p>例：求绝对值</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(a&gt;0)</span><br><span class="line">	b &#x3D; a;</span><br><span class="line">else</span><br><span class="line">	b &#x3D; -a;</span><br><span class="line">可以转化为</span><br><span class="line">b &#x3D; a &gt; 0?a:-a; &#x2F;&#x2F;问号前面的表达式为真则返回问号与冒号之间的表达式，否则把冒号后面的表达式给b，注意：三元运算符是有一个返回值的</span><br></pre></td></tr></table></figure>
 
-<h4 id="3-switch多分支语句"><a href="#3-switch多分支语句" class="headerlink" title="3. switch多分支语句"></a>3. switch多分支语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">switch(表达式) &#x2F;*在JDK1.6以前常量值必须是整型或字符型，在JDK1.7中，常量值除了整型或字符型还可以是字符串类型，注意常量值绝对不能是实数*&#x2F;</span><br><span class="line">&#123;</span><br><span class="line">	注意：同一个switch语句，case的常量值必须不互相同</span><br><span class="line">	case 常量值1:</span><br><span class="line">	语句块1;</span><br><span class="line">	break;</span><br><span class="line">	...</span><br><span class="line">	case 常量值n:</span><br><span class="line">	语句块n;</span><br><span class="line">	break;</span><br><span class="line">	default:</span><br><span class="line">	语句块n+1; &#x2F;&#x2F;default不需要break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-switch多分支语句"><a href="#3-switch多分支语句" class="headerlink" title="3. switch多分支语句"></a>3. switch多分支语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">switch(表达式) &#x2F;*在JDK1.6以前常量值必须是整型或字符型，在JDK1.7中，常量值除了整型或字符型还可以是字符串类型，注意常量值绝对不能是实数，如1.1就不行*&#x2F;</span><br><span class="line">&#123;</span><br><span class="line">	注意：同一个switch语句，case的常量值必须不互相同</span><br><span class="line">	case 常量值1:</span><br><span class="line">	语句块1;</span><br><span class="line">	break;</span><br><span class="line">	...</span><br><span class="line">	case 常量值n:</span><br><span class="line">	语句块n;</span><br><span class="line">	break;</span><br><span class="line">	default:</span><br><span class="line">	语句块n+1; &#x2F;&#x2F;default不需要break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="4-while循环语句-先判断再执行"><a href="#4-while循环语句-先判断再执行" class="headerlink" title="4. while循环语句(先判断再执行)"></a>4. while循环语句(先判断再执行)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while(条件表达式)&#123;  &#x2F;&#x2F;条件表达式返回值为真继续循环，为假退出循环</span><br><span class="line">	执行语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="5-do…while循环语句-先执行再判断"><a href="#5-do…while循环语句-先执行再判断" class="headerlink" title="5. do…while循环语句(先执行再判断)"></a>5. do…while循环语句(先执行再判断)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">do</span><br><span class="line">&#123;</span><br><span class="line">	执行语句</span><br><span class="line">&#125;</span><br><span class="line">while(条件表达式);  &#x2F;&#x2F;注意这里是比while循环多一个分号</span><br></pre></td></tr></table></figure>
 
-<h4 id="6-for循环语句"><a href="#6-for循环语句" class="headerlink" title="6. for循环语句"></a>6. for循环语句</h4><p>与c一样<br>**注意：for循环里第一个表达式里是填初始化表达式，可以为空，但不可以直接填一个变量，哪怕这个变量前面已经定义赋值</p>
+<h4 id="6-for循环语句"><a href="#6-for循环语句" class="headerlink" title="6. for循环语句"></a>6. for循环语句</h4><p>与c一样<br><strong>注意：for循环里第一个表达式里是填初始化表达式，可以为空，但不可以直接填一个变量(不管什么类型)，哪怕这个变量前面已经定义赋值</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(i;i&lt;12;i++) &#x2F;&#x2F;错误的，i因改为i&#x3D;0，若i是已经定义赋值的这个第一个表达式也可以直接为空不写东西</span><br></pre></td></tr></table></figure>
 
 <h4 id="7-foreach语句"><a href="#7-foreach语句" class="headerlink" title="7. foreach语句"></a>7. foreach语句</h4><p>foreach是for语句的特殊简化版本，不能完全取代for语句，任何foreach语句都可以改写为for语句版本，foreach语句一般用于遍历数组等方面,在这种方面给与程序员很大的方便</p>

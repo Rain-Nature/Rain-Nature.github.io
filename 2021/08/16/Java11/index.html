@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java11 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>Java11</h1>
+    </header>
+
+    <section>
+      <h2 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h2><h4 id="1-在java-util包中提供一些集合类，集合类又被称为容器"><a href="#1-在java-util包中提供一些集合类，集合类又被称为容器" class="headerlink" title="1. 在java.util包中提供一些集合类，集合类又被称为容器"></a>1. 在java.util包中提供一些集合类，集合类又被称为容器</h4><h4 id="2-集合类和数组的区别"><a href="#2-集合类和数组的区别" class="headerlink" title="2. 集合类和数组的区别"></a>2. 集合类和数组的区别</h4><ul>
+<li>数组的长度是固定的，集合类的长度是可变的</li>
+<li>数组用来存放基本数据类型的数据，集合类用来存放对象**(基本数据类型需要用包装类)**的引用</li>
+</ul>
+<h4 id="3-Collection-lt-E-gt-接口"><a href="#3-Collection-lt-E-gt-接口" class="headerlink" title="3. Collection&lt; E &gt;接口"></a>3. Collection&lt; E &gt;接口</h4><p>​    在Java中，Collection接口是层次结构的根接口（即集合的顶层框架）<br>​    Collection接口通常不能直接使用，但其提供增加、删除、管理数据的方法。List接口与Set接口继承了该接口，这些方法在这两个接口中是通用的</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">add(E e)</td>
+<td align="center">将指定的对象(元素e)添加到该集合中</td>
+</tr>
+<tr>
+<td align="center">remove(Object o)</td>
+<td align="center">将指定的对象从该集合中删除</td>
+</tr>
+<tr>
+<td align="center">isEmpty()</td>
+<td align="center">返回值为boolean，判断当前集合是否为空</td>
+</tr>
+<tr>
+<td align="center">iterator()</td>
+<td align="center">返回在此Collection的元素的迭代器，用于遍历集合中的对象</td>
+</tr>
+<tr>
+<td align="center">size()</td>
+<td align="center">返回值为int，获取该集合中元素的个数</td>
+</tr>
+</tbody></table>
+<h4 id="4-迭代器（Iterator-lt-E-gt-接口，E为元素迭代器返回元素类型）"><a href="#4-迭代器（Iterator-lt-E-gt-接口，E为元素迭代器返回元素类型）" class="headerlink" title="4. 迭代器（Iterator&lt; E &gt;接口，E为元素迭代器返回元素类型）"></a>4. 迭代器（Iterator&lt; E &gt;接口，E为元素迭代器返回元素类型）</h4><p>​    在Java中，有很多的数据容器，对于这些的操作有很多的共性。Java采用了迭代器来为各种容器提供了公共的操作接口。这样使得对容器的遍历操作与其具体的底层实现相隔离，达到解耦的效果，<strong>即：迭代器的作用是用来遍历集合元素</strong>，我们无需关心该序列的底层结构是什么样子的。只要拿到这个对象,使用迭代器就可以遍历这个对象的内部</p>
+<p>​    <strong>注意：一般使用增强for也可以遍历元素，但如果是无序的则需要用迭代器了</strong></p>
+<p>​    迭代器的创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;String&gt; a &#x3D; list.iterator();  &#x2F;&#x2F;在集合list下创建它的迭代器</span><br></pre></td></tr></table></figure>
+
+<p>​    迭代器的方法</p>
+<ul>
+<li>hasNext()方法：如果迭代器有下一个元素返回true，否则返回false</li>
+<li>next()方法：返回迭代后的下一个元素，即取出元素。**注意：返回元素的类型是Object类型</li>
+</ul>
+<h4 id="5-List集合"><a href="#5-List集合" class="headerlink" title="5. List集合"></a>5. List集合</h4><p>​    (1).List集合包括List接口和List接口中所有实现类。List集合中元素允许重复，顺序为插入对象时的顺序，类似Java数组，用户可以通过索引来访问集合中的元素</p>
+<p>​    (2).List接口继承Collection接口，包含其所有方法，还定义了两个重要方法</p>
+<ul>
+<li>get(int index)：获得指定索引位置的元素</li>
+<li>set(int index , Object obj)：将元素中指定位置的对象修改</li>
+</ul>
+<p>​    (3).List接口的实现类</p>
+<ul>
+<li>ArrayList类<br>​    ArrayList类实现了可变的数组，允许保存所有元素，包括null，可以根据索引位置快速访问，缺点为插入和删除对象元素速度较慢，<strong>其操作是移动数组</strong><br>​    <strong>ArrayList是使用动态数组实现的</strong></li>
+</ul>
+<ul>
+<li>LinkedList类<br>​    采用链表结构保存对象，优点便于向集合中插入和删除对象，缺点对于随机访问时效率低，<strong>其操作是定位节点</strong><br>​    <strong>LinkedList是使用双向链表实现的</strong></li>
+</ul>
+<p>​    (4).List集合的声明<br>​    <strong>通常声明为List类型，然后通过不同的实现类来进行实例化</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;E为Java中合法的数据类型</span><br><span class="line">List&lt;E&gt; list &#x3D; new ArrayList&lt;&gt;(); </span><br><span class="line">List&lt;E&gt; list2 &#x3D; new LinkedList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<p><strong>注意1：代码中小括号内是可以设置容量的，如果不写的话JDK 1.8 默认是10且建议初始化容量减少系统初始化容量的耗时</strong><br><strong>注意2：该构造方法并不是将ArrayList()初始化为指定长度，而是指定了其内部的Object数组的长度，也就是其容量。当我们调用size()时，返回的是其实际长度，而非容量大小。对超出ArrayList长度的部分进行访问或赋值操作时也会造成访问越界，尽管它的容量大小足够</strong></p>
+<p>​    <strong>注意：集合的索引与数组一样从0开始，而且使用remove方法删除数据时需要注意是否越界，即使用该方法时同时使用try-catch来捕捉异常</strong></p>
+<h4 id="5-Set集合"><a href="#5-Set集合" class="headerlink" title="5. Set集合"></a>5. Set集合</h4><p>​    (1).Set集合的对象不按特定的方式排序，只是简单的把对象加入集合中<br>​    <strong>Set的构造有一个约束条件，传入的Collection对象不能有重复值，加入Set的元素必须定义equals()方法以确保对象的唯一性(在上面List中是可以重复的) ，小心操作可变可变对象导致出现问题</strong> </p>
+<p>​    (2). Set接口继承Collection接口，包含Collection中所有的方法</p>
+<p>​    (3). Set集合的常用的实现类</p>
+<ul>
+<li>HashSet类<br>​    HashSet类实现Set接口，由哈希表支持，不保证Set的迭代顺序，不保证顺序永恒不变，此类允许使用null元素</li>
+<li>TreeSet类<br>​    TreeSet类在实现Set集合时，必须实现Comparable接口，实现接口中的方法compareTo(Object o)方法比较此对象与指定对象的顺序<br>​    TreeSet类不仅实现Set接口，还实现java.util.SortedSet接口，TreeSet类实现的Set集合在遍历集合时按照自然顺序递增排序，也可以按照指定的比较器递增排序，<strong>即TreeSet通过 Comparator&lt;-(这是一个无参方法) 或者 Comparable &lt;-(这是一个接口)维护了一个排序顺序</strong><br>​    <strong>一般使用TreeSet类来实现自定义排序</strong></li>
+</ul>
+<h4 id="6-Map集合"><a href="#6-Map集合" class="headerlink" title="6. Map集合"></a>6. Map集合</h4><p>​    (1).Map集合没有继承Collection接口，其提供key到value的映射，Map中不能有相同的key，每个key只可以映射一个value，使用的是Map接口</p>
+<p>Map接口的常用方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">put(K key,V value)</td>
+<td align="center">向集合中添加指定的key与value的映射关系</td>
+</tr>
+<tr>
+<td align="center">containsKey(Object key)</td>
+<td align="center">如果此映射包含指定key的映射关系，则返回true</td>
+</tr>
+<tr>
+<td align="center">containsValue(Object value)</td>
+<td align="center">如果此映射将一个或多个key映射到指定值，则返回true</td>
+</tr>
+<tr>
+<td align="center">get(Object key)</td>
+<td align="center">如果存在指定的key对象，则返回该对象对应的值，否则返回null</td>
+</tr>
+<tr>
+<td align="center">keySet()</td>
+<td align="center">返回该集合中的所有key对象形成的Set集合</td>
+</tr>
+<tr>
+<td align="center">values()</td>
+<td align="center">返回该集合中所有值对象形成的Collection集合</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/f2JSeS"><img src="https://z3.ax1x.com/2021/08/15/f2JSeS.png" alt="f2JSeS.png"></a></p>
+<p>​    (2).<strong>注意：Map是双列的,Collection是单列的</strong><br>​    Map集合的实例化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;*,*&gt; map &#x3D; new HashMap&lt;&gt;() &#x2F;&#x2F;*为你要的数据类型</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>(3).Map和Set和List的关系</strong></p>
+<ul>
+<li>Map中存放的时键值对，Set中存放的是单个对象，但如果把value看做key的附庸，key在哪里，value就在哪里，这样就可以像对待Set一样来对待Map了。事实上，Map提供了一个Entry内部类来封装key-value对，再计算Entry存储时则只考虑Entry封装的key。</li>
+<li>如果把Map集合里的所有value放在一起来看，它们又类似于一个List，元素可以重复，每个元素可以根据索引来找，只是Map中的索引不再是整数值，而是以另一个对象作为索引</li>
+</ul>
+<p>​    (4).Map集合的内部类Entry<br>​    Map中包括一个内部类Entry,该类封装一个键值对，常用方法：</p>
+<ul>
+<li>Object getKey():返回该Entry里包含的所有key值；</li>
+<li>Object getvalue():返回该Entry里包含的所有value值；</li>
+<li>Object setValue(V value):设置该Entry里包含的value值，并设置新的value值。</li>
+</ul>
+<p>​    (5).Map接口的实现类<br>​    Map接口的常用实现类有HashMap和TreeMap。建议使用HashMap类实现Map集合，HashMap类实现的Map集合添加和删除元素效率更高</p>
+<ul>
+<li><p>HashMap类<br>​    基于哈希表的Map接口的实现，此实现提供所有可选的映射操作，并允许使用null值和null键，但必须保证键的唯一性，此类不保证映射的顺序，特别是它不保证该顺序永恒不变</p>
+</li>
+<li><p>TreeMap类<br>​    TreeMap类不仅实现了Map接口，而且实现了java.util.SortedMap接口，集合中的映射关系具有一定的顺序，在添加、删除、定位映射关系时，比HashMap性能稍差，且TreeMap不允许键对象为null</p>
+</li>
+</ul>
+<p>​    <strong>注意：可以通过HashMap类创建Map集合，当需要顺序输出时，再创建一个完成相同映射关系的TreeMap类实例</strong></p>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2021-08-16T04:51:24.000Z" itemprop="datePublished">
+              2021-08-16
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2021 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>

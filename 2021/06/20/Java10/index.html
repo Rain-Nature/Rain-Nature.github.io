@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Java10 | Blog of chiffun</title>
+  <title>Java10 | Blog of ChiFun</title>
   
   
   
@@ -25,7 +25,7 @@
         </div>
     </section>
     <section class='menu'>
-        <div>Blog of chiffun</div>
+        <div>Blog of ChiFun</div>
         
         <ul>
           
@@ -78,7 +78,8 @@
 <li>jvm虚拟机有没有得到指令处理异常，只能将异常的信息通过标准错误流（System.err）打印到控制台，结束自己。</li>
 </ol>
 <h4 id="3-异常的结构"><a href="#3-异常的结构" class="headerlink" title="3. 异常的结构"></a>3. 异常的结构</h4><p>​     <strong>在 Java 中，所有的异常都有一个共同的祖先 Throwable（可抛出类）</strong><br>​     <strong>在java中只有Throwable类型的实例才可以被抛出（throw）或者捕获（catch）</strong><br>​    <strong>Throwable</strong>： 有两个重要的子类：Exception（异常）和 Error（错误），二者都是 Java 异常处理的重要子类，各自都包含大量子类。异常和错误的区别是：异常能被程序本身可以处理，错误是无法处理（但错误也是异常）<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/2qtZ5Q"><img src="https://z3.ax1x.com/2021/06/15/2qtZ5Q.png" alt="2qtZ5Q.png"></a></p>
-<p>​    **Error（错误）:**一般来说，最常见的错误有程序进入死循环、内存泄漏等。在这种情况下，程序运行时本身无法解决，只能通过其他程序干预，Error类对象由java虚拟机生成并抛弃（通常Java程序不对这类异常进行处理）</p>
+<p>​    </p>
+<p>**Error（错误）:**一般来说，最常见的错误有程序进入死循环、内存泄漏等。在这种情况下，程序运行时本身无法解决，只能通过其他程序干预，Error类对象由java虚拟机生成并抛弃（通常Java程序不对这类异常进行处理）</p>
 <p>​    <strong>Exception（异常）</strong>：分两大类，运行时异常(不检查异常)和非运行时异常(编译异常)。程序中应当尽可能去处理这些异常。</p>
 <ul>
 <li><strong>运行时异常</strong>：都是<strong>RuntimeException类及其子类</strong>异常，如NullPointerException(空指针异常)、IndexOutOfBoundsException(下标越界异常)等，<strong>这些异常是不检查异常，程序中可以选择捕获处理，也可以不处理</strong>。这些异常一般是由程序逻辑错误引起的，程序应该从逻辑角度尽可能避免这类异常的发生。运行时异常的特点是<strong>Java编译器不会检查它</strong>，也就是说，当程序中可能出现这类异常，<strong>即使没有用try-catch语句捕获它，也没有用throws子句声明抛出它，也会编译通过</strong>。</li>
@@ -91,7 +92,7 @@
 <li>catch程序块在try语句块之后，当try语句块里抛出异常时执行</li>
 <li>finally语句块里的内容无论try语句是否跳出，正常都会执行</li>
 </ul>
-<p>​    **注意：如果程序跳到了catch块后会继续向下执行，不会再去执行try代码块的内容</p>
+<p>​    <strong>注意：如果程序跳到了catch块后会继续向下执行，不会再去执行try代码块的内容</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	 	&#x2F;&#x2F;可能出现异常的代码</span><br><span class="line">&#125; catch (Exception e) &#123;&#x2F;&#x2F;可能出现的异常类型 异常的变量名称,e是引用了抛出的实例</span><br><span class="line">		&#x2F;&#x2F;针对该异常类型的处理办法</span><br><span class="line">&#125;</span><br><span class="line">finally&#123;</span><br><span class="line">	&#x2F;&#x2F;语句块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>​    获取异常的信息的函数(需要在异常引用变量名称后调用，这是可抛出类(异常最上层父类)的方法)</p>
