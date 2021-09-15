@@ -501,7 +501,7 @@
 </li>
 </ul>
 <h4 id="8-对象类型的转换"><a href="#8-对象类型的转换" class="headerlink" title="8. 对象类型的转换"></a>8. 对象类型的转换</h4><ul>
-<li><p>向上转型(多态)<br>​    把子类对象赋值给父类类型的引用变量</p>
+<li><p>向上转型(多态)<br>​    把子类对象赋值给父类类型的引用变量<br>​    <strong>父类的引用可以调用子类中重写的父类的方法，但不能调用子类中独有的方法</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">父类型 a &#x3D; new 子类型();</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>向下转型(显式类型转换)<br>​    把父类对象强制转化为子类型，赋值给子类引用变量<br>​    进行向下转型时，如果父类对象不是子类的实例，会产生ClassCastException异常，所以经常使用instanceof操作符来完成判断</p>
