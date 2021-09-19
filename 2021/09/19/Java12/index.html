@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Java12 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>Java12</h1>
+    </header>
+
+    <section>
+      <h2 id="I-O（Input-amp-Output）"><a href="#I-O（Input-amp-Output）" class="headerlink" title="I/O（Input&amp;Output）"></a>I/O（Input&amp;Output）</h2><h3 id="1-Java中的输入-输出流"><a href="#1-Java中的输入-输出流" class="headerlink" title="1. Java中的输入/输出流"></a>1. Java中的输入/输出流</h3><p>​    Java语言定义了许多类负责各种方式的输入/输出，java的io是所有语言之最，这些类都放在java.io包中。<strong>核心组成：一个类(File)、一个接口(Serializable)、四个抽象类(InputStream，OutputStream，Reader，Writer)</strong></p>
+<h3 id="2-File类的简介"><a href="#2-File类的简介" class="headerlink" title="2. File类的简介"></a>2. File类的简介</h3><h4 id="1-File类是整个java-io包中唯一一个与文件本身有关-可以进行操作文档的路径指派，可以创建或者删除文件，以及还可以获取文件的相关信息内容-的操作类"><a href="#1-File类是整个java-io包中唯一一个与文件本身有关-可以进行操作文档的路径指派，可以创建或者删除文件，以及还可以获取文件的相关信息内容-的操作类" class="headerlink" title="(1).File类是整个java.io包中唯一一个与文件本身有关(可以进行操作文档的路径指派，可以创建或者删除文件，以及还可以获取文件的相关信息内容)的操作类"></a>(1).File类是整个java.io包中唯一一个<strong>与文件本身有关</strong>(可以进行操作文档的路径指派，可以创建或者删除文件，以及还可以获取文件的相关信息内容)的操作类</h4><h4 id="2-File类的常用构造方法"><a href="#2-File类的常用构造方法" class="headerlink" title="(2).File类的常用构造方法"></a>(2).File类的常用构造方法</h4><p>​    </p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public File(String pathname)</td>
+<td align="center">构造方法</td>
+<td align="center">设置要操作文件的完整路径，要考虑分隔符</td>
+</tr>
+<tr>
+<td align="center">public File(String parent, String child)</td>
+<td align="center">构造方法</td>
+<td align="center">设置要操作文件的父目录和子文件路径</td>
+</tr>
+<tr>
+<td align="center">public boolean createNewFile() throws IOException</td>
+<td align="center">方法</td>
+<td align="center">创建一个新文件</td>
+</tr>
+<tr>
+<td align="center">public boolean delete()</td>
+<td align="center">方法</td>
+<td align="center">删除此抽象路径名表示的文件或目录。如果此路径名表示目录，则该目录必须为空才能删除</td>
+</tr>
+<tr>
+<td align="center">public boolean exists()</td>
+<td align="center">方法</td>
+<td align="center">判断文件是否存在</td>
+</tr>
+</tbody></table>
+<p>​    <strong>注意：在使用File类指派操作文件的时候该文件的路径有可能不存在，只要不进行信息的获取操作不会有报错问题，只是表示一个要操作的文件路径</strong></p>
+<p>​    <strong>程序的磁盘操作(解释为什么有延迟)</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/hve0eI"><img src="https://z3.ax1x.com/2021/09/10/hve0eI.png" alt="hve0eI.png"></a></p>
+<p>​    <strong>跨平台的分隔符问题</strong></p>
+<ul>
+<li>windows系统的路径分隔符为“\”；</li>
+<li>Unix、类Unix（Linux、MacOS、ALX）路径分隔符为“/”；</li>
+</ul>
+<p>​    java考虑到这个问题所以是互通的，但写大量的杠杠转义处理非常麻烦，所以<strong>一般使用File类中提供的常量(public static final String separator)</strong>,早期命名规范与现在不同所以是小写separator</p>
+<p>​    <strong>separator常量的使用</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;Hello.txt&quot;);</span><br></pre></td></tr></table></figure>
+<p>​    <strong>注意：以后编写代码所有路径分隔符尽量通过常量separator来进行定义</strong></p>
+<h4 id="3-File类在父-多-目录下子文件的创建"><a href="#3-File类在父-多-目录下子文件的创建" class="headerlink" title="(3).File类在父(多)目录下子文件的创建"></a>(3).File类在父(多)目录下子文件的创建</h4><p>​    子文件在父目录下创建时必须保证父目录是存在的，不然会产生异常</p>
+<p>​    <strong>对目录创建的File类中的方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public boolean mkdir()</td>
+<td align="center">方法</td>
+<td align="center">只创建单级目录</td>
+</tr>
+<tr>
+<td align="center"><strong>public boolean mkdirs()</strong></td>
+<td align="center"><strong>方法</strong></td>
+<td align="center"><strong>创建多级目录(多个子目录可以同时创建)</strong></td>
+</tr>
+<tr>
+<td align="center">public String getParent()</td>
+<td align="center">方法</td>
+<td align="center">获取父目录的信息</td>
+</tr>
+<tr>
+<td align="center"><strong>public File getParentFile()</strong></td>
+<td align="center"><strong>方法</strong></td>
+<td align="center"><strong>获取父路径的File实例</strong></td>
+</tr>
+</tbody></table>
+<p>​    <strong>在多线程下对文件的操作</strong><br>​    在Java项目中没有多线程，不是Java的风格。在多线程下对于文件是不是在父目录下每个线程都需要进行一个判断，此时程序的性能很低</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/hveNSe"><img src="https://z3.ax1x.com/2021/09/10/hveNSe.png" alt="hveNSe.png"></a></p>
+<p>​    为了提高程序的性能最好的方法是让判断操作只执行一次，所以<strong>我们可以考虑使用静态代码块的模式来执行，静态代码块的执行优先于主方法执行</strong></p>
+<h4 id="4-File类提供的其他操作"><a href="#4-File类提供的其他操作" class="headerlink" title="(4).File类提供的其他操作"></a>(4).File类提供的其他操作</h4><table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public boolean canExecute()</td>
+<td align="center">方法</td>
+<td align="center">程序是否能执行该文件</td>
+</tr>
+<tr>
+<td align="center">public boolean canRead()</td>
+<td align="center">方法</td>
+<td align="center">是否能读</td>
+</tr>
+<tr>
+<td align="center">public boolean canWrite()</td>
+<td align="center">方法</td>
+<td align="center">是否能写</td>
+</tr>
+<tr>
+<td align="center">public File getAbsoluteFile()</td>
+<td align="center">方法</td>
+<td align="center">显示文件的绝对路径</td>
+</tr>
+<tr>
+<td align="center">public boolean isDirectory()</td>
+<td align="center">方法</td>
+<td align="center">判断File对象是否是文件夹</td>
+</tr>
+<tr>
+<td align="center">public boolean isFile()</td>
+<td align="center">方法</td>
+<td align="center">判断当前路径是否为文件</td>
+</tr>
+<tr>
+<td align="center">public long lastModified()</td>
+<td align="center">方法</td>
+<td align="center">获取最后一次修改日期</td>
+</tr>
+<tr>
+<td align="center">public long length()</td>
+<td align="center">方法</td>
+<td align="center">获取文件的长度(大小)</td>
+</tr>
+</tbody></table>
+<p>​    <strong>File类之中的返回的日期long就是毫秒数、而文件大小返回的就是字节个数</strong></p>
+<h4 id="5-File类获取文件目录信息"><a href="#5-File类获取文件目录信息" class="headerlink" title="(5).File类获取文件目录信息"></a>(5).File类获取文件目录信息</h4><p>​    将一个目录中所有的目录下所有子目录和文件详细的列出<br>​    </p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public String[] list()</td>
+<td align="center">方法</td>
+<td align="center">列出子路径的信息(不包括父目录)</td>
+</tr>
+<tr>
+<td align="center"><strong>public File[] listFiles()</strong></td>
+<td align="center"><strong>方法</strong></td>
+<td align="center"><strong>列出子路径的完整信息(不包括父目录)</strong></td>
+</tr>
+<tr>
+<td align="center">​    <strong>可以通过递归查询到目录下所有的文件，通过删除操作，可以实现恶意程序，见文件实例例一</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h4 id="6-File类实现文件的更名处理"><a href="#6-File类实现文件的更名处理" class="headerlink" title="(6).File类实现文件的更名处理"></a>(6).File类实现文件的更名处理</h4><table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public boolean renameTo(File dest)</td>
+<td align="center">方法</td>
+<td align="center">重命名由此抽象路径名表示的文件，即改变文件名</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oldfile.renameTo(newFile); &#x2F;&#x2F;把旧文件名转化为新文件名，这两个都是绝对路径</span><br></pre></td></tr></table></figure>
+
+<p>​    实例：文件的批量更名，见文件实例例二、例三</p>
+<h3 id="3-流"><a href="#3-流" class="headerlink" title="3. 流"></a>3. 流</h3><h4 id="1-File类本身实现了文件自身的处理操作，但是并未规定其文件内容的操作，而要想实现文件内容就必须使用流的概念"><a href="#1-File类本身实现了文件自身的处理操作，但是并未规定其文件内容的操作，而要想实现文件内容就必须使用流的概念" class="headerlink" title="(1).File类本身实现了文件自身的处理操作，但是并未规定其文件内容的操作，而要想实现文件内容就必须使用流的概念"></a>(1).File类本身实现了文件自身的处理操作，但是并未规定其文件内容的操作，而要想实现文件内容就必须使用流的概念</h4><h4 id="3-流的简介"><a href="#3-流的简介" class="headerlink" title="(3).流的简介"></a>(3).流的简介</h4><p>​    流指的是数据的处理方式，以及目标的内容的处理机制，所有的流都分为输入流或输出流，Java针对输入流和输出流分为了两种类型：</p>
+<ul>
+<li>字节操作流：OutputStream（字节输出流）、InputStream（字节输入流）</li>
+<li>字符操作流：Write（字符输出流）、Reader（字符输入流）</li>
+</ul>
+<p>​    字节与字符最大的区别体现在对中文的处理上<br>​    注意：不管使用哪一种操作流，本质上的操作流程都是类似的</p>
+<p>​    所谓输入流与输出流是相对的，而Java会提供一组标准的操作形式<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/hveKy9"><img src="https://z3.ax1x.com/2021/09/10/hveKy9.png" alt="hveKy9.png"></a></p>
+<h4 id="4-以文件流为例来描述流的表现形式"><a href="#4-以文件流为例来描述流的表现形式" class="headerlink" title="(4).以文件流为例来描述流的表现形式"></a>(4).以文件流为例来描述流的表现形式</h4><ul>
+<li>通过File类设定要操作的文件路径</li>
+<li>通过字节流或字符流的子类为对象进行对象实例化处理 </li>
+<li>进行读、写的流操作</li>
+<li>流属于宝贵资源，操作完毕后一定要关闭（close()）</li>
+</ul>
+<h4 id="5-字节输出流-OutputStream"><a href="#5-字节输出流-OutputStream" class="headerlink" title="(5).字节输出流(OutputStream)"></a>(5).字节输出流(OutputStream)</h4><p>​    java.io.OutputStream是实现字节输出流的操作类，<strong>通过其子类对其实例化后使用</strong></p>
+<table>
+<thead>
+<tr>
+<th>OutputStream类的定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public <strong>abstract</strong> class OutputStream extends Object <strong>implements Closeable, Flushable</strong></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Closeable接口的定义和它提供的方法</th>
+<th>Flushable接口的定义和它提供的方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public interface Closeable extends AutoCloseable {void close() throws IOException{}}</td>
+<td>public interface Flushable{void flush() throws IOException{}}</td>
+</tr>
+<tr>
+<td>该方法时强制关闭</td>
+<td>该方法是强制清空缓存</td>
+</tr>
+</tbody></table>
+<p>​    <strong>缓存的作用</strong><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/hvZBPU"><img src="https://z3.ax1x.com/2021/09/10/hvZBPU.png" alt="hvZBPU.png"></a></p>
+<p>​    <strong>OutputStream类提供的三个输出方法（都很重要，加粗的用的多）</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public abstract void write(int b) throws IOException</td>
+<td align="center">方法</td>
+<td align="center">输出单个字节数据，<strong>byte和int是可以相互转换的</strong></td>
+</tr>
+<tr>
+<td align="center">public void write(byte[] b) throws IOException</td>
+<td align="center">方法</td>
+<td align="center">输出全部字节数组的数据</td>
+</tr>
+<tr>
+<td align="center"><strong>public void write(byte[] b, int off, int len) throws IOException</strong></td>
+<td align="center"><strong>方法</strong></td>
+<td align="center"><strong>输出部分字节数组的数据</strong></td>
+</tr>
+</tbody></table>
+<p>​    <strong>FileOutputStream类（OutputStream类的子类）提供的构造方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public FileOutputStream(File file) throws FileNotFoundException</td>
+<td align="center">构造方法</td>
+<td align="center">设置文件输出流，每次都对原始内容进行覆盖</td>
+</tr>
+<tr>
+<td align="center">public FileOutputStream(File file,boolean append) throws FileNotFoundException</td>
+<td align="center">构造方法</td>
+<td align="center">如果将append的内容设置为true，表示进行内容追加</td>
+</tr>
+</tbody></table>
+<p>​    <strong>注意：在创建FileOutputStream需要进行异常处理</strong></p>
+<h4 id="6-字节输入流-InputStream"><a href="#6-字节输入流-InputStream" class="headerlink" title="(6).字节输入流(InputStream)"></a>(6).字节输入流(InputStream)</h4><p>​    InputStream是一个提供字节输入流的实现类</p>
+<table>
+<thead>
+<tr>
+<th>InputStream类的定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public <strong>abstract</strong> class InputStream extends Object implements <strong>Closeable</strong></td>
+</tr>
+</tbody></table>
+<p>​    注意：系统在进行读操作的时候是不会使用到系统的缓冲区的，是为了防止过多的写入才提供写入缓冲区，写入缓冲区才需要清空处理，所以InputStream类不实现Flushable父接口</p>
+<p>​    InputStream类提供的输出方法（读取方法）</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public abstract int read() throws IOException</td>
+<td align="center">方法</td>
+<td align="center">读取单个字节数据，如果没有数据返回-1</td>
+</tr>
+<tr>
+<td align="center"><strong>public int read(byte[] b) throws IOException</strong></td>
+<td align="center"><strong>方法</strong></td>
+<td align="center"><strong>将内容读取到字节数组之中，返回读取个数，如果没有数据返回-1，不够长就有多长读多长</strong></td>
+</tr>
+<tr>
+<td align="center">public int read(byte[] b,int off,                 int len) throws IOException</td>
+<td align="center">方法</td>
+<td align="center">读取部分内容到字节数组中，返回读取个数，没有数据返回-1</td>
+</tr>
+<tr>
+<td align="center">public int available() throws IOException</td>
+<td align="center">方法</td>
+<td align="center">获取可用长度</td>
+</tr>
+</tbody></table>
+<p>​    InputStream是一个抽象类，可以利用FileInputStream子类为其进行实例化</p>
+<p>​    <strong>FileInputStream提供的构造方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public FileInputStream(File file) throws FileNotFoundException</td>
+<td align="center">构造方法</td>
+<td align="center">打开实际文件创建FileInputStream实例，如果命名文件不存在，或是目录而不是常规文件，则会引发FileNotFoundException</td>
+</tr>
+</tbody></table>
+<h4 id="7-字符输出流-Writer"><a href="#7-字符输出流-Writer" class="headerlink" title="(7).字符输出流(Writer)"></a>(7).字符输出流(Writer)</h4><p>​    OutputStream是可以实现输出操作的，但是其在进行输出的时候全部都是字节数组的形式完成的，但在大部分情况下，最方便的处理类型一定是字符串，所以为了简化输出操作，提供了字符输出流</p>
+<table>
+<thead>
+<tr>
+<th>Writer类的定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public <strong>abstract</strong> class Writer <strong>extends</strong> Object <strong>implements</strong> Appendable, Closeable, Flushable</td>
+</tr>
+</tbody></table>
+<p>​    Writer抽象类与之前的OutputStream类相比，多实现了一个Appendable接口，里面只有一个append方法，<strong>append方法用来追加内容</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public interface Appendable&#123; &#x2F;&#x2F;Appendable接口定义的三种方法</span><br><span class="line">	public Appendable append(CharSequence csq) throws IOException;</span><br><span class="line">	public Appendable append(CharSequence csq,int start,int end) throws IOException;</span><br><span class="line">	public Appendable append(char c) throws IOException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    在使用Writer类进行输出的时候最大的操作特点在于其可以直接进行字符串的数据处理</p>
+<table>
+<thead>
+<tr>
+<th>Writer类的输出方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public void write(String str) throws IOException  //它可以直接输出字符串</td>
+</tr>
+</tbody></table>
+<p>​    Writer类在后续的版本中逐步有了CharSequence接口的支持，只要可以接收此接口的实例，就意味可以追加String、StringBuffer、StringBuilder类的实例</p>
+<p>​    <strong>与之前一样可以将Writer类实例化为FileWriter</strong></p>
+<p>​    使用Writer可以实现与OutputStream类似的功能，但其最大的优势在于可以直接进行字符串数据的输出处理</p>
+<h4 id="8-字符输入流-Reader"><a href="#8-字符输入流-Reader" class="headerlink" title="(8).字符输入流(Reader)"></a>(8).字符输入流(Reader)</h4><p>​    Reader是实现字符数据的输入流类</p>
+<table>
+<thead>
+<tr>
+<th>Reader类的定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public <strong>abstract</strong> class Reader <strong>extends</strong> Object <strong>implements</strong> Readable, Closeable</td>
+</tr>
+</tbody></table>
+<p>​    Readable这个接口与NIO有关，不是IO</p>
+<table>
+<thead>
+<tr>
+<th>Reader类的输入方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public int read() throws IOException</td>
+<td>读取单个字符</td>
+</tr>
+<tr>
+<td>public int read(char[] cbuf) throws IOException</td>
+<td>将字符读入数组</td>
+</tr>
+<tr>
+<td>public abstract int read(char[] cbuf, int off, int len) throws IOException</td>
+<td>将一部分字符读入数组</td>
+</tr>
+</tbody></table>
+<p>​    <strong>Reader的子类有FileReader</strong></p>
+<h4 id="9-AutoCloseable类"><a href="#9-AutoCloseable类" class="headerlink" title="(9).AutoCloseable类"></a>(9).AutoCloseable类</h4><p>​    上面介绍的四个类实际上都属于AutoCloseable子类，所以对于打开和关闭的操作可以使用自动关闭的形式来处理</p>
+<h4 id="10-字节流和字符流的区别"><a href="#10-字节流和字符流的区别" class="headerlink" title="(10).字节流和字符流的区别"></a>(10).字节流和字符流的区别</h4><p>​    字节操作属于基础的二进制数据流的操作形式，在网络、文件、图片、音乐等操作之中几乎都是以字节数据为主的，但是字节数据不方便进行中文的处理，所以对于中文的处理应该使用字符流。</p>
+<p>​    在进行网络传输或者磁盘数据存储的时候，所有存放的内容都属于字节数据</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/4Eka5Q"><img src="https://z3.ax1x.com/2021/09/14/4Eka5Q.png" alt="4Eka5Q.png"></a><br>​    <strong>缓冲区：实现字符与字节的转换</strong></p>
+<p>​    实际上如果想要观察出字符流的缓冲区的存在，只需要在输出的时候取消close()方法的调用即可，因为此方法一旦调用实际上会自动清空缓冲区的内容，随后才会将数据写入到目标终端设备之中，如果此时由于某些原因就是无法进行字符输出流的关闭，则可以使用由Flushable接口继承而来的flush()方法进行手工的强制清除。</p>
+<p>​    <strong>本质上传递的所有内容只有字节，而字符是程序对字节的包装，通过代码可以发现字节流和字符流的使用非常相似，一般以字节流方式为主，只有进行中文操作时才会考虑字符流处理</strong></p>
+<h4 id="11-字节流和字符流的转换（转换流）"><a href="#11-字节流和字符流的转换（转换流）" class="headerlink" title="(11).字节流和字符流的转换（转换流）"></a>(11).字节流和字符流的转换（转换流）</h4><p>​    为了方便实现字节流和字符流的转换处理，提供了两个类：<strong>OutputStreamWriter</strong>和<strong>InputStreamReader</strong></p>
+<ol>
+<li><p>OutputStreamWriter</p>
+<p>在构造方法中，需要接收一个OutputStream的对象，而后再向上转型变为字符流</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/4VFHJJ"><img src="https://z3.ax1x.com/2021/09/15/4VFHJJ.png" alt="4VFHJJ.png"></a></p>
+</li>
+<li><p>InputStreamReader</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/4Ve0Ln"><img src="https://z3.ax1x.com/2021/09/15/4Ve0Ln.png" alt="4Ve0Ln.png"></a></p>
+<p>通过继承的关系，<strong>InputStreamReader、OutputStreamWriter都是字符流的子类</strong>，同时又可以通过构造方法接收InputStream类和OutputStream类的实例，<strong>再向上转型为字符流</strong></p>
+<p>转换流在一些系统类库的操作之中比较常见，有些情况系统只会给用户字节流，但是为了方便处理需要进行字符流转换，这个时候才会使用到这个流</p>
+<p>注意：这种转换在类的定义时也有体现，如：OutputStreamWriter是FileWriter的父类，InputStreamReader是FileReader的父类，<strong>即转换流是字符输入输出流的父类</strong></p>
+</li>
+</ol>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2021-09-19T08:19:54.000Z" itemprop="datePublished">
+              2021-09-19
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2021 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>
