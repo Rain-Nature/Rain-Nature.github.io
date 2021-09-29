@@ -96,7 +96,7 @@
     </header>
     <div>
       
-        <h2 id="初识操作系统"><a href="#初识操作系统" class="headerlink" title="初识操作系统"></a>初识操作系统</h2><h4 id="1-什么是操作系统"><a href="#1-什么是操作系统" class="headerlink" title="1. 什么是操作系统"></a>1. 什么是操作系统</h4><p>​    操作系统是计算机硬件和应用之间的一层软件，方便使用硬件、高效的使用硬件</p>
+        <h2 id="初识操作系统"><a href="#初识操作系统" class="headerlink" title="初识操作系统"></a>初识操作系统</h2><h4 id="1-什么是操作系统"><a href="#1-什么是操作系统" class="headerlink" title="1. 什么是操作系统"></a>1. 什么是操作系统</h4><p>​    操作系统是计算机硬件和应用之间的一层软件，方便使用硬件、高效的使用硬件，操作系统可以看作是资源分配器</p>
 <h4 id="2-操作系统管理的软件"><a href="#2-操作系统管理的软件" class="headerlink" title="2. 操作系统管理的软件"></a>2. 操作系统管理的软件</h4><p>​    <strong>CPU管理、内存管理、终端管理、磁盘管理、文件管理</strong>、网络管理、电源管理、多核管理</p>
 <h4 id="3-操作系统的表层"><a href="#3-操作系统的表层" class="headerlink" title="3. 操作系统的表层"></a>3. 操作系统的表层</h4><p>​    表层是通过应用使用操作系统的接口<br>​    操作系统中的接口就是一个让用户操作电脑的一个界面，比如windows，它有三个接口：</p>
 <ol>
@@ -119,7 +119,8 @@
 <h4 id="7-setup-s"><a href="#7-setup-s" class="headerlink" title="7. setup.s"></a>7. setup.s</h4><p>​    获取设备硬件信息，而后将整个操作系统移动到0地址，而后执行操作系统，操作系统也一直会在0地址，再之后初始化gdt表并进入到保护模式（由之前的16位寻址模式(CS&lt;&lt;4+ip)切换到32位寻址模式），再跳到0地址（head.s）</p>
 <h4 id="8-保护模式下地址的翻译（gdt的作用）"><a href="#8-保护模式下地址的翻译（gdt的作用）" class="headerlink" title="8. 保护模式下地址的翻译（gdt的作用）"></a>8. 保护模式下地址的翻译（gdt的作用）</h4><p>​    CS改叫选择子，不在左移4位获得地址而是通过其查表+ip获得地址（这个表就叫gdt表）</p>
 <h4 id="9-head-s"><a href="#9-head-s" class="headerlink" title="9. head.s"></a>9. head.s</h4><p>​    初始化gdt表，执行完head.s之后，再去执行main.c由汇编转为C语言，由于C语言本质会转成汇编语言，所以可以看成是由一个c函数跳转到另一个c函数，这个过程通过栈完成，此时main死循环，main返回时，电脑死机</p>
-<h4 id="9-main-c"><a href="#9-main-c" class="headerlink" title="9. main.c"></a>9. main.c</h4><p>初始化一些硬件<br>mem_init()：把内存信息列表，即mem_init表，哪些占用，哪些没有</p>
+<h4 id="10-main-c"><a href="#10-main-c" class="headerlink" title="10. main.c"></a>10. main.c</h4><p>​    初始化一些硬件<br>​    mem_init()：把内存信息列表，即mem_init表，哪些占用，哪些没有</p>
+<h4 id="11-内核"><a href="#11-内核" class="headerlink" title="11. 内核"></a>11. 内核</h4><p>​    操作系统一直运行在计算机上的程序<br>​    除了内核以外还有两类程序：系统程序、应用程序</p>
 
       
     </div>

@@ -68,6 +68,58 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/09/29/%E6%96%87%E4%BB%B6%E5%AE%9E%E4%BE%8B/">文件实例</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-09-29T03:02:13.000Z" itemprop="datePublished">
+    2021-09-29
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="文件操作实例"><a href="#文件操作实例" class="headerlink" title="文件操作实例"></a>文件操作实例</h2><h4 id="1-D-盘删盘程序"><a href="#1-D-盘删盘程序" class="headerlink" title="1. D:盘删盘程序"></a>1. D:盘删盘程序</h4><p>​    <strong>可以通过修改位置删除指定文件夹</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		File file &#x3D; new File(&quot;D:&quot;+File.separator);</span><br><span class="line">		test(file);</span><br><span class="line">	&#125;</span><br><span class="line">	 </span><br><span class="line">	public static void test(File file) &#123;</span><br><span class="line">		if(file.isDirectory()) &#123;</span><br><span class="line">			File[] s &#x3D; file.listFiles();</span><br><span class="line">			for(File a : s) &#123;</span><br><span class="line">				test(a);	</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		file.delete();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    <strong>创建一堆文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		File fileOld &#x3D; new File(&quot;D:&quot;+File.separator+&quot;test-java&quot;);</span><br><span class="line">		for(int x &#x3D; 0 ; x &lt; 100 ; x++) &#123;</span><br><span class="line">			new File(fileOld,&quot;mldn-&quot; + getTime() + &quot;-&quot; + x + &quot;.log&quot;).createNewFile();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static String getTime() &#123;</span><br><span class="line">		return new SimpleDateFormat(&quot;yyyyMMddHHmmssSSS&quot;).format(new java.util.Date());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    <strong>对同类型的文件批量更改文件名（补零操作）</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;test-java&quot;);</span><br><span class="line">		Count a &#x3D; new Count();</span><br><span class="line">		a.to(file);</span><br><span class="line">		a.rename(file);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Count&#123;</span><br><span class="line">	private int max &#x3D; 0;</span><br><span class="line">	private String filename &#x3D; null;</span><br><span class="line">	private int length &#x3D; 0;</span><br><span class="line">	</span><br><span class="line">	public void to(File file) &#123;</span><br><span class="line">		if(file.isDirectory()) &#123;&#x2F;&#x2F;判断是否为文件夹</span><br><span class="line">			File a[] &#x3D; file.listFiles();&#x2F;&#x2F;获得所有子文件</span><br><span class="line">			if(a !&#x3D; null) &#123;</span><br><span class="line">				for(File childFile : a) &#123;</span><br><span class="line">					 to(childFile);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			if(file.isFile()) &#123;</span><br><span class="line">				if(file.getName().matches(&quot;mldn\\-\\d&#123;17&#125;\\-\\d+\\.log&quot;))&#123;&#x2F;&#x2F;需要修改路径的文件名称</span><br><span class="line">					this.getMaxLength(file.getName());</span><br><span class="line">					</span><br><span class="line">				&#125;</span><br><span class="line">					</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void getMaxFileLength() &#123;</span><br><span class="line">		this.length &#x3D; this.filename.substring(this.filename.lastIndexOf(&quot;-&quot;) + 1, this.filename.lastIndexOf(&quot;.&quot;)).length();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String getNewFileName(String oldName) &#123;</span><br><span class="line">		</span><br><span class="line">		StringBuffer buffer &#x3D; new StringBuffer(oldName);</span><br><span class="line">		while(buffer.length() &lt; this.length) &#123;</span><br><span class="line">			buffer.insert(0, 0);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		return buffer.toString();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void getMaxLength(String fileName) &#123;</span><br><span class="line">		if(this.max &lt; fileName.length()) &#123;</span><br><span class="line">			this.max &#x3D; fileName.length();</span><br><span class="line">			this.filename &#x3D; fileName;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void rename(File file) &#123;</span><br><span class="line">		if(file.isDirectory()) &#123;</span><br><span class="line">			File a[] &#x3D; file.listFiles();</span><br><span class="line">			if(a !&#x3D; null) &#123;</span><br><span class="line">				for(File childFile : a) &#123;</span><br><span class="line">					rename(childFile);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			if(file.isFile()) &#123;</span><br><span class="line">				if(file.getName().matches(&quot;mldn\\-\\d&#123;17&#125;\\-\\d+\\.log&quot;))&#123;&#x2F;&#x2F;需要修改路径的文件名称</span><br><span class="line">					if(this.filename !&#x3D; null) &#123;</span><br><span class="line">						this.getMaxFileLength();</span><br><span class="line">						String oldFileName &#x3D; file.getName().substring(file.getName().lastIndexOf(&quot;-&quot;) + 1, file.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">						String newFileName &#x3D; file.getName().substring(0,file.getName().lastIndexOf(&quot;-&quot;) + 1) + this.getNewFileName(oldFileName) + file.getName().substring(file.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">						File newFile &#x3D; new File(file.getParentFile(),newFileName);</span><br><span class="line">						file.renameTo(newFile);</span><br><span class="line">						</span><br><span class="line">					&#125;</span><br><span class="line">					</span><br><span class="line">					</span><br><span class="line">					</span><br><span class="line">					</span><br><span class="line">					</span><br><span class="line">				&#125;</span><br><span class="line">					</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    <strong>OutputStream类与其子类FileOutputStream的应用</strong><br>​    创建文件并且向文件中写入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;java-test&quot;+File.separator+&quot;test.txt&quot;);&#x2F;&#x2F;文件与其路径现在是不存在的，代码并没有进行手动创建，但文件还是直接生成了</span><br><span class="line">		if(!file.getParentFile().exists()) &#123;&#x2F;&#x2F;创建父路径</span><br><span class="line">			file.getParentFile().mkdirs();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		OutputStream output &#x3D; new FileOutputStream(file);</span><br><span class="line">		output.write(&quot;hello&quot;.getBytes());</span><br><span class="line">		output.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/09/19/Java12/">Java12</a>
         </h1>
       
@@ -527,7 +579,7 @@
     </header>
     <div>
       
-        <h2 id="初识操作系统"><a href="#初识操作系统" class="headerlink" title="初识操作系统"></a>初识操作系统</h2><h4 id="1-什么是操作系统"><a href="#1-什么是操作系统" class="headerlink" title="1. 什么是操作系统"></a>1. 什么是操作系统</h4><p>​    操作系统是计算机硬件和应用之间的一层软件，方便使用硬件、高效的使用硬件</p>
+        <h2 id="初识操作系统"><a href="#初识操作系统" class="headerlink" title="初识操作系统"></a>初识操作系统</h2><h4 id="1-什么是操作系统"><a href="#1-什么是操作系统" class="headerlink" title="1. 什么是操作系统"></a>1. 什么是操作系统</h4><p>​    操作系统是计算机硬件和应用之间的一层软件，方便使用硬件、高效的使用硬件，操作系统可以看作是资源分配器</p>
 <h4 id="2-操作系统管理的软件"><a href="#2-操作系统管理的软件" class="headerlink" title="2. 操作系统管理的软件"></a>2. 操作系统管理的软件</h4><p>​    <strong>CPU管理、内存管理、终端管理、磁盘管理、文件管理</strong>、网络管理、电源管理、多核管理</p>
 <h4 id="3-操作系统的表层"><a href="#3-操作系统的表层" class="headerlink" title="3. 操作系统的表层"></a>3. 操作系统的表层</h4><p>​    表层是通过应用使用操作系统的接口<br>​    操作系统中的接口就是一个让用户操作电脑的一个界面，比如windows，它有三个接口：</p>
 <ol>
@@ -550,7 +602,8 @@
 <h4 id="7-setup-s"><a href="#7-setup-s" class="headerlink" title="7. setup.s"></a>7. setup.s</h4><p>​    获取设备硬件信息，而后将整个操作系统移动到0地址，而后执行操作系统，操作系统也一直会在0地址，再之后初始化gdt表并进入到保护模式（由之前的16位寻址模式(CS&lt;&lt;4+ip)切换到32位寻址模式），再跳到0地址（head.s）</p>
 <h4 id="8-保护模式下地址的翻译（gdt的作用）"><a href="#8-保护模式下地址的翻译（gdt的作用）" class="headerlink" title="8. 保护模式下地址的翻译（gdt的作用）"></a>8. 保护模式下地址的翻译（gdt的作用）</h4><p>​    CS改叫选择子，不在左移4位获得地址而是通过其查表+ip获得地址（这个表就叫gdt表）</p>
 <h4 id="9-head-s"><a href="#9-head-s" class="headerlink" title="9. head.s"></a>9. head.s</h4><p>​    初始化gdt表，执行完head.s之后，再去执行main.c由汇编转为C语言，由于C语言本质会转成汇编语言，所以可以看成是由一个c函数跳转到另一个c函数，这个过程通过栈完成，此时main死循环，main返回时，电脑死机</p>
-<h4 id="9-main-c"><a href="#9-main-c" class="headerlink" title="9. main.c"></a>9. main.c</h4><p>初始化一些硬件<br>mem_init()：把内存信息列表，即mem_init表，哪些占用，哪些没有</p>
+<h4 id="10-main-c"><a href="#10-main-c" class="headerlink" title="10. main.c"></a>10. main.c</h4><p>​    初始化一些硬件<br>​    mem_init()：把内存信息列表，即mem_init表，哪些占用，哪些没有</p>
+<h4 id="11-内核"><a href="#11-内核" class="headerlink" title="11. 内核"></a>11. 内核</h4><p>​    操作系统一直运行在计算机上的程序<br>​    除了内核以外还有两类程序：系统程序、应用程序</p>
 
       
     </div>
@@ -1090,102 +1143,6 @@
     <div>
       
         <h2 id="多态实例"><a href="#多态实例" class="headerlink" title="多态实例"></a>多态实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.text.DecimalFormat;</span><br><span class="line">import java.util.Random;</span><br><span class="line">import java.lang.Math;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		choose(new child1());</span><br><span class="line">		choose(new child2());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void choose(father a) &#123;</span><br><span class="line">		a.Todo();</span><br><span class="line">		if(a instanceof child1) &#123;</span><br><span class="line">			((child1) a).eat();&#x2F;&#x2F;父类中没有的方法和类型必须要向下转型后才能调用</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		else if(a instanceof child2) &#123;</span><br><span class="line">			((child2) a).eat();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class father&#123;</span><br><span class="line">	public father() &#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void Todo() &#123;</span><br><span class="line">		System.out.println(&quot;work&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class child1 extends father&#123;</span><br><span class="line">	public child1() &#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void Todo() &#123;</span><br><span class="line">		System.out.println(&quot;study&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void eat() &#123;</span><br><span class="line">		System.out.println(&quot;fish&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class child2 extends father&#123;</span><br><span class="line">	public child2() &#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void Todo() &#123;</span><br><span class="line">		System.out.println(&quot;sing&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void eat() &#123;</span><br><span class="line">		System.out.println(&quot;fish&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/06/02/Java06/">Java06</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-02T08:41:57.000Z" itemprop="datePublished">
-    2021-06-02
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h2><h4 id="1-为什么要有包装类"><a href="#1-为什么要有包装类" class="headerlink" title="1. 为什么要有包装类"></a>1. 为什么要有包装类</h4><ul>
-<li>在面向对象中，“一切皆对象”，但基本数据类型的数据不太符合这一理念，基本数据类型不是对象</li>
-<li>涉及到类型之间的转化，数据类型之间的基本操作；如果都有我们自己去实现，那么工作量过大</li>
-<li>java针对每一个基本数据类型都设计了一个包装类</li>
-</ul>
-<h4 id="2-java-lang包中的Integer类、Long类、Short类，可以将int、long和short封装成一个类，这些都是Number的子类，他们包含的方法基本相同，之后只以Integer类为例"><a href="#2-java-lang包中的Integer类、Long类、Short类，可以将int、long和short封装成一个类，这些都是Number的子类，他们包含的方法基本相同，之后只以Integer类为例" class="headerlink" title="2. java.lang包中的Integer类、Long类、Short类，可以将int、long和short封装成一个类，这些都是Number的子类，他们包含的方法基本相同，之后只以Integer类为例"></a>2. java.lang包中的Integer类、Long类、Short类，可以将int、long和short封装成一个类，这些都是Number的子类，他们包含的方法基本相同，之后只以Integer类为例</h4><h4 id="3-Integer类"><a href="#3-Integer类" class="headerlink" title="3. Integer类"></a>3. Integer类</h4><p>Integer类将原语类型int的值包装在对象中。integer类型的对象包含一个类型为int的字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">		Integer d &#x3D; Integer.valueOf(400); &#x2F;&#x2F;等同于将基本类型装箱，另一种装箱方法已经不允许Integer d &#x3D; new Integer(400);</span><br><span class="line">		int a &#x3D; d.intValue(); &#x2F;&#x2F;将Integer类型拆箱</span><br><span class="line">&#x2F;*</span><br><span class="line">*在Java 5之前的版本中，基本数据类型和包装类之间的转换是需要手动进行的,但Sun公司从Java5开始提供了的自动装箱(Autoboxing)和自动拆箱(AutoUnboxing)操作</span><br><span class="line">*&#x2F;</span><br><span class="line">		Integer i &#x3D; 13; &#x2F;&#x2F;自动装箱</span><br><span class="line">		int c &#x3D; i;      &#x2F;&#x2F;自动拆箱</span><br><span class="line">		System.out.print(a);</span><br><span class="line">	&#125;</span><br><span class="line">	&#x2F;&#x2F;输出400</span><br></pre></td></tr></table></figure>
-<p>一般都是使用该类的提供的一些方法，让数据可以在int类型与String类型之间相互转换<br>如，以下为部分静态方法(详细全部方法见API文档)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">toString() &#x2F;&#x2F;返回一个表示该Integer值的String对象，返回值String</span><br><span class="line">parseInt(String str) &#x2F;&#x2F;返回包含在由str指定的字符串中的数字的等价整数值，返回值int</span><br><span class="line">valueOf(String str或者int i) &#x2F;&#x2F;返回保存指定的String值或int值的Integer对象</span><br><span class="line">intValue() &#x2F;&#x2F;以int型返回此Integer对象，返回值int</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-Boolean类，Byte类，Character类，Double类都与上面Integer类类似，需要时自己查阅即可"><a href="#4-Boolean类，Byte类，Character类，Double类都与上面Integer类类似，需要时自己查阅即可" class="headerlink" title="4. Boolean类，Byte类，Character类，Double类都与上面Integer类类似，需要时自己查阅即可"></a>4. Boolean类，Byte类，Character类，Double类都与上面Integer类类似，需要时自己查阅即可</h4><h2 id="数字处理类"><a href="#数字处理类" class="headerlink" title="数字处理类"></a>数字处理类</h2><h4 id="1-Java中未进行格式化的数字遵循以下原则："><a href="#1-Java中未进行格式化的数字遵循以下原则：" class="headerlink" title="1. Java中未进行格式化的数字遵循以下原则："></a>1. Java中未进行格式化的数字遵循以下原则：</h4><ul>
-<li>如果数据绝对值大于0.001并且小于10000000，使以常规小数形式表示</li>
-<li>如果数据绝对值小于0.001并且大于10000000，使用科学计数法表示</li>
-</ul>
-<h4 id="2-数字格式化-使用DecimalFormat"><a href="#2-数字格式化-使用DecimalFormat" class="headerlink" title="2. 数字格式化(使用DecimalFormat)"></a>2. 数字格式化(使用DecimalFormat)</h4><p>​    使用这个类时需要用import关键字将java.text.DecimalFormat引入<br>​    DecimalFormat是NumberFormat的一个子类，用于格式化十进制数字，可以在实例化DecimalFormat对象时传递数字格式(以字符串格式表示)，如果未传入的话则可以通过applyPattern方法来传入设置模板(模板是有特殊字符组成的)，该方法参数为空时抛出异常NullPointerException，<strong>注意：小数时若模板小于数字则会四舍五入</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/2V5aR0"><img src="https://z3.ax1x.com/2021/05/30/2V5aR0.png" alt="2V5aR0.png"></a></p>
-<hr>
-<p><strong>DecimalFormat类中特殊字符的说明</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">字符</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">代表阿拉伯数字，一个0表示一个阿拉伯数字，如果该位不存在数字，则显示0</td>
-</tr>
-<tr>
-<td align="center">#</td>
-<td align="center">代表阿拉伯数字，一个#表示一个阿拉伯数字，如果该位不存在数字，则不显示</td>
-</tr>
-<tr>
-<td align="center">.</td>
-<td align="center">小数分割符或货币小数分割符</td>
-</tr>
-</tbody></table>
-<p>​    setGroupingSize(int newValue)方法设置格式化数字的分组大小,分组大小是数字整数部分中分组分隔符之间的位数，像分组为2的话，123456.789为12,34,56.789<br>​    setGroupingUsed(boolean newValue)方法设置是否在此格式中使用分组，newValue的值为如果使用分组，则为true；否则为假</p>
-<h4 id="3-数学运算"><a href="#3-数学运算" class="headerlink" title="3. 数学运算"></a>3. 数学运算</h4><p>​    Java中提供了一个执行数学基本运算的Math类，在java.lang.Math，里面提供的大多数方法都被定义为static形式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math.数字方式</span><br></pre></td></tr></table></figure>
-<p>​    Math类也提供一些常用数学常量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math.PI   &#x2F;&#x2F;Π</span><br></pre></td></tr></table></figure>
-<p>​    <strong>常用的数学运算方法分为四类，三角函数方法、指数函数方法、取整函数方法、取最大值最小值绝对值函数方法，具体的需要使用时，自行翻阅API文档</strong></p>
-<h4 id="4-随机数"><a href="#4-随机数" class="headerlink" title="4. 随机数"></a>4. 随机数</h4><p>​    通过Math类中的random()方法产生伪随机数字，该方法返回一个double型的随机数，小数点后面可以保留15位小数，返回值是从该范围内以（近似）均匀分布伪随机选择的，范围在0&lt;=Math.random()&lt;1.0，通过对于该方法的处理可以产生任意范围内的随机数，这个方法是调用java.util.Random()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;产生其他范围的伪随机数</span><br><span class="line">(int)(Math.random()*n) &#x2F;&#x2F;返回大于等于0且小于n的随机数</span><br><span class="line">m+(int)(Math.random()*n) &#x2F;&#x2F;返回大于等于m且小于m+n的随机数</span><br></pre></td></tr></table></figure>
-<p>​    什么是伪随机数？</p>
-<ul>
-<li>伪随机数是看似随机实质是固定的周期性序列,也就是有规则的随机。</li>
-<li>只要这个随机数是由确定算法生成的,那就是伪随机,只能通过不断算法优化,使你的随机数更接近随机。(随机这个属性和算法本身就是矛盾的)</li>
-<li>通过真实随机事件取得的随机数才是真随机数</li>
-</ul>
-<p>​    Random类<br>​    Random类在java.util下，通过实例化Random对象可以创建一个随机数字生成器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Random r &#x3D; new Random(); &#x2F;&#x2F;未在初始化器里设置种子</span><br></pre></td></tr></table></figure>
-<p>​    当用这个方式实例化对象时(未在初始化器里设置种子)，Java编译器将以系统当前时间作为随机数生成器的种子(每时每刻时间不同)，但如果运行速度太快，也会产生两次运行结果相同的随机数</p>
-<p>​    也可以在实例化对象时，设置随机数生成器种子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Random r &#x3D; new Random(long seed); &#x2F;&#x2F;设置种子,当种子一样时，产生的随机数是一样的</span><br></pre></td></tr></table></figure>
-
-<p>​    Random类提供的常用方法(部分)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public int nextInt():返回一个随机整数</span><br><span class="line">public int nextInt(int n):返回大于等于0且小于n的随机整数</span><br><span class="line">public boolean nextBoolean():返回一个随机布尔值</span><br><span class="line">public double nextDouble():返回一个随机双精度值</span><br></pre></td></tr></table></figure>
-
       
     </div>
 </article>

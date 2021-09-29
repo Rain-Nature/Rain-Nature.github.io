@@ -68,6 +68,102 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/06/02/Java06/">Java06</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-06-02T08:41:57.000Z" itemprop="datePublished">
+    2021-06-02
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h2><h4 id="1-为什么要有包装类"><a href="#1-为什么要有包装类" class="headerlink" title="1. 为什么要有包装类"></a>1. 为什么要有包装类</h4><ul>
+<li>在面向对象中，“一切皆对象”，但基本数据类型的数据不太符合这一理念，基本数据类型不是对象</li>
+<li>涉及到类型之间的转化，数据类型之间的基本操作；如果都有我们自己去实现，那么工作量过大</li>
+<li>java针对每一个基本数据类型都设计了一个包装类</li>
+</ul>
+<h4 id="2-java-lang包中的Integer类、Long类、Short类，可以将int、long和short封装成一个类，这些都是Number的子类，他们包含的方法基本相同，之后只以Integer类为例"><a href="#2-java-lang包中的Integer类、Long类、Short类，可以将int、long和short封装成一个类，这些都是Number的子类，他们包含的方法基本相同，之后只以Integer类为例" class="headerlink" title="2. java.lang包中的Integer类、Long类、Short类，可以将int、long和short封装成一个类，这些都是Number的子类，他们包含的方法基本相同，之后只以Integer类为例"></a>2. java.lang包中的Integer类、Long类、Short类，可以将int、long和short封装成一个类，这些都是Number的子类，他们包含的方法基本相同，之后只以Integer类为例</h4><h4 id="3-Integer类"><a href="#3-Integer类" class="headerlink" title="3. Integer类"></a>3. Integer类</h4><p>Integer类将原语类型int的值包装在对象中。integer类型的对象包含一个类型为int的字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">		Integer d &#x3D; Integer.valueOf(400); &#x2F;&#x2F;等同于将基本类型装箱，另一种装箱方法已经不允许Integer d &#x3D; new Integer(400);</span><br><span class="line">		int a &#x3D; d.intValue(); &#x2F;&#x2F;将Integer类型拆箱</span><br><span class="line">&#x2F;*</span><br><span class="line">*在Java 5之前的版本中，基本数据类型和包装类之间的转换是需要手动进行的,但Sun公司从Java5开始提供了的自动装箱(Autoboxing)和自动拆箱(AutoUnboxing)操作</span><br><span class="line">*&#x2F;</span><br><span class="line">		Integer i &#x3D; 13; &#x2F;&#x2F;自动装箱</span><br><span class="line">		int c &#x3D; i;      &#x2F;&#x2F;自动拆箱</span><br><span class="line">		System.out.print(a);</span><br><span class="line">	&#125;</span><br><span class="line">	&#x2F;&#x2F;输出400</span><br></pre></td></tr></table></figure>
+<p>一般都是使用该类的提供的一些方法，让数据可以在int类型与String类型之间相互转换<br>如，以下为部分静态方法(详细全部方法见API文档)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">toString() &#x2F;&#x2F;返回一个表示该Integer值的String对象，返回值String</span><br><span class="line">parseInt(String str) &#x2F;&#x2F;返回包含在由str指定的字符串中的数字的等价整数值，返回值int</span><br><span class="line">valueOf(String str或者int i) &#x2F;&#x2F;返回保存指定的String值或int值的Integer对象</span><br><span class="line">intValue() &#x2F;&#x2F;以int型返回此Integer对象，返回值int</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-Boolean类，Byte类，Character类，Double类都与上面Integer类类似，需要时自己查阅即可"><a href="#4-Boolean类，Byte类，Character类，Double类都与上面Integer类类似，需要时自己查阅即可" class="headerlink" title="4. Boolean类，Byte类，Character类，Double类都与上面Integer类类似，需要时自己查阅即可"></a>4. Boolean类，Byte类，Character类，Double类都与上面Integer类类似，需要时自己查阅即可</h4><h2 id="数字处理类"><a href="#数字处理类" class="headerlink" title="数字处理类"></a>数字处理类</h2><h4 id="1-Java中未进行格式化的数字遵循以下原则："><a href="#1-Java中未进行格式化的数字遵循以下原则：" class="headerlink" title="1. Java中未进行格式化的数字遵循以下原则："></a>1. Java中未进行格式化的数字遵循以下原则：</h4><ul>
+<li>如果数据绝对值大于0.001并且小于10000000，使以常规小数形式表示</li>
+<li>如果数据绝对值小于0.001并且大于10000000，使用科学计数法表示</li>
+</ul>
+<h4 id="2-数字格式化-使用DecimalFormat"><a href="#2-数字格式化-使用DecimalFormat" class="headerlink" title="2. 数字格式化(使用DecimalFormat)"></a>2. 数字格式化(使用DecimalFormat)</h4><p>​    使用这个类时需要用import关键字将java.text.DecimalFormat引入<br>​    DecimalFormat是NumberFormat的一个子类，用于格式化十进制数字，可以在实例化DecimalFormat对象时传递数字格式(以字符串格式表示)，如果未传入的话则可以通过applyPattern方法来传入设置模板(模板是有特殊字符组成的)，该方法参数为空时抛出异常NullPointerException，<strong>注意：小数时若模板小于数字则会四舍五入</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/2V5aR0"><img src="https://z3.ax1x.com/2021/05/30/2V5aR0.png" alt="2V5aR0.png"></a></p>
+<hr>
+<p><strong>DecimalFormat类中特殊字符的说明</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">代表阿拉伯数字，一个0表示一个阿拉伯数字，如果该位不存在数字，则显示0</td>
+</tr>
+<tr>
+<td align="center">#</td>
+<td align="center">代表阿拉伯数字，一个#表示一个阿拉伯数字，如果该位不存在数字，则不显示</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="center">小数分割符或货币小数分割符</td>
+</tr>
+</tbody></table>
+<p>​    setGroupingSize(int newValue)方法设置格式化数字的分组大小,分组大小是数字整数部分中分组分隔符之间的位数，像分组为2的话，123456.789为12,34,56.789<br>​    setGroupingUsed(boolean newValue)方法设置是否在此格式中使用分组，newValue的值为如果使用分组，则为true；否则为假</p>
+<h4 id="3-数学运算"><a href="#3-数学运算" class="headerlink" title="3. 数学运算"></a>3. 数学运算</h4><p>​    Java中提供了一个执行数学基本运算的Math类，在java.lang.Math，里面提供的大多数方法都被定义为static形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math.数字方式</span><br></pre></td></tr></table></figure>
+<p>​    Math类也提供一些常用数学常量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math.PI   &#x2F;&#x2F;Π</span><br></pre></td></tr></table></figure>
+<p>​    <strong>常用的数学运算方法分为四类，三角函数方法、指数函数方法、取整函数方法、取最大值最小值绝对值函数方法，具体的需要使用时，自行翻阅API文档</strong></p>
+<h4 id="4-随机数"><a href="#4-随机数" class="headerlink" title="4. 随机数"></a>4. 随机数</h4><p>​    通过Math类中的random()方法产生伪随机数字，该方法返回一个double型的随机数，小数点后面可以保留15位小数，返回值是从该范围内以（近似）均匀分布伪随机选择的，范围在0&lt;=Math.random()&lt;1.0，通过对于该方法的处理可以产生任意范围内的随机数，这个方法是调用java.util.Random()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;产生其他范围的伪随机数</span><br><span class="line">(int)(Math.random()*n) &#x2F;&#x2F;返回大于等于0且小于n的随机数</span><br><span class="line">m+(int)(Math.random()*n) &#x2F;&#x2F;返回大于等于m且小于m+n的随机数</span><br></pre></td></tr></table></figure>
+<p>​    什么是伪随机数？</p>
+<ul>
+<li>伪随机数是看似随机实质是固定的周期性序列,也就是有规则的随机。</li>
+<li>只要这个随机数是由确定算法生成的,那就是伪随机,只能通过不断算法优化,使你的随机数更接近随机。(随机这个属性和算法本身就是矛盾的)</li>
+<li>通过真实随机事件取得的随机数才是真随机数</li>
+</ul>
+<p>​    Random类<br>​    Random类在java.util下，通过实例化Random对象可以创建一个随机数字生成器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Random r &#x3D; new Random(); &#x2F;&#x2F;未在初始化器里设置种子</span><br></pre></td></tr></table></figure>
+<p>​    当用这个方式实例化对象时(未在初始化器里设置种子)，Java编译器将以系统当前时间作为随机数生成器的种子(每时每刻时间不同)，但如果运行速度太快，也会产生两次运行结果相同的随机数</p>
+<p>​    也可以在实例化对象时，设置随机数生成器种子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Random r &#x3D; new Random(long seed); &#x2F;&#x2F;设置种子,当种子一样时，产生的随机数是一样的</span><br></pre></td></tr></table></figure>
+
+<p>​    Random类提供的常用方法(部分)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public int nextInt():返回一个随机整数</span><br><span class="line">public int nextInt(int n):返回大于等于0且小于n的随机整数</span><br><span class="line">public boolean nextBoolean():返回一个随机布尔值</span><br><span class="line">public double nextDouble():返回一个随机双精度值</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/05/25/Java05/">Java05</a>
         </h1>
       
@@ -662,58 +758,6 @@
 </li>
 </ol>
 
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/05/02/Java01/">Java01</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-05-02T14:44:08.000Z" itemprop="datePublished">
-    2021-05-02
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="Java语言基础"><a href="#Java语言基础" class="headerlink" title="Java语言基础"></a>Java语言基础</h2><h4 id="1-java中文件名和类名必须同名，注意：java是严格区分大小写"><a href="#1-java中文件名和类名必须同名，注意：java是严格区分大小写" class="headerlink" title="1. java中文件名和类名必须同名，注意：java是严格区分大小写"></a>1. java中文件名和类名必须同名，注意：java是严格区分大小写</h4><h4 id="2-类属性称为类的全局变量，方法中的属性称为局部变量"><a href="#2-类属性称为类的全局变量，方法中的属性称为局部变量" class="headerlink" title="2. 类属性称为类的全局变量，方法中的属性称为局部变量"></a>2. 类属性称为类的全局变量，方法中的属性称为局部变量</h4><h4 id="3-Java中通过import关键字导入相关的类"><a href="#3-Java中通过import关键字导入相关的类" class="headerlink" title="3. Java中通过import关键字导入相关的类"></a>3. Java中通过import关键字导入相关的类</h4><h4 id="4-long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数"><a href="#4-long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数" class="headerlink" title="4. long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数"></a>4. long型的值，若赋给的值大于int型的最大值或者小于int型的最小值，则需要在数字后面加L或l表示该数值为长整数</h4><h4 id="5-默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型"><a href="#5-默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型" class="headerlink" title="5. 默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型"></a>5. 默认情况下小数被看作double型，若使用float型需要在小数后面加F或f，声明为float型变量时若不加f默认为double型</h4><h4 id="6-char（字符类型）：用于存储单个字符，占两个字节的存储空间"><a href="#6-char（字符类型）：用于存储单个字符，占两个字节的存储空间" class="headerlink" title="6. char（字符类型）：用于存储单个字符，占两个字节的存储空间"></a>6. char（字符类型）：用于存储单个字符，占两个字节的存储空间</h4><h4 id="7-常量声明：用final关键字"><a href="#7-常量声明：用final关键字" class="headerlink" title="7. 常量声明：用final关键字"></a>7. 常量声明：用final关键字</h4><p>​    语法：final 数据类型 常量名称[=值]<br>​    常量名通常使用大写字母<br>​    final变量属于“成员变量”时，必须在定义时就设定它的初值<br>​    常量一经赋值不给改变</p>
-<h4 id="8-成员变量与局部变量-根据变量的有效范围划定"><a href="#8-成员变量与局部变量-根据变量的有效范围划定" class="headerlink" title="8. 成员变量与局部变量(根据变量的有效范围划定)"></a>8. 成员变量与局部变量(根据变量的有效范围划定)</h4><p>​    (1).成员变量<br>​    在类体中定义的变量，成员变量又可以分为静态变量和实例变量<br>​    静态变量是在类型前面加关键字static，<strong>静态变量的有效范围可以跨类，达到整个应用程序内，通过类名.静态变量的方式在其他类中使用</strong><br>​    实例变量是实例化后可以使用<br>​<br>​    (2).局部变量<br>​    在类的方法体中定义的变量，局部变量只在当前代码块中有效<br>​    当方法被调用时，Java虚拟机为方法中的局部变量分配内存空间<br>​    局部变量可以与成员变量的名字相同，此时成员变量将被隐藏</p>
-<h4 id="9-进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常"><a href="#9-进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常" class="headerlink" title="9. 进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常"></a>9. 进行除法运算时，0不能做除数，系统会抛出ArithmeticException异常</h4><h4 id="10-逻辑运算符的操作元必须是Boolean型的变量"><a href="#10-逻辑运算符的操作元必须是Boolean型的变量" class="headerlink" title="10. 逻辑运算符的操作元必须是Boolean型的变量"></a>10. 逻辑运算符的操作元必须是Boolean型的变量</h4><h4 id="11-位运算符"><a href="#11-位运算符" class="headerlink" title="11. 位运算符"></a>11. 位运算符</h4><p>​    位运算符除”按位与’’和”按位或”运算符外，其他只能用于处理整数的操作符<br>​    (1).“按位与”运算(&amp;):双目<br>​    运算法则：如果两个整型数据a,b的对应位都是1，则结果为1，否则为0；如果两个操作数精度不同，则结果的精度与精度高的操作数相同<br>​    (2).”按位或”运算(|):双目<br>​    运算法则：如果两个操作数的对应位都是0，则结果为0，否则为1；如果两个操作数精度不同，则结果的精度与精度高的操作数相同<br>​    (3).”按位取反”运算(~):单目<br>​    运算法则：将操作数二进制中的1改为0，0改为1<br>​    (4).”按位异或”运算(^):双目<br>​    运算法则：当两个操作数的二进制表示对应位相同时，结果为0，反之结果为1；如果两个操作数精度不同，则结果的精度与精度高的操作数相同<br>​    (5).位移操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;:左移 &#x2F;&#x2F;将运算符左边的二进制数据，按照运算符右边操作数指定的位数向左移动移空的部分补0</span><br><span class="line">&gt;&gt;:右移 &#x2F;&#x2F;将运算符左边的二进制数据，按照运算符右边操作数指定的位数向右移动，如果最高位是0，右移空的位就填入0；如果最高位是1，右移空的位就填入1；右移时右边最低位被抛弃</span><br><span class="line">&gt;&gt;&gt;:无符号右移 &#x2F;&#x2F;无论最高位是0还是1，左侧被移动的高位都填入0</span><br></pre></td></tr></table></figure>
-<p>​    <strong>注意：位移可以实现整数乘以或者除以2^n^的效果；如y&lt;&lt;2与y*4结果相同；y&gt;&gt;1的结果与y/2效果相同，即一个数左移n位，则将数乘以2^n^，一个数右移n位，就是将数除以2^n^</strong></p>
-<h4 id="12-在编写程序时尽量使用括号运算符来限定次序"><a href="#12-在编写程序时尽量使用括号运算符来限定次序" class="headerlink" title="12. 在编写程序时尽量使用括号运算符来限定次序"></a>12. 在编写程序时尽量使用括号运算符来限定次序</h4><h4 id="13-数据类型转换"><a href="#13-数据类型转换" class="headerlink" title="13. 数据类型转换"></a>13. 数据类型转换</h4><p>​    (1)隐式类型转换<br>​    低级类型向高级类型的转换，系统自动执行，无须程序员操作<br>​    基本数据类型按精度从低到高的排序<br>​    byte&lt;short&lt;int&lt;long&lt;float&lt;double<br>​    如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">short a &#x3D; 5;</span><br><span class="line">int b &#x3D; a;</span><br></pre></td></tr></table></figure>
-
-<p>​    (2)显式类型转换<br>​    高精度的变量的值赋给低精度的变量时，必须使用显式类型的转换运算(又称强制类型转换)<br>​    语法：(类型名)要转换的值<br>​    如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int a &#x3D; 5;</span><br><span class="line">short b &#x3D; (short)a;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>注意：强制类型转换可能会导致精度丢失，除boolean类型以外的其他基本类型，都能以显式类型的方法实现转换</strong></p>
-<h4 id="14-代码注释与编码规范"><a href="#14-代码注释与编码规范" class="headerlink" title="14. 代码注释与编码规范"></a>14. 代码注释与编码规范</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(1).单行注释：&#x2F;&#x2F;</span><br><span class="line">(2).多行注释：&#x2F;*   *&#x2F;</span><br><span class="line">(3).文档注释：&#x2F;**  *&#x2F; 与多行注释格式相同，用在声明之前时会被Javadoc文档工具读取作为文档内容</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>注意：可读性第一，效率第二，注释要占程序代码总量的20%~50%</strong></p>
-<h4 id="15-注意：Java语言的基本数据类型中并没有String类型"><a href="#15-注意：Java语言的基本数据类型中并没有String类型" class="headerlink" title="15. 注意：Java语言的基本数据类型中并没有String类型"></a><strong>15. 注意：Java语言的基本数据类型中并没有String类型</strong></h4><h4 id="16-main方法"><a href="#16-main方法" class="headerlink" title="16. main方法"></a>16. main方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;程序入口的main方法(必须有这个程序才能运行)</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">&#x2F;&#x2F;方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    当运行程序的时候，通常都是以程序入口的main方法作为起点，以main方法中的第一条语句作为程序的第一条语句。由于main方法是一个静态的方法，所以该方法放在任何一个类中都是可以执行的<br>​    写好一个类后，可以直接在该类中添加一个main方法，对该类的功能进行测试(Java允许多个main方法在不同的类中，程序启动时，需要指定哪一个main作为入口，一般光标在哪哪就是)<br>​    main方法是可以重载的，每个main方法的参数都是不同的，程序是可以运行的，可以输出应有的结果。但是，如果没有程序入口的main方法，只含有其他main方法。虽然编译此程序是可以的通过的，但是运行时会产生错误。这是因为程序运行时，Java虚拟机找不到对应的main方法，就会产生运行错误，其他main方法需要在入口main方法中进行调用才会运行<br>​    main方法也是可以被继承的，可以被重写</p>
-<h4 id="17-一个文件只能一个public-类，而且类名必须和文件名一样"><a href="#17-一个文件只能一个public-类，而且类名必须和文件名一样" class="headerlink" title="17. 一个文件只能一个public 类，而且类名必须和文件名一样"></a>17. 一个文件只能一个public 类，而且类名必须和文件名一样</h4>
       
     </div>
 </article>

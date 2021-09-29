@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Blog of ChiFun</title>
+  <title>文件实例 | Blog of ChiFun</title>
   
   
   
@@ -60,43 +60,14 @@
 
     <div class="container">
         <div data-pager-shell>
-            <ul class="Index">
-  
+            <div>
+  <article class='ContentView'>
     <header class='PageTitle'>
-        <h1>{ Java实例 }</h1>
+        <h1>文件实例</h1>
     </header>
-  
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/09/29/%E6%96%87%E4%BB%B6%E5%AE%9E%E4%BE%8B/">文件实例</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-09-29T03:02:13.000Z" itemprop="datePublished">
-    2021-09-29
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
-  </li>
 
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="文件操作实例"><a href="#文件操作实例" class="headerlink" title="文件操作实例"></a>文件操作实例</h2><h4 id="1-D-盘删盘程序"><a href="#1-D-盘删盘程序" class="headerlink" title="1. D:盘删盘程序"></a>1. D:盘删盘程序</h4><p>​    <strong>可以通过修改位置删除指定文件夹</strong></p>
+    <section>
+      <h2 id="文件操作实例"><a href="#文件操作实例" class="headerlink" title="文件操作实例"></a>文件操作实例</h2><h4 id="1-D-盘删盘程序"><a href="#1-D-盘删盘程序" class="headerlink" title="1. D:盘删盘程序"></a>1. D:盘删盘程序</h4><p>​    <strong>可以通过修改位置删除指定文件夹</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		File file &#x3D; new File(&quot;D:&quot;+File.separator);</span><br><span class="line">		test(file);</span><br><span class="line">	&#125;</span><br><span class="line">	 </span><br><span class="line">	public static void test(File file) &#123;</span><br><span class="line">		if(file.isDirectory()) &#123;</span><br><span class="line">			File[] s &#x3D; file.listFiles();</span><br><span class="line">			for(File a : s) &#123;</span><br><span class="line">				test(a);	</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		file.delete();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -113,89 +84,35 @@
 
 <p>​    <strong>OutputStream类与其子类FileOutputStream的应用</strong><br>​    创建文件并且向文件中写入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;java-test&quot;+File.separator+&quot;test.txt&quot;);&#x2F;&#x2F;文件与其路径现在是不存在的，代码并没有进行手动创建，但文件还是直接生成了</span><br><span class="line">		if(!file.getParentFile().exists()) &#123;&#x2F;&#x2F;创建父路径</span><br><span class="line">			file.getParentFile().mkdirs();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		OutputStream output &#x3D; new FileOutputStream(file);</span><br><span class="line">		output.write(&quot;hello&quot;.getBytes());</span><br><span class="line">		output.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-</article>
 
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
       
-        <h1>
-          <a href="/2021/06/15/Java%E5%AE%9E%E4%BE%8B-%E5%86%85%E9%83%A8%E7%B1%BB/">Java实例-内部类</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-15T11:32:57.000Z" itemprop="datePublished">
-    2021-06-15
-  </time>
-  
-  | 
-  <ul>
+
+    </section>
     
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2021-09-29T03:02:13.000Z" itemprop="datePublished">
+              2021-09-29
+            </time>
+          </div>
+          
+            <div>
+              tags: 
   <li class="meta-text">
   { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
   </li>
 
 
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="Java实例-内部类的基本作用"><a href="#Java实例-内部类的基本作用" class="headerlink" title="Java实例-内部类的基本作用"></a>Java实例-内部类的基本作用</h2><h4 id="1-实例内部类–内部类在外部类中，内部类修饰为private"><a href="#1-实例内部类–内部类在外部类中，内部类修饰为private" class="headerlink" title="1. 实例内部类–内部类在外部类中，内部类修饰为private"></a>1. 实例内部类–内部类在外部类中，内部类修饰为private</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface Food&#123;</span><br><span class="line">	public void doing();</span><br><span class="line">&#125;</span><br><span class="line">public class First&#123;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Outside o &#x3D; new Outside();</span><br><span class="line">		Food i &#x3D; o.create(); &#x2F;&#x2F;用接口引用类型来接内部类实现接口的实例</span><br><span class="line">		i.doing();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outside&#123;</span><br><span class="line">	private class Inside implements Food&#123; &#x2F;&#x2F;private只能在外部类访问</span><br><span class="line">		public void doing() &#123;</span><br><span class="line">			System.out.println(&quot;eat egg&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public Inside create() &#123;</span><br><span class="line">		return new Inside();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-局部内部类–内部类在外部类的方法中，内部类无修饰符"><a href="#2-局部内部类–内部类在外部类的方法中，内部类无修饰符" class="headerlink" title="2. 局部内部类–内部类在外部类的方法中，内部类无修饰符"></a>2. 局部内部类–内部类在外部类的方法中，内部类无修饰符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface Food&#123;</span><br><span class="line">	public void doing();</span><br><span class="line">&#125;</span><br><span class="line">public class First&#123;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Outside b &#x3D; new Outside();</span><br><span class="line">		Food c &#x3D; b.a();</span><br><span class="line">		c.doing();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outside&#123;</span><br><span class="line">	public Food a() &#123; &#x2F;&#x2F;方法返回值类型为接口类型</span><br><span class="line">		class Inside implements Food&#123;</span><br><span class="line">			public void doing() &#123;</span><br><span class="line">				System.out.println(&quot;hello&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return new Inside();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/06/04/Java%E5%AE%9E%E4%BE%8B-%E5%A4%9A%E6%80%81/">Java实例-多态</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-04T14:37:32.000Z" itemprop="datePublished">
-    2021-06-04
-  </time>
-  
-  | 
-  <ul>
+            </div>
+          
+      </section>
     
-  <li class="meta-text">
-  { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="多态实例"><a href="#多态实例" class="headerlink" title="多态实例"></a>多态实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.text.DecimalFormat;</span><br><span class="line">import java.util.Random;</span><br><span class="line">import java.lang.Math;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		choose(new child1());</span><br><span class="line">		choose(new child2());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void choose(father a) &#123;</span><br><span class="line">		a.Todo();</span><br><span class="line">		if(a instanceof child1) &#123;</span><br><span class="line">			((child1) a).eat();&#x2F;&#x2F;父类中没有的方法和类型必须要向下转型后才能调用</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		else if(a instanceof child2) &#123;</span><br><span class="line">			((child2) a).eat();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class father&#123;</span><br><span class="line">	public father() &#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void Todo() &#123;</span><br><span class="line">		System.out.println(&quot;work&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class child1 extends father&#123;</span><br><span class="line">	public child1() &#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void Todo() &#123;</span><br><span class="line">		System.out.println(&quot;study&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void eat() &#123;</span><br><span class="line">		System.out.println(&quot;fish&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class child2 extends father&#123;</span><br><span class="line">	public child2() &#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void Todo() &#123;</span><br><span class="line">		System.out.println(&quot;sing&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void eat() &#123;</span><br><span class="line">		System.out.println(&quot;fish&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
+    
 </article>
 
-    </li>
   
-</ul>
-
-
+</div>
 
             <footer>
     <div>© 2021 - nature </div>
