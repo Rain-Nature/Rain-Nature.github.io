@@ -68,6 +68,61 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/10/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8401/">数据结构01</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-10-04T03:58:37.000Z" itemprop="datePublished">
+    2021-10-04
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="数据结构概述"><a href="#数据结构概述" class="headerlink" title="数据结构概述"></a>数据结构概述</h2><h4 id="1-数据结构中的栈表示堆栈，数据结构中没有堆这个概念，堆分配内存的方式，不属于存储数据的结构。"><a href="#1-数据结构中的栈表示堆栈，数据结构中没有堆这个概念，堆分配内存的方式，不属于存储数据的结构。" class="headerlink" title="1. 数据结构中的栈表示堆栈，数据结构中没有堆这个概念，堆分配内存的方式，不属于存储数据的结构。"></a>1. 数据结构中的栈表示堆栈，数据结构中没有堆这个概念，堆分配内存的方式，不属于存储数据的结构。</h4><h4 id="2-数据结构的定义"><a href="#2-数据结构的定义" class="headerlink" title="2. 数据结构的定义"></a>2. 数据结构的定义</h4><p>​    <strong>以特定的数据类型()和特定的存储结构(个体之间的关系)保存到主存储器（内存）中</strong>，以及在此基础上为实现某个功能（比如查找某个元素，删除某个元素，对所有元素进行排序）而执行的相应操作，这个相应的操作也叫算法</p>
+<p>​    数据结构 = 个体 + 个体的关系<br>​    算法 = 对存储数据的操作（狭义）</p>
+<h4 id="3-算法的定义"><a href="#3-算法的定义" class="headerlink" title="3. 算法的定义"></a>3. 算法的定义</h4><p>​    解题的方法和步骤</p>
+<h4 id="4-衡量算法的标准"><a href="#4-衡量算法的标准" class="headerlink" title="4. 衡量算法的标准"></a>4. 衡量算法的标准</h4><p>​    (1).时间复杂度<br>​    大概程序要执行的次数，而非执行的时间</p>
+<p>​    (2).空间复杂度<br>​    算法执行过程中大概所占用的最大内存</p>
+<p>​    (3).难易程度</p>
+<p>​    (4).健壮性</p>
+<p>​    (5).正确性（废话）</p>
+<h4 id="5-数据结构的地位"><a href="#5-数据结构的地位" class="headerlink" title="5. 数据结构的地位"></a>5. 数据结构的地位</h4><p>​    数据结构是软件最核心的课程</p>
+<p>​    程序 = 数据的存储 + 数据的操作 + 可以被计算机执行的语言</p>
+<h4 id="6-指针变量都统一的只占四个字节"><a href="#6-指针变量都统一的只占四个字节" class="headerlink" title="6. 指针变量都统一的只占四个字节"></a>6. 指针变量都统一的只占四个字节</h4><h4 id="7-结构体"><a href="#7-结构体" class="headerlink" title="7. 结构体"></a>7. 结构体</h4><p>​    为了表示一些复杂的数据，而普通的基本类型变量无法满足要求<br>​    注意：对于C语言中结构体内字符串的赋值需要使用strcpy()来进行赋值，不能像Java一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strcpy(st.name,&quot;LiHua&quot;);</span><br></pre></td></tr></table></figure>
+<p>​    一般都会使用结构体指针来调用里面的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pst-&gt;sid等价于(*pst).sid &#x2F;&#x2F;pst为指针</span><br></pre></td></tr></table></figure>
+<p>​    注意：结构体变量不能加减乘除但可以相互赋值<br>​    结构体变量和结构体指针作为函数传参的问题<br>​    注意：一般还是用传指针好，如果单传结构体耗内存、耗时间不推荐</p>
+<h4 id="8-malloc-动态分配内存"><a href="#8-malloc-动态分配内存" class="headerlink" title="8. malloc()动态分配内存"></a>8. malloc()动态分配内存</h4><p>​    通过动态分配内存以实现动态分配数组，这样实现数组是灵活的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int len;</span><br><span class="line">scanf(&quot;%d&quot;,len);</span><br><span class="line">int * pArr &#x3D; (int *)malloc(sizeof(int) * len);</span><br></pre></td></tr></table></figure>
+<p>​    注意：用完malloc()后要用free()释放它</p>
+<h4 id="9-跨函数内存分配问题"><a href="#9-跨函数内存分配问题" class="headerlink" title="9. 跨函数内存分配问题"></a>9. 跨函数内存分配问题</h4><p>​    如果是使用普通在栈内存的函数，在调用完之后就会释放掉，而如果是含有动态分配的函数，除非手动的去释放调用不然不会系统自动释放</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/09/29/%E6%96%87%E4%BB%B6%E5%AE%9E%E4%BE%8B/">文件实例</a>
         </h1>
       
@@ -1107,42 +1162,6 @@
 <p>​    通过定义一个父类，让它的所有子类通过向上转型的原则作为一个方法的参数，再在这个方法中做出一些限定，后可以做出每个子类自己独有的事情。<br>​    这样的处理可以很好解决代码的冗余问题，同时使得程序易于维护，可以随意增加子类，只需要改变传参就可以了</p>
 <p><strong>多态的样例代码见请看笔记《Java实例-多态》</strong></p>
 
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/06/04/Java%E5%AE%9E%E4%BE%8B-%E5%A4%9A%E6%80%81/">Java实例-多态</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-04T14:37:32.000Z" itemprop="datePublished">
-    2021-06-04
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="多态实例"><a href="#多态实例" class="headerlink" title="多态实例"></a>多态实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.text.DecimalFormat;</span><br><span class="line">import java.util.Random;</span><br><span class="line">import java.lang.Math;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		choose(new child1());</span><br><span class="line">		choose(new child2());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void choose(father a) &#123;</span><br><span class="line">		a.Todo();</span><br><span class="line">		if(a instanceof child1) &#123;</span><br><span class="line">			((child1) a).eat();&#x2F;&#x2F;父类中没有的方法和类型必须要向下转型后才能调用</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		else if(a instanceof child2) &#123;</span><br><span class="line">			((child2) a).eat();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class father&#123;</span><br><span class="line">	public father() &#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void Todo() &#123;</span><br><span class="line">		System.out.println(&quot;work&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class child1 extends father&#123;</span><br><span class="line">	public child1() &#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void Todo() &#123;</span><br><span class="line">		System.out.println(&quot;study&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void eat() &#123;</span><br><span class="line">		System.out.println(&quot;fish&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class child2 extends father&#123;</span><br><span class="line">	public child2() &#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void Todo() &#123;</span><br><span class="line">		System.out.println(&quot;sing&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void eat() &#123;</span><br><span class="line">		System.out.println(&quot;fish&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 </article>
