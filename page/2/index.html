@@ -68,6 +68,90 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/06/04/Java07/">Java07</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-06-04T14:37:40.000Z" itemprop="datePublished">
+    2021-06-04
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="类的继承，多态"><a href="#类的继承，多态" class="headerlink" title="类的继承，多态"></a>类的继承，多态</h2><h4 id="1-继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写-覆盖-父类中的某些方法"><a href="#1-继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写-覆盖-父类中的某些方法" class="headerlink" title="1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法"></a>1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法</h4><h4 id="2-extends关键字"><a href="#2-extends关键字" class="headerlink" title="2. extends关键字"></a>2. extends关键字</h4><p>​    用来标识两个类的继承关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;父类</span><br><span class="line">class bookStore&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;子类</span><br><span class="line">class book extends bookStore&#123;</span><br><span class="line">	&#x2F;&#x2F;当子类再次声明与父类一样的成员变量时，就有两个名字一样的成员变量，要使用父类的话需用super()关键字来引用父类(无关键字时，子类中和父类中的属性或方法同名，则父类中的方法或属性将被覆盖或隐藏)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-super关键字"><a href="#3-super关键字" class="headerlink" title="3. super关键字"></a>3. super关键字</h4><p>​    (1).在Java类中使用super关键字来引用父类的成分，它是一个指代变量，用于在子类中指代父类对象<br>​    (2).只能用于子类的构造函数和实例方法中，不能用于子类的类（静态）方法中。原因是super指代的是一个父类的对象，它需要在运行时被创建，而静态方法是类方法，它是类的一部分。当类被加载时，方法已经存在，但是这时候父类对象还没有被初始化</p>
+<h4 id="4-子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类"><a href="#4-子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类" class="headerlink" title="4. 子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类"></a>4. 子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class bookStore&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;子类</span><br><span class="line">class book extends bookStore&#123;</span><br><span class="line">	public book()&#123;</span><br><span class="line">		super();  &#x2F;&#x2F;初始化父类</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>注意：</strong></p>
+<ul>
+<li>在我们子类的构造函数中，如果我们没有显式调用super来初始化父类的话，那么Java会隐式的调用super();来调用父类无参构造函数并把它放在构造函数的第一行</li>
+<li>Java只会隐式的调用无参构造函数，如果父类没有无参构造函数，那么子类中就必须显式的调用super关键字来调用已有的有参构造函数来初始化父类</li>
+<li> 子类中的super为什么必须要放在第一行？因为子类的实例化依赖于父类的实例化，在构建子类时，必须要有父类实例，只能有了父类的实例，子类才能够初始化自己</li>
+</ul>
+<h4 id="5-当实例化子类对象时，父类的对象也相应的被实例化，且Java编译器会在子类的构造方法中自动调用父类的无参构造方法，-一个-多个父类时是从顶级向下调用"><a href="#5-当实例化子类对象时，父类的对象也相应的被实例化，且Java编译器会在子类的构造方法中自动调用父类的无参构造方法，-一个-多个父类时是从顶级向下调用" class="headerlink" title="5. 当实例化子类对象时，父类的对象也相应的被实例化，且Java编译器会在子类的构造方法中自动调用父类的无参构造方法，(一个)多个父类时是从顶级向下调用"></a>5. 当实例化子类对象时，父类的对象也相应的被实例化，且Java编译器会在子类的构造方法中自动调用父类的无参构造方法，(一个)多个父类时是从顶级向下调用</h4><h4 id="6-方法的重写"><a href="#6-方法的重写" class="headerlink" title="6. 方法的重写"></a>6. 方法的重写</h4><p>​    重写也可以称为覆盖，是保留父类成员方法的名字，可以重写成员方法实现的内容、成员方法的修饰符权限、成员方法的返回值类型<br><strong>注意：修改成员方法修饰符权限只能从小范围向大范围改变</strong><br><strong>注意：不可以被重写，可以被继承</strong></p>
+<p>​    重构：特殊的重写方法，子类与父类的返回值、方法名称、参数类型以及个数完全相同，唯一不同的是方法的实现内容</p>
+<h4 id="7-Object类"><a href="#7-Object类" class="headerlink" title="7. Object类"></a>7. Object类</h4><p>​    在Java中所有的类都继承了Java.lang.Object类，由于所有类都是继承这个类所以定义类时可以省略extends Object</p>
+<p>​    Object类中的getClass()，notify()，notifyAll()，wait()等方法不能被重写，这些方法被定义为final类型</p>
+<p>​    Object类的重要方法</p>
+<ul>
+<li><p>getClass()方法<br>​    返回对象执行时的Class实例，该实例通过getName()方法获得类的名称</p>
+</li>
+<li><p>toString()方法<br>​    将一个对象返回为字符串形式，它会返回一个String实例，在实际运用中经常重写该方法</p>
+</li>
+<li><p>equals()方法<br>​    按理说是比较两个对象的实际内容是否相等,但类对象的equals方法实现了对象上最有区别的等价关系；也就是说，对于任何非空的引用值x和y，当且仅当x和y引用同一对象（x == y的值为true）时，此方法才返回true，像之前的String比较里面内容是因为重写了这个方法<br>​    <strong>注意：在自定义类中使用equals()方法进行比较时，相同的对象比较会返回false，因为equals()方法的默认实现使用”==”运算符来比较两个对象的引用地址，而不上比较对象的内容，所以要比较内容需要重写equals()方法</strong></p>
+</li>
+</ul>
+<h4 id="8-对象类型的转换"><a href="#8-对象类型的转换" class="headerlink" title="8. 对象类型的转换"></a>8. 对象类型的转换</h4><ul>
+<li><p>向上转型(多态)<br>​    把子类对象赋值给父类类型的引用变量<br>​    <strong>父类的引用可以调用子类中重写的父类的方法，但不能调用子类中独有的方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">父类型 a &#x3D; new 子类型();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向下转型(显式类型转换)<br>​    把父类对象强制转化为子类型，赋值给子类引用变量<br>​    进行向下转型时，如果父类对象不是子类的实例，会产生ClassCastException异常，所以经常使用instanceof操作符来完成判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">子类型 b &#x3D; (子类型)父类对象的引用变量;</span><br></pre></td></tr></table></figure>
+<p>​    父类中没有的方法和类型必须要向下转型后才能调用</p>
+</li>
+</ul>
+<h4 id="9-instanceof操作符"><a href="#9-instanceof操作符" class="headerlink" title="9. instanceof操作符"></a>9. instanceof操作符</h4><p>​    用来判断是否一个类实现了某个接口，还可以判断一个实例的对象是否属于一个类(子类一定时属于父类的，不能说父类属于子类，即平行四边形属于四边形，但四边形不属于平行四边形)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">子对象 instanceof 父类型; &#x2F;&#x2F;返回true</span><br></pre></td></tr></table></figure>
+<p>​    该方式经常与向下转型连用，当不属于时把父类强制转化为子类<br>​    当两个类完全没有关系时使用这个操作符来操作会报错</p>
+<p><strong>详细使用请看笔记《Java实例-多态》</strong></p>
+<h4 id="10-方法的重载"><a href="#10-方法的重载" class="headerlink" title="10. 方法的重载"></a>10. 方法的重载</h4><p>​    在同一个类中允许存在一个以上的同名方法，只要这些方法的参数个数或类型不同即可<br>​    <strong>注意：方法重载中可以使两个方法的返回值类型不同，但只有返回值类型不同不足以区分两个方法的重载</strong><br>​    编译器是利用方法名、方法各参数类型和参数的个数以及参数的顺序来确定类中的方法是否唯一</p>
+<h4 id="11-不定长参数"><a href="#11-不定长参数" class="headerlink" title="11. 不定长参数"></a>11. 不定长参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;定义不定长参数方法</span><br><span class="line"> &#x2F;&#x2F;返回值 方法名(参数数据类型...参数名称)</span><br><span class="line">public static int add(int...a)&#123;不定长参数a为一个数组，a的长度取决于调用时传的参数</span><br><span class="line">	&#x2F;&#x2F;方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    不定长参数方法可以作为一个单独的重载方法</p>
+<h4 id="12-多态"><a href="#12-多态" class="headerlink" title="12. 多态"></a>12. 多态</h4><p>​    多态存在的三个前提</p>
+<ul>
+<li>要有继承关系</li>
+<li>子类要重写父类方法</li>
+<li>父类引用指向子类对象</li>
+</ul>
+<p>​    通过定义一个父类，让它的所有子类通过向上转型的原则作为一个方法的参数，再在这个方法中做出一些限定，后可以做出每个子类自己独有的事情。<br>​    这样的处理可以很好解决代码的冗余问题，同时使得程序易于维护，可以随意增加子类，只需要改变传参就可以了</p>
+<p><strong>多态的样例代码见请看笔记《Java实例-多态》</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/06/04/Java%E5%AE%9E%E4%BE%8B-%E5%A4%9A%E6%80%81/">Java实例-多态</a>
         </h1>
       
@@ -270,6 +354,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;构造方法的定义格式</span><br><span class="line">public book()&#123; &#x2F;&#x2F;里面可以放参数</span><br><span class="line">	&#x2F;&#x2F;构造方法体; &#x2F;&#x2F;可以初始化成员变量</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="7-static关键字"><a href="#7-static关键字" class="headerlink" title="7. static关键字"></a>7. static关键字</h4><p>​    由static修饰的变量、常量和方法被称为静态变量、常量和方法，即静态成员，静态成员属于类所有，使用类名+’.’运算符调用静态成员<br>​    当需要两个或以上的类要在同一个内存区域共享一个数据，可以使用静态变量来存储该数据<br>​    实例化后的对象依然可以调用静态XX，但不建议使用这样的形式，这样容易混淆静态成员和非静态成员<br>​    <strong>注意：静态方法中不可以直接调用非静态方法</strong><br>​    Java中规定不能将方法体内的局部变量声明为static</p>
+<p>​    <strong>类加载</strong><br>​    jvm在程序执行的时候，需要用到类中的信息，但jvm只能读取内存的数据，所以需要进一步操作，把类中的信息，从硬盘上.class文件读取出来放在合适的位置<br>​    当一个类首次被使用，对该类加载，加载的同时，执行类的初始化过程<strong>（注意初始化和实例化的区别）</strong><br>​    被<strong>static关键字修饰</strong>的方法或者变量不需要依赖于对象来进行访问，只要类被加载了，就可以通过类名去进行访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Test&#123;</span><br><span class="line">	private Test(String s) &#123;</span><br><span class="line">		System.out.println(s);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;通过static关键字在类加载时初始化a</span><br><span class="line">	private static Test a &#x3D; new Test(&quot;这是一个static程序&quot;);</span><br><span class="line">	</span><br><span class="line">	public static Test instance() &#123;</span><br><span class="line">		return a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 <p>​    <strong>类的初始化操作</strong><br>​    通过static定义静态区域(静态块)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class example&#123;</span><br><span class="line">	static&#123;</span><br><span class="line">		&#x2F;&#x2F;some;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    当这个类被引用时，首先自动执行static块中的程序，而且只会执行一次</p>
@@ -683,61 +771,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;tabBar&quot;: &#123;</span><br><span class="line">	&quot;color&quot;:&quot;#474747&quot;,           &#x2F;&#x2F;文字未选中时的颜色</span><br><span class="line">	&quot;selectedColor&quot;:&quot;#d43c43&quot;    &#x2F;&#x2F;文字选中时的颜色</span><br><span class="line">    &quot;list&quot;: [&#123;</span><br><span class="line">      &quot;pagePath&quot;: &quot;pages&#x2F;home-page&#x2F;home-page&quot;,    &#x2F;&#x2F;页面路径</span><br><span class="line">      &quot;text&quot;: &quot;首页&quot;,                             &#x2F;&#x2F;页面下面名字</span><br><span class="line">      &quot;iconPath&quot;: &quot;.&#x2F;pages&#x2F;image&#x2F;icon-home-normal.png&quot;,  &#x2F;&#x2F;未点击时图标样式</span><br><span class="line">      &quot;selectedIconPath&quot;: &quot;.&#x2F;pages&#x2F;image&#x2F;icon-home-primary.png&quot; &#x2F;&#x2F;&#x2F;点击时图标样式</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    ]&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>js里不要随意加，</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/05/03/%E9%9F%B3%E4%B9%90%E5%B0%8F%E7%A8%8B%E5%BA%8F02/">音乐小程序02</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-05-03T14:16:47.000Z" itemprop="datePublished">
-    2021-05-03
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E9%9F%B3%E4%B9%90%E5%B0%8F%E7%A8%8B%E5%BA%8F/">音乐小程序</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="云开发的基本环境的配置"><a href="#云开发的基本环境的配置" class="headerlink" title="云开发的基本环境的配置"></a>云开发的基本环境的配置</h2><p><strong>1. 在miniprogram文件下的app.js中有一个onLaunch生命周期函数(当小程序运行时自动调用 这个生命周期函数)</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">onLaunch: function () &#123;</span><br><span class="line">	&#x2F;&#x2F;首先检查是否支持云开发，之后再看基础库的版本(在详情中的本地设置里可以选择调试基础库的版本，最低2.2.3)</span><br><span class="line">    if (!wx.cloud) &#123;</span><br><span class="line">      console.error(&#39;请使用 2.2.3 或以上的基础库以使用云能力&#39;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      wx.cloud.init(&#123;</span><br><span class="line">        &#x2F;&#x2F; env 参数说明：</span><br><span class="line">        &#x2F;&#x2F;   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源</span><br><span class="line">        &#x2F;&#x2F;   此处请填入环境 ID, 环境 ID 可打开云控制台查看</span><br><span class="line">        &#x2F;&#x2F;   如不填则使用默认环境（第一个创建的环境）</span><br><span class="line">        &#x2F;&#x2F;env是环境的意思，这里填环境的id(id在云开发控制台里找)</span><br><span class="line">        env: &#39;cloud-7gxr9uz450402f24&#39;, &#x2F;&#x2F;已将环境改为第一环境cloud的环境id</span><br><span class="line">        &#x2F;&#x2F;在云开发的控制台中可以观察到访问过小程序的用户(为true时)，以倒叙方式显示</span><br><span class="line">        traceUser: true,</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F;当前小程序全局的属性和方法</span><br><span class="line">    this.globalData &#x3D; &#123;&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>2. 在miniprogram文件下的app.json文件</strong><br>在当前项目下的全局的配置文件<br><strong>注意在.json文件下是不能写注释的，写的话会报错</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&#x2F;&#x2F;pages即当前项目的文件的路径，这些是默认的一会删掉</span><br><span class="line">  &quot;pages&quot;: [</span><br><span class="line">    &quot;pages&#x2F;index&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;getOpenId&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;getMiniProgramCode&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;deployService&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;createCollection&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;uploadFile&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;selectRecord&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;updateRecord&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;updateRecordResult&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;updateRecordSuccess&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;sumRecord&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;sumRecordResult&#x2F;index&quot;</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F;window对于窗口的配置</span><br><span class="line">  &quot;window&quot;: &#123;</span><br><span class="line">    &quot;backgroundColor&quot;: &quot;#F6F6F6&quot;,</span><br><span class="line">    &quot;backgroundTextStyle&quot;: &quot;light&quot;,</span><br><span class="line">    &quot;navigationBarBackgroundColor&quot;: &quot;#F6F6F6&quot;,  &#x2F;&#x2F;导航栏的颜色</span><br><span class="line">    &quot;navigationBarTitleText&quot;: &quot;云开发 QuickStart&quot;, &#x2F;&#x2F;导航栏的标题字体</span><br><span class="line">    &quot;navigationBarTextStyle&quot;: &quot;black&quot; &#x2F;&#x2F;导航栏标题字体的颜色</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F;小程序的一些内部搜索，它还有自己的配置文件</span><br><span class="line">  &quot;sitemapLocation&quot;: &quot;sitemap.json&quot;,</span><br><span class="line">  &quot;style&quot;: &quot;v2&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>3.  在miniprogram文件下的app.wxss文件</strong><br>自带的一些全局的样式，在视频中全部删掉了</p>
-<p><strong>4.  在miniprogram文件下的README.md文件</strong><br>可以写一些对于自己微信小程序的说明</p>
-<p><strong>5.  在miniprogram文件下的project.config.json文件</strong><br>当前小程序的项目的配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &#x2F;&#x2F;小程序前端部分的代码，与前面那个miniprogram文件夹是相对应的</span><br><span class="line">  &quot;miniprogramRoot&quot;: &quot;miniprogram&#x2F;&quot;, </span><br><span class="line">  &#x2F;&#x2F;小程序开发云函数的文件路径，名字也是与云函数的文件夹相对应</span><br><span class="line">  &quot;cloudfunctionRoot&quot;: &quot;cloudfunctions&#x2F;&quot;,</span><br><span class="line">  &quot;setting&quot;: &#123;</span><br><span class="line">    &quot;urlCheck&quot;: true,</span><br><span class="line">    &quot;es6&quot;: true,</span><br><span class="line">    &quot;enhance&quot;: true,</span><br><span class="line">    &quot;postcss&quot;: true,</span><br><span class="line">    &quot;preloadBackgroundData&quot;: false,</span><br><span class="line">    &quot;minified&quot;: true,</span><br><span class="line">    &quot;newFeature&quot;: true,</span><br><span class="line">    &quot;coverView&quot;: true,</span><br><span class="line">    &quot;nodeModules&quot;: false,</span><br><span class="line">    &quot;autoAudits&quot;: false,</span><br><span class="line">    &quot;showShadowRootInWxmlPanel&quot;: true,</span><br><span class="line">    &quot;scopeDataCheck&quot;: false,</span><br><span class="line">    &quot;uglifyFileName&quot;: false,</span><br><span class="line">    &quot;checkInvalidKey&quot;: true,</span><br><span class="line">    &quot;checkSiteMap&quot;: true,</span><br><span class="line">    &quot;uploadWithSourceMap&quot;: true,</span><br><span class="line">    &quot;compileHotReLoad&quot;: false,</span><br><span class="line">    &quot;useMultiFrameRuntime&quot;: true,</span><br><span class="line">    &quot;useApiHook&quot;: true,</span><br><span class="line">    &quot;useApiHostProcess&quot;: false,</span><br><span class="line">    &quot;babelSetting&quot;: &#123;</span><br><span class="line">      &quot;ignore&quot;: [],</span><br><span class="line">      &quot;disablePlugins&quot;: [],</span><br><span class="line">      &quot;outputPath&quot;: &quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;enableEngineNative&quot;: false,</span><br><span class="line">    &quot;useIsolateContext&quot;: true,</span><br><span class="line">    &quot;useCompilerModule&quot;: true,</span><br><span class="line">    &quot;userConfirmedUseCompilerModuleSwitch&quot;: false,</span><br><span class="line">    &quot;userConfirmedBundleSwitch&quot;: false,</span><br><span class="line">    &quot;packNpmManually&quot;: false,</span><br><span class="line">    &quot;packNpmRelationList&quot;: [],</span><br><span class="line">    &quot;minifyWXSS&quot;: true</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;appid&quot;: &quot;wx466a6c8b6726bf3d&quot;,</span><br><span class="line">  &quot;projectname&quot;: &quot;%E4%B8%80%E8%B5%B7%E5%90%AC%E4%B8%80%E5%90%AC&quot;,</span><br><span class="line">  &quot;libVersion&quot;: &quot;2.14.1&quot;,</span><br><span class="line">  &quot;cloudfunctionTemplateRoot&quot;: &quot;cloudfunctionTemplate&quot;,</span><br><span class="line">  &quot;condition&quot;: &#123;</span><br><span class="line">    &quot;search&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;conversation&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;plugin&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;game&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;miniprogram&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;id&quot;: -1,</span><br><span class="line">          &quot;name&quot;: &quot;db guide&quot;,</span><br><span class="line">          &quot;pathName&quot;: &quot;pages&#x2F;databaseGuide&#x2F;databaseGuide&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>6. 后记(代码规范)</strong><br>    一般每一个公司都会有自己的代码规范，为了沟通也需要去遵守代码规范<br>    (1).一般使用let和const来定义变量和常量，而不用var<br>    因为var的作用域太大，所以可能会造成不安全<br>    (2).当我们在定义变量时一般之间用大括号来定义,可以像面向对象那样使用new，但还是用大括号，数组也是一样的用中括号来直接定义<br>    如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const obj &#x3D; &#123;&#125;  &#x2F;&#x2F;定义对象,每一个对象的属性后面最好都加,哪怕最后一个</span><br><span class="line">const arr &#x3D; []  &#x2F;&#x2F;定义数组</span><br></pre></td></tr></table></figure>
-
-<pre><code>(3).对于生命周期函数
-系统的默认的定义方式是</code></pre>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onLoad:function(options)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>还可以写成这样(建议这样去写)</code></pre>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onLoad()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>

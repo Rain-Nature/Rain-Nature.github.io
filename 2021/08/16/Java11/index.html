@@ -107,8 +107,13 @@
 
 <p>​    迭代器的方法</p>
 <ul>
-<li>hasNext()方法：如果迭代器有下一个元素返回true，否则返回false</li>
-<li>next()方法：返回迭代后的下一个元素，即取出元素。**注意：返回元素的类型是Object类型</li>
+<li><p>hasNext()方法：如果迭代器有下一个元素返回true，否则返回false，这个方法并不移动指针</p>
+</li>
+<li><p>next()方法：向下移动指针，并且返回指针指向的元素，如果指针指向的内存中没有元素，会报异常，而且指针目前无法反向指，所以只可以一直向下。<strong>注意：返回元素的类型是Object类型</strong></p>
+</li>
+<li><p>remove()方法：移除iterator.next()方法最后访问的元素</p>
+<p><strong>注意：在同一个迭代(循环)中只能使用一次next()方法，不然会产生异常（java.util.NoSuchElementException)</strong></p>
+</li>
 </ul>
 <h4 id="5-List集合"><a href="#5-List集合" class="headerlink" title="5. List集合"></a>5. List集合</h4><p>​    (1).List集合包括List接口和List接口中所有实现类。List集合中元素允许重复，顺序为插入对象时的顺序，类似Java数组，用户可以通过索引来访问集合中的元素</p>
 <p>​    (2).List接口继承Collection接口，包含其所有方法，还定义了两个重要方法</p>
