@@ -72,6 +72,99 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/10/25/Java14/">Java14</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-10-25T11:25:55.000Z" itemprop="datePublished">
+    2021-10-25
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><h4 id="1-泛型是在JDK1-5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题"><a href="#1-泛型是在JDK1-5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题" class="headerlink" title="1. 泛型是在JDK1.5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题"></a>1. 泛型是在JDK1.5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题</h4><h4 id="2-泛型问题的引出"><a href="#2-泛型问题的引出" class="headerlink" title="2. 泛型问题的引出"></a>2. 泛型问题的引出</h4><p>​    在Java中，最方便的参数统一使用Object类型，但是并不是意味所有的Object都可以解决实际问题</p>
+<p>​    现在假设需要一个描述坐标点的信息类(Point)，该类中可以保存三种坐标类型</p>
+<ul>
+<li><p>保存整型</p>
+</li>
+<li><p>保存浮点型</p>
+</li>
+<li><p>保存字符串</p>
+</li>
+</ul>
+<p>​    此时，要保证三类数据的保存，只有通过Object类型可以解决</p>
+<p>​    <strong>Point类的设计</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Object x;</span><br><span class="line">	<span class="keyword">private</span> Object y;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(Object x)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x = x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(Object y)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.y = y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    在使用这个类时，需要进行向上转型输入和向下转型输出。但是，由于Object所能描述的范围太广泛了，所以<strong>可能传入了字符串类型任何转型时不小心转为了int(其他)类型</strong>，此时代码在<strong>编译时可以通过，执行时出现”ClassCastException“异常</strong>，<strong>由此可以看出Object提供的解决方案实际上会存在安全隐患</strong>，所以Object类作为参数是项目中最大的败笔</p>
+<h4 id="3-泛型基本定义"><a href="#3-泛型基本定义" class="headerlink" title="3. 泛型基本定义"></a>3. 泛型基本定义</h4><p>​    通过分析Object作为参数的优缺点，<strong>要想解决对象转型安全隐患问题，最简单的方式就是不转型</strong><br>​    JDk1.5后提供了泛型的概念，泛型&lt; T &gt;最大的特点为，类中的属性类型或方法的参数，可以在类的使用时，动态决定<br>​    <strong>范例：修改Point类的设计</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>&lt;<span class="title">T</span>&gt;</span>&#123; <span class="comment">//T表示Type的意思，不一定要T写其他的也可以</span></span><br><span class="line">	<span class="keyword">private</span> T x;</span><br><span class="line">	<span class="keyword">private</span> T y;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(T x)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x = x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(T y)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.y = y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    在Point类上定义的泛型T实际上只是一个随机设置的名称，表示的是，该类型由使用的时候来决定，<strong>泛型使用时只能使用引用数据类型，不能使用基本类型</strong></p>
+<p>​    范例：使用泛型声明的类Point</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Point&lt;Integer&gt; a &#x3D; new Point&lt;Integer&gt;();</span><br><span class="line">		a.setX(10);</span><br><span class="line">		a.setY(20);</span><br><span class="line">		System.out.println(&quot;x &#x3D; &quot;+a.getX()+ &quot;,y &#x3D; &quot;+a.getY());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>​    注意：使用泛型后，所有程序之中具有泛型标记的部分都会更换为相应的类型标记，这个标记在类对象实例化的时候进行动态的配置，此时就不需要转型了，而且编译时会帮助检测错误</p>
+<p>​    <strong>注意：如果使用了泛型设计类但是使用这个类并没有给泛型，那么会把泛型中所有的T变成Object类型，Object的使用就需要转型了</strong></p>
+<h4 id="4-泛型通配符"><a href="#4-泛型通配符" class="headerlink" title="4. 泛型通配符"></a>4. 泛型通配符</h4><p>​    泛型的出现解决了数据类型的转换安全问题，但是随之而来也会带来引用传递的麻烦。<strong>为解决该问题则用通配符对形参进行约束</strong></p>
+<p>​    范例：泛型的引用传递</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">class Message&lt;T&gt;&#123;</span><br><span class="line">	private T info;</span><br><span class="line">	public void setMessage(T info) &#123;</span><br><span class="line">		this.info &#x3D; info;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public T getMessage() &#123;</span><br><span class="line">		return this.info;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Message&lt;String&gt; msg &#x3D; new Message&lt;String&gt;();</span><br><span class="line">		msg.setMessage(&quot;篮球&quot;);</span><br><span class="line">		print(msg);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void print(Message&lt;String&gt; msg) &#123;</span><br><span class="line">		System.out.println(msg.getMessage());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>注意：</strong></p>
+<ol>
+<li>泛型作为形参不可以作为重载标识，重载的参数类型名以类名作为标识与泛型无关</li>
+<li>泛型在作为形参时需要注明泛型的类型</li>
+<li>如果没有声明泛型类型，传过来则使用Object类型来代替未设置的泛型标记，也就说传过来后的泛型可以设置成任意类型</li>
+</ol>
+<p>​    <em>为了解决3这个问题，泛型里提供了通配符”?“</em><br>​    使用通配符”?“会限制程序不可以修改传过来的对象，此时对象仍然为object类型(可以描述一切的泛型类型)，但无法进行修改(取和改)</p>
+<p>​    在通配符?的基础之上，又产生了两个通配符的应用：</p>
+<ul>
+<li>设置泛型的下限：? super类;<br>​    例如：”? super String“，表示可以设置的泛型类只能够是String以及其父类(Object)</li>
+<li>设置泛型的上限：? extands 类;<br>​    例如：”? extends Number“：表示所设置的泛型类型只能够是Number或者其子类<br>​    <strong>注意：泛型的上限可以对类进行修饰(类&lt; T extends 类(界限)&gt;)</strong></li>
+</ul>
+<h4 id="5-泛型接口"><a href="#5-泛型接口" class="headerlink" title="5. 泛型接口"></a>5. 泛型接口</h4><p>​    泛型也可以应用在接口上，此类接口称为泛型接口</p>
+<p>​    泛型接口的定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface IMessage&lt;T&gt;&#123;</span><br><span class="line">	public void send(T content);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    所有的接口在使用的时候都必须依靠子类，那么在此时子类有两种实现泛型接口的方式</p>
+<ul>
+<li>方式一：在子类中继续指定泛型标记<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(T content)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MessageImpl</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(T content)</span> </span>&#123;</span><br><span class="line">		System.out.println(content);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		IMessage&lt;String&gt; a = <span class="keyword">new</span> MessageImpl&lt;String&gt;();<span class="comment">//后面的String可以省略，尖括号还是需要</span></span><br><span class="line">		a.send(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>​    上面代码的注释中，在JDK1.8出现了一个自动推导泛型的概念，因为每一次前后都需要编写泛型类型，过于复杂，所以现在前面定义了泛型类型，那么后面就可以不需要重复定义了</p>
+<ul>
+<li>方式二：子类不再设置泛型类型，而为父类指派好类型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface IMessage&lt;T&gt;&#123;</span><br><span class="line">	public void send(T content);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MessageImpl implements IMessage&lt;String&gt;&#123;</span><br><span class="line">	public void send(String content) &#123;</span><br><span class="line">		 System.out.println(content);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		IMessage&lt;String&gt; a &#x3D; new MessageImpl();</span><br><span class="line">		a.send(&quot;hello&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-泛型方法"><a href="#6-泛型方法" class="headerlink" title="6. 泛型方法"></a>6. 泛型方法</h4><p>​    所有泛型方法不一定非要定义在泛型的类或泛型接口之中，这也就是说任意一个方法都可以定义为泛型方法，但是需要对泛型标记（&lt;  T &gt;）加以声明</p>
+<p>​    范例：定义泛型方法<br>​    此时对于传入的参数类型就由调用方法的语句来外部定义了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;T&gt; T[] init(T ... args)&#123; </span><br><span class="line">return args; &#x2F;&#x2F;返回是类对象</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    知道一个方法如何去定义一个泛型就行了</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/10/24/Java13/">Java13</a>
         </h1>
       
@@ -1534,62 +1627,6 @@
 <li>将对象的赋值为null</li>
 </ul>
 <p>​    <strong>注意:Java的垃圾回收器只能销毁new操作符创建的对象</strong><br>​    为了回收不通过new操作符来在内存中获取存储空间的对象,Java还提供object类中的finalize()方法被声明为protected,用户可以自己的类中定义这个方法来回收垃圾(不保证一定发生,当Java虚拟机内存耗尽时,则不会执行垃圾回收处理)<br>​    Java还提供了System.gc()方法强制启动垃圾回收器</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/05/23/Java04/">Java04</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-05-23T09:57:45.000Z" itemprop="datePublished">
-    2021-05-23
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h4 id="1-数组的声明-两种方式"><a href="#1-数组的声明-两种方式" class="headerlink" title="1. 数组的声明(两种方式)"></a>1. 数组的声明(两种方式)</h4><p>​    注意：数组在声明时并没有分配内存空间<br>​    注意：数组声明数组名后的[]里什么都不能写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;符号[]表面变量为一个数组变量，单个[]表示要创建的数组为一维数组</span><br><span class="line">数组元素类型 数组名字[]</span><br><span class="line">数组元素类型[] 数组名字</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-数组内存空间的分配"><a href="#2-数组内存空间的分配" class="headerlink" title="2. 数组内存空间的分配"></a>2. 数组内存空间的分配</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组名字 &#x3D; new 数组元素的类型[数组元素的个数]  &#x2F;&#x2F;创建数组后未进行赋值则数组元素都为该类型的初始值</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-一维数组声明并分配内存空间"><a href="#3-一维数组声明并分配内存空间" class="headerlink" title="3. 一维数组声明并分配内存空间"></a>3. 一维数组声明并分配内存空间</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int a[] &#x3D; new int[10];  </span><br></pre></td></tr></table></figure>
-
-<h4 id="4-注意：数组一旦进行初始化不可以对数组手动分配内存空间"><a href="#4-注意：数组一旦进行初始化不可以对数组手动分配内存空间" class="headerlink" title="4. 注意：数组一旦进行初始化不可以对数组手动分配内存空间"></a><strong>4. 注意：数组一旦进行初始化不可以对数组手动分配内存空间</strong></h4><h4 id="5-一维数组的初始化"><a href="#5-一维数组的初始化" class="headerlink" title="5. 一维数组的初始化"></a>5. 一维数组的初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int a[] &#x3D; new int[]&#123;1,2,3,4&#125;;  &#x2F;&#x2F;第一种初始化方式，注意括号内不能写数字</span><br><span class="line">int a[] &#x3D; &#123;1,2,3,4&#125;;           &#x2F;&#x2F;第二种初始化方式</span><br><span class="line">int a[];                       &#x2F;&#x2F;第三种初始化方式</span><br><span class="line">a &#x3D; new int[]&#123;1,2,3,4&#125;;        </span><br></pre></td></tr></table></figure>
-
-<h4 id="6-二维-高维-数组声明后的内存空间分配-2种"><a href="#6-二维-高维-数组声明后的内存空间分配-2种" class="headerlink" title="6. 二维(高维)数组声明后的内存空间分配(2种)"></a>6. 二维(高维)数组声明后的内存空间分配(2种)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;(1)为每一维分配内存空间</span><br><span class="line">	a &#x3D; new int[2][4];</span><br><span class="line">	</span><br><span class="line">&#x2F;&#x2F;(2)分别为每一维分配内存空间</span><br><span class="line">	a &#x3D; new int[2][];</span><br><span class="line">	a[0] &#x3D; new int[2];</span><br><span class="line">	a[1] &#x3D; new int[3];</span><br></pre></td></tr></table></figure>
-
-<h4 id="7-二维数组的初始化-与一维类似"><a href="#7-二维数组的初始化-与一维类似" class="headerlink" title="7. 二维数组的初始化(与一维类似)"></a>7. 二维数组的初始化(与一维类似)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组数据类型 数组名[][] &#x3D; &#123;&#123;值1,值2&#125;,&#123;..&#125;,&#123;..&#125;&#125;; &#x2F;&#x2F;注意：每一个大的项要用花括号&#123;&#125;起来,不需要每一项元素个数相等</span><br></pre></td></tr></table></figure>
-
-<h4 id="8-数组的基本操作"><a href="#8-数组的基本操作" class="headerlink" title="8. 数组的基本操作"></a>8. 数组的基本操作</h4><p>​    (1).遍历数组<br>​    通过数组的length属性来获得数组的长度<br>​    **注意：数组的元素只取到length-1</p>
-<p>​    (2).剩下的都是一些对数组的函数可以自己用算法来完成，到时要用再看看就行，我觉得可能是方法重写的时候用的上</p>
-<h4 id="9-数组排序算法"><a href="#9-数组排序算法" class="headerlink" title="9. 数组排序算法"></a>9. 数组排序算法</h4><p>​    (1).冒泡排序法<br>​    <strong>主要思想：把相邻两个元素进行比较，不满足则交换，每次循环将最大或是最小的元素排在最后，下一次循环进行类似操作</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;外层循环控制排序轮数，一般比数组长度减一因为最后一次只剩一个数组元素了</span><br><span class="line">for(int i &#x3D; 1;i &lt; arr.length;i++) &#123;</span><br><span class="line">	&#x2F;&#x2F;内层循环用于对比临近元素的大小，对比交换次数随着排序轮数减少</span><br><span class="line">	for(int j &#x3D; 0;j &lt; arr.length-i;j++) &#123;</span><br><span class="line">		if(arr[j]&gt;arr[j+1]) &#123;</span><br><span class="line">			int tmp &#x3D; arr[j];</span><br><span class="line">			arr[j] &#x3D; arr[j+1];</span><br><span class="line">			arr[j+1] &#x3D; tmp;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    (2).直接选择排序法(选择排序的一种)<br>​    <strong>主要思想：将指定排序位置与其他数组元素分别对比，如果满足条件就交换元素的值</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;index是用来寻找当前数组中最大或最小的值的索引位置</span><br><span class="line">int index &#x3D; 0;</span><br><span class="line">&#x2F;&#x2F;外层循环控制排序轮数，一般比数组长度减一因为最后一次只剩一个数组元素了</span><br><span class="line">for(int i &#x3D; 1;i&lt;arr.length;i++) &#123;</span><br><span class="line">	&#x2F;&#x2F;index在每次循环时都应该清零</span><br><span class="line">	index &#x3D; 0;</span><br><span class="line">	&#x2F;&#x2F;内循环用来获取当前数组中最大的值，在下一次循环时不计入该数值</span><br><span class="line">	for(int j &#x3D; 1;j&lt;&#x3D;arr.length - i;j++) &#123;</span><br><span class="line">		if(arr[j]&gt;arr[index]) &#123;</span><br><span class="line">			index&#x3D;j;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	&#x2F;&#x2F;将数组最左或者最右的值与数组最大值交换</span><br><span class="line">	int tmp &#x3D; arr[arr.length - i];</span><br><span class="line">	arr[arr.length - i] &#x3D; arr[index];</span><br><span class="line">	arr[index] &#x3D; tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
