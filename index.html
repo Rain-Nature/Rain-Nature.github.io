@@ -68,6 +68,77 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/10/26/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02/">操作系统02</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-10-26T08:26:31.000Z" itemprop="datePublished">
+    2021-10-26
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="操作系统接口"><a href="#操作系统接口" class="headerlink" title="操作系统接口"></a>操作系统接口</h2><h4 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h4><p>​    连接两个东西、完成信号转换、屏蔽细节<br>​    接口表现为函数的调用，函数又由系统提供，也称为系统调用</p>
+<p>​    上层是调用底层（使用接口），而接口就是通过普通的C语言加上一些重要操作系统函数的调用</p>
+<p>​    <strong>操作系统接口表现为函数调用，又由系统提供，所以称为系统调用</strong>，系统调用是操作系统给上层提供的接口</p>
+<p>​    shell是一个永不停机的程序</p>
+<p>​    Linux 0.11没有图形界面</p>
+<h4 id="2-POSIX（统一的接口）"><a href="#2-POSIX（统一的接口）" class="headerlink" title="2. POSIX（统一的接口）"></a>2. POSIX（统一的接口）</h4><p>​    要知道去哪里去查，网上可以下载，如果开发的操作系统满足这个要求，则在Linux上开发的应用程序也可以在你的操作系统上跑</p>
+<h4 id="3-系统调用的实现"><a href="#3-系统调用的实现" class="headerlink" title="3. 系统调用的实现"></a>3. 系统调用的实现</h4><p>​    (1).不能随意的调用内核的数据，这样会使得操作系统不安全（像root被获取）</p>
+<p>​    (2).通过硬件来保证不能随意的调用内核的数据，即（区分内核态用户态(把内存割成两个区域)），<strong>内核态可以访问任何数据，用户态不能访问内核数据</strong>，0是内核态，3是用户态</p>
+<p>​    (3).通过段寄存器来实现(因为内存都是一段一段的)<br>​    DPL&gt;=CPL，只有满足才可以访问<br>​    DPL：(用来描述目标内存段的特权级)，即你要访问的目标段的特权级<br>​    CPL：(CS)，即当前所处在的特权级</p>
+<p>​    (4).硬件提供了主动进入内核的方法(中断指令int)<br>​    是计算机提供的唯一方法进入内核<br>​    int指令将使CS中的CPL改成0，进入内核</p>
+<h4 id="4-系统调用的核心"><a href="#4-系统调用的核心" class="headerlink" title="4. 系统调用的核心"></a>4. 系统调用的核心</h4><ol>
+<li>用户程序中一段包含int指令的代码，进去的话一定是(int 0x80)</li>
+<li>操作系统写中断处理，获取想调程序的编号</li>
+<li>操作系统根据编号执行相应代码</li>
+</ol>
+<h4 id="5-int-0x80的具体实现"><a href="#5-int-0x80的具体实现" class="headerlink" title="5. int 0x80的具体实现"></a>5. int 0x80的具体实现</h4><p>​    int指令通过查看idt表来选择中断需要转去哪里进行执行<br>​    idt表和gdt表长的非常相似<br>​    在系统进行初始化时，就已经对int 0x80进行处理定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sched_init</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">set_system_gate(<span class="number">0x80</span>,&amp;system_call) <span class="comment">//每次要调用时就取中断函数地址system_call调用0x80</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    int 0x80进入后将DPL制成3，CS为8，IP=system_call，CPL为CS的后两位为0</p>
+<p>​    从int 0x80返回后就一切恢复之前</p>
+<h4 id="6-操作系统历史"><a href="#6-操作系统历史" class="headerlink" title="6. 操作系统历史"></a>6. 操作系统历史</h4><h5 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h5><h6 id="1-操作系统的演变"><a href="#1-操作系统的演变" class="headerlink" title="1. 操作系统的演变"></a>1. 操作系统的演变</h6><p>​    随着计算机不断发展后，需要完成多道程序，要使得作业之间进行相互的切换和调度成为核心，如果不切换一定要一个一个等，计算机的速度就会非常的慢，<strong>此时多进程结构和进程管理概念萌芽</strong>，这时制作了OS/360</p>
+<p>​    在之后，任务不可以等到做不下去再进行切换，而是需要主动的进行切换，此时引入了<strong>分时系统</strong>的概念，此时一个计算机可以多个人进行使用，这时制作的是MULTICS</p>
+<p>​    再之后由MULTICS发明了UNIX</p>
+<h6 id="2-PC与DOS"><a href="#2-PC与DOS" class="headerlink" title="2. PC与DOS"></a>2. PC与DOS</h6><p>​    由DOS演变为Windows，Windows主要是磁盘、文件、命令令人使用方便</p>
+<p>​    再之后在Windows3.0加入图形界面</p>
+<p>​    </p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><h6 id="1-操作系统的演变-1"><a href="#1-操作系统的演变-1" class="headerlink" title="1. 操作系统的演变"></a>1. 操作系统的演变</h6><p>​    <strong>多进程结构是操作系统基本图谱，要掌握，并且实现它</strong></p>
+<p>​    多进程结构图示：**(当一个系统进入打印或其他操作使得CPU等待时，跳转到下一个作业，之后再转回来)**</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/54jP0O"><img src="https://z3.ax1x.com/2021/10/25/54jP0O.png" alt="54jP0O.png"></a></p>
+<p>​    对于操作系统实现概念远比理解概念重要</p>
+<h6 id="2-PC与DOS-1"><a href="#2-PC与DOS-1" class="headerlink" title="2. PC与DOS"></a>2. PC与DOS</h6><p>​    文件、开发环境、图形界面对于OS的重要性，<strong>要掌握、实现操作系统的文件操作视图</strong></p>
+<h5 id="核心思想，技术"><a href="#核心思想，技术" class="headerlink" title="核心思想，技术"></a>核心思想，技术</h5><ul>
+<li>程序执行、多线程、程序执行带动其他设备使用的基本结构</li>
+<li>对用户的使用感觉：各种文件、编程环境、图形界面</li>
+</ul>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/10/25/Java14/">Java14</a>
         </h1>
       
@@ -147,7 +218,7 @@
 
 <h4 id="6-泛型方法"><a href="#6-泛型方法" class="headerlink" title="6. 泛型方法"></a>6. 泛型方法</h4><p>​    所有泛型方法不一定非要定义在泛型的类或泛型接口之中，这也就是说任意一个方法都可以定义为泛型方法，但是需要对泛型标记（&lt;  T &gt;）加以声明</p>
 <p>​    范例：定义泛型方法<br>​    此时对于传入的参数类型就由调用方法的语句来外部定义了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;T&gt; T[] init(T ... args)&#123; </span><br><span class="line">return args; &#x2F;&#x2F;返回是类对象</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T[] init(T ... args)&#123; <span class="comment">//T[]表示T类型数组</span></span><br><span class="line"><span class="keyword">return</span> args; <span class="comment">//返回是类对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    知道一个方法如何去定义一个泛型就行了</p>
 
       
@@ -1401,88 +1472,6 @@
 <li>一个方法被覆盖时，覆盖它的方法必须抛出相同的异常或异常子类</li>
 <li>如果父类抛出多个异常，则覆盖方法必须抛出那些异常的一个子集，不能抛出新异常</li>
 </ul>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/06/15/Java09/">Java09</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-15T11:34:04.000Z" itemprop="datePublished">
-    2021-06-15
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="类的高级特性"><a href="#类的高级特性" class="headerlink" title="类的高级特性"></a>类的高级特性</h2><h4 id="1-类名冲突与完整路径"><a href="#1-类名冲突与完整路径" class="headerlink" title="1. 类名冲突与完整路径"></a>1. 类名冲突与完整路径</h4><p>​    在Java中，同名的两个类需要放在不同的类包(包)中<br>​    完整的类名为包名和类名的组合<br>​    像指定类时是可以写完整类名的但是由于麻烦和可读性就会使用import关键字来引入</p>
-<h4 id="2-同一个包中的类相互访问时，可以不指定包名"><a href="#2-同一个包中的类相互访问时，可以不指定包名" class="headerlink" title="2. 同一个包中的类相互访问时，可以不指定包名"></a>2. 同一个包中的类相互访问时，可以不指定包名</h4><h4 id="3-CLASSPATH"><a href="#3-CLASSPATH" class="headerlink" title="3. CLASSPATH"></a>3. CLASSPATH</h4><p>​    直译的话就是类的路径，配置了classpath后java程序会直接去classpath的路径下去找.class文件运行。这样我们就可以在任意目录下来运行我们的java程序，在连接数据库时我配置了这个的环境变量</p>
-<h4 id="4-package关键字"><a href="#4-package关键字" class="headerlink" title="4. package关键字"></a>4. package关键字</h4><p>​    用来定义包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package 包名</span><br></pre></td></tr></table></figure>
-<p>​    需要将package表达式放置在第一行，它必须是程序第一行非注释代码<br>​    Java包的命名规则：全部使用小写字母</p>
-<h4 id="5-import关键字"><a href="#5-import关键字" class="headerlink" title="5. import关键字"></a>5. import关键字</h4><p>​    (1).用来导入包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import 包名.类名  &#x2F;&#x2F;如果类不在包中则只要类名即可</span><br></pre></td></tr></table></figure>
-<p>​    如果需要使用包中的多个类，类名用 * 代替， * 表所有的类<br>​    <strong>注意：<br>​    如果已经用import引入了一个类，如果还要引用一个和这个类同名的类，则必须使用完整路径</strong></p>
-<p>​    (2).用来导入静态成员</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import static 静态成员 &#x2F;&#x2F;静态成员应为完整路径，可以为静态变量，也可以是静态方法</span><br></pre></td></tr></table></figure>
-<p>​    导入完之后就可以直接使用了，不需要再写完整的路径</p>
-<h4 id="6-final关键字"><a href="#6-final关键字" class="headerlink" title="6. final关键字"></a>6. final关键字</h4><p>​    <strong>(1).final变量</strong><br>​    使用final声明的变量，一旦被设定就不可以再改变它的值，<strong>通常使用这个方式来定义常量，final常量定义时需要使用大写字母命名</strong><br>​    注意：final变量定义的时候，可以先声明，而不给初值，这种变量也称为final空白</p>
-<p>​    final修饰的变量有三种：静态变量、实例变量和局部变量，分别表示三种类型的常量</p>
-<p>​    <strong>(2).final对象</strong><br>​    使用final修饰对象，一旦一个对象的引用被修饰，则它只能恒定指向一个对象，不能改变指向，未被指定时可以随便指<br>​    <strong>注意：数组也可以看作是一个对象来使用这个关键字</strong></p>
-<p>​    <strong>(3).final方法</strong><br>​    定义为final的方法不能被重写，可以被继承<br>​    定义为final的方法的执行效率高于非final的方法<br>​    定义为private不能被子类方法覆盖，private类型的方法默认是final类型的（这句先不说覆不覆盖就private感觉外部就调用不了了）</p>
-<p>​    <strong>(4).final类</strong><br>​    定义为final类不能被继承，没有子类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">final 类名&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>如果一个类设置为final，则类中所有的方法都被隐式设置为final形式，但final类中的成员变量可以被定义为final或者非final形式</strong></p>
-<p>​    <strong>(5).static和final一起使用</strong><br>​    static final用来修饰成员变量和成员方法，可以看作为全局常量</p>
-<ul>
-<li>对于变量，表示一旦给值就不可修改，并且通过类名可以访问</li>
-<li>对于方法，表示不可覆盖，并且可以通过类名直接访问</li>
-</ul>
-<p>​    <strong>注意：对于被static和final修饰过的实例常量，实例本身不能再改变了，但对于一些容器类型（比如，ArrayList、HashMap）的实例变量，不可以改变容器变量本身，但可以修改容器中存放的对象</strong></p>
-<h4 id="7-内部类"><a href="#7-内部类" class="headerlink" title="7. 内部类"></a>7. 内部类</h4><p>​    如果在一个类中再定义一个类，则将这个再定义的类称为内部类，<strong>内部类分为成员内部类、局部内部类、匿名类</strong></p>
-<p>​    <strong>(1).成员内部类</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class Outside&#123; &#x2F;&#x2F;外部类</span><br><span class="line">	private class Inside&#123; &#x2F;&#x2F;内部类,是一个私有成员</span><br><span class="line">		&#x2F;&#x2F;something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>在内部类中可以随意使用外部类的成员方法和成员变量，尽管被修饰为了private</strong><br>​    就像main方法放在类中可以访问该类的私有成员一样<br>​    <strong>但外部类不能直接访问内部类成员，需要先将内部类在外部类中实例化后再使用，内部类为private在外部类实例化后一样也可以使用</strong><br>​    <strong>内部类修饰为private只能外部类访问，其他类没有权限访问（哪怕是继承了外部类的子类）</strong></p>
-<p>​    内部类的实例化需要绑定在外部类的实例上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;内部类的实例化，如果在外部类和外部类非静态方法之外实例内部类对象则需要下面的形式</span><br><span class="line">外部类名.内部类名 引用变量名 &#x3D; 外部实例引用变量.内部实例  &#x2F;&#x2F;内部实例可以是new的也可以是其他只要是内部实例就行</span><br></pre></td></tr></table></figure>
-<p>​    <strong>类中多次实现接口中同一个方法</strong><br>​    在程序中可以用权限修饰符为private的内部类实现。可以在外部提供一个接口，在接口中声明一个方法。如果在实现该接口的内部类中实现该接口的方法，就可以定义多个内部类以不同的方式实现接口中的同一个方法，而在一般的类中是不能多次实现接口中同一个方法的<br>​    此时通过在外部类中写方法实例化这个private内部类，之后用接口的引用来接这个实现接口的实例<br>​    <strong>详细见《Java实例-内部类的基本作用》例一</strong></p>
-<p>​    <strong>外部类中定义的成员变量与内部类的成员变量名称相同，可以使用this关键字</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Outside&#123;</span><br><span class="line">	private int x &#x3D; 0;</span><br><span class="line">	private class Inside&#123;</span><br><span class="line">		private int x &#x3D; 9;</span><br><span class="line">		public void doit(int x)&#123;</span><br><span class="line">			x++;              &#x2F;&#x2F;调用的是形参x</span><br><span class="line">			this.x++          &#x2F;&#x2F;调用的是内部类成员变量x</span><br><span class="line">			Outside.this.x++  &#x2F;&#x2F;调用的是外部类成员变量x</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>(2).局部内部类</strong><br>​    在类的局部进行定义，如在类的方法或任意作用域中定义<br>​    由于内部类在类方法或者任意作用域中，<strong>在方法(作用域)的外部是无法访问该内部类</strong>，而内部类却可以访问当前代码块的常量**(final类型的局部变量)<strong>以及</strong>此外部类的所有成员**<br>​    在方法中的局部变量在内部类中可以访问<br>​    <strong>详细见《Java实例-内部类的基本作用》例二</strong></p>
-<p>​    <strong>(3).匿名内部类</strong><br>​    用时再查，和局部内部类一样在方法中，不过去掉类名，在return语句下在描述类体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;语法</span><br><span class="line">return new A()&#123;&#x2F;&#x2F;A为接口名</span><br><span class="line">	&#x2F;&#x2F;类体</span><br><span class="line">&#125;; &#x2F;&#x2F;注意：这里特殊的需要加一个分号，分号代表接口的引用表达式的创建</span><br></pre></td></tr></table></figure>
-<p>​    匿名内部类编译后会产生以“外部类名$序号”为名称的.class文件，序号以1<del>n排列，分别代表1</del>n个匿名内部类</p>
-<p>​    <strong>(4).静态内部类（少见）</strong><br>​    在内部类前加修饰符static，则为静态内部类，<strong>静态内部类中可以声明static成员，但在非静态内部类中不能声明静态成员</strong><br>​    <strong>静态内部类的特点</strong></p>
-<ul>
-<li>静态内部类内不可以使用外部类的非静态成员</li>
-<li>如果创建静态内部类的对象，不需要其外部类的对象<br>​    在程序测试时需要每个文件设置一个主方法，这会产生许多额外的代码，程序本身不需要这些主方法，所以一般把主方法写到静态内部类中，主要是编译后会产生独立类，测试完后删除即可</li>
-</ul>
-<h4 id="8-内部类的继承"><a href="#8-内部类的继承" class="headerlink" title="8. 内部类的继承"></a>8. 内部类的继承</h4><p>​    内部类的继承比普通类的继承要复杂</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">public class First extends A.B&#123; &#x2F;&#x2F;继承内部类class B</span><br><span class="line">	public First(A a) &#123;</span><br><span class="line">		a.super();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class A&#123;</span><br><span class="line">	class B&#123;</span><br><span class="line">		&#x2F;&#x2F;something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>在某个类继承内部类时，必须硬性给与这个类一个带参数的构造方法，并且该构造方法的参数为需要继承内部类的外部类的引用，同时在构造方法体中使用a.super()语句，这样才为继承提供了必要的对象引用</strong></p>
 
       
     </div>

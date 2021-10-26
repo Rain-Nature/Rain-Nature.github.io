@@ -151,7 +151,7 @@
 
 <h4 id="6-泛型方法"><a href="#6-泛型方法" class="headerlink" title="6. 泛型方法"></a>6. 泛型方法</h4><p>​    所有泛型方法不一定非要定义在泛型的类或泛型接口之中，这也就是说任意一个方法都可以定义为泛型方法，但是需要对泛型标记（&lt;  T &gt;）加以声明</p>
 <p>​    范例：定义泛型方法<br>​    此时对于传入的参数类型就由调用方法的语句来外部定义了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;T&gt; T[] init(T ... args)&#123; </span><br><span class="line">return args; &#x2F;&#x2F;返回是类对象</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T[] init(T ... args)&#123; <span class="comment">//T[]表示T类型数组</span></span><br><span class="line"><span class="keyword">return</span> args; <span class="comment">//返回是类对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    知道一个方法如何去定义一个泛型就行了</p>
 
       

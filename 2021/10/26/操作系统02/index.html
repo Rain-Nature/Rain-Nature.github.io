@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Blog of ChiFun</title>
+  <title>操作系统02 | Blog of ChiFun</title>
   
   
   
@@ -60,43 +60,14 @@
 
     <div class="container">
         <div data-pager-shell>
-            <ul class="Index">
-  
+            <div>
+  <article class='ContentView'>
     <header class='PageTitle'>
-        <h1>{ 操作系统 }</h1>
+        <h1>操作系统02</h1>
     </header>
-  
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/10/26/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02/">操作系统02</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-10-26T08:26:31.000Z" itemprop="datePublished">
-    2021-10-26
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a> }
-  </li>
 
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="操作系统接口"><a href="#操作系统接口" class="headerlink" title="操作系统接口"></a>操作系统接口</h2><h4 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h4><p>​    连接两个东西、完成信号转换、屏蔽细节<br>​    接口表现为函数的调用，函数又由系统提供，也称为系统调用</p>
+    <section>
+      <h2 id="操作系统接口"><a href="#操作系统接口" class="headerlink" title="操作系统接口"></a>操作系统接口</h2><h4 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h4><p>​    连接两个东西、完成信号转换、屏蔽细节<br>​    接口表现为函数的调用，函数又由系统提供，也称为系统调用</p>
 <p>​    上层是调用底层（使用接口），而接口就是通过普通的C语言加上一些重要操作系统函数的调用</p>
 <p>​    <strong>操作系统接口表现为函数调用，又由系统提供，所以称为系统调用</strong>，系统调用是操作系统给上层提供的接口</p>
 <p>​    shell是一个永不停机的程序</p>
@@ -132,76 +103,35 @@
 <li>对用户的使用感觉：各种文件、编程环境、图形界面</li>
 </ul>
 
-      
-    </div>
-</article>
 
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
       
-        <h1>
-          <a href="/2021/09/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F01/">操作系统01</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-09-15T11:02:11.000Z" itemprop="datePublished">
-    2021-09-15
-  </time>
-  
-  | 
-  <ul>
+
+    </section>
     
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2021-10-26T08:26:31.000Z" itemprop="datePublished">
+              2021-10-26
+            </time>
+          </div>
+          
+            <div>
+              tags: 
   <li class="meta-text">
   { <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a> }
   </li>
 
 
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="初识操作系统"><a href="#初识操作系统" class="headerlink" title="初识操作系统"></a>初识操作系统</h2><h4 id="1-什么是操作系统"><a href="#1-什么是操作系统" class="headerlink" title="1. 什么是操作系统"></a>1. 什么是操作系统</h4><p>​    操作系统是计算机硬件和应用之间的一层软件，方便使用硬件、高效的使用硬件，操作系统可以看作是资源分配器</p>
-<h4 id="2-操作系统管理的软件"><a href="#2-操作系统管理的软件" class="headerlink" title="2. 操作系统管理的软件"></a>2. 操作系统管理的软件</h4><p>​    <strong>CPU管理、内存管理、终端管理、磁盘管理、文件管理</strong>、网络管理、电源管理、多核管理</p>
-<h4 id="3-操作系统的表层"><a href="#3-操作系统的表层" class="headerlink" title="3. 操作系统的表层"></a>3. 操作系统的表层</h4><p>​    表层是通过应用使用操作系统的接口<br>​    操作系统中的接口就是一个让用户操作电脑的一个界面，比如windows，它有三个接口：</p>
-<ol>
-<li>cmd：windows上按win+r打开运行，输入cmd就会打开命令提示符，这个是系统管理员接口。</li>
-<li>explorer.exe:你打开任务管理器会看到explorer.exe，这个就是windows的桌面接口。</li>
-<li>api接口，这个是面向程序员的接口</li>
-</ol>
-<h4 id="4-计算机的工作原理"><a href="#4-计算机的工作原理" class="headerlink" title="4. 计算机的工作原理"></a>4. 计算机的工作原理</h4><p>​    通过IP(指针)把程序载入到内存(存储器)中，再载入到CPU(运算器、控制器)中解释执行，再输出</p>
-<p>​    <strong>计算机工作的本质：取指执行</strong></p>
-<h4 id="5-计算机的开机-x86-PC"><a href="#5-计算机的开机-x86-PC" class="headerlink" title="5. 计算机的开机(x86 PC)"></a>5. 计算机的开机(x86 PC)</h4><ol>
-<li>x86 PC刚开机时CPU处于实模式（实模式的寻址CS:IP(CS左移4位+IP)）</li>
-<li>开机时，CS=0xFFFF；IP=0x0000</li>
-<li>寻址0xFFFF0（ROM BLOS(基本输入输出)映射区(此处此时为固化的)）</li>
-<li>检查RAM(内存)，键盘，显示器，软硬键盘（执行过不去就是硬件坏了）</li>
-<li>将磁盘0磁道0扇区(操作系统的引导扇区)读入0x7c00处（一个扇区为512字节）</li>
-<li>设置CS=0x07c0，IP=0x0000（BLOS跳到这个自己写的引导扇区执行，引导扇区为启动设备的第一个扇区）</li>
-</ol>
-<p>​    <strong>这512个字节为开机时发生的事情</strong></p>
-<h4 id="6-操作系统的启动"><a href="#6-操作系统的启动" class="headerlink" title="6. 操作系统的启动"></a>6. 操作系统的启动</h4><p>​    将磁盘中的操作系统读到内存中，即程序boot sect.s<br>​    setup.s将完成OS启动前的设置（让系统获取到硬件配置）</p>
-<h4 id="7-setup-s"><a href="#7-setup-s" class="headerlink" title="7. setup.s"></a>7. setup.s</h4><p>​    获取设备硬件信息，而后将整个操作系统移动到0地址，而后执行操作系统，操作系统也一直会在0地址，再之后初始化gdt表并进入到保护模式（由之前的16位寻址模式(CS&lt;&lt;4+ip)切换到32位寻址模式），再跳到0地址（head.s）</p>
-<h4 id="8-保护模式下地址的翻译（gdt的作用）"><a href="#8-保护模式下地址的翻译（gdt的作用）" class="headerlink" title="8. 保护模式下地址的翻译（gdt的作用）"></a>8. 保护模式下地址的翻译（gdt的作用）</h4><p>​    CS改叫选择子，不在左移4位获得地址而是通过其查表+ip获得地址（这个表就叫gdt表）</p>
-<h4 id="9-head-s"><a href="#9-head-s" class="headerlink" title="9. head.s"></a>9. head.s</h4><p>​    初始化gdt表，执行完head.s之后，再去执行main.c由汇编转为C语言，由于C语言本质会转成汇编语言，所以可以看成是由一个c函数跳转到另一个c函数，这个过程通过栈完成，此时main死循环，main返回时，电脑死机</p>
-<h4 id="10-main-c"><a href="#10-main-c" class="headerlink" title="10. main.c"></a>10. main.c</h4><p>​    初始化一些硬件<br>​    mem_init()：把内存信息列表，即mem_init表，哪些占用，哪些没有</p>
-<h4 id="11-内核"><a href="#11-内核" class="headerlink" title="11. 内核"></a>11. 内核</h4><p>​    操作系统一直运行在计算机上的程序<br>​    除了内核以外还有两类程序：系统程序、应用程序</p>
-
-      
-    </div>
+            </div>
+          
+      </section>
+    
+    
 </article>
 
-    </li>
   
-</ul>
-
-
+</div>
 
             <footer>
     <div>© 2021 - nature </div>
