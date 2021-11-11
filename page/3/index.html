@@ -70,6 +70,199 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/05/17/Java03/">Java03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-05-17T11:00:52.000Z" itemprop="datePublished">
+    2021-05-17
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h4 id="1-前面的char类型只可以表示单个字符"><a href="#1-前面的char类型只可以表示单个字符" class="headerlink" title="1. 前面的char类型只可以表示单个字符"></a>1. 前面的char类型只可以表示单个字符</h4><h4 id="2-java语言将字符串作为对象来处理，可以通过java-lang包中的String类来创建字符串对象"><a href="#2-java语言将字符串作为对象来处理，可以通过java-lang包中的String类来创建字符串对象" class="headerlink" title="2. java语言将字符串作为对象来处理，可以通过java.lang包中的String类来创建字符串对象"></a><strong>2. java语言将字符串作为对象来处理，可以通过java.lang包中的String类来创建字符串对象</strong></h4><h4 id="3-java中由双引号-“”-包围的都是字符串，不能作为其他数据类型来使用"><a href="#3-java中由双引号-“”-包围的都是字符串，不能作为其他数据类型来使用" class="headerlink" title="3. java中由双引号(“”)包围的都是字符串，不能作为其他数据类型来使用"></a>3. java中由双引号(“”)包围的都是字符串，不能作为其他数据类型来使用</h4><h4 id="4-声明字符串"><a href="#4-声明字符串" class="headerlink" title="4. 声明字符串"></a>4. 声明字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：声明的字符串变量必须经过初始化才可以使用，否则编译器报错</strong></p>
+<h4 id="5-创建字符串对象"><a href="#5-创建字符串对象" class="headerlink" title="5. 创建字符串对象"></a><strong>5. 创建字符串对象</strong></h4><p>由于java是按照对象来处理字符串，所以创建方式和对象一样</p>
+<p>==String类常用的构造方法==<br>​    (1).String(char a[])<br>​    用一个字符数组a创建String对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char a[] &#x3D; &#123;&#39;g&#39;,&#39;o&#39;,&#39;o&#39;,&#39;d&#39;&#125;; 等价于    </span><br><span class="line">String s &#x3D; new String(a);	  &#x3D;&#x3D;&#x3D;&#x3D;&gt;   String s &#x3D; new String(&quot;good&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>​    (2).String(char a[],int offset,int length)  <strong>//从第offse个元素向后取length个元素</strong></p>
+<p>​    提取字符数组a中的一部分创建一个字符串对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char a[] &#x3D; &#123;&#39;s&#39;,&#39;t&#39;,&#39;u&#39;,&#39;d&#39;,&#39;e&#39;,&#39;n&#39;,&#39;t&#39;&#125;; 等价</span><br><span class="line">String s&#x3D;new String(a,2,4)               &#x3D;&#x3D;&#x3D;&gt;String s&#x3D;new String(&quot;uden&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>​    (3).引用字符串常量来创建字符串变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1,str2;</span><br><span class="line">str1 &#x3D; &quot;We are students&quot;;</span><br><span class="line">str2 &#x3D; &quot;We are students&quot;;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：str1和str2引用相同的字符串常量，所以指向同一个实体所在的内存</strong></p>
+<h4 id="6-连接字符串"><a href="#6-连接字符串" class="headerlink" title="6. 连接字符串"></a>6. 连接字符串</h4><p>使用”+”运算符可以实现连接多个字符串，”+”连接多个字符串后产生一个String对象<br><strong>注意：字符串也可以与其他基本数据类型连接，连接后这些数据将转化为字符串，当基本数据类型与字符串连接时会自动调用toString()方法将其转为字符串形式</strong></p>
+<h4 id="7-获取字符串的长度"><a href="#7-获取字符串的长度" class="headerlink" title="7. 获取字符串的长度"></a>7. 获取字符串的长度</h4><p>​    使用String类型下的length()方法可以获取声明的字符串对象的长度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.length()      &#x2F;&#x2F;str为字符串对象</span><br></pre></td></tr></table></figure>
+<p>​    字符串的下标是0~length()-1</p>
+<h4 id="8-字符串查找的方法"><a href="#8-字符串查找的方法" class="headerlink" title="8. 字符串查找的方法"></a>8. 字符串查找的方法</h4><p>(1).indexOf(String s)<br>返回值为int型，在里面填想要查找的字符串，返回整个字符串中第一次出现的这个字符串的第一个元素的数组下标对应的位置(索引位置)，如果没有检索到字符串s，则返回-1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.indexOf(the_str1)  &#x2F;&#x2F;字符用单(双)引号，字符串用双引号</span><br></pre></td></tr></table></figure>
+<p>​    (2).lastIndexOf(String str)<br>​    返回值为int型，在里面填想要查找的字符串，返回整个字符串中最后一次出现的这个字符串的第一个元素的数组下标对应的位置(索引位置)，如果没有检索到字符串s，则返回-1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.lastIndexOf(the_str1)</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>注意：如果lastIndexOf方法中的参数是空字符串””，则返回结果和调用该字符串的length()方法返回结果相同，indexOf方法中的参数是空字符串””，则返回结果为0</strong></p>
+<h4 id="9-获取指定索引位置的字符"><a href="#9-获取指定索引位置的字符" class="headerlink" title="9. 获取指定索引位置的字符"></a>9. 获取指定索引位置的字符</h4><p>​    使用charAt()方法，可以将指定索引处的字符返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.charAt(int index)  &#x2F;&#x2F;返回值为char</span><br></pre></td></tr></table></figure>
+<p>​    注意：若索引值超出本身字符串的长度则报错</p>
+<h4 id="10-字符串操作"><a href="#10-字符串操作" class="headerlink" title="10. 字符串操作"></a>10. 字符串操作</h4><p>​    (1).获取子字符串<br>​    通过String类下的substring()方法（两种方法重载），返回值String类型</p>
+<ul>
+<li>substring(int beginIndex)<br>​    从指定的索引位置开始截取直到该字符串结尾的子串，beginIndex指指定的索引位置<br>​    </li>
+<li>substring(int beginIndex , int endIndex)<br>​      从字符串某一索引位置开始截取至某一索引位置结束的子串<br>​      <strong>注意：取得到第beginIndex这里的字符，取不到第endIndex这里的字符，即在这里结束</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String s &#x3D; &quot;hello&quot;;</span><br><span class="line">String s1 &#x3D; s.substring(3);</span><br><span class="line">System.out.print(s1);</span><br><span class="line">&#x2F;&#x2F;输出：lo</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>​    (2).去除空格<br>​    通过trim()方法返回字符串的副本,作用是忽略前导空格和尾部空格,注意:字符串中间的空格不忽略,返回值为String</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.trim()  &#x2F;&#x2F;str为字符串对象</span><br></pre></td></tr></table></figure>
+<p>​<br>​    (3).字符串替换<br>​    通过replace()方法来实现将指定的字符或者字符串替换成新的字符或字符串,返回值为String</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">str.replace(char oldChar , char newChar)</span><br><span class="line">&#x2F;*</span><br><span class="line">oldChar:要替换的字符或字符串</span><br><span class="line">newChar:用于替换原来字符串的内容</span><br><span class="line">*&#x2F;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>注意:<br>​    [1].如果字符串oldChar没有出现在原字符串中,则将原字符串返回<br>​    [2].如果要替换的oldChar在原字符串中出现多次,则会被全部替换成newChar<br>​    [3].切记大小写是区分的</strong></p>
+<p>​    (4).判断字符串以什么开头与结尾<br>​    [1].startsWith()方法<br>​    该方法用于判断当前字符串是否以指定的前缀开头，返回值为Boolean类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.startsWith(String prefix)  &#x2F;&#x2F;prefix指作为前缀的字符或字符串</span><br></pre></td></tr></table></figure>
+<p>​    [2].endsWith()方法<br>​    该方法用于判断当前字符串是否以指定的后缀结束，返回值为Boolean类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.endsWith(String suffix)  &#x2F;&#x2F;suffix指作为后缀的字符或字符串</span><br></pre></td></tr></table></figure>
+
+<p>​    (5).判断字符串是否相等<br>​    对于字符串的比较不可以使用’==’来进行判断，因为比较运算符是比较两个字符串的地址，即使字符串内容相同但地址也是不同的<br>​    通过equals()方法或者equalsIgnoreCase()方法<br>​    [1].equals()方法<br>​    如果两个字符串具有相同的字符和长度，返回值为ture，即返回值为Boolean类型<br>​    <strong>注意：equals()方法严格区分大小写</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.equals(String otherstr)  &#x2F;&#x2F;str和otherstr相比较</span><br></pre></td></tr></table></figure>
+<p>​    [2].equalsIgnoreCase()方法<br>​    在忽略字符串大小写的情况下比较字符串是否相等，返回值为Boolean类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.equalsIgnoreCase(String otherstr)  &#x2F;&#x2F;str和otherstr相比较</span><br></pre></td></tr></table></figure>
+
+<p>​    (6).字符串分割<br>​    使用split()方法对给定原字符串指定的分割字符或分割字符串进行分割，将分割后的结果放在字符串数组中，返回值为字符串数组<br>​    [1].split(String sign)<br>​    对给定分隔符对字符串拆分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.split(String sign)  &#x2F;&#x2F;sign为分割符为String类型，即注意必须用&quot;&quot;,不能使用&#39;&#39;</span><br></pre></td></tr></table></figure>
+
+<p>​    [2].split(String sign,int limit)<br>​    对给定分隔符对字符串拆分，并限制拆分次数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.split(String sign,int limit)  &#x2F;&#x2F;sign为分割符为String类型，即注意必须用&quot;&quot;,不能使用&#39;&#39;,limit为分割次数</span><br></pre></td></tr></table></figure>
+<p>​    **注意：如果想定义多个分割符，可以使用’|’来隔开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如：</span><br><span class="line">str.split(&quot;+|&#x3D;&quot;)  &#x2F;&#x2F;以+和&#x3D;进行分割</span><br></pre></td></tr></table></figure>
+
+<h4 id="11-格式化字符串"><a href="#11-格式化字符串" class="headerlink" title="11. 格式化字符串"></a>11. 格式化字符串</h4><pre><code>  String类的静态format()方法用于创建格式化字符串，返回值为String类型</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s &#x3D; String.format(&quot;转换符&quot;,变量); &#x2F;&#x2F;对变量进行格式化，变量参数只要是类类型就可以</span><br></pre></td></tr></table></figure>
+<p>​    与C语言中printf的转化类似</p>
+<h4 id="12-了解"><a href="#12-了解" class="headerlink" title="12. 了解"></a>12. 了解</h4><p>​    (1).Date类来实现获取日期并通过格式化字符串来显示想要的数据<br>​    (2).正则表达式是用来检查某一字符串是否满足某一格式<br>​    (3).字符串生成器StringBuilder类，用来实现对字符串操作提高效率</p>
+<h4 id="13-StringBuilder类与String类型的转换"><a href="#13-StringBuilder类与String类型的转换" class="headerlink" title="13. StringBuilder类与String类型的转换"></a>13. StringBuilder类与String类型的转换</h4><ul>
+<li><p>将String类转为StringBuilder类(转为StringBuffer类同理)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s &#x3D; “xxxx”;</span><br><span class="line">StringBuilder sb &#x3D; new StringBuilder(s);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将StringBuilder类转为String类(StringBuffer类转String同理)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder s1 &#x3D; new StringBuilder(); &#x2F;&#x2F;初始化器里可以赋值</span><br><span class="line">String s &#x3D; s1.toString();</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/05/05/%E9%9F%B3%E4%B9%90%E5%B0%8F%E7%A8%8B%E5%BA%8F03/">音乐小程序03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-05-05T09:24:17.000Z" itemprop="datePublished">
+    2021-05-05
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E9%9F%B3%E4%B9%90%E5%B0%8F%E7%A8%8B%E5%BA%8F/">音乐小程序</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="首页的编写"><a href="#首页的编写" class="headerlink" title="首页的编写"></a>首页的编写</h2><p><strong>1. 轮播图</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;block&gt;&lt;&#x2F;block&gt;组件</span><br><span class="line">作用：作为一个结点并不会渲染到界面上，一般把wx:for放在里面，循环中每个选项默认的值是item</span><br></pre></td></tr></table></figure>
+<p>wxml代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;需要对swiper(大盒子)和image(小盒子)进行wxss大小的限定</span><br><span class="line">&lt;swiper autoplay&#x3D;&quot;true&quot; circular&#x3D;&quot;true&quot; indicator-dots&#x3D;&quot;true&quot; class&#x3D;&quot;head&quot;&gt;</span><br><span class="line">  &lt;block wx:for&#x3D;&quot;&#123;&#123;swiperpictures&#125;&#125;&quot;&gt;</span><br><span class="line">    &lt;swiper-item&gt;</span><br><span class="line">      &lt;image src&#x3D;&quot;&#123;&#123;item.url&#125;&#125;&quot; mode&#x3D;&quot;widthFix&quot; class&#x3D;&quot;swiperimg&quot;&gt;&lt;&#x2F;image&gt;  &#x2F;&#x2F;url是在js代码中自己定义的对象名</span><br><span class="line">    &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;&#x2F;block&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br></pre></td></tr></table></figure>
+
+<p>wxss代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.head&#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 544rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.swiperimg&#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在js中data里的数据就是需要展示在页面中的数据</strong><br>js代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">	&#x2F;&#x2F;建立一个数组swiperpictures</span><br><span class="line">    swiperpictures:[  </span><br><span class="line">	  &#x2F;&#x2F;每一个花括号里面是一个对象,对象名自己起</span><br><span class="line">      &#123;</span><br><span class="line">        &#x2F;&#x2F;对象里面放的是图片的网络地址</span><br><span class="line">        url:&quot;https:&#x2F;&#x2F;636c-cloud-7gxr9uz450402f24-1305716784.tcb.qcloud.la&#x2F;2020.jpg&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        url:&quot;https:&#x2F;&#x2F;636c-cloud-7gxr9uz450402f24-1305716784.tcb.qcloud.la&#x2F;2020.jpg&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        url:&quot;https:&#x2F;&#x2F;636c-cloud-7gxr9uz450402f24-1305716784.tcb.qcloud.la&#x2F;2020.jpg&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 组件化开发</strong><br>    (1)组件：在用户界面开发领域，组件是一种面向用户的、独立的、可复用的交互元素的封装<br>    (2)组件的构成<br>    结构-&gt;wxml<br>    逻辑-&gt;js<br>    样式-&gt;wxss<br>    还会有json文件（对当前组件的配置文件）<br>    (3)组件并不一定需要多次使用</p>
+<p><strong>3. 自定义歌单组件</strong><br>​    <strong>(1)创建自定义组件</strong><br>​    在miniprogram中新建一个文件夹components(组件)，再在该文件夹下创建playlist(歌单)文件夹，再在该文件夹下创建component名字可以和文件夹相同<br>​    <strong>(2)自定义组件的引用</strong><br>​    首先要完成自定义组件的构成，如只在wxss中写一段话<br>​    在想要引用的页面的文件的json文件中”usingComponents”中写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;usingComponents&quot;: &#123;</span><br><span class="line">   &quot;l-playlist&quot;: &quot;..&#x2F;..&#x2F;components&#x2F;playlist&#x2F;playlist&quot;  &#x2F;&#x2F;前面是自己对组件起名，后面是写组件的路径，这个路径要精确到文件夹下的文件，不需要写后缀</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>​    之后就在引用组件的页面的wxml文件夹中引用标签名，标签名为你所起的名字<br>​    如，在home.wxml(首页)中引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;l-playlist&gt;&lt;&#x2F;l-playlist&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​     <strong>(3).从页面向自定义组件传参</strong><br>​     在页面的js文件中的page下新建一个数组playlist_data，再在里面放一些对象(数据)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">playlist_data:[</span><br><span class="line">      &#123;&quot;_id&quot;:&quot;08560c9e5d042a5c0174f1ca26f1d7b2&quot;,&quot;copywrier&quot;:&quot;热门推荐&quot;,&quot;playCount&quot;:1.4641238e+06,&quot;highQuality&quot;:false,&quot;type&quot;:0.0,&quot;canDislike&quot;:true,&quot;name&quot;:&quot;天气转热了，适合听点凉爽的歌。&quot;,&quot;alg&quot;:&quot;cityLevel_unknow&quot;,&quot;createTime&quot;:&#123;&quot;$date&quot;:&quot;2019-06-14T23:14:36.746Z&quot;&#125;,&quot;id&quot;:2.780381322e+09,&quot;picUrl&quot;:&quot;https:&#x2F;&#x2F;p2.music.126.net&#x2F;Biky7TE4CtW6NjGuqoUKZg&#x3D;&#x3D;&#x2F;109951164041827987.jpg&quot;,&quot;trackCount&quot;:53.0&#125;,</span><br><span class="line">      &#123;&quot;_id&quot;:&quot;08560c9e5d042a5c0174f1da7aa357aa&quot;,&quot;highQuality&quot;:false,&quot;copywriter&quot;:&quot;热门推荐&quot;,&quot;canDislike&quot;:true,&quot;playCount&quot;:622822.6,&quot;id&quot;:2.740107647e+09,&quot;name&quot;:&quot;「时空潜行」囿于昼夜的空想主义者&quot;,&quot;type&quot;:0.0,&quot;alg&quot;:&quot;cityLevel_unknow&quot;,&quot;createTime&quot;:&#123;&quot;$date&quot;:&quot;2019-06-14T23:14:36.955Z&quot;&#125;,&quot;picUrl&quot;:&quot;https:&#x2F;&#x2F;p2.music.126.net&#x2F;Q0eS0avwGK04LufWM7qJug&#x3D;&#x3D;&#x2F;109951164116217181.jpg&quot;,&quot;trackCount&quot;:20.0&#125;,</span><br><span class="line">      &#123;&quot;_id&quot;:&quot;08560c9e5d042a5c0174f1de21c7e79e&quot;,&quot;id&quot;:2.828842343e+09,&quot;type&quot;:0.0,&quot;name&quot;:&quot;粤语情诗：与你听风声，观赏过夜星&quot;,&quot;picUrl&quot;:&quot;https:&#x2F;&#x2F;p2.music.126.net&#x2F;K9IcG8cU6v4_SwuQ_x2xMA&#x3D;&#x3D;&#x2F;109951164124604652.jpg&quot;,&quot;highQuality&quot;:false,&quot;alg&quot;:&quot;cityLevel_unknow&quot;,&quot;playCount&quot;:1.785097e+06,&quot;trackCount&quot;:52.0,&quot;copywriter&quot;:&quot;热门推荐&quot;,&quot;canDislike&quot;:true,&quot;createTime&quot;:&#123;&quot;$date&quot;:&quot;2019-06-14T23:14:36.982Z&quot;&#125;&#125;,</span><br><span class="line">      &#123;&quot;_id&quot;:&quot;08560c9e5d042a5d0174f1e67d1bb16f&quot;,&quot;playCount&quot;:7.719329e+06,&quot;highQuality&quot;:false,&quot;trackCount&quot;:950.0,&quot;alg&quot;:&quot;cityLevel_unknow&quot;,&quot;id&quot;:9.17794768e+08,&quot;type&quot;:0.0,&quot;name&quot;:&quot;翻唱简史：日本四百首&quot;,&quot;canDislike&quot;:true,&quot;createTime&quot;:&#123;&quot;$date&quot;:&quot;2019-06-14T23:14:37.037Z&quot;&#125;,&quot;copywriter&quot;:&quot;热门推荐&quot;,&quot;picUrl&quot;:&quot;https:&#x2F;&#x2F;p2.music.126.net&#x2F;NczCuurE5eVvObUjssoGjQ&#x3D;&#x3D;&#x2F;109951163788653124.jpg&quot;&#125;,</span><br><span class="line">      &#123;&quot;_id&quot;:&quot;08560c9e5d042a5d0174f1ea32c4c288&quot;,&quot;type&quot;:0.0,&quot;copywriter&quot;:&quot;热门推荐&quot;,&quot;highQuality&quot;:false,&quot;createTime&quot;:&#123;&quot;$date&quot;:&quot;2019-06-14T23:14:37.097Z&quot;&#125;,&quot;id&quot;:2.201879658e+09,&quot;alg&quot;:&quot;cityLevel_unknow&quot;,&quot;playCount&quot;:1.06749088e+08,&quot;name&quot;:&quot;你的青春里有没有属于你的一首歌？&quot;,&quot;picUrl&quot;:&quot;https:&#x2F;&#x2F;p2.music.126.net&#x2F;wpahk9cQCDtdzJPE52EzJQ&#x3D;&#x3D;&#x2F;109951163271025942.jpg&quot;,&quot;canDislike&quot;:true,&quot;trackCount&quot;:169.0&#125;,</span><br><span class="line">      &#123;&quot;_id&quot;:&quot;08560c9e5d0829820362a79f4b049d2d&quot;,&quot;alg&quot;:&quot;cityLevel_unknow&quot;,&quot;name&quot;:&quot;「乐队的夏天」参赛歌曲合集丨EP04更新&quot;,&quot;highQuality&quot;:false,&quot;picUrl&quot;:&quot;http:&#x2F;&#x2F;p2.music.126.net&#x2F;2WE5C2EypEwLJd2qXFd4cw&#x3D;&#x3D;&#x2F;109951164086686815.jpg&quot;,&quot;trackCount&quot;:158.0,&quot;createTime&quot;:&#123;&quot;$date&quot;:&quot;2019-06-18T00:00:02.553Z&quot;&#125;,&quot;copywriter&quot;:&quot;热门推荐&quot;,&quot;playCount&quot;:1.5742008e+06,&quot;canDislike&quot;:true,&quot;id&quot;:2.79477263e+09,&quot;type&quot;:0.0&#125;</span><br><span class="line"></span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+<p>​      之后在该页面的wxml文件中，循环遍历这个控件的标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;view&gt;   &#x2F;&#x2F;view标签是之后可以设计一些样式</span><br><span class="line">  &lt;block wx:for&#x3D;&quot;&#123;&#123;playlist_data&#125;&#125;&quot;&gt;</span><br><span class="line">    &lt;l-playlist send_data&#x3D;&quot;&#123;&#123;item&#125;&#125;&quot;&gt;&lt;&#x2F;l-playlist&gt;  &#x2F;&#x2F;send_data:将数据传出去,名字随便起的</span><br><span class="line">  &lt;&#x2F;block&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>(4).在自定义组件中接收参数</strong><br>​    在自定义组件的js文件中<br>​    properties:{}是用来接收传过来的参数的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">properties: &#123;</span><br><span class="line">	  &#x2F;&#x2F;冒号前的名字与之前页面自定义控件起的属性名一致</span><br><span class="line">	  send_data:&#123;</span><br><span class="line">        type:Object  &#x2F;&#x2F;指定传入参数的类型，类型给与的是对象用object，其他值后面再定义</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>​    data:{}里面放的是组件内部的数据<br>​    methods:{}里面放组件里对应的一些方法(如点击跳转)</p>
+<p>​    <strong>(5).在组件中显示这些传过来的参数</strong><br>​    在组件的wxml文件中引用这些传过来的参数，通过在组件js的属性名来引用对象中具体的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;playlist-content&quot;&gt;</span><br><span class="line">  &lt;image src&#x3D;&quot;&#123;&#123;send_data.picUrl&#125;&#125;&quot; class&#x3D;&quot;playlist-img&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;text class&#x3D;&quot;playlist-playCount&quot;&gt;&#123;&#123;send_data.playCount&#125;&#125;&lt;&#x2F;text&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;playlist-name&quot;&gt;&#123;&#123;send_data.name&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+<p>​    之后再通过组件的wxss文件来写一些css样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">.playlist-content&#123;</span><br><span class="line">  width: 220rpx;</span><br><span class="line">  position: relative;</span><br><span class="line">  padding-bottom: 20rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.playlist-img&#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 220rpx;</span><br><span class="line">  border-radius: 6rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.playlist-playCount&#123;</span><br><span class="line">  font-size: 24rpx;</span><br><span class="line">  color: white;</span><br><span class="line">  text-shadow: 1px 0px 0px black;</span><br><span class="line">  position: absolute;</span><br><span class="line">  right: 10rpx;</span><br><span class="line">  top: 4rpx;</span><br><span class="line">  padding-left: 26rpx; </span><br><span class="line">  background: ;   &#x2F;&#x2F;自行引入base64的图片</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.playlist-name&#123;</span><br><span class="line">  font-size: 26rpx;</span><br><span class="line">  line-height: 1.2;</span><br><span class="line">  padding: 2px 0px 0px;</span><br><span class="line">  display: -webkit-box;</span><br><span class="line">  -webkit-box-orient: vertical;</span><br><span class="line">  -webkit-line-clamp: 2;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">  text-overflow: ellipsis;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>注意：小程序中的背景图片是不允许使用网页图片的，只能使用小程序的本地图片，或者base64的图片(百度一下很多网站都可以在线把图片转base64)</strong><br>​    之后对控件在页面的位置再在页面的wxss中写一些布局(css)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.home-playlist&#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-wrap: wrap;</span><br><span class="line">  justify-content: space-around;</span><br><span class="line">  margin-top: 10rpx;</span><br><span class="line">  flex-direction: row;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>(6).组件化开发的数据监听器</strong><br>​    当数据变化时可以监听到数据的变化<br>​    在组件的js文件中的properties的同级写一个数据监听器observers:{}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">   * 数据监听器</span><br><span class="line">   *&#x2F;</span><br><span class="line">  observers:&#123;</span><br><span class="line">  &#x2F;&#x2F;里面写对谁进行数据监听，对应的是一个方法</span><br><span class="line">    send_data(count)&#123;</span><br><span class="line">      console.log(count) &#x2F;&#x2F;此时打印出整个对象</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    如果要监听对象里的某个具体属性，需要改为</span><br><span class="line">    [&#39;send_data.playCount&#39;](count)&#123;</span><br><span class="line">      console.log(count)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>(7).对组件化开发监听器监听的数据的格式化处理</strong><br>​    在组件的js文件中的methods:{}中自己定义一个方法<br>​    注意：私有方法的命名格式以_开头</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    _tranNumber(num,point)&#123;</span><br><span class="line">      let numStr &#x3D; num.toString().split(&#39;.&#39;)[0]   &#x2F;&#x2F;把数字转为字符串类型，并忽略小数点，split表分隔作用，[0]取第一部分</span><br><span class="line">      &#x2F;&#x2F;对数字转化</span><br><span class="line">      if(numStr.length &lt; 6)&#123;</span><br><span class="line">        return numStr</span><br><span class="line">      &#125;</span><br><span class="line">      &#x2F;&#x2F;substring(start,end)(得到的子字符串不包含end位置的字符)</span><br><span class="line">      else if(numStr.length &gt;&#x3D; 6 &amp;&amp; numStr.length &lt;&#x3D; 8)&#123;</span><br><span class="line">        let decimal &#x3D; numStr.substring(numStr.length - 4 ,numStr.length - 4 + point) </span><br><span class="line">        return parseFloat(parseInt(num &#x2F; 10000) + &quot;.&quot; + decimal) + &quot;万&quot;</span><br><span class="line">      &#125;</span><br><span class="line">      else if(numStr.length &gt; 8)&#123;</span><br><span class="line">        let decimal &#x3D; numStr.substring(numStr.length - 8 , numStr.length - 8 + point)</span><br><span class="line">        return parseFloat(parseInt(num &#x2F; 100000000) + &quot;.&quot; + decimal) + &quot;亿&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>(7).通过this.setData的方式将处理的数据显示在页面上</strong><br>​    <strong>需要引用第二个值来接收处理完的数据，，因为如果继续给[‘send_data.playCount’]，那又会被数据监听器监听到会进入一个死循环,==即不能对当前监听的值进行赋值==</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 数据监听器</span><br><span class="line"> *&#x2F;</span><br><span class="line">observers:&#123;</span><br><span class="line">  [&#39;send_data.playCount&#39;](count)&#123;</span><br><span class="line">    console.log(count)</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      _count:this._tranNumber(count,2)  &#x2F;&#x2F;将处理后的数据赋值给刚刚声明的变量</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 组件的初始数据</span><br><span class="line"> *&#x2F;</span><br><span class="line">data: &#123;</span><br><span class="line">  _count:0   &#x2F;&#x2F;重新声明一个值来接收处理后的值</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>​    页面上应该显示_count的值，所以需要修改控件的wxml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;text class&#x3D;&quot;playlist-playCount&quot;&gt;&#123;&#123;_count&#125;&#125;&lt;&#x2F;text&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>4. wx:key的使用</strong><br>​    在使用wx:for时，应该写入一个wx:key来提高程序的性能<br>​    <strong>(1).对于遍历时对于每个对象的重命名，通过wx:for-item来改名</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;将每一个对象重命名为data</span><br><span class="line">&lt;block wx:for&#x3D;&quot;&#123;&#123;arr&#125;&#125;&quot; wx:for-item&#x3D;&quot;data&quot;&gt; </span><br><span class="line">	&lt;view&gt;&#123;&#123;data&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;block&gt;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>(2).索引的使用</strong><br>​    通过index来引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;block wx:for&#x3D;&quot;&#123;&#123;arr&#125;&#125;&quot; wx:for-item&#x3D;&quot;data&quot;&gt; </span><br><span class="line">	&lt;view&gt;&#123;&#123;index&#125;&#125;:&#123;&#123;data&#125;&#125;&lt;&#x2F;view&gt;   &#x2F;&#x2F;使用索引，从0开始</span><br><span class="line">&lt;&#x2F;block&gt;</span><br></pre></td></tr></table></figure>
+<p>​    如果要更改索引的名字，通过wx:for-index来改名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;block wx:for&#x3D;&quot;&#123;&#123;arr&#125;&#125;&quot; wx:for-item&#x3D;&quot;data&quot; wx:for-index&#x3D;&quot;idx&quot;&gt; </span><br><span class="line">	&lt;view&gt;&#123;&#123;idx&#125;&#125;:&#123;&#123;data&#125;&#125;&lt;&#x2F;view&gt;   &#x2F;&#x2F;使用索引，从0开始</span><br><span class="line">&lt;&#x2F;block&gt;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>(3).wx:key的作用</strong><br>​    <strong>当遍历的对象会随着一些变化而变化时，当前这些对象要保持自己的一些状态就需要使用wx:key</strong><br>​    小程序中提供*this来指向元素本身</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx:key&#x3D;&quot;&#123;&#123;*this&#125;&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>​    如果指定的是对象的话，只需要指定对象的一个唯一的属性作为wx:key中两个花括号里的参数就行</p>
+<p>​    因此，现在把项目中的一些警告修改一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">遍历向组件传参时，此时_id为对象的主键，把他作为wx:key的参数</span><br><span class="line">&lt;block wx:for&#x3D;&quot;&#123;&#123;playlist_data&#125;&#125;&quot; wx:key&#x3D;&quot;_id&quot;&gt;</span><br><span class="line"></span><br><span class="line">遍历轮播图时，把轮播图图片的对象url作为wx:key的参数</span><br><span class="line">&lt;block wx:for&#x3D;&quot;&#123;&#123;swiperpictures&#125;&#125;&quot; wx:key&#x3D;&quot;url&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>此时，警告都会消除</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/05/05/%E8%AE%BA%E9%9B%B6%E7%A2%8E%E5%8C%96%E6%97%B6%E9%97%B4%E7%9A%84%E7%94%B1%E6%9D%A5/">论零碎化时间的由来</a>
         </h1>
       
@@ -474,110 +667,11 @@
 
     </li>
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/18/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A404/">图灵工作室04</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-18T09:56:30.000Z" itemprop="datePublished">
-    2021-04-18
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="底端固定的方式-css"><a href="#底端固定的方式-css" class="headerlink" title="底端固定的方式(css)"></a>底端固定的方式(css)</h2><p>position: fixed; //固定定位<br>bottom: 0;  //0表示底部</p>
-<p><strong>注意：line-height为行高，当行高等于行的高度时，里面的东西居中,用于文字</strong></p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%95%86%E5%93%81%E9%A1%B5%E9%9D%A2/">微信小程序-商品页面</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-18T09:56:15.000Z" itemprop="datePublished">
-    2021-04-18
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/wx%E5%AE%9E%E8%B7%B5/">wx实践</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;swiper class&#x3D;&quot;myswiper&quot; bindchange&#x3D;&quot;changeImg&quot; indicator-dots&#x3D;&quot;ture&quot; autoplay&#x3D;&quot;ture&quot; circular&#x3D;&quot;ture&quot;&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;租借图片&#x2F;毕业季.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;apple.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;hw1.jpg?sign&#x3D;fee0f936bbe930fb6d94b51747d7a213&amp;t&#x3D;1618020235&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;parent&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color1&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text1&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;money&quot;&gt;￥&#123;&#123;price&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text2&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;people&quot;&gt;0人买过&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color2&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text3&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple&quot;&gt;&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text4&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple_computer&quot;&gt;这是&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;bottom&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture1&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;server&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-question.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;bottom_text&quot;&gt;客服&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture2&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;shop&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-shop.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;bottom_text&quot;&gt;商店&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;last&quot;&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;button&quot;&gt;立即购买&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h3><p>.picture{<br>  width: 100%;<br>}</p>
-<p>.myswiper{<br>  width: 100%;<br>  height: 750rpx;<br>}</p>
-<p>.parent{<br>  width: 100%;<br>  height: 250rpx;<br>  display: flex;<br>  flex-direction: column;<br>  /* background-color:blue; */<br>}</p>
-<p>.color1{<br>  width: 100%;<br>  display: flex;<br>  flex-direction: row;<br>  /* background-color: yellow; */<br>  flex-grow: 1;<br>}</p>
-<p>.color2{<br>  width: 100%;<br>  display: flex;<br>  flex-direction:column;<br>  /* background-color:green; */<br>  flex-grow: 2;<br>}</p>
-<p>.text1{<br>  /* background-color: red; */<br>  padding-left: 25rpx;<br>  display: flex;<br>  flex-direction: column;<br>  align-items: flex-start;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
-<p>.text2{<br>  /* background-color: blue; */<br>  display: flex;<br>  flex-direction: column;<br>  padding-right: 25rpx;<br>  align-items: flex-end;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
-<p>.text3{<br>  /* background-color: blue; */<br>  display: flex;<br>  padding-left: 20rpx;<br>  flex-direction: column;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
-<p>.text4{<br>  /* background-color: brown; */<br>  display: flex;<br>  padding-left: 20rpx;<br>  flex-direction: column;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
-<p>.money{<br>  color: red;<br>  font-size: 40rpx;<br>  font-weight: bold;<br>}</p>
-<p>.people{<br>  color:#DCDCDC;<br>  font-size: 25rpx;<br>}</p>
-<p>.apple{<br>  font-size: 40rpx;<br>  font-weight: bold;<br>}</p>
-<p>.apple_computer{<br>  color:#DCDCDC;<br>  font-size: 25rpx;<br>}</p>
-<p>.bottom{<br>  position: fixed;<br>  bottom: 0;<br>  width: 100%;<br>  height: 100rpx;<br>  /* background:yellow; */<br>  display:flex;<br>  flex-direction: row;<br>}</p>
-<p>.bottom_picture1{<br>  /* background-color: aqua; */<br>  padding-left: 14rpx;<br>  width: 13%;<br>  height: 100rpx;<br>  display: flex;<br>  flex-direction:column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
-<p>.server{<br>  width: 55rpx;<br>}</p>
-<p>.shop{<br>  width: 55rpx;<br>}</p>
-<p>.bottom_picture2{<br>  /* background-color: rgb(71, 127, 190); */<br>  width: 13%;<br>  height: 100rpx;<br>  display: flex;<br>  flex-direction:column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
-<p>.bottom_text{<br>  font-size: 28rpx;<br>}</p>
-<p>.last{<br>  padding-left: 30rpx;<br>  display: flex;<br>  flex-direction: column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
-<p>.button{<br>  width: 460rpx !important;<br>  background: #f12711;  /* fallback for old browsers <em>/<br>  background: -webkit-linear-gradient(to right, #f5af19, #f12711);  /</em> Chrome 10-25, Safari 5.1-6 <em>/<br>  background: linear-gradient(to right, #f5af19, #f12711); /</em> W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */</p>
-<p>  border-radius: 140rpx;<br>  color: white !important;<br>  font-weight: normal;<br>  font-size: 14px;<br>}</p>
-<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><p>Page({<br>  data:{<br>    price:200,<br>    shopname:’我们毕业了’<br>  },<br>  changeImg:function(e){<br>    console.log(e.detail.current)<br>    var currentIndex=e.detail.current<br>    if(currentIndex==0){<br>      this.setData({<br>        price:200,<br>        shopname:’我们毕业了’<br>      })<br>    }else if(currentIndex==1){<br>      this.setData({<br>        price:5700,<br>        shopname:’苹果电脑’<br>      })<br>    }else{<br>      this.setData({<br>        price:12000,<br>        shopname:’华为笔记本’<br>      })<br>    }<br>  }<br>})</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
 </ul>
 
   <section id="nav-wrapper">
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">« prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">next »</a>
+      <a class="extend prev" rel="prev" href="/page/2/">« prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">next »</a>
     </nav>
   </section>
 

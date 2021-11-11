@@ -74,6 +74,81 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/11/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03/">操作系统03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-11-11T06:23:52.000Z" itemprop="datePublished">
+    2021-11-11
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="CPU与多进程"><a href="#CPU与多进程" class="headerlink" title="CPU与多进程"></a>CPU与多进程</h2><h4 id="1-多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心"><a href="#1-多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心" class="headerlink" title="1. 多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心"></a>1. 多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心</h4><h4 id="2-CPU的工作原理"><a href="#2-CPU的工作原理" class="headerlink" title="2. CPU的工作原理"></a>2. CPU的工作原理</h4><p>​    把一个程序存放在内存中，设置一个地址，CPU根据这个地址发出一条取址的命令，即把这个地址从地址总线上由内存发给CPU，CPU得到程序后开始解释执行</p>
+<p>​    <strong>CPU的工作就是不断的自动取址执行</strong></p>
+<h4 id="3-CPU的管理"><a href="#3-CPU的管理" class="headerlink" title="3. CPU的管理"></a>3. CPU的管理</h4><p>​    设置好PC初值就行（<strong>PC是寄存器</strong>），把PC初值设置在一段程序的开始地址</p>
+<p>​    <strong>问题</strong><br>​    但是如果只是设置好PC初值就等待程序执行会出现一个问题，当程序开始磁盘读写(I/O)时(很慢)，CPU不工作进入等待，而一般一个程序计算时间远比磁盘读写时间少，则造成CPU利用率很低，甚至为0</p>
+<p>​    <strong>解决方式：多到程序、交替执行(让CPU更好的工作)</strong><br>​    当CPU执行程序执行不下去时，就切出换到另外的程序去执行。等再执行不下去再切出，由此使得CPU忙碌，但<strong>所有程序终会在来回切换中执行完</strong></p>
+<p>​    一个CPU上交替的执行多个程序叫做<strong>并发</strong></p>
+<h4 id="4-怎么让CPU并发的工作"><a href="#4-怎么让CPU并发的工作" class="headerlink" title="4. 怎么让CPU并发的工作"></a>4. 怎么让CPU并发的工作</h4><ul>
+<li>控制PC进行切换</li>
+<li>记录程序切出去时的程序执行到的地址，样子（运行的程序和静态程序不一样）</li>
+</ul>
+<h4 id="5-刻画运行程序的样子：进程"><a href="#5-刻画运行程序的样子：进程" class="headerlink" title="5. 刻画运行程序的样子：进程"></a>5. 刻画运行程序的样子：进程</h4><p>​    一个运行中的程序就是一个进程<br>​    所有程序的不一样都存在PCB中</p>
+<h4 id="6-用进程描述CPU管理"><a href="#6-用进程描述CPU管理" class="headerlink" title="6. 用进程描述CPU管理"></a>6. 用进程描述CPU管理</h4><p>​    启动一个进程让CPU去执行这个进程，此时CPU工作；而让CPU更好的工作则是操作系统启动多个进程，让CPU去跑这多个进程，提升CPU利用率。</p>
+<h4 id="7-多进程图像从启动开始到关机结束"><a href="#7-多进程图像从启动开始到关机结束" class="headerlink" title="7. 多进程图像从启动开始到关机结束"></a>7. 多进程图像从启动开始到关机结束</h4><p>​    在开机时在main中创建第一个进程（Linux是shell，Windows是桌面）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(!fork()&#123;init();&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>​    之后再通过shell启动其他的进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc,char *argv[])&#123;</span><br><span class="line">	while(1)&#123;</span><br><span class="line">		scanf(&quot;%s&quot;,cmd);</span><br><span class="line">		if(!fork())&#123;</span><br><span class="line">			exec(cmd);</span><br><span class="line">		&#125;</span><br><span class="line">		wait();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    多进程图示<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/IPnpHx"><img src="https://z3.ax1x.com/2021/11/01/IPnpHx.png" alt="IPnpHx.png"></a></p>
+<p>​    通过创建多进程来使用计算机</p>
+<p>​    在Windows下任务管理器可以看见多进程，启动一个进程就是开启一个任务</p>
+<p>​    <strong>操作系统通过管理多线程来管理计算机，用户使用计算机就是启动一堆进程，用户管理计算机就是管理一堆进程</strong></p>
+<h4 id="8-多进程如何组织"><a href="#8-多进程如何组织" class="headerlink" title="8. 多进程如何组织"></a>8. 多进程如何组织</h4><p>​    PCB：用来记录进程信息的数据结构</p>
+<p>​    操作系统通过PCB(进程控制块)来感知和组织进程（用PCB形成队列）</p>
+<p>​    进程状态转换图<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/IEj5qS"><img src="https://z3.ax1x.com/2021/11/03/IEj5qS.png" alt="IEj5qS.png"></a></p>
+<p>​    <strong>状态的转化是操作系统来实现的，通过不断的转化推进进程</strong></p>
+<h4 id="9-进程调度"><a href="#9-进程调度" class="headerlink" title="9. 进程调度"></a>9. 进程调度</h4><ol>
+<li><p>FIFO</p>
+<p>先来先付，最简单的调度，谁第一谁先</p>
+<ol start="2">
+<li>Priority</li>
+</ol>
+<p>优先级设定，最短的先做</p>
+</li>
+</ol>
+<h4 id="10-多进程的地址分离"><a href="#10-多进程的地址分离" class="headerlink" title="10. 多进程的地址分离"></a>10. 多进程的地址分离</h4><p>​    阻止两个以上进程在来回切换时访问同一个地址（通过映射表实现），使得地址在逻辑上可以相同但是物理上是不同</p>
+<p>​    <strong>所以说进程管理连带内存管理形成多进程图像</strong></p>
+<h4 id="11-多进程的合作问题"><a href="#11-多进程的合作问题" class="headerlink" title="11. 多进程的合作问题"></a>11. 多进程的合作问题</h4><p>​    如打印任务，存在一个打印文件队列，有进程往里面放要打印的东西（但是两个进程交替进行但是同时放会产生错误），有进程从中取出进行打印</p>
+<p>​    <strong>解决方式上锁（即进程同步(合理的推进方式)）</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/10/26/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02/">操作系统02</a>
         </h1>
       
