@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaEE-01 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+            <div>Updated every 5 days</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>JavaEE-01</h1>
+    </header>
+
+    <section>
+      <h2 id="Web与Tomcat"><a href="#Web与Tomcat" class="headerlink" title="Web与Tomcat"></a>Web与Tomcat</h2><h4 id="1-Web的简介"><a href="#1-Web的简介" class="headerlink" title="1. Web的简介"></a>1. Web的简介</h4><p>​    WEB最早出现是为了展示科研产品，到现在其发展超过预期，从WEB开始整个互联网的行业发生了变化</p>
+<p>​    不管怎么改变WEB的处理流程永远都只有两种形式：<strong>静态WEB和动态WEB</strong></p>
+<p>​    (1).静态WEB</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/IcNA3T"><img src="https://z3.ax1x.com/2021/11/14/IcNA3T.png" alt="IcNA3T.png"></a></p>
+<p>​    在WEB中分为客户端与服务器端，而客户端主要通过WEB浏览器访问服务器端，并且使用的是HTTP协议</p>
+<p>​    静态WEB的实现主要技术是：HTML、CSS、Javascript</p>
+<p>​    <strong>静态WEB的缺点：无法操作数据库</strong></p>
+<p>​    (2).动态WEB</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Icaq41"><img src="https://z3.ax1x.com/2021/11/14/Icaq41.png" alt="Icaq41.png"></a></p>
+<p>​    动态WEB与静态WEB一样，客户端上依然使用普通的WEB浏览器进行访问，但是服务器端的操作发生了变化</p>
+<p>​    用户发送来的请求将由WEB服务插件进行接收，插件的主要功能是区分用户发送过来的是动态的还是静态的请求( * .htm为静态请求、 * .jsp为动态请求)，如果是静态请求，则由Web Server调用文件系统中的指定文件内容并发回给客户端(与静态Web相同)，但是如果发送为动态请求，则所有的请求交由Web容器进行处理。Web容器负责拼凑代码，拼凑完后交由Web Server返回给用户进行展示</p>
+<p>​    <strong>动态Web的最大特征：交互性</strong></p>
+<p>​    由于有Web容器的支持，所以动态Web可以进行数据库的连接访问</p>
+<p>​    动态Web需要进行拼凑，所以总体上静态Web会快于动态Web</p>
+<p>​    <strong>动态Web的实现可以使用的技术</strong></p>
+<p>​    CGI，ASP，PHP，Servlet/JSP(Java做前台太费钱，也费劲)，RUBY，<strong>Node.JS</strong>，<strong>Python</strong></p>
+<p>​    没有加粗的不用看，都是夕阳</p>
+<p>​    核心本质没有变，还是Java处理整个后端业务(大脑)</p>
+<p>​    <strong>注意：Web Container（Web容器）是决定整个动态Web的核心，所有的代码一定是拼凑而成，拼凑完后还是HTML代码</strong></p>
+<h4 id="2-Tomcat的安装与配置"><a href="#2-Tomcat的安装与配置" class="headerlink" title="2. Tomcat的安装与配置"></a>2. Tomcat的安装与配置</h4><p>​    Tomcat是符合JavaEE标准的最小的Web容器</p>
+<p>​    <strong>服务器与容器的区别</strong></p>
+<p>​    服务器中会包含容器，除了容器之外服务器中还可能包含一些组件，例如：事务处理</p>
+<p>​    <strong>Tomcat的下载</strong></p>
+<p>​    去官网下载安装版，Tomcat本身很小，所以电脑上需要有额外的JDK</p>
+<p>​    安装完成后会自动在Windows的服务里面进行服务的注册，但是不可以在这里启动</p>
+<p>​    <strong>Tomcat的安装目录</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\Apache Software Foundation\Tomcat 10.0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>bin：包含了所有的可执行的程序命令，使用“Tomcat10.exe”命令可以启动Tomcat服务器，<strong>打开服务器之后，就可以利用浏览器访问，输入：<a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></strong></p>
+</li>
+<li><p>conf：包含了所有的配置文件路径信息</p>
+</li>
+<li><p>lib：这是一个Tomcat自己的CLASSPATH，可以在里面配置第三方的jar文件</p>
+</li>
+<li><p>logs：负责所有日志文件的保存目录</p>
+</li>
+<li><p>webapps：为项目的自动部署目录</p>
+</li>
+<li><p>work：保存所有的临时生成文件，如果程序则么都运行不了，但又没有错，可以考虑将此目录清空</p>
+</li>
+</ul>
+<p>​    <strong>Tomcat的使用（配置虚拟目录）</strong></p>
+<p>​    如果要在项目中使用Tomcat必须配置虚拟目录（核心）</p>
+<p>​    虚拟目录指的就是工作目录，即，如果进行Web项目的开发，需要有一个指定结构的目录进行内容的保存，并且要在Tomcat中配置此目录</p>
+<ol>
+<li><p>在D盘建立一个lxsWeb的目录，这个目录作为虚拟目录存在</p>
+</li>
+<li><p>这个目录是有建立要求的，在这个目录中必须存在有一个WEB-INF/web.xml(大小写不能错)文件（从Tomcat的安装目录webapps-&gt;ROOT可以拷贝出来）</p>
+</li>
+<li><p>此时Tomcat不知道硬盘存在此目录，所以需要修改Tomcat的配置文件(conf/server.xml),在“</Host>”之上编写，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context path &#x3D; &quot;&#x2F;lxs&quot; docBase &#x3D; &quot;D:\lxsweb&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>配置意义：</p>
+<ul>
+<li><Context>：表示配置一个新的上下文</li>
+<li>path：为浏览器上的输入路径(<a target="_blank" rel="noopener" href="http://lacalhost:8080/lxs)%EF%BC%8C%E5%90%8D%E7%A7%B0%E4%B8%8D%E5%85%81%E8%AE%B8%E9%87%8D%E5%A4%8D%EF%BC%8C%E4%B8%94%E5%BF%85%E9%A1%BB%E6%9C%89/">http://lacalhost:8080/lxs)，名称不允许重复，且必须有/</a></li>
+<li>docBase：配置项目的磁盘路径，此目录下必须存在WEB-INF</li>
+</ul>
+</li>
+<li><p>在默认情况下，如果直接输入路径那么会出现404(HTTP状态码，表示路径不可使用)错误，是因为没有输入里面的具体执行文件名称，从Tomca6.5开始关闭了页面列表功能，此时通过修改conf/web.xml文件打开列表，查找文件中listings，把其值改为true，此时就可以进行列表显示</p>
+</li>
+<li><p>默认情况下，所有的网络服务器都是有监听端口的，Tomcat默认的端口为8080端口，但是如果不想输入端口，则可以将监听端口设置为80这个默认端口，直接修改conf/server.xml文件即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port&#x3D;&quot;8080&quot; protocol&#x3D;&quot;HTTP&#x2F;1.1&quot; &#x2F;&#x2F;8080改为80</span><br></pre></td></tr></table></figure>
+
+<p>此时访问时就不需要使用端口了：<a target="_blank" rel="noopener" href="http://localhost/lxs/%EF%BC%8C%E6%AD%A4%E6%97%B6%E5%A6%82%E6%9E%9C%E5%8A%A0%E4%BA%868080%E5%8F%8D%E8%80%8C%E8%BF%9B%E4%B8%8D%E5%8E%BB">http://localhost/lxs/，此时如果加了8080反而进不去</a></p>
+</li>
+<li><p>也可以不使用localhost改用本机ip，通过cmd输入ipconfig，其中的IPv4地址，为本机ip地址</p>
+</li>
+</ol>
+<p><strong>注意：所有的配置文件修改后，Tomcat需要重新启动才可以加载到新的内容</strong></p>
+<h4 id="3-第一个JSP程序"><a href="#3-第一个JSP程序" class="headerlink" title="3. 第一个JSP程序"></a>3. 第一个JSP程序</h4><p>​    范例：在页面上输出”hello world”</p>
+<p>​    此时需要定义一个JSP文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello JSP<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		&lt;%	//此处为JSP代码</span><br><span class="line">			out.println(&quot;hello world&quot;); //页面输出</span><br><span class="line">		%&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    程序要想正常执行，必须将其保存在服务器工作区内(虚拟目录)，随后打开浏览器输入访问地址执行<a target="_blank" rel="noopener" href="http://localhost/lxs/Hello.jsp">http://localhost/lxs/Hello.jsp</a></p>
+<p>​    <strong>一般第一次会比第二次慢</strong></p>
+<p>​    图示：Tomcat的原理</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/I24uXF"><img src="https://z3.ax1x.com/2021/11/15/I24uXF.png" alt="I24uXF.png"></a></p>
+<ol>
+<li><p>如果用户要访问服务器端的程序将通过浏览器输入访问地址</p>
+</li>
+<li><p>而后服务器端要读取hello.jsp文件，但这个时候并不是直接将这个文件发送给客户端</p>
+</li>
+<li><p>服务器端把hello.jsp文件变为*.java的文件，并且会自动将这个 *.java文件自动编译为 *.class文件</p>
+</li>
+<li><p>随后将执行生成的*.class文件，并且通过服务器端解析生成为HTML代码后发送给客户端浏览器</p>
+<p>也就是说第一次执行*.jsp文件的时候需要将其转换和编译后才可以执行，而第二次访问由于 *.class文件已经存在，不会再执行上面操作所以速度就快，但是如果文件发生变化，那么就会重新转换、编译</p>
+</li>
+</ol>
+<p><strong>注意：所有转换和编译后的文件都保存在work目录下</strong></p>
+<p>​    <strong>如果电脑变慢可能导致这个流程异常，即怎样修改文件都执行无变化，此时将Tomcat关上，而后将work目录清空即可</strong></p>
+<p>​    范例：输出更多内容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello JSP<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		&lt;%	//此处为JSP代码</span><br><span class="line">			out.println(&quot;hello world&quot;); //页面输出</span><br><span class="line">			out.println(&quot;<span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>&quot;); </span><br><span class="line">			out.println(&quot;<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span> = <span class="string">&#x27;text/javascript&#x27;</span>&gt;</span><span class="javascript">alert(<span class="string">&#x27;hello world&#x27;</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>&quot;); </span><br><span class="line">		%&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>关系</strong></p>
+<p>​        <strong>JavaScript可以控制HTML代码的输出</strong></p>
+<p>​        <strong>JSP可以控制JavaScript与HTML代码的输出</strong></p>
+<h4 id="4-接收客户端请求参数"><a href="#4-接收客户端请求参数" class="headerlink" title="4. 接收客户端请求参数"></a>4. 接收客户端请求参数</h4><p>​    动态Web最大的特征就是交互性，而交互性的关键是必须由用户输入数据，在HTML中已经提供了表单给用户进行输入数据的空间，而所有的输入数据应由服务器端进行接收</p>
+<p>​    <strong>如果要在服务器端接收数据可以使用操作：request.getParameter(String 参数名称name)，该操作返回的是String型数据(可以通过正则验证且可以向任意数据类型转换)</strong></p>
+<p>​    范例：编写表单–input.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span> = <span class="string">&quot;input.jsp&quot;</span> <span class="attr">method</span> = <span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">	请输入信息：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;text&quot;</span> <span class="attr">name</span> = <span class="string">&quot;msg&quot;</span> <span class="attr">id</span> = <span class="string">&quot;msg&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;submit&quot;</span> <span class="attr">value</span> = <span class="string">&quot;send&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    当点击提交按钮之后会自动的将表单的输入参数内容发送给服务器端，服务器端可以进行接收</p>
+<p>​    范例：接收参数–input.jsp</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">	String str = request.getParameter(&quot;msg&quot;);</span><br><span class="line">	out.println(&quot;<span class="tag">&lt;<span class="name">h1</span>&gt;</span>&quot;+str+&quot;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>&quot;);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    此时用客户端输入的内容都可以接收到</p>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2021-11-15T12:12:39.000Z" itemprop="datePublished">
+              2021-11-15
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/JavaEE/">JavaEE</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2021 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>
