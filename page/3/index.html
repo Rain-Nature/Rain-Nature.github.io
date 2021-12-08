@@ -70,6 +70,118 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/05/25/Java05/">Java05</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-05-25T13:30:52.000Z" itemprop="datePublished">
+    2021-05-25
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><h4 id="1-在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法"><a href="#1-在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法" class="headerlink" title="1. 在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法"></a>1. 在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;成员方法的语法格式</span><br><span class="line">	权限修饰符 返回值类型 方法名(参数类型 参数名)&#123;</span><br><span class="line">	&#x2F;&#x2F;方法体</span><br><span class="line">	return 返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-权限修饰符"><a href="#2-权限修饰符" class="headerlink" title="2. 权限修饰符"></a>2. 权限修饰符</h4><p><strong>类权限(注意：类权限会约束类成员的权限设定，大于类的权限的类成员都会默认为类的权限进行约束)</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">访问包位置</th>
+<th align="center">private</th>
+<th align="center">protected</th>
+<th align="center">public</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">本类</td>
+<td align="center">可见</td>
+<td align="center">可见</td>
+<td align="center">可见</td>
+</tr>
+<tr>
+<td align="center">同包其他类或者子类</td>
+<td align="center">不可见</td>
+<td align="center">可见</td>
+<td align="center">可见</td>
+</tr>
+<tr>
+<td align="center">其他包的类或子类</td>
+<td align="center">不可见</td>
+<td align="center">不可见</td>
+<td align="center">可见</td>
+</tr>
+</tbody></table>
+<p><strong>注意：声明类时不使用上述三个修饰符设置权限，则这个类预设为friendly，可以本类，同包其他类但不能子类，其他包即子类也不行</strong></p>
+<h4 id="3-局部变量"><a href="#3-局部变量" class="headerlink" title="3. 局部变量"></a>3. 局部变量</h4><p>​    在成员方法内定义的变量叫做局部变量，方法是形参也是局部变量<br>​    <strong>局部变量在方法内使用时必须进行赋值和初始化不然会报错</strong></p>
+<h4 id="4-局部变量的作用域-有效范围"><a href="#4-局部变量的作用域-有效范围" class="headerlink" title="4. 局部变量的作用域(有效范围)"></a>4. 局部变量的作用域(有效范围)</h4><p>​    在相互不嵌套使用的作用域中可以同时声明两个名称和类型相同的局部变量<br>​    一个花括号括起来的表示一个作用域</p>
+<h4 id="5-this关键字"><a href="#5-this关键字" class="headerlink" title="5. this关键字"></a>5. this关键字</h4><p>​    在Java语言中规定使用this关键字来代表本类对象的引用，即引用对象的成员变量和方法<br>​    <strong>(1).在局部变量与类的成员变量重名时，就需要添加this关键字来明确引用的是类</strong></p>
+<p>​    (2).this关键字还可以作为方法的返回值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Book getBook()&#123;</span><br><span class="line">	return this;      &#x2F;&#x2F;返回Book类的对象等同于return Book</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    (3).this关键字还可以调用构造方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class Student &#123; &#x2F;&#x2F;定义一个类，类的名字为student。  </span><br><span class="line">	public Student() &#123; &#x2F;&#x2F;定义一个方法，名字与类相同故为构造方法</span><br><span class="line">		this(“Hello!”);   &#x2F;&#x2F;this来引用下面的带形参的构造方法，因为this关键字里面带有一个参数</span><br><span class="line">		&#125;</span><br><span class="line">	public Student(String name) &#123;</span><br><span class="line">		&#x2F;&#x2F;定义一个带形式参数的构造方法 </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>注意：this()只能出现在构造方法非注释语句的第一行</strong></p>
+<p>​    (4). this关键字不能使用在静态方法当中</p>
+<h4 id="6-类的构造方法"><a href="#6-类的构造方法" class="headerlink" title="6. 类的构造方法"></a>6. 类的构造方法</h4><p>类中除了成员方法外，还存在着构造方法<br>​    ==构造方法是一个与类同名的方法==，对象的创建就是构造方法完成的，每当实例化对象(new 对象)时，类会自动调用构造方法<br>​    <strong>注意：构造方法没有返回值，但方法前不需要void关键字修饰，类中没有明确定义构造方法时编译器会自动创建一个不带参数的默认构造方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;构造方法的定义格式</span><br><span class="line">public book()&#123; &#x2F;&#x2F;里面可以放参数</span><br><span class="line">	&#x2F;&#x2F;构造方法体; &#x2F;&#x2F;可以初始化成员变量</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-static关键字"><a href="#7-static关键字" class="headerlink" title="7. static关键字"></a>7. static关键字</h4><p>​    由static修饰的变量、常量和方法被称为静态变量、常量和方法，即静态成员，静态成员属于类所有，使用类名+’.’运算符调用静态成员<br>​    当需要两个或以上的类要在同一个内存区域共享一个数据，可以使用静态变量来存储该数据<br>​    实例化后的对象依然可以调用静态XX，但不建议使用这样的形式，这样容易混淆静态成员和非静态成员<br>​    <strong>注意：静态方法中不可以直接调用非静态方法</strong><br>​    Java中规定不能将方法体内的局部变量声明为static</p>
+<p>​    <strong>类加载</strong><br>​    jvm在程序执行的时候，需要用到类中的信息，但jvm只能读取内存的数据，所以需要进一步操作，把类中的信息，从硬盘上.class文件读取出来放在合适的位置<br>​    当一个类首次被使用，对该类加载，加载的同时，执行类的初始化过程<strong>（注意初始化和实例化的区别）</strong><br>​    被<strong>static关键字修饰</strong>的方法或者变量不需要依赖于对象来进行访问，只要类被加载了，就可以通过类名去进行访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Test&#123;</span><br><span class="line">	private Test(String s) &#123;</span><br><span class="line">		System.out.println(s);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;通过static关键字在类加载时初始化a</span><br><span class="line">	private static Test a &#x3D; new Test(&quot;这是一个static程序&quot;);</span><br><span class="line">	</span><br><span class="line">	public static Test instance() &#123;</span><br><span class="line">		return a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>​    <strong>类的初始化操作</strong><br>​    通过static定义静态区域(静态块)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class example&#123;</span><br><span class="line">	static&#123;</span><br><span class="line">		&#x2F;&#x2F;some;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    当这个类被引用时，首先自动执行static块中的程序，而且只会执行一次</p>
+<h4 id="8-类的主方法"><a href="#8-类的主方法" class="headerlink" title="8. 类的主方法"></a>8. 类的主方法</h4><p>​    主方法是类的入口点，Java编译器通过主方法来执行程序<br>​    主方法语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">	&#x2F;&#x2F;方法体;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    主方法的特性<br>​    (1).主方法是静态的,在主方法中要直接调用其他方法,该方法也必须是静态的<br>​    (2).主方法没有返回值<br>​    (3).主方法的形参为数组,args[0]~args[n],表示第一到第n个参数,参数个数用args.length来获取</p>
+<h4 id="9-对象"><a href="#9-对象" class="headerlink" title="9. 对象"></a>9. 对象</h4><p>​    (1).对象的创建<br>​    对象是由类抽象出来的某一个特例,每一个对象是相互独立的<br>​    Java语言中使用new操作符调用构造方法来创建对象,对象被创建出来时就是对一个对象的引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Book a &#x3D; new Book(); &#x2F;&#x2F;对象的创建可以直接new Book()不需要前面的,但操作不了</span><br></pre></td></tr></table></figure>
+
+<p>​    (2).访问对象的属性和方法<br>​    在使用new操作符创建了一个对象后,可以使用”对象.类成员”来获取对象的属性和方法</p>
+<p>​    (3).对象的引用<br>​    基本语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;类名 对象引用名称</span><br><span class="line">Book book; &#x2F;&#x2F;引用不需要有一个对象相关联</span><br></pre></td></tr></table></figure>
+<p>​    <strong>注意:引用只是存放一个对象的内存地址,并非存放一个对象</strong></p>
+<p>​    (4).对象的比较<br>​    Java语言有两种比较对象的方式,”==”运算符和equals()方法(String类中的方法)</p>
+<ul>
+<li><p>“==”运算符<br>​    比较的是两个对象的引用地址是否相等</p>
+</li>
+<li><p>equals()方法<br>​    比较两个对象引用所指向的内容是否相等</p>
+</li>
+</ul>
+<p>​    (5).对象的销毁<br>​    在Java中处于两种情况下对象被Java虚拟机视为垃圾</p>
+<ul>
+<li>对象引用超过其作用范围(作用域)</li>
+<li>将对象的赋值为null</li>
+</ul>
+<p>​    <strong>注意:Java的垃圾回收器只能销毁new操作符创建的对象</strong><br>​    为了回收不通过new操作符来在内存中获取存储空间的对象,Java还提供object类中的finalize()方法被声明为protected,用户可以自己的类中定义这个方法来回收垃圾(不保证一定发生,当Java虚拟机内存耗尽时,则不会执行垃圾回收处理)<br>​    Java还提供了System.gc()方法强制启动垃圾回收器</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/05/23/Java04/">Java04</a>
         </h1>
       
@@ -611,74 +723,6 @@
 <h4 id="15-注意：Java语言的基本数据类型中并没有String类型"><a href="#15-注意：Java语言的基本数据类型中并没有String类型" class="headerlink" title="15. 注意：Java语言的基本数据类型中并没有String类型"></a><strong>15. 注意：Java语言的基本数据类型中并没有String类型</strong></h4><h4 id="16-main方法"><a href="#16-main方法" class="headerlink" title="16. main方法"></a>16. main方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;程序入口的main方法(必须有这个程序才能运行)</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">&#x2F;&#x2F;方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    当运行程序的时候，通常都是以程序入口的main方法作为起点，以main方法中的第一条语句作为程序的第一条语句。由于main方法是一个静态的方法，所以该方法放在任何一个类中都是可以执行的<br>​    写好一个类后，可以直接在该类中添加一个main方法，对该类的功能进行测试(Java允许多个main方法在不同的类中，程序启动时，需要指定哪一个main作为入口，一般光标在哪哪就是)<br>​    main方法是可以重载的，每个main方法的参数都是不同的，程序是可以运行的，可以输出应有的结果。但是，如果没有程序入口的main方法，只含有其他main方法。虽然编译此程序是可以的通过的，但是运行时会产生错误。这是因为程序运行时，Java虚拟机找不到对应的main方法，就会产生运行错误，其他main方法需要在入口main方法中进行调用才会运行<br>​    main方法也是可以被继承的，可以被重写</p>
 <h4 id="17-一个文件只能一个public-类，而且类名必须和文件名一样"><a href="#17-一个文件只能一个public-类，而且类名必须和文件名一样" class="headerlink" title="17. 一个文件只能一个public 类，而且类名必须和文件名一样"></a>17. 一个文件只能一个public 类，而且类名必须和文件名一样</h4>
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/26/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-26T03:48:13.000Z" itemprop="datePublished">
-    2021-04-26
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="1-网络编程的概念"><a href="#1-网络编程的概念" class="headerlink" title="1.网络编程的概念"></a>1.网络编程的概念</h2><p>像邮件需要对方的邮编，对方的地址，对方的姓名，自己的地址，自己的姓名<br>即对方的信息，对方的地址，自己的地址</p>
-<p>打电话，连接-接了-通话   TCP连接<br>发短信，-发送就完事了-接收  UDP连接</p>
-<h2 id="2-计算机网络"><a href="#2-计算机网络" class="headerlink" title="2.计算机网络"></a>2.计算机网络</h2><p><strong>概念：计算机网络是指将==地理位置==不同的具有独立功能的多台计算机及其外部设备，通过通信线路连接起来，在网络操作系统，网络管理软件及网络通信协议的管理和协调下，实现资源共享和信息传递的计算机系统</strong></p>
-<p>你的计算机没有与外界沟通，实现资源共享和信息传递那就是单机</p>
-<h2 id="3-网络编程的目的"><a href="#3-网络编程的目的" class="headerlink" title="3.网络编程的目的"></a>3.网络编程的目的</h2><p>无线电台：传播交流信息    ；进行了数据交换，通信</p>
-<h2 id="4-想要打到达到这个效果需要什么"><a href="#4-想要打到达到这个效果需要什么" class="headerlink" title="4.想要打到达到这个效果需要什么"></a>4.想要打到达到这个效果需要什么</h2><ul>
-<li>如何准确定位网络上的一台主机？</li>
-</ul>
-<p>192.168.16.124，即端口号，你的和他的；定位到计算机上的某个应用</p>
-<ul>
-<li>找到了主机，如何传输数据？<br>需要介质<h2 id="5-网络编程与javaweb的区别"><a href="#5-网络编程与javaweb的区别" class="headerlink" title="5.网络编程与javaweb的区别"></a>5.网络编程与javaweb的区别</h2>网络编程：TCP/IP   C/S架构   客户端<br>javaweb：网页编程   B/S架构   浏览器</li>
-</ul>
-<h2 id="6-如何实现网络通信-网络通信的要素"><a href="#6-如何实现网络通信-网络通信的要素" class="headerlink" title="6.如何实现网络通信(网络通信的要素)"></a>6.如何实现网络通信(网络通信的要素)</h2><ol>
-<li><p>通信双方的地址<br> IP：稀缺<br> 端口号：局域网<br> IP加端口可以：网络定位到一个具体的计算机</p>
-</li>
-<li><p>规则：网络通信的协议<br>HTTP(超文本传输协议):HTTP是基于B/S架构进行通信的，<br>ftp(文件传输协议)<br>SMTP(电子邮件传输的协议)<br>tcp(基于字节流的传输层通信协议):是为了在不可靠的互联网络上提供可靠的端到端字节流而专门设计的一个传输协议<br>udp(用户数据报协议):UDP协议与TCP协议一样用于处理数据包</p>
-</li>
-<li><p>tcp/IP模型一个七层一个四层</p>
-</li>
-<li><p>小结<br> (1).网络编程中有两个主要的问题</p>
-<ul>
-<li><p>如何准确的定位到网络上的一台或多台主机<br>例如<br>打开cmd，输入ping <a target="_blank" rel="noopener" href="http://www.bajdu.com,www是域名ping命令/">www.bajdu.com，www是域名ping命令</a><br>会弹出百度的IP地址</p>
-<p>(2).找到主机之后如何进行通信 </p>
-</li>
-<li><p>IP和端口号</p>
-</li>
-<li><p>网络通信协议</p>
-<p>(3).对于Java的学习<br>在Java中万物皆对象<br>要学习IP的类，端口的类<br>学习udp，tcp的一些类</p>
-</li>
-</ul>
-</li>
-</ol>
-
       
     </div>
 </article>
