@@ -27,7 +27,7 @@
     <section class='menu'>
         <div>Blog of ChiFun</div>
         
-            <div>Updated every 5 days</div>
+            <div>Road is walked by me</div>
         
         <ul>
           
@@ -64,6 +64,61 @@
         <div data-pager-shell>
             <ul class="Index">
   
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/05/03/%E9%9F%B3%E4%B9%90%E5%B0%8F%E7%A8%8B%E5%BA%8F02/">音乐小程序02</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-05-03T14:16:47.000Z" itemprop="datePublished">
+    2021-05-03
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E9%9F%B3%E4%B9%90%E5%B0%8F%E7%A8%8B%E5%BA%8F/">音乐小程序</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="云开发的基本环境的配置"><a href="#云开发的基本环境的配置" class="headerlink" title="云开发的基本环境的配置"></a>云开发的基本环境的配置</h2><p><strong>1. 在miniprogram文件下的app.js中有一个onLaunch生命周期函数(当小程序运行时自动调用 这个生命周期函数)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">onLaunch: function () &#123;</span><br><span class="line">	&#x2F;&#x2F;首先检查是否支持云开发，之后再看基础库的版本(在详情中的本地设置里可以选择调试基础库的版本，最低2.2.3)</span><br><span class="line">    if (!wx.cloud) &#123;</span><br><span class="line">      console.error(&#39;请使用 2.2.3 或以上的基础库以使用云能力&#39;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      wx.cloud.init(&#123;</span><br><span class="line">        &#x2F;&#x2F; env 参数说明：</span><br><span class="line">        &#x2F;&#x2F;   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源</span><br><span class="line">        &#x2F;&#x2F;   此处请填入环境 ID, 环境 ID 可打开云控制台查看</span><br><span class="line">        &#x2F;&#x2F;   如不填则使用默认环境（第一个创建的环境）</span><br><span class="line">        &#x2F;&#x2F;env是环境的意思，这里填环境的id(id在云开发控制台里找)</span><br><span class="line">        env: &#39;cloud-7gxr9uz450402f24&#39;, &#x2F;&#x2F;已将环境改为第一环境cloud的环境id</span><br><span class="line">        &#x2F;&#x2F;在云开发的控制台中可以观察到访问过小程序的用户(为true时)，以倒叙方式显示</span><br><span class="line">        traceUser: true,</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F;当前小程序全局的属性和方法</span><br><span class="line">    this.globalData &#x3D; &#123;&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 在miniprogram文件下的app.json文件</strong><br>在当前项目下的全局的配置文件<br><strong>注意在.json文件下是不能写注释的，写的话会报错</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&#x2F;&#x2F;pages即当前项目的文件的路径，这些是默认的一会删掉</span><br><span class="line">  &quot;pages&quot;: [</span><br><span class="line">    &quot;pages&#x2F;index&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;getOpenId&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;getMiniProgramCode&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;deployService&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;createCollection&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;uploadFile&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;selectRecord&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;updateRecord&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;updateRecordResult&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;updateRecordSuccess&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;sumRecord&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;sumRecordResult&#x2F;index&quot;</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F;window对于窗口的配置</span><br><span class="line">  &quot;window&quot;: &#123;</span><br><span class="line">    &quot;backgroundColor&quot;: &quot;#F6F6F6&quot;,</span><br><span class="line">    &quot;backgroundTextStyle&quot;: &quot;light&quot;,</span><br><span class="line">    &quot;navigationBarBackgroundColor&quot;: &quot;#F6F6F6&quot;,  &#x2F;&#x2F;导航栏的颜色</span><br><span class="line">    &quot;navigationBarTitleText&quot;: &quot;云开发 QuickStart&quot;, &#x2F;&#x2F;导航栏的标题字体</span><br><span class="line">    &quot;navigationBarTextStyle&quot;: &quot;black&quot; &#x2F;&#x2F;导航栏标题字体的颜色</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F;小程序的一些内部搜索，它还有自己的配置文件</span><br><span class="line">  &quot;sitemapLocation&quot;: &quot;sitemap.json&quot;,</span><br><span class="line">  &quot;style&quot;: &quot;v2&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.  在miniprogram文件下的app.wxss文件</strong><br>自带的一些全局的样式，在视频中全部删掉了</p>
+<p><strong>4.  在miniprogram文件下的README.md文件</strong><br>可以写一些对于自己微信小程序的说明</p>
+<p><strong>5.  在miniprogram文件下的project.config.json文件</strong><br>当前小程序的项目的配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &#x2F;&#x2F;小程序前端部分的代码，与前面那个miniprogram文件夹是相对应的</span><br><span class="line">  &quot;miniprogramRoot&quot;: &quot;miniprogram&#x2F;&quot;, </span><br><span class="line">  &#x2F;&#x2F;小程序开发云函数的文件路径，名字也是与云函数的文件夹相对应</span><br><span class="line">  &quot;cloudfunctionRoot&quot;: &quot;cloudfunctions&#x2F;&quot;,</span><br><span class="line">  &quot;setting&quot;: &#123;</span><br><span class="line">    &quot;urlCheck&quot;: true,</span><br><span class="line">    &quot;es6&quot;: true,</span><br><span class="line">    &quot;enhance&quot;: true,</span><br><span class="line">    &quot;postcss&quot;: true,</span><br><span class="line">    &quot;preloadBackgroundData&quot;: false,</span><br><span class="line">    &quot;minified&quot;: true,</span><br><span class="line">    &quot;newFeature&quot;: true,</span><br><span class="line">    &quot;coverView&quot;: true,</span><br><span class="line">    &quot;nodeModules&quot;: false,</span><br><span class="line">    &quot;autoAudits&quot;: false,</span><br><span class="line">    &quot;showShadowRootInWxmlPanel&quot;: true,</span><br><span class="line">    &quot;scopeDataCheck&quot;: false,</span><br><span class="line">    &quot;uglifyFileName&quot;: false,</span><br><span class="line">    &quot;checkInvalidKey&quot;: true,</span><br><span class="line">    &quot;checkSiteMap&quot;: true,</span><br><span class="line">    &quot;uploadWithSourceMap&quot;: true,</span><br><span class="line">    &quot;compileHotReLoad&quot;: false,</span><br><span class="line">    &quot;useMultiFrameRuntime&quot;: true,</span><br><span class="line">    &quot;useApiHook&quot;: true,</span><br><span class="line">    &quot;useApiHostProcess&quot;: false,</span><br><span class="line">    &quot;babelSetting&quot;: &#123;</span><br><span class="line">      &quot;ignore&quot;: [],</span><br><span class="line">      &quot;disablePlugins&quot;: [],</span><br><span class="line">      &quot;outputPath&quot;: &quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;enableEngineNative&quot;: false,</span><br><span class="line">    &quot;useIsolateContext&quot;: true,</span><br><span class="line">    &quot;useCompilerModule&quot;: true,</span><br><span class="line">    &quot;userConfirmedUseCompilerModuleSwitch&quot;: false,</span><br><span class="line">    &quot;userConfirmedBundleSwitch&quot;: false,</span><br><span class="line">    &quot;packNpmManually&quot;: false,</span><br><span class="line">    &quot;packNpmRelationList&quot;: [],</span><br><span class="line">    &quot;minifyWXSS&quot;: true</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;appid&quot;: &quot;wx466a6c8b6726bf3d&quot;,</span><br><span class="line">  &quot;projectname&quot;: &quot;%E4%B8%80%E8%B5%B7%E5%90%AC%E4%B8%80%E5%90%AC&quot;,</span><br><span class="line">  &quot;libVersion&quot;: &quot;2.14.1&quot;,</span><br><span class="line">  &quot;cloudfunctionTemplateRoot&quot;: &quot;cloudfunctionTemplate&quot;,</span><br><span class="line">  &quot;condition&quot;: &#123;</span><br><span class="line">    &quot;search&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;conversation&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;plugin&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;game&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;miniprogram&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;id&quot;: -1,</span><br><span class="line">          &quot;name&quot;: &quot;db guide&quot;,</span><br><span class="line">          &quot;pathName&quot;: &quot;pages&#x2F;databaseGuide&#x2F;databaseGuide&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>6. 后记(代码规范)</strong><br>    一般每一个公司都会有自己的代码规范，为了沟通也需要去遵守代码规范<br>    (1).一般使用let和const来定义变量和常量，而不用var<br>    因为var的作用域太大，所以可能会造成不安全<br>    (2).当我们在定义变量时一般之间用大括号来定义,可以像面向对象那样使用new，但还是用大括号，数组也是一样的用中括号来直接定义<br>    如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const obj &#x3D; &#123;&#125;  &#x2F;&#x2F;定义对象,每一个对象的属性后面最好都加,哪怕最后一个</span><br><span class="line">const arr &#x3D; []  &#x2F;&#x2F;定义数组</span><br></pre></td></tr></table></figure>
+
+<pre><code>(3).对于生命周期函数
+系统的默认的定义方式是</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onLoad:function(options)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>还可以写成这样(建议这样去写)</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onLoad()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+</article>
+
+    </li>
   
     <li>
       <article class='ListView'>
@@ -504,75 +559,6 @@
 
     </li>
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/09/%E7%BC%96%E7%A0%81%E7%9A%84%E8%A7%84%E5%88%99/">编码的规则</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-09T13:59:14.000Z" itemprop="datePublished">
-    2021-04-09
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/C/">C</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="记事本的四种编码规则"><a href="#记事本的四种编码规则" class="headerlink" title="记事本的四种编码规则"></a>记事本的四种编码规则</h2><h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h3><p>在C语言程序中当调用记事本文件时，当里面含有汉字时可能会产生乱码，导致程序的运行失败，写这篇bolg的目的是为了记录一下记事本的四种编码区别</p>
-<h3 id="2-getchar-函数来抓取字符"><a href="#2-getchar-函数来抓取字符" class="headerlink" title="2.getchar()函数来抓取字符"></a>2.getchar()函数来抓取字符</h3><p>当程序从文件中读字符时，如果遇到了文件末尾，就会得到 EOF，EOF 并不是一个字符。但是，从标准输入（就是你的终端）读字符的时候，不可能出现文件末尾的情况，所以终端提供了一个功能，就是当你按下 ctrl+z（Windows）/ ctrl+d（Linux）时，终端告诉程序“标准输入”到了文件末尾，此时你的程序 getchar 会得到 EOF(不一定是-1，目前在CB上是-1)<br><strong>注意：getchar是从缓存中读数据（getchar是以行为单位进行存取的），也就是说，你输入a，程序并不反映，只是把a存到缓存中，直到你输入结束，输了回车，程序才反映</strong></p>
-<h2 id="ANSI编码"><a href="#ANSI编码" class="headerlink" title="ANSI编码"></a>ANSI编码</h2><ol>
-<li>若为英文操作系统则为ASCII码<br> 每个字符用一个字节（8位）表示，最高位恒为0，剩下7位（2^7次方=128）。因为128个值就足够表示所有英文字符，数字字符，英文标点字符，和控制字符了。</li>
-</ol>
-<p><strong>2. 若为中文操作系统则为GBK码<br>    兼容ASCII码表示的字符以外，延伸0x80-0xff。用2个字节表示一个中文字符。解析的时候，如果第一个字节大于127，直接再往后读取一个字节，显示为对应的中文字符。（GBK码的字符集包含了简体和繁体）。</strong><br>3. 若为日文操作系统则为JIS码<br>    里面为日文字符</p>
-<p><strong>所以在不同语种的操作系统下，打开同一个通过ANSI编码的txt，除了ASCII所表示的字符正常显示外，其他字符会有出现乱码的情况，因为解码和编码方式就是不一样的，如修改windows的默认语言为日语，即ANSI编码即为JIS编码</strong></p>
-<h2 id="Unicode编码（把地球上所有的语言的符号，都用统一的字符集来表示）"><a href="#Unicode编码（把地球上所有的语言的符号，都用统一的字符集来表示）" class="headerlink" title="Unicode编码（把地球上所有的语言的符号，都用统一的字符集来表示）"></a>Unicode编码（把地球上所有的语言的符号，都用统一的字符集来表示）</h2><h3 id="UTF-8编码"><a href="#UTF-8编码" class="headerlink" title="UTF-8编码"></a>UTF-8编码</h3><ol>
-<li><p>UTF8是一种变长编码，根据不同的Unicode码值采用不同的存储长度。</p>
-</li>
-<li><p>0xxxxxxx,如果是这样的01串,也就是以0开头后面是啥就不用管了XX代表任意bit.就表示把一个字节做为一个单元.就跟ASCII完全一样.<br> 110xxxxx 10xxxxxx.如果是这样的格式，以110开头则把两个字节当一个单元</p>
-<p> 1110xxxx 10xxxxxx 10xxxxxx 如果是这种格式，以1110开头则是三个字节当一个单元.（正好x的个数是16个）</p>
-</li>
-<li><p>UTF-8的好处是在网络环境下，比较节约流量，毕竟网络里英文的数据还是最多的</p>
-</li>
-</ol>
-<h3 id="UTF-16编码"><a href="#UTF-16编码" class="headerlink" title="UTF-16编码"></a>UTF-16编码</h3><ol>
-<li><p>UTF-16就是Windows模式的编码模式(Windows里说的Unicode一般都是指这种编码），用2个字节表示任意字符</p>
-</li>
-<li><p>UTF-16分为大端序和小端序（就是字节序，主要是与硬件相关（处理器的架构），与编程语言无关）</p>
-</li>
-</ol>
-<ul>
-<li>Big-endian（大端序）：       数据的高位字节存放在地址的低端 低位字节存放在地址高端(按原来顺序存储)</li>
-<li>Little-endian（小端序）：    数据的高位字节存放在地址的高端 低位字节存放在地址低端(颠倒顺序存储)</li>
-</ul>
-<p>##记事本中的BOM标签</p>
-<ol>
-<li><p>记事本要支持Unicode，就需要使用BOM标签</p>
-</li>
-<li><p>一段二进制编码，如何确定它是GBK还是BIG5还是UTF-16/UTF-8？记事本的做法是在TXT文件的最前面保存一个标签，如果记事本打开一个TXT，发现这个标签，就说明是unicode。标签叫BOM，如果是0xFF 0xFE，是UTF16LE，如果是0xFE 0xFF则UTF16BE，如果是0xEF 0xBB 0xBF，则是UTF-8。如果没有这三个东西，那么就是ANSI，使用操作系统的默认语言编码来解释。</p>
-</li>
-</ol>
-
-      
-    </div>
-</article>
-
-    </li>
-  
 </ul>
 
   <section id="nav-wrapper">
@@ -583,7 +569,7 @@
 
 
             <footer>
-    <div>© 2021 - nature </div>
+    <div>© 2022 - nature </div>
     <div>
         <span>
             Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>

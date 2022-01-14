@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>前端01 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+            <div>Road is walked by me</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>前端01</h1>
+    </header>
+
+    <section>
+      <h2 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h2><h4 id="1-互联网的起源"><a href="#1-互联网的起源" class="headerlink" title="1. 互联网的起源"></a>1. 互联网的起源</h4><p>​    互联网起源于美国，最先是为了服务军方，后面由几个大学不断研发。首先是局域网，几个城市的局域网相互连接变成城域网，几个城域网相互连接变成广域网，而由几个国家连接就为互联网(因特网)。</p>
+<p>​    </p>
+<h4 id="2-W3C组织"><a href="#2-W3C组织" class="headerlink" title="2. W3C组织"></a>2. W3C组织</h4><p>​    由万维网发明者蒂姆.伯纳斯.李创立，其创建的目的是为了防止互联网陷入割据，现在很多web标准和技术都是由他制定</p>
+<h4 id="3-HTML的概念"><a href="#3-HTML的概念" class="headerlink" title="3. HTML的概念"></a>3. HTML的概念</h4><p>​    HTML：即超文本标记语言，是构成网页文档的主要语言<br>​    <strong>超：</strong>指的是规定好的关键字，不放浏览器是看不出效果的<br>​    <strong>文本：</strong>指的是类似像使用记事本写的都是文本文件<br>​    <strong>标记：</strong>指的是由&lt;&gt;组成的标记(标签)<br>​    <strong>语言：</strong>HTML是解释执行语言，只是翻译不做逻辑</p>
+<p>​    HTML页面也被称为静态页面或者HTML文档，后缀为html、htm，<strong>由于是之前操作系统只支持三位扩展名，到现在都支持了</strong></p>
+<p>​    HTML语言通过浏览器进行翻译</p>
+<h4 id="4-HTML的补充说明"><a href="#4-HTML的补充说明" class="headerlink" title="4. HTML的补充说明"></a>4. HTML的补充说明</h4><p>​    HTML是有版本的，最新的是HTML5，HTML是向下兼容，而且有些旧的浏览器可能不兼容最新版的HTML版本</p>
+<p>​    同一个页面在不同浏览器(内核不同)中看到效果可能不同，这也称为浏览器兼容性问题</p>
+<h4 id="5-HTML标签"><a href="#5-HTML标签" class="headerlink" title="5. HTML标签"></a>5. HTML标签</h4><p>​    HTML标签由尖括号包围的关键字构成</p>
+<p>​    <strong>HTML标签有成对出现(双标签)**，其中第一个标签是开始标签，第二个标签是结束标签；</strong>也有单个出现(单标签)**，所有的单标签都以/结束</p>
+<h4 id="6-HTML属性"><a href="#6-HTML属性" class="headerlink" title="6. HTML属性"></a>6. HTML属性</h4><p>​     HTML标签可以拥有属性，属性提供了有关HTML元素的更多信息，<strong>属性需要写在开始标签中，一个标签可以有多个属性</strong></p>
+<p>​    属性的结构为：名称 = “value”</p>
+<h4 id="7-HTML页面的基本结构"><a href="#7-HTML页面的基本结构" class="headerlink" title="7. HTML页面的基本结构"></a>7. HTML页面的基本结构</h4><p>​    HTML页面的结构包括头部(Head)、主体(Body)两大部分；<strong>头部描述浏览器所需的信息，主体包含所要说明的具体内容</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>//文本描绘网页</span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        //头部信息在此设置</span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        //HTML文件正文</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    标签是可以嵌套的，但不可以随意嵌套，需要明白父子关系</p>
+<p>​    <strong>HTML页面的命名尽量使用英文，不要使用中文</strong></p>
+<h4 id="8-HTML5的声明方法"><a href="#8-HTML5的声明方法" class="headerlink" title="8. HTML5的声明方法"></a>8. HTML5的声明方法</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="9-第一个HTML页面"><a href="#9-第一个HTML页面" class="headerlink" title="9. 第一个HTML页面"></a>9. 第一个HTML页面</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>欢迎您<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span>&gt;</span>Java<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>jvav<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2022-01-14T15:03:52.000Z" itemprop="datePublished">
+              2022-01-14
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/HTML-CSS/">HTML+CSS</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2022 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>
