@@ -70,6 +70,46 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/10/25/%E5%8F%8D%E5%B0%84%E5%AE%9E%E4%BE%8B/">反射实例</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-10-25T11:24:45.000Z" itemprop="datePublished">
+    2021-10-25
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h3 id="1-静态工厂"><a href="#1-静态工厂" class="headerlink" title="1. 静态工厂"></a>1. 静态工厂</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Message msg &#x3D; factory.getMessage(&quot;PaperMessage&quot;);</span><br><span class="line">		msg.send(&quot;静态工厂&quot;);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Message&#123;</span><br><span class="line">	public void send(String msg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class PaperMessage implements Message&#123;</span><br><span class="line">	public void send(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;【报纸报道】：&quot;+ msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class InternalMessage implements Message&#123;</span><br><span class="line">	public void send(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;【网络报道】：&quot;+ msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;工厂类，隐藏构造方法，提供分发的方法</span><br><span class="line">class factory&#123;</span><br><span class="line">	private factory() &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	public static Message getMessage(String className) &#123;</span><br><span class="line">		if(&quot;PaperMessage&quot;.equals(className)) &#123;</span><br><span class="line">			return new PaperMessage();</span><br><span class="line">		&#125;else if(&quot;InternalMessage&quot;.equals(className)) &#123;</span><br><span class="line">			return new InternalMessage();</span><br><span class="line">		&#125;else</span><br><span class="line">			return null;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用反射修改后的静态工厂"><a href="#2-使用反射修改后的静态工厂" class="headerlink" title="2. 使用反射修改后的静态工厂"></a>2. 使用反射修改后的静态工厂</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Message msg &#x3D; factory.getMessage(&quot;hello.PaperMessage&quot;);</span><br><span class="line">		msg.send(&quot;静态工厂&quot;);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Message&#123;</span><br><span class="line">	public void send(String msg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class PaperMessage implements Message&#123;</span><br><span class="line">	public void send(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;【报纸报道】：&quot;+ msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class InternalMessage implements Message&#123;</span><br><span class="line">	public void send(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;【网络报道】：&quot;+ msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用反射修改了工厂类</span><br><span class="line">class factory&#123;</span><br><span class="line">	private factory() &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	public static Message getMessage(String className) &#123;</span><br><span class="line">		Message msg &#x3D; null;</span><br><span class="line">		try &#123;</span><br><span class="line">			msg &#x3D; (Message)Class.forName(className).getDeclaredConstructor().newInstance();</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return msg;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-反射获取类结构"><a href="#3-反射获取类结构" class="headerlink" title="3. 反射获取类结构"></a>3. 反射获取类结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.util.Arrays;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		Class&lt;?&gt; clazz &#x3D; D.class;</span><br><span class="line">		System.out.println(&quot;【包名称：】&quot;+clazz.getPackageName());</span><br><span class="line">		System.out.println(&quot;【继承的父类：】&quot;+clazz.getSuperclass());</span><br><span class="line">		System.out.println(&quot;【继承的接口：】&quot;+Arrays.toString(clazz.getInterfaces()));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface A&#123;&#125;</span><br><span class="line"></span><br><span class="line">interface B&#123;&#125;</span><br><span class="line"></span><br><span class="line">abstract class C implements A,B&#123;&#125;</span><br><span class="line"></span><br><span class="line">abstract class D extends C implements A,B&#123;&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/10/24/Java13/">Java13</a>
         </h1>
       
@@ -455,8 +495,8 @@
     </header>
     <div>
       
-        <h2 id="数据结构概述"><a href="#数据结构概述" class="headerlink" title="数据结构概述"></a>数据结构概述</h2><h4 id="1-数据结构中的栈表示堆栈，数据结构中没有堆这个概念，堆分配内存的方式，不属于存储数据的结构。"><a href="#1-数据结构中的栈表示堆栈，数据结构中没有堆这个概念，堆分配内存的方式，不属于存储数据的结构。" class="headerlink" title="1. 数据结构中的栈表示堆栈，数据结构中没有堆这个概念，堆分配内存的方式，不属于存储数据的结构。"></a>1. 数据结构中的栈表示堆栈，数据结构中没有堆这个概念，堆分配内存的方式，不属于存储数据的结构。</h4><h4 id="2-数据结构的定义"><a href="#2-数据结构的定义" class="headerlink" title="2. 数据结构的定义"></a>2. 数据结构的定义</h4><p>​    <strong>以特定的数据类型()和特定的存储结构(个体之间的关系)保存到主存储器（内存）中</strong>，以及在此基础上为实现某个功能（比如查找某个元素，删除某个元素，对所有元素进行排序）而执行的相应操作，这个相应的操作也叫算法</p>
-<p>​    数据结构 = 个体 + 个体的关系<br>​    算法 = 对存储数据的操作（狭义）</p>
+        <h2 id="数据结构概述"><a href="#数据结构概述" class="headerlink" title="数据结构概述"></a>数据结构概述</h2><h4 id="1-数据结构中的堆表示堆栈，数据结构中没有堆这个概念，堆分配内存的方式，不属于存储数据的结构。"><a href="#1-数据结构中的堆表示堆栈，数据结构中没有堆这个概念，堆分配内存的方式，不属于存储数据的结构。" class="headerlink" title="1. 数据结构中的堆表示堆栈，数据结构中没有堆这个概念，堆分配内存的方式，不属于存储数据的结构。"></a>1. 数据结构中的堆表示堆栈，数据结构中没有堆这个概念，堆分配内存的方式，不属于存储数据的结构。</h4><h4 id="2-数据结构的定义"><a href="#2-数据结构的定义" class="headerlink" title="2. 数据结构的定义"></a>2. 数据结构的定义</h4><p>​    <strong>以特定的数据类型(个体如何来存储)和特定的存储结构(个体之间的关系)保存到主存储器（内存）中</strong>（注意不是保存到硬盘），以及在此基础上为实现某个功能（比如查找某个元素，删除某个元素，对所有元素进行排序）而执行的相应操作，这个相应的操作也叫算法</p>
+<p>​    数据结构 = 个体 + 个体的关系，即解决存储问题<br>​    算法 = 对存储数据的操作（狭义，存储的方式不同则算法也不同），即解决数据操作的问题</p>
 <h4 id="3-算法的定义"><a href="#3-算法的定义" class="headerlink" title="3. 算法的定义"></a>3. 算法的定义</h4><p>​    解题的方法和步骤</p>
 <h4 id="4-衡量算法的标准"><a href="#4-衡量算法的标准" class="headerlink" title="4. 衡量算法的标准"></a>4. 衡量算法的标准</h4><p>​    (1).时间复杂度<br>​    大概程序要执行的次数，而非执行的时间</p>
 <p>​    (2).空间复杂度<br>​    算法执行过程中大概所占用的最大内存</p>
@@ -1391,62 +1431,6 @@
         <h2 id="Java实例-内部类的基本作用"><a href="#Java实例-内部类的基本作用" class="headerlink" title="Java实例-内部类的基本作用"></a>Java实例-内部类的基本作用</h2><h4 id="1-实例内部类–内部类在外部类中，内部类修饰为private"><a href="#1-实例内部类–内部类在外部类中，内部类修饰为private" class="headerlink" title="1. 实例内部类–内部类在外部类中，内部类修饰为private"></a>1. 实例内部类–内部类在外部类中，内部类修饰为private</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface Food&#123;</span><br><span class="line">	public void doing();</span><br><span class="line">&#125;</span><br><span class="line">public class First&#123;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Outside o &#x3D; new Outside();</span><br><span class="line">		Food i &#x3D; o.create(); &#x2F;&#x2F;用接口引用类型来接内部类实现接口的实例</span><br><span class="line">		i.doing();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outside&#123;</span><br><span class="line">	private class Inside implements Food&#123; &#x2F;&#x2F;private只能在外部类访问</span><br><span class="line">		public void doing() &#123;</span><br><span class="line">			System.out.println(&quot;eat egg&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public Inside create() &#123;</span><br><span class="line">		return new Inside();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-局部内部类–内部类在外部类的方法中，内部类无修饰符"><a href="#2-局部内部类–内部类在外部类的方法中，内部类无修饰符" class="headerlink" title="2. 局部内部类–内部类在外部类的方法中，内部类无修饰符"></a>2. 局部内部类–内部类在外部类的方法中，内部类无修饰符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface Food&#123;</span><br><span class="line">	public void doing();</span><br><span class="line">&#125;</span><br><span class="line">public class First&#123;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Outside b &#x3D; new Outside();</span><br><span class="line">		Food c &#x3D; b.a();</span><br><span class="line">		c.doing();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outside&#123;</span><br><span class="line">	public Food a() &#123; &#x2F;&#x2F;方法返回值类型为接口类型</span><br><span class="line">		class Inside implements Food&#123;</span><br><span class="line">			public void doing() &#123;</span><br><span class="line">				System.out.println(&quot;hello&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return new Inside();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/06/05/Java08/">Java08</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-05T11:46:05.000Z" itemprop="datePublished">
-    2021-06-05
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h2><h4 id="1-抽象类的引入"><a href="#1-抽象类的引入" class="headerlink" title="1. 抽象类的引入"></a>1. 抽象类的引入</h4><p>​    一般将父类定义为抽象类，然后对这个父类进行继承与多态处理，在继承树中越上方的类越抽象<br>​    在多态机制中，一般不需要将父类初始化对象，只需要子类对象，<strong>在Java中设置的抽象类不能实例化为对象</strong></p>
-<h4 id="2-abstract关键字"><a href="#2-abstract关键字" class="headerlink" title="2. abstract关键字"></a>2. abstract关键字</h4><p>​    abstract关键字定义的类为抽象类，定义的方法为抽象方法，抽象方法没有方法体，方法本身没有意义，但通过重写来获得意义，承载这个抽象方法的抽象类必须被继承，实际上抽象类除了被继承之外没有任何意义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Test&#123;  &#x2F;&#x2F;定义抽象类</span><br><span class="line">	abstract void textAbstract();  &#x2F;&#x2F;定义抽象方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    声明一个抽象的方法，则必须将承载这个抽象方法的类定义为抽象类，不可能在非抽象类获取抽象方法，只要类中有一个抽象方法，这个类就被标记为抽象类<br>​    抽象类被继承后子类若不是抽象类需要实现其中所有的抽象方法，要保证相同的方法名称、参数列表和相同的返回类型<br>​    abstract无法和final共存修饰类，但是抽象类里面可以用final与static修饰变量和方法，若你创建的类不想被创建对象，变量方法不想被继承，但又要可以直接调用，可以实现抽象类</p>
-<h4 id="3-接口的引入"><a href="#3-接口的引入" class="headerlink" title="3. 接口的引入"></a>3. 接口的引入</h4><p>​    当你需要的一系列子类既需要继承重写父类的抽象方法，同时还需要一个共同的方法但实现过程各子类不相同，有些甚至不需要，就可以把这个方法封装在接口中，需要的子类再去实现这个接口，不需要的就不用了<br>​    接口是抽象类的延伸，可以把它看作为一个纯粹的抽象类，接口中的所有方法都没有方法体<br>​    接口用来弥补类无法实现多继承的局限<br>​    由于接口为抽象类，为父类，所以你也可以像之前多态一样去使用接口，具体见<strong>7</strong><br>​    <strong>注意：接口内的方法省略abstract关键字</strong><br>​    如果一个类实现了一个接口中要求的所有的方法，然而没有提供方法体而仅仅只有方法标识，那么这个类一定是一个抽象类</p>
-<h4 id="4-interface关键字"><a href="#4-interface关键字" class="headerlink" title="4. interface关键字"></a>4. interface关键字</h4><p>​    接口使用interface关键字进行定义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface drawTest&#123;&#x2F;&#x2F;public可以不要，有public类时就不需要了</span><br><span class="line">	void draw(); &#x2F;&#x2F;接口内的方法省略abstract关键字</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-implements关键字"><a href="#5-implements关键字" class="headerlink" title="5. implements关键字"></a>5. implements关键字</h4><p>​    一个类实现一个接口，可以使用implements关键字</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;public可以不要，有public类时就不需要了</span><br><span class="line">public class child extends father implements drawTest&#123;&#x2F;&#x2F;可以不继承直接实现接口的，要实现多个接口每个接口用,隔开</span><br><span class="line">	&#x2F;&#x2F;something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-接口的注意事项"><a href="#6-接口的注意事项" class="headerlink" title="6. 接口的注意事项"></a>6. 接口的注意事项</h4><ul>
-<li>在接口中方法必须定义为public或者abstract形式，其他权限修饰符不被Java编译器认可，如果未注明默认就是public and abstract的</li>
-<li>在接口中定义的任何字段都自动是static和final和public的</li>
-<li>继承一个接口时需要实现接口中所有的方法</li>
-<li>一个类可以实现不止一个接口，语法见<strong>5</strong></li>
-</ul>
-<h4 id="7-接口的进阶"><a href="#7-接口的进阶" class="headerlink" title="7. 接口的进阶"></a>7. 接口的进阶</h4><p>​    <strong>我们不能直接去实例化一个接口，因为接口中的方法都是抽象的，是没有方法体的，这样怎么可能产生具体的实例呢？但是，我们可以使用接口类型的引用指向一个实现了该接口的对象，并且可以调用这个接口中的方法</strong></p>
-<p>​    应该优先使用接口而不是类来引用对象。如果有适合的接口类型存在，那么对于参数、返回值、变量和域来说，就都应该使用接口类型进行声明。只有当你利用构造器创建某个对象的时候，才真正需要引用这个对象的类。<br>​    如果你养成了用接口作为类型的习惯，你的程序将会更加灵活</p>
-<h4 id="8-接口的静态方法"><a href="#8-接口的静态方法" class="headerlink" title="8. 接口的静态方法"></a>8. 接口的静态方法</h4><p>​    Java 8允许静态接口方法<br>​    不能覆盖静态接口方法，只能通过使用接口名+静态接口方法名使用该静态接口方法，实例化后是无法调用的<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/4zrWGD"><img src="https://z3.ax1x.com/2021/10/06/4zrWGD.png" alt="4zrWGD.png"></a></p>
-
       
     </div>
 </article>
