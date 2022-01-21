@@ -70,6 +70,162 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/01/21/%E5%89%8D%E7%AB%AF03/">前端03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-01-21T05:34:33.000Z" itemprop="datePublished">
+    2022-01-21
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/HTML-CSS/">HTML+CSS</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="HTML表单的设计与使用"><a href="#HTML表单的设计与使用" class="headerlink" title="HTML表单的设计与使用"></a>HTML表单的设计与使用</h2><h4 id="1-表单的概念"><a href="#1-表单的概念" class="headerlink" title="1. 表单的概念"></a>1. 表单的概念</h4><p>​    表单在网页中主要负责数据采集功能，<strong>主要用于搜集不同类型的用户输入</strong>，是人和电脑相互交流的通道</p>
+<p>​    <strong>一个表单由两个基本组成部分：表单标签和表单域，<em>注意：由开始和结束的表单标签来组成一个表单域，一个页面可以有多个表单区域(通过name属性进行区分，不要重名)，但两个表单之间不支持嵌套</em></strong></p>
+<p>​    表单区域代码示例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;form1&quot;</span> <span class="attr">action</span>=<span class="string">&quot;register.html&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">	//里面可以写表单内容</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：定义表单名字，由英文字母定义</li>
+<li>action属性：指定表单提交后，提交的目的地</li>
+<li>method属性：有post和get，post打包暗箱传输的数据，而get是通过地址栏传值，不写该属性默认值为get</li>
+</ul>
+<p>​    表单标签<code>&lt;form&gt;</code>(双) ：包含了处理表单数据所用CGI程序的URL以及数据提交到服务器的方法</p>
+<p>​    <strong>下面所提到的标签必须包含在表单域中</strong></p>
+<p>​    表单域：包含了<strong>文本框、密码框、隐藏域、多行文本框、复选框、单选框、下拉选择框和文件上传框</strong>等</p>
+<p>​    表单按钮(属于表单域)：包括**提交按钮、复位按钮和一般按钮(即什么功能都没有定义的空按钮，用户可以根据自己情况定义)**；用以将数据传送到服务器上的CGI脚本或者取消输入，还可以用表单按钮来控制其他定义了处理脚本的处理工作</p>
+<h4 id="2-单行文本框-单"><a href="#2-单行文本框-单" class="headerlink" title="2. 单行文本框(单)"></a>2. 单行文本框(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为<code>text</code> </p>
+<p>​    范例：定义一个文本框</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>name属性：指定输入框的名字，<strong>表单中每一个标签都有命名，不要有重名，接收时按名字来接收</strong>，使用英文字母自行定义，不可以为关键字</p>
+</li>
+<li><p>type属性：<strong>用于定义类型</strong>，单行文本输入框的type固定为text</p>
+</li>
+</ul>
+<p>​    注意：未加修饰的文本框在不同的浏览器显示的效果是不一样的，如果要所有的浏览器看到同一个效果，则需要使用CSS对其进行修饰</p>
+<h4 id="3-密码输入框-单"><a href="#3-密码输入框-单" class="headerlink" title="3. 密码输入框(单)"></a>3. 密码输入框(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为<code>password</code> </p>
+<p>​    密码框和文本框的区别是在密码框输入时的东西都会被隐藏，但传值的时候还是可以看见</p>
+<p>​    范例：定义一个密码框</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>name属性：指定密码框的名字，<strong>表单中每一个标签都有命名，不要有重名，接收时按名字来接收</strong>，使用英文字母自行定义，不可以为关键字</p>
+</li>
+<li><p>type属性：密码输入框的type固定为password</p>
+</li>
+</ul>
+<p>​    <strong>注意：可以在表单中加入表格，使得各标签显示更加有序</strong></p>
+<h4 id="4-单选框-单"><a href="#4-单选框-单" class="headerlink" title="4. 单选框(单)"></a>4. 单选框(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为<code>radio</code> </p>
+<p>​    单选框一次只能选择一个选项，在单选框使用时，必须有两个以上的单选框标签，而且其name属性相同，每一个单选框构成一个选项</p>
+<p>​    范例：性别选择的实现</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">男 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span> /&gt;</span></span><br><span class="line">女 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：name属性相同表示一组单选框</li>
+<li>type属性：单选框的type固定为radio</li>
+<li>value属性：单选框相对于用户来说只是提供选择，用户并没有往里面输入值，所以需要value属性来定义一个值，当发生传值时，将选中的单选框的value值传递出去，单选框传的值和页面显示的文字无关</li>
+<li>checked属性：没有值，表示该选项默认为选中状态</li>
+</ul>
+<p>​    注意：文本框也有value属性，如果写了value属性，页面显示的就为value的默认值</p>
+<h4 id="5-复选框-单"><a href="#5-复选框-单" class="headerlink" title="5. 复选框(单)"></a>5. 复选框(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为<code>checkbox</code> </p>
+<p>​    复选框用于多选</p>
+<p>​    范例：城市的选择</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">北京<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;city&quot;</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">上海<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;city&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span> /&gt;</span></span><br><span class="line">大连<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;city&quot;</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：name属性相同表示一组复选框</li>
+<li>type属性：复选框的type固定为checkbox</li>
+<li>value属性：复选框相对于用户来说也只是提供选择，用户并没有往里面输入值，所以需要value属性来定义一个值，当发生传值时，将选中的复选框的value值传递出去，复选框传的值和页面显示的文字无关</li>
+<li>checked属性：没有值，表示该选项默认为选中状态</li>
+</ul>
+<h4 id="6-下拉单选框-双"><a href="#6-下拉单选框-双" class="headerlink" title="6. 下拉单选框(双)"></a>6. 下拉单选框(双)</h4><p>​    用<code>&lt;select&gt;</code> 包含<code>&lt;option&gt;</code> 标签来描述，没有type属性</p>
+<p>​    下拉单选框一次只能选择一个选项，下拉单选框的本质还是单选，但其可以节省空间，可以选如年月日那种</p>
+<p>​    范例：下拉单选框的使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;select&quot;</span> <span class="attr">id</span>=<span class="string">&quot;select&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span>&gt;</span>上海<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span>&gt;</span>大连<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>select标签的属性<ul>
+<li>name属性：指定下拉单选框的名字，使用英文字母自行定义</li>
+</ul>
+</li>
+<li>option标签的属性<ul>
+<li>value属性：指定该选项的值，传参过去时使用</li>
+<li>selected属性：没有值，表示默认选中该选项</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-多行文本输入框-双"><a href="#7-多行文本输入框-双" class="headerlink" title="7. 多行文本输入框(双)"></a>7. 多行文本输入框(双)</h4><p>​    用<code>&lt;textarea&gt;</code> 标签描述，没有type属性</p>
+<p>​    多行文本输入框用于输入大量文字信息，用于像电子邮件、发帖的正文等</p>
+<p>​    范例：多行文本输入框的实现</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">&quot;input&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;20&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;80&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：指定输入框的名字，用英文表示自行定义</li>
+<li>rows属性：指定文本框的行数(20表示有20个字符那么长)</li>
+<li>cols属性：指定文本框的列数(80表示有80个字符那么长)</li>
+<li>默认值：在开始标签和结束标签中间写的东西都会作为默认值显示</li>
+</ul>
+<p>​    注意：现在一般不会这样使用cols属性和rows属性来确定多行文本输入框的大小</p>
+<h4 id="8-文件上传-单"><a href="#8-文件上传-单" class="headerlink" title="8. 文件上传(单)"></a>8. 文件上传(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为file</p>
+<p>​    用于把文件上传到服务器</p>
+<p>​    范例：文件上传的前端部分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：指定该文件上传接口的名字，用英文表示自行定义</li>
+<li>type属性：提交按钮的type属性固定为file</li>
+</ul>
+<p>​    注意：此时只是为前台页面的上传，该上传并不具有文件上传的逻辑，要想真正实现上传专门去用程序去实现上传的组件，他只是前台的一个接口</p>
+<h4 id="9-提交按钮-单"><a href="#9-提交按钮-单" class="headerlink" title="9. 提交按钮(单)"></a>9. 提交按钮(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为submit</p>
+<p>​    <strong>用于将表单数据提交给<code>form</code> 标签中action属性指定的地址进行处理，即传出去了，但action的那个页面能否接收要看那个页面是怎么写的</strong></p>
+<p>​    范例：实现提交按钮</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;注册&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：指定按钮名字，用英文字母自行定义</li>
+<li>type属性：提交按钮的type属性固定为submit</li>
+<li>value属性：指定按钮上显示的字</li>
+</ul>
+<h4 id="10-普通按钮-单"><a href="#10-普通按钮-单" class="headerlink" title="10. 普通按钮(单)"></a>10. 普通按钮(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为button</p>
+<p>​    该按钮相当于空的按钮，需要自己使用脚本进行定义</p>
+<h4 id="11-重置按钮-单"><a href="#11-重置按钮-单" class="headerlink" title="11. 重置按钮(单)"></a>11. 重置按钮(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为reset</p>
+<p>​    用于清空表单已经填写的数据，把表单恢复初始化</p>
+<p>​    范例：定义重置按钮</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">name</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">value</span>=<span class="string">&quot;重填&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：指定按钮名字，用英文字母自行定义</li>
+<li>type属性：重置按钮的type属性固定为reset</li>
+<li>value属性：指定按钮上显示的字</li>
+</ul>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2022/01/16/%E5%89%8D%E7%AB%AF02/">前端02</a>
         </h1>
       
@@ -1241,99 +1397,6 @@
 <li>程序执行、多线程、程序执行带动其他设备使用的基本结构</li>
 <li>对用户的使用感觉：各种文件、编程环境、图形界面</li>
 </ul>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/10/25/Java14/">Java14</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-10-25T11:25:55.000Z" itemprop="datePublished">
-    2021-10-25
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><h4 id="1-泛型是在JDK1-5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题"><a href="#1-泛型是在JDK1-5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题" class="headerlink" title="1. 泛型是在JDK1.5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题"></a>1. 泛型是在JDK1.5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题</h4><h4 id="2-泛型问题的引出"><a href="#2-泛型问题的引出" class="headerlink" title="2. 泛型问题的引出"></a>2. 泛型问题的引出</h4><p>​    在Java中，最方便的参数统一使用Object类型，但是并不是意味所有的Object都可以解决实际问题</p>
-<p>​    现在假设需要一个描述坐标点的信息类(Point)，该类中可以保存三种坐标类型</p>
-<ul>
-<li><p>保存整型</p>
-</li>
-<li><p>保存浮点型</p>
-</li>
-<li><p>保存字符串</p>
-</li>
-</ul>
-<p>​    此时，要保证三类数据的保存，只有通过Object类型可以解决</p>
-<p>​    <strong>Point类的设计</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Object x;</span><br><span class="line">	<span class="keyword">private</span> Object y;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(Object x)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x = x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(Object y)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.y = y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    在使用这个类时，需要进行向上转型输入和向下转型输出。但是，由于Object所能描述的范围太广泛了，所以<strong>可能传入了字符串类型任何转型时不小心转为了int(其他)类型</strong>，此时代码在<strong>编译时可以通过，执行时出现”ClassCastException“异常</strong>，<strong>由此可以看出Object提供的解决方案实际上会存在安全隐患</strong>，所以Object类作为参数是项目中最大的败笔</p>
-<h4 id="3-泛型基本定义"><a href="#3-泛型基本定义" class="headerlink" title="3. 泛型基本定义"></a>3. 泛型基本定义</h4><p>​    通过分析Object作为参数的优缺点，<strong>要想解决对象转型安全隐患问题，最简单的方式就是不转型</strong><br>​    JDk1.5后提供了泛型的概念，泛型&lt; T &gt;最大的特点为，类中的属性类型或方法的参数，可以在类的使用时，动态决定<br>​    <strong>范例：修改Point类的设计</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>&lt;<span class="title">T</span>&gt;</span>&#123; <span class="comment">//T表示Type的意思，不一定要T写其他的也可以</span></span><br><span class="line">	<span class="keyword">private</span> T x;</span><br><span class="line">	<span class="keyword">private</span> T y;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(T x)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x = x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(T y)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.y = y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    在Point类上定义的泛型T实际上只是一个随机设置的名称，表示的是，该类型由使用的时候来决定，<strong>泛型使用时只能使用引用数据类型，不能使用基本类型</strong></p>
-<p>​    范例：使用泛型声明的类Point</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Point&lt;Integer&gt; a &#x3D; new Point&lt;Integer&gt;();</span><br><span class="line">		a.setX(10);</span><br><span class="line">		a.setY(20);</span><br><span class="line">		System.out.println(&quot;x &#x3D; &quot;+a.getX()+ &quot;,y &#x3D; &quot;+a.getY());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>​    注意：使用泛型后，所有程序之中具有泛型标记的部分都会更换为相应的类型标记，这个标记在类对象实例化的时候进行动态的配置，此时就不需要转型了，而且编译时会帮助检测错误</p>
-<p>​    <strong>注意：如果使用了泛型设计类但是使用这个类并没有给泛型，那么会把泛型中所有的T变成Object类型，Object的使用就需要转型了</strong></p>
-<h4 id="4-泛型通配符"><a href="#4-泛型通配符" class="headerlink" title="4. 泛型通配符"></a>4. 泛型通配符</h4><p>​    泛型的出现解决了数据类型的转换安全问题，但是随之而来也会带来引用传递的麻烦。<strong>为解决该问题则用通配符对形参进行约束</strong></p>
-<p>​    范例：泛型的引用传递</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">class Message&lt;T&gt;&#123;</span><br><span class="line">	private T info;</span><br><span class="line">	public void setMessage(T info) &#123;</span><br><span class="line">		this.info &#x3D; info;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public T getMessage() &#123;</span><br><span class="line">		return this.info;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Message&lt;String&gt; msg &#x3D; new Message&lt;String&gt;();</span><br><span class="line">		msg.setMessage(&quot;篮球&quot;);</span><br><span class="line">		print(msg);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void print(Message&lt;String&gt; msg) &#123;</span><br><span class="line">		System.out.println(msg.getMessage());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>注意：</strong></p>
-<ol>
-<li>泛型作为形参不可以作为重载标识，重载的参数类型名以类名作为标识与泛型无关</li>
-<li>泛型在作为形参时需要注明泛型的类型</li>
-<li>如果没有声明泛型类型，传过来则使用Object类型来代替未设置的泛型标记，也就说传过来后的泛型可以设置成任意类型</li>
-</ol>
-<p>​    <em>为了解决3这个问题，泛型里提供了通配符”?“</em><br>​    使用通配符”?“会限制程序不可以修改传过来的对象，此时对象仍然为object类型(可以描述一切的泛型类型)，但无法进行修改(取和改)</p>
-<p>​    在通配符?的基础之上，又产生了两个通配符的应用：</p>
-<ul>
-<li>设置泛型的下限：? super类;<br>​    例如：”? super String“，表示可以设置的泛型类只能够是String以及其父类(Object)</li>
-<li>设置泛型的上限：? extands 类;<br>​    例如：”? extends Number“：表示所设置的泛型类型只能够是Number或者其子类<br>​    <strong>注意：泛型的上限可以对类进行修饰(类&lt; T extends 类(界限)&gt;)</strong></li>
-</ul>
-<h4 id="5-泛型接口"><a href="#5-泛型接口" class="headerlink" title="5. 泛型接口"></a>5. 泛型接口</h4><p>​    泛型也可以应用在接口上，此类接口称为泛型接口</p>
-<p>​    泛型接口的定义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface IMessage&lt;T&gt;&#123;</span><br><span class="line">	public void send(T content);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    所有的接口在使用的时候都必须依靠子类，那么在此时子类有两种实现泛型接口的方式</p>
-<ul>
-<li>方式一：在子类中继续指定泛型标记<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(T content)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MessageImpl</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(T content)</span> </span>&#123;</span><br><span class="line">		System.out.println(content);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		IMessage&lt;String&gt; a = <span class="keyword">new</span> MessageImpl&lt;String&gt;();<span class="comment">//后面的String可以省略，尖括号还是需要</span></span><br><span class="line">		a.send(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>​    上面代码的注释中，在JDK1.8出现了一个自动推导泛型的概念，因为每一次前后都需要编写泛型类型，过于复杂，所以现在前面定义了泛型类型，那么后面就可以不需要重复定义了</p>
-<ul>
-<li>方式二：子类不再设置泛型类型，而为父类指派好类型</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface IMessage&lt;T&gt;&#123;</span><br><span class="line">	public void send(T content);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MessageImpl implements IMessage&lt;String&gt;&#123;</span><br><span class="line">	public void send(String content) &#123;</span><br><span class="line">		 System.out.println(content);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		IMessage&lt;String&gt; a &#x3D; new MessageImpl();</span><br><span class="line">		a.send(&quot;hello&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-泛型方法"><a href="#6-泛型方法" class="headerlink" title="6. 泛型方法"></a>6. 泛型方法</h4><p>​    所有泛型方法不一定非要定义在泛型的类或泛型接口之中，这也就是说任意一个方法都可以定义为泛型方法，但是需要对泛型标记（&lt;  T &gt;）加以声明</p>
-<p>​    范例：定义泛型方法<br>​    此时对于传入的参数类型就由调用方法的语句来外部定义了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T[] init(T ... args)&#123; <span class="comment">//T[]表示T类型数组</span></span><br><span class="line"><span class="keyword">return</span> args; <span class="comment">//返回是类对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    知道一个方法如何去定义一个泛型就行了</p>
 
       
     </div>

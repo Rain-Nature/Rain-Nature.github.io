@@ -70,6 +70,44 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/06/15/Java%E5%AE%9E%E4%BE%8B-%E5%86%85%E9%83%A8%E7%B1%BB/">Java实例-内部类</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-06-15T11:32:57.000Z" itemprop="datePublished">
+    2021-06-15
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="Java实例-内部类的基本作用"><a href="#Java实例-内部类的基本作用" class="headerlink" title="Java实例-内部类的基本作用"></a>Java实例-内部类的基本作用</h2><h4 id="1-实例内部类–内部类在外部类中，内部类修饰为private"><a href="#1-实例内部类–内部类在外部类中，内部类修饰为private" class="headerlink" title="1. 实例内部类–内部类在外部类中，内部类修饰为private"></a>1. 实例内部类–内部类在外部类中，内部类修饰为private</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface Food&#123;</span><br><span class="line">	public void doing();</span><br><span class="line">&#125;</span><br><span class="line">public class First&#123;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Outside o &#x3D; new Outside();</span><br><span class="line">		Food i &#x3D; o.create(); &#x2F;&#x2F;用接口引用类型来接内部类实现接口的实例</span><br><span class="line">		i.doing();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outside&#123;</span><br><span class="line">	private class Inside implements Food&#123; &#x2F;&#x2F;private只能在外部类访问</span><br><span class="line">		public void doing() &#123;</span><br><span class="line">			System.out.println(&quot;eat egg&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public Inside create() &#123;</span><br><span class="line">		return new Inside();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-局部内部类–内部类在外部类的方法中，内部类无修饰符"><a href="#2-局部内部类–内部类在外部类的方法中，内部类无修饰符" class="headerlink" title="2. 局部内部类–内部类在外部类的方法中，内部类无修饰符"></a>2. 局部内部类–内部类在外部类的方法中，内部类无修饰符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface Food&#123;</span><br><span class="line">	public void doing();</span><br><span class="line">&#125;</span><br><span class="line">public class First&#123;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Outside b &#x3D; new Outside();</span><br><span class="line">		Food c &#x3D; b.a();</span><br><span class="line">		c.doing();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outside&#123;</span><br><span class="line">	public Food a() &#123; &#x2F;&#x2F;方法返回值类型为接口类型</span><br><span class="line">		class Inside implements Food&#123;</span><br><span class="line">			public void doing() &#123;</span><br><span class="line">				System.out.println(&quot;hello&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return new Inside();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/06/05/Java08/">Java08</a>
         </h1>
       
@@ -728,67 +766,6 @@
     <div>
       
         <p>​    零碎化的时间确实是宝贵的，但完整的时间更为珍贵，利用零碎化的时间是好的，但把原先完整的时间打碎然后再装模做样的说零碎化的时间怎么怎么样就是在自欺欺人。<br>​    但为什么完整的时间会被打乱，第一是计划问题，一个无能的，乱七八糟的计划会使你本不富裕的时间雪上加霜，大多数时间花费在了无用功身上，还有一个就是放纵在手机和电脑的影响下，原本要做的事情没有做，反而会向下压，这样你就少了更多的时间那么当你完成这些事情后，你的完整的时间要么变成了零碎化的时间，要么甚至就是没有。<br>​    所以，更应该保护完整的时间，在完整的时间下多做一些事情，而不是在消极把原本完整的时间碎片化。</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/05/04/Java02/">Java02</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-05-04T03:12:43.000Z" itemprop="datePublished">
-    2021-05-04
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><h4 id="1-if条件语句"><a href="#1-if条件语句" class="headerlink" title="1. if条件语句"></a>1. if条件语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>   if后面”()”内的值必须是boolean型的,若语句中仅有一条语句，则可以省略条件语句中的”{}”，书上说为增强程序可读性最好不要省略<br>   <strong>注意：if语句是从上到下执行，上面有满足条件就算下面满足条件也不执行</strong></p>
-<h4 id="2-if-else与三元运算符的转化"><a href="#2-if-else与三元运算符的转化" class="headerlink" title="2. if~else与三元运算符的转化"></a>2. if~else与三元运算符的转化</h4><p>例：求绝对值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(a&gt;0)</span><br><span class="line">	b &#x3D; a;</span><br><span class="line">else</span><br><span class="line">	b &#x3D; -a;</span><br><span class="line">可以转化为</span><br><span class="line">b &#x3D; a &gt; 0?a:-a; &#x2F;&#x2F;问号前面的表达式为真则返回问号与冒号之间的表达式，否则把冒号后面的表达式给b，注意：三元运算符是有一个返回值的</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-switch多分支语句"><a href="#3-switch多分支语句" class="headerlink" title="3. switch多分支语句"></a>3. switch多分支语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">switch(表达式) &#x2F;*在JDK1.6以前常量值必须是整型或字符型，在JDK1.7中，常量值除了整型或字符型还可以是字符串类型，注意常量值绝对不能是实数，如1.1就不行*&#x2F;</span><br><span class="line">&#123;</span><br><span class="line">	注意：同一个switch语句，case的常量值必须不互相同</span><br><span class="line">	case 常量值1:</span><br><span class="line">	语句块1;</span><br><span class="line">	break;</span><br><span class="line">	...</span><br><span class="line">	case 常量值n:</span><br><span class="line">	语句块n;</span><br><span class="line">	break;</span><br><span class="line">	default:</span><br><span class="line">	语句块n+1; &#x2F;&#x2F;default不需要break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-while循环语句-先判断再执行"><a href="#4-while循环语句-先判断再执行" class="headerlink" title="4. while循环语句(先判断再执行)"></a>4. while循环语句(先判断再执行)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while(条件表达式)&#123;  &#x2F;&#x2F;条件表达式返回值为真继续循环，为假退出循环</span><br><span class="line">	执行语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-do…while循环语句-先执行再判断"><a href="#5-do…while循环语句-先执行再判断" class="headerlink" title="5. do…while循环语句(先执行再判断)"></a>5. do…while循环语句(先执行再判断)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">do</span><br><span class="line">&#123;</span><br><span class="line">	执行语句</span><br><span class="line">&#125;</span><br><span class="line">while(条件表达式);  &#x2F;&#x2F;注意这里是比while循环多一个分号</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-for循环语句"><a href="#6-for循环语句" class="headerlink" title="6. for循环语句"></a>6. for循环语句</h4><p>与c一样<br><strong>注意：for循环里第一个表达式里是填初始化表达式，可以为空，但不可以直接填一个变量(不管什么类型)，哪怕这个变量前面已经定义赋值</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(i;i&lt;12;i++) &#x2F;&#x2F;错误的，i因改为i&#x3D;0，若i是已经定义赋值的这个第一个表达式也可以直接为空不写东西</span><br></pre></td></tr></table></figure>
-
-<h4 id="7-foreach语句"><a href="#7-foreach语句" class="headerlink" title="7. foreach语句"></a>7. foreach语句</h4><p>foreach是for语句的特殊简化版本，不能完全取代for语句，任何foreach语句都可以改写为for语句版本，foreach语句一般用于遍历数组等方面,在这种方面给与程序员很大的方便</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(元素变量x:遍历对象obj)&#123;</span><br><span class="line">	引用了x的java语句;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例：输出一维数组中全部元素</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String args[]) &#123;</span><br><span class="line">		int[] arr &#x3D; &#123;3,5,7,4&#125;;</span><br><span class="line">		for(int x:arr) &#123;</span><br><span class="line">			System.out.println(x);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="8-循环控制"><a href="#8-循环控制" class="headerlink" title="8. 循环控制"></a>8. 循环控制</h4><p>(1).break<br>中断循环<br><strong>注意：break只能跳出一层循环，如果想直接跳到外层的循环，可以使用“标签”(java提供的功能)</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标签名:循环体&#123;</span><br><span class="line">	break 标签名;  &#x2F;&#x2F;直接跳出有标签名的循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>(2).continue<br>跳过本次循环执行下一次循环<br>**注意：continue也支持标签功能</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标签名:循环体&#123;</span><br><span class="line">	continue 标签名;  &#x2F;&#x2F;直接跳出有标签名的循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
 
       
     </div>
