@@ -70,6 +70,88 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/06/15/Java09/">Java09</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-06-15T11:34:04.000Z" itemprop="datePublished">
+    2021-06-15
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="类的高级特性"><a href="#类的高级特性" class="headerlink" title="类的高级特性"></a>类的高级特性</h2><h4 id="1-类名冲突与完整路径"><a href="#1-类名冲突与完整路径" class="headerlink" title="1. 类名冲突与完整路径"></a>1. 类名冲突与完整路径</h4><p>​    在Java中，同名的两个类需要放在不同的类包(包)中<br>​    完整的类名为包名和类名的组合<br>​    像指定类时是可以写完整类名的但是由于麻烦和可读性就会使用import关键字来引入</p>
+<h4 id="2-同一个包中的类相互访问时，可以不指定包名"><a href="#2-同一个包中的类相互访问时，可以不指定包名" class="headerlink" title="2. 同一个包中的类相互访问时，可以不指定包名"></a>2. 同一个包中的类相互访问时，可以不指定包名</h4><h4 id="3-CLASSPATH"><a href="#3-CLASSPATH" class="headerlink" title="3. CLASSPATH"></a>3. CLASSPATH</h4><p>​    直译的话就是类的路径，配置了classpath后java程序会直接去classpath的路径下去找.class文件运行。这样我们就可以在任意目录下来运行我们的java程序，在连接数据库时我配置了这个的环境变量</p>
+<h4 id="4-package关键字"><a href="#4-package关键字" class="headerlink" title="4. package关键字"></a>4. package关键字</h4><p>​    用来定义包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package 包名</span><br></pre></td></tr></table></figure>
+<p>​    需要将package表达式放置在第一行，它必须是程序第一行非注释代码<br>​    Java包的命名规则：全部使用小写字母</p>
+<h4 id="5-import关键字"><a href="#5-import关键字" class="headerlink" title="5. import关键字"></a>5. import关键字</h4><p>​    (1).用来导入包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import 包名.类名  &#x2F;&#x2F;如果类不在包中则只要类名即可</span><br></pre></td></tr></table></figure>
+<p>​    如果需要使用包中的多个类，类名用 * 代替， * 表所有的类<br>​    <strong>注意：<br>​    如果已经用import引入了一个类，如果还要引用一个和这个类同名的类，则必须使用完整路径</strong></p>
+<p>​    (2).用来导入静态成员</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import static 静态成员 &#x2F;&#x2F;静态成员应为完整路径，可以为静态变量，也可以是静态方法</span><br></pre></td></tr></table></figure>
+<p>​    导入完之后就可以直接使用了，不需要再写完整的路径</p>
+<h4 id="6-final关键字"><a href="#6-final关键字" class="headerlink" title="6. final关键字"></a>6. final关键字</h4><p>​    <strong>(1).final变量</strong><br>​    使用final声明的变量，一旦被设定就不可以再改变它的值，<strong>通常使用这个方式来定义常量，final常量定义时需要使用大写字母命名</strong><br>​    注意：final变量定义的时候，可以先声明，而不给初值，这种变量也称为final空白</p>
+<p>​    final修饰的变量有三种：静态变量、实例变量和局部变量，分别表示三种类型的常量</p>
+<p>​    <strong>(2).final对象</strong><br>​    使用final修饰对象，一旦一个对象的引用被修饰，则它只能恒定指向一个对象，不能改变指向，未被指定时可以随便指<br>​    <strong>注意：数组也可以看作是一个对象来使用这个关键字</strong></p>
+<p>​    <strong>(3).final方法</strong><br>​    定义为final的方法不能被重写，可以被继承<br>​    定义为final的方法的执行效率高于非final的方法<br>​    定义为private不能被子类方法覆盖，private类型的方法默认是final类型的（这句先不说覆不覆盖就private感觉外部就调用不了了）</p>
+<p>​    <strong>(4).final类</strong><br>​    定义为final类不能被继承，没有子类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">final 类名&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>如果一个类设置为final，则类中所有的方法都被隐式设置为final形式，但final类中的成员变量可以被定义为final或者非final形式</strong></p>
+<p>​    <strong>(5).static和final一起使用</strong><br>​    static final用来修饰成员变量和成员方法，可以看作为全局常量</p>
+<ul>
+<li>对于变量，表示一旦给值就不可修改，并且通过类名可以访问</li>
+<li>对于方法，表示不可覆盖，并且可以通过类名直接访问</li>
+</ul>
+<p>​    <strong>注意：对于被static和final修饰过的实例常量，实例本身不能再改变了，但对于一些容器类型（比如，ArrayList、HashMap）的实例变量，不可以改变容器变量本身，但可以修改容器中存放的对象</strong></p>
+<h4 id="7-内部类"><a href="#7-内部类" class="headerlink" title="7. 内部类"></a>7. 内部类</h4><p>​    如果在一个类中再定义一个类，则将这个再定义的类称为内部类，<strong>内部类分为成员内部类、局部内部类、匿名类</strong></p>
+<p>​    <strong>(1).成员内部类</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class Outside&#123; &#x2F;&#x2F;外部类</span><br><span class="line">	private class Inside&#123; &#x2F;&#x2F;内部类,是一个私有成员</span><br><span class="line">		&#x2F;&#x2F;something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>在内部类中可以随意使用外部类的成员方法和成员变量，尽管被修饰为了private</strong><br>​    就像main方法放在类中可以访问该类的私有成员一样<br>​    <strong>但外部类不能直接访问内部类成员，需要先将内部类在外部类中实例化后再使用，内部类为private在外部类实例化后一样也可以使用</strong><br>​    <strong>内部类修饰为private只能外部类访问，其他类没有权限访问（哪怕是继承了外部类的子类）</strong></p>
+<p>​    内部类的实例化需要绑定在外部类的实例上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;内部类的实例化，如果在外部类和外部类非静态方法之外实例内部类对象则需要下面的形式</span><br><span class="line">外部类名.内部类名 引用变量名 &#x3D; 外部实例引用变量.内部实例  &#x2F;&#x2F;内部实例可以是new的也可以是其他只要是内部实例就行</span><br></pre></td></tr></table></figure>
+<p>​    <strong>类中多次实现接口中同一个方法</strong><br>​    在程序中可以用权限修饰符为private的内部类实现。可以在外部提供一个接口，在接口中声明一个方法。如果在实现该接口的内部类中实现该接口的方法，就可以定义多个内部类以不同的方式实现接口中的同一个方法，而在一般的类中是不能多次实现接口中同一个方法的<br>​    此时通过在外部类中写方法实例化这个private内部类，之后用接口的引用来接这个实现接口的实例<br>​    <strong>详细见《Java实例-内部类的基本作用》例一</strong></p>
+<p>​    <strong>外部类中定义的成员变量与内部类的成员变量名称相同，可以使用this关键字</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Outside&#123;</span><br><span class="line">	private int x &#x3D; 0;</span><br><span class="line">	private class Inside&#123;</span><br><span class="line">		private int x &#x3D; 9;</span><br><span class="line">		public void doit(int x)&#123;</span><br><span class="line">			x++;              &#x2F;&#x2F;调用的是形参x</span><br><span class="line">			this.x++          &#x2F;&#x2F;调用的是内部类成员变量x</span><br><span class="line">			Outside.this.x++  &#x2F;&#x2F;调用的是外部类成员变量x</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>(2).局部内部类</strong><br>​    在类的局部进行定义，如在类的方法或任意作用域中定义<br>​    由于内部类在类方法或者任意作用域中，<strong>在方法(作用域)的外部是无法访问该内部类</strong>，而内部类却可以访问当前代码块的常量**(final类型的局部变量)<strong>以及</strong>此外部类的所有成员**<br>​    在方法中的局部变量在内部类中可以访问<br>​    <strong>详细见《Java实例-内部类的基本作用》例二</strong></p>
+<p>​    <strong>(3).匿名内部类</strong><br>​    用时再查，和局部内部类一样在方法中，不过去掉类名，在return语句下在描述类体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;语法</span><br><span class="line">return new A()&#123;&#x2F;&#x2F;A为接口名</span><br><span class="line">	&#x2F;&#x2F;类体</span><br><span class="line">&#125;; &#x2F;&#x2F;注意：这里特殊的需要加一个分号，分号代表接口的引用表达式的创建</span><br></pre></td></tr></table></figure>
+<p>​    匿名内部类编译后会产生以“外部类名$序号”为名称的.class文件，序号以1<del>n排列，分别代表1</del>n个匿名内部类</p>
+<p>​    <strong>(4).静态内部类（少见）</strong><br>​    在内部类前加修饰符static，则为静态内部类，<strong>静态内部类中可以声明static成员，但在非静态内部类中不能声明静态成员</strong><br>​    <strong>静态内部类的特点</strong></p>
+<ul>
+<li>静态内部类内不可以使用外部类的非静态成员</li>
+<li>如果创建静态内部类的对象，不需要其外部类的对象<br>​    在程序测试时需要每个文件设置一个主方法，这会产生许多额外的代码，程序本身不需要这些主方法，所以一般把主方法写到静态内部类中，主要是编译后会产生独立类，测试完后删除即可</li>
+</ul>
+<h4 id="8-内部类的继承"><a href="#8-内部类的继承" class="headerlink" title="8. 内部类的继承"></a>8. 内部类的继承</h4><p>​    内部类的继承比普通类的继承要复杂</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">public class First extends A.B&#123; &#x2F;&#x2F;继承内部类class B</span><br><span class="line">	public First(A a) &#123;</span><br><span class="line">		a.super();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class A&#123;</span><br><span class="line">	class B&#123;</span><br><span class="line">		&#x2F;&#x2F;something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>在某个类继承内部类时，必须硬性给与这个类一个带参数的构造方法，并且该构造方法的参数为需要继承内部类的外部类的引用，同时在构造方法体中使用a.super()语句，这样才为继承提供了必要的对象引用</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/06/15/Java%E5%AE%9E%E4%BE%8B-%E5%86%85%E9%83%A8%E7%B1%BB/">Java实例-内部类</a>
         </h1>
       
@@ -729,43 +811,6 @@
 <p>​    因此，现在把项目中的一些警告修改一下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">遍历向组件传参时，此时_id为对象的主键，把他作为wx:key的参数</span><br><span class="line">&lt;block wx:for&#x3D;&quot;&#123;&#123;playlist_data&#125;&#125;&quot; wx:key&#x3D;&quot;_id&quot;&gt;</span><br><span class="line"></span><br><span class="line">遍历轮播图时，把轮播图图片的对象url作为wx:key的参数</span><br><span class="line">&lt;block wx:for&#x3D;&quot;&#123;&#123;swiperpictures&#125;&#125;&quot; wx:key&#x3D;&quot;url&quot;&gt;</span><br></pre></td></tr></table></figure>
 <p>此时，警告都会消除</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/05/05/%E8%AE%BA%E9%9B%B6%E7%A2%8E%E5%8C%96%E6%97%B6%E9%97%B4%E7%9A%84%E7%94%B1%E6%9D%A5/">论零碎化时间的由来</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-05-05T02:50:42.000Z" itemprop="datePublished">
-    2021-05-05
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/my-think/">my-think</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <p>​    零碎化的时间确实是宝贵的，但完整的时间更为珍贵，利用零碎化的时间是好的，但把原先完整的时间打碎然后再装模做样的说零碎化的时间怎么怎么样就是在自欺欺人。<br>​    但为什么完整的时间会被打乱，第一是计划问题，一个无能的，乱七八糟的计划会使你本不富裕的时间雪上加霜，大多数时间花费在了无用功身上，还有一个就是放纵在手机和电脑的影响下，原本要做的事情没有做，反而会向下压，这样你就少了更多的时间那么当你完成这些事情后，你的完整的时间要么变成了零碎化的时间，要么甚至就是没有。<br>​    所以，更应该保护完整的时间，在完整的时间下多做一些事情，而不是在消极把原本完整的时间碎片化。</p>
 
       
     </div>

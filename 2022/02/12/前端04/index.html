@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>前端04 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+            <div>Road is walked by me</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>前端04</h1>
+    </header>
+
+    <section>
+      <h2 id="CSS基础"><a href="#CSS基础" class="headerlink" title="CSS基础"></a>CSS基础</h2><h4 id="1-CSS简介"><a href="#1-CSS简介" class="headerlink" title="1. CSS简介"></a>1. CSS简介</h4><p>​    CSS(层叠样式表)是由W3C的CSS工作组创建和维护的。它是一种不需要编译。可直接由浏览器执行的标记性语言，用于控制web页面的外观</p>
+<p>​    通过使用CSS样式控制页面各元素的属性显示，可将页面的内容与表现形式进行分离</p>
+<p>​    <strong>层叠样式表本质上也是文本，用<code>&#123;&#125;</code> 将样式内容括住，最后将所有的封装在一个文件里。页面引用这个文件即可</strong></p>
+<p>​    HTML5和CSS3是同时制作发布的</p>
+<h4 id="2-CSS的优势"><a href="#2-CSS的优势" class="headerlink" title="2. CSS的优势"></a>2. CSS的优势</h4><ul>
+<li><p>避免使用多余的HTML代码，减少代码量</p>
+<p>​    文本本身是通过字符来计算文件量，而**在之前对于页面的修饰会通过HTML标签自带的属性进行修饰(即HTML代码的处理方式，不属于CSS)**，此时代码量大，读的时候就会慢</p>
+</li>
+<li><p>缩短更新和维护的时间</p>
+<p>​    不使用CSS可能有些样式要反复定义，需要更换时，可能非常复杂。而且采用样式表可以使得样式与页面相分离，在修改时，更加直观、防止出错</p>
+</li>
+<li><p>做出HTML实现不了的特效</p>
+<p>​    CSS2很多功能HTML里面其实也有，但在CSS3以及之后HTML里的样式就不再更新了</p>
+</li>
+</ul>
+<h4 id="3-认识-lt-div-gt-和-lt-span-gt-标签-双"><a href="#3-认识-lt-div-gt-和-lt-span-gt-标签-双" class="headerlink" title="3. 认识&lt;div&gt; 和&lt;span&gt; 标签(双)"></a>3. 认识<code>&lt;div&gt;</code> 和<code>&lt;span&gt;</code> 标签(双)</h4><p>​    <code>&lt;div&gt;</code> 和<code>&lt;span&gt;</code> 标签是属于HTML的标签，一般这两个标签都是配合样式表使用的，这<strong>两个标签可以理解为容器标签</strong>，早期时一般用Table来当容器</p>
+<ul>
+<li><p><code>&lt;div&gt;</code> 标签(双)：</p>
+<p>​    用来为HTML文档内大块的内容提供结构和背景的元素，它为块元素，<code>&lt;div&gt;</code> 的起始标签和结束标签之间的所有内容都在该块中，<strong>一般在布局时使用</strong></p>
+</li>
+<li><p><code>&lt;span&gt;</code> 标签(双)：</p>
+<p>​    用来组成HTML文档的行元素，<strong>一般放内容时使用，<code>div</code> 也可以作为放内容</strong></p>
+</li>
+</ul>
+<p>​    <strong><code>&lt;div&gt;</code> 和<code>&lt;span&gt;</code> 在页面上的显示</strong></p>
+<p>​    代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span>内容1<span class="tag">&lt;/<span class="name">div</span>&gt;</span> <span class="tag">&lt;<span class="name">div</span>&gt;</span>内容2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">span</span>&gt;</span>内容1<span class="tag">&lt;/<span class="name">span</span>&gt;</span> <span class="tag">&lt;<span class="name">span</span>&gt;</span>内容1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    结果(虚线是工具编译生成的，在浏览器显示时，不会进行显示)</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/7IOCXF"><img src="https://s4.ax1x.com/2022/01/24/7IOCXF.png" alt="7IOCXF.png"></a></p>
+<h4 id="4-CSS样式语法"><a href="#4-CSS样式语法" class="headerlink" title="4. CSS样式语法"></a>4. CSS样式语法</h4><p>​    <a target="_blank" rel="noopener" href="https://imgtu.com/i/7IjFiR"><img src="https://s4.ax1x.com/2022/01/24/7IjFiR.png" alt="7IjFiR.png"></a></p>
+<ul>
+<li>选择器(符)：用于选择文档中要应用样式的那些元素，该元素 </li>
+</ul>
+<h4 id="5-CSS样式表中的注释"><a href="#5-CSS样式表中的注释" class="headerlink" title="5. CSS样式表中的注释"></a>5. CSS样式表中的注释</h4><p>​    使用<code>/*  注释  */</code>包裹进行注释</p>
+<h4 id="6-CSS样式的几种表达方式"><a href="#6-CSS样式的几种表达方式" class="headerlink" title="6. CSS样式的几种表达方式"></a>6. CSS样式的几种表达方式</h4><h5 id="1-内嵌样式-直接在页面的标签里加"><a href="#1-内嵌样式-直接在页面的标签里加" class="headerlink" title="(1). 内嵌样式(直接在页面的标签里加)"></a>(1). 内嵌样式(直接在页面的标签里加)</h5><p>​    将CSS样式与某HTML标签混合使用，这种方式可以简单的对某个元素单独定义样式</p>
+<p>​    范例：内嵌样式的使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">style</span>=<span class="string">&quot;font-family:&#x27;微软雅黑&#x27;;font-size:14px;color:#F00&quot;</span>&gt;</span>内嵌样式<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    注意：这种方式实际上与在HTML代码中直接定义属性类似，违反了之前避免使用不必要的HTML元素这个规则，<strong>一般使用这种方式写只是针对页面已经写好但部分需要修改时使用</strong></p>
+<h5 id="2-内部样式表-在head部分加入"><a href="#2-内部样式表-在head部分加入" class="headerlink" title="(2). 内部样式表(在head部分加入)"></a>(2). 内部样式表(在head部分加入)</h5><p>​    在HTML页面head标签内进行定义，只能在定义了的页面进行调用，其他页面调用不了 </p>
+<p>​    范例：内部样式表的使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="xml"> /*有些会写<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span>这是CSS4.0要求的，现在5.0可以不写*/</span></span><br><span class="line"><span class="css">		<span class="selector-class">.font_size</span>&#123;</span></span><br><span class="line"><span class="css">			<span class="selector-tag">font-size</span><span class="selector-pseudo">:30px</span>;</span></span><br><span class="line">		&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;font_size&quot;</span>&gt;</span>字体变大<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    只适合单页或者是要修改时使用，在修改时，直接修改css文件可能会造成重名，而使用这个方式可以很好的避免</p>
+<h5 id="3-链入外部样式表-在head部分进行引用描述"><a href="#3-链入外部样式表-在head部分进行引用描述" class="headerlink" title="(3). 链入外部样式表(在head部分进行引用描述)"></a>(3). 链入外部样式表(在head部分进行引用描述)</h5><p>​    把所有的东西封装在一个样式表文件里，从外部引用这个样式表文件，当网页加载时会把所有的外部样式先加载到网页中再进行显示，网速再慢也不影响，推荐使用这个形式</p>
+<p>​    范例：链入外部样式表</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;my.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">media</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    <strong><code>rel</code>属性和<code>type</code>属性是两个声明，<code>href</code>中的路径必须要对</strong></p>
+<p>​    注意：写在样式表中的CSS的样式定义与上面的写法是一样的</p>
+<p>​    在浏览器中有的可以设置文字的大小，所以一般在定义文字时用CSS限制文字大小，不然可能造成页面被浏览器弄失真</p>
+<h5 id="4-导入外部样式表-在head部分进行引用"><a href="#4-导入外部样式表-在head部分进行引用" class="headerlink" title="(4). 导入外部样式表(在head部分进行引用)"></a>(4). 导入外部样式表(在head部分进行引用)</h5><p>​    导入样式类似于链入外部样式，都是利用外部CSS样式文件来改变页面的外部表现的，但与外部样式不同的是，需要在<code>&lt;style&gt;</code>和<code>&lt;/style&gt;</code> 标签中间利用”@import”关键字导入外部CSS文件，文件加载到网页时，先把HTML结构显示出来，再把外部的CSS加载到网页当中，当网速较慢是会先显示未经修饰的HTML页面造成阅读者不好的感觉</p>
+<p>​    现在使用的非常少，这是早期样式表导入的语法</p>
+<p>​    范例：导入外部样式表</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"><span class="keyword">@import</span> url(my.css);</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="5-样式表的优先级"><a href="#5-样式表的优先级" class="headerlink" title="(5). 样式表的优先级"></a>(5). 样式表的优先级</h5><p>​    内嵌样式 &gt; 内部样式表 &gt; 导入外部样式表</p>
+<h4 id="7-CSS基本选择器-符"><a href="#7-CSS基本选择器-符" class="headerlink" title="7. CSS基本选择器(符)"></a>7. CSS基本选择器(符)</h4><p>​    <strong>注意：所写的一个样式可以被多个内容所引用且本身样式表是有继承性的，有优先级别</strong></p>
+<h5 id="1-通配符选择器"><a href="#1-通配符选择器" class="headerlink" title="(1). 通配符选择器(*)"></a>(1). 通配符选择器(*)</h5><p>​    在编码时，用”*”表示通配选择器，其作用是定义页面所有元素的样式，不管是直接在<code>body</code>标签中敲还是放什么标签里</p>
+<p>​    范例：定义页面中所有的元素样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">	<span class="attribute">margin</span>:<span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-类选择器"><a href="#2-类选择器" class="headerlink" title="(2). 类选择器(.)"></a>(2). 类选择器(.)</h5><p>​    类选择器通过直接引用元素中类属性的值而产生效果，使用<code>.</code> 来标识一个类选择器，类名可以随意命名但最好根据元素用途来命名</p>
+<p>​    类选择器的语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;CSS中</span><br><span class="line">.选择器名称(A)&#123;</span><br><span class="line">	&#x2F;&#x2F;样式	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;HTML中</span><br><span class="line">&lt;要引用样式的标签名 class&#x3D;&quot;选择器名称(A)&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-ID选择器"><a href="#3-ID选择器" class="headerlink" title="(3). ID选择器(#)"></a>(3). ID选择器(#)</h5><p>​    使用<code>#</code> 来标识一个ID选择器，在HTML文档中，每一个标签都可以使用id=”选择器名称”的形式进行一个名称指派，这和类选择器相似，但需要注意的是，<strong>HTML文件中id是具有唯一性是不可以重复的</strong></p>
+<p>​    <strong>一般在js脚本中都是认id名的</strong></p>
+<h5 id="4-标签选择器"><a href="#4-标签选择器" class="headerlink" title="(4). 标签选择器"></a>(4). 标签选择器</h5><p>​    把HTML标签当作选择器的名称，所有被该标签包含的HTML标签都会改变样式</p>
+<h5 id="5-群组选择器"><a href="#5-群组选择器" class="headerlink" title="(5). 群组选择器"></a>(5). 群组选择器</h5><p>​    名称之间用<code>,</code> 隔开</p>
+<p>​    范例：让三个div宽高一样，颜色不同</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.a1</span>,<span class="selector-class">.a2</span>,<span class="selector-class">.a3</span>&#123;</span></span><br><span class="line"><span class="css">			<span class="selector-tag">width</span><span class="selector-pseudo">:300px</span>;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">height</span><span class="selector-pseudo">:300px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        a1&#123;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span><span class="selector-pseudo">:red</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        a2&#123;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span><span class="selector-pseudo">:green</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        a3&#123;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span><span class="selector-pseudo">:yellow</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;a1&quot;</span>&gt;</span>测试1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;a2&quot;</span>&gt;</span>测试2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;a3&quot;</span>&gt;</span>测试3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="8-伪类-里面的状态伪类"><a href="#8-伪类-里面的状态伪类" class="headerlink" title="8. 伪类(里面的状态伪类)"></a>8. 伪类(里面的状态伪类)</h4><p>​    同一个标签，根据其<strong>不同的状态，有不同的样式</strong>。这就叫做“伪类”，伪类用冒号来表示。</p>
+<p>​    伪类选择器分为两种。</p>
+<p>​    <strong>1. 静态伪类</strong>：只能用于**超链接<code>&lt;a&gt;</code> **的样式。如下：</p>
+<ul>
+<li><p><code>:link</code> 超链接点击之前</p>
+</li>
+<li><p><code>:visited</code> 链接被访问过之后</p>
+<p>注意：以上两种样式，只能用于超链接，且要写的话应该一起写上。</p>
+</li>
+</ul>
+<p>​    <strong>2. 动态伪类</strong>：针对<strong>所有标签</strong>都适用的样式。如下：</p>
+<ul>
+<li><code>:hover</code> “悬停”：鼠标放到标签上的时候</li>
+<li><code>:active</code>    “激活”： 鼠标点击标签，但是不松手时。</li>
+<li><code>:focus</code> 是某个标签获得焦点时的样式（比如某个输入框获得焦点）</li>
+</ul>
+<p>​    <strong>超链接的四种状态伪类</strong></p>
+<p>​    a标签有4种伪类（即对应四种状态），要求背诵。如下：</p>
+<ul>
+<li><p><code>:link</code> “链接”：超链接点击之前</p>
+</li>
+<li><p><code>:visited</code> “访问过的”：链接被访问过之后</p>
+</li>
+<li><p><code>:hover</code>    “悬停”：鼠标放到标签上的时候</p>
+</li>
+<li><p><code>:active</code>    “激活”： 鼠标点击标签，但是不松手时。</p>
+</li>
+</ul>
+<p>​    <strong>记住，在css中，这四种状态必须按照固定的顺序写：</strong></p>
+<blockquote>
+<p>a:link 、a:visited 、a:hover 、a:active</p>
+</blockquote>
+<p>​    如果不按照顺序，那么将失效</p>
+<h4 id="9-CSS颜色写法"><a href="#9-CSS颜色写法" class="headerlink" title="9. CSS颜色写法"></a>9. CSS颜色写法</h4><p>​    在CSS中，颜色的表达有一下三种方式</p>
+<ol>
+<li>十六进制：如“#ff000”</li>
+<li>RGB：如“rgb(255,0,0)”</li>
+<li>颜色名称：如“red”</li>
+</ol>
+<p>​    <strong>注意：一般使用十六进制表示颜色这种方式居多</strong></p>
+<h4 id="10-背景图像"><a href="#10-背景图像" class="headerlink" title="10. 背景图像"></a>10. 背景图像</h4><p>​    CSS关于背景图像的属性</p>
+<ul>
+<li><code>background-color: blue</code> 为元素设置背景颜色为蓝色</li>
+<li><code>background-image:url(&quot;图像路径&quot;)</code> 设置背景图像</li>
+<li><code>background-repeat:no-repeat</code> 设置背景图像为不重复，默认值为重复</li>
+<li><code>background-attachment:fixed</code> 将图片滚动锁定为不跟随滚动</li>
+<li><code>background-position:center</code> 将图像位置设置为居中</li>
+</ul>
+<h4 id="11-文本修饰"><a href="#11-文本修饰" class="headerlink" title="11. 文本修饰"></a>11. 文本修饰</h4><p>​    CSS关于文本修饰的属性</p>
+<ul>
+<li><code>color:blue</code> 设置文本颜色为蓝色</li>
+<li><code>text-align:center</code> 设置文本位置为居中</li>
+<li><code>text-decoration:line-through</code> 设置文本效果为加删除线，除了删除线外还有上划线、下划线和无文字效果(none，这个可以和超链接混合使用)</li>
+<li><code>text-indent:50px</code> 设置文本缩进为50px，通常是将段落的首行缩进，允许缩进使用负值 </li>
+</ul>
+<h4 id="12-文字修饰"><a href="#12-文字修饰" class="headerlink" title="12. 文字修饰"></a>12. 文字修饰</h4><p>​    CSS关于文字修饰的属性</p>
+<ul>
+<li><code>font-family:字体种类</code> 它可以设置多种字体，但在浏览器显示时需要操作系统中本身有该字体，不然会从浏览器下载该字体，多个字体按顺序来优先显示</li>
+<li><code>font-style:italic</code> 将文字样式设置为斜体，默认值为normal即正常显示</li>
+<li><code>font-size:40px</code> 将文字设置为40像素大小，还要一个单位em 1em=16px</li>
+<li><code>font-weight:bold</code> 将文字设置为加粗(bold=700)，默认值为normal即正常显示，还可以使用数字表示<code>100~900</code>之间</li>
+</ul>
+<h4 id="13-CSS列表-ul与ol-的设置"><a href="#13-CSS列表-ul与ol-的设置" class="headerlink" title="13. CSS列表(ul与ol)的设置"></a>13. CSS列表(ul与ol)的设置</h4><p>​    通过使用列表的CSS选择器对属性<code>list-style-type:XXXX</code>进行指定来对列表进行设置</p>
+<p>​    常见属性值见下图</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Huz8pj"><img src="https://s4.ax1x.com/2022/02/06/Huz8pj.png" alt="Huz8pj.png"></a></p>
+<h4 id="14-CSS表格相关样式的设置"><a href="#14-CSS表格相关样式的设置" class="headerlink" title="14. CSS表格相关样式的设置"></a>14. CSS表格相关样式的设置</h4><p>​     设置表格边框的属性(有边框的容器都适用)</p>
+<ul>
+<li>border:2px solid blue; 放在table标签中为设置边框的外边框为2像素，实线，颜色为蓝色，放在td标签中，即为设置内边框样式</li>
+<li>width:500px; 放在table标签中设置表格宽度为500像素</li>
+<li>height:500px; 放在table标签中设置表格高度为500像素</li>
+</ul>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2022-02-12T09:35:41.000Z" itemprop="datePublished">
+              2022-02-12
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/HTML-CSS/">HTML+CSS</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2022 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>
