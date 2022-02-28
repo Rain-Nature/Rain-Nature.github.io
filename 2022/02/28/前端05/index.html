@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>前端05 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+            <div>Road is walked by me</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>前端05</h1>
+    </header>
+
+    <section>
+      <h2 id="DIV-CSS布局"><a href="#DIV-CSS布局" class="headerlink" title="DIV+CSS布局"></a>DIV+CSS布局</h2><h4 id="1-块元素和行内元素的区别"><a href="#1-块元素和行内元素的区别" class="headerlink" title="1. 块元素和行内元素的区别"></a>1. 块元素和行内元素的区别</h4><p>​    块元素和行内元素本质上是html规范中的概念</p>
+<ul>
+<li><p>块(block)元素的特点</p>
+<ul>
+<li>总是在新行上开始</li>
+<li>高度和行高以及外边距和内边距都可以控制</li>
+<li>宽度缺省是它的容器的100%，除非设定一个宽度</li>
+<li>它可以容纳行内元素和其他块元素</li>
+</ul>
+</li>
+<li><p>行内(inline)元素的特点</p>
+<ul>
+<li>和其他元素都在一行上</li>
+<li>高，行高以及外边距和内边距不可改变</li>
+<li>宽度就是它的文字或图片的宽度，不可改变</li>
+<li>行内元素只能容纳文本或者其他行内元素</li>
+</ul>
+</li>
+</ul>
+<p>​    <strong>注意：一般情况下，做布局使用块元素，在一行的内容使用行内元素</strong></p>
+<h4 id="2-常见的块元素"><a href="#2-常见的块元素" class="headerlink" title="2. 常见的块元素"></a>2. 常见的块元素</h4><ul>
+<li>div</li>
+<li>dl</li>
+<li>form</li>
+<li>h1~h6</li>
+<li>hr</li>
+</ul>
+<h4 id="4-CSS盒子模型"><a href="#4-CSS盒子模型" class="headerlink" title="4. CSS盒子模型"></a>4. CSS盒子模型</h4><p>​    盒子模型是CSS的基石之一，在HTML页面上的每一个元素都被浏览器看成是一个矩形的盒子，这个盒子由元素的内容、填充、边框、边界组成</p>
+<p>​    网页就是由许多个盒子通过不同的排列方式堆积而成，早期是使用表格做布局，现在使用的是DIV+CSS布局</p>
+<p>​    <strong>盒子模型示意图</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HDOcKs"><img src="https://s4.ax1x.com/2022/02/13/HDOcKs.png" alt="HDOcKs.png"></a></p>
+<p>​    注意：默认情况下，盒子边框是无，背景色是透明，所以在默认情况下看不到盒子，</p>
+<h4 id="5-盒子模型详细介绍"><a href="#5-盒子模型详细介绍" class="headerlink" title="5. 盒子模型详细介绍"></a>5. 盒子模型详细介绍</h4><p>​    标准盒子模型示意图</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/bmoaIe"><img src="https://s4.ax1x.com/2022/02/27/bmoaIe.png" alt="bmoaIe.png"></a></p>
+<p>​    在盒子模型中，可以单独设定任何一个元素，也可以组合起来按照上、右、下、左的顺序进行设定</p>
+<p>​    盒子模型的背景颜色范围为border里面</p>
+<p>​    <strong>元素盒子大小的计算</strong></p>
+<p>​    一个元素的实际宽度=左边界 + 左边框 + 左填充 + 内容宽度 + 右填充 + 右边框 + 右边界</p>
+<p>​    一个元素的实际高度=上边界 + 上边框 + 上填充 + 内容高度 + 下填充 + 下边框 + 下边界</p>
+<h4 id="6-CSS盒子嵌套"><a href="#6-CSS盒子嵌套" class="headerlink" title="6. CSS盒子嵌套"></a>6. CSS盒子嵌套</h4><p>​    两个盒子相互嵌套是用大盒子的content来包裹小盒子</p>
+<p>​    在一个盒子中嵌套一个盒子，那么两个盒子边框之间的距离等于外面盒子的填充值 + 里面盒子的边界值</p>
+<p>​    <strong>盒子模型的特性</strong></p>
+<ul>
+<li>边界值margin可为负，填充padding不可为负</li>
+<li>边框border默认值为0，即不显示</li>
+<li>盒子模型只能设置两类颜色：边框颜色和背景颜色</li>
+</ul>
+<p>​    <strong>盒子模型属性值的简写形式</strong></p>
+<ul>
+<li>给出一个属性值：表示上右下左设置的全部值都为它</li>
+<li>给出两个属性值：前者表示上下边框的属性，后者表示左右边框的属性</li>
+<li>给出三个属性值：前者表示上边框的属性，中间的数值表示左右边框的属性，后者表示下边框的属性</li>
+<li>给出四个属性值：依次表示上右下左的属性</li>
+</ul>
+<h4 id="7-浏览器的默认值"><a href="#7-浏览器的默认值" class="headerlink" title="7. 浏览器的默认值"></a>7. 浏览器的默认值</h4><p>​    在浏览器中，本身默认会自己设置一定的margin值和padding值</p>
+<p>​    要取消掉浏览器的默认值，则可以</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">	<span class="attribute">margin</span>:<span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    上段代码就是手工初始化CSS</p>
+<h4 id="8-display属性和实例"><a href="#8-display属性和实例" class="headerlink" title="8. display属性和实例"></a>8. display属性和实例</h4><h5 id="行高"><a href="#行高" class="headerlink" title="行高"></a>行高</h5><p>​    行内元素在浏览器中只能得到一行高度的空间，行高由<code>line-height</code> 属性(像素或百分比为单位)决定，如果没有设置该属性，则为内容的默认高度</p>
+<p>​    <strong>行高示意图</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/bntJ6x"><img src="https://s4.ax1x.com/2022/02/27/bntJ6x.png" alt="bntJ6x.png"></a></p>
+<p>​    注意：<code>background-color</code> 的范围只在<code>font-size</code>的区域</p>
+<p>​    <code>#b3d4fc</code>这个颜色好看</p>
+<h5 id="display属性"><a href="#display属性" class="headerlink" title="display属性"></a>display属性</h5><p>​    通过display属性可控制元素是以行内元素显示还是以块级元素显示，或者不显示，<strong>即对元素进行转换</strong></p>
+<ul>
+<li>display:block 当前元素以块级元素显示</li>
+<li>display:inline 当前元素以行内元素显示</li>
+<li>display:none 当前元素隐藏，浏览器会完全忽略这个元素(不是删除是不显示)，一般使用在下拉菜单中</li>
+<li>display:inline-block 当前元素既可以控制宽高，又可以横向排列</li>
+</ul>
+<h4 id="9-浮动与浮动清除"><a href="#9-浮动与浮动清除" class="headerlink" title="9.浮动与浮动清除"></a>9.浮动与浮动清除</h4><p>​    浮动主要是排版使用，可以使得原本2D的网页设计变成3D</p>
+<p>​     浮动可以理解为让某个div元素脱离标准流，漂浮在标准流之上，和标准流不是一个层次</p>
+<h5 id="浮动的设置-对于要浮动的盒子设置"><a href="#浮动的设置-对于要浮动的盒子设置" class="headerlink" title="浮动的设置(对于要浮动的盒子设置)"></a>浮动的设置(对于要浮动的盒子设置)</h5><p>​    CSS中使用<code>float</code> 属性来控制浮动，其默认值为<code>none</code> ，如果将<code>float</code> 属性设置为<code>left</code> 或者<code>right</code> ，元素就会向左侧或者右侧靠紧，同时盒子宽度不再伸展，没设置宽度时会根据盒子里面的内容来确定宽度</p>
+<p>​    如果某块设置为浮动，那么其后面的块会自动补该块未浮动时的位置，但后面块的文字会被挤占</p>
+<h5 id="浮动的清除-对于浮动盒子的下面盒子设置"><a href="#浮动的清除-对于浮动盒子的下面盒子设置" class="headerlink" title="浮动的清除(对于浮动盒子的下面盒子设置)"></a>浮动的清除(对于浮动盒子的下面盒子设置)</h5><p>​    CSS使用<code>clear</code> 属性来清除浮动(消除浮动对下面盒子的影响)，它的取值有<code>left</code>、<code>right</code>、<code>both</code>和<code>none</code>(默认值)，设置为left或者right表示该盒子的左边或右边不允许有浮动的对象，设置为both则表示两边都不允许有浮动对象，因此该盒子将会在浏览器中另起一行显示</p>
+<h4 id="10-position属性的使用"><a href="#10-position属性的使用" class="headerlink" title="10. position属性的使用"></a>10. position属性的使用</h4><p>​    一般使用position属性来对盒子模型进行定位，一般不会使用margin来设置位置，因为margin只是指外边距</p>
+<p>​    position属性修改元素位置后，对其他元素无影响</p>
+<p>​    position属性常用的4个值</p>
+<ul>
+<li><p><strong>static</strong></p>
+<p>​    static是position的默认属性值，忽略top、bottom、left、right</p>
+</li>
+<li><p><strong>relative</strong></p>
+<p>​    relative表示相对定位，当 position 为 relative 的时候，如果设置了 left 、right、top、bottom 属性，它们会生效，发生偏移时的参照为 position 属性取 static 时盒子的位置</p>
+</li>
+<li><p><strong>absolute</strong></p>
+<p>​    absolute表示绝对定位，当 position 为 absolute 的时候，元素会被移出正常文档流，并不为元素预留空间，元素相对于最近的非 static 定位祖先元素发生偏移，<strong>当元素没有非 static 定位祖先时，会相对 html 发生偏移</strong></p>
+</li>
+<li><p><strong>fixed</strong></p>
+<p>​    fixed表示固定定位，当 position 为 fixed 的时候，元素会被移出正常文档流，并不为元素预留空间，元素相对于屏幕视口（viewport）的 位置来发生偏移, 元素的位置在屏幕滚动时不会改变</p>
+</li>
+</ul>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2022-02-28T09:33:49.000Z" itemprop="datePublished">
+              2022-02-28
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/HTML-CSS/">HTML+CSS</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2022 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>

@@ -70,6 +70,135 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/02/28/%E5%89%8D%E7%AB%AF05/">前端05</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-02-28T09:33:49.000Z" itemprop="datePublished">
+    2022-02-28
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/HTML-CSS/">HTML+CSS</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="DIV-CSS布局"><a href="#DIV-CSS布局" class="headerlink" title="DIV+CSS布局"></a>DIV+CSS布局</h2><h4 id="1-块元素和行内元素的区别"><a href="#1-块元素和行内元素的区别" class="headerlink" title="1. 块元素和行内元素的区别"></a>1. 块元素和行内元素的区别</h4><p>​    块元素和行内元素本质上是html规范中的概念</p>
+<ul>
+<li><p>块(block)元素的特点</p>
+<ul>
+<li>总是在新行上开始</li>
+<li>高度和行高以及外边距和内边距都可以控制</li>
+<li>宽度缺省是它的容器的100%，除非设定一个宽度</li>
+<li>它可以容纳行内元素和其他块元素</li>
+</ul>
+</li>
+<li><p>行内(inline)元素的特点</p>
+<ul>
+<li>和其他元素都在一行上</li>
+<li>高，行高以及外边距和内边距不可改变</li>
+<li>宽度就是它的文字或图片的宽度，不可改变</li>
+<li>行内元素只能容纳文本或者其他行内元素</li>
+</ul>
+</li>
+</ul>
+<p>​    <strong>注意：一般情况下，做布局使用块元素，在一行的内容使用行内元素</strong></p>
+<h4 id="2-常见的块元素"><a href="#2-常见的块元素" class="headerlink" title="2. 常见的块元素"></a>2. 常见的块元素</h4><ul>
+<li>div</li>
+<li>dl</li>
+<li>form</li>
+<li>h1~h6</li>
+<li>hr</li>
+</ul>
+<h4 id="4-CSS盒子模型"><a href="#4-CSS盒子模型" class="headerlink" title="4. CSS盒子模型"></a>4. CSS盒子模型</h4><p>​    盒子模型是CSS的基石之一，在HTML页面上的每一个元素都被浏览器看成是一个矩形的盒子，这个盒子由元素的内容、填充、边框、边界组成</p>
+<p>​    网页就是由许多个盒子通过不同的排列方式堆积而成，早期是使用表格做布局，现在使用的是DIV+CSS布局</p>
+<p>​    <strong>盒子模型示意图</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HDOcKs"><img src="https://s4.ax1x.com/2022/02/13/HDOcKs.png" alt="HDOcKs.png"></a></p>
+<p>​    注意：默认情况下，盒子边框是无，背景色是透明，所以在默认情况下看不到盒子，</p>
+<h4 id="5-盒子模型详细介绍"><a href="#5-盒子模型详细介绍" class="headerlink" title="5. 盒子模型详细介绍"></a>5. 盒子模型详细介绍</h4><p>​    标准盒子模型示意图</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/bmoaIe"><img src="https://s4.ax1x.com/2022/02/27/bmoaIe.png" alt="bmoaIe.png"></a></p>
+<p>​    在盒子模型中，可以单独设定任何一个元素，也可以组合起来按照上、右、下、左的顺序进行设定</p>
+<p>​    盒子模型的背景颜色范围为border里面</p>
+<p>​    <strong>元素盒子大小的计算</strong></p>
+<p>​    一个元素的实际宽度=左边界 + 左边框 + 左填充 + 内容宽度 + 右填充 + 右边框 + 右边界</p>
+<p>​    一个元素的实际高度=上边界 + 上边框 + 上填充 + 内容高度 + 下填充 + 下边框 + 下边界</p>
+<h4 id="6-CSS盒子嵌套"><a href="#6-CSS盒子嵌套" class="headerlink" title="6. CSS盒子嵌套"></a>6. CSS盒子嵌套</h4><p>​    两个盒子相互嵌套是用大盒子的content来包裹小盒子</p>
+<p>​    在一个盒子中嵌套一个盒子，那么两个盒子边框之间的距离等于外面盒子的填充值 + 里面盒子的边界值</p>
+<p>​    <strong>盒子模型的特性</strong></p>
+<ul>
+<li>边界值margin可为负，填充padding不可为负</li>
+<li>边框border默认值为0，即不显示</li>
+<li>盒子模型只能设置两类颜色：边框颜色和背景颜色</li>
+</ul>
+<p>​    <strong>盒子模型属性值的简写形式</strong></p>
+<ul>
+<li>给出一个属性值：表示上右下左设置的全部值都为它</li>
+<li>给出两个属性值：前者表示上下边框的属性，后者表示左右边框的属性</li>
+<li>给出三个属性值：前者表示上边框的属性，中间的数值表示左右边框的属性，后者表示下边框的属性</li>
+<li>给出四个属性值：依次表示上右下左的属性</li>
+</ul>
+<h4 id="7-浏览器的默认值"><a href="#7-浏览器的默认值" class="headerlink" title="7. 浏览器的默认值"></a>7. 浏览器的默认值</h4><p>​    在浏览器中，本身默认会自己设置一定的margin值和padding值</p>
+<p>​    要取消掉浏览器的默认值，则可以</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">	<span class="attribute">margin</span>:<span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    上段代码就是手工初始化CSS</p>
+<h4 id="8-display属性和实例"><a href="#8-display属性和实例" class="headerlink" title="8. display属性和实例"></a>8. display属性和实例</h4><h5 id="行高"><a href="#行高" class="headerlink" title="行高"></a>行高</h5><p>​    行内元素在浏览器中只能得到一行高度的空间，行高由<code>line-height</code> 属性(像素或百分比为单位)决定，如果没有设置该属性，则为内容的默认高度</p>
+<p>​    <strong>行高示意图</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/bntJ6x"><img src="https://s4.ax1x.com/2022/02/27/bntJ6x.png" alt="bntJ6x.png"></a></p>
+<p>​    注意：<code>background-color</code> 的范围只在<code>font-size</code>的区域</p>
+<p>​    <code>#b3d4fc</code>这个颜色好看</p>
+<h5 id="display属性"><a href="#display属性" class="headerlink" title="display属性"></a>display属性</h5><p>​    通过display属性可控制元素是以行内元素显示还是以块级元素显示，或者不显示，<strong>即对元素进行转换</strong></p>
+<ul>
+<li>display:block 当前元素以块级元素显示</li>
+<li>display:inline 当前元素以行内元素显示</li>
+<li>display:none 当前元素隐藏，浏览器会完全忽略这个元素(不是删除是不显示)，一般使用在下拉菜单中</li>
+<li>display:inline-block 当前元素既可以控制宽高，又可以横向排列</li>
+</ul>
+<h4 id="9-浮动与浮动清除"><a href="#9-浮动与浮动清除" class="headerlink" title="9.浮动与浮动清除"></a>9.浮动与浮动清除</h4><p>​    浮动主要是排版使用，可以使得原本2D的网页设计变成3D</p>
+<p>​     浮动可以理解为让某个div元素脱离标准流，漂浮在标准流之上，和标准流不是一个层次</p>
+<h5 id="浮动的设置-对于要浮动的盒子设置"><a href="#浮动的设置-对于要浮动的盒子设置" class="headerlink" title="浮动的设置(对于要浮动的盒子设置)"></a>浮动的设置(对于要浮动的盒子设置)</h5><p>​    CSS中使用<code>float</code> 属性来控制浮动，其默认值为<code>none</code> ，如果将<code>float</code> 属性设置为<code>left</code> 或者<code>right</code> ，元素就会向左侧或者右侧靠紧，同时盒子宽度不再伸展，没设置宽度时会根据盒子里面的内容来确定宽度</p>
+<p>​    如果某块设置为浮动，那么其后面的块会自动补该块未浮动时的位置，但后面块的文字会被挤占</p>
+<h5 id="浮动的清除-对于浮动盒子的下面盒子设置"><a href="#浮动的清除-对于浮动盒子的下面盒子设置" class="headerlink" title="浮动的清除(对于浮动盒子的下面盒子设置)"></a>浮动的清除(对于浮动盒子的下面盒子设置)</h5><p>​    CSS使用<code>clear</code> 属性来清除浮动(消除浮动对下面盒子的影响)，它的取值有<code>left</code>、<code>right</code>、<code>both</code>和<code>none</code>(默认值)，设置为left或者right表示该盒子的左边或右边不允许有浮动的对象，设置为both则表示两边都不允许有浮动对象，因此该盒子将会在浏览器中另起一行显示</p>
+<h4 id="10-position属性的使用"><a href="#10-position属性的使用" class="headerlink" title="10. position属性的使用"></a>10. position属性的使用</h4><p>​    一般使用position属性来对盒子模型进行定位，一般不会使用margin来设置位置，因为margin只是指外边距</p>
+<p>​    position属性修改元素位置后，对其他元素无影响</p>
+<p>​    position属性常用的4个值</p>
+<ul>
+<li><p><strong>static</strong></p>
+<p>​    static是position的默认属性值，忽略top、bottom、left、right</p>
+</li>
+<li><p><strong>relative</strong></p>
+<p>​    relative表示相对定位，当 position 为 relative 的时候，如果设置了 left 、right、top、bottom 属性，它们会生效，发生偏移时的参照为 position 属性取 static 时盒子的位置</p>
+</li>
+<li><p><strong>absolute</strong></p>
+<p>​    absolute表示绝对定位，当 position 为 absolute 的时候，元素会被移出正常文档流，并不为元素预留空间，元素相对于最近的非 static 定位祖先元素发生偏移，<strong>当元素没有非 static 定位祖先时，会相对 html 发生偏移</strong></p>
+</li>
+<li><p><strong>fixed</strong></p>
+<p>​    fixed表示固定定位，当 position 为 fixed 的时候，元素会被移出正常文档流，并不为元素预留空间，元素相对于屏幕视口（viewport）的 位置来发生偏移, 元素的位置在屏幕滚动时不会改变</p>
+</li>
+</ul>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2022/02/12/%E5%89%8D%E7%AB%AF04/">前端04</a>
         </h1>
       
@@ -1441,86 +1570,11 @@
 
     </li>
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/11/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03/">操作系统03</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-11-11T06:23:52.000Z" itemprop="datePublished">
-    2021-11-11
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="CPU与多进程"><a href="#CPU与多进程" class="headerlink" title="CPU与多进程"></a>CPU与多进程</h2><h4 id="1-多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心"><a href="#1-多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心" class="headerlink" title="1. 多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心"></a>1. 多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心</h4><h4 id="2-CPU的工作原理"><a href="#2-CPU的工作原理" class="headerlink" title="2. CPU的工作原理"></a>2. CPU的工作原理</h4><p>​    把一个程序存放在内存中，设置一个地址，CPU根据这个地址发出一条取址的命令，即把这个地址从地址总线上由内存发给CPU，CPU得到程序后开始解释执行</p>
-<p>​    <strong>CPU的工作就是不断的自动取址执行</strong></p>
-<h4 id="3-CPU的管理"><a href="#3-CPU的管理" class="headerlink" title="3. CPU的管理"></a>3. CPU的管理</h4><p>​    设置好PC初值就行（<strong>PC是寄存器</strong>），把PC初值设置在一段程序的开始地址</p>
-<p>​    <strong>问题</strong><br>​    但是如果只是设置好PC初值就等待程序执行会出现一个问题，当程序开始磁盘读写(I/O)时(很慢)，CPU不工作进入等待，而一般一个程序计算时间远比磁盘读写时间少，则造成CPU利用率很低，甚至为0</p>
-<p>​    <strong>解决方式：多到程序、交替执行(让CPU更好的工作)</strong><br>​    当CPU执行程序执行不下去时，就切出换到另外的程序去执行。等再执行不下去再切出，由此使得CPU忙碌，但<strong>所有程序终会在来回切换中执行完</strong></p>
-<p>​    一个CPU上交替的执行多个程序叫做<strong>并发</strong></p>
-<h4 id="4-怎么让CPU并发的工作"><a href="#4-怎么让CPU并发的工作" class="headerlink" title="4. 怎么让CPU并发的工作"></a>4. 怎么让CPU并发的工作</h4><ul>
-<li>控制PC进行切换</li>
-<li>记录程序切出去时的程序执行到的地址，样子（运行的程序和静态程序不一样）</li>
-</ul>
-<h4 id="5-刻画运行程序的样子：进程"><a href="#5-刻画运行程序的样子：进程" class="headerlink" title="5. 刻画运行程序的样子：进程"></a>5. 刻画运行程序的样子：进程</h4><p>​    一个运行中的程序就是一个进程<br>​    所有程序的不一样都存在PCB中</p>
-<h4 id="6-用进程描述CPU管理"><a href="#6-用进程描述CPU管理" class="headerlink" title="6. 用进程描述CPU管理"></a>6. 用进程描述CPU管理</h4><p>​    启动一个进程让CPU去执行这个进程，此时CPU工作；而让CPU更好的工作则是操作系统启动多个进程，让CPU去跑这多个进程，提升CPU利用率。</p>
-<h4 id="7-多进程图像从启动开始到关机结束"><a href="#7-多进程图像从启动开始到关机结束" class="headerlink" title="7. 多进程图像从启动开始到关机结束"></a>7. 多进程图像从启动开始到关机结束</h4><p>​    在开机时在main中创建第一个进程（Linux是shell，Windows是桌面）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(!fork()&#123;init();&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>​    之后再通过shell启动其他的进程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc,char *argv[])&#123;</span><br><span class="line">	while(1)&#123;</span><br><span class="line">		scanf(&quot;%s&quot;,cmd);</span><br><span class="line">		if(!fork())&#123;</span><br><span class="line">			exec(cmd);</span><br><span class="line">		&#125;</span><br><span class="line">		wait();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    多进程图示<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/IPnpHx"><img src="https://z3.ax1x.com/2021/11/01/IPnpHx.png" alt="IPnpHx.png"></a></p>
-<p>​    通过创建多进程来使用计算机</p>
-<p>​    在Windows下任务管理器可以看见多进程，启动一个进程就是开启一个任务</p>
-<p>​    <strong>操作系统通过管理多线程来管理计算机，用户使用计算机就是启动一堆进程，用户管理计算机就是管理一堆进程</strong></p>
-<h4 id="8-多进程如何组织"><a href="#8-多进程如何组织" class="headerlink" title="8. 多进程如何组织"></a>8. 多进程如何组织</h4><p>​    PCB：用来记录进程信息的数据结构</p>
-<p>​    操作系统通过PCB(进程控制块)来感知和组织进程（用PCB形成队列）</p>
-<p>​    进程状态转换图<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/IEj5qS"><img src="https://z3.ax1x.com/2021/11/03/IEj5qS.png" alt="IEj5qS.png"></a></p>
-<p>​    <strong>状态的转化是操作系统来实现的，通过不断的转化推进进程</strong></p>
-<h4 id="9-进程调度"><a href="#9-进程调度" class="headerlink" title="9. 进程调度"></a>9. 进程调度</h4><ol>
-<li><p>FIFO</p>
-<p>先来先付，最简单的调度，谁第一谁先</p>
-<ol start="2">
-<li>Priority</li>
-</ol>
-<p>优先级设定，最短的先做</p>
-</li>
-</ol>
-<h4 id="10-多进程的地址分离"><a href="#10-多进程的地址分离" class="headerlink" title="10. 多进程的地址分离"></a>10. 多进程的地址分离</h4><p>​    阻止两个以上进程在来回切换时访问同一个地址（通过映射表实现），使得地址在逻辑上可以相同但是物理上是不同</p>
-<p>​    <strong>所以说进程管理连带内存管理形成多进程图像</strong></p>
-<h4 id="11-多进程的合作问题"><a href="#11-多进程的合作问题" class="headerlink" title="11. 多进程的合作问题"></a>11. 多进程的合作问题</h4><p>​    如打印任务，存在一个打印文件队列，有进程往里面放要打印的东西（但是两个进程交替进行但是同时放会产生错误），有进程从中取出进行打印</p>
-<p>​    <strong>解决方式上锁（即进程同步(合理的推进方式)）</strong></p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
 </ul>
 
   <section id="nav-wrapper">
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">next »</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">next »</a>
     </nav>
   </section>
 

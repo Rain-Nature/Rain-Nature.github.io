@@ -70,6 +70,81 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/11/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03/">操作系统03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-11-11T06:23:52.000Z" itemprop="datePublished">
+    2021-11-11
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="CPU与多进程"><a href="#CPU与多进程" class="headerlink" title="CPU与多进程"></a>CPU与多进程</h2><h4 id="1-多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心"><a href="#1-多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心" class="headerlink" title="1. 多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心"></a>1. 多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心</h4><h4 id="2-CPU的工作原理"><a href="#2-CPU的工作原理" class="headerlink" title="2. CPU的工作原理"></a>2. CPU的工作原理</h4><p>​    把一个程序存放在内存中，设置一个地址，CPU根据这个地址发出一条取址的命令，即把这个地址从地址总线上由内存发给CPU，CPU得到程序后开始解释执行</p>
+<p>​    <strong>CPU的工作就是不断的自动取址执行</strong></p>
+<h4 id="3-CPU的管理"><a href="#3-CPU的管理" class="headerlink" title="3. CPU的管理"></a>3. CPU的管理</h4><p>​    设置好PC初值就行（<strong>PC是寄存器</strong>），把PC初值设置在一段程序的开始地址</p>
+<p>​    <strong>问题</strong><br>​    但是如果只是设置好PC初值就等待程序执行会出现一个问题，当程序开始磁盘读写(I/O)时(很慢)，CPU不工作进入等待，而一般一个程序计算时间远比磁盘读写时间少，则造成CPU利用率很低，甚至为0</p>
+<p>​    <strong>解决方式：多到程序、交替执行(让CPU更好的工作)</strong><br>​    当CPU执行程序执行不下去时，就切出换到另外的程序去执行。等再执行不下去再切出，由此使得CPU忙碌，但<strong>所有程序终会在来回切换中执行完</strong></p>
+<p>​    一个CPU上交替的执行多个程序叫做<strong>并发</strong></p>
+<h4 id="4-怎么让CPU并发的工作"><a href="#4-怎么让CPU并发的工作" class="headerlink" title="4. 怎么让CPU并发的工作"></a>4. 怎么让CPU并发的工作</h4><ul>
+<li>控制PC进行切换</li>
+<li>记录程序切出去时的程序执行到的地址，样子（运行的程序和静态程序不一样）</li>
+</ul>
+<h4 id="5-刻画运行程序的样子：进程"><a href="#5-刻画运行程序的样子：进程" class="headerlink" title="5. 刻画运行程序的样子：进程"></a>5. 刻画运行程序的样子：进程</h4><p>​    一个运行中的程序就是一个进程<br>​    所有程序的不一样都存在PCB中</p>
+<h4 id="6-用进程描述CPU管理"><a href="#6-用进程描述CPU管理" class="headerlink" title="6. 用进程描述CPU管理"></a>6. 用进程描述CPU管理</h4><p>​    启动一个进程让CPU去执行这个进程，此时CPU工作；而让CPU更好的工作则是操作系统启动多个进程，让CPU去跑这多个进程，提升CPU利用率。</p>
+<h4 id="7-多进程图像从启动开始到关机结束"><a href="#7-多进程图像从启动开始到关机结束" class="headerlink" title="7. 多进程图像从启动开始到关机结束"></a>7. 多进程图像从启动开始到关机结束</h4><p>​    在开机时在main中创建第一个进程（Linux是shell，Windows是桌面）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(!fork()&#123;init();&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>​    之后再通过shell启动其他的进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc,char *argv[])&#123;</span><br><span class="line">	while(1)&#123;</span><br><span class="line">		scanf(&quot;%s&quot;,cmd);</span><br><span class="line">		if(!fork())&#123;</span><br><span class="line">			exec(cmd);</span><br><span class="line">		&#125;</span><br><span class="line">		wait();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    多进程图示<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/IPnpHx"><img src="https://z3.ax1x.com/2021/11/01/IPnpHx.png" alt="IPnpHx.png"></a></p>
+<p>​    通过创建多进程来使用计算机</p>
+<p>​    在Windows下任务管理器可以看见多进程，启动一个进程就是开启一个任务</p>
+<p>​    <strong>操作系统通过管理多线程来管理计算机，用户使用计算机就是启动一堆进程，用户管理计算机就是管理一堆进程</strong></p>
+<h4 id="8-多进程如何组织"><a href="#8-多进程如何组织" class="headerlink" title="8. 多进程如何组织"></a>8. 多进程如何组织</h4><p>​    PCB：用来记录进程信息的数据结构</p>
+<p>​    操作系统通过PCB(进程控制块)来感知和组织进程（用PCB形成队列）</p>
+<p>​    进程状态转换图<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/IEj5qS"><img src="https://z3.ax1x.com/2021/11/03/IEj5qS.png" alt="IEj5qS.png"></a></p>
+<p>​    <strong>状态的转化是操作系统来实现的，通过不断的转化推进进程</strong></p>
+<h4 id="9-进程调度"><a href="#9-进程调度" class="headerlink" title="9. 进程调度"></a>9. 进程调度</h4><ol>
+<li><p>FIFO</p>
+<p>先来先付，最简单的调度，谁第一谁先</p>
+<ol start="2">
+<li>Priority</li>
+</ol>
+<p>优先级设定，最短的先做</p>
+</li>
+</ol>
+<h4 id="10-多进程的地址分离"><a href="#10-多进程的地址分离" class="headerlink" title="10. 多进程的地址分离"></a>10. 多进程的地址分离</h4><p>​    阻止两个以上进程在来回切换时访问同一个地址（通过映射表实现），使得地址在逻辑上可以相同但是物理上是不同</p>
+<p>​    <strong>所以说进程管理连带内存管理形成多进程图像</strong></p>
+<h4 id="11-多进程的合作问题"><a href="#11-多进程的合作问题" class="headerlink" title="11. 多进程的合作问题"></a>11. 多进程的合作问题</h4><p>​    如打印任务，存在一个打印文件队列，有进程往里面放要打印的东西（但是两个进程交替进行但是同时放会产生错误），有进程从中取出进行打印</p>
+<p>​    <strong>解决方式上锁（即进程同步(合理的推进方式)）</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/10/26/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02/">操作系统02</a>
         </h1>
       
@@ -1398,94 +1473,11 @@
 
     </li>
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/06/20/Java10/">Java10</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-20T10:19:20.000Z" itemprop="datePublished">
-    2021-06-20
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h4 id="1-异常的概述"><a href="#1-异常的概述" class="headerlink" title="1. 异常的概述"></a>1. 异常的概述</h4><ul>
-<li>异常是一个在程序执行期间发生的事件，它中断了正在执行的程序的正常指令流</li>
-<li>异常产生后，如果不做任何处理，程序会被终止</li>
-<li>异常在Java中也是作为类的实例的形式出现，在某一方法错误时，这个方法会创建一个异常对象，并把他传递给正在运行的系统，通过异常处理机制，可以将非正常情况下的处理代码与程序的主逻辑分离，即在编写代码主流程的同时在其他地方处理异常</li>
-</ul>
-<h4 id="2-jvm默认处理异常的方式"><a href="#2-jvm默认处理异常的方式" class="headerlink" title="2. jvm默认处理异常的方式"></a>2. jvm默认处理异常的方式</h4><ol>
-<li>当某个方法出现异常情况时，会将异常封装成一个异常对象。</li>
-<li>异常对象抛出给调用者，一层一层往上抛，最终到达main方法，主方法也没有办法处理，就抛出给jvm虚拟机</li>
-<li>jvm虚拟机有没有得到指令处理异常，只能将异常的信息通过标准错误流（System.err）打印到控制台，结束自己。</li>
-</ol>
-<h4 id="3-异常的结构"><a href="#3-异常的结构" class="headerlink" title="3. 异常的结构"></a>3. 异常的结构</h4><p>​     <strong>在 Java 中，所有的异常都有一个共同的祖先 Throwable（可抛出类）</strong><br>​     <strong>在java中只有Throwable类型的实例才可以被抛出（throw）或者捕获（catch）</strong><br>​    <strong>Throwable</strong>： 有两个重要的子类：Exception（异常）和 Error（错误），二者都是 Java 异常处理的重要子类，各自都包含大量子类。异常和错误的区别是：异常能被程序本身可以处理，错误是无法处理（但错误也是异常）<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/2qtZ5Q"><img src="https://z3.ax1x.com/2021/06/15/2qtZ5Q.png" alt="2qtZ5Q.png"></a></p>
-<p>​    </p>
-<p>**Error（错误）:**一般来说，最常见的错误有程序进入死循环、内存泄漏等。在这种情况下，程序运行时本身无法解决，只能通过其他程序干预，Error类对象由java虚拟机生成并抛弃（通常Java程序不对这类异常进行处理）</p>
-<p>​    <strong>Exception（异常）</strong>：分两大类，运行时异常(不检查异常)和非运行时异常(编译异常)。程序中应当尽可能去处理这些异常。</p>
-<ul>
-<li><strong>运行时异常</strong>：都是<strong>RuntimeException类及其子类</strong>异常，如NullPointerException(空指针异常)、IndexOutOfBoundsException(下标越界异常)等，<strong>这些异常是不检查异常，程序中可以选择捕获处理，也可以不处理</strong>。这些异常一般是由程序逻辑错误引起的，程序应该从逻辑角度尽可能避免这类异常的发生。运行时异常的特点是<strong>Java编译器不会检查它</strong>，也就是说，当程序中可能出现这类异常，<strong>即使没有用try-catch语句捕获它，也没有用throws子句声明抛出它，也会编译通过</strong>。</li>
-<li><strong>非运行时异常 （编译异常）</strong>：是<strong>RuntimeException以外的异常，类型上都属于Exception类及其子类</strong>。从程序语法角度讲是<strong>必须进行处理的异常，如果不处理，程序就不能编译通过</strong>。如IOException、SQLException等以及用户自定义的Exception异常，一般情况下不自定义检查异常。</li>
-</ul>
-<h4 id="4-异常的处理"><a href="#4-异常的处理" class="headerlink" title="4. 异常的处理"></a>4. 异常的处理</h4><p>​    在Java中如果某个方法抛出异常，可以在当前方法中进行捕捉并处理，也可以将异常向上抛出</p>
-<h4 id="5-异常的捕捉"><a href="#5-异常的捕捉" class="headerlink" title="5. 异常的捕捉"></a>5. 异常的捕捉</h4><p>​    Java语言通过try、catch、finally来处理异常</p>
-<ul>
-<li>try语句块用来存放可能发生异常的Java语句</li>
-<li>catch程序块在try语句块之后，当try语句块里抛出异常时执行</li>
-<li>finally语句块里的内容无论try语句是否跳出，正常都会执行</li>
-</ul>
-<p>​    <strong>注意：如果程序跳到了catch块后会继续向下执行，不会再去执行try代码块的内容</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	 	&#x2F;&#x2F;可能出现异常的代码</span><br><span class="line">&#125; catch (Exception e) &#123;&#x2F;&#x2F;可能出现的异常类型 异常的变量名称,e是引用了抛出的实例</span><br><span class="line">		&#x2F;&#x2F;针对该异常类型的处理办法</span><br><span class="line">&#125;</span><br><span class="line">finally&#123;</span><br><span class="line">	&#x2F;&#x2F;语句块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    获取异常的信息的函数(需要在异常引用变量名称后调用，这是可抛出类(异常最上层父类)的方法)</p>
-<ul>
-<li>getMessage()函数：输出错误性质</li>
-<li>toString()函数：给出异常的类型与性质</li>
-<li>printStackTrace()函数：指出异常的类型、性质、栈层次及出现在程序中的位置</li>
-</ul>
-<h4 id="6-在方法中抛出异常"><a href="#6-在方法中抛出异常" class="headerlink" title="6. 在方法中抛出异常"></a>6. 在方法中抛出异常</h4><p>​    <strong>(1).使用throws关键字抛出异常</strong><br>​    <strong>throws关键字通常被应用在声明方法时，用来指定可能抛出的异常。</strong>多个异常可以使用逗号隔开。当在主函数中调用该方法时，如果发生异常，就会将异常抛给指定异常对象<br>​    <strong>throws关键字声明的方法表示此方法不处理异常，而交给方法调用处进行处理</strong><br>​    <strong>注意：throws不会抛出异常对象只是起通知作用，但是catch块的引用方法按这个通知的来分配异常对象的引用类型，即throws声明了是哪种类型的异常，使它的调用者可以捕获这个异常及其父类</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修饰符 方法名() throws 异常名&#123; &#x2F;&#x2F;异常名必须是JavaException的子类，不可以自己取</span><br><span class="line">	&#x2F;&#x2F;方法内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>注意：写了throws后，调用这个方法的调用方必须要对可能发生异常进行处理(不管程序是否发生异常)，不写throws的话，就正常使用方法，其出错的话编译器报错，但用了接收的try-catch可以处理。</strong><br>​    <strong>而且抛给调用方后，调用方使用try-catch来处理，如果不想处理可以继续向上抛，但最终还是要有能够处理该异常的代码</strong></p>
-<p>​    <strong>(2).使用throw关键字抛出异常</strong><br>​    throw关键字通常用于方法体中，通过throw<strong>抛出一个异常对象</strong>，程序在执行到throw语句时立即终止,必须对该抛出的异常进行处理，要么捕获要么上抛，如果需要该方法上一级代码来捕获处理异常，则需要在方法的声明中使用throws关键字并指明要抛出的异常（是该异常的引用，如果用父类可能会造成问题），捕捉throw抛出的异常用try-catch语句块</p>
-<h4 id="7-自定义的异常"><a href="#7-自定义的异常" class="headerlink" title="7. 自定义的异常"></a>7. 自定义的异常</h4><p>​    在Java中用户通过继承Exception类来自定义异常类<br>​    通常使用throw来抛出自定义异常<br>​    父类Exception的主要构造方法，详细见API文档</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Exception()</span><br><span class="line">	Constructs a new exception with null as its detail message.</span><br><span class="line">	Exception(String message)</span><br><span class="line">	Constructs a new exception with the specified detail message.</span><br></pre></td></tr></table></figure>
-
-<p>​    使用自定义异常的步骤<br>​    (1). 创建自定义异常类<br>​    (2). 在方法中通过throw关键字抛出异常对象<br>​    (3). 对抛出异常进行处理</p>
-<h4 id="7-异常的使用原则"><a href="#7-异常的使用原则" class="headerlink" title="7. 异常的使用原则"></a>7. 异常的使用原则</h4><p>​    异常的处理不应用来控制程序的正常流程，其主要作用是捕获程序在运行时发生的异常并进行相应的处理</p>
-<h4 id="8-异常的注意事项"><a href="#8-异常的注意事项" class="headerlink" title="8. 异常的注意事项"></a>8. 异常的注意事项</h4><ul>
-<li>一个方法被覆盖时，覆盖它的方法必须抛出相同的异常或异常子类</li>
-<li>如果父类抛出多个异常，则覆盖方法必须抛出那些异常的一个子集，不能抛出新异常</li>
-</ul>
-
-      
-    </div>
-</article>
-
-    </li>
-  
 </ul>
 
   <section id="nav-wrapper">
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">« prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">next »</a>
+      <a class="extend prev" rel="prev" href="/">« prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">next »</a>
     </nav>
   </section>
 
