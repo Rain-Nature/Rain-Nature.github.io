@@ -74,6 +74,81 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/02/28/%E5%89%8D%E7%AB%AF06/">前端06</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-02-28T13:21:08.000Z" itemprop="datePublished">
+    2022-02-28
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/HTML-CSS/">HTML+CSS</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="CSS3-0特性"><a href="#CSS3-0特性" class="headerlink" title="CSS3.0特性"></a>CSS3.0特性</h2><h4 id="1-背景图片大小设定-background-size"><a href="#1-背景图片大小设定-background-size" class="headerlink" title="1. 背景图片大小设定(background-size)"></a>1. 背景图片大小设定(background-size)</h4><p>​    通过使用<code>background-size</code> 来规定背景图片的尺寸</p>
+<p>​    background-size要写在background-image后面，否则background-size不会生效</p>
+<p>​    <code>background-size</code> 的值有：</p>
+<ul>
+<li>background-size：contain; //背景成比例，按照图片最大边进行适配，图片完全显示在盒子里，少的部分出现白边</li>
+<li>background-size ：cover; // 背景图成比例，按照图片最小边进行适配，多余的裁切</li>
+<li>background-size ：100px 100px; // 调整图片到指定大小；</li>
+<li>background-size ：100%; 会按容器比例撑满，导致图片失真。</li>
+</ul>
+<h4 id="2-背景透明颜色-rgba"><a href="#2-背景透明颜色-rgba" class="headerlink" title="2. 背景透明颜色(rgba)"></a>2. 背景透明颜色(rgba)</h4><p>​    通过使用<code>rgba(xx,xx,xx,xx,xx)</code>来设置，其中前三项与<code>rgb(xx,xx,xx)</code>一样为红绿蓝三种原色，后面的一项规定了透明度(alpha)，alpha参数是介于<code>0.0(完全透明)~1.0(完全不透明之间)</code></p>
+<h4 id="3-图像的透明-opacity"><a href="#3-图像的透明-opacity" class="headerlink" title="3. 图像的透明(opacity)"></a>3. 图像的透明(opacity)</h4><p>​    通过使用<code>opacity</code>参数来设定图像的透明度，<code>opacity</code>参数是介于<code>0.0(完全透明)~1.0(完全不透明之间)</code></p>
+<p>​    opacity在使用上应用于使用该属性的盒子内部的前景色、后景色、图片等，往往造成误伤，很多时候我们需要背景色透明度，而使用opacity则会导致文字颜色跟随改变</p>
+<p>​    <strong>注意：opacity会继承父元素的opacity属性,而RGBA设置的元素的后代不会继承该属性及属性值。</strong></p>
+<h4 id="4-颜色的渐变"><a href="#4-颜色的渐变" class="headerlink" title="4. 颜色的渐变"></a>4. 颜色的渐变</h4><p>​    通过使用<code>background-image:linear-gradient(Cdeg,#A 20%,#B 90%)</code>来设置颜色渐变，由A颜色渐变到B颜色，C表示角度，未设置角度时，则默认未180deg(从上到下)，设置角度，则0deg为竖直向上，然后顺时针旋转.后面的百分号为前20%都为A颜色，而后渐变，到90%到最后全为B色，如果设置满了不会有渐变效果，即全为纯色，注意：可以设置多个颜色参与渐变</p>
+<h4 id="5-个性边框"><a href="#5-个性边框" class="headerlink" title="5. 个性边框"></a>5. 个性边框</h4><h5 id="1-圆角-Border-radius"><a href="#1-圆角-Border-radius" class="headerlink" title="(1). 圆角(Border-radius)"></a>(1). 圆角(Border-radius)</h5><p>​    通过使用<code>Border-radius</code>属性来设置边框的圆角度，可以使用<code>px</code>、<code>%</code>、<code>em</code>来表示数值</p>
+<ul>
+<li><p>仅设置一个值</p>
+<p>​    设置一个数值，即对元素的四个边角设置统一的圆角弧度</p>
+<p>​    一般用作设置按钮或者获得圆形(<code>Border-radius</code>为正方形一半<code>px</code>值时即可获得)</p>
+</li>
+<li><p>设置四个方向的值</p>
+<p>​    border-radius属性其实是border-top-left-radius、border-top-right-radius、border-bottom-right-radius、border-bottom-left-radius四个属性的简写模式</p>
+<p>​    不同于padding和margin的“上、右、下、左”的顺序，border-radius采用的是左上角、右上角、右下角、左下角的顺序</p>
+<p>​    通过设置四个数值可以更加精确获得需要的形状</p>
+</li>
+</ul>
+<h5 id="2-阴影"><a href="#2-阴影" class="headerlink" title="(2). 阴影"></a>(2). 阴影</h5><p>​    在CSS3中，使用<code>box-shadow</code>来给方框添加阴影</p>
+<p><strong>语法</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">box-shadow</span>: <span class="selector-tag">offset-x</span> <span class="selector-tag">offset-y</span> <span class="selector-tag">blur</span> <span class="selector-tag">spread</span> <span class="selector-tag">color</span> <span class="selector-tag">inset</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数解释：</strong></p>
+<ul>
+<li>offset-x：必需，取值正负都可。offset-x水平阴影的位置。</li>
+<li>offset-y：必需，取值正负都可。offset-y垂直阴影的位置。</li>
+<li>blur:可选，只能取正值。blur-radius阴影模糊半径，0即无模糊效果，值越大阴影边缘越模糊。</li>
+<li>spread：可选，取值正负都可。spread代表阴影的周长向四周扩展的尺寸，正值，阴影扩大，负值阴影缩小。</li>
+<li>color:可选。阴影的颜色。如果不设置，浏览器会取默认颜色，通常是黑色，但各浏览器默认颜色有差异，建议不要省略。可以是rgb(250,0,0)，也可以是有透明值的rgba(250,0,0,0.5)。</li>
+<li>inset:可选。关键字，将外部投影(默认outset)改为内部投影。inset 阴影在背景之上，内容之下</li>
+</ul>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2022/02/28/%E5%89%8D%E7%AB%AF05/">前端05</a>
         </h1>
       
