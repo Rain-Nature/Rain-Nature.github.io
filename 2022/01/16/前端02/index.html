@@ -91,7 +91,7 @@
 <h4 id="3-图像标签-单"><a href="#3-图像标签-单" class="headerlink" title="3. 图像标签(单)"></a>3. 图像标签(单)</h4><p>​    图像使用<code>&lt;img&gt;</code> 标签在HTML页面中创建图像</p>
 <p>​    <strong><code>&lt;img&gt;</code> 标签常用的属性如下（加粗为必须要使用的属性）</strong>：</p>
 <ul>
-<li><p><strong><code>src</code>：设定图像的存储位置</strong></p>
+<li><p><strong><code>src</code>：设定要引用图像的路径，如果图像路径不正确会在web页面上显示损坏的图像</strong></p>
 </li>
 <li><p><code>alt</code>：为图像定义一串预备的可替换文本，在浏览器无法载入图像时，浏览器将显示这个替代性文本</p>
 </li>
@@ -113,10 +113,12 @@
 <li>上一次级别：用<code>../</code> 文件名</li>
 <li>下一次级别：用目录名<code>/</code> 文件名</li>
 </ul>
+<p>​    <strong>注意：在网页中只能使用<code>/</code>来分隔路径</strong>，不可以使用<code>\</code>，<code>\</code>是Windows操作系统分隔路径用的</p>
 <h4 id="5-超级链接（双）"><a href="#5-超级链接（双）" class="headerlink" title="5. 超级链接（双）"></a>5. 超级链接（双）</h4><p>​    超链接使用<code>&lt;a&gt;</code> 标签在HTML页面中创建超链接，开始标签和结束标签之间的文字、图像被作为链接来显示</p>
+<p>​    <code>&lt;a&gt;</code> 标签里的内容会成为web页面中可单击的文本，默认这是有下划线的，可以用CSS去除</p>
 <p>​    <strong><code>&lt;a&gt;</code> 标签常用的属性如下（加粗为必须要使用的属性）：</strong></p>
 <ul>
-<li><p><strong><code>href</code>：用于定位需要链接的文档，里面写要跳转网页的路径</strong></p>
+<li><p><strong><code>href</code>：用于定位需要链接的文档，里面写要跳转网页的路径，或者目标文件，事实上可以指向各种各样的资源</strong></p>
 </li>
 <li><p><code>target</code>：定义被链接的文档在何处显示</p>
 <p>常用的两个值</p>
