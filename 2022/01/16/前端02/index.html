@@ -79,13 +79,16 @@
 <p>水平线是使用<code>&lt;hr&gt;</code>标签在HTML页面中创建水平线</p>
 </li>
 <li><p><strong>换行标签(单)</strong></p>
-<p>换行是使用<code>&lt;br&gt;</code>标签在HTML页面中创建换行符，<strong>注意：在代码中敲多少回车都没有用，多个空白符当一个空格</strong></p>
+<p>换行是使用<code>&lt;br&gt;</code>标签在HTML页面中创建换行符，<code>&lt;br /&gt;</code>是写XHTML时的一个严格语法，如果不是写XHTML，则HTML中都应该使用<code>&lt;br&gt;</code>，<strong>注意：在代码中敲多少回车都没有用，多个空白符当一个空格</strong></p>
 </li>
 <li><p><strong>空格标签(符)</strong></p>
 <p>空格是使用<code>&amp;nbsp</code>标签在HTML页面中显示空格</p>
 </li>
 <li><p><strong>注释</strong></p>
 <p>HTML使用<code>&lt;!-- --&gt;</code>期间的内容为注释，注释在页面不显示，代码中可显示</p>
+</li>
+<li><p><strong>加粗( 双)</strong></p>
+<p>加粗是使用<code>&lt;b&gt;</code>标签对标签内的文本进行加粗</p>
 </li>
 </ul>
 <h4 id="3-图像标签-单"><a href="#3-图像标签-单" class="headerlink" title="3. 图像标签(单)"></a>3. 图像标签(单)</h4><p>​    图像使用<code>&lt;img&gt;</code> 标签在HTML页面中创建图像</p>
@@ -135,9 +138,24 @@
 <li>无序列表：在HTML中使用<code>&lt;ul&gt;</code> 标签表示无序列表，每一个列表项使用<code>&lt;li&gt;</code> 表示</li>
 </ul>
 <ul>
-<li>有序列表：在HTML中使用<code>&lt;ol&gt;</code> 标签表示有序列表，每一个列表项使用<code>&lt;li&gt;</code> 表示</li>
+<li><p>有序列表：在HTML中使用<code>&lt;ol&gt;</code> 标签表示有序列表，每一个列表项使用<code>&lt;li&gt;</code> 表示</p>
+<p><strong>注意：不管是有序列表还是无序列表<code>&lt;li&gt;</code> 都是双标签，而且这三个标签都为块元素</strong></p>
+</li>
 </ul>
-<p>​    <strong>注意：不管是有序列表还是无序列表<code>&lt;li&gt;</code> 都是双标签</strong></p>
+<ul>
+<li><p>自定义列表：使用<code>&lt;dl&gt;</code> 、<code>&lt;dt&gt;</code> 、<code>&lt;dd&gt;</code> 来组成自定义列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;dl&gt;</span><br><span class="line">	&lt;dt&gt;burma Shave Signs&lt;&#x2F;dt&gt;</span><br><span class="line">	&lt;dd&gt;Road signs common&lt;&#x2F;dd&gt;</span><br><span class="line">	&lt;dt&gt;Route&lt;&#x2F;dt&gt;</span><br><span class="line">	&lt;dd&gt;Most famous&lt;&#x2F;dd&gt;</span><br><span class="line">&lt;&#x2F;dl&gt;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器显示效果</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qpNZjS"><img src="https://s1.ax1x.com/2022/03/16/qpNZjS.png" alt="qpNZjS.png"></a></p>
+</li>
+</ul>
+<p>​    </p>
+<p>​    列表可以相互嵌套，但嵌套的标签需要放在<code>&lt;li&gt;</code> 里面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>城市<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>上海<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>广州<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>地方<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="7-表格-双"><a href="#7-表格-双" class="headerlink" title="7. 表格(双)"></a>7. 表格(双)</h4><p>​    表格一般主要用于展示数据，但在网页设计中，主要用于布局，做容器使用</p>
 <p>​    表格的图示</p>
 <p><a target="_blank" rel="noopener" href="https://imgtu.com/i/7JdhZ9"><img src="https://s4.ax1x.com/2022/01/15/7JdhZ9.png" alt="7JdhZ9.png"></a></p>
@@ -155,6 +173,25 @@
 <ul>
 <li><code>align</code> ：放在<code>&lt;table&gt;</code> 标签中用来定义表格在总页面中的水平对齐方式；放在<code>&lt;td&gt;</code> 标签中用来定义单元格中的内容在单元格中的位置，两个的默认值都为left</li>
 </ul>
+<h4 id="8-引用-双"><a href="#8-引用-双" class="headerlink" title="8. 引用(双)"></a>8. 引用(双)</h4><h5 id="1-lt-q-gt-标签表示的引用-本质上为行内元素"><a href="#1-lt-q-gt-标签表示的引用-本质上为行内元素" class="headerlink" title="(1).&lt;q&gt; 标签表示的引用(本质上为行内元素)"></a>(1).<code>&lt;q&gt;</code> 标签表示的引用(本质上为行内元素)</h5><p>​    当需要引用一段文字时可以使用<code>&lt;q&gt;</code> 标签来将该段文字被引用</p>
+<p>​    在不同的浏览器中显示情况不同，有些浏览器会为被引用的文字添加双引号(该双引号在网页不会被选中)，而有些浏览器不会，所以在使用时需要自行调试</p>
+<h5 id="2-lt-blockquote-gt-标签表示的引用-本质上为块元素"><a href="#2-lt-blockquote-gt-标签表示的引用-本质上为块元素" class="headerlink" title="(2).&lt;blockquote&gt; 标签表示的引用(本质上为块元素)"></a>(2).<code>&lt;blockquote&gt;</code> 标签表示的引用(本质上为块元素)</h5><p>​    当需要引用一段文字时可以使用<code>&lt;blockquote&gt;</code> 标签来将该段文字被引用</p>
+<p>​    在浏览器中显示一块区域类似<code>&lt;p&gt;</code>但里面的放的文字会有所缩进(有些浏览器可能不会缩进)</p>
+<h5 id="注意：两个标签表示的引用效果相同，只是一个是行内元素，另一个是块元素"><a href="#注意：两个标签表示的引用效果相同，只是一个是行内元素，另一个是块元素" class="headerlink" title="注意：两个标签表示的引用效果相同，只是一个是行内元素，另一个是块元素"></a>注意：两个标签表示的引用效果相同，只是一个是行内元素，另一个是块元素</h5><h4 id="9-特殊字符"><a href="#9-特殊字符" class="headerlink" title="9. 特殊字符"></a>9. 特殊字符</h4><p>​    在HTML中有些字符用于组成HTML页面，导致要输出其时无法正常显示，此时就需要使用HTML规定的特殊字符表示的方法</p>
+<p>​    <strong>常用的特殊字符</strong></p>
+<ol>
+<li><code>&lt;</code>字符：<code>&amp;lt</code> </li>
+<li><code>&gt;</code>字符：<code>&amp;gt</code> </li>
+<li><code>&amp;</code>字符：<code>&amp;amp</code> </li>
+</ol>
+<h4 id="10-原样输出"><a href="#10-原样输出" class="headerlink" title="10. 原样输出"></a>10. 原样输出</h4><p>​    在HTML中使用<code>&lt;pre&gt;</code> 标签来告诉浏览器，标签中的内容按照你输入方式的原样显示文本</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">	hello</span><br><span class="line">	world</span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="11-代码显示-双"><a href="#11-代码显示-双" class="headerlink" title="11. 代码显示(双)"></a>11. 代码显示(双)</h4><p>​    在HTML中使用<code>&lt;code&gt;</code> 标签来显示计算机程序代码</p>
+<h4 id="12-HTML其他标签"><a href="#12-HTML其他标签" class="headerlink" title="12. HTML其他标签"></a>12. HTML其他标签</h4><p>​    可以通过这个网址跳转查询</p>
+<p>​    <a href="[HTML Reference (w3schools.com)](https://www.w3schools.com/tags/)">HTML标签大全</a></p>
 
 
       
