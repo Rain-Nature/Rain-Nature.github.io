@@ -70,6 +70,67 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/09/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F01/">操作系统01</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-09-15T11:02:11.000Z" itemprop="datePublished">
+    2021-09-15
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="初识操作系统"><a href="#初识操作系统" class="headerlink" title="初识操作系统"></a>初识操作系统</h2><h4 id="1-什么是操作系统"><a href="#1-什么是操作系统" class="headerlink" title="1. 什么是操作系统"></a>1. 什么是操作系统</h4><p>​    操作系统是计算机硬件和应用之间的一层软件，方便使用硬件、高效的使用硬件，操作系统可以看作是资源分配器</p>
+<h4 id="2-操作系统管理的软件"><a href="#2-操作系统管理的软件" class="headerlink" title="2. 操作系统管理的软件"></a>2. 操作系统管理的软件</h4><p>​    <strong>CPU管理、内存管理、终端管理、磁盘管理、文件管理</strong>、网络管理、电源管理、多核管理</p>
+<h4 id="3-操作系统的表层"><a href="#3-操作系统的表层" class="headerlink" title="3. 操作系统的表层"></a>3. 操作系统的表层</h4><p>​    表层是通过应用使用操作系统的接口<br>​    操作系统中的接口就是一个让用户操作电脑的一个界面，比如windows，它有三个接口：</p>
+<ol>
+<li>cmd：windows上按win+r打开运行，输入cmd就会打开命令提示符，这个是系统管理员接口。</li>
+<li>explorer.exe:你打开任务管理器会看到explorer.exe，这个就是windows的桌面接口。</li>
+<li>api接口，这个是面向程序员的接口</li>
+</ol>
+<h4 id="4-计算机的工作原理"><a href="#4-计算机的工作原理" class="headerlink" title="4. 计算机的工作原理"></a>4. 计算机的工作原理</h4><p>​    通过IP(指针)把程序载入到内存(存储器)中，再载入到CPU(运算器、控制器)中解释执行，再输出</p>
+<p>​    <strong>计算机工作的本质：取指执行</strong></p>
+<h4 id="5-计算机的开机-x86-PC"><a href="#5-计算机的开机-x86-PC" class="headerlink" title="5. 计算机的开机(x86 PC)"></a>5. 计算机的开机(x86 PC)</h4><ol>
+<li>x86 PC刚开机时CPU处于实模式（实模式的寻址CS:IP(CS左移4位+IP)）</li>
+<li>开机时，CS=0xFFFF；IP=0x0000</li>
+<li>寻址0xFFFF0（ROM BLOS(基本输入输出)映射区(此处此时为固化的)）</li>
+<li>检查RAM(内存)，键盘，显示器，软硬键盘（执行过不去就是硬件坏了）</li>
+<li>将磁盘0磁道0扇区(操作系统的引导扇区)读入0x7c00处（一个扇区为512字节）</li>
+<li>设置CS=0x07c0，IP=0x0000（BLOS跳到这个自己写的引导扇区执行，引导扇区为启动设备的第一个扇区）</li>
+</ol>
+<p>​    <strong>这512个字节为开机时发生的事情</strong></p>
+<h4 id="6-操作系统的启动"><a href="#6-操作系统的启动" class="headerlink" title="6. 操作系统的启动"></a>6. 操作系统的启动</h4><p>​    将磁盘中的操作系统读到内存中，即程序boot sect.s<br>​    setup.s将完成OS启动前的设置（让系统获取到硬件配置）</p>
+<h4 id="7-setup-s"><a href="#7-setup-s" class="headerlink" title="7. setup.s"></a>7. setup.s</h4><p>​    获取设备硬件信息，而后将整个操作系统移动到0地址，而后执行操作系统，操作系统也一直会在0地址，再之后初始化gdt表并进入到保护模式（由之前的16位寻址模式(CS&lt;&lt;4+ip)切换到32位寻址模式），再跳到0地址（head.s）</p>
+<h4 id="8-保护模式下地址的翻译（gdt的作用）"><a href="#8-保护模式下地址的翻译（gdt的作用）" class="headerlink" title="8. 保护模式下地址的翻译（gdt的作用）"></a>8. 保护模式下地址的翻译（gdt的作用）</h4><p>​    CS改叫选择子，不在左移4位获得地址而是通过其查表+ip获得地址（这个表就叫gdt表）</p>
+<h4 id="9-head-s"><a href="#9-head-s" class="headerlink" title="9. head.s"></a>9. head.s</h4><p>​    初始化gdt表，执行完head.s之后，再去执行main.c由汇编转为C语言，由于C语言本质会转成汇编语言，所以可以看成是由一个c函数跳转到另一个c函数，这个过程通过栈完成，此时main死循环，main返回时，电脑死机</p>
+<h4 id="10-main-c"><a href="#10-main-c" class="headerlink" title="10. main.c"></a>10. main.c</h4><p>​    初始化一些硬件<br>​    mem_init()：把内存信息列表，即mem_init表，哪些占用，哪些没有</p>
+<h4 id="11-内核"><a href="#11-内核" class="headerlink" title="11. 内核"></a>11. 内核</h4><p>​    操作系统一直运行在计算机上的程序<br>​    除了内核以外还有两类程序：系统程序、应用程序</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/08/16/Java11/">Java11</a>
         </h1>
       
@@ -810,62 +871,6 @@
 <li>将对象的赋值为null</li>
 </ul>
 <p>​    <strong>注意:Java的垃圾回收器只能销毁new操作符创建的对象</strong><br>​    为了回收不通过new操作符来在内存中获取存储空间的对象,Java还提供object类中的finalize()方法被声明为protected,用户可以自己的类中定义这个方法来回收垃圾(不保证一定发生,当Java虚拟机内存耗尽时,则不会执行垃圾回收处理)<br>​    Java还提供了System.gc()方法强制启动垃圾回收器</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/05/23/Java04/">Java04</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-05-23T09:57:45.000Z" itemprop="datePublished">
-    2021-05-23
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h4 id="1-数组的声明-两种方式"><a href="#1-数组的声明-两种方式" class="headerlink" title="1. 数组的声明(两种方式)"></a>1. 数组的声明(两种方式)</h4><p>​    注意：数组在声明时并没有分配内存空间<br>​    注意：数组声明数组名后的[]里什么都不能写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;符号[]表面变量为一个数组变量，单个[]表示要创建的数组为一维数组</span><br><span class="line">数组元素类型 数组名字[]</span><br><span class="line">数组元素类型[] 数组名字</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-数组内存空间的分配"><a href="#2-数组内存空间的分配" class="headerlink" title="2. 数组内存空间的分配"></a>2. 数组内存空间的分配</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组名字 &#x3D; new 数组元素的类型[数组元素的个数]  &#x2F;&#x2F;创建数组后未进行赋值则数组元素都为该类型的初始值</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-一维数组声明并分配内存空间"><a href="#3-一维数组声明并分配内存空间" class="headerlink" title="3. 一维数组声明并分配内存空间"></a>3. 一维数组声明并分配内存空间</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int a[] &#x3D; new int[10];  </span><br></pre></td></tr></table></figure>
-
-<h4 id="4-注意：数组一旦进行初始化不可以对数组手动分配内存空间"><a href="#4-注意：数组一旦进行初始化不可以对数组手动分配内存空间" class="headerlink" title="4. 注意：数组一旦进行初始化不可以对数组手动分配内存空间"></a><strong>4. 注意：数组一旦进行初始化不可以对数组手动分配内存空间</strong></h4><h4 id="5-一维数组的初始化"><a href="#5-一维数组的初始化" class="headerlink" title="5. 一维数组的初始化"></a>5. 一维数组的初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int a[] &#x3D; new int[]&#123;1,2,3,4&#125;;  &#x2F;&#x2F;第一种初始化方式，注意括号内不能写数字</span><br><span class="line">int a[] &#x3D; &#123;1,2,3,4&#125;;           &#x2F;&#x2F;第二种初始化方式</span><br><span class="line">int a[];                       &#x2F;&#x2F;第三种初始化方式</span><br><span class="line">a &#x3D; new int[]&#123;1,2,3,4&#125;;        </span><br></pre></td></tr></table></figure>
-
-<h4 id="6-二维-高维-数组声明后的内存空间分配-2种"><a href="#6-二维-高维-数组声明后的内存空间分配-2种" class="headerlink" title="6. 二维(高维)数组声明后的内存空间分配(2种)"></a>6. 二维(高维)数组声明后的内存空间分配(2种)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;(1)为每一维分配内存空间</span><br><span class="line">	a &#x3D; new int[2][4];</span><br><span class="line">	</span><br><span class="line">&#x2F;&#x2F;(2)分别为每一维分配内存空间</span><br><span class="line">	a &#x3D; new int[2][];</span><br><span class="line">	a[0] &#x3D; new int[2];</span><br><span class="line">	a[1] &#x3D; new int[3];</span><br></pre></td></tr></table></figure>
-
-<h4 id="7-二维数组的初始化-与一维类似"><a href="#7-二维数组的初始化-与一维类似" class="headerlink" title="7. 二维数组的初始化(与一维类似)"></a>7. 二维数组的初始化(与一维类似)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组数据类型 数组名[][] &#x3D; &#123;&#123;值1,值2&#125;,&#123;..&#125;,&#123;..&#125;&#125;; &#x2F;&#x2F;注意：每一个大的项要用花括号&#123;&#125;起来,不需要每一项元素个数相等</span><br></pre></td></tr></table></figure>
-
-<h4 id="8-数组的基本操作"><a href="#8-数组的基本操作" class="headerlink" title="8. 数组的基本操作"></a>8. 数组的基本操作</h4><p>​    (1).遍历数组<br>​    通过数组的length属性来获得数组的长度<br>​    **注意：数组的元素只取到length-1</p>
-<p>​    (2).剩下的都是一些对数组的函数可以自己用算法来完成，到时要用再看看就行，我觉得可能是方法重写的时候用的上</p>
-<h4 id="9-数组排序算法"><a href="#9-数组排序算法" class="headerlink" title="9. 数组排序算法"></a>9. 数组排序算法</h4><p>​    (1).冒泡排序法<br>​    <strong>主要思想：把相邻两个元素进行比较，不满足则交换，每次循环将最大或是最小的元素排在最后，下一次循环进行类似操作</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;外层循环控制排序轮数，一般比数组长度减一因为最后一次只剩一个数组元素了</span><br><span class="line">for(int i &#x3D; 1;i &lt; arr.length;i++) &#123;</span><br><span class="line">	&#x2F;&#x2F;内层循环用于对比临近元素的大小，对比交换次数随着排序轮数减少</span><br><span class="line">	for(int j &#x3D; 0;j &lt; arr.length-i;j++) &#123;</span><br><span class="line">		if(arr[j]&gt;arr[j+1]) &#123;</span><br><span class="line">			int tmp &#x3D; arr[j];</span><br><span class="line">			arr[j] &#x3D; arr[j+1];</span><br><span class="line">			arr[j+1] &#x3D; tmp;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    (2).直接选择排序法(选择排序的一种)<br>​    <strong>主要思想：将指定排序位置与其他数组元素分别对比，如果满足条件就交换元素的值</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;index是用来寻找当前数组中最大或最小的值的索引位置</span><br><span class="line">int index &#x3D; 0;</span><br><span class="line">&#x2F;&#x2F;外层循环控制排序轮数，一般比数组长度减一因为最后一次只剩一个数组元素了</span><br><span class="line">for(int i &#x3D; 1;i&lt;arr.length;i++) &#123;</span><br><span class="line">	&#x2F;&#x2F;index在每次循环时都应该清零</span><br><span class="line">	index &#x3D; 0;</span><br><span class="line">	&#x2F;&#x2F;内循环用来获取当前数组中最大的值，在下一次循环时不计入该数值</span><br><span class="line">	for(int j &#x3D; 1;j&lt;&#x3D;arr.length - i;j++) &#123;</span><br><span class="line">		if(arr[j]&gt;arr[index]) &#123;</span><br><span class="line">			index&#x3D;j;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	&#x2F;&#x2F;将数组最左或者最右的值与数组最大值交换</span><br><span class="line">	int tmp &#x3D; arr[arr.length - i];</span><br><span class="line">	arr[arr.length - i] &#x3D; arr[index];</span><br><span class="line">	arr[index] &#x3D; tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
