@@ -70,6 +70,81 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/03/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8402/">数据结构02</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-03-28T07:27:37.000Z" itemprop="datePublished">
+    2022-03-28
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h2><h4 id="1-线性结构"><a href="#1-线性结构" class="headerlink" title="1. 线性结构"></a>1. 线性结构</h4><p>​    把所有的结点(类似数组的元素，逻辑上独立的个体)用一根线穿起来</p>
+<p>​    <strong>分类</strong></p>
+<ul>
+<li>连续存储【数组】</li>
+<li>离散存储【链表】</li>
+</ul>
+<p>​    <strong>应用</strong></p>
+<ul>
+<li>栈</li>
+<li>队列</li>
+</ul>
+<h4 id="2-数组"><a href="#2-数组" class="headerlink" title="2. 数组"></a>2. 数组</h4><p>​    元素类型相同，大小相等</p>
+<p>​    数组的优缺点： </p>
+<h4 id="3-实现动态数组以及其相关操作函数"><a href="#3-实现动态数组以及其相关操作函数" class="headerlink" title="3. 实现动态数组以及其相关操作函数"></a>3. 实现动态数组以及其相关操作函数</h4><h5 id="1-动态数组的基础设置"><a href="#1-动态数组的基础设置" class="headerlink" title="(1). 动态数组的基础设置"></a>(1). 动态数组的基础设置</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt; //包含了exit()函数</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Arr</span>&#123;</span><span class="comment">//设定数组的数据类型</span></span><br><span class="line">    <span class="keyword">int</span> * pBase;<span class="comment">//存储数组第一个元素的地址</span></span><br><span class="line">    <span class="keyword">int</span> len;<span class="comment">//数组所能容纳的最大元素的个数</span></span><br><span class="line">    <span class="keyword">int</span> cnt;<span class="comment">//当前数组有效元素的个数</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Arr</span> * <span class="title">arr</span>;</span><span class="comment">//定义数组指针，未初始化</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-动态数组的初始化函数"><a href="#2-动态数组的初始化函数" class="headerlink" title="(2). 动态数组的初始化函数"></a>(2). 动态数组的初始化函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_arr</span><span class="params">(struct Arr *pArr,<span class="keyword">int</span> length)</span></span>&#123;<span class="comment">//传需要初始化的数组的指针和需要创建的大小</span></span><br><span class="line">    (*pArr).pBase = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*length);</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span>== pArr-&gt;pBase)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;动态内存分配失败\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        pArr-&gt;len = length;</span><br><span class="line">        pArr-&gt;cnt = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-动态数组的输出函数"><a href="#3-动态数组的输出函数" class="headerlink" title="(3). 动态数组的输出函数"></a>(3). 动态数组的输出函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show_arr</span><span class="params">(struct Arr *pArr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(is_empty(pArr))&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;数组为空\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span> ; i&lt;pArr-&gt;cnt ; ++i)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,pArr-&gt;pBase[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-动态数组是否为空的判断函数"><a href="#4-动态数组是否为空的判断函数" class="headerlink" title="(4). 动态数组是否为空的判断函数"></a>(4). 动态数组是否为空的判断函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_empty</span><span class="params">(struct Arr * pArr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="number">0</span> == pArr-&gt;cnt)</span><br><span class="line">        <span class="keyword">return</span> ture;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-向动态数组中追加元素的函数"><a href="#5-向动态数组中追加元素的函数" class="headerlink" title="(5). 向动态数组中追加元素的函数"></a>(5). 向动态数组中追加元素的函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">append_arr</span><span class="params">(struct Arr * pArr, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="comment">//满返回false</span></span><br><span class="line">	<span class="keyword">if</span>(is_full(pArr))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">//不满时追加</span></span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        pArr-&gt;pBase[pArr-&gt;cnt] = val;</span><br><span class="line">        (pArr-&gt;cnt)++;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-动态数组是否为满的判断函数"><a href="#6-动态数组是否为满的判断函数" class="headerlink" title="(6). 动态数组是否为满的判断函数"></a>(6). 动态数组是否为满的判断函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_full</span><span class="params">(struct Arr * pArr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pArr-&gt;cnt == pArr-&gt;len)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-向动态数组中特定位置插入元素的函数"><a href="#7-向动态数组中特定位置插入元素的函数" class="headerlink" title="(7). 向动态数组中特定位置插入元素的函数"></a>(7). 向动态数组中特定位置插入元素的函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">insert_arr</span><span class="params">(struct Arr* pArr,<span class="keyword">int</span> pos, <span class="keyword">int</span> val)</span></span>&#123; <span class="comment">//指定pos的值从1开始</span></span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(is_full(pArr))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(pos&lt;<span class="number">1</span> || pos&gt;pArr-&gt;cnt+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">//这个for循环是健壮的，如果满了是不会执行的</span></span><br><span class="line">    <span class="keyword">for</span>(i=pArr-&gt;cnt<span class="number">-1</span> ; i&gt;=pos<span class="number">-1</span> ; --i)&#123;</span><br><span class="line">        pArr-&gt;pBase[i+<span class="number">1</span>] = pArr-&gt;pBase[i];</span><br><span class="line">    &#125;</span><br><span class="line">    pArr-&gt;pBase[pos<span class="number">-1</span>] = val;</span><br><span class="line">    (pArr-&gt;cnt)++;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="8-从动态数组某个位置删除元素并返回的函数"><a href="#8-从动态数组某个位置删除元素并返回的函数" class="headerlink" title="(8).从动态数组某个位置删除元素并返回的函数"></a>(8).从动态数组某个位置删除元素并返回的函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">delete_arr</span><span class="params">(struct Arr * pArr , <span class="keyword">int</span> pos , <span class="keyword">int</span> * pVal)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(is_empty(pArr))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(pos&lt;<span class="number">1</span> || pos&gt;pArr-&gt;cnt)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    *pVal = pArr-&gt;pBase[pos<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(i=pos ; i&lt;pArr-&gt;cnt ; ++i)&#123;</span><br><span class="line">        pArr-&gt;pBase[i<span class="number">-1</span>] = pArr-&gt;pBase[i];</span><br><span class="line">    &#125;</span><br><span class="line">    pArr-&gt;cnt--;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="9-把动态数组倒置的函数"><a href="#9-把动态数组倒置的函数" class="headerlink" title="(9). 把动态数组倒置的函数"></a>(9). 把动态数组倒置的函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inversion_arr</span><span class="params">(struct Arr * pArr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = pArr-&gt;cnt<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> tmp;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">        tmp = pArr-&gt;pBAse[i];</span><br><span class="line">        pArr-&gt;pBase[i] = pArr-&gt;pBase[j];</span><br><span class="line">        pArr-&gt;pBase[j] = t;</span><br><span class="line">        ++i;</span><br><span class="line">        --j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="10-对动态数组进行排序的函数"><a href="#10-对动态数组进行排序的函数" class="headerlink" title="(10). 对动态数组进行排序的函数"></a>(10). 对动态数组进行排序的函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一个先和所有的比，比完之后留下最小的数，然后再比第二个以此类推</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort_arr</span><span class="params">(struct Arr * pArr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,t;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span> ; i&lt;pArr-&gt;cnt ; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(j=i+<span class="number">1</span> ; j&lt;pArr-&gt;cnt ; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(pArr-&gt;pBase[i] &gt; pArr-&gt;pBase[j])&#123;</span><br><span class="line">                t = pArr-&gt;pBase[i];</span><br><span class="line">                pArr-&gt;pBase[i] = pArr-&gt;pBase[j];</span><br><span class="line">                pArr-&gt;pBase[j] = t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-可以自行扩展的函数"><a href="#4-可以自行扩展的函数" class="headerlink" title="4. 可以自行扩展的函数"></a>4. 可以自行扩展的函数</h4><ul>
+<li>查找数组中是否含有某元素（find_val_arr()）</li>
+<li>删除数组中所有的元素（deleteAll()）</li>
+</ul>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2022/03/24/%E5%89%8D%E7%AB%AF07/">前端07</a>
         </h1>
       
@@ -1013,235 +1088,6 @@
       
         <h2 id="送给自己生日的代码"><a href="#送给自己生日的代码" class="headerlink" title="送给自己生日的代码"></a>送给自己生日的代码</h2><h4 id="送给自己的话"><a href="#送给自己的话" class="headerlink" title="送给自己的话"></a>送给自己的话</h4><p>​    在新的一年，希望可以更加独立一些，就在本学期，我经历了低谷，感受到了许多–冷淡与不屑还有嘲讽。希望在新的一年里，可以自由控制自己的时间，而不是被时间撵着走，依靠自己的力量，完成许多看似不可能的事情，<strong>做自己的主人</strong></p>
 <h4 id="生日代码-回望2021，致敬2022"><a href="#生日代码-回望2021，致敬2022" class="headerlink" title="生日代码(回望2021，致敬2022)"></a>生日代码(回望2021，致敬2022)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Callable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">              Thread game1 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> MyThread(<span class="string">&quot;王者&quot;</span>));</span><br><span class="line">              Thread game2 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> MyThread(<span class="string">&quot;哈利&quot;</span>));</span><br><span class="line">              Thread game3= <span class="keyword">new</span> Thread(<span class="keyword">new</span> MyThread(<span class="string">&quot;吃鸡&quot;</span>));</span><br><span class="line">              Thread game4 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> MyThread(<span class="string">&quot;第五&quot;</span>));</span><br><span class="line"></span><br><span class="line">              System.out.println(<span class="string">&quot;每月游戏，每周一轮转&quot;</span>);</span><br><span class="line">              game1.start();</span><br><span class="line">              game2.start();</span><br><span class="line">              game3.start();</span><br><span class="line">              game4.start();</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> game_num = <span class="number">4</span>;</span><br><span class="line">       <span class="keyword">private</span>  String name;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">MyThread</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">              <span class="keyword">this</span>.name = name;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">              <span class="keyword">try</span> &#123;</span><br><span class="line">                     Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">              &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                     e.printStackTrace();</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">if</span> (game_num&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                     game_num--;</span><br><span class="line">                     System.out.println(<span class="keyword">this</span>.name);</span><br><span class="line">                     Thread.currentThread().interrupt();</span><br><span class="line">              &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">              &#125;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/12/08/JavaEE-02-md/">JavaEE-02.md</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-12-08T05:23:50.000Z" itemprop="datePublished">
-    2021-12-08
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/JavaEE/">JavaEE</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="JSP基础语法"><a href="#JSP基础语法" class="headerlink" title="JSP基础语法"></a>JSP基础语法</h2><h4 id="1-JSP注释"><a href="#1-JSP注释" class="headerlink" title="1. JSP注释"></a>1. JSP注释</h4><p>​    JSP中一共支持两种注释</p>
-<ul>
-<li><p>显式注释</p>
-<p>使用的是HTML风格的注释</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--注释--&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>隐式注释</p>
-<ul>
-<li><p>使用Java语言提供的注释</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">单行注释(&#x2F;&#x2F;)</span><br><span class="line">多行注释(&#x2F;* ... *&#x2F;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>JSP提供的注释</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%-- 注释 --%&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<p>​    <strong>注释的区别</strong></p>
-<p>​    运行之后只有显式注释的内容会发送到客户端上，即通过查看网页源代码可以看见</p>
-<h4 id="2-三种Scriptlet"><a href="#2-三种Scriptlet" class="headerlink" title="2. 三种Scriptlet"></a>2. 三种Scriptlet</h4><p>​    <strong>Scriptlet指的是脚本小程序</strong>，在之前只要编写Java程序的语句都需要在”&lt;%%&gt;”之中进行编写，而这样的操作形式就称为Scriptlet，根据其作用不同，Scriptlet分为三类：&lt;%%&gt;、&lt;%!%&gt;、&lt;%=%&gt;</p>
-<p>​    <strong>注意：一个JSP文件里面可以同时编写多个Scriptlet，且相互关联</strong></p>
-<h5 id="第一种Scriptlet：-lt-gt"><a href="#第一种Scriptlet：-lt-gt" class="headerlink" title="第一种Scriptlet：&lt;%%&gt;"></a>第一种Scriptlet：&lt;%%&gt;</h5><p>​    在这种Scriptlet里面只能够编写局部变量、程序语句</p>
-<p>​    范例：观察&lt;%%&gt;</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">	<span class="comment">//局部变量，每次页面刷新(执行)都要重新执行(重复声明)</span></span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">100</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+num+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    一般，在一个JSP文件中使用的最多的就是“&lt;%%&gt;”，里面就定义一些基础的局部变量</p>
-<h5 id="第二种Scriptlet：-lt-gt"><a href="#第二种Scriptlet：-lt-gt" class="headerlink" title="第二种Scriptlet：&lt;%!%&gt;"></a>第二种Scriptlet：&lt;%!%&gt;</h5><p>​    这种Scriptlet可以定义全局变量、全局常量、方法、类</p>
-<p>​    范例：定义全局变量</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        <span class="comment">//全局变量，只在第一次使用的时候声明</span></span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">100</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+num+++<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    此时，随着页面刷新，显示的数字也会不断增加，重新打开界面仍为之前退出去前的数字</p>
-<p>​    <strong>注意：一般不会这样使用代码来编写程序</strong></p>
-<p>​    范例：定义全局常量</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String str = <span class="string">&quot;HELLO&quot;</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+str+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>基本上在“&lt;%!%&gt;”唯一能用到的只是用它定义全局常量(常量)</strong></p>
-<p>​    范例：定义类和方法</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        </span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">fish</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> String name;</span><br><span class="line">		<span class="keyword">private</span> String color;</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">fish</span><span class="params">(String name,String color)</span></span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.name = name;</span><br><span class="line">			<span class="keyword">this</span>.color = color;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> String <span class="title">getfish</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&quot;name: &quot;</span>+<span class="keyword">this</span>.name +<span class="string">&quot; color : &quot;</span>+<span class="keyword">this</span>.color;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">buy</span><span class="params">(<span class="keyword">double</span> ... args)</span></span>&#123;</span><br><span class="line">		<span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">double</span> x: args)&#123;</span><br><span class="line">			sum = sum+x;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+<span class="keyword">new</span> fish(<span class="string">&quot;red fish&quot;</span>,<span class="string">&quot;red&quot;</span>).getfish()+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+buy(<span class="number">11.1</span>,<span class="number">56.3</span>)+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    一般也不会这样写代码，只有业余的那部分人会在JSP里面直接编写一堆的Java类或者是方法。</p>
-<h5 id="第三种Scriptlet：-lt-gt"><a href="#第三种Scriptlet：-lt-gt" class="headerlink" title="第三种Scriptlet：&lt;%=%&gt;"></a>第三种Scriptlet：&lt;%=%&gt;</h5><p>​    out.println()是向页面中进行内容显示输出，但是在JSP里面，<strong>如果要想输出某个变量或者常量，以及方法的返回值，可以使用表达式输出的Scriptlet完成：&lt;%=%&gt;</strong></p>
-<p>​    范例：观察表达式输出</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String str = <span class="string">&quot;HELLO&quot;</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;&lt;%=str%&gt;&lt;h1&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    这种Scriptlet可以很好的代替out.println()</p>
-<p>​    <strong>那么这两种输出方式选哪种</strong></p>
-<p>​    范例：使用两种形式打印乘法口诀表</p>
-<p>1.使用out.println()打印</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;table&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">1</span> ; x &lt;= <span class="number">9</span> ; x++)&#123;</span><br><span class="line">		out.println(<span class="string">&quot;&lt;tr&gt;&quot;</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> y = <span class="number">1</span> ; y&lt;=x ;y++)&#123;</span><br><span class="line">			out.println(<span class="string">&quot;&lt;td&gt;&quot;</span>+x+<span class="string">&quot;*&quot;</span>+ y+<span class="string">&quot;=&quot;</span>+x*y+<span class="string">&quot;&lt;/td&gt;&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		out.println(<span class="string">&quot;&lt;/tr&gt;&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;/table&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    以上代码完成了开发需要，但是存在如下问题</p>
-<ul>
-<li><p>不方便使用任何的网页设计工具进行调试</p>
-<ul>
-<li>代码没有缩进，输出的代码格式不适合浏览</li>
-</ul>
-</li>
-</ul>
-<p>2.使用表达式输出</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">1</span> ; x &lt;= <span class="number">9</span> ; x++)&#123;</span><br><span class="line">%&gt;</span><br><span class="line">	&lt;tr&gt;</span><br><span class="line">&lt;%</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> y = <span class="number">1</span> ; y&lt;x ;y++)&#123;</span><br><span class="line">%&gt;</span><br><span class="line">		&lt;td&gt;&lt;%=x%&gt;*&lt;%=y%&gt;=&lt;%=x*y%&gt;&lt;/td&gt;</span><br><span class="line">&lt;%</span><br><span class="line">		&#125;</span><br><span class="line">%&gt;</span><br><span class="line">	&lt;/tr&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    此时的程序与out.println()相比最大的好处在于代码简化，而且功能又相同</p>
-<p>​    <strong>注意：在以后的所有开发中，只要是JSP页面不允许使用out.println()输出，JSP的内容输出永远都依靠表达式输出完成</strong></p>
-<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>​    如果把JSP页面当成一个Java类的话</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class xxx.jsp&#123;</span><br><span class="line">	全局变量; &lt;%!%&gt;</span><br><span class="line">	全局常量; &lt;%!%&gt;</span><br><span class="line">	public void 方法()&#123;</span><br><span class="line">		局部变量;&lt;%%&gt;</span><br><span class="line">		语句;&lt;%%&gt;</span><br><span class="line">		输出;&lt;%&#x3D;%&gt;</span><br><span class="line">	&#125;</span><br><span class="line">	class 内部类&#123;&#125;&lt;%!%&gt;</span><br><span class="line">	方法;&lt;%!%&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="3-page指令"><a href="#3-page指令" class="headerlink" title="3. page指令"></a>3. page指令</h4><p>​    page是JSP页面开发中用到的最多的一个操作</p>
-<p>​    <strong>page指令的语法格式</strong></p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page attr1 = <span class="string">&quot;value1&quot;</span> attr2 = <span class="string">&quot;value2&quot;</span> ... %&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>​    page主要功能是定义一个页面中的全部属性，里面会包含很多的选项</p>
-<h5 id="1-解决显示乱码"><a href="#1-解决显示乱码" class="headerlink" title="1. 解决显示乱码"></a>1. 解决显示乱码</h5><p>​    (1).如果是一个HTML文件，对于乱码可以使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meta charset &#x3D; &#39;UTF-8&#39;</span><br></pre></td></tr></table></figure>
-
-<p>的方式解决，<strong>此举为指定了页面的编码</strong>，浏览器在解析的时候已经知道了编码，就可以准确的使用特定的解码方式进行显示</p>
-<p>​    (2).<strong>如果要设置浏览器支持的编码(浏览器会有默认的解码格式)，可以使用pageEncoding属性完成</strong></p>
-<p>​    范例：设置浏览器的编码(.jsp文件)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@page</span> pageEncoding = <span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;中文&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>注意：pageEncoding的编码设置只能一次，多次会报错</strong></p>
-<p>​    (3).设置MIME类型</p>
-<p>​    MIME指的是多路Internet媒体访问协议。相当于通过MIME类型定义出当前页面的执行方式</p>
-<p>​    所有支持的MIME类型都在Tomcat安装目录中/conf/web.xml文件里面定义，<strong>里面定义了各种文件的执行方式</strong></p>
-<p>​    范例：设置MIME类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType&#x3D;&quot;text&#x2F;html; charset&#x3D;UTF-8&quot;%&gt;</span><br><span class="line">&lt;h1&gt;中文&lt;&#x2F;h1&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>注意：不要乱加空格，尤其是等号那里</strong></p>
-<p>​    这个设置与上面的第二种不冲突</p>
-<p>​    <strong>contentType为MIME类型，设置文件运行方式，可以更改为其他形式，如更改为word形式</strong></p>
-<p>​    范例：使用word运行程序</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;application/msword&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;中文&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    此时运行会弹出下载框，下载word文件，<strong>这个在ie中才明显，一般浏览器感受不到</strong></p>
-<h5 id="2-导入系统开发包"><a href="#2-导入系统开发包" class="headerlink" title="2. 导入系统开发包"></a>2. 导入系统开发包</h5><p>​     在page指令里面几乎所有的指令都只能够设置一次，但是import指令可以使用多次，表示导入开发包</p>
-<p>​    范例：导入开发包(可以一行导入也可以多行导入)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.io.*,java.text.*&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;&lt;%=new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(new Date())%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    只要能导包，那么所有的系统类都可以调用</p>
-<h5 id="3-数据库操作"><a href="#3-数据库操作" class="headerlink" title="3. 数据库操作"></a>3. 数据库操作</h5><p>​    因为可以进行导包操作，所以意味着可以在JSP页面上进行数据库的数据操作</p>
-<p>​    对于要进行数据库操作的驱动程序，都需要拷贝到TomcatHOME/lib目录下即可(Tomcat需要重新启动才能加载新的包)</p>
-<p>​    <strong>实际上，所有在JSP中的显示的内容永远都不是固定的，都是由程序动态生成的，在WebContainer中负责生成要显示的代码</strong></p>
-<h4 id="4-包含指令"><a href="#4-包含指令" class="headerlink" title="4. 包含指令"></a>4. 包含指令</h4><p>​    一般要进行页面开发时都需要包含如下结构：菜单栏、头部信息、<strong>中间显示信息</strong>、尾部信息</p>
-<p>​    一般都是中间显示信息发生变化，为实现这个有两种显示方式</p>
-<ul>
-<li>在每一个显示的页面里面重复包含有“菜单栏”、“头部信息”、“尾部信息”，这三个重复内容</li>
-<li>将“菜单栏”、“头部信息”、“尾部信息”分别定义为三个文件，在需要的地方进行引用</li>
-</ul>
-<p>​    很明显第二种更加适合代码维护，所以此处就需要使用包含指令，但<strong>在JSP中对于包含指令有两种提供形式</strong></p>
-<h5 id="1-静态包含：-lt-include-gt"><a href="#1-静态包含：-lt-include-gt" class="headerlink" title="1. 静态包含：&lt;%@include%&gt;"></a>1. 静态包含：&lt;%@include%&gt;</h5><p>​    静态包含的语法：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">&quot;包含文件路径&quot;</span>%&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>它可以包含任意的文件内容</strong></p>
-<p>​    范例：实现静态包含操作(定义几个被包含的页面)   </p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.jsp页面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&#x27;UTF-8&#x27;</span>%&gt;</span><br><span class="line">&lt;% String str = <span class="string">&quot;这是页面一&quot;</span>;%&gt;</span><br><span class="line">&lt;%=str%&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.html页面</span></span><br><span class="line">&lt;meta charset = <span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&#x27;UTF-8&#x27;</span>%&gt; <span class="comment">//保证引用后页面中文不会乱码</span></span><br><span class="line">&lt;h1&gt;这是页面2&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//all.jsp</span></span><br><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html; charset=UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">&quot;2.html&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">&quot;1.jsp&quot;</span>%&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>注意：使用jsp包含html页面时，会一起编译为java代码进行处理，此时就需要对html页面进行设置防止乱码</strong></p>
-<p>​    在这个程序中文件名为中文不影响结果</p>
-<p>​    此时所有的页面都被包含显示在all.jsp中</p>
-<h5 id="2-动态包含：jsp-include"><a href="#2-动态包含：jsp-include" class="headerlink" title="2. 动态包含：jsp:include"></a>2. 动态包含：<a href="jsp:include">jsp:include</a></h5><p>​    静态包含只是简单的将文件进行包含，而动态包含可以分为两种情况处理</p>
-<ul>
-<li><p>情况一：被包含的页面属于静态文件，那么就行静态包含一样直接将内容导入进去</p>
-</li>
-<li><p>情况二：被包含的页面属于动态页面，则要分别处理后再进行包含</p>
-</li>
-</ul>
-<p>​    注意：动态包含给出的指令形式属于标签指令，标签指令最后必须完结</p>
-<p>​    动态包含的语法格式定义：</p>
-<ul>
-<li><p>定义一：包含的时候不传递参数</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:include page=<span class="string">&quot;路径&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>定义二：包含的时候传递参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:include page&#x3D;&quot;路径&quot;&gt;</span><br><span class="line">	&lt;jsp:param name&#x3D;&quot;参数名称&quot; value&#x3D;&quot;参数内容&quot;&#x2F;&gt;</span><br><span class="line">	&lt;jsp:param name&#x3D;&quot;参数名称&quot; value&#x3D;&quot;参数内容&quot;&#x2F;&gt;</span><br><span class="line">	&lt;jsp:param name&#x3D;&quot;参数名称&quot; value&#x3D;&quot;参数内容&quot;&#x2F;&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;&#x2F;jsp:include&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>这里是指向那个页面传参再显示那个页面</strong></p>
-</li>
-</ul>
-<p>​    对于所有参数的接收方式为使用request.getParameter()完成</p>
-<p>​    范例：实现参数的发送和接收</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;send.jsp,发送并显示receive.jsp界面</span><br><span class="line">&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;jsp:include page&#x3D;&quot;receive.jsp&quot;&gt;</span><br><span class="line">	&lt;jsp:param name&#x3D;&quot;a&quot; value&#x3D;&quot;刘旭晟&quot;&#x2F;&gt;</span><br><span class="line">	&lt;jsp:param name&#x3D;&quot;do&quot; value&#x3D;&quot;说&quot;&#x2F;&gt;</span><br><span class="line">	&lt;jsp:param name&#x3D;&quot;proclaim&quot; value&#x3D;&quot;共产党万岁&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;jsp:include&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;receive.jsp,接收传过来的数据</span><br><span class="line">&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;%&#x3D;request.getParameter(&quot;a&quot;)%&gt;</span><br><span class="line">&lt;%&#x3D;request.getParameter(&quot;do&quot;)%&gt;</span><br><span class="line">&lt;%&#x3D;request.getParameter(&quot;proclaim&quot;)%&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>注意：标签指令不能够写在scriptlet代码里面，只能够像HTML代码那样写</strong>，如果要传参需要在value的值里面使用Scriptlet</p>
-<h5 id="3-动态包含和静态包含的区别"><a href="#3-动态包含和静态包含的区别" class="headerlink" title="3. 动态包含和静态包含的区别"></a>3. 动态包含和静态包含的区别</h5><p>​    在静态导入时，如果导入的页面定义了Scriptlet变量且本页面也定义了一个一模一样名字的变量，则<strong>页面显示报错，如果执行报错后依然再次刷新会把错误给刷新没</strong></p>
-<p>​    <strong>静态包含的最大特点为：先把内容包含到一起，而后一起进行处理</strong></p>
-<p>​    在动态导入时，如果导入的页面定义了Scriptlet变量且本页面也定义了一个一模一样名字的变量，页面照常显示没有影响</p>
-<p>​    <strong>动态包含的特点：</strong></p>
-<ul>
-<li>如果被包含页面是动态页面(*.jsp)，那么先分别处理两个页面的操作，而后将结果包含进来</li>
-<li>如果被包含的页面是静态页面(*.txt)，那么只是将文件内容简单的导入进来</li>
-</ul>
-<p>​    动态包含相比静态包含可以在不同页面重复定义变量，更加安全</p>
-<h4 id="5-跳转指令"><a href="#5-跳转指令" class="headerlink" title="5. 跳转指令"></a>5. 跳转指令</h4><p>​    跳转：从一个JSP页面可以跳转到另外一个JSP或其他页面</p>
-<p>​    <strong>跳转指令依然输入标签指令形式，所以在跳转指令完成操作后依然要进行标签完结</strong></p>
-<p>​    跳转指令的两种定义形式：</p>
-<ul>
-<li><p>定义一：不向跳转页面传递参数：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:forward page=<span class="string">&quot;路径&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<ul>
-<li><p>定义二：向跳转页面传递参数</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:forward page=<span class="string">&quot;路径&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/jsp:forward&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<p>​    范例：实现跳转</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//要跳转到的界面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;&lt;%=request.getParameter(&quot;paramA&quot;)%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;&lt;%=request.getParameter(&quot;paramB&quot;)%&gt;&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//跳转界面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;jsp:forward page=<span class="string">&quot;param.jsp&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;paramA&quot;</span> value=<span class="string">&quot;int&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;paramB&quot;</span> value=<span class="string">&quot;double&quot;</span>/&gt;</span><br><span class="line">&lt;/jsp:forward&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    跳转之后地址栏不发生改变，但页面内容发生改变，<strong>这种跳转称为服务器端跳转</strong></p>
-<p>​    <strong>还有一种跳转会连地址栏一起跳转的叫客户端跳转</strong>，实现方式是使用Javascript，或者可以使用超链接跳转也是一样的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">	<span class="built_in">window</span>.location = <span class="string">&quot;param.jsp&quot;</span>;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>结论</strong>    </p>
-<p>​    地址栏不改变的跳转称为服务器跳转</p>
-<p>​    地址栏改变的跳转称为客户端跳转</p>
-
       
     </div>
 </article>
