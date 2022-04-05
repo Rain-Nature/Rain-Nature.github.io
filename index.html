@@ -70,6 +70,141 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/04/05/%E5%89%8D%E7%AB%AF08/">前端08</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-04-05T12:55:58.000Z" itemprop="datePublished">
+    2022-04-05
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/JavaScript/">JavaScript</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h4 id="1-事件"><a href="#1-事件" class="headerlink" title="1. 事件"></a>1. 事件</h4><p>​    事件处理是整个JavaScript的核心操作</p>
+<p>​    在页面上任何的操作都可能被称为事件源，而对每一个事件可以自定义处理操作，例如页面加载，鼠标移动等都被称为事件源</p>
+<p>​    在JavaScript中，事件都是以<code>onXXX</code>的形式命名的</p>
+<p>​    最基础的静态事件即在HTML标签中声明需要该事件并定义事件名要加小括号和分号，如<code>XXXX();</code>，而后在JavaScript中定义与事件名相同的函数</p>
+<p>​    <strong>Javascript是基于对象的编程语言，所有的对象都在元素上，即每一个元素都属于一个JavaScript的对象</strong></p>
+<h4 id="2-页面加载事件与页面卸载事件"><a href="#2-页面加载事件与页面卸载事件" class="headerlink" title="2. 页面加载事件与页面卸载事件"></a>2. 页面加载事件与页面卸载事件</h4><p>​    注意：这两个事件只能够在<code>&lt;body&gt;</code> 元素中进行处理</p>
+<h5 id="1-页面加载事件：onload"><a href="#1-页面加载事件：onload" class="headerlink" title="(1). 页面加载事件：onload"></a>(1). 页面加载事件：onload</h5><p>​    页面加载完成后执行的动作</p>
+<p>​    页面加载时，大致可以分为以下几个步骤：</p>
+<p>​        1. 开始解析HTML文档结构</p>
+<p>​        2. 加载外部样式表及JavaScript脚本</p>
+<p>​        3. 解析执行JavaScript脚本</p>
+<p>​        4. DOM树渲染完成</p>
+<p>​        5. 加载未完成的外部资源（如 图片）</p>
+<p>​        6. 页面加载成功</p>
+<p>​    范例：<code>onload</code> 的基础使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">title</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">loadHandle</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                alert(<span class="string">&quot;欢迎来到测试页面&quot;</span>);</span></span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">&quot;loadHandle();&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    注意：在使用HTML标签中要加多个事件，则在<code>;</code>继续加就可以了</p>
+<h5 id="2-页面卸载事件：onunload"><a href="#2-页面卸载事件：onunload" class="headerlink" title="(2). 页面卸载事件：onunload"></a>(2). 页面卸载事件：onunload</h5><p>​    onunload 事件在用户退出页面时发生</p>
+<p>​    范例：使用onunload事件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">title</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">unloadHandle</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                alert(<span class="string">&quot;再见&quot;</span>);</span></span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span> <span class="attr">onunload</span>=<span class="string">&quot;unloadHandle();&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    注意：这个代码为实现，应该是浏览器的问题</p>
+<h4 id="3-鼠标事件"><a href="#3-鼠标事件" class="headerlink" title="3. 鼠标事件"></a>3. 鼠标事件</h4><table>
+<thead>
+<tr>
+<th align="center"><strong>事件类型</strong></th>
+<th align="center"><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">click</td>
+<td align="center">单击鼠标左键时发生，如果右键也按下则不会发生。当用户的焦点在按钮上，并按了回车键时，同样会触发事件</td>
+</tr>
+<tr>
+<td align="center">dblclick</td>
+<td align="center">双击鼠标左键时发生，如果右键也按下则不会发生</td>
+</tr>
+<tr>
+<td align="center">mousedown</td>
+<td align="center">单击任意一个鼠标按钮时发生</td>
+</tr>
+<tr>
+<td align="center">mouseout</td>
+<td align="center">鼠标指针位于元素上，且将要移出元素的边界时发生</td>
+</tr>
+<tr>
+<td align="center">mouseover</td>
+<td align="center">鼠标指针移入元素时触发</td>
+</tr>
+<tr>
+<td align="center">mouseup</td>
+<td align="center">松开任意一个鼠标按钮时发生</td>
+</tr>
+<tr>
+<td align="center">mousemove</td>
+<td align="center">鼠标在某个元素上移动时发生</td>
+</tr>
+</tbody></table>
+<p>​    范例：使用单击点击事件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">title</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                alert(<span class="string">&quot;你好&quot;</span>);</span></span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;test()&quot;</span>&gt;</span>点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    提升：鼠标经过表格变色</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">title</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.table1</span>&#123;</span></span><br><span class="line">                width: 300px;</span><br><span class="line">                height: 20px;</span><br><span class="line">                border: 1px solid black;</span><br><span class="line">                text-align: center;</span><br><span class="line"><span class="css">                <span class="selector-tag">background-color</span>: <span class="selector-id">#f2f2f2</span>;</span></span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            td&#123;</span><br><span class="line">                border: 1px solid black;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">change</span>(<span class="params">obj,color</span>)</span>&#123;</span></span><br><span class="line">                obj.bgColor = color;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&quot;table1&quot;</span> <span class="attr">cellpadding</span>=<span class="string">&quot;10px&quot;</span> <span class="attr">cellspacing</span>=<span class="string">&quot;0px&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span> <span class="attr">onmousemove</span>=<span class="string">&quot;change(this,&#x27;white&#x27;)&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>年龄<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>性别<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span> <span class="attr">onmousemove</span>=<span class="string">&quot;change(this,&#x27;white&#x27;)&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>12<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>男<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span> <span class="attr">onmousemove</span>=<span class="string">&quot;change(this,&#x27;white&#x27;)&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>15<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">td</span>&gt;</span>男<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>注意：bgcolor是HTML，bgColor是JavaScript</strong></p>
+<h4 id="4-动态设置事件"><a href="#4-动态设置事件" class="headerlink" title="4. 动态设置事件"></a>4. 动态设置事件</h4><p>​    在JavaScript中，事件的绑定除了在元素上使用<code>onXXX</code> 静态的定义之外，还可以动态的设置</p>
+<h5 id="1-动态设置事件的全过程"><a href="#1-动态设置事件的全过程" class="headerlink" title="(1).动态设置事件的全过程"></a>(1).动态设置事件的全过程</h5><p>​    范例：使用onload在页面加载时对事件进行处理</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">title</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                alert(<span class="string">&quot;事件触发！&quot;</span>);</span></span><br><span class="line">            &#125;</span><br><span class="line"><span class="javascript">            <span class="comment">//window为JS的内置对象</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//匿名函数</span></span></span><br><span class="line">                handle();</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>注意：所有的动态设置的事件都可以在onload里面进行动态配置，但此时需要取得明确的元素对象，可以使用<code>document.getElementById(元素ID)</code> 的操作方式取得元素对象，此时该方式应该写在onload里面</strong></p>
+<p>​    注意：id是整个JavaScript的操作核心所在，必须存在</p>
+<p>​    <strong>然后通过使用<code>元素ID赋予的变量.addEventListener(事件类型，处理函数名称，触发时机)</code> 对该元素进行动态配置事件，<em>事件类型要加双引号，处理函数名称后面不需要括号，触发时机一般设置为false表示在事件的触发过程进行处理，阻止事件冒泡</em>，其也要写在onload里面</strong></p>
+<p>​    动态设置操作事件的好处在于HTML代码不会和JavaScript代码混合在一起</p>
+<h5 id="2-范例：图片的轮转"><a href="#2-范例：图片的轮转" class="headerlink" title="(2).范例：图片的轮转"></a>(2).范例：图片的轮转</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">title</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">            img&#123;</span><br><span class="line">                width: 598px;</span><br><span class="line">                padding: 0px;</span><br><span class="line">                border: 1px solid black;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            div&#123;</span><br><span class="line">                margin-top: 10px;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            button&#123;</span><br><span class="line">                margin-left: 20px;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> imges = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">&quot;img/01.jpg&quot;</span>,<span class="string">&quot;img/02.jpg&quot;</span>,<span class="string">&quot;img/03.jpg&quot;</span>,<span class="string">&quot;img/04.jpg&quot;</span>,<span class="string">&quot;img/05.jpg&quot;</span>);</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> index = <span class="number">0</span>;</span></span><br><span class="line">            </span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//匿名函数</span></span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> pic = <span class="built_in">document</span>.getElementById(<span class="string">&quot;pic&quot;</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> next = <span class="built_in">document</span>.getElementById(<span class="string">&quot;next&quot;</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> up = <span class="built_in">document</span>.getElementById(<span class="string">&quot;up&quot;</span>);</span></span><br><span class="line"><span class="javascript">                next.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">if</span>(index&gt;=<span class="number">4</span>)&#123;</span></span><br><span class="line">                        index = -1;</span><br><span class="line">                    &#125; </span><br><span class="line">                    pic.src = imges[++index];</span><br><span class="line"><span class="javascript">               &#125;,<span class="literal">false</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">               up.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">if</span>(index&lt;=<span class="number">0</span>)&#123;</span></span><br><span class="line">                        index = imges.length;</span><br><span class="line">                    &#125;</span><br><span class="line">                    pic.src = imges[--index];</span><br><span class="line"><span class="javascript">               &#125;,<span class="literal">false</span>)</span></span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;pic&quot;</span> <span class="attr">src</span>=<span class="string">&quot;img/01.jpg&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;up&quot;</span>&gt;</span>上一张<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;next&quot;</span>&gt;</span>下一张<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-innerHTML"><a href="#5-innerHTML" class="headerlink" title="5. innerHTML"></a>5. innerHTML</h4><p>​    JavaScript可使用<code>document.getElementById(id).innerHTML = “新内容”</code>来修改id元素内的HTML内容</p>
+<p>​    范例：使用innerHTML</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">title</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">           <span class="function"><span class="keyword">function</span> <span class="title">clickb</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">               <span class="built_in">document</span>.getElementById(<span class="string">&quot;a&quot;</span>).innerHTML = <span class="string">&quot;修改后的内容&quot;</span>;</span></span><br><span class="line">           &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;a&quot;</span>&gt;</span>初始内容<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;clickb();&quot;</span>&gt;</span>点击修改内容<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>innerHTML和document.write的区别</strong></p>
+<pre><code>1. document.write：是直接写入到页面的内容流，如果在写之前没有调用document.open, 浏览器会自动调用open。每次写完关闭之后重新调用该函数，会导致网页内容全部被重写
+ 2. innerHTML：是DOM页面元素的一个属性，代表该元素的html内容。（获取div里面的内容 ，修改内容）你可以精确到某一个具体的元素来进行更改，其不会导致页面全部重绘</code></pre>
+<h4 id="6-时钟"><a href="#6-时钟" class="headerlink" title="6. 时钟"></a>6. 时钟</h4><p>​    在JavaScript中，Date对象用来表示日期和时间</p>
+<p>​    范例：获取时间</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">           <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span></span><br><span class="line"><span class="javascript">           <span class="built_in">document</span>.write(date);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    在JavaScript中，提供<code>setTimeout(函数，时间-毫秒)</code>函数，该函数是指在指定时间后执行一次指定函数，常用作定时器</p>
+<p>​    范例：实现页面时钟</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">title</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">&quot;a&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById(<span class="string">&quot;a&quot;</span>).innerHTML = date;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">setTimeout</span>(test,<span class="number">1000</span>);<span class="comment">//过一秒执行该函数</span></span></span><br><span class="line">        &#125;</span><br><span class="line">        test();</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    注意：此时JavaScript代码放在body后面，如果放前面就无法显示</p>
+<p>​    <strong>JavaScript放在head和放在body后的区别</strong></p>
+<pre><code>1. 放在head中：需调用才执行的脚本或事件触发执行的脚本放在HTML的head部分中。当你把脚本放在head部分中时，可以保证脚本在任何调用之前被加载
+ 2. 放在body后：当页面被加载时立即执行的脚本放在HTML的body部分。放在body部分的脚本通常被用来生成页面的内容。</code></pre>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2022/03/28/C%E8%AF%AD%E8%A8%80%E5%87%BD%E6%95%B0%E8%A1%A5%E5%85%85/">C语言函数补充</a>
         </h1>
       
@@ -1056,47 +1191,6 @@
 <p>​    注意：属性名和属性值都必须为HTML文档规定合法的写法</p>
 <h4 id="11-元素"><a href="#11-元素" class="headerlink" title="11. 元素"></a>11. 元素</h4><p>​    HTML中的元素由三个部分组成：开始标记 + 内容 + 结束标记（单标签为各例）</p>
 <p>​    其中内容可以为包含其他标签</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/12/08/%E6%9C%9B%E6%B1%9F%E5%8D%97-%E8%B6%85%E7%84%B6%E5%8F%B0%E4%BD%9C/">望江南-超然台作</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-12-08T13:44:43.000Z" itemprop="datePublished">
-    2021-12-08
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E6%9D%82%E8%AE%B0/">杂记</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="致21岁生日的诗"><a href="#致21岁生日的诗" class="headerlink" title="致21岁生日的诗"></a>致21岁生日的诗</h2><h4 id="望江南·超然台作"><a href="#望江南·超然台作" class="headerlink" title="望江南·超然台作"></a>望江南·超然台作</h4><p>宋     苏轼</p>
-<p>春未老，风细柳斜斜</p>
-<p>试上超然台上望，半壕春水一城花，烟雨暗千家</p>
-<p>寒食后，酒醒却咨嗟</p>
-<p>休对故人思故国，且将新火试新茶，诗酒趁年华</p>
 
       
     </div>

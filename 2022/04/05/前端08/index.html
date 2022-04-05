@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Blog of ChiFun</title>
+  <title>前端08 | Blog of ChiFun</title>
   
   
   
@@ -62,43 +62,14 @@
 
     <div class="container">
         <div data-pager-shell>
-            <ul class="Index">
-  
+            <div>
+  <article class='ContentView'>
     <header class='PageTitle'>
-        <h1>{ JavaScript }</h1>
+        <h1>前端08</h1>
     </header>
-  
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2022/04/05/%E5%89%8D%E7%AB%AF08/">前端08</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2022-04-05T12:55:58.000Z" itemprop="datePublished">
-    2022-04-05
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/JavaScript/">JavaScript</a> }
-  </li>
 
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h4 id="1-事件"><a href="#1-事件" class="headerlink" title="1. 事件"></a>1. 事件</h4><p>​    事件处理是整个JavaScript的核心操作</p>
+    <section>
+      <h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h4 id="1-事件"><a href="#1-事件" class="headerlink" title="1. 事件"></a>1. 事件</h4><p>​    事件处理是整个JavaScript的核心操作</p>
 <p>​    在页面上任何的操作都可能被称为事件源，而对每一个事件可以自定义处理操作，例如页面加载，鼠标移动等都被称为事件源</p>
 <p>​    在JavaScript中，事件都是以<code>onXXX</code>的形式命名的</p>
 <p>​    最基础的静态事件即在HTML标签中声明需要该事件并定义事件名要加小括号和分号，如<code>XXXX();</code>，而后在JavaScript中定义与事件名相同的函数</p>
@@ -198,122 +169,35 @@
 <pre><code>1. 放在head中：需调用才执行的脚本或事件触发执行的脚本放在HTML的head部分中。当你把脚本放在head部分中时，可以保证脚本在任何调用之前被加载
  2. 放在body后：当页面被加载时立即执行的脚本放在HTML的body部分。放在body部分的脚本通常被用来生成页面的内容。</code></pre>
 
-      
-    </div>
-</article>
 
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
       
-        <h1>
-          <a href="/2022/03/24/%E5%89%8D%E7%AB%AF07/">前端07</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2022-03-24T10:12:06.000Z" itemprop="datePublished">
-    2022-03-24
-  </time>
-  
-  | 
-  <ul>
+
+    </section>
     
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2022-04-05T12:55:58.000Z" itemprop="datePublished">
+              2022-04-05
+            </time>
+          </div>
+          
+            <div>
+              tags: 
   <li class="meta-text">
   { <a href="/tags/JavaScript/">JavaScript</a> }
   </li>
 
 
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="JavaScript基础"><a href="#JavaScript基础" class="headerlink" title="JavaScript基础"></a>JavaScript基础</h2><h4 id="1-JavaScript简介"><a href="#1-JavaScript简介" class="headerlink" title="1. JavaScript简介"></a>1. JavaScript简介</h4><p>​    <strong>JavaScript是一种基于对象的编程语言，所有的对象已经由浏览器提供好了</strong>；而Java是属于面向对象语言，面向对象语言是强调类的设计</p>
-<p>​    JavaScript和Java没有本质关系，JavaScript的前身称为LiveScript，后来由于Java在浏览器技术端的发展，后来更名为JavaScript，最新的叫法称为EcmaScript</p>
-<p>​    后来发展超出了JavaScript的预期，它后期开始模拟面向对象编程，可以进行服务器端编程(即Node.js)</p>
-<h4 id="2-JavaScript的使用"><a href="#2-JavaScript的使用" class="headerlink" title="2. JavaScript的使用"></a>2. JavaScript的使用</h4><p>​    JavaScript的基础语法和Java很相似，JavaScript是嵌入在HTML语法之中的编程语言，可以使用”<code>&lt;script&gt;</code> “标记内进行使用，这样就可以实现动态页面的操作效果(前台页面)</p>
-<p>​    范例：第一个JavaScript小程序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//新建一个html文件</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>JavaScript<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">&quot;hello world&quot;</span>);<span class="comment">//弹框hello world</span></span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    注意：<code>type=&quot;text/javascript&quot;</code>此处表示的是使用JavaScript脚本语言，而也可以更换为VBScript、ColdFusion脚本语言，具体看你所要使用的脚本语言</p>
-<h4 id="3-JavaScript文件的导入"><a href="#3-JavaScript文件的导入" class="headerlink" title="3. JavaScript文件的导入"></a>3. JavaScript文件的导入</h4><p>​    JavaScript可以嵌入到HTML文件中使用，但是实际开发过程中，JS的代码是很多的，如果将JS代码写在HTML页面中，就会非常难以维护</p>
-<p>​    所以可以单独建立一个<code>*.js</code>的文件，将JavaScript代码写入，然后再将需要的<code>*.js</code>文件进行导入</p>
-<p>​    范例：通过src属性导入js文件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//导入js文件</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>JavaScript<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;js/demo.js&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="4-JavaScript基础语法"><a href="#4-JavaScript基础语法" class="headerlink" title="4. JavaScript基础语法"></a>4. JavaScript基础语法</h4><p>​    JavaScript语法上和Java语法非常类似，除了一些关键字不同之外几乎没什么区别</p>
-<h5 id="1-document-write-方法"><a href="#1-document-write-方法" class="headerlink" title="(1).document.write()方法"></a>(1).<code>document.write()</code>方法</h5><p>​    JavaScript里使用“<code>document.write()</code>”，其可以输出HTML代码；其语法上的使用等同于Java的“<code>system.out.println()</code>”</p>
-<p>​    “<code>document.write()</code>”可以控制HTML代码的输出(可以写标签)</p>
-<p>​    范例：使用“<code>document.write()</code>”输出HTML</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.write(<span class="string">&quot;&lt;h1&gt;hello&lt;/h1&gt;&quot;</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    注意：使用js输出页面的话，代码会在原先HTML代码所写的页面之上，所以不会使用这类函数来实现内容输出，以前应该是用这个函数来调试的，现在被淘汰了，用的是下面这个</p>
-<h5 id="2-console-log-方法"><a href="#2-console-log-方法" class="headerlink" title="(2). console.log()方法"></a>(2). <code>console.log()</code>方法</h5><p>​    实现信息的后台输出，通过使用这个方法可以对写的代码进行调试</p>
-<p>​    范例：使用<code>console.log()</code>方法</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">&quot;这是后台输出&quot;</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    在浏览器中，按下F12进入调试控制台，可以在console(控制台)那里看到输出</p>
-<h4 id="5-定义变量"><a href="#5-定义变量" class="headerlink" title="5. 定义变量"></a>5. 定义变量</h4><p>​    在JavaScript中定义变量的格式没有太严格的要求，所有的变量只需要一个<code>var</code>关键字定义即可，至于变量的具体类型是根据为其赋值的结果来确定的</p>
-<h5 id="1-typeof关键字"><a href="#1-typeof关键字" class="headerlink" title="(1). typeof关键字"></a>(1). typeof关键字</h5><p>​    在JavaScript中，对于未知的变量可以使用</p>
-<blockquote>
-<p>typeof 变量名</p>
-</blockquote>
-<p>​    来确定变量的类型，使用上面两种输出方法输出查看即可</p>
-<h5 id="2-undefined类型"><a href="#2-undefined类型" class="headerlink" title="(2). undefined类型"></a>(2). <code>undefined</code>类型</h5><p>​    如果使用var但是不予给其赋值，那么它的类型就为<code>undefined</code>类型，这个类型是可以通过if语句判断的</p>
-<h5 id="3-if-语句"><a href="#3-if-语句" class="headerlink" title="(3). if()语句"></a>(3). if()语句</h5><p>​    JavaScript的if语句中的判断内容不像Java那样严格，可以使用变量直接判断(和C语言类似)，如果变量类型为<code>undefined</code>，在if语句中为假</p>
-<blockquote>
-<p>if(num);  //其中num变量为undefined类型，判断结果为false</p>
-</blockquote>
-<h5 id="4-单引号和双引号同义"><a href="#4-单引号和双引号同义" class="headerlink" title="(4). 单引号和双引号同义"></a>(4). 单引号和双引号同义</h5><p>​    在JavaScript中，变量不管是用单引号赋值还是双引号进行赋值，获得变量的类型都为<code>String</code>类型；即单引号或双引号得到的都是字符串，<strong>JavaScript对于字符串的操作函数和Java是类似的操作</strong></p>
-<p>​    范例：对字符串进行拆分</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> a = <span class="string">&quot;hello wold !&quot;</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> result = num.split(<span class="string">&quot; &quot;</span>);<span class="comment">//按空格拆</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">for</span>(<span class="keyword">var</span> x = <span class="number">0</span>; x &lt; result.length ; x++)&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.write(<span class="string">&quot;&lt;h1&gt;&quot;</span>+(result[x])+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    此时result的类型为object类型，拆出来的元素都为String类型</p>
-<p>​    <strong>注意：JavaScript中的字符串比较只提供“==”这一种操作</strong></p>
-<h5 id="5-while循环、switch等操作与Java的结构很类似"><a href="#5-while循环、switch等操作与Java的结构很类似" class="headerlink" title="(5). while循环、switch等操作与Java的结构很类似"></a>(5). while循环、switch等操作与Java的结构很类似</h5><h5 id="6-数组"><a href="#6-数组" class="headerlink" title="(6). 数组"></a>(6). 数组</h5><p>​    在JavaScript中的数组本身是以一个对象的形式出现，所以数组的创建需要使用关键字new完成</p>
-<p>​    范例：定义数组</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//数组的动态初始化</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Array</span>();</span></span><br><span class="line"><span class="javascript">    result[<span class="number">0</span>] = <span class="string">&quot;hello&quot;</span>;</span></span><br><span class="line">    result[1] = 100;</span><br><span class="line"><span class="javascript">    ressult[<span class="number">2</span>] = <span class="literal">true</span>;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//数组的静态初始化</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">&quot;hello&quot;</span>,<span class="string">&quot;world&quot;</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    注意：在JavaScript中的数组元素语法没有严格要求，其定义的数组长度上是没有限制的，其数组本身就为动态数组，而数组的元素可以是任意的</p>
-<p>​    可以看到从数组的本质上来说，虽然和Java类似，但是要比Java的数组功能强大，只不过很少会出现这种要直接定义数组的操作</p>
-<h5 id="7-全局变量"><a href="#7-全局变量" class="headerlink" title="(7).全局变量"></a>(7).全局变量</h5><p>​    在JavaScript中，定义变量时，可以不使用var进行定义，直接写，那这样弄出来的变量从语法上来说，属于全局变量(几乎没用)</p>
-<h4 id="6-定义函数"><a href="#6-定义函数" class="headerlink" title="6. 定义函数"></a>6. 定义函数</h4><p>​    JavaScript中定义函数的基本语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function 参数名称(参数)&#123;&#x2F;&#x2F;不需要声明返回值类型</span><br><span class="line">	return 返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    注意：参数可以不写类型</p>
-<p>​    范例：实现加法操作</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> x+y;</span></span><br><span class="line">	&#125;</span><br><span class="line">    alert(add(4,3));</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    注意：在Java中对语法有严格限制，定义多少个参数，函数就只能引用几个参数，但JavaScript没有严格语法限制，</p>
-<p>​    像当前程序如果只传一个参数，只能获得一个NaN(不是一个数字)</p>
-<p>​    此时可以通过<code>函数名称.arguments</code>来修改程序，其表示取得函数的参数内容，返回一个数组，然后通过length，查看长度来修改</p>
-<p>​    程序：修改当前程序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    	<span class="keyword">switch</span>(add.arguments.length)&#123;</span></span><br><span class="line"><span class="javascript">    		<span class="keyword">case</span> <span class="number">0</span>:</span></span><br><span class="line"><span class="javascript">    			<span class="keyword">return</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">    		<span class="keyword">case</span> <span class="number">1</span>:</span></span><br><span class="line"><span class="javascript">    			<span class="keyword">return</span> x;</span></span><br><span class="line"><span class="javascript">    		<span class="keyword">case</span> <span class="number">2</span>:</span></span><br><span class="line"><span class="javascript">    			<span class="keyword">return</span> x+y;</span></span><br><span class="line"><span class="javascript">    		<span class="keyword">default</span>:</span></span><br><span class="line"><span class="javascript">    			<span class="keyword">return</span> <span class="string">&quot;不能完成的操作&quot;</span>;</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    alert(add(4,3));</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    注意：此时程序拥有了健壮性，但真实情况不可能允许这样写代码，所以应该自己遵守语法严格，怎么定义怎么使用</p>
-<h4 id="7-JavaScript的面向对象"><a href="#7-JavaScript的面向对象" class="headerlink" title="7. JavaScript的面向对象"></a>7. JavaScript的面向对象</h4><p>​    JavaScript原本是属于基于对象编程的语言，但后期人们希望JavaScript可以支持面向对象的编程，但其本身不是面向对象编程，于是就利用函数模拟面向对象编程</p>
-<p>​    范例：类与对象的使用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">Book</span>(<span class="params">title,price</span>)</span>&#123;<span class="comment">//类</span></span></span><br><span class="line"><span class="javascript">    	<span class="built_in">this</span>.title = title;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">this</span>.price = price;</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="javascript">    <span class="comment">//prototype表示对原生功能的扩展</span></span></span><br><span class="line"><span class="javascript">    Book.prototype.getInfo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="built_in">this</span>.title+<span class="built_in">this</span>.price;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> book = <span class="keyword">new</span> Book(<span class="string">&quot;java&quot;</span>,<span class="number">66</span>);</span></span><br><span class="line">    alert(book.getInfo());</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
+            </div>
+          
+      </section>
+    
+    
 </article>
 
-    </li>
   
-</ul>
-
-
+</div>
 
             <footer>
     <div>© 2022 - nature </div>
