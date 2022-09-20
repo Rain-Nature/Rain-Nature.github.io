@@ -74,6 +74,396 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/09/20/Java16/">Java16</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-09-20T10:39:26.000Z" itemprop="datePublished">
+    2022-09-20
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h2><h4 id="1-JDBC的概念"><a href="#1-JDBC的概念" class="headerlink" title="1. JDBC的概念"></a>1. JDBC的概念</h4><p>​    JDBC是使用Java语言操作关系型数据库的一套API，JDBC保证了使用同一套Java代码可以操作不同的关系型数据库</p>
+<p>​    JDBC的本质就是一套标准接口，每一种关系型数据库需要自己定义实现类(洋气的名字叫驱动)</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vqbZBq"><img src="https://s1.ax1x.com/2022/09/09/vqbZBq.png" alt="vqbZBq.png"></a></p>
+<h4 id="2-MySql数据库"><a href="#2-MySql数据库" class="headerlink" title="2. MySql数据库"></a>2. MySql数据库</h4><p>​    <strong>(1).MySql数据库的介绍与安装</strong></p>
+<p>​    用于小型的项目的数据存储，大型项目(几百万的数据)需要使用Oracle数据库</p>
+<p>​    MySql数据库一般还是使用老版本的，新版本的不稳定</p>
+<p>​    一般配置MySql的监听端口为3306，编码方式设置为utf8</p>
+<p>​    <strong>(2).MySql数据库的使用</strong></p>
+<pre><code> 1. 在命令行输入mysql
+ 2. 连接mysql数据库：mysql -u用户名 -p密码
+ 3. 新建数据库：CREATE DATABASE Student SET UTF8;
+ 4. 查看所有数据库：SHOW DATABASE
+ 5. 使用数据库：USE Student
+ 6. 创建表：CREATE TABLE Tom(建表sql语句);
+   7. 分页操作：查询语句后空格接`LIMIT 0,5`，表示显示查询1-5行的数据</code></pre>
+<p>​    <strong>(3).MySql数据库的JDBC连接</strong></p>
+<p>​    要对MySQL进行开发则必须采用JDBC连接，JDBC连接需要先导入MySQL的驱动程序，此时需要将MySQL的驱动程序复制并加载到项目中</p>
+<h4 id="3-JDBC快速入门"><a href="#3-JDBC快速入门" class="headerlink" title="3. JDBC快速入门"></a>3. JDBC快速入门</h4><h5 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h5><p>​    <strong>0. 创建工程，导入驱动jar包</strong></p>
+<p>​    <strong>1. 注册驱动</strong></p>
+<p>​    利用反射将类加载进内存</p>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(<span class="string">&quot;com.mysql.jdbc.Drive&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    <strong>2. 获取连接</strong></p>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection conn = DriverManager.getConnection(url,username,password);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    <strong>3. 定义SQL语句</strong></p>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String sql =  <span class="string">&quot;update...&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    <strong>4. 获取执行SQL对象</strong></p>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Statement stmt = conn.createStatement();</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    <strong>5. 执行SQL</strong></p>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stml.executeUpdate(sql);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    <strong>6. 处理返回结果</strong></p>
+<p>​    <strong>7. 释放资源</strong></p>
+<h5 id="范例：数据库的简单操作"><a href="#范例：数据库的简单操作" class="headerlink" title="范例：数据库的简单操作"></a>范例：数据库的简单操作</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="comment">//0.注册驱动</span></span><br><span class="line">		Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//1.获取连接</span></span><br><span class="line">		String url = <span class="string">&quot;jdbc:mysql://127.0.0.1:3306/test&quot;</span>;</span><br><span class="line">		String name = <span class="string">&quot;root&quot;</span>;</span><br><span class="line">		String password = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">		Connection conn = DriverManager.getConnection(url,name,password);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//2.定义sql语句</span></span><br><span class="line">		String sql = <span class="string">&quot;UPDATE user_table SET password =\&quot;123456\&quot; WHERE name = \&quot;jack\&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//3.获取sql执行的对象：statement</span></span><br><span class="line">		Statement stmt = conn.createStatement();</span><br><span class="line"></span><br><span class="line">		<span class="comment">//4.执行sql：该方法返回的是影响的行数</span></span><br><span class="line">		<span class="keyword">int</span> count = stmt.executeUpdate(sql);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//5.处理结果</span></span><br><span class="line">		System.out.println(count);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//6.释放资源</span></span><br><span class="line">		stmt.close();</span><br><span class="line">		conn.close();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-DriverManager-驱动管理类"><a href="#4-DriverManager-驱动管理类" class="headerlink" title="4. DriverManager(驱动管理类)"></a>4. DriverManager(驱动管理类)</h4><p>​    DriveManager的作用</p>
+<ol>
+<li>注册驱动</li>
+<li>获取数据库连接</li>
+</ol>
+<p>​    <strong>DriverManager的重要方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public <strong>static</strong> Connection getConnection(String url, String user, String password) throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">尝试建立到给定数据库URL的连接，url为连接路径，语法jdbc:mysql://ip地址:端口号/数据库名称?参数键值对1&amp;参数键值对2，user为数据库用户名，password为数据库连接密码</td>
+</tr>
+<tr>
+<td align="center">public <strong>static</strong> void registerDriver(Driver driver) throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">向DriverManager注册给定的驱动程序。新加载的驱动程序类应该调用方法registerDriver，以使DriverManager知道它自己。如果驱动程序当前已注册，则不采取任何操作。</td>
+</tr>
+</tbody></table>
+<p>​    <strong>注意：registerDriver在使用反射引用driver类时，其使用在driver类的静态块中，即只要引用driver类，则该类就会被加载</strong></p>
+<p>​    在mysql5之后使用反射注册驱动的那段代码可以省略不写，因为在mysql提供的jar包中有该类的字符串，其会自动加载jar包中META-INF/services/java.sql.Driver文件中的驱动类</p>
+<p>​    在url路径中，若连接的是本机mysql服务器且默认端口为3306，则可以简写为jdbc:mysql:///数据库名称?参数键值对1&amp;参数键值对2</p>
+<p><strong>反射键值对：useSSL</strong></p>
+<p>​    通过设置useSSL=false可以禁用安全连接方式，解决警告提示</p>
+<h4 id="5-Connection-数据库连接类"><a href="#5-Connection-数据库连接类" class="headerlink" title="5. Connection(数据库连接类)"></a>5. Connection(数据库连接类)</h4><p>​    Connection的作用：</p>
+<ol>
+<li><p>获取执行SQL的对象</p>
+<ol start="2">
+<li>管理事务</li>
+</ol>
+</li>
+</ol>
+<p>​    <strong>Connection提供的获取执行SQL对象的方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Statement createStatement() throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">创建用于向数据库发送SQL语句的Statement对象</td>
+</tr>
+<tr>
+<td align="center">PreparedStatement prepareStatement(String sql) throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">创建用于向数据库发送参数化SQL语句的PreparedStatement对象，<strong>其可以防止SQL注入</strong></td>
+</tr>
+</tbody></table>
+<p>​    <strong>Connection提供的事务管理的方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void setAutoCommit(boolean autoCommit) throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">将此连接的自动提交模式设置为给定状态。如果连接处于自动提交模式，则其所有SQL语句将作为单个事务执行和提交。否则，它的SQL语句被分组到事务中，这些事务通过调用方法提交或方法回滚而终止。默认情况下，新连接处于自动提交模式。true为自动提交事务，false为手动提交事务</td>
+</tr>
+<tr>
+<td align="center">void commit() throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">提交操作：使自上次提交/回滚以来所做的所有更改永久化，并释放此连接对象当前持有的所有数据库锁。仅当禁用自动提交模式时，才应使用此方法。</td>
+</tr>
+<tr>
+<td align="center">void rollback() throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">回滚操作：撤消当前事务中所做的所有更改，并释放此连接对象当前持有的所有数据库锁。仅当禁用自动提交模式时，才应使用此方法。<strong>一般是在catch中对事务进行回滚</strong></td>
+</tr>
+</tbody></table>
+<p>​    上述三个方法，可以使得对数据库的几个操作合在一起被事务接管，即发生成功则都成功，失败则都失败，若为自动提交模式，则每一次对数据库的操作看成为一个单独的操作。</p>
+<p>​    <strong>Connection提供的释放资源的方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void close() throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">立即释放此Connection对象的数据库和JDBC资源，而不是等待它们自动释放。在已关闭的Connection对象上调用方法close是不行的。</td>
+</tr>
+</tbody></table>
+<h4 id="6-Statement-SQL语句执行类"><a href="#6-Statement-SQL语句执行类" class="headerlink" title="6. Statement(SQL语句执行类)"></a>6. Statement(SQL语句执行类)</h4><p>​    Statement的作用</p>
+<p>​    1. <strong>用于执行静态SQL语句并返回其生成的结果的对象。</strong>默认情况下，每个语句对象只能同时打开一个ResultSet对象。因此，如果一个ResultSet对象的读取与另一个对象的读取交错，则每个对象都必须由不同的语句对象生成。</p>
+<p>​    Statement执行SQL语句的方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int executeUpdate(String sql) throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">方法执行给定的SQL语句，该语句可以是INSERT、UPDATE或DELETE语句，也可以是不返回任何内容的SQL语句（如SQL DDL语句），返回值（1）SQL数据操作语言（DML）语句的行数，或（2）不返回的SQL语句，如某些DDL语句，返回值为0。<strong>注意：不能对PreparedStatement或CallableStatement调用此方法。</strong></td>
+</tr>
+<tr>
+<td align="center">ResultSet executeQuery(String sql) throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">执行要发送到数据库的sql语句，通常是静态sql SELECT语句，该语句返回单个ResultSet对象。<strong>注意：不能对PreparedStatement或CallableStatement调用此方法。</strong></td>
+</tr>
+</tbody></table>
+<p>​    <strong>Statement提供的释放资源的方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void close() throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">立即释放此Statement对象的数据库和JDBC资源，而不是等到它自动关闭时再释放。通常，一用完资源就释放资源是一种好的做法，以避免占用数据库资源。对已关闭的Statement对象调用方法close没有效果。注意：关闭Statement对象时，其当前ResultSet对象（如果存在）也将关闭</td>
+</tr>
+</tbody></table>
+<h4 id="7-ResultSet-结果集类"><a href="#7-ResultSet-结果集类" class="headerlink" title="7. ResultSet(结果集类)"></a>7. ResultSet(结果集类)</h4><p>​    ResultSet说明：</p>
+<ol>
+<li><p>表示数据库结果集的数据表，通常通过执行查询数据库的语句生成。</p>
+<ol start="2">
+<li>ResultSet对象保持指向其当前数据行的光标。最初，光标位于第一行之前。下一个方法将光标移动到下一行，因为当ResultSet对象中没有更多行时返回false，所以可以在while循环中使用它来迭代结果集。</li>
+<li>默认的ResultSet对象是不可更新的，并且具有仅向前移动的光标。因此，只能从第一行到最后一行迭代一次。</li>
+</ol>
+</li>
+</ol>
+<p>​    ResultSet对查询结果查看的方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">boolean next() throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">将光标从当前位置向前移动一行。结果集光标最初位于第一行之前；对该方法的第一次调用接着使第一行成为当前行；第二次调用使第二行成为当前行，以此类推。当对下一个方法的调用返回false时即光标位于最后一行之后。任何需要当前行的ResultSet方法调用都将导致抛出SQLException。</td>
+</tr>
+<tr>
+<td align="center">xxxx getXxxx(String columnLabel) throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">获取当前ResultSet光标锁定行的名叫给定字符串的列名的值(Xxxx表示任何基本数据类型)</td>
+</tr>
+<tr>
+<td align="center">xxxx getXxxx(int columnIndex) throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">获取当前ResultSet光标锁定行的第给定索引号的列的值，为空返回null(Xxxx表示任何基本数据类型)，参数columnIndex-第一列为1，第二列为2以此类推</td>
+</tr>
+</tbody></table>
+<p>​    注意：第二和第三个方法的获取值要与数据库表中定义的值保持一致</p>
+<p>​    一般可以将查询结果多个数据封装成一个对象然后再将对象放在集合类中，这样只需将集合对象给页面，页面就可以展示数据。</p>
+<p>​    <strong>ResultSet提供的释放资源的方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void close() throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">立即释放此ResultSet对象的数据库和JDBC资源，对已关闭的ResultSet对象调用方法close是不行的。</td>
+</tr>
+</tbody></table>
+<h4 id="8-SQL注入"><a href="#8-SQL注入" class="headerlink" title="8. SQL注入"></a>8. SQL注入</h4><p>​    <strong>SQL注入是通过对输入进行操作来修改事先定义好的SQL语句，用以达到执行代码对服务器进行攻击的方法</strong></p>
+<p>​    在密码框输入如下代码<code>&#39;or &#39;1&#39; = &#39;1</code></p>
+<p>​    显示登录成功</p>
+<p>​    原因：再写登录判断的SQL语句为<code>select * from user where username=&#39;&quot;+name+&quot;&#39; and password = &#39;&quot;+pwd+&quot;&#39;;</code></p>
+<p>​    此时由于是拼字符串，传值<code>name</code>和<code>pwd</code>此时SQL语句变为了<code>select * from user where username=&#39;ron&#39; and password =&#39;&#39; or &#39;1&#39; = &#39;1&#39;</code>，由于<code>and</code>比<code>or</code>先执行，此时SQL语句变成了恒等式。</p>
+<h4 id="9-PreparedStatement"><a href="#9-PreparedStatement" class="headerlink" title="9. PreparedStatement"></a>9. PreparedStatement</h4><p>​    public interface <strong>PreparedStatement</strong> extends Statement</p>
+<p>​    作用：预编译SQL语句的对象，这样做可以预防SQL注入的问题</p>
+<h5 id="PreparedStatement的使用"><a href="#PreparedStatement的使用" class="headerlink" title="PreparedStatement的使用"></a>PreparedStatement的使用</h5><ol>
+<li><p>通过Connection获取PreparedStatement对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//SQL语句中的参数值，使用？占位符替代</span></span><br><span class="line">String sql = <span class="string">&quot;select * from user where username = ? and password = ?&quot;</span>;</span><br><span class="line"><span class="comment">//通过Connection对象获取，并传入对应的sql语句</span></span><br><span class="line">PreparedStatement pstmt = conn.preparedStatement(sql);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置参数值</p>
+<p> 通过PreparedStatement对象提供的方法设置<code>？</code>的参数：<code>setXxxx(参数1，参数2)</code>：给<code>？</code>赋值</p>
+<ul>
+<li>Xxxx：数据类型</li>
+<li>参数：<ul>
+<li>参数1：<code>？</code>的位置编号，从1开始</li>
+<li>参数2：<code>？</code>的值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>通过PreparedStatement对象继承父类Statement的空参方法执行SQL</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">executeUpdate();/executeQuery();</span><br><span class="line"><span class="comment">//注意：不需要在传递sql</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h5 id="preparedStatement上述操作涉及方法的详细文档"><a href="#preparedStatement上述操作涉及方法的详细文档" class="headerlink" title="preparedStatement上述操作涉及方法的详细文档"></a>preparedStatement上述操作涉及方法的详细文档</h5><table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">PreparedStatement  prepareStatement(String sql) throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">创建用于向数据库发送参数化SQL语句的PreparedStatement对象。</td>
+</tr>
+<tr>
+<td align="center">void setXxxx(int parameterIndex, Xxxx y) throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">将SQL语句中<code>？</code>对应的值进行用y替换，parameterIndex指第几个<code>？</code>，计数从1开始</td>
+</tr>
+<tr>
+<td align="center">int executeUpdate() throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">在此PreparedStatement对象中执行SQL语句，该对象必须是SQL数据操作语言（DML）语句，如INSERT、UPDATE或DELETE；或不返回任何内容的SQL语句，如DDL语句。返回值：（1）SQL数据操作语言（DML）语句的行数，或（2）不返回任何内容的SQL语句的行计数</td>
+</tr>
+<tr>
+<td align="center">ResultSet executeQuery() throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">在此PreparedStatement对象中执行SQL查询，并返回查询生成的ResultSet对象。</td>
+</tr>
+</tbody></table>
+<h5 id="PreparedStatement防止SQL注入的原因"><a href="#PreparedStatement防止SQL注入的原因" class="headerlink" title="PreparedStatement防止SQL注入的原因"></a>PreparedStatement防止SQL注入的原因</h5><p>​    如再将这段代码放入<code>&#39;or &#39;1&#39; = &#39;1</code>密码部分进行SQL注入，此时，会将这段字符串进行转义变为<code>\&#39;or \&#39;1\&#39; = \&#39;1</code>，此时就解决了SQL注入的问题</p>
+<h5 id="PreparedStatement的预编译功能"><a href="#PreparedStatement的预编译功能" class="headerlink" title="PreparedStatement的预编译功能"></a>PreparedStatement的预编译功能</h5><ol>
+<li><p>在获取PreparedStatement对象时，就已经将sql语句发送给mysql服务器进行检查编译</p>
+<ol start="2">
+<li>如果将SQL语句的字符串每一次都是写死，那么每一次执行时都需要先检查再编译最后执行，而使用<code>？</code>替代后，同一个SQL模板传不同参数的SQL语句可以只检查和编译一次，之后只需要执行SQL就好</li>
+<li>预编译可以使得性能更高。</li>
+</ol>
+</li>
+</ol>
+<p>​    <strong>注意：PreparedStatement的预编译功能是默认关闭的，<em>预编译功能的开启：<code>useServerPrepStmts=true</code>;这段代码属于反射键值对</em></strong></p>
+<h5 id="PreparedStatement使用完后也需要对占用资源进行释放"><a href="#PreparedStatement使用完后也需要对占用资源进行释放" class="headerlink" title="PreparedStatement使用完后也需要对占用资源进行释放"></a>PreparedStatement使用完后也需要对占用资源进行释放</h5><h4 id="10-JDBC资源的释放"><a href="#10-JDBC资源的释放" class="headerlink" title="10. JDBC资源的释放"></a>10. JDBC资源的释放</h4><p>​    <strong>JDBC程序执行结束后，需要将与数据库进行交互的对象释放掉，通常是ResultSet,Statement,Connection</strong>。这几个对象中尤其是Connection对象是非常稀有的<br>​    将资源释放的代码一般写入到finally的代码块中。</p>
+<p>​    <strong>注意：PreparedStatement是继承了Statement的，其继承了close方法，其也需要去手动释放</strong></p>
+<h4 id="11-数据库连接池"><a href="#11-数据库连接池" class="headerlink" title="11. 数据库连接池"></a>11. 数据库连接池</h4><p>​    数据库连接池是个容器，负责分配管理数据库的连接</p>
+<p>​    它允许应用程序重复使用一个现有的数据库连接，而不是再重新建立一个</p>
+<p>​    释放空闲时间超过最大空闲时间的数据库连接来避免因为没有释放数据库连接而引起的数据库连接遗漏</p>
+<h5 id="数据库连接池的实现-Interface-DataSource"><a href="#数据库连接池的实现-Interface-DataSource" class="headerlink" title="数据库连接池的实现(Interface DataSource)"></a>数据库连接池的实现(Interface DataSource)</h5><p>​    Java官方提供的数据库连接池标准接口，由第三方来实现该接口</p>
+<p>​    常用的数据库连接池</p>
+<ul>
+<li>DBCP</li>
+<li>C3P0</li>
+<li><strong>Druid</strong>：阿里巴巴开发，目前学习这个</li>
+</ul>
+<p>​    <strong>该类中常用方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Connection getConnection() throws SQLException</td>
+<td align="center">方法</td>
+<td align="center">尝试与此DataSource对象表示的数据源建立连接。</td>
+</tr>
+</tbody></table>
+<h5 id="Driud使用步骤"><a href="#Driud使用步骤" class="headerlink" title="Driud使用步骤"></a>Driud使用步骤</h5><ol>
+<li>导入jar包 druid-1.1.12.jar</li>
+<li>定义配置文件</li>
+<li>加载配置文件</li>
+<li>获取数据库连接池对象</li>
+<li>获取连接</li>
+</ol>
+<p>​    范例：Druid的使用</p>
+<ol>
+<li><p>配置文件的定义druid.properties</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">driverClassName&#x3D;com.mysql.jdbc.Driver</span><br><span class="line">url&#x3D;jdbc:mysql:&#x2F;&#x2F;&#x2F;数据库名称</span><br><span class="line">username&#x3D;root</span><br><span class="line">password&#x3D;1234</span><br><span class="line"></span><br><span class="line"># 初始化连接数量</span><br><span class="line">initialSize&#x3D;5</span><br><span class="line"># 最大连接数</span><br><span class="line">maxActive&#x3D;10</span><br><span class="line"># 最大等待时间</span><br><span class="line">maxWait&#x3D;3000</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>java代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	<span class="comment">//加载配置文件</span></span><br><span class="line">	Properties prop = <span class="keyword">new</span> Properties();</span><br><span class="line">	prop.load(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;配置文件绝对路径&quot;</span>));</span><br><span class="line"></span><br><span class="line">	<span class="comment">//获取连接池对象</span></span><br><span class="line">	DataSource dataSource = DruidDataSourceFactory.createDataSource(prop);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//获取数据库连接Connection</span></span><br><span class="line">	Connection connection = dataSource.getConnection();</span><br><span class="line"></span><br><span class="line">	System.out.println(connection);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/12/08/MyBirthday-do2/">MyBirthday-do2</a>
         </h1>
       
@@ -1431,11 +1821,15 @@
     </header>
     <div>
       
-        <h2 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h2><h4 id="1-在java-util包中提供一些集合类，集合类又被称为容器"><a href="#1-在java-util包中提供一些集合类，集合类又被称为容器" class="headerlink" title="1. 在java.util包中提供一些集合类，集合类又被称为容器"></a>1. 在java.util包中提供一些集合类，集合类又被称为容器</h4><h4 id="2-集合类和数组的区别"><a href="#2-集合类和数组的区别" class="headerlink" title="2. 集合类和数组的区别"></a>2. 集合类和数组的区别</h4><ul>
+        <h2 id="对象数组-集合类"><a href="#对象数组-集合类" class="headerlink" title="对象数组(集合类)"></a>对象数组(集合类)</h2><h4 id="1-在java-util包中提供一些集合类，集合类又被称为容器-对象数组"><a href="#1-在java-util包中提供一些集合类，集合类又被称为容器-对象数组" class="headerlink" title="1. 在java.util包中提供一些集合类，集合类又被称为容器/对象数组"></a>1. 在java.util包中提供一些集合类，集合类又被称为容器/对象数组</h4><h4 id="2-集合类和数组的区别"><a href="#2-集合类和数组的区别" class="headerlink" title="2. 集合类和数组的区别"></a>2. 集合类和数组的区别</h4><ul>
 <li>数组的长度是固定的，集合类的长度是可变的</li>
 <li>数组用来存放基本数据类型的数据，集合类用来存放对象**(基本数据类型需要用包装类)**的引用</li>
 </ul>
-<h4 id="3-Collection-lt-E-gt-接口"><a href="#3-Collection-lt-E-gt-接口" class="headerlink" title="3. Collection&lt; E &gt;接口"></a>3. Collection&lt; E &gt;接口</h4><p>​    在Java中，Collection接口是层次结构的根接口（即集合的顶层框架）<br>​    Collection接口通常不能直接使用，但其提供增加、删除、管理数据的方法。List接口与Set接口继承了该接口，这些方法在这两个接口中是通用的</p>
+<h4 id="3-对象数组的优势"><a href="#3-对象数组的优势" class="headerlink" title="3. 对象数组的优势"></a>3. 对象数组的优势</h4><ul>
+<li>对象数组属于Java语言的原生支持，不需要手工实现(简单)</li>
+<li>对象数组根据索引的数据查询性能是“O(1)”。但若根据的是内容查询，在未经优化的情况下其性能是“O(n)”，优化为使用二分法可以使其时间复杂度为“log<del>2</del>n”</li>
+</ul>
+<h4 id="4-Collection-lt-E-gt-接口"><a href="#4-Collection-lt-E-gt-接口" class="headerlink" title="4. Collection&lt; E &gt;接口"></a>4. Collection&lt; E &gt;接口</h4><p>​    在Java中，Collection接口是层次结构的根接口（即集合的顶层框架）<br>​    Collection接口通常不能直接使用，但其提供增加、删除、管理数据的方法。List接口与Set接口继承了该接口，这些方法在这两个接口中是通用的</p>
 <table>
 <thead>
 <tr>
@@ -1781,90 +2175,6 @@
 <h4 id="7-接口的进阶"><a href="#7-接口的进阶" class="headerlink" title="7. 接口的进阶"></a>7. 接口的进阶</h4><p>​    <strong>我们不能直接去实例化一个接口，因为接口中的方法都是抽象的，是没有方法体的，这样怎么可能产生具体的实例呢？但是，我们可以使用接口类型的引用指向一个实现了该接口的对象，并且可以调用这个接口中的方法</strong></p>
 <p>​    应该优先使用接口而不是类来引用对象。如果有适合的接口类型存在，那么对于参数、返回值、变量和域来说，就都应该使用接口类型进行声明。只有当你利用构造器创建某个对象的时候，才真正需要引用这个对象的类。<br>​    如果你养成了用接口作为类型的习惯，你的程序将会更加灵活</p>
 <h4 id="8-接口的静态方法"><a href="#8-接口的静态方法" class="headerlink" title="8. 接口的静态方法"></a>8. 接口的静态方法</h4><p>​    Java 8允许静态接口方法<br>​    不能覆盖静态接口方法，只能通过使用接口名+静态接口方法名使用该静态接口方法，实例化后是无法调用的<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/4zrWGD"><img src="https://z3.ax1x.com/2021/10/06/4zrWGD.png" alt="4zrWGD.png"></a></p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/06/04/Java07/">Java07</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-04T14:37:40.000Z" itemprop="datePublished">
-    2021-06-04
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="类的继承，多态"><a href="#类的继承，多态" class="headerlink" title="类的继承，多态"></a>类的继承，多态</h2><h4 id="1-继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写-覆盖-父类中的某些方法"><a href="#1-继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写-覆盖-父类中的某些方法" class="headerlink" title="1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法"></a>1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法</h4><h4 id="2-extends关键字"><a href="#2-extends关键字" class="headerlink" title="2. extends关键字"></a>2. extends关键字</h4><p>​    用来标识两个类的继承关系</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;父类</span><br><span class="line">class bookStore&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;子类</span><br><span class="line">class book extends bookStore&#123;</span><br><span class="line">	&#x2F;&#x2F;当子类再次声明与父类一样的成员变量时，就有两个名字一样的成员变量，要使用父类的话需用super()关键字来引用父类(无关键字时，子类中和父类中的属性或方法同名，则父类中的方法或属性将被覆盖或隐藏)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-super关键字"><a href="#3-super关键字" class="headerlink" title="3. super关键字"></a>3. super关键字</h4><p>​    (1).在Java类中使用super关键字来引用父类的成分，它是一个指代变量，用于在子类中指代父类对象<br>​    (2).只能用于子类的构造函数和实例方法中，不能用于子类的类（静态）方法中。原因是super指代的是一个父类的对象，它需要在运行时被创建，而静态方法是类方法，它是类的一部分。当类被加载时，方法已经存在，但是这时候父类对象还没有被初始化</p>
-<h4 id="4-子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类"><a href="#4-子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类" class="headerlink" title="4. 子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类"></a>4. 子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class bookStore&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;子类</span><br><span class="line">class book extends bookStore&#123;</span><br><span class="line">	public book()&#123;</span><br><span class="line">		super();  &#x2F;&#x2F;初始化父类</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>注意：</strong></p>
-<ul>
-<li>在我们子类的构造函数中，如果我们没有显式调用super来初始化父类的话，那么Java会隐式的调用super();来调用父类无参构造函数并把它放在构造函数的第一行</li>
-<li>Java只会隐式的调用无参构造函数，如果父类没有无参构造函数，那么子类中就必须显式的调用super关键字来调用已有的有参构造函数来初始化父类</li>
-<li> 子类中的super为什么必须要放在第一行？因为子类的实例化依赖于父类的实例化，在构建子类时，必须要有父类实例，只能有了父类的实例，子类才能够初始化自己</li>
-</ul>
-<h4 id="5-当实例化子类对象时，父类的对象也相应的被实例化，且Java编译器会在子类的构造方法中自动调用父类的无参构造方法，-一个-多个父类时是从顶级向下调用"><a href="#5-当实例化子类对象时，父类的对象也相应的被实例化，且Java编译器会在子类的构造方法中自动调用父类的无参构造方法，-一个-多个父类时是从顶级向下调用" class="headerlink" title="5. 当实例化子类对象时，父类的对象也相应的被实例化，且Java编译器会在子类的构造方法中自动调用父类的无参构造方法，(一个)多个父类时是从顶级向下调用"></a>5. 当实例化子类对象时，父类的对象也相应的被实例化，且Java编译器会在子类的构造方法中自动调用父类的无参构造方法，(一个)多个父类时是从顶级向下调用</h4><h4 id="6-方法的重写"><a href="#6-方法的重写" class="headerlink" title="6. 方法的重写"></a>6. 方法的重写</h4><p>​    重写也可以称为覆盖，是保留父类成员方法的名字，可以重写成员方法实现的内容、成员方法的修饰符权限、成员方法的返回值类型<br><strong>注意：修改成员方法修饰符权限只能从小范围向大范围改变</strong><br><strong>注意：不可以被重写，可以被继承</strong></p>
-<p>​    重构：特殊的重写方法，子类与父类的返回值、方法名称、参数类型以及个数完全相同，唯一不同的是方法的实现内容</p>
-<h4 id="7-Object类"><a href="#7-Object类" class="headerlink" title="7. Object类"></a>7. Object类</h4><p>​    在Java中所有的类都继承了Java.lang.Object类，由于所有类都是继承这个类所以定义类时可以省略extends Object</p>
-<p>​    Object类中的getClass()，notify()，notifyAll()，wait()等方法不能被重写，这些方法被定义为final类型</p>
-<p>​    Object类的重要方法</p>
-<ul>
-<li><p>getClass()方法<br>​    返回对象执行时的Class实例，该实例通过getName()方法获得类的名称</p>
-</li>
-<li><p>toString()方法<br>​    将一个对象返回为字符串形式，它会返回一个String实例，在实际运用中经常重写该方法</p>
-</li>
-<li><p>equals()方法<br>​    按理说是比较两个对象的实际内容是否相等,但类对象的equals方法实现了对象上最有区别的等价关系；也就是说，对于任何非空的引用值x和y，当且仅当x和y引用同一对象（x == y的值为true）时，此方法才返回true，像之前的String比较里面内容是因为重写了这个方法<br>​    <strong>注意：在自定义类中使用equals()方法进行比较时，相同的对象比较会返回false，因为equals()方法的默认实现使用”==”运算符来比较两个对象的引用地址，而不上比较对象的内容，所以要比较内容需要重写equals()方法</strong></p>
-</li>
-</ul>
-<h4 id="8-对象类型的转换"><a href="#8-对象类型的转换" class="headerlink" title="8. 对象类型的转换"></a>8. 对象类型的转换</h4><ul>
-<li><p>向上转型(多态)<br>​    把子类对象赋值给父类类型的引用变量<br>​    <strong>父类的引用可以调用子类中重写的父类的方法，但不能调用子类中独有的方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">父类型 a &#x3D; new 子类型();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>向下转型(显式类型转换)<br>​    把父类对象强制转化为子类型，赋值给子类引用变量<br>​    进行向下转型时，如果父类对象不是子类的实例，会产生ClassCastException异常，所以经常使用instanceof操作符来完成判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">子类型 b &#x3D; (子类型)父类对象的引用变量;</span><br></pre></td></tr></table></figure>
-<p>​    父类中没有的方法和类型必须要向下转型后才能调用</p>
-</li>
-</ul>
-<h4 id="9-instanceof操作符"><a href="#9-instanceof操作符" class="headerlink" title="9. instanceof操作符"></a>9. instanceof操作符</h4><p>​    用来判断是否一个类实现了某个接口，还可以判断一个实例的对象是否属于一个类(子类一定时属于父类的，不能说父类属于子类，即平行四边形属于四边形，但四边形不属于平行四边形)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">子对象 instanceof 父类型; &#x2F;&#x2F;返回true</span><br></pre></td></tr></table></figure>
-<p>​    该方式经常与向下转型连用，当不属于时把父类强制转化为子类<br>​    当两个类完全没有关系时使用这个操作符来操作会报错</p>
-<p><strong>详细使用请看笔记《Java实例-多态》</strong></p>
-<h4 id="10-方法的重载"><a href="#10-方法的重载" class="headerlink" title="10. 方法的重载"></a>10. 方法的重载</h4><p>​    在同一个类中允许存在一个以上的同名方法，只要这些方法的参数个数或类型不同即可<br>​    <strong>注意：方法重载中可以使两个方法的返回值类型不同，但只有返回值类型不同不足以区分两个方法的重载</strong><br>​    编译器是利用方法名、方法各参数类型和参数的个数以及参数的顺序来确定类中的方法是否唯一</p>
-<h4 id="11-不定长参数"><a href="#11-不定长参数" class="headerlink" title="11. 不定长参数"></a>11. 不定长参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;定义不定长参数方法</span><br><span class="line"> &#x2F;&#x2F;返回值 方法名(参数数据类型...参数名称)</span><br><span class="line">public static int add(int...a)&#123;不定长参数a为一个数组，a的长度取决于调用时传的参数</span><br><span class="line">	&#x2F;&#x2F;方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    不定长参数方法可以作为一个单独的重载方法</p>
-<h4 id="12-多态"><a href="#12-多态" class="headerlink" title="12. 多态"></a>12. 多态</h4><p>​    多态存在的三个前提</p>
-<ul>
-<li>要有继承关系</li>
-<li>子类要重写父类方法</li>
-<li>父类引用指向子类对象</li>
-</ul>
-<p>​    通过定义一个父类，让它的所有子类通过向上转型的原则作为一个方法的参数，再在这个方法中做出一些限定，后可以做出每个子类自己独有的事情。<br>​    这样的处理可以很好解决代码的冗余问题，同时使得程序易于维护，可以随意增加子类，只需要改变传参就可以了</p>
-<p><strong>多态的样例代码见请看笔记《Java实例-多态》</strong></p>
 
       
     </div>

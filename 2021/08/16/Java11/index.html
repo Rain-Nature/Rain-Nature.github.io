@@ -69,11 +69,15 @@
     </header>
 
     <section>
-      <h2 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h2><h4 id="1-在java-util包中提供一些集合类，集合类又被称为容器"><a href="#1-在java-util包中提供一些集合类，集合类又被称为容器" class="headerlink" title="1. 在java.util包中提供一些集合类，集合类又被称为容器"></a>1. 在java.util包中提供一些集合类，集合类又被称为容器</h4><h4 id="2-集合类和数组的区别"><a href="#2-集合类和数组的区别" class="headerlink" title="2. 集合类和数组的区别"></a>2. 集合类和数组的区别</h4><ul>
+      <h2 id="对象数组-集合类"><a href="#对象数组-集合类" class="headerlink" title="对象数组(集合类)"></a>对象数组(集合类)</h2><h4 id="1-在java-util包中提供一些集合类，集合类又被称为容器-对象数组"><a href="#1-在java-util包中提供一些集合类，集合类又被称为容器-对象数组" class="headerlink" title="1. 在java.util包中提供一些集合类，集合类又被称为容器/对象数组"></a>1. 在java.util包中提供一些集合类，集合类又被称为容器/对象数组</h4><h4 id="2-集合类和数组的区别"><a href="#2-集合类和数组的区别" class="headerlink" title="2. 集合类和数组的区别"></a>2. 集合类和数组的区别</h4><ul>
 <li>数组的长度是固定的，集合类的长度是可变的</li>
 <li>数组用来存放基本数据类型的数据，集合类用来存放对象**(基本数据类型需要用包装类)**的引用</li>
 </ul>
-<h4 id="3-Collection-lt-E-gt-接口"><a href="#3-Collection-lt-E-gt-接口" class="headerlink" title="3. Collection&lt; E &gt;接口"></a>3. Collection&lt; E &gt;接口</h4><p>​    在Java中，Collection接口是层次结构的根接口（即集合的顶层框架）<br>​    Collection接口通常不能直接使用，但其提供增加、删除、管理数据的方法。List接口与Set接口继承了该接口，这些方法在这两个接口中是通用的</p>
+<h4 id="3-对象数组的优势"><a href="#3-对象数组的优势" class="headerlink" title="3. 对象数组的优势"></a>3. 对象数组的优势</h4><ul>
+<li>对象数组属于Java语言的原生支持，不需要手工实现(简单)</li>
+<li>对象数组根据索引的数据查询性能是“O(1)”。但若根据的是内容查询，在未经优化的情况下其性能是“O(n)”，优化为使用二分法可以使其时间复杂度为“log<del>2</del>n”</li>
+</ul>
+<h4 id="4-Collection-lt-E-gt-接口"><a href="#4-Collection-lt-E-gt-接口" class="headerlink" title="4. Collection&lt; E &gt;接口"></a>4. Collection&lt; E &gt;接口</h4><p>​    在Java中，Collection接口是层次结构的根接口（即集合的顶层框架）<br>​    Collection接口通常不能直接使用，但其提供增加、删除、管理数据的方法。List接口与Set接口继承了该接口，这些方法在这两个接口中是通用的</p>
 <table>
 <thead>
 <tr>

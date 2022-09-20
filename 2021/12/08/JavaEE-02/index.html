@@ -91,29 +91,29 @@
 </li>
 </ul>
 <p>​    <strong>注释的区别</strong></p>
-<p>​    运行之后只有显式注释的内容会发送到客户端上，即通过查看网页源代码可以看见</p>
+<p>​    代码运行之后只有显式注释的内容会发送到客户端上，即通过查看网页源代码可以看见</p>
 <h4 id="2-三种Scriptlet"><a href="#2-三种Scriptlet" class="headerlink" title="2. 三种Scriptlet"></a>2. 三种Scriptlet</h4><p>​    <strong>Scriptlet指的是脚本小程序</strong>，在之前只要编写Java程序的语句都需要在”&lt;%%&gt;”之中进行编写，而这样的操作形式就称为Scriptlet，根据其作用不同，Scriptlet分为三类：&lt;%%&gt;、&lt;%!%&gt;、&lt;%=%&gt;</p>
 <p>​    <strong>注意：一个JSP文件里面可以同时编写多个Scriptlet，且相互关联</strong></p>
-<h5 id="第一种Scriptlet：-lt-gt"><a href="#第一种Scriptlet：-lt-gt" class="headerlink" title="第一种Scriptlet：&lt;%%&gt;"></a>第一种Scriptlet：&lt;%%&gt;</h5><p>​    在这种Scriptlet里面只能够编写局部变量、程序语句</p>
+<h5 id="第一种Scriptlet：-lt-gt"><a href="#第一种Scriptlet：-lt-gt" class="headerlink" title="第一种Scriptlet：&lt;%%&gt;"></a>第一种Scriptlet：&lt;%%&gt;</h5><p>​    在这种Scriptlet里面只能够编写<strong>局部变量、程序语句</strong></p>
 <p>​    范例：观察&lt;%%&gt;</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">	<span class="comment">//局部变量，每次页面刷新(执行)都要重新执行(重复声明)</span></span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">100</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+num+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
 
 <p>​    一般，在一个JSP文件中使用的最多的就是“&lt;%%&gt;”，里面就定义一些基础的局部变量</p>
-<h5 id="第二种Scriptlet：-lt-gt"><a href="#第二种Scriptlet：-lt-gt" class="headerlink" title="第二种Scriptlet：&lt;%!%&gt;"></a>第二种Scriptlet：&lt;%!%&gt;</h5><p>​    这种Scriptlet可以定义全局变量、全局常量、方法、类</p>
+<h5 id="第二种Scriptlet：-lt-gt"><a href="#第二种Scriptlet：-lt-gt" class="headerlink" title="第二种Scriptlet：&lt;%!%&gt;"></a>第二种Scriptlet：&lt;%!%&gt;</h5><p>​    这种Scriptlet定义的变量为全局变量，还可以定义全局常量、方法、类</p>
 <p>​    范例：定义全局变量</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        <span class="comment">//全局变量，只在第一次使用的时候声明</span></span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">100</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+num+++<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        <span class="comment">//声明全局变量，只在第一次生成页面时声明，之后刷新页面不会再将100赋值给num，num为最近一次更新的值</span></span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">100</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+num+++<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
 
 <p>​    此时，随着页面刷新，显示的数字也会不断增加，重新打开界面仍为之前退出去前的数字</p>
 <p>​    <strong>注意：一般不会这样使用代码来编写程序</strong></p>
 <p>​    范例：定义全局常量</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String str = <span class="string">&quot;HELLO&quot;</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+str+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
 
-<p>​    <strong>基本上在“&lt;%!%&gt;”唯一能用到的只是用它定义全局常量(常量)</strong></p>
+<p>​    <strong>基本上在“&lt;%!%&gt;”能用到的只是定义全局常量(常量)功能</strong></p>
 <p>​    范例：定义类和方法</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        </span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">fish</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> String name;</span><br><span class="line">		<span class="keyword">private</span> String color;</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">fish</span><span class="params">(String name,String color)</span></span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.name = name;</span><br><span class="line">			<span class="keyword">this</span>.color = color;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> String <span class="title">getfish</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&quot;name: &quot;</span>+<span class="keyword">this</span>.name +<span class="string">&quot; color : &quot;</span>+<span class="keyword">this</span>.color;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">buy</span><span class="params">(<span class="keyword">double</span> ... args)</span></span>&#123;</span><br><span class="line">		<span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">double</span> x: args)&#123;</span><br><span class="line">			sum = sum+x;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+<span class="keyword">new</span> fish(<span class="string">&quot;red fish&quot;</span>,<span class="string">&quot;red&quot;</span>).getfish()+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+buy(<span class="number">11.1</span>,<span class="number">56.3</span>)+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
 
 <p>​    一般也不会这样写代码，只有业余的那部分人会在JSP里面直接编写一堆的Java类或者是方法。</p>
-<h5 id="第三种Scriptlet：-lt-gt"><a href="#第三种Scriptlet：-lt-gt" class="headerlink" title="第三种Scriptlet：&lt;%=%&gt;"></a>第三种Scriptlet：&lt;%=%&gt;</h5><p>​    out.println()是向页面中进行内容显示输出，但是在JSP里面，<strong>如果要想输出某个变量或者常量，以及方法的返回值，可以使用表达式输出的Scriptlet完成：&lt;%=%&gt;</strong></p>
+<h5 id="第三种Scriptlet：-lt-gt"><a href="#第三种Scriptlet：-lt-gt" class="headerlink" title="第三种Scriptlet：&lt;%=%&gt;"></a>第三种Scriptlet：&lt;%=%&gt;</h5><p>​    out.println()可以向页面中进行内容显示输出，但是在JSP中，<strong>输出某个变量、常量、方法的返回值，可以使用表达式输出的Scriptlet完成：&lt;%=%&gt;</strong></p>
 <p>​    范例：观察表达式输出</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String str = <span class="string">&quot;HELLO&quot;</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;&lt;%=str%&gt;&lt;h1&gt;</span><br></pre></td></tr></table></figure>
 
@@ -141,18 +141,18 @@
 
 
 
-<h4 id="3-page指令"><a href="#3-page指令" class="headerlink" title="3. page指令"></a>3. page指令</h4><p>​    page是JSP页面开发中用到的最多的一个操作</p>
+<h4 id="3-page指令"><a href="#3-page指令" class="headerlink" title="3. page指令"></a>3. page指令</h4><p>​    page主要功能是定义一个页面中的全部属性，里面会包含很多的选项</p>
+<p>​    page是JSP页面开发中用到的最多的一个操作</p>
 <p>​    <strong>page指令的语法格式</strong></p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page attr1 = <span class="string">&quot;value1&quot;</span> attr2 = <span class="string">&quot;value2&quot;</span> ... %&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page 属性名<span class="number">1</span> = <span class="string">&quot;value1&quot;</span> 属性名<span class="number">2</span> = <span class="string">&quot;value2&quot;</span> ... %&gt;</span><br></pre></td></tr></table></figure>
 
 
 
-<p>​    page主要功能是定义一个页面中的全部属性，里面会包含很多的选项</p>
-<h5 id="1-解决显示乱码"><a href="#1-解决显示乱码" class="headerlink" title="1. 解决显示乱码"></a>1. 解决显示乱码</h5><p>​    (1).如果是一个HTML文件，对于乱码可以使用</p>
+<h5 id="1-解决显示乱码"><a href="#1-解决显示乱码" class="headerlink" title="1. 解决显示乱码"></a>1. 解决显示乱码</h5><p>​    (1).如果是一个<strong>HTML文件</strong>，对于乱码可以使用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meta charset &#x3D; &#39;UTF-8&#39;</span><br></pre></td></tr></table></figure>
 
-<p>的方式解决，<strong>此举为指定了页面的编码</strong>，浏览器在解析的时候已经知道了编码，就可以准确的使用特定的解码方式进行显示</p>
-<p>​    (2).<strong>如果要设置浏览器支持的编码(浏览器会有默认的解码格式)，可以使用pageEncoding属性完成</strong></p>
+<p>的方式解决，<strong>其指定了页面的编码</strong>，浏览器在解析的时候被指定了编码，就可以准确的使用特定的解码方式进行显示</p>
+<p>​    (2).<strong>jsp如果要设置浏览器支持的编码(浏览器会有默认的解码格式)，可以使用pageEncoding属性完成</strong></p>
 <p>​    范例：设置浏览器的编码(.jsp文件)</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@page</span> pageEncoding = <span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;中文&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
 
@@ -160,18 +160,20 @@
 <p>​    (3).设置MIME类型</p>
 <p>​    MIME指的是多路Internet媒体访问协议。相当于通过MIME类型定义出当前页面的执行方式</p>
 <p>​    所有支持的MIME类型都在Tomcat安装目录中/conf/web.xml文件里面定义，<strong>里面定义了各种文件的执行方式</strong></p>
-<p>​    范例：设置MIME类型</p>
+<p>​    范例：设置MIME类型，其优先级大于第二种设置方法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType&#x3D;&quot;text&#x2F;html; charset&#x3D;UTF-8&quot;%&gt;</span><br><span class="line">&lt;h1&gt;中文&lt;&#x2F;h1&gt;</span><br></pre></td></tr></table></figure>
 
 <p>​    <strong>注意：不要乱加空格，尤其是等号那里</strong></p>
 <p>​    这个设置与上面的第二种不冲突</p>
+<p>​    MIME类型一般不需要设置，默认就是“text/html”</p>
 <p>​    <strong>contentType为MIME类型，设置文件运行方式，可以更改为其他形式，如更改为word形式</strong></p>
-<p>​    范例：使用word运行程序</p>
+<p>​    范例：将jsp页面 以word格式下载</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;application/msword&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;中文&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
 
 <p>​    此时运行会弹出下载框，下载word文件，<strong>这个在ie中才明显，一般浏览器感受不到</strong></p>
-<h5 id="2-导入系统开发包"><a href="#2-导入系统开发包" class="headerlink" title="2. 导入系统开发包"></a>2. 导入系统开发包</h5><p>​     在page指令里面几乎所有的指令都只能够设置一次，但是import指令可以使用多次，表示导入开发包</p>
-<p>​    范例：导入开发包(可以一行导入也可以多行导入)</p>
+<p>​    现在对于编码的设置一般都是使用第二种</p>
+<h5 id="2-使用page来使用Java中的import操作"><a href="#2-使用page来使用Java中的import操作" class="headerlink" title="2. 使用page来使用Java中的import操作"></a>2. 使用<code>page</code>来使用Java中的<code>import</code>操作</h5><p>​     在page指令里面几乎所有的指令都只能够设置一次，但是import指令可以使用多次，表示导入开发包</p>
+<p>​    范例：使用Java中的<code>import</code>(可以一行导入也可以多行导入)</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.io.*,java.text.*&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;&lt;%=new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(new Date())%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
 
 <p>​    只要能导包，那么所有的系统类都可以调用</p>
@@ -185,27 +187,27 @@
 <li>将“菜单栏”、“头部信息”、“尾部信息”分别定义为三个文件，在需要的地方进行引用</li>
 </ul>
 <p>​    很明显第二种更加适合代码维护，所以此处就需要使用包含指令，但<strong>在JSP中对于包含指令有两种提供形式</strong></p>
-<h5 id="1-静态包含：-lt-include-gt"><a href="#1-静态包含：-lt-include-gt" class="headerlink" title="1. 静态包含：&lt;%@include%&gt;"></a>1. 静态包含：&lt;%@include%&gt;</h5><p>​    静态包含的语法：</p>
+<h5 id="1-静态包含：-lt-include-gt"><a href="#1-静态包含：-lt-include-gt" class="headerlink" title="1. 静态包含：&lt;%@include%&gt;"></a>1. 静态包含：<code>&lt;%@include%&gt;</code></h5><p>​    静态包含的语法：</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">&quot;包含文件路径&quot;</span>%&gt;</span><br></pre></td></tr></table></figure>
 
-<p>​    <strong>它可以包含任意的文件内容</strong></p>
+<p>​    <strong>静态包含可以包含任意的文件内容</strong></p>
 <p>​    范例：实现静态包含操作(定义几个被包含的页面)   </p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.jsp页面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&#x27;UTF-8&#x27;</span>%&gt;</span><br><span class="line">&lt;% String str = <span class="string">&quot;这是页面一&quot;</span>;%&gt;</span><br><span class="line">&lt;%=str%&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.html页面</span></span><br><span class="line">&lt;meta charset = <span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&#x27;UTF-8&#x27;</span>%&gt; <span class="comment">//保证引用后页面中文不会乱码</span></span><br><span class="line">&lt;h1&gt;这是页面2&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//all.jsp</span></span><br><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html; charset=UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">&quot;2.html&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">&quot;1.jsp&quot;</span>%&gt;</span><br></pre></td></tr></table></figure>
 
 <p>​    <strong>注意：使用jsp包含html页面时，会一起编译为java代码进行处理，此时就需要对html页面进行设置防止乱码</strong></p>
 <p>​    在这个程序中文件名为中文不影响结果</p>
 <p>​    此时所有的页面都被包含显示在all.jsp中</p>
-<h5 id="2-动态包含：jsp-include"><a href="#2-动态包含：jsp-include" class="headerlink" title="2. 动态包含：jsp:include"></a>2. 动态包含：<a href="jsp:include">jsp:include</a></h5><p>​    静态包含只是简单的将文件进行包含，而动态包含可以分为两种情况处理</p>
+<h5 id="2-动态包含：-lt-jsp-include-gt"><a href="#2-动态包含：-lt-jsp-include-gt" class="headerlink" title="2. 动态包含：&lt;jsp:include&gt;"></a>2. 动态包含：<code>&lt;jsp:include&gt;</code></h5><p>​    静态包含只是简单的将文件进行包含，而动态包含则分为两种情况处理</p>
 <ul>
-<li><p>情况一：被包含的页面属于静态文件，那么就行静态包含一样直接将内容导入进去</p>
+<li><p>情况一：被包含的页面属于静态文件，那么就将静态包含一样直接将内容导入进去</p>
 </li>
 <li><p>情况二：被包含的页面属于动态页面，则要分别处理后再进行包含</p>
 </li>
 </ul>
-<p>​    注意：动态包含给出的指令形式属于标签指令，标签指令最后必须完结</p>
+<p>​    <strong>注意：动态包含给出的指令形式属于标签指令，标签指令最后必须完结</strong></p>
 <p>​    动态包含的语法格式定义：</p>
 <ul>
-<li><p>定义一：包含的时候不传递参数</p>
+<li><p>定义一：包含的页面不接收递参数</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:include page=<span class="string">&quot;路径&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
 
 
@@ -213,24 +215,30 @@
 </li>
 </ul>
 <ul>
-<li><p>定义二：包含的时候传递参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:include page&#x3D;&quot;路径&quot;&gt;</span><br><span class="line">	&lt;jsp:param name&#x3D;&quot;参数名称&quot; value&#x3D;&quot;参数内容&quot;&#x2F;&gt;</span><br><span class="line">	&lt;jsp:param name&#x3D;&quot;参数名称&quot; value&#x3D;&quot;参数内容&quot;&#x2F;&gt;</span><br><span class="line">	&lt;jsp:param name&#x3D;&quot;参数名称&quot; value&#x3D;&quot;参数内容&quot;&#x2F;&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;&#x2F;jsp:include&gt;</span><br></pre></td></tr></table></figure>
+<li><p>定义二：包含的页面需要接收参数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:include page=<span class="string">&quot;路径&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/jsp:include&gt;</span><br></pre></td></tr></table></figure>
 
-<p><strong>这里是指向那个页面传参再显示那个页面</strong></p>
+
+
+
 </li>
 </ul>
-<p>​    对于所有参数的接收方式为使用request.getParameter()完成</p>
+<p>​    <strong>注意：标签指令不能写在Scriptlet里面，其和HTML标签相似</strong></p>
+<p>​    如果要在标签指令中使用Scriptlet里面定义的变量内容，则必须使用表达式输出的方式(<code>&lt;%=%&gt;</code>)</p>
 <p>​    范例：实现参数的发送和接收</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;send.jsp,发送并显示receive.jsp界面</span><br><span class="line">&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;jsp:include page&#x3D;&quot;receive.jsp&quot;&gt;</span><br><span class="line">	&lt;jsp:param name&#x3D;&quot;a&quot; value&#x3D;&quot;刘旭晟&quot;&#x2F;&gt;</span><br><span class="line">	&lt;jsp:param name&#x3D;&quot;do&quot; value&#x3D;&quot;说&quot;&#x2F;&gt;</span><br><span class="line">	&lt;jsp:param name&#x3D;&quot;proclaim&quot; value&#x3D;&quot;共产党万岁&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;jsp:include&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;receive.jsp,接收传过来的数据</span><br><span class="line">&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;%&#x3D;request.getParameter(&quot;a&quot;)%&gt;</span><br><span class="line">&lt;%&#x3D;request.getParameter(&quot;do&quot;)%&gt;</span><br><span class="line">&lt;%&#x3D;request.getParameter(&quot;proclaim&quot;)%&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//send.jsp,发送并显示receive.jsp界面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;jsp:include page=<span class="string">&quot;receive.jsp&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;a&quot;</span> value=<span class="string">&quot;刘旭晟&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;do&quot;</span> value=<span class="string">&quot;说&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;proclaim&quot;</span> value=<span class="string">&quot;共产党万岁&quot;</span>/&gt;</span><br><span class="line">&lt;/jsp:include&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//receive.jsp,接收端需要接收参数传递内容</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%=request.getParameter(<span class="string">&quot;a&quot;</span>)%&gt;</span><br><span class="line">&lt;%=request.getParameter(<span class="string">&quot;do&quot;</span>)%&gt;</span><br><span class="line">&lt;%=request.getParameter(<span class="string">&quot;proclaim&quot;</span>)%&gt;</span><br></pre></td></tr></table></figure>
 
-<p>​    <strong>注意：标签指令不能够写在scriptlet代码里面，只能够像HTML代码那样写</strong>，如果要传参需要在value的值里面使用Scriptlet</p>
+
+
+
+
 <h5 id="3-动态包含和静态包含的区别"><a href="#3-动态包含和静态包含的区别" class="headerlink" title="3. 动态包含和静态包含的区别"></a>3. 动态包含和静态包含的区别</h5><p>​    在静态导入时，如果导入的页面定义了Scriptlet变量且本页面也定义了一个一模一样名字的变量，则<strong>页面显示报错，如果执行报错后依然再次刷新会把错误给刷新没</strong></p>
 <p>​    <strong>静态包含的最大特点为：先把内容包含到一起，而后一起进行处理</strong></p>
 <p>​    在动态导入时，如果导入的页面定义了Scriptlet变量且本页面也定义了一个一模一样名字的变量，页面照常显示没有影响</p>
 <p>​    <strong>动态包含的特点：</strong></p>
 <ul>
-<li>如果被包含页面是动态页面(*.jsp)，那么先分别处理两个页面的操作，而后将结果包含进来</li>
-<li>如果被包含的页面是静态页面(*.txt)，那么只是将文件内容简单的导入进来</li>
+<li>*<em>如果被包含页面是动态页面(</em>.jsp)，那么先分别处理两个页面的操作，而后将结果包含进来**</li>
+<li>*<em>如果被包含的页面是静态页面(</em>.txt)，那么只是将文件内容简单的导入进来**</li>
 </ul>
 <p>​    动态包含相比静态包含可以在不同页面重复定义变量，更加安全</p>
 <h4 id="5-跳转指令"><a href="#5-跳转指令" class="headerlink" title="5. 跳转指令"></a>5. 跳转指令</h4><p>​    跳转：从一个JSP页面可以跳转到另外一个JSP或其他页面</p>
@@ -255,9 +263,9 @@
 <p>​    范例：实现跳转</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//要跳转到的界面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;&lt;%=request.getParameter(&quot;paramA&quot;)%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;&lt;%=request.getParameter(&quot;paramB&quot;)%&gt;&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//跳转界面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;jsp:forward page=<span class="string">&quot;param.jsp&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;paramA&quot;</span> value=<span class="string">&quot;int&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;paramB&quot;</span> value=<span class="string">&quot;double&quot;</span>/&gt;</span><br><span class="line">&lt;/jsp:forward&gt;</span><br></pre></td></tr></table></figure>
 
-<p>​    跳转之后地址栏不发生改变，但页面内容发生改变，<strong>这种跳转称为服务器端跳转</strong></p>
+<p>​    像以上代码这种跳转之后地址栏不发生改变，但页面内容发生改变，<strong>这种跳转称为服务器端跳转</strong></p>
 <p>​    <strong>还有一种跳转会连地址栏一起跳转的叫客户端跳转</strong>，实现方式是使用Javascript，或者可以使用超链接跳转也是一样的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">	<span class="built_in">window</span>.location = <span class="string">&quot;param.jsp&quot;</span>;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="built_in">window</span>.location = <span class="string">&quot;param.jsp&quot;</span>;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>​    <strong>结论</strong>    </p>
 <p>​    地址栏不改变的跳转称为服务器跳转</p>

@@ -70,6 +70,367 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/10/24/Java13/">Java13</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-10-24T05:56:24.000Z" itemprop="datePublished">
+    2021-10-24
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="反射-Class-lt-gt"><a href="#反射-Class-lt-gt" class="headerlink" title="反射(Class&lt; ? &gt;)"></a>反射(Class&lt; ? &gt;)</h2><h4 id="1-Java的反射机制"><a href="#1-Java的反射机制" class="headerlink" title="1. Java的反射机制"></a>1. Java的反射机制</h4><p>​    Java语言最为重要的特性之一就是反射机制的存在，这个机制使得Java设计更加的灵活<br>​    要写出高复用的代码就要去学习Java反射，几乎所有的Java开发框架都为Java的反射应用</p>
+<h4 id="2-反射的“反”"><a href="#2-反射的“反”" class="headerlink" title="2. 反射的“反”"></a>2. 反射的“反”</h4><p>​    在常规的做法是明确知道一个类之后，导入此类随后进行对象实例化处理，但反射可以依据实例化对象找到其根源。</p>
+<h4 id="3-Object类中的getClass-方法"><a href="#3-Object类中的getClass-方法" class="headerlink" title="3. Object类中的getClass()方法"></a>3. Object类中的getClass()方法</h4><table>
+<thead>
+<tr>
+<th>public final Class&lt;?&gt;  getClass()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>获得该类型详细描述。Class&lt;?&gt;的意思为记录了该类的一切信息</td>
+</tr>
+</tbody></table>
+<p>​    <strong>注意：该方法不能被重写</strong></p>
+<h4 id="4-反射的根源是Class类，Java对实例化的操作提供三类支持，实际项目都是混用都重要"><a href="#4-反射的根源是Class类，Java对实例化的操作提供三类支持，实际项目都是混用都重要" class="headerlink" title="4. 反射的根源是Class类，Java对实例化的操作提供三类支持，实际项目都是混用都重要"></a>4. 反射的根源是Class类，Java对实例化的操作提供三类支持，实际项目都是混用都重要</h4><ol>
+<li>利用Object类中提供的getClass()方法，通过实例化调用获得</li>
+<li>利用“类.class”的Java原生代码操作实现<br>示例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; clsA &#x3D; java.util.Date.class  &#x2F;&#x2F;这个类必须存在</span><br></pre></td></tr></table></figure></li>
+<li>利用Class类中提供的forName()方法进行实例化<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public <strong>static</strong> Class&lt; ? &gt; forName(String className) <strong>throws ClassNotFoundException</strong></td>
+<td align="center">此类方法需要将加载反射类型的名称进行定义(通过字符串描述要使用类的名称)，而且定义的时候要求使用类的完整名称“包.类”，如果该类不存在则会出现”ClassNotFoundException”，也就意味着要进行加载的类一定要放在CLASSPATH可以识别</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<p>​    示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; clsA &#x3D; Class.forName(&quot;java.util.Date&quot;) &#x2F;&#x2F;需要包.类</span><br></pre></td></tr></table></figure>
+<p>这个与第二个的区别是第二个必须要类存在,这个写错的话会报异常</p>
+<p>​    <strong>总结：三种形式获取Class类实例的特点</strong></p>
+<ul>
+<li>**getClass()**：需要明确的获得使用类的实例化对象；</li>
+<li><strong>类.class</strong>：需要明确的进行操作类的导入处理；</li>
+<li>**Class.forName()**：可以通过字符串描述要使用类的名称(最灵活的)</li>
+</ul>
+<p>​    <strong>注意：反射可以用来代替“new”操作符进行实例化对象，但其操作和“new”关键字一样受到类的构造方法的约束，如果类构造方法为private，在类外它一样不可以实例化对象</strong></p>
+<h4 id="5-反射应用案例"><a href="#5-反射应用案例" class="headerlink" title="5. 反射应用案例"></a>5. 反射应用案例</h4><h5 id="1-反射对象实例化"><a href="#1-反射对象实例化" class="headerlink" title="1. 反射对象实例化"></a>1. 反射对象实例化</h5><p>​    获取Class类对象之后最大用处在于可以直接利用反射提供的方法调用指定类的构造实现对象的实例化，此操作的方法为：</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public <strong>T</strong> newInstance() <strong>throws InstantiationException, IllegalAccessException</strong></td>
+<td align="center">反射实例化对象，<strong>T表示返回值为Object类型</strong></td>
+</tr>
+</tbody></table>
+<p>注意：由于反射定义中的泛型比较尴尬所以出现“?”居多，“?”的返回为Object</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;clazz表示class的实例化对象</span><br><span class="line">Class&lt;?&gt; clazz &#x3D; Class.forName(&quot;java.util.Date&quot;);</span><br><span class="line">Object obj &#x3D; clazz.newInstance(); &#x2F;&#x2F;反射实例化对象，相当于表示“new java.util.Date()”</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：上面代码反射为Object类型，如果要使用Date类的对象需要对obj进行向下转型，若只是需要对象则可以直接使用obj</strong></p>
+<h5 id="2-反射与工厂设计模式"><a href="#2-反射与工厂设计模式" class="headerlink" title="2. 反射与工厂设计模式"></a>2. 反射与工厂设计模式</h5><p>​    工厂设计模式常用来获取接口实例，属于java面向对象编程的基本模型<br>​    使用工厂模式，在使用new操作符时，也叫做静态工厂</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class factory&#123;</span><br><span class="line">	private factory() &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	public static Message getMessage(String className) &#123;</span><br><span class="line">		if(&quot;PaperMessage&quot;.equals(className)) &#123;</span><br><span class="line">			return new PaperMessage();</span><br><span class="line">		&#125;else if(&quot;InternalMessage&quot;.equals(className)) &#123;</span><br><span class="line">			return new InternalMessage();</span><br><span class="line">		&#125;else</span><br><span class="line">			return null;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>详细完整代码见反射实例例一</strong></p>
+<p>​    <strong>静态工厂类的缺点</strong><br>​    当你要添加或者删除接口子类很多时，传统的静态工厂类将无法满足需要，问题产生的原因是关键字“new”，关键字“new”是Java提供的原生对象实例化支持，但需要使用特定的结构使用，一个好的代码new使用的少，所以此时需要使用反射机制来解决</p>
+<p>​    <strong>反射机制的思路</strong><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/5ZJDt1"><img src="https://z3.ax1x.com/2021/10/11/5ZJDt1.png" alt="5ZJDt1.png"></a></p>
+<p>​     用反射机制修改工厂类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class factory&#123;</span><br><span class="line">	private factory() &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	public static Message getMessage(String className) &#123; </span><br><span class="line">		Message msg &#x3D; null;</span><br><span class="line">		try &#123;</span><br><span class="line">			msg &#x3D; (Message)Class.forName(className).getDeclaredConstructor().newInstance();</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return msg;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>注意：此时由于调用Class.forname()所以方法传字符串(className)必须是完整路径，包+类名</strong></p>
+<p>​    <strong>详细完整代码见反射实例例二</strong></p>
+<p>​    此时添加子类时就不需要去修改工厂类了</p>
+<h5 id="3-反射与单例设计模式"><a href="#3-反射与单例设计模式" class="headerlink" title="3. 反射与单例设计模式"></a>3. 反射与单例设计模式</h5><p>​    单例设计模式的核心：一个类在一个JVM进程之中只允许有一个实例化对象</p>
+<p>​    单例设计模式的两种结构：饿汉式单例、懒汉式单例（问题比较麻烦，但找工作用这个可以使得问题表述的更加清晰）</p>
+<p>​    懒汉式就是创建对象时比较懒，先不急着创建对象，在需要加载配置文件的时候再去创建。饿汉式就是在系统初始化的时候我们已经把对象创建好了，需要用的时候直接拿过来用就好了</p>
+<ul>
+<li><p>设计饿汉式单例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class SingletonEH &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     *是否 Lazy 初始化：否</span><br><span class="line">     *是否多线程安全：是</span><br><span class="line">     *实现难度：易</span><br><span class="line">     *描述：这种方式比较常用，但容易产生垃圾对象。</span><br><span class="line">     *优点：没有加锁，执行效率会提高。</span><br><span class="line">     *缺点：类加载时就初始化，浪费内存。</span><br><span class="line">     *它基于 classloder 机制避免了多线程的同步问题，</span><br><span class="line">     * 不过，instance 在类装载时就实例化，虽然导致类装载的原因有很多种，</span><br><span class="line">     * 在单例模式中大多数都是调用 getInstance 方法，</span><br><span class="line">     * 但是也不能确定有其他的方式（或者其他的静态方法）导致类装载，</span><br><span class="line">     * 这时候初始化 instance 显然没有达到 lazy loading 的效果。</span><br><span class="line">     * 饿汉就是类一旦加载（ java文件通过编译器变成了.class文件），就把单例初始化完成，保证getInstance的时候，单例是已经存在的了</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private static SingletonEH instance &#x3D; new SingletonEH();</span><br><span class="line">    private SingletonEH ()&#123;&#125;</span><br><span class="line">    public static SingletonEH getInstance() &#123;</span><br><span class="line">        System.out.println(&quot;instance:&quot;+instance);</span><br><span class="line">        System.out.println(&quot;加载饿汉式....&quot;);</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设计懒汉式单例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Singleton&#123;</span><br><span class="line">&#x2F;**</span><br><span class="line">     *是否 Lazy 初始化：是</span><br><span class="line">     *是否多线程安全：否</span><br><span class="line">     *实现难度：易</span><br><span class="line">     *描述：这种方式是最基本的实现方式，这种实现最大的问题就是不支持多线程。因为没有加锁 synchronized，所以严格意义上它并不算单例模式。</span><br><span class="line">     *这种方式 lazy loading 很明显，不要求线程安全，在多线程不能正常工作。</span><br><span class="line">	*&#x2F;</span><br><span class="line">	&#x2F;&#x2F;设置单例，保证只有一个单例</span><br><span class="line">	private static Singleton instance;</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;私有化构造方法，使之只能在内部调用实例化</span><br><span class="line">	private Singleton()&#123;</span><br><span class="line">		System.out.println(&quot;hello&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;通过公有化方法提供对外部的接口</span><br><span class="line">	public static Singleton getInstance() &#123;</span><br><span class="line">		if(instance &#x3D;&#x3D; null) &#123;</span><br><span class="line">			instance &#x3D; new Singleton();</span><br><span class="line">		&#125;</span><br><span class="line">		return instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>​    但是一旦使用多线程，并且结合懒汉式设计时会出现对象的多次实例化<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/5mOrjJ"><img src="https://z3.ax1x.com/2021/10/12/5mOrjJ.png" alt="5mOrjJ.png"></a></p>
+<p>​    需要解决问题需要增加同步处理<br>​    <strong>同步是否添加的因素：如果读取不要加同步，如果更新要加同步</strong><br>​    如果直接在方法外增加同步，线程若有10w个线程获取Singleton类的对象，则这10w个线程排队等待，性能会下降<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/5mxlan"><img src="https://z3.ax1x.com/2021/10/12/5mxlan.png" alt="5mxlan.png"></a></p>
+<p>​    所以应该在方法内增加同步，而同步内用的对象的获取则使用反射机制</p>
+<p>​    <strong>解决代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;此时即保证了getInstance()方法的操作性能，同时又保护了Singleton类对象的实例化次数</span><br><span class="line">class Singleton&#123;</span><br><span class="line">	private static Singleton instance;</span><br><span class="line">	</span><br><span class="line">	private Singleton()&#123;</span><br><span class="line">		System.out.println(&quot;hello&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static Singleton getInstance() &#123;</span><br><span class="line">		if(instance &#x3D;&#x3D; null) &#123;</span><br><span class="line">			synchronized(Singleton.class) &#123;</span><br><span class="line">				if(instance &#x3D;&#x3D; null) &#123;</span><br><span class="line">					instance &#x3D; new Singleton();</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>代码解释图示</strong><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/5nSyuD"><img src="https://z3.ax1x.com/2021/10/12/5nSyuD.png" alt="5nSyuD.png"></a></p>
+<h4 id="6-反射与类操作"><a href="#6-反射与类操作" class="headerlink" title="6. 反射与类操作"></a>6. 反射与类操作</h4><p>​    反射可以完整的实现Java允许规定的类的操作形式<br>​    传统的Java二进制文件对其进行操作就是进行类加载(import、CLASSPATH)；实例化类对象并操作，<strong>对于这些二进制文件的分析(Java中允许你做到的)就是反射</strong>，如果要对这个文件进行更深入的分析，需要使用第三方工具包</p>
+<h5 id="1-反射获取类结构"><a href="#1-反射获取类结构" class="headerlink" title="1. 反射获取类结构"></a>1. 反射获取类结构</h5><p>​    class作为所有反射操作的源头，于是在Class类里面就可以获取clazz的一些结构上的信息，例如：类所在的包、类所继承的父类、已经类所实现的相关的接口，方法如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public Package getPackage()</td>
+<td align="center">方法</td>
+<td align="center">获取程序所在的包名称</td>
+</tr>
+<tr>
+<td align="center">public <strong>Class</strong>&lt; ? super T&gt; getSuperclass()</td>
+<td align="center">方法</td>
+<td align="center">获取所继承的父类</td>
+</tr>
+<tr>
+<td align="center">public Class&lt; ? &gt;[] getInterfaces()</td>
+<td align="center">方法</td>
+<td align="center">获取所有的父接口</td>
+</tr>
+</tbody></table>
+<p>​    之所以通过反射可以获取这些信息，主要是由于Class类拥有了“*.class”二进制数据的分析能力，它实际上是根据二进制的结构文件动态获取的内容。</p>
+<p>​    <strong>详细代码见反射实例例三</strong></p>
+<h5 id="2-反射调用构造方法"><a href="#2-反射调用构造方法" class="headerlink" title="2. 反射调用构造方法"></a>2. 反射调用构造方法</h5><p>​    所有的构造方法都可以利用反射来进行获取，在Class类中定义如下构造方法获取的操作</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public Constructor&lt; T &gt; getConstructor(Class&lt; ? &gt;… parameterTypes) throws NoSuchMethodException, SecurityException</td>
+<td align="center">方法</td>
+<td align="center">根据指定的参数类型获取指定 的构造方法(Public)</td>
+</tr>
+<tr>
+<td align="center">public Constructor&lt; ? &gt;[] getConstructors()                                 throws SecurityException</td>
+<td align="center">方法</td>
+<td align="center">获取类中所有的构造方法(public)</td>
+</tr>
+<tr>
+<td align="center">public Constructor&lt; T &gt; get<strong>Declared</strong>Constructor(Class)&lt; ? &gt;… parameterTypes)                                      throws NoSuchMethodException, SecurityException</td>
+<td align="center">方法</td>
+<td align="center">获取一个类中指定的构造方法(public、protected、default)</td>
+</tr>
+<tr>
+<td align="center">public Constructor&lt; ? &gt;[] get<strong>Declared</strong>Constructors() throws SecurityException</td>
+<td align="center">方法</td>
+<td align="center">获取一个类中的全部构造方法(public、protected、default)</td>
+</tr>
+</tbody></table>
+<p>​    在Java中好用的方法为后两个，因为构造方法不一定只使用public来定义，所以获取的方法应该采用“getDeclaredConstructor”</p>
+<p>​    <strong>获取构造并不意味着要进行简单的输出，这种获取信息的操作只在开发工具中比较常见，但是获取Constructor最大的意义在于其可以进行反射构造调用，提供有如下方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public T <strong>newInstance(Object… initargs)</strong> throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException</td>
+<td align="center">方法</td>
+<td align="center">调用指定的构造进行对象实例化处理</td>
+</tr>
+</tbody></table>
+<p>​    范例：利用反射调用指定参数的构造进行实例化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line">class Ball&#123;</span><br><span class="line">	private String name;</span><br><span class="line">	private double price;</span><br><span class="line">	</span><br><span class="line">	public Ball(String name,double price) &#123;</span><br><span class="line">		this.name &#x3D; name;</span><br><span class="line">		this.price &#x3D; price;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void print() &#123;</span><br><span class="line">		System.out.println(&quot;球的名字为：&quot;+this.name+&quot;、价格为：&quot; + this.price);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException&#123;</span><br><span class="line">		Class&lt;?&gt; clazz &#x3D; Ball.class;&#x2F;&#x2F;获取反射对象</span><br><span class="line">		Constructor&lt;?&gt; con &#x3D; clazz.getDeclaredConstructor(String.class,double.class);</span><br><span class="line">		Ball ball &#x3D; (Ball)con.newInstance(&quot;足球&quot;,12.5);</span><br><span class="line">		ball.print();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    以上操作是JDK1.9之后官方推荐的做法，在JDK1.8及以前的版本里面，关于反射对象的实例化操作实际上提供了两个不同的方法</p>
+<ul>
+<li><p><strong>Class类：</strong>@Deprecated(since)=”9”) public T newInstance() throws InstantiationException, IllegalAccessException</p>
+<p>-默认调用无参构造，如果类中，没有无参构造则将抛出异常；JDK1.9之后就修改为Constructor类调用；</p>
+</li>
+<li><p><strong>Constructor类：</strong>public T newInstance() throws InstantiationException, IllegalAccessException</p>
+</li>
+</ul>
+<h5 id="3-反射调用方法"><a href="#3-反射调用方法" class="headerlink" title="3. 反射调用方法"></a>3. 反射调用方法</h5><p>​    在class类中定义了可以获取类中方法实例的操作</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public Method[] <strong>getMethods()</strong> throws SecurityException</td>
+<td align="center">方法</td>
+<td align="center">获取本类和父类中所有的public方法</td>
+</tr>
+<tr>
+<td align="center">public Method getMethod(String name, Class&lt; ? &gt;… parameterTypes) throws NoSuchMethodException, SecurityException</td>
+<td align="center">方法</td>
+<td align="center">获取一个public的方法，包括父类的方法</td>
+</tr>
+<tr>
+<td align="center">public Method[] <strong>getDeclaredMethods()</strong> throws SecurityException</td>
+<td align="center">方法</td>
+<td align="center">获取本类中所有的方法</td>
+</tr>
+<tr>
+<td align="center">public Method getDeclaredMethod(<strong>String name</strong>, <strong>Class&lt; ? &gt;… parameterTypes</strong>) throws NoSuchMethodException, SecurityException</td>
+<td align="center">方法</td>
+<td align="center">获取本类一个指定类型的Method实例；String name表示方法名称，Class&lt; ? &gt;… parameterTypes表示我要操作的参数类型</td>
+</tr>
+</tbody></table>
+<p>​    当获取了一个方法之后将以Method类的实例进行该方法的描述，Method类的定义方式如下：</p>
+<p>​    <strong>Method类的定义</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public final class Method extends Executable</span><br></pre></td></tr></table></figure>
+<p>​    这个类的定义方式和之前Constructor类是完全一样的</p>
+<p>​    图示：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/5w4OD1"><img src="https://z3.ax1x.com/2021/10/19/5w4OD1.png" alt="5w4OD1.png"></a> </p>
+<p>​    在Java里面可以利用Method明确的描述一个可以调用的方法结构，可以利用Method实现类中全部方法的输出</p>
+<p>​    范例：获取Ball类中所有的public方法,包括所有父类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Balls</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">toDo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ball</span> <span class="keyword">extends</span> <span class="title">Balls</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException</span>&#123;</span><br><span class="line">		Class&lt;?&gt; clazz = Ball.class;</span><br><span class="line">		Method method[] = clazz.getMethods();</span><br><span class="line">		<span class="keyword">for</span>(Method x:method) &#123;</span><br><span class="line">			System.out.println(x);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    获取method实例后对<strong>该方法</strong>信息获得的方法<strong>（Method类或者其父类（Executable）下的方法）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public String getName()</td>
+<td align="center">方法</td>
+<td align="center">获取方法的名字</td>
+</tr>
+<tr>
+<td align="center">public abstract int getModifiers()</td>
+<td align="center">方法</td>
+<td align="center">获取方法前的权限修饰符</td>
+</tr>
+<tr>
+<td align="center">public Class&lt; ? &gt; getReturnType()</td>
+<td align="center">方法</td>
+<td align="center">获取方法的返回值</td>
+</tr>
+<tr>
+<td align="center">public abstract Class&lt; ? &gt;[] getParameterTypes()</td>
+<td align="center">方法</td>
+<td align="center">获取方法的所有参数,返回值为数组</td>
+</tr>
+<tr>
+<td align="center">public Class&lt; ? &gt;[] getExceptionTypes()</td>
+<td align="center"></td>
+<td align="center">获取方法的所有异常</td>
+</tr>
+</tbody></table>
+<p>​    <strong>注意：getModifiers()方法的返回值为int类型，因为所有的权限都是数字的组合(相加)，在java.lang.reflect.Modifier类中有static String toString(int mod)方法，将这些数字反推权限修饰符的字符串</strong></p>
+<p>​    程序配置了任何的第三方工具包,各个开发工具之所以可以进行代码的检测以及方法的获取,就是由于反射机制的支持(二进制数据流的解析处理),但是对于我们开发人员来讲**,真正有意义的代码在于Method类中提供的反射调用方法(非常重要,使用Method类中最有意义的操作)**:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public Object invoke(Object obj,Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>invoke()可以直接依据Object类的实例化对象(不一定是具体类型)实现反射方法调用</strong></p>
+<p>​    注意：所有的简单Java类一定要提供有无参构造方法,同时所有的属性必须封装(private),封装后的属性必须编写setter、getter方法</p>
+<p>​    <strong>范例：利用反射调用setter、getter方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ball</span> </span>&#123;</span><br><span class="line">	String name;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		Class&lt;?&gt; clazz = Class.forName(<span class="string">&quot;hello.Ball&quot;</span>);</span><br><span class="line">		Object obj = clazz.getDeclaredConstructor().newInstance(); <span class="comment">//实例化对象</span></span><br><span class="line">		Method setmethod = clazz.getDeclaredMethod(<span class="string">&quot;setName&quot;</span>, String.class); <span class="comment">//参数类型暂时无法动态获取，先固定一个String.class</span></span><br><span class="line">		setmethod.invoke(obj, <span class="string">&quot;篮球&quot;</span>); <span class="comment">//等价于“实例化对象.setName(&quot;篮球&quot;)”</span></span><br><span class="line">		Method getmethod = clazz.getDeclaredMethod(<span class="string">&quot;getName&quot;</span>);</span><br><span class="line">		Object a = getmethod.invoke(obj);</span><br><span class="line">		System.out.println(a);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    此时程序实现了方法的反射调用，同时也解释了为什么简单Java类中的命名要有setter、getter规则</p>
+<h5 id="4-反射调用成员属性"><a href="#4-反射调用成员属性" class="headerlink" title="4. 反射调用成员属性"></a>4. 反射调用成员属性</h5><p>​    类结构里面包含的三个组成：构造、方法、成员属性，那么对于所有的成员属性也是可以通过反射来实现调用，在class类中提供有如下的与成员有关的操作方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public Field[] getFields() throws SecurityException</td>
+<td align="center">方法</td>
+<td align="center">获取所有继承来的public成员</td>
+</tr>
+<tr>
+<td align="center">public Field getField(String name) throws NoSuchFieldException, SecurityException</td>
+<td align="center">方法</td>
+<td align="center">获取一个指定类型的成员</td>
+</tr>
+<tr>
+<td align="center">public Field[] getDeclaredFields() throws SecurityException</td>
+<td align="center">方法</td>
+<td align="center">获取本类定义的全部的成员</td>
+</tr>
+<tr>
+<td align="center">public Field getDeclaredField(String name) throws NoSuchFieldException, SecurityException</td>
+<td align="center">方法</td>
+<td align="center">获取一个本类定义成员</td>
+</tr>
+</tbody></table>
+<p>​    代码：获取属性信息，见反射实例-例四</p>
+<p>​    在代码中获取了所需要的成员的信息，但是Field类的使用并不是获取成员信息的，这个类有如下几个重要的方法：</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>public Class&lt; ? &gt; getType()</strong></td>
+<td align="center">方法</td>
+<td align="center">获取属性类型，可以与上上面代码中(invoke())结合动态获取参数类型</td>
+</tr>
+<tr>
+<td align="center">public Object get(Object obj) throws IllegalArgumentException, IllegalAccessException</td>
+<td align="center">方法</td>
+<td align="center">获取对象属性</td>
+</tr>
+<tr>
+<td align="center">public void set(Object obj, Object value) throws IllegalArgumentException, IllegalAccessException</td>
+<td align="center">方法</td>
+<td align="center">设置属性内容</td>
+</tr>
+<tr>
+<td align="center"><strong>public void setAccessible(boolean flag)</strong></td>
+<td align="center">方法</td>
+<td align="center">取消封装(private)，即设置可见</td>
+</tr>
+</tbody></table>
+<p>​    <strong>图示：field类的继承图示以及setAccessible(boolean flag)方法的作用区间</strong></p>
+<p>​    <a target="_blank" rel="noopener" href="https://imgtu.com/i/5DuKSI"><img src="https://z3.ax1x.com/2021/10/20/5DuKSI.png" alt="5DuKSI.png"></a></p>
+<p>​    <strong>注意：setAccessible(boolean flag)方法是在AccessibleObject类中定义的方法，所以下面继承此类的方法都可以进行调用，从而解除封装</strong></p>
+<p>​    范例：调用类中的属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ball</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		Class&lt;?&gt; clazz = Ball.class;</span><br><span class="line">		Object obj = clazz.getDeclaredConstructor().newInstance();</span><br><span class="line">		Field field = clazz.getDeclaredField(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">		field.setAccessible(<span class="keyword">true</span>); <span class="comment">//解除封装</span></span><br><span class="line">		field.set(obj, <span class="string">&quot;篮球&quot;</span>); <span class="comment">//等价于&quot;对象.name = &quot;篮球&quot;&quot;</span></span><br><span class="line">		System.out.println(field.get(obj)); <span class="comment">//等价于&quot;System.out.println(对象.name)&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>注意：类中所谓的封装只是局限于标准语法的访问的限制，但是如果直接利用反射就可以打破这种封装所带来的影响，只不过大多数情况不会这样操作</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/10/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8401/">数据结构01</a>
         </h1>
       
@@ -717,11 +1078,15 @@
     </header>
     <div>
       
-        <h2 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h2><h4 id="1-在java-util包中提供一些集合类，集合类又被称为容器"><a href="#1-在java-util包中提供一些集合类，集合类又被称为容器" class="headerlink" title="1. 在java.util包中提供一些集合类，集合类又被称为容器"></a>1. 在java.util包中提供一些集合类，集合类又被称为容器</h4><h4 id="2-集合类和数组的区别"><a href="#2-集合类和数组的区别" class="headerlink" title="2. 集合类和数组的区别"></a>2. 集合类和数组的区别</h4><ul>
+        <h2 id="对象数组-集合类"><a href="#对象数组-集合类" class="headerlink" title="对象数组(集合类)"></a>对象数组(集合类)</h2><h4 id="1-在java-util包中提供一些集合类，集合类又被称为容器-对象数组"><a href="#1-在java-util包中提供一些集合类，集合类又被称为容器-对象数组" class="headerlink" title="1. 在java.util包中提供一些集合类，集合类又被称为容器/对象数组"></a>1. 在java.util包中提供一些集合类，集合类又被称为容器/对象数组</h4><h4 id="2-集合类和数组的区别"><a href="#2-集合类和数组的区别" class="headerlink" title="2. 集合类和数组的区别"></a>2. 集合类和数组的区别</h4><ul>
 <li>数组的长度是固定的，集合类的长度是可变的</li>
 <li>数组用来存放基本数据类型的数据，集合类用来存放对象**(基本数据类型需要用包装类)**的引用</li>
 </ul>
-<h4 id="3-Collection-lt-E-gt-接口"><a href="#3-Collection-lt-E-gt-接口" class="headerlink" title="3. Collection&lt; E &gt;接口"></a>3. Collection&lt; E &gt;接口</h4><p>​    在Java中，Collection接口是层次结构的根接口（即集合的顶层框架）<br>​    Collection接口通常不能直接使用，但其提供增加、删除、管理数据的方法。List接口与Set接口继承了该接口，这些方法在这两个接口中是通用的</p>
+<h4 id="3-对象数组的优势"><a href="#3-对象数组的优势" class="headerlink" title="3. 对象数组的优势"></a>3. 对象数组的优势</h4><ul>
+<li>对象数组属于Java语言的原生支持，不需要手工实现(简单)</li>
+<li>对象数组根据索引的数据查询性能是“O(1)”。但若根据的是内容查询，在未经优化的情况下其性能是“O(n)”，优化为使用二分法可以使其时间复杂度为“log<del>2</del>n”</li>
+</ul>
+<h4 id="4-Collection-lt-E-gt-接口"><a href="#4-Collection-lt-E-gt-接口" class="headerlink" title="4. Collection&lt; E &gt;接口"></a>4. Collection&lt; E &gt;接口</h4><p>​    在Java中，Collection接口是层次结构的根接口（即集合的顶层框架）<br>​    Collection接口通常不能直接使用，但其提供增加、删除、管理数据的方法。List接口与Set接口继承了该接口，这些方法在这两个接口中是通用的</p>
 <table>
 <thead>
 <tr>
@@ -1105,90 +1470,6 @@
 <h4 id="7-接口的进阶"><a href="#7-接口的进阶" class="headerlink" title="7. 接口的进阶"></a>7. 接口的进阶</h4><p>​    <strong>我们不能直接去实例化一个接口，因为接口中的方法都是抽象的，是没有方法体的，这样怎么可能产生具体的实例呢？但是，我们可以使用接口类型的引用指向一个实现了该接口的对象，并且可以调用这个接口中的方法</strong></p>
 <p>​    应该优先使用接口而不是类来引用对象。如果有适合的接口类型存在，那么对于参数、返回值、变量和域来说，就都应该使用接口类型进行声明。只有当你利用构造器创建某个对象的时候，才真正需要引用这个对象的类。<br>​    如果你养成了用接口作为类型的习惯，你的程序将会更加灵活</p>
 <h4 id="8-接口的静态方法"><a href="#8-接口的静态方法" class="headerlink" title="8. 接口的静态方法"></a>8. 接口的静态方法</h4><p>​    Java 8允许静态接口方法<br>​    不能覆盖静态接口方法，只能通过使用接口名+静态接口方法名使用该静态接口方法，实例化后是无法调用的<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/4zrWGD"><img src="https://z3.ax1x.com/2021/10/06/4zrWGD.png" alt="4zrWGD.png"></a></p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/06/04/Java07/">Java07</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-04T14:37:40.000Z" itemprop="datePublished">
-    2021-06-04
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="类的继承，多态"><a href="#类的继承，多态" class="headerlink" title="类的继承，多态"></a>类的继承，多态</h2><h4 id="1-继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写-覆盖-父类中的某些方法"><a href="#1-继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写-覆盖-父类中的某些方法" class="headerlink" title="1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法"></a>1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法</h4><h4 id="2-extends关键字"><a href="#2-extends关键字" class="headerlink" title="2. extends关键字"></a>2. extends关键字</h4><p>​    用来标识两个类的继承关系</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;父类</span><br><span class="line">class bookStore&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;子类</span><br><span class="line">class book extends bookStore&#123;</span><br><span class="line">	&#x2F;&#x2F;当子类再次声明与父类一样的成员变量时，就有两个名字一样的成员变量，要使用父类的话需用super()关键字来引用父类(无关键字时，子类中和父类中的属性或方法同名，则父类中的方法或属性将被覆盖或隐藏)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-super关键字"><a href="#3-super关键字" class="headerlink" title="3. super关键字"></a>3. super关键字</h4><p>​    (1).在Java类中使用super关键字来引用父类的成分，它是一个指代变量，用于在子类中指代父类对象<br>​    (2).只能用于子类的构造函数和实例方法中，不能用于子类的类（静态）方法中。原因是super指代的是一个父类的对象，它需要在运行时被创建，而静态方法是类方法，它是类的一部分。当类被加载时，方法已经存在，但是这时候父类对象还没有被初始化</p>
-<h4 id="4-子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类"><a href="#4-子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类" class="headerlink" title="4. 子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类"></a>4. 子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class bookStore&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;子类</span><br><span class="line">class book extends bookStore&#123;</span><br><span class="line">	public book()&#123;</span><br><span class="line">		super();  &#x2F;&#x2F;初始化父类</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>注意：</strong></p>
-<ul>
-<li>在我们子类的构造函数中，如果我们没有显式调用super来初始化父类的话，那么Java会隐式的调用super();来调用父类无参构造函数并把它放在构造函数的第一行</li>
-<li>Java只会隐式的调用无参构造函数，如果父类没有无参构造函数，那么子类中就必须显式的调用super关键字来调用已有的有参构造函数来初始化父类</li>
-<li> 子类中的super为什么必须要放在第一行？因为子类的实例化依赖于父类的实例化，在构建子类时，必须要有父类实例，只能有了父类的实例，子类才能够初始化自己</li>
-</ul>
-<h4 id="5-当实例化子类对象时，父类的对象也相应的被实例化，且Java编译器会在子类的构造方法中自动调用父类的无参构造方法，-一个-多个父类时是从顶级向下调用"><a href="#5-当实例化子类对象时，父类的对象也相应的被实例化，且Java编译器会在子类的构造方法中自动调用父类的无参构造方法，-一个-多个父类时是从顶级向下调用" class="headerlink" title="5. 当实例化子类对象时，父类的对象也相应的被实例化，且Java编译器会在子类的构造方法中自动调用父类的无参构造方法，(一个)多个父类时是从顶级向下调用"></a>5. 当实例化子类对象时，父类的对象也相应的被实例化，且Java编译器会在子类的构造方法中自动调用父类的无参构造方法，(一个)多个父类时是从顶级向下调用</h4><h4 id="6-方法的重写"><a href="#6-方法的重写" class="headerlink" title="6. 方法的重写"></a>6. 方法的重写</h4><p>​    重写也可以称为覆盖，是保留父类成员方法的名字，可以重写成员方法实现的内容、成员方法的修饰符权限、成员方法的返回值类型<br><strong>注意：修改成员方法修饰符权限只能从小范围向大范围改变</strong><br><strong>注意：不可以被重写，可以被继承</strong></p>
-<p>​    重构：特殊的重写方法，子类与父类的返回值、方法名称、参数类型以及个数完全相同，唯一不同的是方法的实现内容</p>
-<h4 id="7-Object类"><a href="#7-Object类" class="headerlink" title="7. Object类"></a>7. Object类</h4><p>​    在Java中所有的类都继承了Java.lang.Object类，由于所有类都是继承这个类所以定义类时可以省略extends Object</p>
-<p>​    Object类中的getClass()，notify()，notifyAll()，wait()等方法不能被重写，这些方法被定义为final类型</p>
-<p>​    Object类的重要方法</p>
-<ul>
-<li><p>getClass()方法<br>​    返回对象执行时的Class实例，该实例通过getName()方法获得类的名称</p>
-</li>
-<li><p>toString()方法<br>​    将一个对象返回为字符串形式，它会返回一个String实例，在实际运用中经常重写该方法</p>
-</li>
-<li><p>equals()方法<br>​    按理说是比较两个对象的实际内容是否相等,但类对象的equals方法实现了对象上最有区别的等价关系；也就是说，对于任何非空的引用值x和y，当且仅当x和y引用同一对象（x == y的值为true）时，此方法才返回true，像之前的String比较里面内容是因为重写了这个方法<br>​    <strong>注意：在自定义类中使用equals()方法进行比较时，相同的对象比较会返回false，因为equals()方法的默认实现使用”==”运算符来比较两个对象的引用地址，而不上比较对象的内容，所以要比较内容需要重写equals()方法</strong></p>
-</li>
-</ul>
-<h4 id="8-对象类型的转换"><a href="#8-对象类型的转换" class="headerlink" title="8. 对象类型的转换"></a>8. 对象类型的转换</h4><ul>
-<li><p>向上转型(多态)<br>​    把子类对象赋值给父类类型的引用变量<br>​    <strong>父类的引用可以调用子类中重写的父类的方法，但不能调用子类中独有的方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">父类型 a &#x3D; new 子类型();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>向下转型(显式类型转换)<br>​    把父类对象强制转化为子类型，赋值给子类引用变量<br>​    进行向下转型时，如果父类对象不是子类的实例，会产生ClassCastException异常，所以经常使用instanceof操作符来完成判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">子类型 b &#x3D; (子类型)父类对象的引用变量;</span><br></pre></td></tr></table></figure>
-<p>​    父类中没有的方法和类型必须要向下转型后才能调用</p>
-</li>
-</ul>
-<h4 id="9-instanceof操作符"><a href="#9-instanceof操作符" class="headerlink" title="9. instanceof操作符"></a>9. instanceof操作符</h4><p>​    用来判断是否一个类实现了某个接口，还可以判断一个实例的对象是否属于一个类(子类一定时属于父类的，不能说父类属于子类，即平行四边形属于四边形，但四边形不属于平行四边形)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">子对象 instanceof 父类型; &#x2F;&#x2F;返回true</span><br></pre></td></tr></table></figure>
-<p>​    该方式经常与向下转型连用，当不属于时把父类强制转化为子类<br>​    当两个类完全没有关系时使用这个操作符来操作会报错</p>
-<p><strong>详细使用请看笔记《Java实例-多态》</strong></p>
-<h4 id="10-方法的重载"><a href="#10-方法的重载" class="headerlink" title="10. 方法的重载"></a>10. 方法的重载</h4><p>​    在同一个类中允许存在一个以上的同名方法，只要这些方法的参数个数或类型不同即可<br>​    <strong>注意：方法重载中可以使两个方法的返回值类型不同，但只有返回值类型不同不足以区分两个方法的重载</strong><br>​    编译器是利用方法名、方法各参数类型和参数的个数以及参数的顺序来确定类中的方法是否唯一</p>
-<h4 id="11-不定长参数"><a href="#11-不定长参数" class="headerlink" title="11. 不定长参数"></a>11. 不定长参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;定义不定长参数方法</span><br><span class="line"> &#x2F;&#x2F;返回值 方法名(参数数据类型...参数名称)</span><br><span class="line">public static int add(int...a)&#123;不定长参数a为一个数组，a的长度取决于调用时传的参数</span><br><span class="line">	&#x2F;&#x2F;方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    不定长参数方法可以作为一个单独的重载方法</p>
-<h4 id="12-多态"><a href="#12-多态" class="headerlink" title="12. 多态"></a>12. 多态</h4><p>​    多态存在的三个前提</p>
-<ul>
-<li>要有继承关系</li>
-<li>子类要重写父类方法</li>
-<li>父类引用指向子类对象</li>
-</ul>
-<p>​    通过定义一个父类，让它的所有子类通过向上转型的原则作为一个方法的参数，再在这个方法中做出一些限定，后可以做出每个子类自己独有的事情。<br>​    这样的处理可以很好解决代码的冗余问题，同时使得程序易于维护，可以随意增加子类，只需要改变传参就可以了</p>
-<p><strong>多态的样例代码见请看笔记《Java实例-多态》</strong></p>
 
       
     </div>
