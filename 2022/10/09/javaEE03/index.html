@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>javaEE03 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+            <div>Road is walked by me</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>javaEE03</h1>
+    </header>
+
+    <section>
+      <h2 id="web项目编写"><a href="#web项目编写" class="headerlink" title="web项目编写"></a>web项目编写</h2><h4 id="1-Idea对Javaweb的项目创建"><a href="#1-Idea对Javaweb的项目创建" class="headerlink" title="1. Idea对Javaweb的项目创建"></a>1. Idea对Javaweb的项目创建</h4><pre><code>   1. 点击新建项目，选择`Java Enterprise`，更改项目名称，将项目模板改为`Web 应用程序`，将应用程序服务器改为自己下载的Tomcat路径，下面都不用动，点`next`
+
+   2. 这里的第三方框架暂时都是用不上，只需要在已添加项中有`Servlet`就行
+   3. 点击完成Javaweb项目就创建完成</code></pre>
+<p>​    <strong>项目结构的概述</strong></p>
+<pre><code>   1. .idea不用管他，在src中编写文件
+
+   2. 在java文件夹中编写java代码
+   3. 在resources文件夹中放置配置文件
+   4. 在webapp中放jsp文件
+   5. 需要的包要在pom.xml中声明</code></pre>
+<p>​    <strong>欢迎页与列表</strong></p>
+<p>​    在项目新建后即可运行，点击运行可以运行项目自动生成的jsp欢迎页面，但在学习过程中需要列表来显示所有页面，此时可以通过修改Tomcat中的<code>conf/web.xml</code>文件的<code>welcome-file-list</code>来更改</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//web.xml文件里的默认设置；名叫index的页面作为主页，这几个页面(不一定只有三个)都有的话显示优先级为从上到下</span><br><span class="line"><span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.html<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.htm<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.jsp<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    可以把这串设置复制到自己项目的xml文件中，然后自己修改首次登录页面(如果项目中没有设置默认是使用Tomcat提供的xml中的设置)，<strong>如果项目中没有名叫这几个的页面，则显示列表</strong></p>
+<h4 id="2-Javaweb的jdbc连接"><a href="#2-Javaweb的jdbc连接" class="headerlink" title="2. Javaweb的jdbc连接"></a>2. Javaweb的jdbc连接</h4><p>​    使用jsp来引入jdbc，<strong>此时mysql的驱动程序应当复制一份到Tomcat的<code>lib</code>目录下</strong></p>
+<blockquote>
+<p>C:\Program Files\Apache Software Foundation\Tomcat 8.5_Tomcat8new\lib</p>
+</blockquote>
+<p>​    否则会出现错误：数据库无法找到</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javax.servlet.ServletException: java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    还有一种情况是url书写时发生错误，如端口号写错，则提示错误：数据库连接异常</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javax.servlet.ServletException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    另外，在JSP中写JDBC没有对异常有强制处理，一旦出错就是报500，因为默认情况下，所有的异常都可以由容器处理，处理方式为输出错误信息并结束程序运行</p>
+<h4 id="3-数据检查"><a href="#3-数据检查" class="headerlink" title="3. 数据检查"></a>3. 数据检查</h4><p>​    在系统开发当中，数据的安全性检查分为两个部分</p>
+<ul>
+<li><p>服务器的验证：由JSP文件负责验证</p>
+</li>
+<li><p>客户端验证：由JavaScript完成</p>
+</li>
+</ul>
+<p>​    <strong>任何一个健壮的系统这两个验证都需要编写，即两端都要编写验证</strong></p>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2022-10-09T06:31:30.000Z" itemprop="datePublished">
+              2022-10-09
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/JavaEE/">JavaEE</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2022 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>

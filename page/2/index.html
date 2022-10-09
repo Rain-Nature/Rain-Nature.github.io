@@ -70,6 +70,321 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/01/21/%E5%89%8D%E7%AB%AF03/">前端03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-01-21T05:34:33.000Z" itemprop="datePublished">
+    2022-01-21
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/HTML-CSS/">HTML+CSS</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="HTML表单的设计与使用"><a href="#HTML表单的设计与使用" class="headerlink" title="HTML表单的设计与使用"></a>HTML表单的设计与使用</h2><h4 id="1-表单的概念"><a href="#1-表单的概念" class="headerlink" title="1. 表单的概念"></a>1. 表单的概念</h4><p>​    表单在网页中主要负责数据采集功能，<strong>主要用于搜集不同类型的用户输入</strong>，是人和电脑相互交流的通道</p>
+<p>​    <strong>一个表单由两个基本组成部分：表单标签和表单域，<em>注意：由开始和结束的表单标签来组成一个表单域，一个页面可以有多个表单区域(通过name属性进行区分，不要重名)，但两个表单之间不支持嵌套</em></strong></p>
+<p>​    表单区域代码示例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;form1&quot;</span> <span class="attr">action</span>=<span class="string">&quot;register.html&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">	//里面可以写表单内容</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：定义表单名字，由英文字母定义</li>
+<li>action属性：指定表单提交后，提交的目的地</li>
+<li>method属性：有post和get，post打包暗箱传输的数据，而get是通过地址栏传值，不写该属性默认值为get</li>
+</ul>
+<p>​    表单标签<code>&lt;form&gt;</code>(双) ：包含了处理表单数据所用CGI程序的URL以及数据提交到服务器的方法</p>
+<p>​    <strong>下面所提到的标签必须包含在表单域中</strong></p>
+<p>​    表单域：包含了<strong>文本框、密码框、隐藏域、多行文本框、复选框、单选框、下拉选择框和文件上传框</strong>等</p>
+<p>​    表单按钮(属于表单域)：包括**提交按钮、复位按钮和一般按钮(即什么功能都没有定义的空按钮，用户可以根据自己情况定义)**；用以将数据传送到服务器上的CGI脚本或者取消输入，还可以用表单按钮来控制其他定义了处理脚本的处理工作</p>
+<h4 id="2-单行文本框-单"><a href="#2-单行文本框-单" class="headerlink" title="2. 单行文本框(单)"></a>2. 单行文本框(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为<code>text</code> </p>
+<p>​    范例：定义一个文本框</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>name属性：指定输入框的名字，<strong>表单中每一个标签都有命名，不要有重名，接收时按名字来接收</strong>，使用英文字母自行定义，不可以为关键字</p>
+</li>
+<li><p>type属性：<strong>用于定义类型</strong>，单行文本输入框的type固定为text</p>
+</li>
+</ul>
+<p>​    注意：未加修饰的文本框在不同的浏览器显示的效果是不一样的，如果要所有的浏览器看到同一个效果，则需要使用CSS对其进行修饰</p>
+<h4 id="3-密码输入框-单"><a href="#3-密码输入框-单" class="headerlink" title="3. 密码输入框(单)"></a>3. 密码输入框(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为<code>password</code> </p>
+<p>​    密码框和文本框的区别是在密码框输入时的东西都会被隐藏，但传值的时候还是可以看见</p>
+<p>​    范例：定义一个密码框</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>name属性：指定密码框的名字，<strong>表单中每一个标签都有命名，不要有重名，接收时按名字来接收</strong>，使用英文字母自行定义，不可以为关键字</p>
+</li>
+<li><p>type属性：密码输入框的type固定为password</p>
+</li>
+</ul>
+<p>​    <strong>注意：可以在表单中加入表格，使得各标签显示更加有序</strong></p>
+<h4 id="4-单选框-单"><a href="#4-单选框-单" class="headerlink" title="4. 单选框(单)"></a>4. 单选框(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为<code>radio</code> </p>
+<p>​    单选框一次只能选择一个选项，在单选框使用时，必须有两个以上的单选框标签，而且其name属性相同，每一个单选框构成一个选项</p>
+<p>​    范例：性别选择的实现</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">男 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span> /&gt;</span></span><br><span class="line">女 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：name属性相同表示一组单选框</li>
+<li>type属性：单选框的type固定为radio</li>
+<li>value属性：单选框相对于用户来说只是提供选择，用户并没有往里面输入值，所以需要value属性来定义一个值，当发生传值时，将选中的单选框的value值传递出去，单选框传的值和页面显示的文字无关</li>
+<li>checked属性：没有值，表示该选项默认为选中状态</li>
+</ul>
+<p>​    注意：文本框也有value属性，如果写了value属性，页面显示的就为value的默认值</p>
+<h4 id="5-复选框-单"><a href="#5-复选框-单" class="headerlink" title="5. 复选框(单)"></a>5. 复选框(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为<code>checkbox</code> </p>
+<p>​    复选框用于多选</p>
+<p>​    范例：城市的选择</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">北京<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;city&quot;</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">上海<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;city&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span> /&gt;</span></span><br><span class="line">大连<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;city&quot;</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：name属性相同表示一组复选框</li>
+<li>type属性：复选框的type固定为checkbox</li>
+<li>value属性：复选框相对于用户来说也只是提供选择，用户并没有往里面输入值，所以需要value属性来定义一个值，当发生传值时，将选中的复选框的value值传递出去，复选框传的值和页面显示的文字无关</li>
+<li>checked属性：没有值，表示该选项默认为选中状态</li>
+</ul>
+<h4 id="6-下拉单选框-双"><a href="#6-下拉单选框-双" class="headerlink" title="6. 下拉单选框(双)"></a>6. 下拉单选框(双)</h4><p>​    用<code>&lt;select&gt;</code> 包含<code>&lt;option&gt;</code> 标签来描述，没有type属性</p>
+<p>​    下拉单选框一次只能选择一个选项，下拉单选框的本质还是单选，但其可以节省空间，可以选如年月日那种</p>
+<p>​    范例：下拉单选框的使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;select&quot;</span> <span class="attr">id</span>=<span class="string">&quot;select&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span>&gt;</span>上海<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span>&gt;</span>大连<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>select标签的属性<ul>
+<li>name属性：指定下拉单选框的名字，使用英文字母自行定义</li>
+</ul>
+</li>
+<li>option标签的属性<ul>
+<li>value属性：指定该选项的值，传参过去时使用</li>
+<li>selected属性：没有值，表示默认选中该选项</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-多行文本输入框-双"><a href="#7-多行文本输入框-双" class="headerlink" title="7. 多行文本输入框(双)"></a>7. 多行文本输入框(双)</h4><p>​    用<code>&lt;textarea&gt;</code> 标签描述，没有type属性</p>
+<p>​    多行文本输入框用于输入大量文字信息，用于像电子邮件、发帖的正文等</p>
+<p>​    范例：多行文本输入框的实现</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">&quot;input&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;20&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;80&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：指定输入框的名字，用英文表示自行定义</li>
+<li>rows属性：指定文本框的行数(20表示有20个字符那么长)</li>
+<li>cols属性：指定文本框的列数(80表示有80个字符那么长)</li>
+<li>默认值：在开始标签和结束标签中间写的东西都会作为默认值显示</li>
+</ul>
+<p>​    注意：现在一般不会这样使用cols属性和rows属性来确定多行文本输入框的大小</p>
+<h4 id="8-文件上传-单"><a href="#8-文件上传-单" class="headerlink" title="8. 文件上传(单)"></a>8. 文件上传(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为file</p>
+<p>​    用于把文件上传到服务器</p>
+<p>​    范例：文件上传的前端部分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：指定该文件上传接口的名字，用英文表示自行定义</li>
+<li>type属性：提交按钮的type属性固定为file</li>
+</ul>
+<p>​    注意：此时只是为前台页面的上传，该上传并不具有文件上传的逻辑，要想真正实现上传专门去用程序去实现上传的组件，他只是前台的一个接口</p>
+<h4 id="9-提交按钮-单"><a href="#9-提交按钮-单" class="headerlink" title="9. 提交按钮(单)"></a>9. 提交按钮(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为submit</p>
+<p>​    <strong>用于将表单数据提交给<code>form</code> 标签中action属性指定的地址进行处理，即传出去了，但action的那个页面能否接收要看那个页面是怎么写的</strong></p>
+<p>​    范例：实现提交按钮</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;注册&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：指定按钮名字，用英文字母自行定义</li>
+<li>type属性：提交按钮的type属性固定为submit</li>
+<li>value属性：指定按钮上显示的字</li>
+</ul>
+<h4 id="10-普通按钮-单"><a href="#10-普通按钮-单" class="headerlink" title="10. 普通按钮(单)"></a>10. 普通按钮(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为button</p>
+<p>​    该按钮相当于空的按钮，需要自己使用脚本进行定义</p>
+<h4 id="11-重置按钮-单"><a href="#11-重置按钮-单" class="headerlink" title="11. 重置按钮(单)"></a>11. 重置按钮(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为reset</p>
+<p>​    用于清空表单已经填写的数据，把表单恢复初始化</p>
+<p>​    范例：定义重置按钮</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">name</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">value</span>=<span class="string">&quot;重填&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>name属性：指定按钮名字，用英文字母自行定义</li>
+<li>type属性：重置按钮的type属性固定为reset</li>
+<li>value属性：指定按钮上显示的字</li>
+</ul>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2022/01/16/%E5%89%8D%E7%AB%AF02/">前端02</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-01-16T08:39:54.000Z" itemprop="datePublished">
+    2022-01-16
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/HTML-CSS/">HTML+CSS</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="HTML的标签"><a href="#HTML的标签" class="headerlink" title="HTML的标签"></a>HTML的标签</h2><h4 id="1-标题标签-双"><a href="#1-标题标签-双" class="headerlink" title="1. 标题标签(双)"></a>1. 标题标签(双)</h4><p>​    标题是通过<code>&lt;h1&gt;</code> -<code>&lt;h6&gt;</code> 等标签进行定义的，其中<code>&lt;h1&gt;</code> 定义最大的标题，<code>&lt;h6&gt;</code> 定义最小的标题</p>
+<p>​    注意：标题标签只能用于标题，<strong>不要为了产生粗体或大号的文本而使用标题，标题是为网页结构和内容编制的索引，搜索引擎会抓取标题当关键字</strong></p>
+<h4 id="2-基本标签"><a href="#2-基本标签" class="headerlink" title="2. 基本标签"></a>2. 基本标签</h4><ul>
+<li><p><strong>段落标签(双)</strong></p>
+<p>段落是使用<code>&lt;p&gt;</code> 标签在HTML页面中创建段落</p>
+</li>
+<li><p><strong>水平线标签(单)</strong></p>
+<p>水平线是使用<code>&lt;hr&gt;</code>标签在HTML页面中创建水平线</p>
+</li>
+<li><p><strong>换行标签(单)</strong></p>
+<p>换行是使用<code>&lt;br&gt;</code>标签在HTML页面中创建换行符，<code>&lt;br /&gt;</code>是写XHTML时的一个严格语法，如果不是写XHTML，则HTML中都应该使用<code>&lt;br&gt;</code>，<strong>注意：在代码中敲多少回车都没有用，多个空白符当一个空格</strong></p>
+</li>
+<li><p><strong>空格标签(符)</strong></p>
+<p>空格是使用<code>&amp;nbsp</code>标签在HTML页面中显示空格</p>
+</li>
+<li><p><strong>注释</strong></p>
+<p>HTML使用<code>&lt;!-- --&gt;</code>期间的内容为注释，注释在页面不显示，代码中可显示</p>
+</li>
+<li><p><strong>加粗( 双)</strong></p>
+<p>加粗是使用<code>&lt;b&gt;</code>标签对标签内的文本进行加粗</p>
+</li>
+</ul>
+<h4 id="3-图像标签-单"><a href="#3-图像标签-单" class="headerlink" title="3. 图像标签(单)"></a>3. 图像标签(单)</h4><p>​    图像使用<code>&lt;img&gt;</code> 标签在HTML页面中创建图像</p>
+<p>​    <strong><code>&lt;img&gt;</code> 标签常用的属性如下（加粗为必须要使用的属性）</strong>：</p>
+<ul>
+<li><p><strong><code>src</code>：设定要引用图像的路径，如果图像路径不正确会在web页面上显示损坏的图像</strong></p>
+</li>
+<li><p><code>alt</code>：为图像定义一串预备的可替换文本，在浏览器无法载入图像时，浏览器将显示这个替代性文本</p>
+</li>
+<li><p><code>width</code>：设定图像宽度，属性值为像素</p>
+</li>
+<li><p><code>height</code>：设定图像高度，属性值为像素</p>
+<p>注意：一般不会采用width或者height这种形式对图像进行强制放缩，<strong>因为采用这种形式进行放缩，文件量是不变的，即大图像变小但是文件大小不变，此时会造成网页上有许多占用流量的图像，使得网页反馈速度变慢</strong></p>
+</li>
+</ul>
+<h4 id="4-路径"><a href="#4-路径" class="headerlink" title="4. 路径"></a>4. 路径</h4><p>​    路径分为网络路径和硬盘物理路径，我们在网上使用的都是网络路径</p>
+<p>​    <strong>网络路径分为绝对路径和相对路径</strong></p>
+<ul>
+<li>绝对路径：由根目录（/）开始写起的文件名或目录名称</li>
+<li>相对路径：相对于目前路径的文件名写法</li>
+</ul>
+<p>​    <strong>路径的切换</strong></p>
+<ul>
+<li>同级别：直接写文件名</li>
+<li>上一次级别：用<code>../</code> 文件名</li>
+<li>下一次级别：用目录名<code>/</code> 文件名</li>
+</ul>
+<p>​    <strong>注意：在网页中只能使用<code>/</code>来分隔路径</strong>，不可以使用<code>\</code>，<code>\</code>是Windows操作系统分隔路径用的</p>
+<h4 id="5-超级链接（双）"><a href="#5-超级链接（双）" class="headerlink" title="5. 超级链接（双）"></a>5. 超级链接（双）</h4><p>​    超链接使用<code>&lt;a&gt;</code> 标签在HTML页面中创建超链接，开始标签和结束标签之间的文字、图像被作为链接来显示</p>
+<p>​    <code>&lt;a&gt;</code> 标签里的内容会成为web页面中可单击的文本，默认这是有下划线的，可以用CSS去除</p>
+<p>​    <strong><code>&lt;a&gt;</code> 标签常用的属性如下（加粗为必须要使用的属性）：</strong></p>
+<ul>
+<li><p><strong><code>href</code>：用于定位需要链接的文档，里面写要跳转网页的路径，或者目标文件，事实上可以指向各种各样的资源</strong></p>
+</li>
+<li><p><code>target</code>：定义被链接的文档在何处显示</p>
+<p>常用的两个值</p>
+<ol>
+<li><code>_self</code>：在本窗口打开链接，不设置target则此为默认值</li>
+<li><code>_blank</code>：在一个新窗口打开链接</li>
+</ol>
+</li>
+<li><p>title：定义鼠标停留在链接上提示信息</p>
+</li>
+</ul>
+<h4 id="6-列表-双"><a href="#6-列表-双" class="headerlink" title="6. 列表(双)"></a>6. 列表(双)</h4><p>​    列表分为有序列表和无序列表</p>
+<ul>
+<li>无序列表：在HTML中使用<code>&lt;ul&gt;</code> 标签表示无序列表，每一个列表项使用<code>&lt;li&gt;</code> 表示</li>
+</ul>
+<ul>
+<li><p>有序列表：在HTML中使用<code>&lt;ol&gt;</code> 标签表示有序列表，每一个列表项使用<code>&lt;li&gt;</code> 表示</p>
+<p><strong>注意：不管是有序列表还是无序列表<code>&lt;li&gt;</code> 都是双标签，而且这三个标签都为块元素</strong></p>
+</li>
+</ul>
+<ul>
+<li><p>自定义列表：使用<code>&lt;dl&gt;</code> 、<code>&lt;dt&gt;</code> 、<code>&lt;dd&gt;</code> 来组成自定义列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;dl&gt;</span><br><span class="line">	&lt;dt&gt;burma Shave Signs&lt;&#x2F;dt&gt;</span><br><span class="line">	&lt;dd&gt;Road signs common&lt;&#x2F;dd&gt;</span><br><span class="line">	&lt;dt&gt;Route&lt;&#x2F;dt&gt;</span><br><span class="line">	&lt;dd&gt;Most famous&lt;&#x2F;dd&gt;</span><br><span class="line">&lt;&#x2F;dl&gt;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器显示效果</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qpNZjS"><img src="https://s1.ax1x.com/2022/03/16/qpNZjS.png" alt="qpNZjS.png"></a></p>
+</li>
+</ul>
+<p>​    </p>
+<p>​    列表可以相互嵌套，但嵌套的标签需要放在<code>&lt;li&gt;</code> 里面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>城市<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>上海<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>广州<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>地方<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="7-表格-双"><a href="#7-表格-双" class="headerlink" title="7. 表格(双)"></a>7. 表格(双)</h4><p>​    表格一般主要用于展示数据，但在网页设计中，主要用于布局，做容器使用</p>
+<p>​    表格的图示</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/7JdhZ9"><img src="https://s4.ax1x.com/2022/01/15/7JdhZ9.png" alt="7JdhZ9.png"></a></p>
+<p>​    在HTML中使用<code>&lt;table&gt;</code> 标签来定义表格；<br>​    使用<code>&lt;tr&gt;</code> 标签表示表格的一行，<code>&lt;tr&gt;</code> 标签里面不可以直接放元素；<br>​    使用<code>&lt;td&gt;</code> 来表示表格的一列(必须在行标签中)，即单元格，<strong>在<code>&lt;td&gt;</code> 标签中可以包含文本、图片、列表、段落、水平线、表格等任何元素</strong>；<br>​    使用<code>&lt;th&gt;</code> 来表示表头，该标签可加可不加</p>
+<p>​    <strong>注意：上述标签都为双标签</strong></p>
+<p>​    <strong><code>&lt;table&gt;</code> 标签的常用属性</strong></p>
+<ul>
+<li><code>cellspacing</code> ：用来定义表格的间距(单元格边框与单元格边框之间的距离)，默认值为1px</li>
+<li><code>cellpadding</code> ：用来定义表格的边距(内容与单元格边框之间的距离)</li>
+<li><code>width</code> ：用来定义表格的宽度</li>
+<li><code>height</code> ：用来定义表格的高度</li>
+<li><code>border</code> ：用来定义表格的边框粗细</li>
+</ul>
+<p>注意：上述属性都是用像素(px)为单位，一般设计网页设定分辨率&lt;1000px，14寸笔记本分辨率为(1366<code>*</code> 768)px</p>
+<ul>
+<li><code>align</code> ：放在<code>&lt;table&gt;</code> 标签中用来定义表格在总页面中的水平对齐方式；放在<code>&lt;td&gt;</code> 标签中用来定义单元格中的内容在单元格中的位置，两个的默认值都为left</li>
+</ul>
+<h4 id="8-引用-双"><a href="#8-引用-双" class="headerlink" title="8. 引用(双)"></a>8. 引用(双)</h4><h5 id="1-lt-q-gt-标签表示的引用-本质上为行内元素"><a href="#1-lt-q-gt-标签表示的引用-本质上为行内元素" class="headerlink" title="(1).&lt;q&gt; 标签表示的引用(本质上为行内元素)"></a>(1).<code>&lt;q&gt;</code> 标签表示的引用(本质上为行内元素)</h5><p>​    当需要引用一段文字时可以使用<code>&lt;q&gt;</code> 标签来将该段文字被引用</p>
+<p>​    在不同的浏览器中显示情况不同，有些浏览器会为被引用的文字添加双引号(该双引号在网页不会被选中)，而有些浏览器不会，所以在使用时需要自行调试</p>
+<h5 id="2-lt-blockquote-gt-标签表示的引用-本质上为块元素"><a href="#2-lt-blockquote-gt-标签表示的引用-本质上为块元素" class="headerlink" title="(2).&lt;blockquote&gt; 标签表示的引用(本质上为块元素)"></a>(2).<code>&lt;blockquote&gt;</code> 标签表示的引用(本质上为块元素)</h5><p>​    当需要引用一段文字时可以使用<code>&lt;blockquote&gt;</code> 标签来将该段文字被引用</p>
+<p>​    在浏览器中显示一块区域类似<code>&lt;p&gt;</code>但里面的放的文字会有所缩进(有些浏览器可能不会缩进)</p>
+<h5 id="注意：两个标签表示的引用效果相同，只是一个是行内元素，另一个是块元素"><a href="#注意：两个标签表示的引用效果相同，只是一个是行内元素，另一个是块元素" class="headerlink" title="注意：两个标签表示的引用效果相同，只是一个是行内元素，另一个是块元素"></a>注意：两个标签表示的引用效果相同，只是一个是行内元素，另一个是块元素</h5><h4 id="9-特殊字符"><a href="#9-特殊字符" class="headerlink" title="9. 特殊字符"></a>9. 特殊字符</h4><p>​    在HTML中有些字符用于组成HTML页面，导致要输出其时无法正常显示，此时就需要使用HTML规定的特殊字符表示的方法</p>
+<p>​    <strong>常用的特殊字符</strong></p>
+<ol>
+<li><code>&lt;</code>字符：<code>&amp;lt</code> </li>
+<li><code>&gt;</code>字符：<code>&amp;gt</code> </li>
+<li><code>&amp;</code>字符：<code>&amp;amp</code> </li>
+</ol>
+<h4 id="10-原样输出"><a href="#10-原样输出" class="headerlink" title="10. 原样输出"></a>10. 原样输出</h4><p>​    在HTML中使用<code>&lt;pre&gt;</code> 标签来告诉浏览器，标签中的内容按照你输入方式的原样显示文本</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">	hello</span><br><span class="line">	world</span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="11-代码显示-双"><a href="#11-代码显示-双" class="headerlink" title="11. 代码显示(双)"></a>11. 代码显示(双)</h4><p>​    在HTML中使用<code>&lt;code&gt;</code> 标签来显示计算机程序代码</p>
+<h4 id="12-HTML其他标签"><a href="#12-HTML其他标签" class="headerlink" title="12. HTML其他标签"></a>12. HTML其他标签</h4><p>​    可以通过这个网址跳转查询</p>
+<p>​    <a href="[HTML Reference (w3schools.com)](https://www.w3schools.com/tags/)">HTML标签大全</a></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2022/01/14/%E5%89%8D%E7%AB%AF01/">前端01</a>
         </h1>
       
@@ -531,7 +846,7 @@
 <p>配置意义：</p>
 <ul>
 <li><code>&lt;Context&gt;</code> ：表示配置一个新的上下文，结尾必须有<code>/</code> </li>
-<li>path：为浏览器上的输入路径(<code>http://lacalhost:8080/lxs</code> )，名称不允许重复，此时通过上面的路径访问<code>D:\lxsweb</code> 目录下的内容</li>
+<li>path：为浏览器上的输入路径(<code>http://localhost:8080/lxs</code> )，名称不允许重复，此时通过上面的路径访问<code>D:\lxsweb</code> 目录下的内容</li>
 <li>docBase：配置项目的磁盘路径，此目录下必须存在WEB-INF</li>
 </ul>
 </li>
@@ -1138,139 +1453,6 @@
 <li>对用户的使用感觉：各种文件、编程环境、图形界面</li>
 </ul>
 
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/10/25/Java14/">Java14</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-10-25T11:25:55.000Z" itemprop="datePublished">
-    2021-10-25
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><h4 id="1-泛型是在JDK1-5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题"><a href="#1-泛型是在JDK1-5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题" class="headerlink" title="1. 泛型是在JDK1.5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题"></a>1. 泛型是在JDK1.5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题</h4><h4 id="2-泛型问题的引出"><a href="#2-泛型问题的引出" class="headerlink" title="2. 泛型问题的引出"></a>2. 泛型问题的引出</h4><p>​    在Java中，最方便的参数统一使用Object类型，但是并不是意味所有的Object都可以解决实际问题</p>
-<p>​    现在假设需要一个描述坐标点的信息类(Point)，该类中可以保存三种坐标类型</p>
-<ul>
-<li><p>保存整型</p>
-</li>
-<li><p>保存浮点型</p>
-</li>
-<li><p>保存字符串</p>
-</li>
-</ul>
-<p>​    此时，要保证三类数据的保存，只有通过Object类型可以解决</p>
-<p>​    <strong>Point类的设计</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Object x;</span><br><span class="line">	<span class="keyword">private</span> Object y;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(Object x)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x = x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(Object y)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.y = y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    在使用这个类时，需要进行向上转型输入和向下转型输出。但是，由于Object所能描述的范围太广泛了，所以<strong>可能传入了字符串类型任何转型时不小心转为了int(其他)类型</strong>，此时代码在<strong>编译时可以通过，执行时出现”ClassCastException“异常</strong>，<strong>由此可以看出Object提供的解决方案实际上会存在安全隐患</strong>，所以Object类作为参数是项目中最大的败笔</p>
-<h4 id="3-泛型基本定义"><a href="#3-泛型基本定义" class="headerlink" title="3. 泛型基本定义"></a>3. 泛型基本定义</h4><p>​    通过分析Object作为参数的优缺点，<strong>要想解决对象转型安全隐患问题，最简单的方式就是不转型</strong><br>​    JDk1.5后提供了泛型的概念，泛型&lt; T &gt;最大的特点为，类中的属性类型或方法的参数，可以在类的使用时，动态决定<br>​    <strong>范例：修改Point类的设计</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>&lt;<span class="title">T</span>&gt;</span>&#123; <span class="comment">//T表示Type的意思，不一定要T写其他的也可以</span></span><br><span class="line">	<span class="keyword">private</span> T x;</span><br><span class="line">	<span class="keyword">private</span> T y;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(T x)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x = x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(T y)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.y = y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    在Point类上定义的泛型T实际上只是一个随机设置的名称，表示的是，该类型由使用的时候来决定，<strong>泛型使用时只能使用引用数据类型，不能使用基本类型</strong></p>
-<p>​    范例：使用泛型声明的类Point</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Point&lt;Integer&gt; a &#x3D; new Point&lt;Integer&gt;();</span><br><span class="line">		a.setX(10);</span><br><span class="line">		a.setY(20);</span><br><span class="line">		System.out.println(&quot;x &#x3D; &quot;+a.getX()+ &quot;,y &#x3D; &quot;+a.getY());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>​    注意：使用泛型后，所有程序之中具有泛型标记的部分都会更换为相应的类型标记，这个标记在类对象实例化的时候进行动态的配置，此时就不需要转型了，而且编译时会帮助检测错误</p>
-<p>​    <strong>注意：如果使用了泛型设计类但是使用这个类并没有给泛型，那么会把泛型中所有的T变成Object类型，Object的使用就需要转型了</strong></p>
-<h4 id="4-泛型通配符"><a href="#4-泛型通配符" class="headerlink" title="4. 泛型通配符"></a>4. 泛型通配符</h4><p>​    泛型的出现解决了数据类型的转换安全问题，但是随之而来也会带来引用传递的麻烦。<strong>为解决该问题则用通配符对形参进行约束</strong></p>
-<p>​    范例：泛型的引用传递</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">class Message&lt;T&gt;&#123;</span><br><span class="line">	private T info;</span><br><span class="line">	public void setMessage(T info) &#123;</span><br><span class="line">		this.info &#x3D; info;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public T getMessage() &#123;</span><br><span class="line">		return this.info;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Message&lt;String&gt; msg &#x3D; new Message&lt;String&gt;();</span><br><span class="line">		msg.setMessage(&quot;篮球&quot;);</span><br><span class="line">		print(msg);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void print(Message&lt;String&gt; msg) &#123;</span><br><span class="line">		System.out.println(msg.getMessage());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>注意：</strong></p>
-<ol>
-<li>泛型作为形参不可以作为重载标识，重载的参数类型名以类名作为标识与泛型无关</li>
-<li>泛型在作为形参时需要注明泛型的类型</li>
-<li>如果没有声明泛型类型，传过来则使用Object类型来代替未设置的泛型标记，也就说传过来后的泛型可以设置成任意类型</li>
-</ol>
-<p>​    <em>为了解决3这个问题，泛型里提供了通配符”?“</em><br>​    使用通配符”?“会限制程序不可以修改传过来的对象，此时对象仍然为object类型(可以描述一切的泛型类型)，但无法进行修改(取和改)</p>
-<p>​    在通配符?的基础之上，又产生了两个通配符的应用：</p>
-<ul>
-<li>设置泛型的下限：? super类;<br>​    例如：”? super String“，表示可以设置的泛型类只能够是String以及其父类(Object)</li>
-<li>设置泛型的上限：? extands 类;<br>​    例如：”? extends Number“：表示所设置的泛型类型只能够是Number或者其子类<br>​    <strong>注意：泛型的上限可以对类进行修饰(类&lt; T extends 类(界限)&gt;)</strong></li>
-</ul>
-<h4 id="5-泛型接口"><a href="#5-泛型接口" class="headerlink" title="5. 泛型接口"></a>5. 泛型接口</h4><p>​    泛型也可以应用在接口上，此类接口称为泛型接口</p>
-<p>​    泛型接口的定义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface IMessage&lt;T&gt;&#123;</span><br><span class="line">	public void send(T content);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    所有的接口在使用的时候都必须依靠子类，那么在此时子类有两种实现泛型接口的方式</p>
-<ul>
-<li>方式一：在子类中继续指定泛型标记<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(T content)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MessageImpl</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(T content)</span> </span>&#123;</span><br><span class="line">		System.out.println(content);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		IMessage&lt;String&gt; a = <span class="keyword">new</span> MessageImpl&lt;String&gt;();<span class="comment">//后面的String可以省略，尖括号还是需要</span></span><br><span class="line">		a.send(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>​    上面代码的注释中，在JDK1.8出现了一个自动推导泛型的概念，因为每一次前后都需要编写泛型类型，过于复杂，所以现在前面定义了泛型类型，那么后面就可以不需要重复定义了</p>
-<ul>
-<li>方式二：子类不再设置泛型类型，而为父类指派好类型</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface IMessage&lt;T&gt;&#123;</span><br><span class="line">	public void send(T content);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MessageImpl implements IMessage&lt;String&gt;&#123;</span><br><span class="line">	public void send(String content) &#123;</span><br><span class="line">		 System.out.println(content);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		IMessage&lt;String&gt; a &#x3D; new MessageImpl();</span><br><span class="line">		a.send(&quot;hello&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-泛型方法"><a href="#6-泛型方法" class="headerlink" title="6. 泛型方法"></a>6. 泛型方法</h4><p>​    所有泛型方法不一定非要定义在泛型的类或泛型接口之中，这也就是说任意一个方法都可以定义为泛型方法，但是需要对泛型标记（&lt;  T &gt;）加以声明</p>
-<p>​    范例：定义泛型方法<br>​    此时对于传入的参数类型就由调用方法的语句来外部定义了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T[] init(T ... args)&#123; <span class="comment">//T[]表示T类型数组</span></span><br><span class="line"><span class="keyword">return</span> args; <span class="comment">//返回是类对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    知道一个方法如何去定义一个泛型就行了</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/10/25/%E5%8F%8D%E5%B0%84%E5%AE%9E%E4%BE%8B/">反射实例</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-10-25T11:24:45.000Z" itemprop="datePublished">
-    2021-10-25
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h3 id="1-静态工厂"><a href="#1-静态工厂" class="headerlink" title="1. 静态工厂"></a>1. 静态工厂</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Message msg &#x3D; factory.getMessage(&quot;PaperMessage&quot;);</span><br><span class="line">		msg.send(&quot;静态工厂&quot;);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Message&#123;</span><br><span class="line">	public void send(String msg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class PaperMessage implements Message&#123;</span><br><span class="line">	public void send(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;【报纸报道】：&quot;+ msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class InternalMessage implements Message&#123;</span><br><span class="line">	public void send(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;【网络报道】：&quot;+ msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;工厂类，隐藏构造方法，提供分发的方法</span><br><span class="line">class factory&#123;</span><br><span class="line">	private factory() &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	public static Message getMessage(String className) &#123;</span><br><span class="line">		if(&quot;PaperMessage&quot;.equals(className)) &#123;</span><br><span class="line">			return new PaperMessage();</span><br><span class="line">		&#125;else if(&quot;InternalMessage&quot;.equals(className)) &#123;</span><br><span class="line">			return new InternalMessage();</span><br><span class="line">		&#125;else</span><br><span class="line">			return null;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-使用反射修改后的静态工厂"><a href="#2-使用反射修改后的静态工厂" class="headerlink" title="2. 使用反射修改后的静态工厂"></a>2. 使用反射修改后的静态工厂</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Message msg &#x3D; factory.getMessage(&quot;hello.PaperMessage&quot;);</span><br><span class="line">		msg.send(&quot;静态工厂&quot;);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Message&#123;</span><br><span class="line">	public void send(String msg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class PaperMessage implements Message&#123;</span><br><span class="line">	public void send(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;【报纸报道】：&quot;+ msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class InternalMessage implements Message&#123;</span><br><span class="line">	public void send(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;【网络报道】：&quot;+ msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用反射修改了工厂类</span><br><span class="line">class factory&#123;</span><br><span class="line">	private factory() &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	public static Message getMessage(String className) &#123;</span><br><span class="line">		Message msg &#x3D; null;</span><br><span class="line">		try &#123;</span><br><span class="line">			msg &#x3D; (Message)Class.forName(className).getDeclaredConstructor().newInstance();</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return msg;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-反射获取类结构"><a href="#3-反射获取类结构" class="headerlink" title="3. 反射获取类结构"></a>3. 反射获取类结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.util.Arrays;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		Class&lt;?&gt; clazz &#x3D; D.class;</span><br><span class="line">		System.out.println(&quot;【包名称：】&quot;+clazz.getPackageName());</span><br><span class="line">		System.out.println(&quot;【继承的父类：】&quot;+clazz.getSuperclass());</span><br><span class="line">		System.out.println(&quot;【继承的接口：】&quot;+Arrays.toString(clazz.getInterfaces()));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface A&#123;&#125;</span><br><span class="line"></span><br><span class="line">interface B&#123;&#125;</span><br><span class="line"></span><br><span class="line">abstract class C implements A,B&#123;&#125;</span><br><span class="line"></span><br><span class="line">abstract class D extends C implements A,B&#123;&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 </article>

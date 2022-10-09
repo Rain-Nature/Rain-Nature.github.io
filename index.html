@@ -70,6 +70,268 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/10/09/javaEE04/">javaEE04</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-10-09T06:36:39.000Z" itemprop="datePublished">
+    2022-10-09
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/JavaEE/">JavaEE</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="JSP内置对象"><a href="#JSP内置对象" class="headerlink" title="JSP内置对象"></a>JSP内置对象</h2><h4 id="1-内置对象的概念"><a href="#1-内置对象的概念" class="headerlink" title="1. 内置对象的概念"></a>1. 内置对象的概念</h4><p>​    在Java程序中给了你一个类，要使用他用户需要创建一个对象，而<strong>内置对象指的是不需要用户自己创建的对象</strong>(即不需要用户自己手工进行对象实例化)。而是由WEB容器在它启动时默认创建好的对象，用户可以直接拿来使用</p>
+<h4 id="2-内置对象"><a href="#2-内置对象" class="headerlink" title="2. 内置对象"></a>2. 内置对象</h4><p>​    当前主要学习JSP中提供的九个内置对象</p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">对象名称</th>
+<th align="center">JavaEEAPI路径</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">pageContext</td>
+<td align="center">javax.servlet.jsp.PageContext</td>
+<td align="center">页面的上下文操作</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">request</td>
+<td align="center">javax.servlet.http.HttpServletRequest</td>
+<td align="center">服务器端接收客户端请求内容</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">response</td>
+<td align="center">javax.servlet.http.HttpServletResponse</td>
+<td align="center">服务器端回应客户端的请求操作</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">session</td>
+<td align="center">javax.servlet.http.HttpSession</td>
+<td align="center">描述每一个用户(登录)的信息</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">application</td>
+<td align="center">javax.servlet.ServletContext</td>
+<td align="center">描述整个当前项目的上下文</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">config</td>
+<td align="center">javax.servlet.ServletConfig</td>
+<td align="center">取得默认的配置信息</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">out</td>
+<td align="center">javax.servlet.jsp.Writer</td>
+<td align="center">进行输出，一般不用</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">page</td>
+<td align="center">javax.lang.Object</td>
+<td align="center">每一个页面都属于Object子类(一般不用)</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">exception</td>
+<td align="center">java.lang.Throwable</td>
+<td align="center">默认情况下，所有的异常都可以由容器处理，处理方式为输出错误信息并结束程序运行</td>
+</tr>
+</tbody></table>
+<p>​    通过JavaEEAPI路径可以查询到每个对象有的方法</p>
+<p>​    <strong>注意：在这九个内置对象中，前五个内置对象是精华需要重点了解学习</strong>，但要学好JSP开发，以上内置对象需要全部记住</p>
+<h4 id="3-四种属性范围"><a href="#3-四种属性范围" class="headerlink" title="3. 四种属性范围"></a>3. 四种属性范围</h4><p>​    四种属性范围是整个JavaWeb的核心概念，如果不清楚四种属性范围，就无法更好的理解MVC，也无法进行有效的程序开发，以及后面理解Struts、SpringMVC等概念</p>
+<p>​    <strong>属性范围的概念</strong></p>
+<p>​    在任何一个Web项目中都会存在多个页面，如果一个对象需要跨越多个页面后依然可以被使用，这被称为属性的保存范围，在JSP中对属性的操作提供如下三个方法。</p>
+<ol>
+<li><p><strong>设置属性：<code>public void setAttribute(String name,Object value)</code></strong></p>
+<p>属性名要String类型且不允许重复(重复就会覆盖)，value是Object类型意味着可以报存所有的Java类型</p>
+</li>
+<li><p><strong>取得属性：<code>public Object getAttribute(String name)</code></strong></p>
+</li>
+<li><p><strong>删除属性：<code>public void removeAttribute(String name)</code></strong></p>
+</li>
+</ol>
+<p>​    在JSP里面一共有四个对象具备以上的三个方法：pageContext、request、session、application</p>
+<p>​    四种属性范围刚好也是对应了这四个对象</p>
+<h4 id="4-page属性范围-pageContext"><a href="#4-page属性范围-pageContext" class="headerlink" title="4. page属性范围(pageContext)"></a>4. page属性范围(pageContext)</h4><p>​    <strong>page属性范围：对象只能够在当前的JSP页面中使用</strong></p>
+<p>​    注意：page属性范围不是只使用page对象操作，事实上没有这个对象，我们是使用pageContext对象完成</p>
+<p>​    范例：通过pageContext设置本页面属性</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件page.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	pageContext.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>);</span><br><span class="line">	pageContext.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date());</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) pageContext.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) pageContext.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：pageContext的属性作用范围只在当前页面，如果发生跳转(不管是服务器跳转还是客户端跳转)那么pageContext所设置的属性的值不会保留到其他页面</p>
+<h4 id="5-request属性范围-request"><a href="#5-request属性范围-request" class="headerlink" title="5. request属性范围(request)"></a>5. request属性范围(request)</h4><p>​    如果想在执行服务器跳转后依然可以取得设置的属性内容，则可以采用request属性范围</p>
+<p>​    范例：使用request对象来传递服务器跳转的值</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件request_a.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	request.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>);</span><br><span class="line">	request.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date());</span><br><span class="line">%&gt;</span><br><span class="line"><span class="comment">//服务器端跳转</span></span><br><span class="line">&lt;jsp:forward page=<span class="string">&quot;request.jsp&quot;</span>/&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//编写文件request_b.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) request.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) request.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：只有是服务器端跳转无论跳转几次，request设置的属性可以一直被保留下来</p>
+<p>​    <strong>注意：服务器端跳转与客户端跳转的最大使用区别：服务器端跳转可以传递request属性，而客户端跳转不能传递request属性</strong></p>
+<h4 id="6-session属性范围-session"><a href="#6-session属性范围-session" class="headerlink" title="6. session属性范围(session)"></a>6. session属性范围(session)</h4><p>​    如果不想受到跳转的类型限制，则可以继续扩大属性的保存范围，使用session范围，只要设置了一个session属性，那所有与之相关联的所有页面都可以访问。</p>
+<p>​    范例：session对象的使用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件session_a.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	session.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>);</span><br><span class="line">	session.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date());</span><br><span class="line">%&gt;</span><br><span class="line"><span class="comment">//客户端跳转</span></span><br><span class="line">&lt;a href=&quot;session_b&quot;&gt;跳转&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//编写文件session_b.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) session.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) session.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：虽然session属性范围可以包括所有的跳转页面，但如果关闭浏览器再次访问，session设置的属性会失效</p>
+<p>​    <strong>session最简单的概念为用于客户端描述一个个用户的信息，每个用户的信息彼此独立</strong></p>
+<h4 id="7-application属性范围-application"><a href="#7-application属性范围-application" class="headerlink" title="7. application属性范围(application)"></a>7. application属性范围(application)</h4><p>​    如果需要在浏览器关闭后，再次打开依然可以访问到我们设置的属性，那么需要将属性范围设置为application范围</p>
+<p>​    范例：application对象的使用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件application_a.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	application.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>);</span><br><span class="line">	application.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date());</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//编写文件application_b.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) application.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) application.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：上述代码并没有写跳转语句，但当打开<code>application_a.jsp</code>再打开<code>application_b.jsp</code>，依然可以访问到设置的属性</p>
+<p>​    <strong>注意：只要设置了此属性，那么意味着属性保存在服务器上，所有的用户都可以访问到，与是否关闭浏览器无关，但如果关闭服务器，则该设置的属性失效，即如果服务器不关闭，该设置的属性将一直存在</strong></p>
+<h4 id="8-四种属性范围总结"><a href="#8-四种属性范围总结" class="headerlink" title="8. 四种属性范围总结"></a>8. 四种属性范围总结</h4><p>​    保存范围越大的属性，实际上占用的资源时间长，所以对于属性范围的选择几乎不会选择application范围(保存时间过长会占用服务器资源使得服务器性能下降)，剩下三种都会有使用到</p>
+<h4 id="9-pageContext对象的进阶"><a href="#9-pageContext对象的进阶" class="headerlink" title="9. pageContext对象的进阶"></a>9. pageContext对象的进阶</h4><p>​    pageContext对象实际上可以设置上面的四种属性范围，在pageContext对应的类(<code>javax.servlet.jsp.PageContext</code>)的父类(<code>javax.servlet.jsp.JspContext</code>)中提供了另外一组<strong>重载</strong>的属性操作方法</p>
+<ul>
+<li><p><strong>设置属性：<code>public abstract void setAttribute(String name,Object value,int scope)</code></strong></p>
+</li>
+<li><p><strong>取得属性：<code>public abstract Object getAttribute(String name,int scope)</code></strong></p>
+</li>
+</ul>
+<ul>
+<li>**删除属性：<code>public abstract void removeAttribute(String name,int scope)**</code></li>
+</ul>
+<p>​    对于重载方法中的scope参数取值都在PageContext类里面定义</p>
+<table>
+<thead>
+<tr>
+<th align="center">scope在PageContext类中的定义</th>
+<th align="center">类型</th>
+<th align="center">对应数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public static final int PAGE_SCOPE</td>
+<td align="center">静态常量</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">public static final int REQUEST_SCOPE</td>
+<td align="center">静态常量</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">public static final int SESSION_SCOPE</td>
+<td align="center">静态常量</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center">public static final int APPLICATION_SCOPE</td>
+<td align="center">静态常量</td>
+<td align="center">4</td>
+</tr>
+</tbody></table>
+<p>​    范例pageContext对应方法的进阶使用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件pageContext_a.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	pageContext.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>,<span class="number">4</span>);</span><br><span class="line">	pageContext.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date(),<span class="number">4</span>);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//编写文件pageContext_b.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) application.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) application.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    pageContext是一个功能强大的对象，但是这个对象只能够在JSP中使用</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2022/10/09/javaEE03/">javaEE03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-10-09T06:31:30.000Z" itemprop="datePublished">
+    2022-10-09
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/JavaEE/">JavaEE</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="web项目编写"><a href="#web项目编写" class="headerlink" title="web项目编写"></a>web项目编写</h2><h4 id="1-Idea对Javaweb的项目创建"><a href="#1-Idea对Javaweb的项目创建" class="headerlink" title="1. Idea对Javaweb的项目创建"></a>1. Idea对Javaweb的项目创建</h4><pre><code>   1. 点击新建项目，选择`Java Enterprise`，更改项目名称，将项目模板改为`Web 应用程序`，将应用程序服务器改为自己下载的Tomcat路径，下面都不用动，点`next`
+
+   2. 这里的第三方框架暂时都是用不上，只需要在已添加项中有`Servlet`就行
+   3. 点击完成Javaweb项目就创建完成</code></pre>
+<p>​    <strong>项目结构的概述</strong></p>
+<pre><code>   1. .idea不用管他，在src中编写文件
+
+   2. 在java文件夹中编写java代码
+   3. 在resources文件夹中放置配置文件
+   4. 在webapp中放jsp文件
+   5. 需要的包要在pom.xml中声明</code></pre>
+<p>​    <strong>欢迎页与列表</strong></p>
+<p>​    在项目新建后即可运行，点击运行可以运行项目自动生成的jsp欢迎页面，但在学习过程中需要列表来显示所有页面，此时可以通过修改Tomcat中的<code>conf/web.xml</code>文件的<code>welcome-file-list</code>来更改</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//web.xml文件里的默认设置；名叫index的页面作为主页，这几个页面(不一定只有三个)都有的话显示优先级为从上到下</span><br><span class="line"><span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.html<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.htm<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.jsp<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    可以把这串设置复制到自己项目的xml文件中，然后自己修改首次登录页面(如果项目中没有设置默认是使用Tomcat提供的xml中的设置)，<strong>如果项目中没有名叫这几个的页面，则显示列表</strong></p>
+<h4 id="2-Javaweb的jdbc连接"><a href="#2-Javaweb的jdbc连接" class="headerlink" title="2. Javaweb的jdbc连接"></a>2. Javaweb的jdbc连接</h4><p>​    使用jsp来引入jdbc，<strong>此时mysql的驱动程序应当复制一份到Tomcat的<code>lib</code>目录下</strong></p>
+<blockquote>
+<p>C:\Program Files\Apache Software Foundation\Tomcat 8.5_Tomcat8new\lib</p>
+</blockquote>
+<p>​    否则会出现错误：数据库无法找到</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javax.servlet.ServletException: java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    还有一种情况是url书写时发生错误，如端口号写错，则提示错误：数据库连接异常</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javax.servlet.ServletException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    另外，在JSP中写JDBC没有对异常有强制处理，一旦出错就是报500，因为默认情况下，所有的异常都可以由容器处理，处理方式为输出错误信息并结束程序运行</p>
+<h4 id="3-数据检查"><a href="#3-数据检查" class="headerlink" title="3. 数据检查"></a>3. 数据检查</h4><p>​    在系统开发当中，数据的安全性检查分为两个部分</p>
+<ul>
+<li><p>服务器的验证：由JSP文件负责验证</p>
+</li>
+<li><p>客户端验证：由JavaScript完成</p>
+</li>
+</ul>
+<p>​    <strong>任何一个健壮的系统这两个验证都需要编写，即两端都要编写验证</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2022/09/20/Java16/">Java16</a>
         </h1>
       
@@ -1200,321 +1462,6 @@
 <li>width:500px; 放在table标签中设置表格宽度为500像素</li>
 <li>height:500px; 放在table标签中设置表格高度为500像素</li>
 </ul>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2022/01/21/%E5%89%8D%E7%AB%AF03/">前端03</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2022-01-21T05:34:33.000Z" itemprop="datePublished">
-    2022-01-21
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/HTML-CSS/">HTML+CSS</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="HTML表单的设计与使用"><a href="#HTML表单的设计与使用" class="headerlink" title="HTML表单的设计与使用"></a>HTML表单的设计与使用</h2><h4 id="1-表单的概念"><a href="#1-表单的概念" class="headerlink" title="1. 表单的概念"></a>1. 表单的概念</h4><p>​    表单在网页中主要负责数据采集功能，<strong>主要用于搜集不同类型的用户输入</strong>，是人和电脑相互交流的通道</p>
-<p>​    <strong>一个表单由两个基本组成部分：表单标签和表单域，<em>注意：由开始和结束的表单标签来组成一个表单域，一个页面可以有多个表单区域(通过name属性进行区分，不要重名)，但两个表单之间不支持嵌套</em></strong></p>
-<p>​    表单区域代码示例</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;form1&quot;</span> <span class="attr">action</span>=<span class="string">&quot;register.html&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">	//里面可以写表单内容</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>name属性：定义表单名字，由英文字母定义</li>
-<li>action属性：指定表单提交后，提交的目的地</li>
-<li>method属性：有post和get，post打包暗箱传输的数据，而get是通过地址栏传值，不写该属性默认值为get</li>
-</ul>
-<p>​    表单标签<code>&lt;form&gt;</code>(双) ：包含了处理表单数据所用CGI程序的URL以及数据提交到服务器的方法</p>
-<p>​    <strong>下面所提到的标签必须包含在表单域中</strong></p>
-<p>​    表单域：包含了<strong>文本框、密码框、隐藏域、多行文本框、复选框、单选框、下拉选择框和文件上传框</strong>等</p>
-<p>​    表单按钮(属于表单域)：包括**提交按钮、复位按钮和一般按钮(即什么功能都没有定义的空按钮，用户可以根据自己情况定义)**；用以将数据传送到服务器上的CGI脚本或者取消输入，还可以用表单按钮来控制其他定义了处理脚本的处理工作</p>
-<h4 id="2-单行文本框-单"><a href="#2-单行文本框-单" class="headerlink" title="2. 单行文本框(单)"></a>2. 单行文本框(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为<code>text</code> </p>
-<p>​    范例：定义一个文本框</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>name属性：指定输入框的名字，<strong>表单中每一个标签都有命名，不要有重名，接收时按名字来接收</strong>，使用英文字母自行定义，不可以为关键字</p>
-</li>
-<li><p>type属性：<strong>用于定义类型</strong>，单行文本输入框的type固定为text</p>
-</li>
-</ul>
-<p>​    注意：未加修饰的文本框在不同的浏览器显示的效果是不一样的，如果要所有的浏览器看到同一个效果，则需要使用CSS对其进行修饰</p>
-<h4 id="3-密码输入框-单"><a href="#3-密码输入框-单" class="headerlink" title="3. 密码输入框(单)"></a>3. 密码输入框(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为<code>password</code> </p>
-<p>​    密码框和文本框的区别是在密码框输入时的东西都会被隐藏，但传值的时候还是可以看见</p>
-<p>​    范例：定义一个密码框</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>name属性：指定密码框的名字，<strong>表单中每一个标签都有命名，不要有重名，接收时按名字来接收</strong>，使用英文字母自行定义，不可以为关键字</p>
-</li>
-<li><p>type属性：密码输入框的type固定为password</p>
-</li>
-</ul>
-<p>​    <strong>注意：可以在表单中加入表格，使得各标签显示更加有序</strong></p>
-<h4 id="4-单选框-单"><a href="#4-单选框-单" class="headerlink" title="4. 单选框(单)"></a>4. 单选框(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为<code>radio</code> </p>
-<p>​    单选框一次只能选择一个选项，在单选框使用时，必须有两个以上的单选框标签，而且其name属性相同，每一个单选框构成一个选项</p>
-<p>​    范例：性别选择的实现</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">男 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span> /&gt;</span></span><br><span class="line">女 <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>name属性：name属性相同表示一组单选框</li>
-<li>type属性：单选框的type固定为radio</li>
-<li>value属性：单选框相对于用户来说只是提供选择，用户并没有往里面输入值，所以需要value属性来定义一个值，当发生传值时，将选中的单选框的value值传递出去，单选框传的值和页面显示的文字无关</li>
-<li>checked属性：没有值，表示该选项默认为选中状态</li>
-</ul>
-<p>​    注意：文本框也有value属性，如果写了value属性，页面显示的就为value的默认值</p>
-<h4 id="5-复选框-单"><a href="#5-复选框-单" class="headerlink" title="5. 复选框(单)"></a>5. 复选框(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为<code>checkbox</code> </p>
-<p>​    复选框用于多选</p>
-<p>​    范例：城市的选择</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">北京<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;city&quot;</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">上海<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;city&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span> /&gt;</span></span><br><span class="line">大连<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;city&quot;</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>name属性：name属性相同表示一组复选框</li>
-<li>type属性：复选框的type固定为checkbox</li>
-<li>value属性：复选框相对于用户来说也只是提供选择，用户并没有往里面输入值，所以需要value属性来定义一个值，当发生传值时，将选中的复选框的value值传递出去，复选框传的值和页面显示的文字无关</li>
-<li>checked属性：没有值，表示该选项默认为选中状态</li>
-</ul>
-<h4 id="6-下拉单选框-双"><a href="#6-下拉单选框-双" class="headerlink" title="6. 下拉单选框(双)"></a>6. 下拉单选框(双)</h4><p>​    用<code>&lt;select&gt;</code> 包含<code>&lt;option&gt;</code> 标签来描述，没有type属性</p>
-<p>​    下拉单选框一次只能选择一个选项，下拉单选框的本质还是单选，但其可以节省空间，可以选如年月日那种</p>
-<p>​    范例：下拉单选框的使用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">&quot;select&quot;</span> <span class="attr">id</span>=<span class="string">&quot;select&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span>&gt;</span>上海<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span>&gt;</span>大连<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>select标签的属性<ul>
-<li>name属性：指定下拉单选框的名字，使用英文字母自行定义</li>
-</ul>
-</li>
-<li>option标签的属性<ul>
-<li>value属性：指定该选项的值，传参过去时使用</li>
-<li>selected属性：没有值，表示默认选中该选项</li>
-</ul>
-</li>
-</ul>
-<h4 id="7-多行文本输入框-双"><a href="#7-多行文本输入框-双" class="headerlink" title="7. 多行文本输入框(双)"></a>7. 多行文本输入框(双)</h4><p>​    用<code>&lt;textarea&gt;</code> 标签描述，没有type属性</p>
-<p>​    多行文本输入框用于输入大量文字信息，用于像电子邮件、发帖的正文等</p>
-<p>​    范例：多行文本输入框的实现</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">&quot;input&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;20&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;80&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>name属性：指定输入框的名字，用英文表示自行定义</li>
-<li>rows属性：指定文本框的行数(20表示有20个字符那么长)</li>
-<li>cols属性：指定文本框的列数(80表示有80个字符那么长)</li>
-<li>默认值：在开始标签和结束标签中间写的东西都会作为默认值显示</li>
-</ul>
-<p>​    注意：现在一般不会这样使用cols属性和rows属性来确定多行文本输入框的大小</p>
-<h4 id="8-文件上传-单"><a href="#8-文件上传-单" class="headerlink" title="8. 文件上传(单)"></a>8. 文件上传(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为file</p>
-<p>​    用于把文件上传到服务器</p>
-<p>​    范例：文件上传的前端部分</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>name属性：指定该文件上传接口的名字，用英文表示自行定义</li>
-<li>type属性：提交按钮的type属性固定为file</li>
-</ul>
-<p>​    注意：此时只是为前台页面的上传，该上传并不具有文件上传的逻辑，要想真正实现上传专门去用程序去实现上传的组件，他只是前台的一个接口</p>
-<h4 id="9-提交按钮-单"><a href="#9-提交按钮-单" class="headerlink" title="9. 提交按钮(单)"></a>9. 提交按钮(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为submit</p>
-<p>​    <strong>用于将表单数据提交给<code>form</code> 标签中action属性指定的地址进行处理，即传出去了，但action的那个页面能否接收要看那个页面是怎么写的</strong></p>
-<p>​    范例：实现提交按钮</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;注册&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>name属性：指定按钮名字，用英文字母自行定义</li>
-<li>type属性：提交按钮的type属性固定为submit</li>
-<li>value属性：指定按钮上显示的字</li>
-</ul>
-<h4 id="10-普通按钮-单"><a href="#10-普通按钮-单" class="headerlink" title="10. 普通按钮(单)"></a>10. 普通按钮(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为button</p>
-<p>​    该按钮相当于空的按钮，需要自己使用脚本进行定义</p>
-<h4 id="11-重置按钮-单"><a href="#11-重置按钮-单" class="headerlink" title="11. 重置按钮(单)"></a>11. 重置按钮(单)</h4><p>​    用<code>&lt;input&gt;</code> 标签描述，type属性为reset</p>
-<p>​    用于清空表单已经填写的数据，把表单恢复初始化</p>
-<p>​    范例：定义重置按钮</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">name</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">value</span>=<span class="string">&quot;重填&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>name属性：指定按钮名字，用英文字母自行定义</li>
-<li>type属性：重置按钮的type属性固定为reset</li>
-<li>value属性：指定按钮上显示的字</li>
-</ul>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2022/01/16/%E5%89%8D%E7%AB%AF02/">前端02</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2022-01-16T08:39:54.000Z" itemprop="datePublished">
-    2022-01-16
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/HTML-CSS/">HTML+CSS</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="HTML的标签"><a href="#HTML的标签" class="headerlink" title="HTML的标签"></a>HTML的标签</h2><h4 id="1-标题标签-双"><a href="#1-标题标签-双" class="headerlink" title="1. 标题标签(双)"></a>1. 标题标签(双)</h4><p>​    标题是通过<code>&lt;h1&gt;</code> -<code>&lt;h6&gt;</code> 等标签进行定义的，其中<code>&lt;h1&gt;</code> 定义最大的标题，<code>&lt;h6&gt;</code> 定义最小的标题</p>
-<p>​    注意：标题标签只能用于标题，<strong>不要为了产生粗体或大号的文本而使用标题，标题是为网页结构和内容编制的索引，搜索引擎会抓取标题当关键字</strong></p>
-<h4 id="2-基本标签"><a href="#2-基本标签" class="headerlink" title="2. 基本标签"></a>2. 基本标签</h4><ul>
-<li><p><strong>段落标签(双)</strong></p>
-<p>段落是使用<code>&lt;p&gt;</code> 标签在HTML页面中创建段落</p>
-</li>
-<li><p><strong>水平线标签(单)</strong></p>
-<p>水平线是使用<code>&lt;hr&gt;</code>标签在HTML页面中创建水平线</p>
-</li>
-<li><p><strong>换行标签(单)</strong></p>
-<p>换行是使用<code>&lt;br&gt;</code>标签在HTML页面中创建换行符，<code>&lt;br /&gt;</code>是写XHTML时的一个严格语法，如果不是写XHTML，则HTML中都应该使用<code>&lt;br&gt;</code>，<strong>注意：在代码中敲多少回车都没有用，多个空白符当一个空格</strong></p>
-</li>
-<li><p><strong>空格标签(符)</strong></p>
-<p>空格是使用<code>&amp;nbsp</code>标签在HTML页面中显示空格</p>
-</li>
-<li><p><strong>注释</strong></p>
-<p>HTML使用<code>&lt;!-- --&gt;</code>期间的内容为注释，注释在页面不显示，代码中可显示</p>
-</li>
-<li><p><strong>加粗( 双)</strong></p>
-<p>加粗是使用<code>&lt;b&gt;</code>标签对标签内的文本进行加粗</p>
-</li>
-</ul>
-<h4 id="3-图像标签-单"><a href="#3-图像标签-单" class="headerlink" title="3. 图像标签(单)"></a>3. 图像标签(单)</h4><p>​    图像使用<code>&lt;img&gt;</code> 标签在HTML页面中创建图像</p>
-<p>​    <strong><code>&lt;img&gt;</code> 标签常用的属性如下（加粗为必须要使用的属性）</strong>：</p>
-<ul>
-<li><p><strong><code>src</code>：设定要引用图像的路径，如果图像路径不正确会在web页面上显示损坏的图像</strong></p>
-</li>
-<li><p><code>alt</code>：为图像定义一串预备的可替换文本，在浏览器无法载入图像时，浏览器将显示这个替代性文本</p>
-</li>
-<li><p><code>width</code>：设定图像宽度，属性值为像素</p>
-</li>
-<li><p><code>height</code>：设定图像高度，属性值为像素</p>
-<p>注意：一般不会采用width或者height这种形式对图像进行强制放缩，<strong>因为采用这种形式进行放缩，文件量是不变的，即大图像变小但是文件大小不变，此时会造成网页上有许多占用流量的图像，使得网页反馈速度变慢</strong></p>
-</li>
-</ul>
-<h4 id="4-路径"><a href="#4-路径" class="headerlink" title="4. 路径"></a>4. 路径</h4><p>​    路径分为网络路径和硬盘物理路径，我们在网上使用的都是网络路径</p>
-<p>​    <strong>网络路径分为绝对路径和相对路径</strong></p>
-<ul>
-<li>绝对路径：由根目录（/）开始写起的文件名或目录名称</li>
-<li>相对路径：相对于目前路径的文件名写法</li>
-</ul>
-<p>​    <strong>路径的切换</strong></p>
-<ul>
-<li>同级别：直接写文件名</li>
-<li>上一次级别：用<code>../</code> 文件名</li>
-<li>下一次级别：用目录名<code>/</code> 文件名</li>
-</ul>
-<p>​    <strong>注意：在网页中只能使用<code>/</code>来分隔路径</strong>，不可以使用<code>\</code>，<code>\</code>是Windows操作系统分隔路径用的</p>
-<h4 id="5-超级链接（双）"><a href="#5-超级链接（双）" class="headerlink" title="5. 超级链接（双）"></a>5. 超级链接（双）</h4><p>​    超链接使用<code>&lt;a&gt;</code> 标签在HTML页面中创建超链接，开始标签和结束标签之间的文字、图像被作为链接来显示</p>
-<p>​    <code>&lt;a&gt;</code> 标签里的内容会成为web页面中可单击的文本，默认这是有下划线的，可以用CSS去除</p>
-<p>​    <strong><code>&lt;a&gt;</code> 标签常用的属性如下（加粗为必须要使用的属性）：</strong></p>
-<ul>
-<li><p><strong><code>href</code>：用于定位需要链接的文档，里面写要跳转网页的路径，或者目标文件，事实上可以指向各种各样的资源</strong></p>
-</li>
-<li><p><code>target</code>：定义被链接的文档在何处显示</p>
-<p>常用的两个值</p>
-<ol>
-<li><code>_self</code>：在本窗口打开链接，不设置target则此为默认值</li>
-<li><code>_blank</code>：在一个新窗口打开链接</li>
-</ol>
-</li>
-<li><p>title：定义鼠标停留在链接上提示信息</p>
-</li>
-</ul>
-<h4 id="6-列表-双"><a href="#6-列表-双" class="headerlink" title="6. 列表(双)"></a>6. 列表(双)</h4><p>​    列表分为有序列表和无序列表</p>
-<ul>
-<li>无序列表：在HTML中使用<code>&lt;ul&gt;</code> 标签表示无序列表，每一个列表项使用<code>&lt;li&gt;</code> 表示</li>
-</ul>
-<ul>
-<li><p>有序列表：在HTML中使用<code>&lt;ol&gt;</code> 标签表示有序列表，每一个列表项使用<code>&lt;li&gt;</code> 表示</p>
-<p><strong>注意：不管是有序列表还是无序列表<code>&lt;li&gt;</code> 都是双标签，而且这三个标签都为块元素</strong></p>
-</li>
-</ul>
-<ul>
-<li><p>自定义列表：使用<code>&lt;dl&gt;</code> 、<code>&lt;dt&gt;</code> 、<code>&lt;dd&gt;</code> 来组成自定义列表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;dl&gt;</span><br><span class="line">	&lt;dt&gt;burma Shave Signs&lt;&#x2F;dt&gt;</span><br><span class="line">	&lt;dd&gt;Road signs common&lt;&#x2F;dd&gt;</span><br><span class="line">	&lt;dt&gt;Route&lt;&#x2F;dt&gt;</span><br><span class="line">	&lt;dd&gt;Most famous&lt;&#x2F;dd&gt;</span><br><span class="line">&lt;&#x2F;dl&gt;</span><br></pre></td></tr></table></figure>
-
-<p>浏览器显示效果</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/qpNZjS"><img src="https://s1.ax1x.com/2022/03/16/qpNZjS.png" alt="qpNZjS.png"></a></p>
-</li>
-</ul>
-<p>​    </p>
-<p>​    列表可以相互嵌套，但嵌套的标签需要放在<code>&lt;li&gt;</code> 里面</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>城市<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>上海<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span>广州<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span>&gt;</span>地方<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="7-表格-双"><a href="#7-表格-双" class="headerlink" title="7. 表格(双)"></a>7. 表格(双)</h4><p>​    表格一般主要用于展示数据，但在网页设计中，主要用于布局，做容器使用</p>
-<p>​    表格的图示</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/7JdhZ9"><img src="https://s4.ax1x.com/2022/01/15/7JdhZ9.png" alt="7JdhZ9.png"></a></p>
-<p>​    在HTML中使用<code>&lt;table&gt;</code> 标签来定义表格；<br>​    使用<code>&lt;tr&gt;</code> 标签表示表格的一行，<code>&lt;tr&gt;</code> 标签里面不可以直接放元素；<br>​    使用<code>&lt;td&gt;</code> 来表示表格的一列(必须在行标签中)，即单元格，<strong>在<code>&lt;td&gt;</code> 标签中可以包含文本、图片、列表、段落、水平线、表格等任何元素</strong>；<br>​    使用<code>&lt;th&gt;</code> 来表示表头，该标签可加可不加</p>
-<p>​    <strong>注意：上述标签都为双标签</strong></p>
-<p>​    <strong><code>&lt;table&gt;</code> 标签的常用属性</strong></p>
-<ul>
-<li><code>cellspacing</code> ：用来定义表格的间距(单元格边框与单元格边框之间的距离)，默认值为1px</li>
-<li><code>cellpadding</code> ：用来定义表格的边距(内容与单元格边框之间的距离)</li>
-<li><code>width</code> ：用来定义表格的宽度</li>
-<li><code>height</code> ：用来定义表格的高度</li>
-<li><code>border</code> ：用来定义表格的边框粗细</li>
-</ul>
-<p>注意：上述属性都是用像素(px)为单位，一般设计网页设定分辨率&lt;1000px，14寸笔记本分辨率为(1366<code>*</code> 768)px</p>
-<ul>
-<li><code>align</code> ：放在<code>&lt;table&gt;</code> 标签中用来定义表格在总页面中的水平对齐方式；放在<code>&lt;td&gt;</code> 标签中用来定义单元格中的内容在单元格中的位置，两个的默认值都为left</li>
-</ul>
-<h4 id="8-引用-双"><a href="#8-引用-双" class="headerlink" title="8. 引用(双)"></a>8. 引用(双)</h4><h5 id="1-lt-q-gt-标签表示的引用-本质上为行内元素"><a href="#1-lt-q-gt-标签表示的引用-本质上为行内元素" class="headerlink" title="(1).&lt;q&gt; 标签表示的引用(本质上为行内元素)"></a>(1).<code>&lt;q&gt;</code> 标签表示的引用(本质上为行内元素)</h5><p>​    当需要引用一段文字时可以使用<code>&lt;q&gt;</code> 标签来将该段文字被引用</p>
-<p>​    在不同的浏览器中显示情况不同，有些浏览器会为被引用的文字添加双引号(该双引号在网页不会被选中)，而有些浏览器不会，所以在使用时需要自行调试</p>
-<h5 id="2-lt-blockquote-gt-标签表示的引用-本质上为块元素"><a href="#2-lt-blockquote-gt-标签表示的引用-本质上为块元素" class="headerlink" title="(2).&lt;blockquote&gt; 标签表示的引用(本质上为块元素)"></a>(2).<code>&lt;blockquote&gt;</code> 标签表示的引用(本质上为块元素)</h5><p>​    当需要引用一段文字时可以使用<code>&lt;blockquote&gt;</code> 标签来将该段文字被引用</p>
-<p>​    在浏览器中显示一块区域类似<code>&lt;p&gt;</code>但里面的放的文字会有所缩进(有些浏览器可能不会缩进)</p>
-<h5 id="注意：两个标签表示的引用效果相同，只是一个是行内元素，另一个是块元素"><a href="#注意：两个标签表示的引用效果相同，只是一个是行内元素，另一个是块元素" class="headerlink" title="注意：两个标签表示的引用效果相同，只是一个是行内元素，另一个是块元素"></a>注意：两个标签表示的引用效果相同，只是一个是行内元素，另一个是块元素</h5><h4 id="9-特殊字符"><a href="#9-特殊字符" class="headerlink" title="9. 特殊字符"></a>9. 特殊字符</h4><p>​    在HTML中有些字符用于组成HTML页面，导致要输出其时无法正常显示，此时就需要使用HTML规定的特殊字符表示的方法</p>
-<p>​    <strong>常用的特殊字符</strong></p>
-<ol>
-<li><code>&lt;</code>字符：<code>&amp;lt</code> </li>
-<li><code>&gt;</code>字符：<code>&amp;gt</code> </li>
-<li><code>&amp;</code>字符：<code>&amp;amp</code> </li>
-</ol>
-<h4 id="10-原样输出"><a href="#10-原样输出" class="headerlink" title="10. 原样输出"></a>10. 原样输出</h4><p>​    在HTML中使用<code>&lt;pre&gt;</code> 标签来告诉浏览器，标签中的内容按照你输入方式的原样显示文本</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">	hello</span><br><span class="line">	world</span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="11-代码显示-双"><a href="#11-代码显示-双" class="headerlink" title="11. 代码显示(双)"></a>11. 代码显示(双)</h4><p>​    在HTML中使用<code>&lt;code&gt;</code> 标签来显示计算机程序代码</p>
-<h4 id="12-HTML其他标签"><a href="#12-HTML其他标签" class="headerlink" title="12. HTML其他标签"></a>12. HTML其他标签</h4><p>​    可以通过这个网址跳转查询</p>
-<p>​    <a href="[HTML Reference (w3schools.com)](https://www.w3schools.com/tags/)">HTML标签大全</a></p>
 
       
     </div>

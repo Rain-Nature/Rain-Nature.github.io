@@ -70,6 +70,107 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/05/04/Java02/">Java02</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-05-04T03:12:43.000Z" itemprop="datePublished">
+    2021-05-04
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><h4 id="1-if条件语句"><a href="#1-if条件语句" class="headerlink" title="1. if条件语句"></a>1. if条件语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>   if后面”()”内的值必须是boolean型的,若语句中仅有一条语句，则可以省略条件语句中的”{}”，书上说为增强程序可读性最好不要省略<br>   <strong>注意：if语句是从上到下执行，上面有满足条件就算下面满足条件也不执行</strong></p>
+<h4 id="2-if-else与三元运算符的转化"><a href="#2-if-else与三元运算符的转化" class="headerlink" title="2. if~else与三元运算符的转化"></a>2. if~else与三元运算符的转化</h4><p>例：求绝对值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(a&gt;0)</span><br><span class="line">	b &#x3D; a;</span><br><span class="line">else</span><br><span class="line">	b &#x3D; -a;</span><br><span class="line">可以转化为</span><br><span class="line">b &#x3D; a &gt; 0?a:-a; &#x2F;&#x2F;问号前面的表达式为真则返回问号与冒号之间的表达式，否则把冒号后面的表达式给b，注意：三元运算符是有一个返回值的</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-switch多分支语句"><a href="#3-switch多分支语句" class="headerlink" title="3. switch多分支语句"></a>3. switch多分支语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">switch(表达式) &#x2F;*在JDK1.6以前常量值必须是整型或字符型，在JDK1.7中，常量值除了整型或字符型还可以是字符串类型，注意常量值绝对不能是实数，如1.1就不行*&#x2F;</span><br><span class="line">&#123;</span><br><span class="line">	注意：同一个switch语句，case的常量值必须不互相同</span><br><span class="line">	case 常量值1:</span><br><span class="line">	语句块1;</span><br><span class="line">	break;</span><br><span class="line">	...</span><br><span class="line">	case 常量值n:</span><br><span class="line">	语句块n;</span><br><span class="line">	break;</span><br><span class="line">	default:</span><br><span class="line">	语句块n+1; &#x2F;&#x2F;default不需要break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-while循环语句-先判断再执行"><a href="#4-while循环语句-先判断再执行" class="headerlink" title="4. while循环语句(先判断再执行)"></a>4. while循环语句(先判断再执行)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while(条件表达式)&#123;  &#x2F;&#x2F;条件表达式返回值为真继续循环，为假退出循环</span><br><span class="line">	执行语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-do…while循环语句-先执行再判断"><a href="#5-do…while循环语句-先执行再判断" class="headerlink" title="5. do…while循环语句(先执行再判断)"></a>5. do…while循环语句(先执行再判断)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">do</span><br><span class="line">&#123;</span><br><span class="line">	执行语句</span><br><span class="line">&#125;</span><br><span class="line">while(条件表达式);  &#x2F;&#x2F;注意这里是比while循环多一个分号</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-for循环语句"><a href="#6-for循环语句" class="headerlink" title="6. for循环语句"></a>6. for循环语句</h4><p>与c一样<br><strong>注意：for循环里第一个表达式里是填初始化表达式，可以为空，但不可以直接填一个变量(不管什么类型)，哪怕这个变量前面已经定义赋值</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(i;i&lt;12;i++) &#x2F;&#x2F;错误的，i因改为i&#x3D;0，若i是已经定义赋值的这个第一个表达式也可以直接为空不写东西</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-foreach语句"><a href="#7-foreach语句" class="headerlink" title="7. foreach语句"></a>7. foreach语句</h4><p>foreach是for语句的特殊简化版本，不能完全取代for语句，任何foreach语句都可以改写为for语句版本，foreach语句一般用于遍历数组等方面,在这种方面给与程序员很大的方便</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(元素变量x:遍历对象obj)&#123;</span><br><span class="line">	引用了x的java语句;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例：输出一维数组中全部元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String args[]) &#123;</span><br><span class="line">		int[] arr &#x3D; &#123;3,5,7,4&#125;;</span><br><span class="line">		for(int x:arr) &#123;</span><br><span class="line">			System.out.println(x);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-循环控制"><a href="#8-循环控制" class="headerlink" title="8. 循环控制"></a>8. 循环控制</h4><p>(1).break<br>中断循环<br><strong>注意：break只能跳出一层循环，如果想直接跳到外层的循环，可以使用“标签”(java提供的功能)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标签名:循环体&#123;</span><br><span class="line">	break 标签名;  &#x2F;&#x2F;直接跳出有标签名的循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(2).continue<br>跳过本次循环执行下一次循环<br>**注意：continue也支持标签功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标签名:循环体&#123;</span><br><span class="line">	continue 标签名;  &#x2F;&#x2F;直接跳出有标签名的循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/05/03/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A405/">图灵工作室05</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-05-03T14:18:27.000Z" itemprop="datePublished">
+    2021-05-03
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>在app.json中配置全局的属性，pages为你要的页面的种类，window为标题栏的样式。<br>配置下标栏关键字为tabBar，在这里面有list属性用来进行编写（最少是两个，最多不能超过五个）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;tabBar&quot;: &#123;</span><br><span class="line">	&quot;color&quot;:&quot;#474747&quot;,           &#x2F;&#x2F;文字未选中时的颜色</span><br><span class="line">	&quot;selectedColor&quot;:&quot;#d43c43&quot;    &#x2F;&#x2F;文字选中时的颜色</span><br><span class="line">    &quot;list&quot;: [&#123;</span><br><span class="line">      &quot;pagePath&quot;: &quot;pages&#x2F;home-page&#x2F;home-page&quot;,    &#x2F;&#x2F;页面路径</span><br><span class="line">      &quot;text&quot;: &quot;首页&quot;,                             &#x2F;&#x2F;页面下面名字</span><br><span class="line">      &quot;iconPath&quot;: &quot;.&#x2F;pages&#x2F;image&#x2F;icon-home-normal.png&quot;,  &#x2F;&#x2F;未点击时图标样式</span><br><span class="line">      &quot;selectedIconPath&quot;: &quot;.&#x2F;pages&#x2F;image&#x2F;icon-home-primary.png&quot; &#x2F;&#x2F;&#x2F;点击时图标样式</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    ]&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>js里不要随意加，</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/05/03/%E9%9F%B3%E4%B9%90%E5%B0%8F%E7%A8%8B%E5%BA%8F02/">音乐小程序02</a>
         </h1>
       
@@ -465,93 +566,6 @@
     <div>
       
         <h2 id="至现在自己的诗-2021-04-16"><a href="#至现在自己的诗-2021-04-16" class="headerlink" title="至现在自己的诗(2021-04-16)"></a>至现在自己的诗(2021-04-16)</h2><p>  <strong>泊秦淮</strong><br>               杜牧<br>烟笼寒水月笼沙，<br>夜泊秦淮近酒家。<br><strong>商女不知亡国恨，<br>隔江犹唱后庭花。</strong></p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/16/%E8%AE%BA%E8%87%AA%E5%88%B6%E5%8A%9B%E6%98%AF%E6%80%8E%E6%A0%B7%E4%B8%A7%E5%A4%B1%E7%9A%84/">论自制力是怎样丧失的</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-16T12:27:09.000Z" itemprop="datePublished">
-    2021-04-16
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/my-think/">my-think</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="论人的自制力是怎样消失的"><a href="#论人的自制力是怎样消失的" class="headerlink" title="论人的自制力是怎样消失的"></a>论人的自制力是怎样消失的</h2><p>1.首先必须要有一个安逸的环境，安逸的环境令人神往，当然这也是大多数人奋斗的目标，当达到这个指标时，人的思维就会停滞不前，而且会觉得只要保持这个状态就可以了，不需要去花费多余的时间去做别的事情，而这种状态是不可能靠着这样维持的，当放纵的时间足够长，实力亦然不支持继续保持这种状态时，平衡必将被打破，于是乎，此时必然会想办法硬着头皮冲（即：头铁）过这段时间，而后换了一个环境后，又开始从头来过，循环往复，这也是大多数普通人想的吧。</p>
-<p>2.其次需要一部手机和一个好玩上瘾的游戏，此时，快乐的时光必然来临，多巴胺的分泌让人感到愉悦感，而喷人同样令人痛快，双重感觉下时间如梭，而万一连跪则可以把脾气发泄到一堆陌生的废物身上，这让本来沮丧的心情又平添了一番趣味，而靠着赌我就不信可以一直输的心态继续恶心队友，而游戏的elo必然会妥协的就像不会让你一直赢一样，这会使你感觉，哦，原来我打败了系统，系统还是向我低头了，而征服的感觉会继续让你沉迷其中不得自拔。</p>
-<p>3.还有就是过分的自信，觉得自己可以去战胜懒惰，可以不需要任何的计划就完全的避开慵懒，也许刚开始是有一定作用的，但是到了后面在懒惰向心力的作用下，只受单力作用的你，必然做平抛运动直刺深渊。</p>
-<p><strong>当一个人丧失了斗志，变得随遇而安，那必将离失败不远，而赌徒的心态和极高的欲望心会使得你向着地狱踩下油门。</strong></p>
-<hr>
-<p>至此，必须需要摆正自己的定位，不要老想着未来眼高手低，脚踏实地一步一个脚印。</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/11/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day03/">图灵工作室day03</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-11T08:51:34.000Z" itemprop="datePublished">
-    2021-04-11
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h2><p>1.任何一个容器都可以启用flex布局<br>2.flex布局也叫弹性布局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">(1).display:flex  &#x2F;&#x2F;启用flex布局</span><br><span class="line">(2).flex-direction属性决定主轴方向</span><br><span class="line">    flex-direction：column &#x2F;&#x2F;设置垂直方向为主轴</span><br><span class="line">    flex-direction：raw &#x2F;&#x2F;设置横轴方向为主轴</span><br><span class="line">    交叉轴等于法向量，主轴于盒子方向相同</span><br><span class="line"></span><br><span class="line">(3).对盒子先设置大盒子，justity-content：center;对主轴居中对齐</span><br><span class="line">                     他的其他属性</span><br><span class="line">                     flex-start（默认值）：左对齐</span><br><span class="line">                     flex-end：右对齐</span><br><span class="line">                     center： 居中</span><br><span class="line">                     space-between：两端对齐，项目之间的间隔都相等。</span><br><span class="line">                     space-around：每个项目两侧的间隔相等。所以，项目之间                                    的间隔比项目与边框的间隔大一倍。</span><br><span class="line">                     </span><br><span class="line">                     align-items：center；对交叉轴居中对齐</span><br><span class="line">              	     他的其他属性</span><br><span class="line">              	     flex-start：交叉轴的起点对齐。</span><br><span class="line">                     flex-end：交叉轴的终点对齐。</span><br><span class="line">                     center：交叉轴的中点对齐。</span><br><span class="line">                     baseline: 项目的第一行文字的基线对齐。</span><br><span class="line">                     stretch（默认值）：如果项目未设置高度或设为auto，将占                                       满整个容器的高度。</span><br><span class="line">    </span><br><span class="line">    在此之后每制造一个小盒子都会按照设定方式排列</span><br><span class="line"></span><br><span class="line">(4).flex-wrap属性决定盒子排不下的时候是否换行</span><br><span class="line">    flex-wrap:nowrap(默认); &#x2F;&#x2F;不换行，如果放不下的情况下会让所有盒子等比例缩小来放</span><br><span class="line">    flex-wrap:wrap;        &#x2F;&#x2F;换行，第一行在上方</span><br><span class="line">    flex-wrap:wrap-reverse &#x2F;&#x2F;换行，第一行在下方</span><br><span class="line"></span><br><span class="line">(5).order属性</span><br><span class="line">    order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0</span><br><span class="line">    order &#x3D; 1;</span><br><span class="line">    </span><br><span class="line">(6).flex-grow属性</span><br><span class="line">    flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</span><br><span class="line"></span><br><span class="line">当一个flex-grow为1，而其他为0时，该盒子会占去除那些为0盒子占的空间外的全部空间</span><br><span class="line"></span><br><span class="line">(7).flex布局自动计算高度不需要去手动分配，会适得其反</span><br></pre></td></tr></table></figure>
-
-<p><strong>其他的暂时没有用上就先不补了</strong></p>
-<h2 id="js部分语法"><a href="#js部分语法" class="headerlink" title="js部分语法"></a>js部分语法</h2><p>1.js中不分’ ‘,” “,一般用’ ‘</p>
-<p>2.let 块作用域，var 函数作用域（整个函数中在哪定义生命周期为整个函数）</p>
-<p>3.控制台打印<br>console.log()函数 //普通文本<br>console.warn()函数 //警告文本<br>console.error()函数 //出错文本</p>
-<p>4.input控件disable控制是否允许输入</p>
-<p>5.转浮点和整型来做差来判断精度是否丢失</p>
 
       
     </div>

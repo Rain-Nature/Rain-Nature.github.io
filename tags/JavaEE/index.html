@@ -74,6 +74,268 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/10/09/javaEE04/">javaEE04</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-10-09T06:36:39.000Z" itemprop="datePublished">
+    2022-10-09
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/JavaEE/">JavaEE</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="JSP内置对象"><a href="#JSP内置对象" class="headerlink" title="JSP内置对象"></a>JSP内置对象</h2><h4 id="1-内置对象的概念"><a href="#1-内置对象的概念" class="headerlink" title="1. 内置对象的概念"></a>1. 内置对象的概念</h4><p>​    在Java程序中给了你一个类，要使用他用户需要创建一个对象，而<strong>内置对象指的是不需要用户自己创建的对象</strong>(即不需要用户自己手工进行对象实例化)。而是由WEB容器在它启动时默认创建好的对象，用户可以直接拿来使用</p>
+<h4 id="2-内置对象"><a href="#2-内置对象" class="headerlink" title="2. 内置对象"></a>2. 内置对象</h4><p>​    当前主要学习JSP中提供的九个内置对象</p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">对象名称</th>
+<th align="center">JavaEEAPI路径</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">pageContext</td>
+<td align="center">javax.servlet.jsp.PageContext</td>
+<td align="center">页面的上下文操作</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">request</td>
+<td align="center">javax.servlet.http.HttpServletRequest</td>
+<td align="center">服务器端接收客户端请求内容</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">response</td>
+<td align="center">javax.servlet.http.HttpServletResponse</td>
+<td align="center">服务器端回应客户端的请求操作</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">session</td>
+<td align="center">javax.servlet.http.HttpSession</td>
+<td align="center">描述每一个用户(登录)的信息</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">application</td>
+<td align="center">javax.servlet.ServletContext</td>
+<td align="center">描述整个当前项目的上下文</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">config</td>
+<td align="center">javax.servlet.ServletConfig</td>
+<td align="center">取得默认的配置信息</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">out</td>
+<td align="center">javax.servlet.jsp.Writer</td>
+<td align="center">进行输出，一般不用</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">page</td>
+<td align="center">javax.lang.Object</td>
+<td align="center">每一个页面都属于Object子类(一般不用)</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">exception</td>
+<td align="center">java.lang.Throwable</td>
+<td align="center">默认情况下，所有的异常都可以由容器处理，处理方式为输出错误信息并结束程序运行</td>
+</tr>
+</tbody></table>
+<p>​    通过JavaEEAPI路径可以查询到每个对象有的方法</p>
+<p>​    <strong>注意：在这九个内置对象中，前五个内置对象是精华需要重点了解学习</strong>，但要学好JSP开发，以上内置对象需要全部记住</p>
+<h4 id="3-四种属性范围"><a href="#3-四种属性范围" class="headerlink" title="3. 四种属性范围"></a>3. 四种属性范围</h4><p>​    四种属性范围是整个JavaWeb的核心概念，如果不清楚四种属性范围，就无法更好的理解MVC，也无法进行有效的程序开发，以及后面理解Struts、SpringMVC等概念</p>
+<p>​    <strong>属性范围的概念</strong></p>
+<p>​    在任何一个Web项目中都会存在多个页面，如果一个对象需要跨越多个页面后依然可以被使用，这被称为属性的保存范围，在JSP中对属性的操作提供如下三个方法。</p>
+<ol>
+<li><p><strong>设置属性：<code>public void setAttribute(String name,Object value)</code></strong></p>
+<p>属性名要String类型且不允许重复(重复就会覆盖)，value是Object类型意味着可以报存所有的Java类型</p>
+</li>
+<li><p><strong>取得属性：<code>public Object getAttribute(String name)</code></strong></p>
+</li>
+<li><p><strong>删除属性：<code>public void removeAttribute(String name)</code></strong></p>
+</li>
+</ol>
+<p>​    在JSP里面一共有四个对象具备以上的三个方法：pageContext、request、session、application</p>
+<p>​    四种属性范围刚好也是对应了这四个对象</p>
+<h4 id="4-page属性范围-pageContext"><a href="#4-page属性范围-pageContext" class="headerlink" title="4. page属性范围(pageContext)"></a>4. page属性范围(pageContext)</h4><p>​    <strong>page属性范围：对象只能够在当前的JSP页面中使用</strong></p>
+<p>​    注意：page属性范围不是只使用page对象操作，事实上没有这个对象，我们是使用pageContext对象完成</p>
+<p>​    范例：通过pageContext设置本页面属性</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件page.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	pageContext.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>);</span><br><span class="line">	pageContext.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date());</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) pageContext.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) pageContext.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：pageContext的属性作用范围只在当前页面，如果发生跳转(不管是服务器跳转还是客户端跳转)那么pageContext所设置的属性的值不会保留到其他页面</p>
+<h4 id="5-request属性范围-request"><a href="#5-request属性范围-request" class="headerlink" title="5. request属性范围(request)"></a>5. request属性范围(request)</h4><p>​    如果想在执行服务器跳转后依然可以取得设置的属性内容，则可以采用request属性范围</p>
+<p>​    范例：使用request对象来传递服务器跳转的值</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件request_a.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	request.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>);</span><br><span class="line">	request.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date());</span><br><span class="line">%&gt;</span><br><span class="line"><span class="comment">//服务器端跳转</span></span><br><span class="line">&lt;jsp:forward page=<span class="string">&quot;request.jsp&quot;</span>/&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//编写文件request_b.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) request.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) request.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：只有是服务器端跳转无论跳转几次，request设置的属性可以一直被保留下来</p>
+<p>​    <strong>注意：服务器端跳转与客户端跳转的最大使用区别：服务器端跳转可以传递request属性，而客户端跳转不能传递request属性</strong></p>
+<h4 id="6-session属性范围-session"><a href="#6-session属性范围-session" class="headerlink" title="6. session属性范围(session)"></a>6. session属性范围(session)</h4><p>​    如果不想受到跳转的类型限制，则可以继续扩大属性的保存范围，使用session范围，只要设置了一个session属性，那所有与之相关联的所有页面都可以访问。</p>
+<p>​    范例：session对象的使用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件session_a.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	session.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>);</span><br><span class="line">	session.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date());</span><br><span class="line">%&gt;</span><br><span class="line"><span class="comment">//客户端跳转</span></span><br><span class="line">&lt;a href=&quot;session_b&quot;&gt;跳转&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//编写文件session_b.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) session.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) session.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：虽然session属性范围可以包括所有的跳转页面，但如果关闭浏览器再次访问，session设置的属性会失效</p>
+<p>​    <strong>session最简单的概念为用于客户端描述一个个用户的信息，每个用户的信息彼此独立</strong></p>
+<h4 id="7-application属性范围-application"><a href="#7-application属性范围-application" class="headerlink" title="7. application属性范围(application)"></a>7. application属性范围(application)</h4><p>​    如果需要在浏览器关闭后，再次打开依然可以访问到我们设置的属性，那么需要将属性范围设置为application范围</p>
+<p>​    范例：application对象的使用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件application_a.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	application.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>);</span><br><span class="line">	application.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date());</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//编写文件application_b.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) application.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) application.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：上述代码并没有写跳转语句，但当打开<code>application_a.jsp</code>再打开<code>application_b.jsp</code>，依然可以访问到设置的属性</p>
+<p>​    <strong>注意：只要设置了此属性，那么意味着属性保存在服务器上，所有的用户都可以访问到，与是否关闭浏览器无关，但如果关闭服务器，则该设置的属性失效，即如果服务器不关闭，该设置的属性将一直存在</strong></p>
+<h4 id="8-四种属性范围总结"><a href="#8-四种属性范围总结" class="headerlink" title="8. 四种属性范围总结"></a>8. 四种属性范围总结</h4><p>​    保存范围越大的属性，实际上占用的资源时间长，所以对于属性范围的选择几乎不会选择application范围(保存时间过长会占用服务器资源使得服务器性能下降)，剩下三种都会有使用到</p>
+<h4 id="9-pageContext对象的进阶"><a href="#9-pageContext对象的进阶" class="headerlink" title="9. pageContext对象的进阶"></a>9. pageContext对象的进阶</h4><p>​    pageContext对象实际上可以设置上面的四种属性范围，在pageContext对应的类(<code>javax.servlet.jsp.PageContext</code>)的父类(<code>javax.servlet.jsp.JspContext</code>)中提供了另外一组<strong>重载</strong>的属性操作方法</p>
+<ul>
+<li><p><strong>设置属性：<code>public abstract void setAttribute(String name,Object value,int scope)</code></strong></p>
+</li>
+<li><p><strong>取得属性：<code>public abstract Object getAttribute(String name,int scope)</code></strong></p>
+</li>
+</ul>
+<ul>
+<li>**删除属性：<code>public abstract void removeAttribute(String name,int scope)**</code></li>
+</ul>
+<p>​    对于重载方法中的scope参数取值都在PageContext类里面定义</p>
+<table>
+<thead>
+<tr>
+<th align="center">scope在PageContext类中的定义</th>
+<th align="center">类型</th>
+<th align="center">对应数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public static final int PAGE_SCOPE</td>
+<td align="center">静态常量</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">public static final int REQUEST_SCOPE</td>
+<td align="center">静态常量</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">public static final int SESSION_SCOPE</td>
+<td align="center">静态常量</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center">public static final int APPLICATION_SCOPE</td>
+<td align="center">静态常量</td>
+<td align="center">4</td>
+</tr>
+</tbody></table>
+<p>​    范例pageContext对应方法的进阶使用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件pageContext_a.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	pageContext.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>,<span class="number">4</span>);</span><br><span class="line">	pageContext.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date(),<span class="number">4</span>);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//编写文件pageContext_b.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) application.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) application.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    pageContext是一个功能强大的对象，但是这个对象只能够在JSP中使用</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2022/10/09/javaEE03/">javaEE03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-10-09T06:31:30.000Z" itemprop="datePublished">
+    2022-10-09
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/JavaEE/">JavaEE</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="web项目编写"><a href="#web项目编写" class="headerlink" title="web项目编写"></a>web项目编写</h2><h4 id="1-Idea对Javaweb的项目创建"><a href="#1-Idea对Javaweb的项目创建" class="headerlink" title="1. Idea对Javaweb的项目创建"></a>1. Idea对Javaweb的项目创建</h4><pre><code>   1. 点击新建项目，选择`Java Enterprise`，更改项目名称，将项目模板改为`Web 应用程序`，将应用程序服务器改为自己下载的Tomcat路径，下面都不用动，点`next`
+
+   2. 这里的第三方框架暂时都是用不上，只需要在已添加项中有`Servlet`就行
+   3. 点击完成Javaweb项目就创建完成</code></pre>
+<p>​    <strong>项目结构的概述</strong></p>
+<pre><code>   1. .idea不用管他，在src中编写文件
+
+   2. 在java文件夹中编写java代码
+   3. 在resources文件夹中放置配置文件
+   4. 在webapp中放jsp文件
+   5. 需要的包要在pom.xml中声明</code></pre>
+<p>​    <strong>欢迎页与列表</strong></p>
+<p>​    在项目新建后即可运行，点击运行可以运行项目自动生成的jsp欢迎页面，但在学习过程中需要列表来显示所有页面，此时可以通过修改Tomcat中的<code>conf/web.xml</code>文件的<code>welcome-file-list</code>来更改</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//web.xml文件里的默认设置；名叫index的页面作为主页，这几个页面(不一定只有三个)都有的话显示优先级为从上到下</span><br><span class="line"><span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.html<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.htm<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.jsp<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    可以把这串设置复制到自己项目的xml文件中，然后自己修改首次登录页面(如果项目中没有设置默认是使用Tomcat提供的xml中的设置)，<strong>如果项目中没有名叫这几个的页面，则显示列表</strong></p>
+<h4 id="2-Javaweb的jdbc连接"><a href="#2-Javaweb的jdbc连接" class="headerlink" title="2. Javaweb的jdbc连接"></a>2. Javaweb的jdbc连接</h4><p>​    使用jsp来引入jdbc，<strong>此时mysql的驱动程序应当复制一份到Tomcat的<code>lib</code>目录下</strong></p>
+<blockquote>
+<p>C:\Program Files\Apache Software Foundation\Tomcat 8.5_Tomcat8new\lib</p>
+</blockquote>
+<p>​    否则会出现错误：数据库无法找到</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javax.servlet.ServletException: java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    还有一种情况是url书写时发生错误，如端口号写错，则提示错误：数据库连接异常</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javax.servlet.ServletException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    另外，在JSP中写JDBC没有对异常有强制处理，一旦出错就是报500，因为默认情况下，所有的异常都可以由容器处理，处理方式为输出错误信息并结束程序运行</p>
+<h4 id="3-数据检查"><a href="#3-数据检查" class="headerlink" title="3. 数据检查"></a>3. 数据检查</h4><p>​    在系统开发当中，数据的安全性检查分为两个部分</p>
+<ul>
+<li><p>服务器的验证：由JSP文件负责验证</p>
+</li>
+<li><p>客户端验证：由JavaScript完成</p>
+</li>
+</ul>
+<p>​    <strong>任何一个健壮的系统这两个验证都需要编写，即两端都要编写验证</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/12/08/JavaEE-02/">JavaEE-02.md</a>
         </h1>
       
@@ -391,7 +653,7 @@
 <p>配置意义：</p>
 <ul>
 <li><code>&lt;Context&gt;</code> ：表示配置一个新的上下文，结尾必须有<code>/</code> </li>
-<li>path：为浏览器上的输入路径(<code>http://lacalhost:8080/lxs</code> )，名称不允许重复，此时通过上面的路径访问<code>D:\lxsweb</code> 目录下的内容</li>
+<li>path：为浏览器上的输入路径(<code>http://localhost:8080/lxs</code> )，名称不允许重复，此时通过上面的路径访问<code>D:\lxsweb</code> 目录下的内容</li>
 <li>docBase：配置项目的磁盘路径，此目录下必须存在WEB-INF</li>
 </ul>
 </li>
