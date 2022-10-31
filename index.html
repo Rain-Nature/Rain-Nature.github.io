@@ -70,6 +70,390 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/10/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8403/">数据结构03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-10-31T05:59:43.000Z" itemprop="datePublished">
+    2022-10-31
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h4 id="1-typedef"><a href="#1-typedef" class="headerlink" title="1. typedef"></a>1. typedef</h4><p>​    C语言允许为一个数据类型起一个新的别名，使用typedef关键字来进行定义</p>
+<p>​    typedef 的用法一般为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span>  oldName  newName;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：一般新名字全部字母大写</p>
+<p>​    范例：为结构体起一个别名</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Student</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> sid;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">100</span>];</span><br><span class="line">	<span class="keyword">char</span> sex;</span><br><span class="line">&#125;ST,*PST;<span class="comment">//ST等价于struct Student, PST等价于struct Student *</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    ST st;</span><br><span class="line">    st.sid = <span class="number">200</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,st.sid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-链表-离散存储"><a href="#2-链表-离散存储" class="headerlink" title="2. 链表(离散存储)"></a>2. 链表(离散存储)</h4><p><strong>链表的定义：</strong></p>
+<p>​    ​    1. n个结点离散分配，<br>​    ​    2. 彼此通过指针相连<br>​    ​    3. 每个结点只有一个前驱结点，每个结点只有一个后续结点<br>​    ​    4. 首结点没有前驱结点，尾结点没有后续结点</p>
+<p><strong>专业术语：</strong></p>
+<ul>
+<li>首结点：第一个存了有效数据的结点</li>
+<li>尾结点：最后一个存了有效数据的结点，尾结点的指针域为空</li>
+<li>头结点：第一个有效结点(首结点)之前的结点，方便我们对链表算法进行操作，里面不包含有效数据和数组长度，但头结点的数据类型和首结点的数据类型一样</li>
+<li>头指针：指向头结点的指针变量，存放了头结点的地址</li>
+<li>尾指针：指向尾结点的指针变量</li>
+</ul>
+<p><strong>如果希望通过一个函数来对链表进行处理，至少需要接受链表的哪些参数：</strong></p>
+<p>​    只需要一个参数：头指针</p>
+<p>​    通过头指针可以推算出链表的其他所有信息</p>
+<h4 id="3-链表结点数据类型的表示"><a href="#3-链表结点数据类型的表示" class="headerlink" title="3. 链表结点数据类型的表示"></a>3. 链表结点数据类型的表示</h4><p>​    一个结点可以分为两个部分：数据域和指针域</p>
+<p>​    指针域中的指针指向了一个完整的结点</p>
+<p>​    范例：结点的定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> data;  <span class="comment">//数据域</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">pNext</span>;</span> <span class="comment">//指针域</span></span><br><span class="line">&#125;NODE,*PNODE;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-链表的分类"><a href="#4-链表的分类" class="headerlink" title="4. 链表的分类"></a>4. 链表的分类</h4><ul>
+<li>单链表：每个结点的指针域只能指向后面结点</li>
+<li>双链表：每一个结点有两个指针域</li>
+<li>循环链表：能通过任何一个结点找到其他所有的结点</li>
+<li>非循环链表：尾结点为null</li>
+</ul>
+<p>​    </p>
+<h4 id="5-链表的伪算法"><a href="#5-链表的伪算法" class="headerlink" title="5. 链表的伪算法"></a>5. 链表的伪算法</h4><ol>
+<li><p>非循环单链表：将q结点插入到p结点后面</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xRglh8"><img src="https://s1.ax1x.com/2022/10/25/xRglh8.png" alt="xRglh8.png"></a></p>
+</li>
+</ol>
+<p>​    伪算法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种方式</span></span><br><span class="line">r = p-&gt;pNext;</span><br><span class="line">p-&gt;pNext = q;</span><br><span class="line">q-&gt;pNext = r;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种方式</span></span><br><span class="line">q-&gt;pNext = p-&gt;pNext;</span><br><span class="line">p-&gt;pNext = q;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li><p>非循环单链表：将p结点后面的那个结点删除</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xR2PDs"><img src="https://s1.ax1x.com/2022/10/25/xR2PDs.png" alt="xR2PDs.png"></a></p>
+</li>
+</ol>
+<p>​    伪算法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注意:由于直接连会导致中间那个结点找不到从而导致内存的浪费,所以要先存起来,最后也要进行释放</span></span><br><span class="line">r = p-&gt;pNext;</span><br><span class="line">p-&gt;pNext = p-&gt;pNext-&gt;pNext;</span><br><span class="line"><span class="built_in">free</span>(r);</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h4 id="6-链表的算法"><a href="#6-链表的算法" class="headerlink" title="6. 链表的算法"></a>6. 链表的算法</h4><ol>
+<li><p><strong>算法–链表的创建以及链表的遍历</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义链表</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">count</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> number;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">count</span> * <span class="title">pNext</span>;</span></span><br><span class="line">&#125;NODE,* PNODE;</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="function">PNODE <span class="title">count_create</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">count_write</span><span class="params">(PNODE pHead)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设置头指针</span></span><br><span class="line">    PNODE pHead = <span class="literal">NULL</span>;</span><br><span class="line">    pHead = count_create(); <span class="comment">//创建一个非循环单链表，并返回头结点地址</span></span><br><span class="line">    count_write(pHead); <span class="comment">//遍历打印出来</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PNODE <span class="title">count_create</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> tmp; <span class="comment">//临时存放用户输入的数据</span></span><br><span class="line">    <span class="keyword">int</span> num; <span class="comment">//存放有效结点的个数</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置头指针指向头结点，头结点不存放任何有效数据</span></span><br><span class="line">    PNODE pHead = (PNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">    <span class="comment">//头结点的指针域设为NULL，防止后面没有结点</span></span><br><span class="line">    pHead-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> == pHead)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//链表的尾指针，用来挂每一个新生成的链表结点</span></span><br><span class="line">    PNODE pTail = pHead;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;please input number :&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;num);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; num ; i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;The %d number:&quot;</span>,i+<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;tmp);</span><br><span class="line">        PNODE new_Node = (PNODE) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">NULL</span> == new_Node)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//新生成结点的指针域设置为NULL</span></span><br><span class="line">        new_Node-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="comment">//新生成的结点的数据域设置值</span></span><br><span class="line">        new_Node-&gt;number =tmp;</span><br><span class="line">        <span class="comment">//将新生成的结点挂在尾指针上</span></span><br><span class="line">        pTail-&gt;pNext = new_Node;</span><br><span class="line">        <span class="comment">//将尾指针指向新生成的新结点</span></span><br><span class="line">        pTail = new_Node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pHead;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">count_write</span><span class="params">(PNODE pHead)</span></span>&#123;</span><br><span class="line">    PNODE pTail = pHead-&gt;pNext;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">NULL</span>!=pTail)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span> ,pTail-&gt;number);</span><br><span class="line">        <span class="comment">//将指针向后移</span></span><br><span class="line">        pTail = pTail-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p><strong>算法–链表的是否为空的判断和求链表长度</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断是否为空的函数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;  //C语言使用bool类型需要导入的头文件</span></span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_empty</span><span class="params">(PNODE pHead)</span></span>; <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_empty</span><span class="params">(PNODE pHead)</span></span>&#123; <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> == pHead-&gt;pNext)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求链表长度</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">count_len</span><span class="params">(PNODE pHead)</span></span>; <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">count_len</span><span class="params">(PNODE pHead)</span></span>&#123; <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">    PNODE p = pHead-&gt;pNext;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">NULL</span> != p)&#123;</span><br><span class="line">        ++len;</span><br><span class="line">        p = p-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p><strong>算法–链表的冒泡排序</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//冒泡排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">count_sort</span><span class="params">(PNODE pHead)</span></span>; <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">count_sort</span><span class="params">(PNODE pHead)</span></span>&#123; <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">int</span> i,j,tmp;</span><br><span class="line">    <span class="keyword">int</span> len = count_len(pHead);</span><br><span class="line">    PNODE p = pHead-&gt;pNext;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i&lt;len<span class="number">-1</span> ; i++)&#123;</span><br><span class="line">        PNODE q = p-&gt;pNext;</span><br><span class="line">        <span class="keyword">for</span>(j = i+<span class="number">1</span>; j &lt; len ; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(p-&gt;number&gt;q-&gt;number)&#123;</span><br><span class="line">                tmp = p-&gt;number;</span><br><span class="line">                p-&gt;number = q-&gt;number;</span><br><span class="line">                q-&gt;number = tmp;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            q = q-&gt;pNext;</span><br><span class="line">        &#125;</span><br><span class="line">        p = p-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p><strong>算法–链表的插入元素和删除元素</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//链表的插入算法</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">count_insert</span><span class="params">(PNODE pHead, <span class="keyword">int</span> pos , <span class="keyword">int</span> val)</span></span>; <span class="comment">//函数声明 pos表示在有效结点第pos个增加结点</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">count_insert</span><span class="params">(PNODE pHead, <span class="keyword">int</span> pos , <span class="keyword">int</span> val)</span></span>&#123; <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(pos&lt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE p = pHead;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i&lt;pos; i++)&#123;</span><br><span class="line">        p = p-&gt;pNext;</span><br><span class="line">        <span class="comment">//一定要判空，否则程序有bug</span></span><br><span class="line">        <span class="keyword">if</span>(p==<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE pNew = (PNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">    pNew-&gt;number = val;</span><br><span class="line">    pNew-&gt;pNext = p-&gt;pNext;</span><br><span class="line">    p-&gt;pNext = pNew;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//链表的删除算法</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">count_delete</span><span class="params">(PNODE pHead, <span class="keyword">int</span> pos , <span class="keyword">int</span> *val)</span></span>; <span class="comment">//函数声明，pos表示删除有效结点的第pos个</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">count_delete</span><span class="params">(PNODE pHead, <span class="keyword">int</span> pos , <span class="keyword">int</span> *val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(pos&lt;<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE p = pHead;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span> ; i&lt;pos ;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;pNext==<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        p = p-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(p-&gt;pNext==<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE tmp = p-&gt;pNext;</span><br><span class="line">    *val = tmp-&gt;number;</span><br><span class="line">    <span class="comment">//将p指针指向下下个结点</span></span><br><span class="line">    p-&gt;pNext = p-&gt;pNext-&gt;pNext;</span><br><span class="line">    <span class="built_in">free</span>(tmp);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2022/10/31/JavaEE05/">JavaEE05</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-10-31T05:58:35.000Z" itemprop="datePublished">
+    2022-10-31
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/JavaEE/">JavaEE</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="request内置对象详解"><a href="#request内置对象详解" class="headerlink" title="request内置对象详解"></a>request内置对象详解</h2><h4 id="1-request内置对象的作用"><a href="#1-request内置对象的作用" class="headerlink" title="1. request内置对象的作用"></a>1. request内置对象的作用</h4><p>​    在JSP之中，request内置对象的主要工作就是服务器端接收客户端发送来的请求参数。</p>
+<h4 id="2-request对象的继承结构"><a href="#2-request对象的继承结构" class="headerlink" title="2. request对象的继承结构"></a>2. request对象的继承结构</h4><p>​    request属于<code>javax.servlet.http.HttpServletRequest</code>接口的对象</p>
+<table>
+<thead>
+<tr>
+<th>继承结构</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public interface HttpServletRequest extends ServletRequest</td>
+<td>扩展ServletRequest接口以提供HTTP servlet的请求信息</td>
+</tr>
+</tbody></table>
+<p>​    注意：HttpServletRequest是继承<code>javax.servlet.ServletRequest</code>接口，但是ServletRequest接口只有一个子接口，不写成一个的原因是HttpServletRequest子接口是专门为了处理HTTP协议而提供的，而ServletRequest接口是负责所有相关协议的公共接口，以后可能还会有新的协议，新的协议要开发只需要让新的协议继续继承ServletRequest接口即可。</p>
+<p>​    <strong>注意：如果以后要进行方法查询一定要两个接口一起看(从子接口开始找)，且所有提供接收参数的方法都在ServletRequest父接口提供</strong></p>
+<h4 id="3-request内置对象解决传递参数乱码"><a href="#3-request内置对象解决传递参数乱码" class="headerlink" title="3. request内置对象解决传递参数乱码"></a>3. request内置对象解决传递参数乱码</h4><p>​    在使用form表单时，如果输入中文在提交后会变为中文乱码</p>
+<p>​    在乱码问题的解决上需要考虑两种情况</p>
+<ul>
+<li><p>POST提交请求(表单上使用)：可以直接使用ServletRequest父接口定义的方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public void setCharacterEncoding(String env) throws UnsupportedEncodingException</td>
+<td align="center">方法</td>
+<td align="center">设置String env来重写此请求正文中使用的字符编码的名称。必须在使用getReader()读取请求参数或输入之前调用此方法。否则，它没有效果。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>GET提交请求(直接输入访问路径或者表单)：</p>
+<p>Tomcat8以下的默认编码格式是<strong>ISO-8859-1</strong>，此时接收后需要进行编码的转换，以上就不用转了</p>
+<p>如果是getParameter()方法其返回值为一个字符串，在String类中提供有改变字符串编码的方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public byte[] getBytes(String charsetName) throws UnsupportedEncodingException</td>
+<td align="center">方法</td>
+<td align="center">使用给定的字符集将此字符串编码为一个字节序列，并将结果存储到一个新的字节数组中。</td>
+</tr>
+<tr>
+<td align="center">public String(byte[] bytes, String charsetName) throws UnsupportedEncodingException</td>
+<td align="center">构造方法</td>
+<td align="center">通过使用指定的字符集对指定的字节数组进行解码，构造新的String</td>
+</tr>
+</tbody></table>
+<p>注意：<code>charsetName</code>表示要设置的字符集</p>
+<p>将字符编码转换为<code>UTF-8</code>后再将字符数组使用上述构造方法设置为<code>UTF-8</code>转成String类型输出即可在页面正常显示</p>
+</li>
+</ul>
+<p>​    在HttpServletRequest接口里面有一个方法，此方法可以判断出当前的请求模式</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public String getMethod()</td>
+<td align="center">方法</td>
+<td align="center">返回用于发出此请求的HTTP方法的名称，例如GET、POST或PUT。</td>
+</tr>
+</tbody></table>
+<h4 id="4-POST与GET请求的区别"><a href="#4-POST与GET请求的区别" class="headerlink" title="4. POST与GET请求的区别"></a>4. POST与GET请求的区别</h4><ul>
+<li>POST请求：主要用在表单上，处理路径只是提交路径其不会改变</li>
+<li>GET请求：只要是用户直接进行页面访问，那么请求类型一定就是GET请求，表单上也可以使用GET请求，但是GET请求会将所有的请求参数都附加到表单访问路径上，所以不能够传递过多的内容，一般只能够传递4K~5K的内容</li>
+</ul>
+<p>​    注意：由于GET请求传递内容有限，所以一般使用POST请求</p>
+<h4 id="5-request对象接收请求参数"><a href="#5-request对象接收请求参数" class="headerlink" title="5. request对象接收请求参数"></a>5. request对象接收请求参数</h4><p>​    <strong>request内置对象接收参数的来源</strong></p>
+<ul>
+<li><p>第一种来源：表单提交</p>
+</li>
+<li><p>第二种来源：标签指令传递(<code>&lt;jsp:include&gt;</code>、<code>&lt;jsp:forward&gt;</code>)</p>
+</li>
+<li><p>第三种来源：地址重写</p>
+<p>地址重写的基本结构：<code>xxxxxx.jsp?参数名称=内容&amp;参数名称=内容...</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如以下代码为向inpuut.jsp页面传递了两个参数</span></span><br><span class="line">&lt;a href=&quot;input.jsp?msg=hello&amp;mid=30&quot;&gt;访问&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>地址重写相当于GET请求</p>
+</li>
+</ul>
+<p>​    <strong>隐藏域</strong></p>
+<p>​    在表单中有一种表单类型为隐藏域(其会跟着表单一起提交，但是其内容不能够由用户输入且用户无法看见隐藏域)</p>
+<blockquote>
+<input type="hidden" name ="name" value="lxs">
+</blockquote>
+<p>​    注意：一般隐藏域属于辅助的信息内容，一般都是固定好的</p>
+<p>​    <strong>request内置对象的父类中提供有两个接收参数的方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public <strong>String</strong> getParameter(String name)</td>
+<td align="center">方法</td>
+<td align="center">以String形式返回请求参数的值，如果该参数不存在，则返回null。只有在确定参数只有一个值时，才应使用此方法。如果参数可能有多个值，请使用getParameterValues()</td>
+</tr>
+<tr>
+<td align="center">public <strong>String[]</strong> getParameterValues(String name)</td>
+<td align="center">方法</td>
+<td align="center">返回包含给定请求参数的所有值的String对象数组，如果该参数不存在，则返回null。</td>
+</tr>
+</tbody></table>
+<p>​    注意：getParameter只能接收一个内容，而getParameterValues可以接收一组内容</p>
+<p>​    request内置对象提供返回全部请求参数名称的方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>public Enumeration&lt;String&gt; getParameterNames()</code></td>
+<td align="center">方法</td>
+<td align="center">返回包含此请求中包含的参数名称的String对象的枚举。如果请求没有参数，该方法将返回空Enumeration。</td>
+</tr>
+</tbody></table>
+<p>​    注意：通过这个方法就可以获得传递参数的名字，而通过传递参数的名字就可以获取到值</p>
+<p>​    <strong>补充：Enumeration类(接口)</strong></p>
+<p>​    Enumeration接口是Iterator迭代器的“古老版本”，从JDK 1.0开始，Enumeration接口就已经存在了(Iterator从JDK 1.2才出现)</p>
+<p>​    Enumeration接口的方法介绍</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">boolean hasMoreElements()</td>
+<td align="center">方法</td>
+<td align="center">这是检测Enumeration 对象是否还有元素，有则返回true,否则false</td>
+</tr>
+<tr>
+<td align="center">E nextElement()</td>
+<td align="center">方法</td>
+<td align="center">如果Enumeration对象还有元素，该方法得到下一个元素</td>
+</tr>
+</tbody></table>
+<p>​    </p>
+<p>​    范例：动态的接收参数</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//发送方 form.jsp文件</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;form action=<span class="string">&quot;request.jsp&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">	&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;text1&quot;</span> /&gt;</span><br><span class="line">	&lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;**box&quot;</span> value=<span class="string">&quot;1&quot;</span>&gt;<span class="number">1</span></span><br><span class="line">	&lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;**box&quot;</span> value=<span class="string">&quot;2&quot;</span>&gt;<span class="number">2</span></span><br><span class="line">	&lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;**box&quot;</span> value=<span class="string">&quot;3&quot;</span>&gt;<span class="number">3</span></span><br><span class="line">	&lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;**box&quot;</span> value=<span class="string">&quot;4&quot;</span>&gt;<span class="number">4</span></span><br><span class="line">	&lt;input type=<span class="string">&quot;submit&quot;</span> name=<span class="string">&quot;submit1&quot;</span> value=<span class="string">&quot;提交&quot;</span>/&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接收方 request.jsp文件</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	request.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">	Enumeration&lt;String&gt; e = request.getParameterNames();</span><br><span class="line">	<span class="keyword">while</span>(e.hasMoreElements())&#123;</span><br><span class="line">		String s = e.nextElement();</span><br><span class="line">		<span class="keyword">if</span>(s.startsWith(<span class="string">&quot;**&quot;</span>))&#123;</span><br><span class="line">			String[] str = request.getParameterValues(s);</span><br><span class="line">%&gt;</span><br><span class="line">			&lt;h3&gt;&lt;%=Arrays.toString(str)%&gt;&lt;/h3&gt;</span><br><span class="line">&lt;%</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">%&gt;</span><br><span class="line">			&lt;h4&gt;&lt;%=request.getParameter(s)%&gt;&lt;/h4&gt;</span><br><span class="line">&lt;%</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：为了区分接收的一个参数是对应一个值还是多个值，对多个值参数在设置<code>name</code>属性时一般在前面加<code>**</code>，如<code>**XXXX</code>，用作区分</p>
+<h4 id="6-通过request对象实现资源定位"><a href="#6-通过request对象实现资源定位" class="headerlink" title="6. 通过request对象实现资源定位"></a>6. 通过request对象实现资源定位</h4><p>​    在request对象中还有一个重要的操作方法：取得路径名称(该方法在<code>javax.servlet.http.HttpServletRequest</code>中定义)</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public String getContextPath()</td>
+<td align="center">方法</td>
+<td align="center">取得上下文路径</td>
+</tr>
+</tbody></table>
+<p>​    getContextPath()取得的是整个虚拟目录的映射路径，在之前Tomcat的<code>conf/server.xml</code>中设置添加了<code>&lt;Context path = &quot;/lxs&quot; docBase = &quot;D:\lxsweb&quot; /&gt;</code>，getContextPath()方法取得的是<code>/lxs</code></p>
+<p>​    通过取得整个虚拟目录的映射路径，我们可以实现资源定位。在实际开发中，我们会导入img、css、js，此时文件通常是使用传统<code>../</code>、<code>/</code>的形式进行引用，但此时如果代码文件发生移动，那么其的路径会发生变化则需要重写配置<code>../</code>、<code>/</code>。而使用getContextPath()可以解决这个问题。</p>
+<p>​    范例：1.输出项目根路径，2.实现资源定位</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//test.jsp与images同级</span></span><br><span class="line"><span class="comment">//新建文件夹images，导入图片文件img_1.jpg</span></span><br><span class="line"><span class="comment">//编写文件test.jsp文件</span></span><br><span class="line">&lt;%<span class="meta">@page</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	String contextpath = request.getContextPath();</span><br><span class="line">%&gt;</span><br><span class="line"><span class="comment">//输出项目根路径</span></span><br><span class="line">&lt;h1&gt;&lt;%=contextpath%&gt;&lt;/h1&gt;</span><br><span class="line"><span class="comment">//实现资源定位</span></span><br><span class="line">&lt;img src=<span class="string">&quot;&lt;%=contextpath%&gt;/images/img_1.jpg&quot;</span> height=<span class="string">&quot;40%&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：此时不管test.jsp放在什么位置，图片都可以正常的显示出来，<strong>在实际开发中都会使用这种方式来引用资源</strong></p>
+<h4 id="7-通过request对象取得基础信息"><a href="#7-通过request对象取得基础信息" class="headerlink" title="7. 通过request对象取得基础信息"></a>7. 通过request对象取得基础信息</h4><p>​    在<code>javax.servlet.http.HttpServletRequest</code>接口的父接口<code>javax.servlet.ServletRequest</code>中提供有取得其他基本信息的方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public String getRemoteAddr()</td>
+<td align="center">方法</td>
+<td align="center">返回发送请求的客户端或最后一个代理的IP地址</td>
+</tr>
+<tr>
+<td align="center">public String getScheme()</td>
+<td align="center">方法</td>
+<td align="center">返回用于发出此请求的协议名称，例如http、https或ftp</td>
+</tr>
+<tr>
+<td align="center">public String getServerName()</td>
+<td align="center">方法</td>
+<td align="center">返回请求发送到的服务器的主机名</td>
+</tr>
+<tr>
+<td align="center">public int getServerPort()</td>
+<td align="center">方法</td>
+<td align="center">返回请求发送到的端口号</td>
+</tr>
+</tbody></table>
+<p>​    范例：上述方法的使用以及获取项目的基本路径</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件path.jsp</span></span><br><span class="line">&lt;%<span class="meta">@page</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	String ip = request.getRemoteAddr();</span><br><span class="line">	String scheme = request.getScheme();</span><br><span class="line">	String name = request.getServerName();</span><br><span class="line">	<span class="keyword">int</span> port = request.getServerPort();</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;ip地址：&lt;%=ip%&gt;&lt;/h3&gt;</span><br><span class="line">&lt;h3&gt;协议：&lt;%=scheme%&gt;&lt;/h3&gt;</span><br><span class="line">&lt;h3&gt;主机名：&lt;%=name%&gt;&lt;/h3&gt;</span><br><span class="line">&lt;h3&gt;端口号：&lt;%=port%&gt;&lt;/h3&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	String path = request.getScheme()+<span class="string">&quot;://&quot;</span>+ request.getServerName()+<span class="string">&quot;:&quot;</span>+request.getServerPort()+request.getContextPath();</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;访问路径：&lt;%=path%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><p>####8. getAttribute()和getParameter()的区别</p>
+<p>​    1、getAttribute是返回(object)对象,getParameter返回字符串。</p>
+<p>​    2、getAttribute可以返回格式化任意类型，getParameter只能返回字符串</p>
+<p>​    3、与getAttribute()方法对应的有setAttribute()方法，但是没有与getParameter()相对的setParameter()</p>
+<p>​    4、request.getAttribute获取的是服务器设置的数据，request.getParameter获取的是客户端比如浏览器的数据(获取http提交过来的数据)</p>
+<p>​    5、getParameter方法就是服务器端接受客户端传递过来的数据时使用；getAttribute方法是在服务器端内部使用，数据通过getParameter获取进来之后，在另一个页面还想继续使用这个数据就要把这个数据通过setAttribute保存起来，想用时再用getAttribute取出来即可使用<br>​    </p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2022/10/09/javaEE04/">javaEE04</a>
         </h1>
       
@@ -1156,324 +1540,11 @@
 
     </li>
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2022/02/28/%E5%89%8D%E7%AB%AF05/">前端05</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2022-02-28T09:33:49.000Z" itemprop="datePublished">
-    2022-02-28
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/HTML-CSS/">HTML+CSS</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="DIV-CSS布局"><a href="#DIV-CSS布局" class="headerlink" title="DIV+CSS布局"></a>DIV+CSS布局</h2><h4 id="1-块元素和行内元素的区别"><a href="#1-块元素和行内元素的区别" class="headerlink" title="1. 块元素和行内元素的区别"></a>1. 块元素和行内元素的区别</h4><p>​    块元素和行内元素本质上是html规范中的概念</p>
-<ul>
-<li><p>块(block)元素的特点</p>
-<ul>
-<li>总是在新行上开始</li>
-<li>高度和行高以及外边距和内边距都可以控制</li>
-<li>宽度缺省是它的容器的100%，除非设定一个宽度</li>
-<li>它可以容纳行内元素和其他块元素</li>
-</ul>
-</li>
-<li><p>行内(inline)元素的特点</p>
-<ul>
-<li>和其他元素都在一行上</li>
-<li>高，行高以及外边距和内边距不可改变</li>
-<li>宽度就是它的文字或图片的宽度，不可改变</li>
-<li>行内元素只能容纳文本或者其他行内元素</li>
-</ul>
-</li>
-</ul>
-<p>​    <strong>注意：一般情况下，做布局使用块元素，在一行的内容使用行内元素</strong></p>
-<h4 id="2-常见的块元素"><a href="#2-常见的块元素" class="headerlink" title="2. 常见的块元素"></a>2. 常见的块元素</h4><ul>
-<li>div</li>
-<li>dl</li>
-<li>form</li>
-<li>h1~h6</li>
-<li>hr</li>
-</ul>
-<h4 id="4-CSS盒子模型"><a href="#4-CSS盒子模型" class="headerlink" title="4. CSS盒子模型"></a>4. CSS盒子模型</h4><p>​    盒子模型是CSS的基石之一，在HTML页面上的每一个元素都被浏览器看成是一个矩形的盒子，这个盒子由元素的内容、填充、边框、边界组成</p>
-<p>​    网页就是由许多个盒子通过不同的排列方式堆积而成，早期是使用表格做布局，现在使用的是DIV+CSS布局</p>
-<p>​    <strong>盒子模型示意图</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/HDOcKs"><img src="https://s4.ax1x.com/2022/02/13/HDOcKs.png" alt="HDOcKs.png"></a></p>
-<p>​    注意：默认情况下，盒子边框是无，背景色是透明，所以在默认情况下看不到盒子，</p>
-<h4 id="5-盒子模型详细介绍"><a href="#5-盒子模型详细介绍" class="headerlink" title="5. 盒子模型详细介绍"></a>5. 盒子模型详细介绍</h4><p>​    标准盒子模型示意图</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/bmoaIe"><img src="https://s4.ax1x.com/2022/02/27/bmoaIe.png" alt="bmoaIe.png"></a></p>
-<p>​    在盒子模型中，可以单独设定任何一个元素，也可以组合起来按照上、右、下、左的顺序进行设定</p>
-<p>​    盒子模型的背景颜色范围为border里面</p>
-<p>​    <strong>元素盒子大小的计算</strong></p>
-<p>​    一个元素的实际宽度=左边界 + 左边框 + 左填充 + 内容宽度 + 右填充 + 右边框 + 右边界</p>
-<p>​    一个元素的实际高度=上边界 + 上边框 + 上填充 + 内容高度 + 下填充 + 下边框 + 下边界</p>
-<h4 id="6-CSS盒子嵌套"><a href="#6-CSS盒子嵌套" class="headerlink" title="6. CSS盒子嵌套"></a>6. CSS盒子嵌套</h4><p>​    两个盒子相互嵌套是用大盒子的content来包裹小盒子</p>
-<p>​    在一个盒子中嵌套一个盒子，那么两个盒子边框之间的距离等于外面盒子的填充值 + 里面盒子的边界值</p>
-<p>​    <strong>盒子模型的特性</strong></p>
-<ul>
-<li>边界值margin可为负，填充padding不可为负</li>
-<li>边框border默认值为0，即不显示</li>
-<li>盒子模型只能设置两类颜色：边框颜色和背景颜色</li>
-</ul>
-<p>​    <strong>盒子模型属性值的简写形式</strong></p>
-<ul>
-<li>给出一个属性值：表示上右下左设置的全部值都为它</li>
-<li>给出两个属性值：前者表示上下边框的属性，后者表示左右边框的属性</li>
-<li>给出三个属性值：前者表示上边框的属性，中间的数值表示左右边框的属性，后者表示下边框的属性</li>
-<li>给出四个属性值：依次表示上右下左的属性</li>
-</ul>
-<h4 id="7-浏览器的默认值"><a href="#7-浏览器的默认值" class="headerlink" title="7. 浏览器的默认值"></a>7. 浏览器的默认值</h4><p>​    在浏览器中，本身默认会自己设置一定的margin值和padding值</p>
-<p>​    要取消掉浏览器的默认值，则可以</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">	<span class="attribute">margin</span>:<span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    上段代码就是手工初始化CSS</p>
-<h4 id="8-display属性和实例"><a href="#8-display属性和实例" class="headerlink" title="8. display属性和实例"></a>8. display属性和实例</h4><h5 id="行高"><a href="#行高" class="headerlink" title="行高"></a>行高</h5><p>​    行内元素在浏览器中只能得到一行高度的空间，行高由<code>line-height</code> 属性(像素或百分比为单位)决定，如果没有设置该属性，则为内容的默认高度</p>
-<p>​    <strong>行高示意图</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/bntJ6x"><img src="https://s4.ax1x.com/2022/02/27/bntJ6x.png" alt="bntJ6x.png"></a></p>
-<p>​    注意：<code>background-color</code> 的范围只在<code>font-size</code>的区域</p>
-<p>​    <code>#b3d4fc</code>这个颜色好看</p>
-<h5 id="display属性"><a href="#display属性" class="headerlink" title="display属性"></a>display属性</h5><p>​    通过display属性可控制元素是以行内元素显示还是以块级元素显示，或者不显示，<strong>即对元素进行转换</strong></p>
-<ul>
-<li>display:block 当前元素以块级元素显示</li>
-<li>display:inline 当前元素以行内元素显示</li>
-<li>display:none 当前元素隐藏，浏览器会完全忽略这个元素(不是删除是不显示)，一般使用在下拉菜单中</li>
-<li>display:inline-block 当前元素既可以控制宽高，又可以横向排列</li>
-</ul>
-<h4 id="9-浮动与浮动清除"><a href="#9-浮动与浮动清除" class="headerlink" title="9.浮动与浮动清除"></a>9.浮动与浮动清除</h4><p>​    浮动主要是排版使用，可以使得原本2D的网页设计变成3D</p>
-<p>​     浮动可以理解为让某个div元素脱离标准流，漂浮在标准流之上，和标准流不是一个层次</p>
-<h5 id="浮动的设置-对于要浮动的盒子设置"><a href="#浮动的设置-对于要浮动的盒子设置" class="headerlink" title="浮动的设置(对于要浮动的盒子设置)"></a>浮动的设置(对于要浮动的盒子设置)</h5><p>​    CSS中使用<code>float</code> 属性来控制浮动，其默认值为<code>none</code> ，如果将<code>float</code> 属性设置为<code>left</code> 或者<code>right</code> ，元素就会向左侧或者右侧靠紧，同时盒子宽度不再伸展，没设置宽度时会根据盒子里面的内容来确定宽度</p>
-<p>​    如果某块设置为浮动，那么其后面的块会自动补该块未浮动时的位置，但后面块的文字会被挤占</p>
-<h5 id="浮动的清除-对于浮动盒子的下面盒子设置"><a href="#浮动的清除-对于浮动盒子的下面盒子设置" class="headerlink" title="浮动的清除(对于浮动盒子的下面盒子设置)"></a>浮动的清除(对于浮动盒子的下面盒子设置)</h5><p>​    CSS使用<code>clear</code> 属性来清除浮动(消除浮动对下面盒子的影响)，它的取值有<code>left</code>、<code>right</code>、<code>both</code>和<code>none</code>(默认值)，设置为left或者right表示该盒子的左边或右边不允许有浮动的对象，设置为both则表示两边都不允许有浮动对象，因此该盒子将会在浏览器中另起一行显示</p>
-<h4 id="10-position属性的使用"><a href="#10-position属性的使用" class="headerlink" title="10. position属性的使用"></a>10. position属性的使用</h4><p>​    一般使用position属性来对盒子模型进行定位，一般不会使用margin来设置位置，因为margin只是指外边距</p>
-<p>​    position属性修改元素位置后，对其他元素无影响</p>
-<p>​    position属性常用的4个值</p>
-<ul>
-<li><p><strong>static</strong></p>
-<p>​    static是position的默认属性值，忽略top、bottom、left、right</p>
-</li>
-<li><p><strong>relative</strong></p>
-<p>​    relative表示相对定位，当 position 为 relative 的时候，如果设置了 left 、right、top、bottom 属性，它们会生效，发生偏移时的参照为 position 属性取 static 时盒子的位置</p>
-</li>
-<li><p><strong>absolute</strong></p>
-<p>​    absolute表示绝对定位，当 position 为 absolute 的时候，元素会被移出正常文档流，并不为元素预留空间，元素相对于最近的非 static 定位祖先元素发生偏移，<strong>当元素没有非 static 定位祖先时，会相对 html 发生偏移</strong></p>
-</li>
-<li><p><strong>fixed</strong></p>
-<p>​    fixed表示固定定位，当 position 为 fixed 的时候，元素会被移出正常文档流，并不为元素预留空间，元素相对于屏幕视口（viewport）的 位置来发生偏移, 元素的位置在屏幕滚动时不会改变</p>
-</li>
-</ul>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2022/02/12/%E5%89%8D%E7%AB%AF04/">前端04</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2022-02-12T09:35:41.000Z" itemprop="datePublished">
-    2022-02-12
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/HTML-CSS/">HTML+CSS</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="CSS基础"><a href="#CSS基础" class="headerlink" title="CSS基础"></a>CSS基础</h2><h4 id="1-CSS简介"><a href="#1-CSS简介" class="headerlink" title="1. CSS简介"></a>1. CSS简介</h4><p>​    CSS(层叠样式表)是由W3C的CSS工作组创建和维护的。它是一种不需要编译。可直接由浏览器执行的标记性语言，用于控制web页面的外观</p>
-<p>​    通过使用CSS样式控制页面各元素的属性显示，可将页面的内容与表现形式进行分离</p>
-<p>​    <strong>层叠样式表本质上也是文本，用<code>&#123;&#125;</code> 将样式内容括住，最后将所有的封装在一个文件里。页面引用这个文件即可</strong></p>
-<p>​    HTML5和CSS3是同时制作发布的</p>
-<h4 id="2-CSS的优势"><a href="#2-CSS的优势" class="headerlink" title="2. CSS的优势"></a>2. CSS的优势</h4><ul>
-<li><p>避免使用多余的HTML代码，减少代码量</p>
-<p>​    文本本身是通过字符来计算文件量，而**在之前对于页面的修饰会通过HTML标签自带的属性进行修饰(即HTML代码的处理方式，不属于CSS)**，此时代码量大，读的时候就会慢</p>
-</li>
-<li><p>缩短更新和维护的时间</p>
-<p>​    不使用CSS可能有些样式要反复定义，需要更换时，可能非常复杂。而且采用样式表可以使得样式与页面相分离，在修改时，更加直观、防止出错</p>
-</li>
-<li><p>做出HTML实现不了的特效</p>
-<p>​    CSS2很多功能HTML里面其实也有，但在CSS3以及之后HTML里的样式就不再更新了</p>
-</li>
-</ul>
-<h4 id="3-认识-lt-div-gt-和-lt-span-gt-标签-双"><a href="#3-认识-lt-div-gt-和-lt-span-gt-标签-双" class="headerlink" title="3. 认识&lt;div&gt; 和&lt;span&gt; 标签(双)"></a>3. 认识<code>&lt;div&gt;</code> 和<code>&lt;span&gt;</code> 标签(双)</h4><p>​    <code>&lt;div&gt;</code> 和<code>&lt;span&gt;</code> 标签是属于HTML的标签，一般这两个标签都是配合样式表使用的，这<strong>两个标签可以理解为容器标签</strong>，早期时一般用Table来当容器</p>
-<ul>
-<li><p><code>&lt;div&gt;</code> 标签(双)：</p>
-<p>​    用来为HTML文档内大块的内容提供结构和背景的元素，它为块元素，<code>&lt;div&gt;</code> 的起始标签和结束标签之间的所有内容都在该块中，<strong>一般在布局时使用</strong></p>
-</li>
-<li><p><code>&lt;span&gt;</code> 标签(双)：</p>
-<p>​    用来组成HTML文档的行元素，<strong>一般放内容时使用，<code>div</code> 也可以作为放内容</strong></p>
-</li>
-</ul>
-<p>​    <strong><code>&lt;div&gt;</code> 和<code>&lt;span&gt;</code> 在页面上的显示</strong></p>
-<p>​    代码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span>内容1<span class="tag">&lt;/<span class="name">div</span>&gt;</span> <span class="tag">&lt;<span class="name">div</span>&gt;</span>内容2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">span</span>&gt;</span>内容1<span class="tag">&lt;/<span class="name">span</span>&gt;</span> <span class="tag">&lt;<span class="name">span</span>&gt;</span>内容1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    结果(虚线是工具编译生成的，在浏览器显示时，不会进行显示)</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/7IOCXF"><img src="https://s4.ax1x.com/2022/01/24/7IOCXF.png" alt="7IOCXF.png"></a></p>
-<h4 id="4-CSS样式语法"><a href="#4-CSS样式语法" class="headerlink" title="4. CSS样式语法"></a>4. CSS样式语法</h4><p>​    <a target="_blank" rel="noopener" href="https://imgtu.com/i/7IjFiR"><img src="https://s4.ax1x.com/2022/01/24/7IjFiR.png" alt="7IjFiR.png"></a></p>
-<ul>
-<li>选择器(符)：用于选择文档中要应用样式的那些元素，该元素 </li>
-</ul>
-<h4 id="5-CSS样式表中的注释"><a href="#5-CSS样式表中的注释" class="headerlink" title="5. CSS样式表中的注释"></a>5. CSS样式表中的注释</h4><p>​    使用<code>/*  注释  */</code>包裹进行注释</p>
-<h4 id="6-CSS样式的几种表达方式"><a href="#6-CSS样式的几种表达方式" class="headerlink" title="6. CSS样式的几种表达方式"></a>6. CSS样式的几种表达方式</h4><h5 id="1-内嵌样式-直接在页面的标签里加"><a href="#1-内嵌样式-直接在页面的标签里加" class="headerlink" title="(1). 内嵌样式(直接在页面的标签里加)"></a>(1). 内嵌样式(直接在页面的标签里加)</h5><p>​    将CSS样式与某HTML标签混合使用，这种方式可以简单的对某个元素单独定义样式</p>
-<p>​    范例：内嵌样式的使用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">style</span>=<span class="string">&quot;font-family:&#x27;微软雅黑&#x27;;font-size:14px;color:#F00&quot;</span>&gt;</span>内嵌样式<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    注意：这种方式实际上与在HTML代码中直接定义属性类似，违反了之前避免使用不必要的HTML元素这个规则，<strong>一般使用这种方式写只是针对页面已经写好但部分需要修改时使用</strong></p>
-<h5 id="2-内部样式表-在head部分加入"><a href="#2-内部样式表-在head部分加入" class="headerlink" title="(2). 内部样式表(在head部分加入)"></a>(2). 内部样式表(在head部分加入)</h5><p>​    在HTML页面head标签内进行定义，只能在定义了的页面进行调用，其他页面调用不了 </p>
-<p>​    范例：内部样式表的使用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="xml"> /*有些会写<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span>这是CSS4.0要求的，现在5.0可以不写*/</span></span><br><span class="line"><span class="css">		<span class="selector-class">.font_size</span>&#123;</span></span><br><span class="line"><span class="css">			<span class="selector-tag">font-size</span><span class="selector-pseudo">:30px</span>;</span></span><br><span class="line">		&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;font_size&quot;</span>&gt;</span>字体变大<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    只适合单页或者是要修改时使用，在修改时，直接修改css文件可能会造成重名，而使用这个方式可以很好的避免</p>
-<p>​    注意：之所以使用会写<code>type=&quot;text/css&quot;</code>作为<code>&lt;style&gt;</code> ，是因为HTML的设计者当时认为还有可能会有其他样式，但现在并没有，所以直接写<code>&lt;style&gt;</code>不带属性也是可以的</p>
-<h5 id="3-链入外部样式表-在head部分进行引用描述"><a href="#3-链入外部样式表-在head部分进行引用描述" class="headerlink" title="(3). 链入外部样式表(在head部分进行引用描述)"></a>(3). 链入外部样式表(在head部分进行引用描述)</h5><p>​    把所有的东西封装在一个样式表文件里，从外部引用这个样式表文件，当网页加载时会把所有的外部样式先加载到网页中再进行显示，网速再慢也不影响，推荐使用这个形式</p>
-<p>​    范例：链入外部样式表</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;my.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">media</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    <strong><code>rel</code>属性和<code>type</code>属性是两个声明，<code>href</code>中的路径必须要对</strong></p>
-<p>​    注意：写在样式表中的CSS的样式定义与上面的写法是一样的</p>
-<p>​    在浏览器中有的可以设置文字的大小，所以一般在定义文字时用CSS限制文字大小，不然可能造成页面被浏览器弄失真</p>
-<h5 id="4-导入外部样式表-在head部分进行引用"><a href="#4-导入外部样式表-在head部分进行引用" class="headerlink" title="(4). 导入外部样式表(在head部分进行引用)"></a>(4). 导入外部样式表(在head部分进行引用)</h5><p>​    导入样式类似于链入外部样式，都是利用外部CSS样式文件来改变页面的外部表现的，但与外部样式不同的是，需要在<code>&lt;style&gt;</code>和<code>&lt;/style&gt;</code> 标签中间利用”@import”关键字导入外部CSS文件，文件加载到网页时，先把HTML结构显示出来，再把外部的CSS加载到网页当中，当网速较慢是会先显示未经修饰的HTML页面造成阅读者不好的感觉</p>
-<p>​    现在使用的非常少，这是早期样式表导入的语法</p>
-<p>​    范例：导入外部样式表</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"><span class="keyword">@import</span> url(my.css);</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="5-样式表的优先级"><a href="#5-样式表的优先级" class="headerlink" title="(5). 样式表的优先级"></a>(5). 样式表的优先级</h5><p>​    内嵌样式 &gt; 内部样式表 &gt; 导入外部样式表</p>
-<h4 id="7-CSS基本选择器-符"><a href="#7-CSS基本选择器-符" class="headerlink" title="7. CSS基本选择器(符)"></a>7. CSS基本选择器(符)</h4><p>​    <strong>注意：所写的一个样式可以被多个内容所引用且本身样式表是有继承性的，有优先级别</strong></p>
-<h5 id="1-通配符选择器"><a href="#1-通配符选择器" class="headerlink" title="(1). 通配符选择器(*)"></a>(1). 通配符选择器(*)</h5><p>​    在编码时，用”*”表示通配选择器，其作用是定义页面所有元素的样式，不管是直接在<code>body</code>标签中敲还是放什么标签里</p>
-<p>​    范例：定义页面中所有的元素样式</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">	<span class="attribute">margin</span>:<span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-类选择器"><a href="#2-类选择器" class="headerlink" title="(2). 类选择器(.)"></a>(2). 类选择器(.)</h5><p>​    类选择器通过直接引用元素中类属性的值而产生效果，使用<code>.</code> 来标识一个类选择器，类名可以随意命名但最好根据元素用途来命名</p>
-<p>​    类选择器的语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;CSS中</span><br><span class="line">.选择器名称(A)&#123;</span><br><span class="line">	&#x2F;&#x2F;样式	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;HTML中</span><br><span class="line">&lt;要引用样式的标签名 class&#x3D;&quot;选择器名称(A)&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-ID选择器"><a href="#3-ID选择器" class="headerlink" title="(3). ID选择器(#)"></a>(3). ID选择器(#)</h5><p>​    使用<code>#</code> 来标识一个ID选择器，在HTML文档中，每一个标签都可以使用id=”选择器名称”的形式进行一个名称指派，这和类选择器相似，但需要注意的是，<strong>HTML文件中id是具有唯一性是不可以重复的</strong></p>
-<p>​    <strong>一般在js脚本中都是认id名的</strong></p>
-<h5 id="4-标签选择器"><a href="#4-标签选择器" class="headerlink" title="(4). 标签选择器"></a>(4). 标签选择器</h5><p>​    把HTML标签当作选择器的名称，所有被该标签包含的HTML标签都会改变样式</p>
-<h5 id="5-群组选择器"><a href="#5-群组选择器" class="headerlink" title="(5). 群组选择器"></a>(5). 群组选择器</h5><p>​    名称之间用<code>,</code> 隔开</p>
-<p>​    范例：让三个div宽高一样，颜色不同</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.a1</span>,<span class="selector-class">.a2</span>,<span class="selector-class">.a3</span>&#123;</span></span><br><span class="line"><span class="css">			<span class="selector-tag">width</span><span class="selector-pseudo">:300px</span>;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">height</span><span class="selector-pseudo">:300px</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        a1&#123;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span><span class="selector-pseudo">:red</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        a2&#123;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span><span class="selector-pseudo">:green</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        a3&#123;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span><span class="selector-pseudo">:yellow</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;a1&quot;</span>&gt;</span>测试1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;a2&quot;</span>&gt;</span>测试2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;a3&quot;</span>&gt;</span>测试3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="8-伪类-里面的状态伪类"><a href="#8-伪类-里面的状态伪类" class="headerlink" title="8. 伪类(里面的状态伪类)"></a>8. 伪类(里面的状态伪类)</h4><p>​    同一个标签，根据其<strong>不同的状态，有不同的样式</strong>。这就叫做“伪类”，伪类用冒号来表示。</p>
-<p>​    伪类选择器分为两种。</p>
-<p>​    <strong>1. 静态伪类</strong>：只能用于**超链接<code>&lt;a&gt;</code> **的样式。如下：</p>
-<ul>
-<li><p><code>:link</code> 超链接点击之前</p>
-</li>
-<li><p><code>:visited</code> 链接被访问过之后</p>
-<p>注意：以上两种样式，只能用于超链接，且要写的话应该一起写上。</p>
-</li>
-</ul>
-<p>​    <strong>2. 动态伪类</strong>：针对<strong>所有标签</strong>都适用的样式。如下：</p>
-<ul>
-<li><code>:hover</code> “悬停”：鼠标放到标签上的时候</li>
-<li><code>:active</code>    “激活”： 鼠标点击标签，但是不松手时。</li>
-<li><code>:focus</code> 是某个标签获得焦点时的样式（比如某个输入框获得焦点）</li>
-</ul>
-<p>​    <strong>超链接的四种状态伪类</strong></p>
-<p>​    a标签有4种伪类（即对应四种状态），要求背诵。如下：</p>
-<ul>
-<li><p><code>:link</code> “链接”：超链接点击之前</p>
-</li>
-<li><p><code>:visited</code> “访问过的”：链接被访问过之后</p>
-</li>
-<li><p><code>:hover</code>    “悬停”：鼠标放到标签上的时候</p>
-</li>
-<li><p><code>:active</code>    “激活”： 鼠标点击标签，但是不松手时。</p>
-</li>
-</ul>
-<p>​    <strong>记住，在css中，这四种状态必须按照固定的顺序写：</strong></p>
-<blockquote>
-<p>a:link 、a:visited 、a:hover 、a:active</p>
-</blockquote>
-<p>​    如果不按照顺序，那么将失效</p>
-<h4 id="9-CSS颜色写法"><a href="#9-CSS颜色写法" class="headerlink" title="9. CSS颜色写法"></a>9. CSS颜色写法</h4><p>​    在CSS中，颜色的表达有一下三种方式</p>
-<ol>
-<li>十六进制：如“#ff000”</li>
-<li>RGB：如“rgb(255,0,0)”</li>
-<li>颜色名称：如“red”</li>
-</ol>
-<p>​    <strong>注意：一般使用十六进制表示颜色这种方式居多</strong></p>
-<h4 id="10-背景图像"><a href="#10-背景图像" class="headerlink" title="10. 背景图像"></a>10. 背景图像</h4><p>​    CSS关于背景图像的属性</p>
-<ul>
-<li><code>background-color: blue</code> 为元素设置背景颜色为蓝色</li>
-<li><code>background-image:url(&quot;图像路径&quot;)</code> 设置背景图像</li>
-<li><code>background-repeat:no-repeat</code> 设置背景图像为不重复，默认值为重复</li>
-<li><code>background-attachment:fixed</code> 将图片滚动锁定为不跟随滚动</li>
-<li><code>background-position:center</code> 将图像位置设置为居中</li>
-</ul>
-<h4 id="11-文本修饰"><a href="#11-文本修饰" class="headerlink" title="11. 文本修饰"></a>11. 文本修饰</h4><p>​    CSS关于文本修饰的属性</p>
-<ul>
-<li><code>color:blue</code> 设置文本颜色为蓝色</li>
-<li><code>text-align:center</code> 设置文本位置为居中</li>
-<li><code>text-decoration:line-through</code> 设置文本效果为加删除线，除了删除线外还有上划线、下划线和无文字效果(none，这个可以和超链接混合使用)</li>
-<li><code>text-indent:50px</code> 设置文本缩进为50px，通常是将段落的首行缩进，允许缩进使用负值 </li>
-</ul>
-<h4 id="12-文字修饰"><a href="#12-文字修饰" class="headerlink" title="12. 文字修饰"></a>12. 文字修饰</h4><p>​    CSS关于文字修饰的属性</p>
-<ul>
-<li><code>font-family:字体种类</code> 它可以设置多种字体，但在浏览器显示时需要操作系统中本身有该字体，不然会从浏览器下载该字体，多个字体按顺序来优先显示</li>
-<li><code>font-style:italic</code> 将文字样式设置为斜体，默认值为normal即正常显示</li>
-<li><code>font-size:40px</code> 将文字设置为40像素大小，还要一个单位em 1em=16px</li>
-<li><code>font-weight:bold</code> 将文字设置为加粗(bold=700)，默认值为normal即正常显示，还可以使用数字表示<code>100~900</code>之间</li>
-</ul>
-<h4 id="13-CSS列表-ul与ol-的设置"><a href="#13-CSS列表-ul与ol-的设置" class="headerlink" title="13. CSS列表(ul与ol)的设置"></a>13. CSS列表(ul与ol)的设置</h4><p>​    通过使用列表的CSS选择器对属性<code>list-style-type:XXXX</code>进行指定来对列表进行设置</p>
-<p>​    常见属性值见下图</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Huz8pj"><img src="https://s4.ax1x.com/2022/02/06/Huz8pj.png" alt="Huz8pj.png"></a></p>
-<h4 id="14-CSS表格相关样式的设置"><a href="#14-CSS表格相关样式的设置" class="headerlink" title="14. CSS表格相关样式的设置"></a>14. CSS表格相关样式的设置</h4><p>​     设置表格边框的属性(有边框的容器都适用)</p>
-<ul>
-<li>border:2px solid blue; 放在table标签中为设置边框的外边框为2像素，实线，颜色为蓝色，放在td标签中，即为设置内边框样式</li>
-<li>width:500px; 放在table标签中设置表格宽度为500像素</li>
-<li>height:500px; 放在table标签中设置表格高度为500像素</li>
-</ul>
-
-      
-    </div>
-</article>
-
-    </li>
-  
 </ul>
 
   <section id="nav-wrapper">
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">next »</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">next »</a>
     </nav>
   </section>
 

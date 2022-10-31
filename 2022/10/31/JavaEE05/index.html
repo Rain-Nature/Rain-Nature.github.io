@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaEE05 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+            <div>Road is walked by me</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>JavaEE05</h1>
+    </header>
+
+    <section>
+      <h2 id="request内置对象详解"><a href="#request内置对象详解" class="headerlink" title="request内置对象详解"></a>request内置对象详解</h2><h4 id="1-request内置对象的作用"><a href="#1-request内置对象的作用" class="headerlink" title="1. request内置对象的作用"></a>1. request内置对象的作用</h4><p>​    在JSP之中，request内置对象的主要工作就是服务器端接收客户端发送来的请求参数。</p>
+<h4 id="2-request对象的继承结构"><a href="#2-request对象的继承结构" class="headerlink" title="2. request对象的继承结构"></a>2. request对象的继承结构</h4><p>​    request属于<code>javax.servlet.http.HttpServletRequest</code>接口的对象</p>
+<table>
+<thead>
+<tr>
+<th>继承结构</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public interface HttpServletRequest extends ServletRequest</td>
+<td>扩展ServletRequest接口以提供HTTP servlet的请求信息</td>
+</tr>
+</tbody></table>
+<p>​    注意：HttpServletRequest是继承<code>javax.servlet.ServletRequest</code>接口，但是ServletRequest接口只有一个子接口，不写成一个的原因是HttpServletRequest子接口是专门为了处理HTTP协议而提供的，而ServletRequest接口是负责所有相关协议的公共接口，以后可能还会有新的协议，新的协议要开发只需要让新的协议继续继承ServletRequest接口即可。</p>
+<p>​    <strong>注意：如果以后要进行方法查询一定要两个接口一起看(从子接口开始找)，且所有提供接收参数的方法都在ServletRequest父接口提供</strong></p>
+<h4 id="3-request内置对象解决传递参数乱码"><a href="#3-request内置对象解决传递参数乱码" class="headerlink" title="3. request内置对象解决传递参数乱码"></a>3. request内置对象解决传递参数乱码</h4><p>​    在使用form表单时，如果输入中文在提交后会变为中文乱码</p>
+<p>​    在乱码问题的解决上需要考虑两种情况</p>
+<ul>
+<li><p>POST提交请求(表单上使用)：可以直接使用ServletRequest父接口定义的方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public void setCharacterEncoding(String env) throws UnsupportedEncodingException</td>
+<td align="center">方法</td>
+<td align="center">设置String env来重写此请求正文中使用的字符编码的名称。必须在使用getReader()读取请求参数或输入之前调用此方法。否则，它没有效果。</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>GET提交请求(直接输入访问路径或者表单)：</p>
+<p>Tomcat8以下的默认编码格式是<strong>ISO-8859-1</strong>，此时接收后需要进行编码的转换，以上就不用转了</p>
+<p>如果是getParameter()方法其返回值为一个字符串，在String类中提供有改变字符串编码的方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public byte[] getBytes(String charsetName) throws UnsupportedEncodingException</td>
+<td align="center">方法</td>
+<td align="center">使用给定的字符集将此字符串编码为一个字节序列，并将结果存储到一个新的字节数组中。</td>
+</tr>
+<tr>
+<td align="center">public String(byte[] bytes, String charsetName) throws UnsupportedEncodingException</td>
+<td align="center">构造方法</td>
+<td align="center">通过使用指定的字符集对指定的字节数组进行解码，构造新的String</td>
+</tr>
+</tbody></table>
+<p>注意：<code>charsetName</code>表示要设置的字符集</p>
+<p>将字符编码转换为<code>UTF-8</code>后再将字符数组使用上述构造方法设置为<code>UTF-8</code>转成String类型输出即可在页面正常显示</p>
+</li>
+</ul>
+<p>​    在HttpServletRequest接口里面有一个方法，此方法可以判断出当前的请求模式</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public String getMethod()</td>
+<td align="center">方法</td>
+<td align="center">返回用于发出此请求的HTTP方法的名称，例如GET、POST或PUT。</td>
+</tr>
+</tbody></table>
+<h4 id="4-POST与GET请求的区别"><a href="#4-POST与GET请求的区别" class="headerlink" title="4. POST与GET请求的区别"></a>4. POST与GET请求的区别</h4><ul>
+<li>POST请求：主要用在表单上，处理路径只是提交路径其不会改变</li>
+<li>GET请求：只要是用户直接进行页面访问，那么请求类型一定就是GET请求，表单上也可以使用GET请求，但是GET请求会将所有的请求参数都附加到表单访问路径上，所以不能够传递过多的内容，一般只能够传递4K~5K的内容</li>
+</ul>
+<p>​    注意：由于GET请求传递内容有限，所以一般使用POST请求</p>
+<h4 id="5-request对象接收请求参数"><a href="#5-request对象接收请求参数" class="headerlink" title="5. request对象接收请求参数"></a>5. request对象接收请求参数</h4><p>​    <strong>request内置对象接收参数的来源</strong></p>
+<ul>
+<li><p>第一种来源：表单提交</p>
+</li>
+<li><p>第二种来源：标签指令传递(<code>&lt;jsp:include&gt;</code>、<code>&lt;jsp:forward&gt;</code>)</p>
+</li>
+<li><p>第三种来源：地址重写</p>
+<p>地址重写的基本结构：<code>xxxxxx.jsp?参数名称=内容&amp;参数名称=内容...</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如以下代码为向inpuut.jsp页面传递了两个参数</span></span><br><span class="line">&lt;a href=&quot;input.jsp?msg=hello&amp;mid=30&quot;&gt;访问&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>地址重写相当于GET请求</p>
+</li>
+</ul>
+<p>​    <strong>隐藏域</strong></p>
+<p>​    在表单中有一种表单类型为隐藏域(其会跟着表单一起提交，但是其内容不能够由用户输入且用户无法看见隐藏域)</p>
+<blockquote>
+<input type="hidden" name ="name" value="lxs">
+</blockquote>
+<p>​    注意：一般隐藏域属于辅助的信息内容，一般都是固定好的</p>
+<p>​    <strong>request内置对象的父类中提供有两个接收参数的方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public <strong>String</strong> getParameter(String name)</td>
+<td align="center">方法</td>
+<td align="center">以String形式返回请求参数的值，如果该参数不存在，则返回null。只有在确定参数只有一个值时，才应使用此方法。如果参数可能有多个值，请使用getParameterValues()</td>
+</tr>
+<tr>
+<td align="center">public <strong>String[]</strong> getParameterValues(String name)</td>
+<td align="center">方法</td>
+<td align="center">返回包含给定请求参数的所有值的String对象数组，如果该参数不存在，则返回null。</td>
+</tr>
+</tbody></table>
+<p>​    注意：getParameter只能接收一个内容，而getParameterValues可以接收一组内容</p>
+<p>​    request内置对象提供返回全部请求参数名称的方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>public Enumeration&lt;String&gt; getParameterNames()</code></td>
+<td align="center">方法</td>
+<td align="center">返回包含此请求中包含的参数名称的String对象的枚举。如果请求没有参数，该方法将返回空Enumeration。</td>
+</tr>
+</tbody></table>
+<p>​    注意：通过这个方法就可以获得传递参数的名字，而通过传递参数的名字就可以获取到值</p>
+<p>​    <strong>补充：Enumeration类(接口)</strong></p>
+<p>​    Enumeration接口是Iterator迭代器的“古老版本”，从JDK 1.0开始，Enumeration接口就已经存在了(Iterator从JDK 1.2才出现)</p>
+<p>​    Enumeration接口的方法介绍</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">boolean hasMoreElements()</td>
+<td align="center">方法</td>
+<td align="center">这是检测Enumeration 对象是否还有元素，有则返回true,否则false</td>
+</tr>
+<tr>
+<td align="center">E nextElement()</td>
+<td align="center">方法</td>
+<td align="center">如果Enumeration对象还有元素，该方法得到下一个元素</td>
+</tr>
+</tbody></table>
+<p>​    </p>
+<p>​    范例：动态的接收参数</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//发送方 form.jsp文件</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;form action=<span class="string">&quot;request.jsp&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">	&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;text1&quot;</span> /&gt;</span><br><span class="line">	&lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;**box&quot;</span> value=<span class="string">&quot;1&quot;</span>&gt;<span class="number">1</span></span><br><span class="line">	&lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;**box&quot;</span> value=<span class="string">&quot;2&quot;</span>&gt;<span class="number">2</span></span><br><span class="line">	&lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;**box&quot;</span> value=<span class="string">&quot;3&quot;</span>&gt;<span class="number">3</span></span><br><span class="line">	&lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;**box&quot;</span> value=<span class="string">&quot;4&quot;</span>&gt;<span class="number">4</span></span><br><span class="line">	&lt;input type=<span class="string">&quot;submit&quot;</span> name=<span class="string">&quot;submit1&quot;</span> value=<span class="string">&quot;提交&quot;</span>/&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接收方 request.jsp文件</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	request.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">	Enumeration&lt;String&gt; e = request.getParameterNames();</span><br><span class="line">	<span class="keyword">while</span>(e.hasMoreElements())&#123;</span><br><span class="line">		String s = e.nextElement();</span><br><span class="line">		<span class="keyword">if</span>(s.startsWith(<span class="string">&quot;**&quot;</span>))&#123;</span><br><span class="line">			String[] str = request.getParameterValues(s);</span><br><span class="line">%&gt;</span><br><span class="line">			&lt;h3&gt;&lt;%=Arrays.toString(str)%&gt;&lt;/h3&gt;</span><br><span class="line">&lt;%</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">%&gt;</span><br><span class="line">			&lt;h4&gt;&lt;%=request.getParameter(s)%&gt;&lt;/h4&gt;</span><br><span class="line">&lt;%</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：为了区分接收的一个参数是对应一个值还是多个值，对多个值参数在设置<code>name</code>属性时一般在前面加<code>**</code>，如<code>**XXXX</code>，用作区分</p>
+<h4 id="6-通过request对象实现资源定位"><a href="#6-通过request对象实现资源定位" class="headerlink" title="6. 通过request对象实现资源定位"></a>6. 通过request对象实现资源定位</h4><p>​    在request对象中还有一个重要的操作方法：取得路径名称(该方法在<code>javax.servlet.http.HttpServletRequest</code>中定义)</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public String getContextPath()</td>
+<td align="center">方法</td>
+<td align="center">取得上下文路径</td>
+</tr>
+</tbody></table>
+<p>​    getContextPath()取得的是整个虚拟目录的映射路径，在之前Tomcat的<code>conf/server.xml</code>中设置添加了<code>&lt;Context path = &quot;/lxs&quot; docBase = &quot;D:\lxsweb&quot; /&gt;</code>，getContextPath()方法取得的是<code>/lxs</code></p>
+<p>​    通过取得整个虚拟目录的映射路径，我们可以实现资源定位。在实际开发中，我们会导入img、css、js，此时文件通常是使用传统<code>../</code>、<code>/</code>的形式进行引用，但此时如果代码文件发生移动，那么其的路径会发生变化则需要重写配置<code>../</code>、<code>/</code>。而使用getContextPath()可以解决这个问题。</p>
+<p>​    范例：1.输出项目根路径，2.实现资源定位</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//test.jsp与images同级</span></span><br><span class="line"><span class="comment">//新建文件夹images，导入图片文件img_1.jpg</span></span><br><span class="line"><span class="comment">//编写文件test.jsp文件</span></span><br><span class="line">&lt;%<span class="meta">@page</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	String contextpath = request.getContextPath();</span><br><span class="line">%&gt;</span><br><span class="line"><span class="comment">//输出项目根路径</span></span><br><span class="line">&lt;h1&gt;&lt;%=contextpath%&gt;&lt;/h1&gt;</span><br><span class="line"><span class="comment">//实现资源定位</span></span><br><span class="line">&lt;img src=<span class="string">&quot;&lt;%=contextpath%&gt;/images/img_1.jpg&quot;</span> height=<span class="string">&quot;40%&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：此时不管test.jsp放在什么位置，图片都可以正常的显示出来，<strong>在实际开发中都会使用这种方式来引用资源</strong></p>
+<h4 id="7-通过request对象取得基础信息"><a href="#7-通过request对象取得基础信息" class="headerlink" title="7. 通过request对象取得基础信息"></a>7. 通过request对象取得基础信息</h4><p>​    在<code>javax.servlet.http.HttpServletRequest</code>接口的父接口<code>javax.servlet.ServletRequest</code>中提供有取得其他基本信息的方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public String getRemoteAddr()</td>
+<td align="center">方法</td>
+<td align="center">返回发送请求的客户端或最后一个代理的IP地址</td>
+</tr>
+<tr>
+<td align="center">public String getScheme()</td>
+<td align="center">方法</td>
+<td align="center">返回用于发出此请求的协议名称，例如http、https或ftp</td>
+</tr>
+<tr>
+<td align="center">public String getServerName()</td>
+<td align="center">方法</td>
+<td align="center">返回请求发送到的服务器的主机名</td>
+</tr>
+<tr>
+<td align="center">public int getServerPort()</td>
+<td align="center">方法</td>
+<td align="center">返回请求发送到的端口号</td>
+</tr>
+</tbody></table>
+<p>​    范例：上述方法的使用以及获取项目的基本路径</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件path.jsp</span></span><br><span class="line">&lt;%<span class="meta">@page</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	String ip = request.getRemoteAddr();</span><br><span class="line">	String scheme = request.getScheme();</span><br><span class="line">	String name = request.getServerName();</span><br><span class="line">	<span class="keyword">int</span> port = request.getServerPort();</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;ip地址：&lt;%=ip%&gt;&lt;/h3&gt;</span><br><span class="line">&lt;h3&gt;协议：&lt;%=scheme%&gt;&lt;/h3&gt;</span><br><span class="line">&lt;h3&gt;主机名：&lt;%=name%&gt;&lt;/h3&gt;</span><br><span class="line">&lt;h3&gt;端口号：&lt;%=port%&gt;&lt;/h3&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	String path = request.getScheme()+<span class="string">&quot;://&quot;</span>+ request.getServerName()+<span class="string">&quot;:&quot;</span>+request.getServerPort()+request.getContextPath();</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;访问路径：&lt;%=path%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><p>####8. getAttribute()和getParameter()的区别</p>
+<p>​    1、getAttribute是返回(object)对象,getParameter返回字符串。</p>
+<p>​    2、getAttribute可以返回格式化任意类型，getParameter只能返回字符串</p>
+<p>​    3、与getAttribute()方法对应的有setAttribute()方法，但是没有与getParameter()相对的setParameter()</p>
+<p>​    4、request.getAttribute获取的是服务器设置的数据，request.getParameter获取的是客户端比如浏览器的数据(获取http提交过来的数据)</p>
+<p>​    5、getParameter方法就是服务器端接受客户端传递过来的数据时使用；getAttribute方法是在服务器端内部使用，数据通过getParameter获取进来之后，在另一个页面还想继续使用这个数据就要把这个数据通过setAttribute保存起来，想用时再用getAttribute取出来即可使用<br>​    </p>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2022-10-31T05:58:35.000Z" itemprop="datePublished">
+              2022-10-31
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/JavaEE/">JavaEE</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2022 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>

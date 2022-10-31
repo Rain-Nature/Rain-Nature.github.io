@@ -122,8 +122,14 @@
 
 <p>​    [2].split(String sign,int limit)<br>​    对给定分隔符对字符串拆分，并限制拆分次数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.split(String sign,int limit)  &#x2F;&#x2F;sign为分割符为String类型，即注意必须用&quot;&quot;,不能使用&#39;&#39;,limit为分割次数</span><br></pre></td></tr></table></figure>
-<p>​    **注意：如果想定义多个分割符，可以使用’|’来隔开</p>
+<p>​    <strong>注意：如果想定义多个分割符，可以使用’|’来隔开</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;如：</span><br><span class="line">str.split(&quot;+|&#x3D;&quot;)  &#x2F;&#x2F;以+和&#x3D;进行分割</span><br></pre></td></tr></table></figure>
+
+<p>​    (7).字符串开始前缀检测</p>
+<p>​    使用startsWith()方法检测字符串是否以指定的前缀开始</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.startsWith(String prefix)  &#x2F;&#x2F;返回值为布尔类型，输入前缀为String类型</span><br></pre></td></tr></table></figure>
+
+
 
 <h4 id="11-格式化字符串"><a href="#11-格式化字符串" class="headerlink" title="11. 格式化字符串"></a>11. 格式化字符串</h4><pre><code>  String类的静态format()方法用于创建格式化字符串，返回值为String类型</code></pre>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s &#x3D; String.format(&quot;转换符&quot;,变量); &#x2F;&#x2F;对变量进行格式化，变量参数只要是类类型就可以</span><br></pre></td></tr></table></figure>
