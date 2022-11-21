@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MySQL复习02 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+            <div>Road is walked by me</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>MySQL复习02</h1>
+    </header>
+
+    <section>
+      <h2 id="函数与约束"><a href="#函数与约束" class="headerlink" title="函数与约束"></a>函数与约束</h2><h4 id="1-字符串函数"><a href="#1-字符串函数" class="headerlink" title="1. 字符串函数"></a>1. 字符串函数</h4><p>​    MySQL中内置了很多字符串函数，常见的如下表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">concat(S1,S2,…,Sn)</td>
+<td align="center">字符串拼接，将(S1,S2,…,Sn)拼接为一个字符串</td>
+</tr>
+<tr>
+<td align="center">lower(str)</td>
+<td align="center">将字符串str全部转为小写</td>
+</tr>
+<tr>
+<td align="center">upper(str)</td>
+<td align="center">将字符串str全部转为大写</td>
+</tr>
+<tr>
+<td align="center">lpad(str,n,pad)</td>
+<td align="center">左填充，用字符串pad对str的左边进行填充，达到n个字符串长度</td>
+</tr>
+<tr>
+<td align="center">rpad(str,n,pad)</td>
+<td align="center">右填充，用字符串pad对str的右边进行填充，达到n个字符串长度</td>
+</tr>
+<tr>
+<td align="center">trim(str)</td>
+<td align="center">去掉字符串头部和尾部空格</td>
+</tr>
+<tr>
+<td align="center">substring(str,start,len)</td>
+<td align="center">返回从字符串str从start位置起的len长度的字符串，<strong>索引值是从1开始</strong></td>
+</tr>
+</tbody></table>
+<p>​    <strong>注意：str可以传类型是字符串的列名</strong></p>
+<p>​    范例：字符串函数的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- concat</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">concat</span>(<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--lower</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">lower</span>(<span class="string">&#x27;Hello&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--upper</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">upper</span>(<span class="string">&#x27;Hello&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--lpad</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">lpad</span>(<span class="string">&#x27;01&#x27;</span>,<span class="number">5</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--rpad</span></span><br><span class="line"><span class="keyword">SELECT</span> rpad(<span class="string">&#x27;01&#x27;</span>,<span class="number">5</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--trim</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">trim</span>(<span class="string">&#x27; hello world &#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--substring</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">substring</span>(<span class="string">&#x27;12345&#x27;</span>,<span class="number">1</span>,<span class="number">3</span>); //索引值从1开始</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-数值函数"><a href="#2-数值函数" class="headerlink" title="2. 数值函数"></a>2. 数值函数</h4><p>​    常见的数值函数如下表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ceil(x)</td>
+<td align="center">向上取整</td>
+</tr>
+<tr>
+<td align="center">floor(x)</td>
+<td align="center">向下取整</td>
+</tr>
+<tr>
+<td align="center">mod(x,y)</td>
+<td align="center">返回x/y的模</td>
+</tr>
+<tr>
+<td align="center">rand()</td>
+<td align="center">返回0~1内的随机数</td>
+</tr>
+<tr>
+<td align="center">round(x,y)</td>
+<td align="center">得参数x的整体进行四舍五入的值，保留y位小数</td>
+</tr>
+</tbody></table>
+<p>​    范例：数值函数的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ceil</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ceil</span>(<span class="number">1.1</span>);  //结果2</span><br><span class="line"></span><br><span class="line"><span class="comment">-- floor</span></span><br><span class="line">SELSECT floor(1.1) //结果1</span><br><span class="line"></span><br><span class="line"><span class="comment">-- mod</span></span><br><span class="line">SELSET mod(3,4);  //3除4的余数，结果3</span><br><span class="line"></span><br><span class="line"><span class="comment">--rand</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">rand</span>(); //0~1随机数</span><br><span class="line"></span><br><span class="line"><span class="comment">--round</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">round</span>(<span class="number">2.345</span>,<span class="number">2</span>); //结果2.35</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：生成的数字可以作为字符串参与上面字符串函数中</p>
+<h4 id="3-日期函数"><a href="#3-日期函数" class="headerlink" title="3. 日期函数"></a>3. 日期函数</h4><p>​    常见日期函数如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">curdate()</td>
+<td align="center">返回当前日期</td>
+</tr>
+<tr>
+<td align="center">curtime()</td>
+<td align="center">返回当前时间</td>
+</tr>
+<tr>
+<td align="center">now()</td>
+<td align="center">返回当前日期和时间，<strong>即返回的是date类型</strong></td>
+</tr>
+<tr>
+<td align="center">year(date)</td>
+<td align="center">获取指定date的年份</td>
+</tr>
+<tr>
+<td align="center">month(date)</td>
+<td align="center">获取指定date的月份</td>
+</tr>
+<tr>
+<td align="center">day(date)</td>
+<td align="center">获取指定date的日期</td>
+</tr>
+<tr>
+<td align="center">date_add(date,interval expr type)</td>
+<td align="center">在指定日期下增加一个时间间隔，返回该时间值</td>
+</tr>
+<tr>
+<td align="center">datediff(date1,date2)</td>
+<td align="center">返回起始时间date1和结束时间date2之间的天数，结果为date1-date2</td>
+</tr>
+</tbody></table>
+<p>​    范例：日期函数的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- curdate</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">curdate</span>();  //结果2022-11-14</span><br><span class="line"></span><br><span class="line"><span class="comment">-- curtime</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">curtime</span>();  //结果9:29:15</span><br><span class="line"></span><br><span class="line"><span class="comment">-- now</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">now</span>();  //结果2022-11-14 9:29:54</span><br><span class="line"></span><br><span class="line"><span class="comment">-- year</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">year</span>(<span class="keyword">now</span>()); //结果2022</span><br><span class="line"></span><br><span class="line"><span class="comment">-- month</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">month</span>(<span class="keyword">now</span>());  //结果11</span><br><span class="line"></span><br><span class="line"><span class="comment">-- day</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">day</span>(<span class="keyword">now</span>());  //结果14</span><br><span class="line"></span><br><span class="line"><span class="comment">--date_add</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">date_add</span>(<span class="keyword">now</span>(),<span class="built_in">INTERVAL</span> <span class="number">10</span> <span class="keyword">DAY</span>);  //结果2022-11-24 10:05:31</span><br><span class="line"></span><br><span class="line"><span class="comment">-- datediff</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">datediff</span>(<span class="string">&#x27;2022-12-01&#x27;</span>,<span class="string">&#x27;2022-11-1&#x27;</span>); 结果30，注意如果前小后大则值为负数</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-流程函数"><a href="#4-流程函数" class="headerlink" title="4. 流程函数"></a>4. 流程函数</h4><p>​    流程函数在SQL语句中实现条件筛选，从而提高语句的效率</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">if(value,t,f)</td>
+<td align="center">如果value为true，则返回true否则返回f</td>
+</tr>
+<tr>
+<td align="center">ifnull(value1,value2)</td>
+<td align="center">判定第一个参数是否为空，即如果value1不为空，返回value1，否则返回value2</td>
+</tr>
+<tr>
+<td align="center">case [表中字段] when [val] then [res1]…else [default] end</td>
+<td align="center">如果val1与表中数据判断为true返回res1,…(可以写多个判断的)否则返回default默认值</td>
+</tr>
+<tr>
+<td align="center">case when [表中字段]比较运算 then [res1]…else [default] end</td>
+<td align="center">如果不是具体的而是范围，使用该语法</td>
+</tr>
+</tbody></table>
+<p>​    范例：流程控制函数的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- if</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">if</span>(<span class="literal">true</span>,<span class="string">&#x27;ok&#x27;</span>,<span class="string">&#x27;error&#x27;</span>);  //结果ok</span><br><span class="line"></span><br><span class="line"><span class="comment">--ifnull</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ifnull</span>(<span class="literal">null</span>,<span class="string">&#x27;error&#x27;</span>);  //结果error</span><br><span class="line"></span><br><span class="line"><span class="comment">-- case when then else end</span></span><br><span class="line"><span class="comment">-- 需求：查询员工表emp中员工姓名和工作地址(北京/上海---&gt;一线城市，其他---&gt;二线城市)</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">name</span>,</span><br><span class="line">	(<span class="keyword">case</span> workaddress <span class="keyword">when</span> <span class="string">&#x27;北京&#x27;</span> <span class="keyword">then</span> <span class="string">&#x27;一线城市&#x27;</span> <span class="keyword">when</span> <span class="string">&#x27;上海&#x27;</span> <span class="keyword">then</span> <span class="string">&#x27;一线城市&#x27;</span> <span class="keyword">else</span> <span class="string">&#x27;二线城市&#x27;</span> <span class="keyword">end</span>) <span class="keyword">AS</span> <span class="string">&#x27;工作地址&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-约束"><a href="#5-约束" class="headerlink" title="5. 约束"></a>5. 约束</h4><p>​    约束是作用于表中字段上的规则，用于限制存储在表中的数据</p>
+<p>​    约束的目的是保证数据库中数据的正确、有效性和完整性</p>
+<p>​    约束的分类</p>
+<table>
+<thead>
+<tr>
+<th align="center">约束</th>
+<th align="center">描述</th>
+<th align="center">关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">非空约束</td>
+<td align="center">限制该字段的数据不能为null</td>
+<td align="center">NOT NULL</td>
+</tr>
+<tr>
+<td align="center">唯一约束</td>
+<td align="center">保证该字段的所有数据都是唯一、不重复的</td>
+<td align="center">UNIQUE</td>
+</tr>
+<tr>
+<td align="center">主键约束</td>
+<td align="center">主键是一行数据的唯一标识，要求非空且唯一</td>
+<td align="center">PRIMARY KEY</td>
+</tr>
+<tr>
+<td align="center">默认约束</td>
+<td align="center">保存数据时，如果未指定该字段的值，则采用默认值</td>
+<td align="center">DEFAULT</td>
+</tr>
+<tr>
+<td align="center">检查约束</td>
+<td align="center">保证字段值满足某一条件</td>
+<td align="center">CHECK</td>
+</tr>
+<tr>
+<td align="center">外键约束</td>
+<td align="center">用来让两张表的数据之间建立连接，保证数据的一致性和完整性</td>
+<td align="center">FOREIGN KEY</td>
+</tr>
+</tbody></table>
+<p>​    注意：约束是作用于表中字段上的，可以在创建表/修改表的时候添加约束</p>
+<p>​    范例：约束的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span>(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span>;</span><br><span class="line">	name VARCHAR(20) NOT NULL UNIQUE;</span><br><span class="line">	age INT <span class="keyword">CHECK</span>(age&gt;<span class="number">0</span> &amp;&amp; age&lt;=<span class="number">120</span>);</span><br><span class="line">	statues CHAR(1) DEFAULT &#x27;1&#x27;;</span><br><span class="line">)<span class="keyword">COMMENT</span> <span class="string">&#x27;用户表&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-外键约束"><a href="#6-外键约束" class="headerlink" title="6.外键约束"></a>6.外键约束</h4><p>​    概念：用来让两张表的数据之间建立连接，保证数据的一致性和完整性</p>
+<p>​    一般把设立外键的表叫做子表，而让该外键为主键的表叫主表</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zEiZ1x"><img src="https://s1.ax1x.com/2022/11/15/zEiZ1x.png" alt="zEiZ1x.png"></a></p>
+<p>​    设置外键后，当要删除主表的数据时，要判定该数据在子表中是否存在关联关系，如果存在则拒绝删除操作</p>
+<p>​    外键约束的语法：</p>
+<ul>
+<li><p>添加外键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//建表时直接创建</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span><br><span class="line">	字段名 数据类型</span><br><span class="line">	...</span><br><span class="line">	[<span class="keyword">CONSTRAINT</span>] [外键名称] <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(外键字段名) REFRENCES 主表(主表列名)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">//表建立后修改外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 外键名称 <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(外键字段名) <span class="keyword">REFERENCES</span> 主表名(主表列名);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除外键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> 外键名称;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>​    范例：外键的操作</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//增加外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> emp <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_emp_dept_id <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (dept_id) <span class="keyword">REFERENCES</span> dept(<span class="keyword">id</span>);</span><br><span class="line"></span><br><span class="line">//删除外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> emp <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> fk_emp_dept_id;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    外键约束：删除和更新行为</p>
+<table>
+<thead>
+<tr>
+<th align="center">行为</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">NO ACTION</td>
+<td align="center">当主表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则不允许删除/更新，<strong>外键约束的默认行为</strong></td>
+</tr>
+<tr>
+<td align="center">RESTRICT</td>
+<td align="center">与NO ACTION一致</td>
+</tr>
+<tr>
+<td align="center">CASCADE(级联)</td>
+<td align="center">当在主表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有，则也删除/更新外键在从表中的记录</td>
+</tr>
+<tr>
+<td align="center">SET NULL</td>
+<td align="center">当在主表中删除对应记录时，首先检查该记录是否对应外键，如果有则设置从表中该外键值为null(此时需要设计时外键允许取null)</td>
+</tr>
+<tr>
+<td align="center">SET DEFAULT</td>
+<td align="center">主表有变更时，子表将外键列设置成一个默认的值(Innodb不支持)</td>
+</tr>
+</tbody></table>
+<p>​    语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 外键名称 <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(外键字段名) <span class="keyword">REFERENCES</span> 主表名(主表列名) <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CASCADE</span> <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">CASCADE</span></span><br></pre></td></tr></table></figure>
+
+<p>​    <code>ON UPDATE</code>：表示更新时怎么操作</p>
+<p>​    <code>ON DELETE</code>：表示删除时怎么操作</p>
+<p>​    前面一段与外键设置时语法相同</p>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2022-11-21T00:45:24.000Z" itemprop="datePublished">
+              2022-11-21
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/MySQL/">MySQL</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2022 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>

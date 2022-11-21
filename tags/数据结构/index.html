@@ -74,6 +74,99 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/11/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8404/">数据结构04</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-11-21T00:41:29.000Z" itemprop="datePublished">
+    2022-11-21
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><h4 id="1-栈的定义"><a href="#1-栈的定义" class="headerlink" title="1. 栈的定义"></a>1. 栈的定义</h4><p>​    一种可以实现“先进后出”的存储结构<br>​    栈类似于箱子</p>
+<h4 id="2-栈的分类"><a href="#2-栈的分类" class="headerlink" title="2. 栈的分类"></a>2. 栈的分类</h4><p>​    栈可以分为静态栈和动态栈</p>
+<p>​    静态栈：通过数组实现</p>
+<p>​    动态栈：通过链表实现</p>
+<p>​    动态栈使用的更多</p>
+<h4 id="3-栈可以实现的操作"><a href="#3-栈可以实现的操作" class="headerlink" title="3. 栈可以实现的操作"></a>3. 栈可以实现的操作</h4><p>​    1. 入栈(压栈)</p>
+<p>​    2. 出栈</p>
+<h4 id="4-动态栈的伪算法"><a href="#4-动态栈的伪算法" class="headerlink" title="4. 动态栈的伪算法"></a>4. 动态栈的伪算法</h4><ol>
+<li><p>动态栈的实现</p>
+<p>动态栈通过链表来实现，栈中的每一个元素通过一个结点来表示，要实现栈还需要声明一个栈顶和栈底，初始化栈时，会将栈顶和栈底指向同一个空的头结点，要向栈存入数据，则先新生成一个结点，再**将该新结点的指针域指向栈顶指向的结点(考虑到出栈时要删除，所以新指向旧)**，最后将栈顶移动到新结点上</p>
+</li>
+</ol>
+<ol start="2">
+<li>注意：动态栈属于链表栈，不存在满的问题</li>
+</ol>
+<ol start="3">
+<li><p>压栈操作图示</p>
+<p><img src="https://s1.ax1x.com/2022/11/10/z9SQFe.png" alt="z9SQFe.png"></p>
+</li>
+</ol>
+<ol start="4">
+<li><p>栈的遍历</p>
+<p>栈的遍历由于栈是先进后出，所以需要通过栈顶确定指针p，通过指针p来自上向下进行操作，只要p指向的元素不是栈底，则可以对栈一直输出</p>
+</li>
+</ol>
+<ol start="5">
+<li><p>判断栈是否为空</p>
+<p>当栈顶和栈底相等，则栈为空</p>
+</li>
+</ol>
+<ol start="6">
+<li><p>出栈</p>
+<p>当栈中元素为空时，则出栈失败；不为空则将一指针p指向栈顶指向的元素，栈顶元素指向该元素的下一个元素，此时释放掉p指针指向的结点就行</p>
+</li>
+</ol>
+<ol start="7">
+<li><p>栈的清空</p>
+<p>将栈内有效元素全部清空，只保留框架，实现需要定义指针p和q，p指向栈顶元素，q为NULL，如果p没有指向栈底，则q指向p的下一个元素，当将p指向元素释放后p在移动到q上，只要p指向的不是栈底则一直循环执行该算法，循环结束后应将栈顶指向栈底</p>
+</li>
+</ol>
+<h4 id="5-动态栈的算法"><a href="#5-动态栈的算法" class="headerlink" title="5. 动态栈的算法"></a>5. 动态栈的算法</h4><ol>
+<li><p>算法-栈的定义、栈的初始化、压栈、遍历栈</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义栈中的每一个结点</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">pNext</span>;</span></span><br><span class="line">&#125;NODE,*PNODE;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义栈</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Stack</span>&#123;</span></span><br><span class="line">    PNODE pTop;</span><br><span class="line">    PNODE pBottom;</span><br><span class="line">&#125;STACK,*PSTACK;</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(PSTACK pSt)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(PSTACK pSt,<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    STACK st;    <span class="comment">//定义栈</span></span><br><span class="line">    init(&amp;st);   <span class="comment">//栈的初始化</span></span><br><span class="line">    push(&amp;st,<span class="number">1</span>); <span class="comment">//压栈</span></span><br><span class="line">    push(&amp;st,<span class="number">2</span>);</span><br><span class="line">    write_stack(&amp;st); <span class="comment">//遍历栈</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//栈的初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(PSTACK pSt)</span></span>&#123;</span><br><span class="line">    pSt-&gt;pTop = (PNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span>==pSt-&gt;pTop)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    pSt-&gt;pBottom = pSt-&gt;pTop;</span><br><span class="line">    <span class="comment">//指针域置为空</span></span><br><span class="line">    pSt-&gt;pTop-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//压栈</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(PSTACK pSt,<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">    PNODE p = (PNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">    p-&gt;data = num;</span><br><span class="line">    p-&gt;pNext = pSt-&gt;pTop;</span><br><span class="line">    pSt-&gt;pTop =p;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_stack</span><span class="params">(PSTACK pSt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    PNODE p = pSt-&gt;pTop;</span><br><span class="line">    <span class="keyword">while</span>(pSt-&gt;pBottom!=p)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,p-&gt;data);</span><br><span class="line">        p=p-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>算法-栈是否为空的判断、出栈</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt; //bool类型需要声明的头文件</span></span></span><br><span class="line"><span class="comment">//判断栈是否为空</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">(PSTACK pST)</span></span>;  <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">(PSTACK pSt)</span></span>&#123;  <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">if</span>(pSt-&gt;pTop==pSt-&gt;pBottom)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//出栈，并返回出栈的值</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pop</span><span class="params">(PSTACK pSt,<span class="keyword">int</span> * val)</span></span>;  <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pop</span><span class="params">(PSTACK pSt,<span class="keyword">int</span> * val)</span></span>&#123;  <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">if</span>(empty(pSt))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE p = pSt-&gt;pTop;</span><br><span class="line">    pSt-&gt;pTop = pSt-&gt;pTop-&gt;pNext;</span><br><span class="line">    *val = p-&gt;data;</span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    p = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>算法-栈的清空</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">(PSTACK pSt)</span></span>;  <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">(PSTACK pSt)</span></span>&#123;  <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">if</span>(empty(pSt))&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE p = pSt-&gt;pTop;</span><br><span class="line">    PNODE q = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">while</span>(p!=pSt-&gt;pBottom)&#123;</span><br><span class="line">        q = p-&gt;pNext;</span><br><span class="line">        <span class="built_in">free</span>(p);</span><br><span class="line">        p = q;</span><br><span class="line">    &#125;</span><br><span class="line">    pSt-&gt;pTop = pSt-&gt;pBottom;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ol>
+<h4 id="6-栈的应用"><a href="#6-栈的应用" class="headerlink" title="6. 栈的应用"></a>6. 栈的应用</h4><p>​    1. 函数调用<br>​    2. 中断<br>​    3. 表达式求值<br>​    4. 内存分配<br>​    5. 缓冲处理<br>​    6. 走迷宫</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2022/10/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8403/">数据结构03</a>
         </h1>
       

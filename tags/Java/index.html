@@ -1430,7 +1430,7 @@
 <li>windows系统的路径分隔符为“\”；</li>
 <li>Unix、类Unix（Linux、MacOS、ALX）路径分隔符为“/”；</li>
 </ul>
-<p>​    java考虑到这个问题所以是互通的，但写大量的杠杠转义处理非常麻烦，所以<strong>一般使用File类中提供的常量(public static final String separator)</strong>,早期命名规范与现在不同所以是小写separator</p>
+<p>​    java考虑到这个问题所以是互通的，但写大量的<code>//</code>或<code>\\</code>转义处理非常麻烦，所以<strong>一般使用File类中提供的常量(public static final String separator)</strong>,早期命名规范与现在不同所以是小写separator</p>
 <p>​    <strong>separator常量的使用</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;Hello.txt&quot;);</span><br></pre></td></tr></table></figure>
 <p>​    <strong>注意：以后编写代码所有路径分隔符尽量通过常量separator来进行定义</strong></p>

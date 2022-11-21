@@ -425,9 +425,8 @@
 <td align="center">求和</td>
 </tr>
 </tbody></table>
-<ol start="3">
-<li>语法：</li>
-</ol>
+</li>
+<li><p>语法：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 聚合函数(字段列表) <span class="keyword">FROM</span> 表名;</span><br></pre></td></tr></table></figure>
 
 <p>注意：null值不参与所有聚合函数运算</p>
@@ -456,32 +455,26 @@
 <ol>
 <li><p>语法</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表名 <span class="keyword">ORDER</span> <span class="keyword">BY</span> 字段<span class="number">1</span> 排序方式<span class="number">1</span>, 字段<span class="number">2</span> 排序方式<span class="number">2</span> ...;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>排序方式</li>
-</ol>
+</li>
+<li><p>排序方式</p>
 <ul>
 <li>ASC：升序(默认值)</li>
 <li>DESC：降序</li>
 </ul>
-<ol start="3">
-<li>多字段排序时，第一个字段值相同时才会根据第二个字段排序</li>
-</ol>
+</li>
+<li><p>多字段排序时，第一个字段值相同时才会根据第二个字段排序</p>
 </li>
 </ol>
 <p>​    <strong>DQL-分页查询</strong></p>
 <ol>
 <li><p>语法</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表名 <span class="keyword">LIMIT</span> 起始索引,查询记录数;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>起始索引从0开始，起始索引 = (要查询页码-1) <code>*</code> 每页显示记录数</p>
 </li>
-<li><p>分页查询在不同数据库中语法不一样，在MySQL中是LIMIT</p>
+<li><p> 起始索引从0开始，起始索引 = (要查询页码-1) <code>*</code> 每页显示记录数</p>
 </li>
-<li><p>如果查询的是第一页数据，起始索引可以省略，直接简写为LIMIT 10</p>
+<li><p> 分页查询在不同数据库中语法不一样，在MySQL中是LIMIT</p>
 </li>
-</ol>
+<li><p> 如果查询的是第一页数据，起始索引可以省略，直接简写为LIMIT 10</p>
 </li>
 </ol>
 <h4 id="5-DCL-SQL开发人员对其操作比较少"><a href="#5-DCL-SQL开发人员对其操作比较少" class="headerlink" title="5. DCL(SQL开发人员对其操作比较少)"></a>5. DCL(SQL开发人员对其操作比较少)</h4><p>​    <strong>DCL-权限控制</strong></p>

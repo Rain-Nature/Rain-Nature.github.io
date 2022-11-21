@@ -70,6 +70,425 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/12/08/MyBirthday-do2/">MyBirthday-do2</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-12-08T13:41:58.000Z" itemprop="datePublished">
+    2021-12-08
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="送给自己生日的代码"><a href="#送给自己生日的代码" class="headerlink" title="送给自己生日的代码"></a>送给自己生日的代码</h2><h4 id="送给自己的话"><a href="#送给自己的话" class="headerlink" title="送给自己的话"></a>送给自己的话</h4><p>​    在新的一年，希望可以更加独立一些，就在本学期，我经历了低谷，感受到了许多–冷淡与不屑还有嘲讽。希望在新的一年里，可以自由控制自己的时间，而不是被时间撵着走，依靠自己的力量，完成许多看似不可能的事情，<strong>做自己的主人</strong></p>
+<h4 id="生日代码-回望2021，致敬2022"><a href="#生日代码-回望2021，致敬2022" class="headerlink" title="生日代码(回望2021，致敬2022)"></a>生日代码(回望2021，致敬2022)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Callable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">              Thread game1 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> MyThread(<span class="string">&quot;王者&quot;</span>));</span><br><span class="line">              Thread game2 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> MyThread(<span class="string">&quot;哈利&quot;</span>));</span><br><span class="line">              Thread game3= <span class="keyword">new</span> Thread(<span class="keyword">new</span> MyThread(<span class="string">&quot;吃鸡&quot;</span>));</span><br><span class="line">              Thread game4 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> MyThread(<span class="string">&quot;第五&quot;</span>));</span><br><span class="line"></span><br><span class="line">              System.out.println(<span class="string">&quot;每月游戏，每周一轮转&quot;</span>);</span><br><span class="line">              game1.start();</span><br><span class="line">              game2.start();</span><br><span class="line">              game3.start();</span><br><span class="line">              game4.start();</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> game_num = <span class="number">4</span>;</span><br><span class="line">       <span class="keyword">private</span>  String name;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">MyThread</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">              <span class="keyword">this</span>.name = name;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">              <span class="keyword">try</span> &#123;</span><br><span class="line">                     Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">              &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                     e.printStackTrace();</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">if</span> (game_num&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                     game_num--;</span><br><span class="line">                     System.out.println(<span class="keyword">this</span>.name);</span><br><span class="line">                     Thread.currentThread().interrupt();</span><br><span class="line">              &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">              &#125;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/12/08/JavaEE-02/">JavaEE-02.md</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-12-08T05:23:50.000Z" itemprop="datePublished">
+    2021-12-08
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/JavaEE/">JavaEE</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="JSP基础语法"><a href="#JSP基础语法" class="headerlink" title="JSP基础语法"></a>JSP基础语法</h2><h4 id="1-JSP注释"><a href="#1-JSP注释" class="headerlink" title="1. JSP注释"></a>1. JSP注释</h4><p>​    JSP中一共支持两种注释</p>
+<ul>
+<li><p>显式注释</p>
+<p>使用的是HTML风格的注释</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--注释--&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>隐式注释</p>
+<ul>
+<li><p>使用Java语言提供的注释</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">单行注释(&#x2F;&#x2F;)</span><br><span class="line">多行注释(&#x2F;* ... *&#x2F;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>JSP提供的注释</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%-- 注释 --%&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<p>​    <strong>注释的区别</strong></p>
+<p>​    代码运行之后只有显式注释的内容会发送到客户端上，即通过查看网页源代码可以看见</p>
+<h4 id="2-三种Scriptlet"><a href="#2-三种Scriptlet" class="headerlink" title="2. 三种Scriptlet"></a>2. 三种Scriptlet</h4><p>​    <strong>Scriptlet指的是脚本小程序</strong>，在之前只要编写Java程序的语句都需要在”&lt;%%&gt;”之中进行编写，而这样的操作形式就称为Scriptlet，根据其作用不同，Scriptlet分为三类：&lt;%%&gt;、&lt;%!%&gt;、&lt;%=%&gt;</p>
+<p>​    <strong>注意：一个JSP文件里面可以同时编写多个Scriptlet，且相互关联</strong></p>
+<h5 id="第一种Scriptlet：-lt-gt"><a href="#第一种Scriptlet：-lt-gt" class="headerlink" title="第一种Scriptlet：&lt;%%&gt;"></a>第一种Scriptlet：&lt;%%&gt;</h5><p>​    在这种Scriptlet里面只能够编写<strong>局部变量、程序语句</strong></p>
+<p>​    范例：观察&lt;%%&gt;</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">	<span class="comment">//局部变量，每次页面刷新(执行)都要重新执行(重复声明)</span></span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">100</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+num+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    一般，在一个JSP文件中使用的最多的就是“&lt;%%&gt;”，里面就定义一些基础的局部变量</p>
+<h5 id="第二种Scriptlet：-lt-gt"><a href="#第二种Scriptlet：-lt-gt" class="headerlink" title="第二种Scriptlet：&lt;%!%&gt;"></a>第二种Scriptlet：&lt;%!%&gt;</h5><p>​    这种Scriptlet定义的变量为全局变量，还可以定义全局常量、方法、类</p>
+<p>​    范例：定义全局变量</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        <span class="comment">//声明全局变量，只在第一次生成页面时声明，之后刷新页面不会再将100赋值给num，num为最近一次更新的值</span></span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">100</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+num+++<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    此时，随着页面刷新，显示的数字也会不断增加，重新打开界面仍为之前退出去前的数字</p>
+<p>​    <strong>注意：一般不会这样使用代码来编写程序</strong></p>
+<p>​    范例：定义全局常量</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String str = <span class="string">&quot;HELLO&quot;</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+str+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>基本上在“&lt;%!%&gt;”能用到的只是定义全局常量(常量)功能</strong></p>
+<p>​    范例：定义类和方法</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        </span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">fish</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> String name;</span><br><span class="line">		<span class="keyword">private</span> String color;</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">fish</span><span class="params">(String name,String color)</span></span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.name = name;</span><br><span class="line">			<span class="keyword">this</span>.color = color;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> String <span class="title">getfish</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&quot;name: &quot;</span>+<span class="keyword">this</span>.name +<span class="string">&quot; color : &quot;</span>+<span class="keyword">this</span>.color;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">buy</span><span class="params">(<span class="keyword">double</span> ... args)</span></span>&#123;</span><br><span class="line">		<span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">double</span> x: args)&#123;</span><br><span class="line">			sum = sum+x;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+<span class="keyword">new</span> fish(<span class="string">&quot;red fish&quot;</span>,<span class="string">&quot;red&quot;</span>).getfish()+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+buy(<span class="number">11.1</span>,<span class="number">56.3</span>)+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    一般也不会这样写代码，只有业余的那部分人会在JSP里面直接编写一堆的Java类或者是方法。</p>
+<h5 id="第三种Scriptlet：-lt-gt"><a href="#第三种Scriptlet：-lt-gt" class="headerlink" title="第三种Scriptlet：&lt;%=%&gt;"></a>第三种Scriptlet：&lt;%=%&gt;</h5><p>​    out.println()可以向页面中进行内容显示输出，但是在JSP中，<strong>输出某个变量、常量、方法的返回值，可以使用表达式输出的Scriptlet完成：&lt;%=%&gt;</strong></p>
+<p>​    范例：观察表达式输出</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String str = <span class="string">&quot;HELLO&quot;</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;&lt;%=str%&gt;&lt;h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    这种Scriptlet可以很好的代替out.println()</p>
+<p>​    <strong>那么这两种输出方式选哪种</strong></p>
+<p>​    范例：使用两种形式打印乘法口诀表</p>
+<p>1.使用out.println()打印</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;table&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">1</span> ; x &lt;= <span class="number">9</span> ; x++)&#123;</span><br><span class="line">		out.println(<span class="string">&quot;&lt;tr&gt;&quot;</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> y = <span class="number">1</span> ; y&lt;=x ;y++)&#123;</span><br><span class="line">			out.println(<span class="string">&quot;&lt;td&gt;&quot;</span>+x+<span class="string">&quot;*&quot;</span>+ y+<span class="string">&quot;=&quot;</span>+x*y+<span class="string">&quot;&lt;/td&gt;&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		out.println(<span class="string">&quot;&lt;/tr&gt;&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;/table&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    以上代码完成了开发需要，但是存在如下问题</p>
+<ul>
+<li><p>不方便使用任何的网页设计工具进行调试</p>
+<ul>
+<li>代码没有缩进，输出的代码格式不适合浏览</li>
+</ul>
+</li>
+</ul>
+<p>2.使用表达式输出</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">1</span> ; x &lt;= <span class="number">9</span> ; x++)&#123;</span><br><span class="line">%&gt;</span><br><span class="line">	&lt;tr&gt;</span><br><span class="line">&lt;%</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> y = <span class="number">1</span> ; y&lt;x ;y++)&#123;</span><br><span class="line">%&gt;</span><br><span class="line">		&lt;td&gt;&lt;%=x%&gt;*&lt;%=y%&gt;=&lt;%=x*y%&gt;&lt;/td&gt;</span><br><span class="line">&lt;%</span><br><span class="line">		&#125;</span><br><span class="line">%&gt;</span><br><span class="line">	&lt;/tr&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    此时的程序与out.println()相比最大的好处在于代码简化，而且功能又相同</p>
+<p>​    <strong>注意：在以后的所有开发中，只要是JSP页面不允许使用out.println()输出，JSP的内容输出永远都依靠表达式输出完成</strong></p>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>​    如果把JSP页面当成一个Java类的话</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class xxx.jsp&#123;</span><br><span class="line">	全局变量; &lt;%!%&gt;</span><br><span class="line">	全局常量; &lt;%!%&gt;</span><br><span class="line">	public void 方法()&#123;</span><br><span class="line">		局部变量;&lt;%%&gt;</span><br><span class="line">		语句;&lt;%%&gt;</span><br><span class="line">		输出;&lt;%&#x3D;%&gt;</span><br><span class="line">	&#125;</span><br><span class="line">	class 内部类&#123;&#125;&lt;%!%&gt;</span><br><span class="line">	方法;&lt;%!%&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-page指令"><a href="#3-page指令" class="headerlink" title="3. page指令"></a>3. page指令</h4><p>​    page主要功能是定义一个页面中的全部属性，里面会包含很多的选项</p>
+<p>​    page是JSP页面开发中用到的最多的一个操作</p>
+<p>​    <strong>page指令的语法格式</strong></p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page 属性名<span class="number">1</span> = <span class="string">&quot;value1&quot;</span> 属性名<span class="number">2</span> = <span class="string">&quot;value2&quot;</span> ... %&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="1-解决显示乱码"><a href="#1-解决显示乱码" class="headerlink" title="1. 解决显示乱码"></a>1. 解决显示乱码</h5><p>​    (1).如果是一个<strong>HTML文件</strong>，对于乱码可以使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meta charset &#x3D; &#39;UTF-8&#39;</span><br></pre></td></tr></table></figure>
+
+<p>的方式解决，<strong>其指定了页面的编码</strong>，浏览器在解析的时候被指定了编码，就可以准确的使用特定的解码方式进行显示</p>
+<p>​    (2).<strong>jsp如果要设置浏览器支持的编码(浏览器会有默认的解码格式)，可以使用pageEncoding属性完成</strong></p>
+<p>​    范例：设置浏览器的编码(.jsp文件)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@page</span> pageEncoding = <span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;中文&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>注意：pageEncoding的编码设置只能一次，多次会报错</strong></p>
+<p>​    (3).设置MIME类型</p>
+<p>​    MIME指的是多路Internet媒体访问协议。相当于通过MIME类型定义出当前页面的执行方式</p>
+<p>​    所有支持的MIME类型都在Tomcat安装目录中/conf/web.xml文件里面定义，<strong>里面定义了各种文件的执行方式</strong></p>
+<p>​    范例：设置MIME类型，其优先级大于第二种设置方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType&#x3D;&quot;text&#x2F;html; charset&#x3D;UTF-8&quot;%&gt;</span><br><span class="line">&lt;h1&gt;中文&lt;&#x2F;h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>注意：不要乱加空格，尤其是等号那里</strong></p>
+<p>​    这个设置与上面的第二种不冲突</p>
+<p>​    MIME类型一般不需要设置，默认就是“text/html”</p>
+<p>​    <strong>contentType为MIME类型，设置文件运行方式，可以更改为其他形式，如更改为word形式</strong></p>
+<p>​    范例：将jsp页面 以word格式下载</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;application/msword&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;中文&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    此时运行会弹出下载框，下载word文件，<strong>这个在ie中才明显，一般浏览器感受不到</strong></p>
+<p>​    现在对于编码的设置一般都是使用第二种</p>
+<h5 id="2-使用page来使用Java中的import操作"><a href="#2-使用page来使用Java中的import操作" class="headerlink" title="2. 使用page来使用Java中的import操作"></a>2. 使用<code>page</code>来使用Java中的<code>import</code>操作</h5><p>​     在page指令里面几乎所有的指令都只能够设置一次，但是import指令可以使用多次，表示导入开发包</p>
+<p>​    范例：使用Java中的<code>import</code>(可以一行导入也可以多行导入)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.io.*,java.text.*&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;&lt;%=new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(new Date())%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    只要能导包，那么所有的系统类都可以调用</p>
+<h5 id="3-数据库操作"><a href="#3-数据库操作" class="headerlink" title="3. 数据库操作"></a>3. 数据库操作</h5><p>​    因为可以进行导包操作，所以意味着可以在JSP页面上进行数据库的数据操作</p>
+<p>​    对于要进行数据库操作的驱动程序，都需要拷贝到TomcatHOME/lib目录下即可(Tomcat需要重新启动才能加载新的包)</p>
+<p>​    <strong>实际上，所有在JSP中的显示的内容永远都不是固定的，都是由程序动态生成的，在WebContainer中负责生成要显示的代码</strong></p>
+<h4 id="4-包含指令"><a href="#4-包含指令" class="headerlink" title="4. 包含指令"></a>4. 包含指令</h4><p>​    一般要进行页面开发时都需要包含如下结构：菜单栏、头部信息、<strong>中间显示信息</strong>、尾部信息</p>
+<p>​    一般都是中间显示信息发生变化，为实现这个有两种显示方式</p>
+<ul>
+<li>在每一个显示的页面里面重复包含有“菜单栏”、“头部信息”、“尾部信息”，这三个重复内容</li>
+<li>将“菜单栏”、“头部信息”、“尾部信息”分别定义为三个文件，在需要的地方进行引用</li>
+</ul>
+<p>​    很明显第二种更加适合代码维护，所以此处就需要使用包含指令，但<strong>在JSP中对于包含指令有两种提供形式</strong></p>
+<h5 id="1-静态包含：-lt-include-gt"><a href="#1-静态包含：-lt-include-gt" class="headerlink" title="1. 静态包含：&lt;%@include%&gt;"></a>1. 静态包含：<code>&lt;%@include%&gt;</code></h5><p>​    静态包含的语法：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">&quot;包含文件路径&quot;</span>%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>静态包含可以包含任意的文件内容</strong></p>
+<p>​    范例：实现静态包含操作(定义几个被包含的页面)   </p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.jsp页面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&#x27;UTF-8&#x27;</span>%&gt;</span><br><span class="line">&lt;% String str = <span class="string">&quot;这是页面一&quot;</span>;%&gt;</span><br><span class="line">&lt;%=str%&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.html页面</span></span><br><span class="line">&lt;meta charset = <span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&#x27;UTF-8&#x27;</span>%&gt; <span class="comment">//保证引用后页面中文不会乱码</span></span><br><span class="line">&lt;h1&gt;这是页面2&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//all.jsp</span></span><br><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html; charset=UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">&quot;2.html&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">&quot;1.jsp&quot;</span>%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>注意：使用jsp包含html页面时，会一起编译为java代码进行处理，此时就需要对html页面进行设置防止乱码</strong></p>
+<p>​    在这个程序中文件名为中文不影响结果</p>
+<p>​    此时所有的页面都被包含显示在all.jsp中</p>
+<h5 id="2-动态包含：-lt-jsp-include-gt"><a href="#2-动态包含：-lt-jsp-include-gt" class="headerlink" title="2. 动态包含：&lt;jsp:include&gt;"></a>2. 动态包含：<code>&lt;jsp:include&gt;</code></h5><p>​    静态包含只是简单的将文件进行包含，而动态包含则分为两种情况处理</p>
+<ul>
+<li><p>情况一：被包含的页面属于静态文件，那么就将静态包含一样直接将内容导入进去</p>
+</li>
+<li><p>情况二：被包含的页面属于动态页面，则要分别处理后再进行包含</p>
+</li>
+</ul>
+<p>​    <strong>注意：动态包含给出的指令形式属于标签指令，标签指令最后必须完结</strong></p>
+<p>​    动态包含的语法格式定义：</p>
+<ul>
+<li><p>定义一：包含的页面不接收递参数</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:include page=<span class="string">&quot;路径&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>定义二：包含的页面需要接收参数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:include page=<span class="string">&quot;路径&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/jsp:include&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+<p>​    <strong>注意：标签指令不能写在Scriptlet里面，其和HTML标签相似</strong></p>
+<p>​    如果要在标签指令中使用Scriptlet里面定义的变量内容，则必须使用表达式输出的方式(<code>&lt;%=%&gt;</code>)</p>
+<p>​    范例：实现参数的发送和接收</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//send.jsp,发送并显示receive.jsp界面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;jsp:include page=<span class="string">&quot;receive.jsp&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;a&quot;</span> value=<span class="string">&quot;刘旭晟&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;do&quot;</span> value=<span class="string">&quot;说&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;proclaim&quot;</span> value=<span class="string">&quot;共产党万岁&quot;</span>/&gt;</span><br><span class="line">&lt;/jsp:include&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//receive.jsp,接收端需要接收参数传递内容</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%=request.getParameter(<span class="string">&quot;a&quot;</span>)%&gt;</span><br><span class="line">&lt;%=request.getParameter(<span class="string">&quot;do&quot;</span>)%&gt;</span><br><span class="line">&lt;%=request.getParameter(<span class="string">&quot;proclaim&quot;</span>)%&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h5 id="3-动态包含和静态包含的区别"><a href="#3-动态包含和静态包含的区别" class="headerlink" title="3. 动态包含和静态包含的区别"></a>3. 动态包含和静态包含的区别</h5><p>​    在静态导入时，如果导入的页面定义了Scriptlet变量且本页面也定义了一个一模一样名字的变量，则<strong>页面显示报错，如果执行报错后依然再次刷新会把错误给刷新没</strong></p>
+<p>​    <strong>静态包含的最大特点为：先把内容包含到一起，而后一起进行处理</strong></p>
+<p>​    在动态导入时，如果导入的页面定义了Scriptlet变量且本页面也定义了一个一模一样名字的变量，页面照常显示没有影响</p>
+<p>​    <strong>动态包含的特点：</strong></p>
+<ul>
+<li>*<em>如果被包含页面是动态页面(</em>.jsp)，那么先分别处理两个页面的操作，而后将结果包含进来**</li>
+<li>*<em>如果被包含的页面是静态页面(</em>.txt)，那么只是将文件内容简单的导入进来**</li>
+</ul>
+<p>​    动态包含相比静态包含可以在不同页面重复定义变量，更加安全</p>
+<h4 id="5-跳转指令"><a href="#5-跳转指令" class="headerlink" title="5. 跳转指令"></a>5. 跳转指令</h4><p>​    跳转：从一个JSP页面可以跳转到另外一个JSP或其他页面</p>
+<p>​    <strong>跳转指令依然输入标签指令形式，所以在跳转指令完成操作后依然要进行标签完结</strong></p>
+<p>​    跳转指令的两种定义形式：</p>
+<ul>
+<li><p>定义一：不向跳转页面传递参数：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:forward page=<span class="string">&quot;路径&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>定义二：向跳转页面传递参数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:forward page=<span class="string">&quot;路径&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/jsp:forward&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>​    范例：实现跳转</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//要跳转到的界面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;&lt;%=request.getParameter(&quot;paramA&quot;)%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;&lt;%=request.getParameter(&quot;paramB&quot;)%&gt;&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//跳转界面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;jsp:forward page=<span class="string">&quot;param.jsp&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;paramA&quot;</span> value=<span class="string">&quot;int&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;paramB&quot;</span> value=<span class="string">&quot;double&quot;</span>/&gt;</span><br><span class="line">&lt;/jsp:forward&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    像以上代码这种跳转之后地址栏不发生改变，但页面内容发生改变，<strong>这种跳转称为服务器端跳转</strong></p>
+<p>​    <strong>还有一种跳转会连地址栏一起跳转的叫客户端跳转</strong>，实现方式是使用Javascript，或者可以使用超链接跳转也是一样的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="built_in">window</span>.location = <span class="string">&quot;param.jsp&quot;</span>;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>结论</strong>    </p>
+<p>​    地址栏不改变的跳转称为服务器跳转</p>
+<p>​    地址栏改变的跳转称为客户端跳转</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/11/15/JavaEE-01/">JavaEE-01</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-11-15T12:12:39.000Z" itemprop="datePublished">
+    2021-11-15
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/JavaEE/">JavaEE</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="Web与Tomcat"><a href="#Web与Tomcat" class="headerlink" title="Web与Tomcat"></a>Web与Tomcat</h2><h4 id="1-Web的简介"><a href="#1-Web的简介" class="headerlink" title="1. Web的简介"></a>1. Web的简介</h4><p>​    WEB最早出现是为了展示科研产品，到现在其发展超过预期，从WEB开始整个互联网的行业发生了变化</p>
+<p>​    不管怎么改变WEB的处理流程永远都只有两种形式：<strong>静态WEB和动态WEB</strong></p>
+<p>​    (1).静态WEB</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/IcNA3T"><img src="https://z3.ax1x.com/2021/11/14/IcNA3T.png" alt="IcNA3T.png"></a></p>
+<p>​    在WEB中分为客户端与服务器端，而客户端主要通过WEB浏览器访问服务器端，并且使用的是HTTP协议</p>
+<p>​    静态WEB的实现主要技术是：HTML、CSS、Javascript</p>
+<p>​    <strong>静态WEB的缺点：无法操作数据库</strong></p>
+<p>​    (2).动态WEB</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/Icaq41"><img src="https://z3.ax1x.com/2021/11/14/Icaq41.png" alt="Icaq41.png"></a></p>
+<p>​    动态WEB与静态WEB一样，客户端上依然使用普通的WEB浏览器进行访问，但是服务器端的操作发生了变化</p>
+<p>​    用户发送来的请求将由WEB服务插件进行接收，插件的主要功能是区分用户发送过来的是动态的还是静态的请求( * .htm为静态请求、 * .jsp为动态请求)，如果是静态请求，则由Web Server调用文件系统中的指定文件内容并发回给客户端(与静态Web相同)，但是如果发送为动态请求，则所有的请求交由Web容器进行处理。Web容器负责拼凑代码，拼凑完后交由Web Server返回给用户进行展示</p>
+<p>​    <strong>动态Web的最大特征：交互性</strong></p>
+<p>​    由于有Web容器的支持，所以动态Web可以进行数据库的连接访问</p>
+<p>​    动态Web需要进行拼凑，所以总体上静态Web会快于动态Web</p>
+<p>​    <strong>动态Web的实现可以使用的技术</strong></p>
+<p>​    CGI，ASP，PHP，Servlet/JSP(Java做前台太费钱，也费劲)，RUBY，<strong>Node.JS</strong>，<strong>Python</strong></p>
+<p>​    没有加粗的不用看，都是夕阳</p>
+<p>​    核心本质没有变，还是Java处理整个后端业务(大脑)</p>
+<p>​    <strong>注意：Web Container（Web容器）是决定整个动态Web的核心，所有的代码一定是拼凑而成，拼凑完后还是HTML代码</strong></p>
+<h4 id="2-Tomcat的安装与配置"><a href="#2-Tomcat的安装与配置" class="headerlink" title="2. Tomcat的安装与配置"></a>2. Tomcat的安装与配置</h4><p>​    Tomcat是符合JavaEE标准的最小的Web容器</p>
+<p>​    <strong>服务器与容器的区别</strong></p>
+<p>​    服务器中会包含容器，除了容器之外服务器中还可能包含一些组件，例如：事务处理</p>
+<p>​    <strong>Tomcat的下载</strong></p>
+<p>​    去官网下载安装版，Tomcat本身很小，所以电脑上需要有额外的JDK，Tomcat在电脑中的运行必须有JDK的支持，或者简化版JRE支持，在安装Tomcat时会进行选择。</p>
+<p>​    安装完成后会自动在Windows的服务里面进行服务的注册，但是不可以在这里启动</p>
+<p>​    <strong>Tomcat的安装目录</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\Apache Software Foundation\Tomcat 10.0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>bin：包含了所有的可执行的程序命令，使用“Tomcat10.exe”命令可以启动Tomcat服务器，<strong>打开服务器之后，就可以利用浏览器访问，输入：<a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></strong></p>
+</li>
+<li><p>conf：包含了所有的配置文件路径信息</p>
+</li>
+<li><p>lib：这是一个Tomcat自己的CLASSPATH，可以在里面配置第三方的jar文件</p>
+</li>
+<li><p>logs：负责所有日志文件的保存目录</p>
+</li>
+<li><p>webapps：为项目的自动部署目录</p>
+</li>
+<li><p>work：保存所有的临时生成文件，如果程序则么都运行不了，但又没有错，可以考虑将此目录清空</p>
+</li>
+</ul>
+<p>​    <strong>Tomcat的使用（配置虚拟目录）</strong></p>
+<p>​    如果要在项目中使用Tomcat必须配置虚拟目录（核心）</p>
+<p>​    虚拟目录指的就是工作目录，即，如果进行Web项目的开发，需要有一个指定结构的目录进行内容的保存，并且要在Tomcat中配置此目录</p>
+<ol>
+<li><p>在D盘建立一个lxsWeb的目录，这个目录作为虚拟目录存在</p>
+</li>
+<li><p>这个目录有建立要求，在这个目录中必须存在有一个WEB-INF/web.xml(大小写不能错)文件（从Tomcat的安装目录webapps-&gt;ROOT可以拷贝出来）</p>
+</li>
+<li><p>此时Tomcat不知道硬盘存在此目录，所以需要修改Tomcat的配置文件(conf/server.xml),在“<code>&lt;/Host&gt;</code> ”上面编写这行代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context path &#x3D; &quot;&#x2F;lxs&quot; docBase &#x3D; &quot;D:\lxsweb&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>配置意义：</p>
+<ul>
+<li><code>&lt;Context&gt;</code> ：表示配置一个新的上下文，结尾必须有<code>/</code> </li>
+<li>path：为浏览器上的输入路径(<code>http://localhost:8080/lxs</code> )，名称不允许重复，此时通过上面的路径访问<code>D:\lxsweb</code> 目录下的内容</li>
+<li>docBase：配置项目的磁盘路径，此目录下必须存在WEB-INF</li>
+</ul>
+</li>
+<li><p>在默认情况下，如果直接输入路径会出现404(HTTP状态码，表示路径不可访问)错误，因为没有输入具体执行文件名称，输入后就可以访问。另外，从Tomca6.5开始关闭了页面列表功能，此时通过修改conf/web.xml文件打开列表，查找文件中listings，把其值改为true，此时就可以进行列表显示</p>
+</li>
+<li><p>默认情况下，所有的网络服务器都是有监听端口的，Tomcat默认的端口为8080端口，但是如果不想输入端口，则可以将监听端口设置为80这个默认端口(当你不写端口号时默认去寻找的就是80端口)，修改conf/server.xml文件即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port&#x3D;&quot;8080&quot; protocol&#x3D;&quot;HTTP&#x2F;1.1&quot; &#x2F;&#x2F;8080改为80</span><br></pre></td></tr></table></figure>
+
+<p>此时访问时就不需要写端口8080了：<code>http://localhost/lxs/</code> ，此时如果加了8080反而进不去</p>
+</li>
+<li><p>也可以不使用localhost改用本机ip，通过cmd输入ipconfig，其中的IPv4地址，为本机ip地址，通过ip地址可以访问其ip的电脑</p>
+</li>
+</ol>
+<p><strong>注意：所有的配置文件修改后，Tomcat需要重新启动才可以加载到新的内容</strong></p>
+<h4 id="3-第一个JSP程序"><a href="#3-第一个JSP程序" class="headerlink" title="3. 第一个JSP程序"></a>3. 第一个JSP程序</h4><p>​    范例：在页面上输出”hello world”</p>
+<p>​    此时需要定义一个JSP文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello JSP<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		&lt;%	//此处为JSP代码</span><br><span class="line">			out.println(&quot;hello world&quot;); //页面输出</span><br><span class="line">		%&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    程序要想正常执行，必须将其保存在服务器工作区内(虚拟目录)，随后打开浏览器输入访问地址执行<a target="_blank" rel="noopener" href="http://localhost/lxs/Hello.jsp">http://localhost/lxs/Hello.jsp</a></p>
+<p>​    <strong>一般第一次会比第二次慢</strong></p>
+<p>​    图示：Tomcat的原理</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/I24uXF"><img src="https://z3.ax1x.com/2021/11/15/I24uXF.png" alt="I24uXF.png"></a></p>
+<ol>
+<li><p>如果用户要访问服务器端的程序将通过浏览器输入访问地址</p>
+</li>
+<li><p>而后服务器端要读取hello.jsp文件，但这个时候并不是直接将这个文件发送给客户端</p>
+</li>
+<li><p>服务器端把hello.jsp文件变为hello.java的文件，并且会自动将这个 hello.java文件自动编译为 hello.class文件</p>
+</li>
+<li><p>之后将执行生成的hello.class文件，并且通过服务器端解析生成为HTML代码后发送给客户端浏览器</p>
+<p>总结：第一次执行hello.jsp文件的时候需要将其转换和编译后才可以执行，而第二次访问由于 hello.class文件已经存在，不会再执行上面操作所以速度就快，但是如果文件发生变化，那么就会重新转换、编译</p>
+</li>
+</ol>
+<p><strong>注意：所有转换和编译后的文件都保存在work目录下</strong></p>
+<p>​    <strong>如果电脑变慢可能导致这个流程异常，即怎样修改文件都执行无变化，此时将Tomcat关上，而后将work目录清空即可</strong></p>
+<p>​    范例：输出更多内容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello JSP<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		&lt;%	//此处为JSP代码</span><br><span class="line">			out.println(&quot;hello world&quot;); //页面输出</span><br><span class="line">			out.println(&quot;<span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>&quot;); </span><br><span class="line">			out.println(&quot;<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span> = <span class="string">&#x27;text/javascript&#x27;</span>&gt;</span><span class="javascript">alert(<span class="string">&#x27;hello world&#x27;</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>&quot;); </span><br><span class="line">		%&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>关系</strong></p>
+<p>​        <strong>JavaScript可以控制HTML代码的输出</strong></p>
+<p>​        <strong>JSP可以控制JavaScript与HTML代码的输出</strong></p>
+<h4 id="4-接收客户端请求数据"><a href="#4-接收客户端请求数据" class="headerlink" title="4. 接收客户端请求数据"></a>4. 接收客户端请求数据</h4><p>​    动态Web最大的特征就是交互性，而交互性的关键是必须由用户输入数据，在HTML中已经提供了表单给用户进行输入数据的空间，而所有的输入数据应由服务器端进行接收</p>
+<p>​    <strong>如果要在服务器端接收数据可以使用操作：request.getParameter(String 参数名称(表单中的name属性))，该操作返回的是String型数据(可以通过正则验证且可以向任意数据类型转换)</strong></p>
+<p>​    范例：编写表单–input.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span> = <span class="string">&quot;input.jsp&quot;</span> <span class="attr">method</span> = <span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">	请输入信息：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;text&quot;</span> <span class="attr">name</span> = <span class="string">&quot;msg&quot;</span> <span class="attr">id</span> = <span class="string">&quot;msg&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;submit&quot;</span> <span class="attr">value</span> = <span class="string">&quot;send&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    当点击提交按钮之后会自动的将表单的输入参数内容发送给服务器端，服务器端可以进行接收</p>
+<p>​    范例：接收参数–input.jsp</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">	String str = request.getParameter(&quot;msg&quot;);</span><br><span class="line">	out.println(&quot;<span class="tag">&lt;<span class="name">h1</span>&gt;</span>&quot;+str+&quot;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>&quot;);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>​    此时用客户端输入的内容服务器端都可以接收到</p>
+<p>​    <strong>注意：服务器若出现500，则表示代码错误</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/11/11/Java15/">Java15</a>
         </h1>
       
@@ -1180,554 +1599,6 @@
 <p>​    范例：跨函数分配内存</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p;</span><br><span class="line">	fun(&amp;p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> ** q)</span></span>&#123;</span><br><span class="line">	*q = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="number">4</span>);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/09/29/%E6%96%87%E4%BB%B6%E5%AE%9E%E4%BE%8B/">文件实例</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-09-29T03:02:13.000Z" itemprop="datePublished">
-    2021-09-29
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="文件操作实例"><a href="#文件操作实例" class="headerlink" title="文件操作实例"></a>文件操作实例</h2><h4 id="1-D-盘删盘程序"><a href="#1-D-盘删盘程序" class="headerlink" title="1. D:盘删盘程序"></a>1. D:盘删盘程序</h4><p>​    <strong>可以通过修改位置删除指定文件夹</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		File file &#x3D; new File(&quot;D:&quot;+File.separator);</span><br><span class="line">		test(file);</span><br><span class="line">	&#125;</span><br><span class="line">	 </span><br><span class="line">	public static void test(File file) &#123;</span><br><span class="line">		if(file.isDirectory()) &#123;</span><br><span class="line">			File[] s &#x3D; file.listFiles();</span><br><span class="line">			for(File a : s) &#123;</span><br><span class="line">				test(a);	</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		file.delete();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>​    <strong>创建一堆文件</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		File fileOld &#x3D; new File(&quot;D:&quot;+File.separator+&quot;test-java&quot;);</span><br><span class="line">		for(int x &#x3D; 0 ; x &lt; 100 ; x++) &#123;</span><br><span class="line">			new File(fileOld,&quot;mldn-&quot; + getTime() + &quot;-&quot; + x + &quot;.log&quot;).createNewFile();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static String getTime() &#123;</span><br><span class="line">		return new SimpleDateFormat(&quot;yyyyMMddHHmmssSSS&quot;).format(new java.util.Date());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>​    <strong>对同类型的文件批量更改文件名（补零操作）</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;test-java&quot;);</span><br><span class="line">		Count a &#x3D; new Count();</span><br><span class="line">		a.to(file);</span><br><span class="line">		a.rename(file);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Count&#123;</span><br><span class="line">	private int max &#x3D; 0;</span><br><span class="line">	private String filename &#x3D; null;</span><br><span class="line">	private int length &#x3D; 0;</span><br><span class="line">	</span><br><span class="line">	public void to(File file) &#123;</span><br><span class="line">		if(file.isDirectory()) &#123;&#x2F;&#x2F;判断是否为文件夹</span><br><span class="line">			File a[] &#x3D; file.listFiles();&#x2F;&#x2F;获得所有子文件</span><br><span class="line">			if(a !&#x3D; null) &#123;</span><br><span class="line">				for(File childFile : a) &#123;</span><br><span class="line">					 to(childFile);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			if(file.isFile()) &#123;</span><br><span class="line">				if(file.getName().matches(&quot;mldn\\-\\d&#123;17&#125;\\-\\d+\\.log&quot;))&#123;&#x2F;&#x2F;需要修改路径的文件名称</span><br><span class="line">					this.getMaxLength(file.getName());</span><br><span class="line">					</span><br><span class="line">				&#125;</span><br><span class="line">					</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void getMaxFileLength() &#123;</span><br><span class="line">		this.length &#x3D; this.filename.substring(this.filename.lastIndexOf(&quot;-&quot;) + 1, this.filename.lastIndexOf(&quot;.&quot;)).length();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String getNewFileName(String oldName) &#123;</span><br><span class="line">		</span><br><span class="line">		StringBuffer buffer &#x3D; new StringBuffer(oldName);</span><br><span class="line">		while(buffer.length() &lt; this.length) &#123;</span><br><span class="line">			buffer.insert(0, 0);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		return buffer.toString();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void getMaxLength(String fileName) &#123;</span><br><span class="line">		if(this.max &lt; fileName.length()) &#123;</span><br><span class="line">			this.max &#x3D; fileName.length();</span><br><span class="line">			this.filename &#x3D; fileName;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void rename(File file) &#123;</span><br><span class="line">		if(file.isDirectory()) &#123;</span><br><span class="line">			File a[] &#x3D; file.listFiles();</span><br><span class="line">			if(a !&#x3D; null) &#123;</span><br><span class="line">				for(File childFile : a) &#123;</span><br><span class="line">					rename(childFile);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			if(file.isFile()) &#123;</span><br><span class="line">				if(file.getName().matches(&quot;mldn\\-\\d&#123;17&#125;\\-\\d+\\.log&quot;))&#123;&#x2F;&#x2F;需要修改路径的文件名称</span><br><span class="line">					if(this.filename !&#x3D; null) &#123;</span><br><span class="line">						this.getMaxFileLength();</span><br><span class="line">						String oldFileName &#x3D; file.getName().substring(file.getName().lastIndexOf(&quot;-&quot;) + 1, file.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">						String newFileName &#x3D; file.getName().substring(0,file.getName().lastIndexOf(&quot;-&quot;) + 1) + this.getNewFileName(oldFileName) + file.getName().substring(file.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">						File newFile &#x3D; new File(file.getParentFile(),newFileName);</span><br><span class="line">						file.renameTo(newFile);</span><br><span class="line">						</span><br><span class="line">					&#125;</span><br><span class="line">					</span><br><span class="line">					</span><br><span class="line">					</span><br><span class="line">					</span><br><span class="line">					</span><br><span class="line">				&#125;</span><br><span class="line">					</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>​    <strong>OutputStream类与其子类FileOutputStream的应用</strong><br>​    创建文件并且向文件中写入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;java-test&quot;+File.separator+&quot;test.txt&quot;);&#x2F;&#x2F;文件与其路径现在是不存在的，代码并没有进行手动创建，但文件还是直接生成了</span><br><span class="line">		if(!file.getParentFile().exists()) &#123;&#x2F;&#x2F;创建父路径</span><br><span class="line">			file.getParentFile().mkdirs();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		OutputStream output &#x3D; new FileOutputStream(file);</span><br><span class="line">		output.write(&quot;hello&quot;.getBytes());</span><br><span class="line">		output.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/09/19/Java12/">Java12</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-09-19T08:19:54.000Z" itemprop="datePublished">
-    2021-09-19
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="I-O（Input-amp-Output）"><a href="#I-O（Input-amp-Output）" class="headerlink" title="I/O（Input&amp;Output）"></a>I/O（Input&amp;Output）</h2><h3 id="1-Java中的输入-输出流"><a href="#1-Java中的输入-输出流" class="headerlink" title="1. Java中的输入/输出流"></a>1. Java中的输入/输出流</h3><p>​    Java语言定义了许多类负责各种方式的输入/输出，java的io是所有语言之最，这些类都放在java.io包中。<strong>核心组成：一个类(File)、一个接口(Serializable)、四个抽象类(InputStream，OutputStream，Reader，Writer)</strong></p>
-<h3 id="2-File类的简介"><a href="#2-File类的简介" class="headerlink" title="2. File类的简介"></a>2. File类的简介</h3><h4 id="1-File类是整个java-io包中唯一一个与文件本身有关-可以进行操作文档的路径指派，可以创建或者删除文件，以及还可以获取文件的相关信息内容-的操作类"><a href="#1-File类是整个java-io包中唯一一个与文件本身有关-可以进行操作文档的路径指派，可以创建或者删除文件，以及还可以获取文件的相关信息内容-的操作类" class="headerlink" title="(1).File类是整个java.io包中唯一一个与文件本身有关(可以进行操作文档的路径指派，可以创建或者删除文件，以及还可以获取文件的相关信息内容)的操作类"></a>(1).File类是整个java.io包中唯一一个<strong>与文件本身有关</strong>(可以进行操作文档的路径指派，可以创建或者删除文件，以及还可以获取文件的相关信息内容)的操作类</h4><h4 id="2-File类的常用构造方法"><a href="#2-File类的常用构造方法" class="headerlink" title="(2).File类的常用构造方法"></a>(2).File类的常用构造方法</h4><p>​    </p>
-<table>
-<thead>
-<tr>
-<th align="center">方法名称</th>
-<th align="center">类型</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">public File(String pathname)</td>
-<td align="center">构造方法</td>
-<td align="center">设置要操作文件的完整路径，要考虑分隔符</td>
-</tr>
-<tr>
-<td align="center">public File(String parent, String child)</td>
-<td align="center">构造方法</td>
-<td align="center">设置要操作文件的父目录和子文件路径</td>
-</tr>
-<tr>
-<td align="center">public boolean createNewFile() throws IOException</td>
-<td align="center">方法</td>
-<td align="center">创建一个新文件</td>
-</tr>
-<tr>
-<td align="center">public boolean delete()</td>
-<td align="center">方法</td>
-<td align="center">删除此抽象路径名表示的文件或目录。如果此路径名表示目录，则该目录必须为空才能删除</td>
-</tr>
-<tr>
-<td align="center">public boolean exists()</td>
-<td align="center">方法</td>
-<td align="center">判断文件是否存在</td>
-</tr>
-</tbody></table>
-<p>​    <strong>注意：在使用File类指派操作文件的时候该文件的路径有可能不存在，只要不进行信息的获取操作不会有报错问题，只是表示一个要操作的文件路径</strong></p>
-<p>​    <strong>程序的磁盘操作(解释为什么有延迟)</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/hve0eI"><img src="https://z3.ax1x.com/2021/09/10/hve0eI.png" alt="hve0eI.png"></a></p>
-<p>​    <strong>跨平台的分隔符问题</strong></p>
-<ul>
-<li>windows系统的路径分隔符为“\”；</li>
-<li>Unix、类Unix（Linux、MacOS、ALX）路径分隔符为“/”；</li>
-</ul>
-<p>​    java考虑到这个问题所以是互通的，但写大量的杠杠转义处理非常麻烦，所以<strong>一般使用File类中提供的常量(public static final String separator)</strong>,早期命名规范与现在不同所以是小写separator</p>
-<p>​    <strong>separator常量的使用</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;Hello.txt&quot;);</span><br></pre></td></tr></table></figure>
-<p>​    <strong>注意：以后编写代码所有路径分隔符尽量通过常量separator来进行定义</strong></p>
-<h4 id="3-File类在父-多-目录下子文件的创建"><a href="#3-File类在父-多-目录下子文件的创建" class="headerlink" title="(3).File类在父(多)目录下子文件的创建"></a>(3).File类在父(多)目录下子文件的创建</h4><p>​    子文件在父目录下创建时必须保证父目录是存在的，不然会产生异常</p>
-<p>​    <strong>对目录创建的File类中的方法</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">方法名称</th>
-<th align="center">类型</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">public boolean mkdir()</td>
-<td align="center">方法</td>
-<td align="center">只创建单级目录</td>
-</tr>
-<tr>
-<td align="center"><strong>public boolean mkdirs()</strong></td>
-<td align="center"><strong>方法</strong></td>
-<td align="center"><strong>创建多级目录(多个子目录可以同时创建)</strong></td>
-</tr>
-<tr>
-<td align="center">public String getParent()</td>
-<td align="center">方法</td>
-<td align="center">获取父目录的信息</td>
-</tr>
-<tr>
-<td align="center"><strong>public File getParentFile()</strong></td>
-<td align="center"><strong>方法</strong></td>
-<td align="center"><strong>获取父路径的File实例</strong></td>
-</tr>
-</tbody></table>
-<p>​    <strong>在多线程下对文件的操作</strong><br>​    在Java项目中没有多线程，不是Java的风格。在多线程下对于文件是不是在父目录下每个线程都需要进行一个判断，此时程序的性能很低</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/hveNSe"><img src="https://z3.ax1x.com/2021/09/10/hveNSe.png" alt="hveNSe.png"></a></p>
-<p>​    为了提高程序的性能最好的方法是让判断操作只执行一次，所以<strong>我们可以考虑使用静态代码块的模式来执行，静态代码块的执行优先于主方法执行</strong></p>
-<h4 id="4-File类提供的其他操作"><a href="#4-File类提供的其他操作" class="headerlink" title="(4).File类提供的其他操作"></a>(4).File类提供的其他操作</h4><table>
-<thead>
-<tr>
-<th align="center">方法名称</th>
-<th align="center">类型</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">public boolean canExecute()</td>
-<td align="center">方法</td>
-<td align="center">程序是否能执行该文件</td>
-</tr>
-<tr>
-<td align="center">public boolean canRead()</td>
-<td align="center">方法</td>
-<td align="center">是否能读</td>
-</tr>
-<tr>
-<td align="center">public boolean canWrite()</td>
-<td align="center">方法</td>
-<td align="center">是否能写</td>
-</tr>
-<tr>
-<td align="center">public File getAbsoluteFile()</td>
-<td align="center">方法</td>
-<td align="center">显示文件的绝对路径</td>
-</tr>
-<tr>
-<td align="center">public boolean isDirectory()</td>
-<td align="center">方法</td>
-<td align="center">判断File对象是否是文件夹</td>
-</tr>
-<tr>
-<td align="center">public boolean isFile()</td>
-<td align="center">方法</td>
-<td align="center">判断当前路径是否为文件</td>
-</tr>
-<tr>
-<td align="center">public long lastModified()</td>
-<td align="center">方法</td>
-<td align="center">获取最后一次修改日期</td>
-</tr>
-<tr>
-<td align="center">public long length()</td>
-<td align="center">方法</td>
-<td align="center">获取文件的长度(大小)</td>
-</tr>
-</tbody></table>
-<p>​    <strong>File类之中的返回的日期long就是毫秒数、而文件大小返回的就是字节个数</strong></p>
-<h4 id="5-File类获取文件目录信息"><a href="#5-File类获取文件目录信息" class="headerlink" title="(5).File类获取文件目录信息"></a>(5).File类获取文件目录信息</h4><p>​    将一个目录中所有的目录下所有子目录和文件详细的列出<br>​    </p>
-<table>
-<thead>
-<tr>
-<th align="center">方法名称</th>
-<th align="center">类型</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">public String[] list()</td>
-<td align="center">方法</td>
-<td align="center">列出子路径的信息(不包括父目录)</td>
-</tr>
-<tr>
-<td align="center"><strong>public File[] listFiles()</strong></td>
-<td align="center"><strong>方法</strong></td>
-<td align="center"><strong>列出子路径的完整信息(不包括父目录)</strong></td>
-</tr>
-<tr>
-<td align="center">​    <strong>可以通过递归查询到目录下所有的文件，通过删除操作，可以实现恶意程序，见文件实例例一</strong></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<h4 id="6-File类实现文件的更名处理"><a href="#6-File类实现文件的更名处理" class="headerlink" title="(6).File类实现文件的更名处理"></a>(6).File类实现文件的更名处理</h4><table>
-<thead>
-<tr>
-<th align="center">方法名称</th>
-<th align="center">类型</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">public boolean renameTo(File dest)</td>
-<td align="center">方法</td>
-<td align="center">重命名由此抽象路径名表示的文件，即改变文件名</td>
-</tr>
-</tbody></table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oldfile.renameTo(newFile); &#x2F;&#x2F;把旧文件名转化为新文件名，这两个都是绝对路径</span><br></pre></td></tr></table></figure>
-
-<p>​    实例：文件的批量更名，见文件实例例二、例三</p>
-<h3 id="3-流"><a href="#3-流" class="headerlink" title="3. 流"></a>3. 流</h3><h4 id="1-File类本身实现了文件自身的处理操作，但是并未规定其文件内容的操作，而要想实现文件内容就必须使用流的概念"><a href="#1-File类本身实现了文件自身的处理操作，但是并未规定其文件内容的操作，而要想实现文件内容就必须使用流的概念" class="headerlink" title="(1).File类本身实现了文件自身的处理操作，但是并未规定其文件内容的操作，而要想实现文件内容就必须使用流的概念"></a>(1).File类本身实现了文件自身的处理操作，但是并未规定其文件内容的操作，而要想实现文件内容就必须使用流的概念</h4><h4 id="3-流的简介"><a href="#3-流的简介" class="headerlink" title="(3).流的简介"></a>(3).流的简介</h4><p>​    流指的是数据的处理方式，以及目标的内容的处理机制，所有的流都分为输入流或输出流，Java针对输入流和输出流分为了两种类型：</p>
-<ul>
-<li>字节操作流：OutputStream（字节输出流）、InputStream（字节输入流）</li>
-<li>字符操作流：Write（字符输出流）、Reader（字符输入流）</li>
-</ul>
-<p>​    字节与字符最大的区别体现在对中文的处理上<br>​    注意：不管使用哪一种操作流，本质上的操作流程都是类似的</p>
-<p>​    所谓输入流与输出流是相对的，而Java会提供一组标准的操作形式<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/hveKy9"><img src="https://z3.ax1x.com/2021/09/10/hveKy9.png" alt="hveKy9.png"></a></p>
-<h4 id="4-以文件流为例来描述流的表现形式"><a href="#4-以文件流为例来描述流的表现形式" class="headerlink" title="(4).以文件流为例来描述流的表现形式"></a>(4).以文件流为例来描述流的表现形式</h4><ul>
-<li>通过File类设定要操作的文件路径</li>
-<li>通过字节流或字符流的子类为对象进行对象实例化处理 </li>
-<li>进行读、写的流操作</li>
-<li>流属于宝贵资源，操作完毕后一定要关闭（close()）</li>
-</ul>
-<h4 id="5-字节输出流-OutputStream"><a href="#5-字节输出流-OutputStream" class="headerlink" title="(5).字节输出流(OutputStream)"></a>(5).字节输出流(OutputStream)</h4><p>​    java.io.OutputStream是实现字节输出流的操作类，<strong>通过其子类对其实例化后使用</strong></p>
-<table>
-<thead>
-<tr>
-<th>OutputStream类的定义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>public <strong>abstract</strong> class OutputStream extends Object <strong>implements Closeable, Flushable</strong></td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>Closeable接口的定义和它提供的方法</th>
-<th>Flushable接口的定义和它提供的方法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>public interface Closeable extends AutoCloseable {void close() throws IOException{}}</td>
-<td>public interface Flushable{void flush() throws IOException{}}</td>
-</tr>
-<tr>
-<td>该方法时强制关闭</td>
-<td>该方法是强制清空缓存</td>
-</tr>
-</tbody></table>
-<p>​    <strong>缓存的作用</strong><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/hvZBPU"><img src="https://z3.ax1x.com/2021/09/10/hvZBPU.png" alt="hvZBPU.png"></a></p>
-<p>​    <strong>OutputStream类提供的三个输出方法（都很重要，加粗的用的多）</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">方法名称</th>
-<th align="center">类型</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">public abstract void write(int b) throws IOException</td>
-<td align="center">方法</td>
-<td align="center">输出单个字节数据，<strong>byte和int是可以相互转换的</strong></td>
-</tr>
-<tr>
-<td align="center">public void write(byte[] b) throws IOException</td>
-<td align="center">方法</td>
-<td align="center">输出全部字节数组的数据</td>
-</tr>
-<tr>
-<td align="center"><strong>public void write(byte[] b, int off, int len) throws IOException</strong></td>
-<td align="center"><strong>方法</strong></td>
-<td align="center"><strong>输出部分字节数组的数据</strong></td>
-</tr>
-</tbody></table>
-<p>​    <strong>FileOutputStream类（OutputStream类的子类）提供的构造方法</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">方法名称</th>
-<th align="center">类型</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">public FileOutputStream(File file) throws FileNotFoundException</td>
-<td align="center">构造方法</td>
-<td align="center">设置文件输出流，每次都对原始内容进行覆盖</td>
-</tr>
-<tr>
-<td align="center">public FileOutputStream(File file,boolean append) throws FileNotFoundException</td>
-<td align="center">构造方法</td>
-<td align="center">如果将append的内容设置为true，表示进行内容追加</td>
-</tr>
-</tbody></table>
-<p>​    <strong>注意：在创建FileOutputStream需要进行异常处理</strong></p>
-<h4 id="6-字节输入流-InputStream"><a href="#6-字节输入流-InputStream" class="headerlink" title="(6).字节输入流(InputStream)"></a>(6).字节输入流(InputStream)</h4><p>​    InputStream是一个提供字节输入流的实现类</p>
-<table>
-<thead>
-<tr>
-<th>InputStream类的定义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>public <strong>abstract</strong> class InputStream extends Object implements <strong>Closeable</strong></td>
-</tr>
-</tbody></table>
-<p>​    注意：系统在进行读操作的时候是不会使用到系统的缓冲区的，是为了防止过多的写入才提供写入缓冲区，写入缓冲区才需要清空处理，所以InputStream类不实现Flushable父接口</p>
-<p>​    InputStream类提供的输出方法（读取方法）</p>
-<table>
-<thead>
-<tr>
-<th align="center">方法名称</th>
-<th align="center">类型</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">public abstract int read() throws IOException</td>
-<td align="center">方法</td>
-<td align="center">读取单个字节数据，如果没有数据返回-1</td>
-</tr>
-<tr>
-<td align="center"><strong>public int read(byte[] b) throws IOException</strong></td>
-<td align="center"><strong>方法</strong></td>
-<td align="center"><strong>将内容读取到字节数组之中，返回读取个数，如果没有数据返回-1，不够长就有多长读多长</strong></td>
-</tr>
-<tr>
-<td align="center">public int read(byte[] b,int off,                 int len) throws IOException</td>
-<td align="center">方法</td>
-<td align="center">读取部分内容到字节数组中，返回读取个数，没有数据返回-1</td>
-</tr>
-<tr>
-<td align="center">public int available() throws IOException</td>
-<td align="center">方法</td>
-<td align="center">获取可用长度</td>
-</tr>
-</tbody></table>
-<p>​    InputStream是一个抽象类，可以利用FileInputStream子类为其进行实例化</p>
-<p>​    <strong>FileInputStream提供的构造方法</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">方法名称</th>
-<th align="center">类型</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">public FileInputStream(File file) throws FileNotFoundException</td>
-<td align="center">构造方法</td>
-<td align="center">打开实际文件创建FileInputStream实例，如果命名文件不存在，或是目录而不是常规文件，则会引发FileNotFoundException</td>
-</tr>
-</tbody></table>
-<h4 id="7-字符输出流-Writer"><a href="#7-字符输出流-Writer" class="headerlink" title="(7).字符输出流(Writer)"></a>(7).字符输出流(Writer)</h4><p>​    OutputStream是可以实现输出操作的，但是其在进行输出的时候全部都是字节数组的形式完成的，但在大部分情况下，最方便的处理类型一定是字符串，所以为了简化输出操作，提供了字符输出流</p>
-<table>
-<thead>
-<tr>
-<th>Writer类的定义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>public <strong>abstract</strong> class Writer <strong>extends</strong> Object <strong>implements</strong> Appendable, Closeable, Flushable</td>
-</tr>
-</tbody></table>
-<p>​    Writer抽象类与之前的OutputStream类相比，多实现了一个Appendable接口，里面只有一个append方法，<strong>append方法用来追加内容</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public interface Appendable&#123; &#x2F;&#x2F;Appendable接口定义的三种方法</span><br><span class="line">	public Appendable append(CharSequence csq) throws IOException;</span><br><span class="line">	public Appendable append(CharSequence csq,int start,int end) throws IOException;</span><br><span class="line">	public Appendable append(char c) throws IOException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    在使用Writer类进行输出的时候最大的操作特点在于其可以直接进行字符串的数据处理</p>
-<table>
-<thead>
-<tr>
-<th>Writer类的输出方法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>public void write(String str) throws IOException  //它可以直接输出字符串</td>
-</tr>
-</tbody></table>
-<p>​    Writer类在后续的版本中逐步有了CharSequence接口的支持，只要可以接收此接口的实例，就意味可以追加String、StringBuffer、StringBuilder类的实例</p>
-<p>​    <strong>与之前一样可以将Writer类实例化为FileWriter</strong></p>
-<p>​    使用Writer可以实现与OutputStream类似的功能，但其最大的优势在于可以直接进行字符串数据的输出处理</p>
-<h4 id="8-字符输入流-Reader"><a href="#8-字符输入流-Reader" class="headerlink" title="(8).字符输入流(Reader)"></a>(8).字符输入流(Reader)</h4><p>​    Reader是实现字符数据的输入流类</p>
-<table>
-<thead>
-<tr>
-<th>Reader类的定义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>public <strong>abstract</strong> class Reader <strong>extends</strong> Object <strong>implements</strong> Readable, Closeable</td>
-</tr>
-</tbody></table>
-<p>​    Readable这个接口与NIO有关，不是IO</p>
-<table>
-<thead>
-<tr>
-<th>Reader类的输入方法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>public int read() throws IOException</td>
-<td>读取单个字符</td>
-</tr>
-<tr>
-<td>public int read(char[] cbuf) throws IOException</td>
-<td>将字符读入数组</td>
-</tr>
-<tr>
-<td>public abstract int read(char[] cbuf, int off, int len) throws IOException</td>
-<td>将一部分字符读入数组</td>
-</tr>
-</tbody></table>
-<p>​    <strong>Reader的子类有FileReader</strong></p>
-<h4 id="9-AutoCloseable类"><a href="#9-AutoCloseable类" class="headerlink" title="(9).AutoCloseable类"></a>(9).AutoCloseable类</h4><p>​    上面介绍的四个类实际上都属于AutoCloseable子类，所以对于打开和关闭的操作可以使用自动关闭的形式来处理</p>
-<h4 id="10-字节流和字符流的区别"><a href="#10-字节流和字符流的区别" class="headerlink" title="(10).字节流和字符流的区别"></a>(10).字节流和字符流的区别</h4><p>​    字节操作属于基础的二进制数据流的操作形式，在网络、文件、图片、音乐等操作之中几乎都是以字节数据为主的，但是字节数据不方便进行中文的处理，所以对于中文的处理应该使用字符流。</p>
-<p>​    在进行网络传输或者磁盘数据存储的时候，所有存放的内容都属于字节数据</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/4Eka5Q"><img src="https://z3.ax1x.com/2021/09/14/4Eka5Q.png" alt="4Eka5Q.png"></a><br>​    <strong>缓冲区：实现字符与字节的转换</strong></p>
-<p>​    实际上如果想要观察出字符流的缓冲区的存在，只需要在输出的时候取消close()方法的调用即可，因为此方法一旦调用实际上会自动清空缓冲区的内容，随后才会将数据写入到目标终端设备之中，如果此时由于某些原因就是无法进行字符输出流的关闭，则可以使用由Flushable接口继承而来的flush()方法进行手工的强制清除。</p>
-<p>​    <strong>本质上传递的所有内容只有字节，而字符是程序对字节的包装，通过代码可以发现字节流和字符流的使用非常相似，一般以字节流方式为主，只有进行中文操作时才会考虑字符流处理</strong></p>
-<h4 id="11-字节流和字符流的转换（转换流）"><a href="#11-字节流和字符流的转换（转换流）" class="headerlink" title="(11).字节流和字符流的转换（转换流）"></a>(11).字节流和字符流的转换（转换流）</h4><p>​    为了方便实现字节流和字符流的转换处理，提供了两个类：<strong>OutputStreamWriter</strong>和<strong>InputStreamReader</strong></p>
-<ol>
-<li><p>OutputStreamWriter</p>
-<p>在构造方法中，需要接收一个OutputStream的对象，而后再向上转型变为字符流</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/4VFHJJ"><img src="https://z3.ax1x.com/2021/09/15/4VFHJJ.png" alt="4VFHJJ.png"></a></p>
-</li>
-<li><p>InputStreamReader</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/4Ve0Ln"><img src="https://z3.ax1x.com/2021/09/15/4Ve0Ln.png" alt="4Ve0Ln.png"></a></p>
-<p>通过继承的关系，<strong>InputStreamReader、OutputStreamWriter都是字符流的子类</strong>，同时又可以通过构造方法接收InputStream类和OutputStream类的实例，<strong>再向上转型为字符流</strong></p>
-<p>转换流在一些系统类库的操作之中比较常见，有些情况系统只会给用户字节流，但是为了方便处理需要进行字符流转换，这个时候才会使用到这个流</p>
-<p>注意：这种转换在类的定义时也有体现，如：OutputStreamWriter是FileWriter的父类，InputStreamReader是FileReader的父类，<strong>即转换流是字符输入输出流的父类</strong></p>
-</li>
-</ol>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/09/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F01/">操作系统01</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-09-15T11:02:11.000Z" itemprop="datePublished">
-    2021-09-15
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="初识操作系统"><a href="#初识操作系统" class="headerlink" title="初识操作系统"></a>初识操作系统</h2><h4 id="1-什么是操作系统"><a href="#1-什么是操作系统" class="headerlink" title="1. 什么是操作系统"></a>1. 什么是操作系统</h4><p>​    操作系统是计算机硬件和应用之间的一层软件，方便使用硬件、高效的使用硬件，操作系统可以看作是资源分配器</p>
-<h4 id="2-操作系统管理的软件"><a href="#2-操作系统管理的软件" class="headerlink" title="2. 操作系统管理的软件"></a>2. 操作系统管理的软件</h4><p>​    <strong>CPU管理、内存管理、终端管理、磁盘管理、文件管理</strong>、网络管理、电源管理、多核管理</p>
-<h4 id="3-操作系统的表层"><a href="#3-操作系统的表层" class="headerlink" title="3. 操作系统的表层"></a>3. 操作系统的表层</h4><p>​    表层是通过应用使用操作系统的接口<br>​    操作系统中的接口就是一个让用户操作电脑的一个界面，比如windows，它有三个接口：</p>
-<ol>
-<li>cmd：windows上按win+r打开运行，输入cmd就会打开命令提示符，这个是系统管理员接口。</li>
-<li>explorer.exe:你打开任务管理器会看到explorer.exe，这个就是windows的桌面接口。</li>
-<li>api接口，这个是面向程序员的接口</li>
-</ol>
-<h4 id="4-计算机的工作原理"><a href="#4-计算机的工作原理" class="headerlink" title="4. 计算机的工作原理"></a>4. 计算机的工作原理</h4><p>​    通过IP(指针)把程序载入到内存(存储器)中，再载入到CPU(运算器、控制器)中解释执行，再输出</p>
-<p>​    <strong>计算机工作的本质：取指执行</strong></p>
-<h4 id="5-计算机的开机-x86-PC"><a href="#5-计算机的开机-x86-PC" class="headerlink" title="5. 计算机的开机(x86 PC)"></a>5. 计算机的开机(x86 PC)</h4><ol>
-<li>x86 PC刚开机时CPU处于实模式（实模式的寻址CS:IP(CS左移4位+IP)）</li>
-<li>开机时，CS=0xFFFF；IP=0x0000</li>
-<li>寻址0xFFFF0（ROM BLOS(基本输入输出)映射区(此处此时为固化的)）</li>
-<li>检查RAM(内存)，键盘，显示器，软硬键盘（执行过不去就是硬件坏了）</li>
-<li>将磁盘0磁道0扇区(操作系统的引导扇区)读入0x7c00处（一个扇区为512字节）</li>
-<li>设置CS=0x07c0，IP=0x0000（BLOS跳到这个自己写的引导扇区执行，引导扇区为启动设备的第一个扇区）</li>
-</ol>
-<p>​    <strong>这512个字节为开机时发生的事情</strong></p>
-<h4 id="6-操作系统的启动"><a href="#6-操作系统的启动" class="headerlink" title="6. 操作系统的启动"></a>6. 操作系统的启动</h4><p>​    将磁盘中的操作系统读到内存中，即程序boot sect.s<br>​    setup.s将完成OS启动前的设置（让系统获取到硬件配置）</p>
-<h4 id="7-setup-s"><a href="#7-setup-s" class="headerlink" title="7. setup.s"></a>7. setup.s</h4><p>​    获取设备硬件信息，而后将整个操作系统移动到0地址，而后执行操作系统，操作系统也一直会在0地址，再之后初始化gdt表并进入到保护模式（由之前的16位寻址模式(CS&lt;&lt;4+ip)切换到32位寻址模式），再跳到0地址（head.s）</p>
-<h4 id="8-保护模式下地址的翻译（gdt的作用）"><a href="#8-保护模式下地址的翻译（gdt的作用）" class="headerlink" title="8. 保护模式下地址的翻译（gdt的作用）"></a>8. 保护模式下地址的翻译（gdt的作用）</h4><p>​    CS改叫选择子，不在左移4位获得地址而是通过其查表+ip获得地址（这个表就叫gdt表）</p>
-<h4 id="9-head-s"><a href="#9-head-s" class="headerlink" title="9. head.s"></a>9. head.s</h4><p>​    初始化gdt表，执行完head.s之后，再去执行main.c由汇编转为C语言，由于C语言本质会转成汇编语言，所以可以看成是由一个c函数跳转到另一个c函数，这个过程通过栈完成，此时main死循环，main返回时，电脑死机</p>
-<h4 id="10-main-c"><a href="#10-main-c" class="headerlink" title="10. main.c"></a>10. main.c</h4><p>​    初始化一些硬件<br>​    mem_init()：把内存信息列表，即mem_init表，哪些占用，哪些没有</p>
-<h4 id="11-内核"><a href="#11-内核" class="headerlink" title="11. 内核"></a>11. 内核</h4><p>​    操作系统一直运行在计算机上的程序<br>​    除了内核以外还有两类程序：系统程序、应用程序</p>
 
       
     </div>

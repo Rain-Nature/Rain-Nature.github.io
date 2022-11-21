@@ -70,6 +70,593 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/11/21/MySQL%E5%A4%8D%E4%B9%A003/">MySQL复习03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-11-21T00:46:50.000Z" itemprop="datePublished">
+    2022-11-21
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/MySQL/">MySQL</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h4 id="1-多表关系"><a href="#1-多表关系" class="headerlink" title="1. 多表关系"></a>1. 多表关系</h4><p>​    在数据库表结构设计时，一般各个表结构之间存在着各种联系，基本上分为三种：</p>
+<ul>
+<li>一对多(多对一)</li>
+<li>多对多</li>
+<li>一对一</li>
+</ul>
+<p>​    <strong>一对多(多对一)</strong></p>
+<p>​    案例：部门与员工的关系</p>
+<p>​    关系：一个部门对应多个员工，一个员工对应一个部门</p>
+<p>​    实现：在多的一方建立外键。指向一的一方的主键</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zVAki4"><img src="https://s1.ax1x.com/2022/11/15/zVAki4.png" alt="zVAki4.png"></a></p>
+<p>​    <strong>多对多</strong></p>
+<p>​    案例：学生与课程的关系</p>
+<p>​    关系：一个学生可以选修多门课程，一门课程也可以供多个学生选择</p>
+<p>​    实现：建立第三张中间表，中间表至少包含两个外键，分别关联两方主键</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zVAEW9"><img src="https://s1.ax1x.com/2022/11/15/zVAEW9.png" alt="zVAEW9.png"></a></p>
+<p>​    <strong>一对一</strong></p>
+<p>​    案例：用户与用户详情的关系</p>
+<p>​    关系：一对一关系，多用于单表拆分，将一张表的基础字段放在一张表中，其他详细字段放在另一张表中，以提升操作效率</p>
+<p>​    实现：在任意一方加入外键，关联另外一方的主键，并且设置外键为唯一的(UNIQUE)</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zVEvD0"><img src="https://s1.ax1x.com/2022/11/15/zVEvD0.png" alt="zVEvD0.png"></a></p>
+<h4 id="2-多表查询概述"><a href="#2-多表查询概述" class="headerlink" title="2. 多表查询概述"></a>2. 多表查询概述</h4><p>​    指从多张表中查询数据</p>
+<pre><code> 笛卡尔积</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp,dept;</span><br></pre></td></tr></table></figure>
+
+<p>​    笛卡尔积：两个集合，A集合和B集合的所有组合情况(在多表查询时，需要消除无效的笛卡尔积)</p>
+<p>​    通过where语句可以消除无效的笛卡尔积，但不满足where的数据也会被消除掉</p>
+<p>​    多表查询的分类</p>
+<ul>
+<li>连接查询<ul>
+<li>内连接：相当于查询A、B交集部分数据</li>
+<li>外连接：<ul>
+<li>左外连接：查询左表所有数据，以及两张表交集部分数据</li>
+<li>右外连接：查询右表所有数据，以及两张表交集部分数据</li>
+</ul>
+</li>
+<li>自连接：当前表与自身的连接查询，自连接必须使用表别名</li>
+</ul>
+</li>
+<li>子查询</li>
+</ul>
+<h4 id="3-内连接"><a href="#3-内连接" class="headerlink" title="3. 内连接"></a>3. 内连接</h4><p>​    内连接查询的是两张表的交集部分</p>
+<p>​    内连接查询语法</p>
+<ul>
+<li><p>隐式内连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span>,表<span class="number">2</span> <span class="keyword">WHERE</span> 条件...;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示内连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span> [<span class="keyword">INNER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 连接条件... <span class="keyword">WHERE</span> 筛选条件;</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+<p>​    范例：内连接的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 表结构：emp,dept</span></span><br><span class="line"><span class="comment">-- 连接条件：emp.dept_id = dept.id</span></span><br><span class="line"><span class="comment">-- 查询每一个员工的姓名，以及关联的部门的名称(隐式内连接实现)</span></span><br><span class="line"><span class="keyword">SELECT</span> emp.name,dept.name <span class="keyword">FROM</span> emp,dept <span class="keyword">WHERE</span> emp.dept_id = dept_id;</span><br><span class="line">//如果表名太长可以起别名，但起别名之后WHERE后面的使用字段必须要用别名来引用，不可以用表原名引用</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询每一个员工的姓名。及关联的部门的名称(显示内连接实现)</span></span><br><span class="line"><span class="keyword">SELECT</span> e.name, d.name <span class="keyword">FROM</span> emp e <span class="keyword">INNER</span> <span class="keyword">JOIN</span> dept d <span class="keyword">on</span> e.dept_id = d.id;</span><br><span class="line">//INNER关键字是可以省略的</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：隐式和显式只是语法不同，查询结果是相同的</p>
+<h4 id="4-外连接"><a href="#4-外连接" class="headerlink" title="4. 外连接"></a>4. 外连接</h4><p>​    外连接查询语法</p>
+<ul>
+<li><p>左外连接：查询左表(表1)所有数据，以及两张表交集部分数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span> <span class="keyword">LEFT</span> [<span class="keyword">OUTER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 条件...;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>右外连接：查询右表(表2)所有数据，以及两张表交集部分数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 字段列表 FROM 表1 RIGHT [OUTER] JOIN 表2 ON 条件...;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>​    范例：外连接的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 表结构：emp,dept</span></span><br><span class="line"><span class="comment">-- 连接条件：emp.dept_id = dept.id</span></span><br><span class="line"><span class="comment">-- 1.查询emp表的所有数据，和对应的部门信息(左外连接)</span></span><br><span class="line"><span class="keyword">SELECT</span> e.*,d.name <span class="keyword">FROM</span> emp e <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> dept d <span class="keyword">ON</span> e.dept_id = d.id;</span><br><span class="line">//OUTER关键字可以省略</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询dept表的所有数据，和对应的员工信息(右外连接)</span></span><br><span class="line"><span class="keyword">SELECT</span> d.*,e.name <span class="keyword">FROM</span> emp e <span class="keyword">RIGHT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> dept d <span class="keyword">ON</span> e.dept_id = d.id;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：一般开发中左外连接用的多，因为右外连接可以转化为左外连接</p>
+<h4 id="4-自连接"><a href="#4-自连接" class="headerlink" title="4. 自连接"></a>4. 自连接</h4><p>​    自连接查询语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表A 别名A <span class="keyword">JOIN</span> 表A 别名B <span class="keyword">ON</span> 条件...;</span><br></pre></td></tr></table></figure>
+
+<p>​    自连接可以是内连接也可以是外连接</p>
+<p>​    范例：自连接的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 表结构：emp</span></span><br><span class="line"><span class="comment">-- 1.查询员工及其所属领导的名字</span></span><br><span class="line"><span class="keyword">SELECT</span> a.name,b.name <span class="keyword">FROM</span> emp a, emp b <span class="keyword">WHERE</span> a.managerid = b.id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询所有员工及其领导的名字，如果员工没有领导，也需要查询出来</span></span><br><span class="line"><span class="keyword">SELECT</span> a.name <span class="string">&#x27;员工&#x27;</span>, b.name <span class="string">&#x27;领导&#x27;</span> <span class="keyword">FROM</span> emp a <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> emp b <span class="keyword">ON</span> a.managerid = b.id;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-联合查询"><a href="#5-联合查询" class="headerlink" title="5. 联合查询"></a>5. 联合查询</h4><p>​    联合查询是将多次查询的结果合并起来，形成一个新的查询结果集</p>
+<p>​    联合查询的语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表A...</span><br><span class="line"><span class="keyword">UNION</span> [<span class="keyword">ALL</span>]</span><br><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表B...;</span><br></pre></td></tr></table></figure>
+
+<p>​    对于联合查询的多张表的列数必须保持一致，字段类型也需要保持一致</p>
+<p>​    范例：联合查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.将薪资低于5000的员工和年龄大于50岁的员工全部查询出来</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> salary &lt; <span class="number">5000</span></span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> age &lt; <span class="number">50</span>;</span><br></pre></td></tr></table></figure>
+
+<p>​    联合查询将这两次查询的结果合并在一起显示</p>
+<p>​    <strong>注意：<code>UNION ALL</code>会将查到的全部数据直接合并在一起，<code>UNION</code>会对合并之后的数据去重</strong></p>
+<h4 id="6-子查询概念"><a href="#6-子查询概念" class="headerlink" title="6. 子查询概念"></a>6. 子查询概念</h4><p>​    SQL语句中嵌套SELECT语句，称为嵌套查询，又称子查询</p>
+<p>​    子查询的语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> t1 <span class="keyword">WHERE</span> <span class="keyword">column</span> = (<span class="keyword">SELECT</span> <span class="keyword">column</span> <span class="keyword">FROM</span> t2);</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：子查询外部的语句可以是INSERT、UPDATE、DELETE、SELECT的任意一个</p>
+<p>​    根据子查询结果的不同，将子查询分类为：</p>
+<ul>
+<li>标量子查询(子查询结果为单个值)</li>
+<li>列子查询(子查询结果为一列)</li>
+<li>行子查询(子查询结果为一行)</li>
+<li>表子查询(子查询结果为多行多列)</li>
+</ul>
+<p>​    根据子查询的位置，将子查询分类为：</p>
+<ul>
+<li>WHERE之后</li>
+<li>FROM之后</li>
+<li>SELECT之后</li>
+</ul>
+<h4 id="7-标量子查询"><a href="#7-标量子查询" class="headerlink" title="7. 标量子查询"></a>7. 标量子查询</h4><p>​    子查询返回的结果是单个值(数字、字符串、日期等)，最简单的形式，这种子查询称为标量子查询</p>
+<p>​    常见的操作符：<code>=</code>、<code>&lt;&gt;</code>、<code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&lt;=</code></p>
+<p>​    范例：标量子查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询“销售部”的所有员工信息</span></span><br><span class="line"><span class="comment">-- a.查询“销售部”部门ID</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;销售部&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.根据销售部部门ID，查询员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = <span class="number">2</span>;</span><br><span class="line"><span class="comment">--通过子查询将a与b写为一条语句</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = (<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;销售部&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="8-列子查询"><a href="#8-列子查询" class="headerlink" title="8. 列子查询"></a>8. 列子查询</h4><p>​    子查询返回的结果是一列(即多行)，这种子查询称为列子查询</p>
+<p>​    常用操作符：IN、NOT IN、ANY、SOME、ALL</p>
+<table>
+<thead>
+<tr>
+<th align="center">操作符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">IN</td>
+<td align="center">在指定的集合范围之内，多选一</td>
+</tr>
+<tr>
+<td align="center">NOT IN</td>
+<td align="center">不在指定的集合范围之内</td>
+</tr>
+<tr>
+<td align="center">ANY</td>
+<td align="center">子查询返回列表中，有任意一个满足即可</td>
+</tr>
+<tr>
+<td align="center">SOME</td>
+<td align="center">与ANY等同，使用SOME的地方都可以使用ANY</td>
+</tr>
+<tr>
+<td align="center">ALL</td>
+<td align="center">子查询返回列表的所有值都必须满足</td>
+</tr>
+</tbody></table>
+<p>​    范例：列子查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询“销售部”和“市场部”的所有员工信息</span></span><br><span class="line"><span class="comment">-- a.查询“销售部”和“市场部”的部门ID</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span>=<span class="string">&#x27;销售部&#x27;</span> <span class="keyword">or</span> <span class="keyword">name</span> = <span class="string">&#x27;市场部&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.根据部门ID查询员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id <span class="keyword">IN</span>(<span class="number">3</span>,<span class="number">5</span>);</span><br><span class="line"><span class="comment">-- 将a,b写为一条语句</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id <span class="keyword">IN</span>(<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span>=<span class="string">&#x27;销售部&#x27;</span> <span class="keyword">or</span> <span class="keyword">name</span> = <span class="string">&#x27;市场部&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询比财务部所有人工资都高的员工信息</span></span><br><span class="line"><span class="comment">-- a.查询财务部所有人员的工资</span></span><br><span class="line"><span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = (<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> =<span class="string">&#x27;财务部&#x27;</span>);</span><br><span class="line"><span class="comment">-- b.比财务部所有人工资都高的员工信息,与a结合</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> salary &gt; <span class="keyword">ALL</span>(<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = (<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> =<span class="string">&#x27;财务部&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3.查询比研发部任意一个人工资高的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> salary &gt; <span class="keyword">ANY</span>(<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = (<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> =<span class="string">&#x27;研发部&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="9-行子查询"><a href="#9-行子查询" class="headerlink" title="9. 行子查询"></a>9. 行子查询</h4><p>​    子查询返回的结果是一行(即多列)，这种子查询称为行子查询</p>
+<p>​    常用的操作符：=、&lt;&gt;、IN、NOT IN</p>
+<p>​    范例：行子查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询与“张三”的薪资及直属领导相同的员工信息</span></span><br><span class="line"><span class="comment">-- a.张无忌的薪资及直属领导</span></span><br><span class="line"><span class="keyword">SELECT</span> salary,managerid <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;张无忌&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.查询与“张无忌”的薪资及直属领导相同的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> (salary,managerid) = (<span class="number">1000</span>,<span class="number">2</span>);</span><br><span class="line"><span class="comment">-- 将a,b写为一条语句</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> (salary,managerid) = (<span class="keyword">SELECT</span> salary,managerid <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;张无忌&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-表子查询"><a href="#10-表子查询" class="headerlink" title="10. 表子查询"></a>10. 表子查询</h4><p>​    子查询返回的结果是多行多列，这种子查询称为表子查询，一般放在FROM之后，把查询结果作为一张临时表在和其他表联合查询，也会放在WHERE后面使用IN来完成查找</p>
+<p>​    常用操作符：IN</p>
+<p>​    范例：表子查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询与“张三”，“李四”的职位和薪资相同的员工信息</span></span><br><span class="line"><span class="comment">-- a.查询“张三”，“李四”的职位和薪资</span></span><br><span class="line"><span class="keyword">SELECT</span> job,salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;张三&#x27;</span> <span class="keyword">or</span> <span class="keyword">name</span> = <span class="string">&#x27;李四&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.查询与“张三”，“李四”的职位和薪资相同的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> (job,salary) <span class="keyword">IN</span> (<span class="keyword">SELECT</span> job,salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;张三&#x27;</span> <span class="keyword">or</span> <span class="keyword">name</span> = <span class="string">&#x27;李四&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询入职日期是“2006-01-01”之后的员工信息，及其部门信息</span></span><br><span class="line"><span class="comment">-- a.入职日期是“2006-01-01”之后的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> entrydate&gt;<span class="string">&#x27;2006-01-01&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.查询这部分员工对应的部门信息，因为如果部门为空也要查询出来，所以要用到左外连接</span></span><br><span class="line"><span class="keyword">SELECT</span> e.*,d.* <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> entrydate&gt;<span class="string">&#x27;2006-01-01&#x27;</span>) e <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> dept d <span class="keyword">ON</span> e.dept_id=d.id;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2022/11/21/MySQL%E5%A4%8D%E4%B9%A002/">MySQL复习02</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-11-21T00:45:24.000Z" itemprop="datePublished">
+    2022-11-21
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/MySQL/">MySQL</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="函数与约束"><a href="#函数与约束" class="headerlink" title="函数与约束"></a>函数与约束</h2><h4 id="1-字符串函数"><a href="#1-字符串函数" class="headerlink" title="1. 字符串函数"></a>1. 字符串函数</h4><p>​    MySQL中内置了很多字符串函数，常见的如下表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">concat(S1,S2,…,Sn)</td>
+<td align="center">字符串拼接，将(S1,S2,…,Sn)拼接为一个字符串</td>
+</tr>
+<tr>
+<td align="center">lower(str)</td>
+<td align="center">将字符串str全部转为小写</td>
+</tr>
+<tr>
+<td align="center">upper(str)</td>
+<td align="center">将字符串str全部转为大写</td>
+</tr>
+<tr>
+<td align="center">lpad(str,n,pad)</td>
+<td align="center">左填充，用字符串pad对str的左边进行填充，达到n个字符串长度</td>
+</tr>
+<tr>
+<td align="center">rpad(str,n,pad)</td>
+<td align="center">右填充，用字符串pad对str的右边进行填充，达到n个字符串长度</td>
+</tr>
+<tr>
+<td align="center">trim(str)</td>
+<td align="center">去掉字符串头部和尾部空格</td>
+</tr>
+<tr>
+<td align="center">substring(str,start,len)</td>
+<td align="center">返回从字符串str从start位置起的len长度的字符串，<strong>索引值是从1开始</strong></td>
+</tr>
+</tbody></table>
+<p>​    <strong>注意：str可以传类型是字符串的列名</strong></p>
+<p>​    范例：字符串函数的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- concat</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">concat</span>(<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--lower</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">lower</span>(<span class="string">&#x27;Hello&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--upper</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">upper</span>(<span class="string">&#x27;Hello&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--lpad</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">lpad</span>(<span class="string">&#x27;01&#x27;</span>,<span class="number">5</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--rpad</span></span><br><span class="line"><span class="keyword">SELECT</span> rpad(<span class="string">&#x27;01&#x27;</span>,<span class="number">5</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--trim</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">trim</span>(<span class="string">&#x27; hello world &#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--substring</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">substring</span>(<span class="string">&#x27;12345&#x27;</span>,<span class="number">1</span>,<span class="number">3</span>); //索引值从1开始</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-数值函数"><a href="#2-数值函数" class="headerlink" title="2. 数值函数"></a>2. 数值函数</h4><p>​    常见的数值函数如下表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ceil(x)</td>
+<td align="center">向上取整</td>
+</tr>
+<tr>
+<td align="center">floor(x)</td>
+<td align="center">向下取整</td>
+</tr>
+<tr>
+<td align="center">mod(x,y)</td>
+<td align="center">返回x/y的模</td>
+</tr>
+<tr>
+<td align="center">rand()</td>
+<td align="center">返回0~1内的随机数</td>
+</tr>
+<tr>
+<td align="center">round(x,y)</td>
+<td align="center">得参数x的整体进行四舍五入的值，保留y位小数</td>
+</tr>
+</tbody></table>
+<p>​    范例：数值函数的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ceil</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ceil</span>(<span class="number">1.1</span>);  //结果2</span><br><span class="line"></span><br><span class="line"><span class="comment">-- floor</span></span><br><span class="line">SELSECT floor(1.1) //结果1</span><br><span class="line"></span><br><span class="line"><span class="comment">-- mod</span></span><br><span class="line">SELSET mod(3,4);  //3除4的余数，结果3</span><br><span class="line"></span><br><span class="line"><span class="comment">--rand</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">rand</span>(); //0~1随机数</span><br><span class="line"></span><br><span class="line"><span class="comment">--round</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">round</span>(<span class="number">2.345</span>,<span class="number">2</span>); //结果2.35</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：生成的数字可以作为字符串参与上面字符串函数中</p>
+<h4 id="3-日期函数"><a href="#3-日期函数" class="headerlink" title="3. 日期函数"></a>3. 日期函数</h4><p>​    常见日期函数如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">curdate()</td>
+<td align="center">返回当前日期</td>
+</tr>
+<tr>
+<td align="center">curtime()</td>
+<td align="center">返回当前时间</td>
+</tr>
+<tr>
+<td align="center">now()</td>
+<td align="center">返回当前日期和时间，<strong>即返回的是date类型</strong></td>
+</tr>
+<tr>
+<td align="center">year(date)</td>
+<td align="center">获取指定date的年份</td>
+</tr>
+<tr>
+<td align="center">month(date)</td>
+<td align="center">获取指定date的月份</td>
+</tr>
+<tr>
+<td align="center">day(date)</td>
+<td align="center">获取指定date的日期</td>
+</tr>
+<tr>
+<td align="center">date_add(date,interval expr type)</td>
+<td align="center">在指定日期下增加一个时间间隔，返回该时间值</td>
+</tr>
+<tr>
+<td align="center">datediff(date1,date2)</td>
+<td align="center">返回起始时间date1和结束时间date2之间的天数，结果为date1-date2</td>
+</tr>
+</tbody></table>
+<p>​    范例：日期函数的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- curdate</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">curdate</span>();  //结果2022-11-14</span><br><span class="line"></span><br><span class="line"><span class="comment">-- curtime</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">curtime</span>();  //结果9:29:15</span><br><span class="line"></span><br><span class="line"><span class="comment">-- now</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">now</span>();  //结果2022-11-14 9:29:54</span><br><span class="line"></span><br><span class="line"><span class="comment">-- year</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">year</span>(<span class="keyword">now</span>()); //结果2022</span><br><span class="line"></span><br><span class="line"><span class="comment">-- month</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">month</span>(<span class="keyword">now</span>());  //结果11</span><br><span class="line"></span><br><span class="line"><span class="comment">-- day</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">day</span>(<span class="keyword">now</span>());  //结果14</span><br><span class="line"></span><br><span class="line"><span class="comment">--date_add</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">date_add</span>(<span class="keyword">now</span>(),<span class="built_in">INTERVAL</span> <span class="number">10</span> <span class="keyword">DAY</span>);  //结果2022-11-24 10:05:31</span><br><span class="line"></span><br><span class="line"><span class="comment">-- datediff</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">datediff</span>(<span class="string">&#x27;2022-12-01&#x27;</span>,<span class="string">&#x27;2022-11-1&#x27;</span>); 结果30，注意如果前小后大则值为负数</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-流程函数"><a href="#4-流程函数" class="headerlink" title="4. 流程函数"></a>4. 流程函数</h4><p>​    流程函数在SQL语句中实现条件筛选，从而提高语句的效率</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">if(value,t,f)</td>
+<td align="center">如果value为true，则返回true否则返回f</td>
+</tr>
+<tr>
+<td align="center">ifnull(value1,value2)</td>
+<td align="center">判定第一个参数是否为空，即如果value1不为空，返回value1，否则返回value2</td>
+</tr>
+<tr>
+<td align="center">case [表中字段] when [val] then [res1]…else [default] end</td>
+<td align="center">如果val1与表中数据判断为true返回res1,…(可以写多个判断的)否则返回default默认值</td>
+</tr>
+<tr>
+<td align="center">case when [表中字段]比较运算 then [res1]…else [default] end</td>
+<td align="center">如果不是具体的而是范围，使用该语法</td>
+</tr>
+</tbody></table>
+<p>​    范例：流程控制函数的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- if</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">if</span>(<span class="literal">true</span>,<span class="string">&#x27;ok&#x27;</span>,<span class="string">&#x27;error&#x27;</span>);  //结果ok</span><br><span class="line"></span><br><span class="line"><span class="comment">--ifnull</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ifnull</span>(<span class="literal">null</span>,<span class="string">&#x27;error&#x27;</span>);  //结果error</span><br><span class="line"></span><br><span class="line"><span class="comment">-- case when then else end</span></span><br><span class="line"><span class="comment">-- 需求：查询员工表emp中员工姓名和工作地址(北京/上海---&gt;一线城市，其他---&gt;二线城市)</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">name</span>,</span><br><span class="line">	(<span class="keyword">case</span> workaddress <span class="keyword">when</span> <span class="string">&#x27;北京&#x27;</span> <span class="keyword">then</span> <span class="string">&#x27;一线城市&#x27;</span> <span class="keyword">when</span> <span class="string">&#x27;上海&#x27;</span> <span class="keyword">then</span> <span class="string">&#x27;一线城市&#x27;</span> <span class="keyword">else</span> <span class="string">&#x27;二线城市&#x27;</span> <span class="keyword">end</span>) <span class="keyword">AS</span> <span class="string">&#x27;工作地址&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-约束"><a href="#5-约束" class="headerlink" title="5. 约束"></a>5. 约束</h4><p>​    约束是作用于表中字段上的规则，用于限制存储在表中的数据</p>
+<p>​    约束的目的是保证数据库中数据的正确、有效性和完整性</p>
+<p>​    约束的分类</p>
+<table>
+<thead>
+<tr>
+<th align="center">约束</th>
+<th align="center">描述</th>
+<th align="center">关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">非空约束</td>
+<td align="center">限制该字段的数据不能为null</td>
+<td align="center">NOT NULL</td>
+</tr>
+<tr>
+<td align="center">唯一约束</td>
+<td align="center">保证该字段的所有数据都是唯一、不重复的</td>
+<td align="center">UNIQUE</td>
+</tr>
+<tr>
+<td align="center">主键约束</td>
+<td align="center">主键是一行数据的唯一标识，要求非空且唯一</td>
+<td align="center">PRIMARY KEY</td>
+</tr>
+<tr>
+<td align="center">默认约束</td>
+<td align="center">保存数据时，如果未指定该字段的值，则采用默认值</td>
+<td align="center">DEFAULT</td>
+</tr>
+<tr>
+<td align="center">检查约束</td>
+<td align="center">保证字段值满足某一条件</td>
+<td align="center">CHECK</td>
+</tr>
+<tr>
+<td align="center">外键约束</td>
+<td align="center">用来让两张表的数据之间建立连接，保证数据的一致性和完整性</td>
+<td align="center">FOREIGN KEY</td>
+</tr>
+</tbody></table>
+<p>​    注意：约束是作用于表中字段上的，可以在创建表/修改表的时候添加约束</p>
+<p>​    范例：约束的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span>(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span>;</span><br><span class="line">	name VARCHAR(20) NOT NULL UNIQUE;</span><br><span class="line">	age INT <span class="keyword">CHECK</span>(age&gt;<span class="number">0</span> &amp;&amp; age&lt;=<span class="number">120</span>);</span><br><span class="line">	statues CHAR(1) DEFAULT &#x27;1&#x27;;</span><br><span class="line">)<span class="keyword">COMMENT</span> <span class="string">&#x27;用户表&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-外键约束"><a href="#6-外键约束" class="headerlink" title="6.外键约束"></a>6.外键约束</h4><p>​    概念：用来让两张表的数据之间建立连接，保证数据的一致性和完整性</p>
+<p>​    一般把设立外键的表叫做子表，而让该外键为主键的表叫主表</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zEiZ1x"><img src="https://s1.ax1x.com/2022/11/15/zEiZ1x.png" alt="zEiZ1x.png"></a></p>
+<p>​    设置外键后，当要删除主表的数据时，要判定该数据在子表中是否存在关联关系，如果存在则拒绝删除操作</p>
+<p>​    外键约束的语法：</p>
+<ul>
+<li><p>添加外键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//建表时直接创建</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span><br><span class="line">	字段名 数据类型</span><br><span class="line">	...</span><br><span class="line">	[<span class="keyword">CONSTRAINT</span>] [外键名称] <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(外键字段名) REFRENCES 主表(主表列名)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">//表建立后修改外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 外键名称 <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(外键字段名) <span class="keyword">REFERENCES</span> 主表名(主表列名);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除外键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> 外键名称;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>​    范例：外键的操作</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//增加外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> emp <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_emp_dept_id <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (dept_id) <span class="keyword">REFERENCES</span> dept(<span class="keyword">id</span>);</span><br><span class="line"></span><br><span class="line">//删除外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> emp <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> fk_emp_dept_id;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    外键约束：删除和更新行为</p>
+<table>
+<thead>
+<tr>
+<th align="center">行为</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">NO ACTION</td>
+<td align="center">当主表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则不允许删除/更新，<strong>外键约束的默认行为</strong></td>
+</tr>
+<tr>
+<td align="center">RESTRICT</td>
+<td align="center">与NO ACTION一致</td>
+</tr>
+<tr>
+<td align="center">CASCADE(级联)</td>
+<td align="center">当在主表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有，则也删除/更新外键在从表中的记录</td>
+</tr>
+<tr>
+<td align="center">SET NULL</td>
+<td align="center">当在主表中删除对应记录时，首先检查该记录是否对应外键，如果有则设置从表中该外键值为null(此时需要设计时外键允许取null)</td>
+</tr>
+<tr>
+<td align="center">SET DEFAULT</td>
+<td align="center">主表有变更时，子表将外键列设置成一个默认的值(Innodb不支持)</td>
+</tr>
+</tbody></table>
+<p>​    语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 外键名称 <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(外键字段名) <span class="keyword">REFERENCES</span> 主表名(主表列名) <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CASCADE</span> <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">CASCADE</span></span><br></pre></td></tr></table></figure>
+
+<p>​    <code>ON UPDATE</code>：表示更新时怎么操作</p>
+<p>​    <code>ON DELETE</code>：表示删除时怎么操作</p>
+<p>​    前面一段与外键设置时语法相同</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2022/11/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8404/">数据结构04</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-11-21T00:41:29.000Z" itemprop="datePublished">
+    2022-11-21
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><h4 id="1-栈的定义"><a href="#1-栈的定义" class="headerlink" title="1. 栈的定义"></a>1. 栈的定义</h4><p>​    一种可以实现“先进后出”的存储结构<br>​    栈类似于箱子</p>
+<h4 id="2-栈的分类"><a href="#2-栈的分类" class="headerlink" title="2. 栈的分类"></a>2. 栈的分类</h4><p>​    栈可以分为静态栈和动态栈</p>
+<p>​    静态栈：通过数组实现</p>
+<p>​    动态栈：通过链表实现</p>
+<p>​    动态栈使用的更多</p>
+<h4 id="3-栈可以实现的操作"><a href="#3-栈可以实现的操作" class="headerlink" title="3. 栈可以实现的操作"></a>3. 栈可以实现的操作</h4><p>​    1. 入栈(压栈)</p>
+<p>​    2. 出栈</p>
+<h4 id="4-动态栈的伪算法"><a href="#4-动态栈的伪算法" class="headerlink" title="4. 动态栈的伪算法"></a>4. 动态栈的伪算法</h4><ol>
+<li><p>动态栈的实现</p>
+<p>动态栈通过链表来实现，栈中的每一个元素通过一个结点来表示，要实现栈还需要声明一个栈顶和栈底，初始化栈时，会将栈顶和栈底指向同一个空的头结点，要向栈存入数据，则先新生成一个结点，再**将该新结点的指针域指向栈顶指向的结点(考虑到出栈时要删除，所以新指向旧)**，最后将栈顶移动到新结点上</p>
+</li>
+</ol>
+<ol start="2">
+<li>注意：动态栈属于链表栈，不存在满的问题</li>
+</ol>
+<ol start="3">
+<li><p>压栈操作图示</p>
+<p><img src="https://s1.ax1x.com/2022/11/10/z9SQFe.png" alt="z9SQFe.png"></p>
+</li>
+</ol>
+<ol start="4">
+<li><p>栈的遍历</p>
+<p>栈的遍历由于栈是先进后出，所以需要通过栈顶确定指针p，通过指针p来自上向下进行操作，只要p指向的元素不是栈底，则可以对栈一直输出</p>
+</li>
+</ol>
+<ol start="5">
+<li><p>判断栈是否为空</p>
+<p>当栈顶和栈底相等，则栈为空</p>
+</li>
+</ol>
+<ol start="6">
+<li><p>出栈</p>
+<p>当栈中元素为空时，则出栈失败；不为空则将一指针p指向栈顶指向的元素，栈顶元素指向该元素的下一个元素，此时释放掉p指针指向的结点就行</p>
+</li>
+</ol>
+<ol start="7">
+<li><p>栈的清空</p>
+<p>将栈内有效元素全部清空，只保留框架，实现需要定义指针p和q，p指向栈顶元素，q为NULL，如果p没有指向栈底，则q指向p的下一个元素，当将p指向元素释放后p在移动到q上，只要p指向的不是栈底则一直循环执行该算法，循环结束后应将栈顶指向栈底</p>
+</li>
+</ol>
+<h4 id="5-动态栈的算法"><a href="#5-动态栈的算法" class="headerlink" title="5. 动态栈的算法"></a>5. 动态栈的算法</h4><ol>
+<li><p>算法-栈的定义、栈的初始化、压栈、遍历栈</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义栈中的每一个结点</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">pNext</span>;</span></span><br><span class="line">&#125;NODE,*PNODE;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义栈</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Stack</span>&#123;</span></span><br><span class="line">    PNODE pTop;</span><br><span class="line">    PNODE pBottom;</span><br><span class="line">&#125;STACK,*PSTACK;</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(PSTACK pSt)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(PSTACK pSt,<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    STACK st;    <span class="comment">//定义栈</span></span><br><span class="line">    init(&amp;st);   <span class="comment">//栈的初始化</span></span><br><span class="line">    push(&amp;st,<span class="number">1</span>); <span class="comment">//压栈</span></span><br><span class="line">    push(&amp;st,<span class="number">2</span>);</span><br><span class="line">    write_stack(&amp;st); <span class="comment">//遍历栈</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//栈的初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(PSTACK pSt)</span></span>&#123;</span><br><span class="line">    pSt-&gt;pTop = (PNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span>==pSt-&gt;pTop)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    pSt-&gt;pBottom = pSt-&gt;pTop;</span><br><span class="line">    <span class="comment">//指针域置为空</span></span><br><span class="line">    pSt-&gt;pTop-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//压栈</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(PSTACK pSt,<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">    PNODE p = (PNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">    p-&gt;data = num;</span><br><span class="line">    p-&gt;pNext = pSt-&gt;pTop;</span><br><span class="line">    pSt-&gt;pTop =p;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_stack</span><span class="params">(PSTACK pSt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    PNODE p = pSt-&gt;pTop;</span><br><span class="line">    <span class="keyword">while</span>(pSt-&gt;pBottom!=p)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,p-&gt;data);</span><br><span class="line">        p=p-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>算法-栈是否为空的判断、出栈</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt; //bool类型需要声明的头文件</span></span></span><br><span class="line"><span class="comment">//判断栈是否为空</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">(PSTACK pST)</span></span>;  <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">(PSTACK pSt)</span></span>&#123;  <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">if</span>(pSt-&gt;pTop==pSt-&gt;pBottom)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//出栈，并返回出栈的值</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pop</span><span class="params">(PSTACK pSt,<span class="keyword">int</span> * val)</span></span>;  <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pop</span><span class="params">(PSTACK pSt,<span class="keyword">int</span> * val)</span></span>&#123;  <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">if</span>(empty(pSt))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE p = pSt-&gt;pTop;</span><br><span class="line">    pSt-&gt;pTop = pSt-&gt;pTop-&gt;pNext;</span><br><span class="line">    *val = p-&gt;data;</span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    p = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>算法-栈的清空</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">(PSTACK pSt)</span></span>;  <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">(PSTACK pSt)</span></span>&#123;  <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">if</span>(empty(pSt))&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE p = pSt-&gt;pTop;</span><br><span class="line">    PNODE q = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">while</span>(p!=pSt-&gt;pBottom)&#123;</span><br><span class="line">        q = p-&gt;pNext;</span><br><span class="line">        <span class="built_in">free</span>(p);</span><br><span class="line">        p = q;</span><br><span class="line">    &#125;</span><br><span class="line">    pSt-&gt;pTop = pSt-&gt;pBottom;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ol>
+<h4 id="6-栈的应用"><a href="#6-栈的应用" class="headerlink" title="6. 栈的应用"></a>6. 栈的应用</h4><p>​    1. 函数调用<br>​    2. 中断<br>​    3. 表达式求值<br>​    4. 内存分配<br>​    5. 缓冲处理<br>​    6. 走迷宫</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2022/10/31/MySQL%E5%A4%8D%E4%B9%A001/">MySQL复习01</a>
         </h1>
       
@@ -450,9 +1037,8 @@
 <td align="center">求和</td>
 </tr>
 </tbody></table>
-<ol start="3">
-<li>语法：</li>
-</ol>
+</li>
+<li><p>语法：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 聚合函数(字段列表) <span class="keyword">FROM</span> 表名;</span><br></pre></td></tr></table></figure>
 
 <p>注意：null值不参与所有聚合函数运算</p>
@@ -481,32 +1067,26 @@
 <ol>
 <li><p>语法</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表名 <span class="keyword">ORDER</span> <span class="keyword">BY</span> 字段<span class="number">1</span> 排序方式<span class="number">1</span>, 字段<span class="number">2</span> 排序方式<span class="number">2</span> ...;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>排序方式</li>
-</ol>
+</li>
+<li><p>排序方式</p>
 <ul>
 <li>ASC：升序(默认值)</li>
 <li>DESC：降序</li>
 </ul>
-<ol start="3">
-<li>多字段排序时，第一个字段值相同时才会根据第二个字段排序</li>
-</ol>
+</li>
+<li><p>多字段排序时，第一个字段值相同时才会根据第二个字段排序</p>
 </li>
 </ol>
 <p>​    <strong>DQL-分页查询</strong></p>
 <ol>
 <li><p>语法</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表名 <span class="keyword">LIMIT</span> 起始索引,查询记录数;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>起始索引从0开始，起始索引 = (要查询页码-1) <code>*</code> 每页显示记录数</p>
 </li>
-<li><p>分页查询在不同数据库中语法不一样，在MySQL中是LIMIT</p>
+<li><p> 起始索引从0开始，起始索引 = (要查询页码-1) <code>*</code> 每页显示记录数</p>
 </li>
-<li><p>如果查询的是第一页数据，起始索引可以省略，直接简写为LIMIT 10</p>
+<li><p> 分页查询在不同数据库中语法不一样，在MySQL中是LIMIT</p>
 </li>
-</ol>
+<li><p> 如果查询的是第一页数据，起始索引可以省略，直接简写为LIMIT 10</p>
 </li>
 </ol>
 <h4 id="5-DCL-SQL开发人员对其操作比较少"><a href="#5-DCL-SQL开发人员对其操作比较少" class="headerlink" title="5. DCL(SQL开发人员对其操作比较少)"></a>5. DCL(SQL开发人员对其操作比较少)</h4><p>​    <strong>DCL-权限控制</strong></p>
@@ -1711,235 +2291,6 @@
 <p>​    <strong>JavaScript放在head和放在body后的区别</strong></p>
 <pre><code>1. 放在head中：需调用才执行的脚本或事件触发执行的脚本放在HTML的head部分中。当你把脚本放在head部分中时，可以保证脚本在任何调用之前被加载
  2. 放在body后：当页面被加载时立即执行的脚本放在HTML的body部分。放在body部分的脚本通常被用来生成页面的内容。</code></pre>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2022/03/28/C%E8%AF%AD%E8%A8%80%E5%87%BD%E6%95%B0%E8%A1%A5%E5%85%85/">C语言函数补充</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2022-03-28T12:49:21.000Z" itemprop="datePublished">
-    2022-03-28
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="C语言中实现数据结构的常用函数"><a href="#C语言中实现数据结构的常用函数" class="headerlink" title="C语言中实现数据结构的常用函数"></a>C语言中实现数据结构的常用函数</h2><h4 id="1-malloc-函数"><a href="#1-malloc-函数" class="headerlink" title="1. malloc()函数"></a>1. malloc()函数</h4><p>​    头文件：#include &lt;malloc.h&gt; 或 #include &lt;alloc.h&gt; (注意：alloc.h 与 malloc.h 的内容是完全一致的)</p>
-<p>​    功能：分配长度为num_bytes字节的内存块</p>
-<p>​    说明：如果分配成功则返回指向被分配内存的指针，<strong>否则返回空指针NULL</strong></p>
-<p>​    当内存不再使用时，应使用free()函数将内存块释放</p>
-<h4 id="2-exit-函数"><a href="#2-exit-函数" class="headerlink" title="2. exit()函数"></a>2. exit()函数</h4><p>​    所在头文件：stdlib.h<br>​    功 能: 关闭所有文件，终止正在执行的进程。<br>​    exit(1)表示异常退出.这个1是返回给操作系统的。<br>​    exit(x)（x不为0）都表示异常退出<br>​    exit(0)表示正常退出<br>​    exit()的参数会被传递给一些操作系统，包括UNIX,Linux,和MS DOS，以供其他程序使用</p>
-<p>​    <em>注意：return是函数的退出(返回)；exit是进程的退出，return是语言级别的，它表示了调用堆栈的返回；而exit是系统调用级别的，它表示了一个进程的结束</em></p>
-<h4 id="3-return-函数的使用"><a href="#3-return-函数的使用" class="headerlink" title="3. return()函数的使用"></a>3. return()函数的使用</h4><p>​    即使返回值为void的时，最好可以写为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return;</span><br></pre></td></tr></table></figure>
-
-<p>​    可以有效的告诉别人这个函数已经结束了，不写的话可能别人不知道你的函数已经终止了</p>
-<p>​    <strong>注意：如果函数需要有两个或多个返回值，需要使用指针来帮助存储</strong></p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2022/03/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8402/">数据结构02</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2022-03-28T07:27:37.000Z" itemprop="datePublished">
-    2022-03-28
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="动态数组"><a href="#动态数组" class="headerlink" title="动态数组"></a>动态数组</h2><h4 id="1-线性结构"><a href="#1-线性结构" class="headerlink" title="1. 线性结构"></a>1. 线性结构</h4><p>​    把所有的结点(类似数组的元素，逻辑上独立的个体)用一根线穿起来</p>
-<p>​    <strong>分类</strong></p>
-<ul>
-<li>连续存储【数组】</li>
-<li>离散存储【链表】</li>
-</ul>
-<p>​    <strong>应用</strong></p>
-<ul>
-<li>栈</li>
-<li>队列</li>
-</ul>
-<h4 id="2-数组"><a href="#2-数组" class="headerlink" title="2. 数组"></a>2. 数组</h4><p>​    元素类型相同，大小相等</p>
-<p>​    数组的优缺点： </p>
-<h4 id="3-实现动态数组以及其相关操作函数"><a href="#3-实现动态数组以及其相关操作函数" class="headerlink" title="3. 实现动态数组以及其相关操作函数"></a>3. 实现动态数组以及其相关操作函数</h4><h5 id="1-动态数组的基础设置"><a href="#1-动态数组的基础设置" class="headerlink" title="(1). 动态数组的基础设置"></a>(1). 动态数组的基础设置</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt; //包含了exit()函数</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Arr</span>&#123;</span><span class="comment">//设定数组的数据类型</span></span><br><span class="line">    <span class="keyword">int</span> * pBase;<span class="comment">//存储数组第一个元素的地址</span></span><br><span class="line">    <span class="keyword">int</span> len;<span class="comment">//数组所能容纳的最大元素的个数</span></span><br><span class="line">    <span class="keyword">int</span> cnt;<span class="comment">//当前数组有效元素的个数</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Arr</span> * <span class="title">arr</span>;</span><span class="comment">//定义数组指针，未初始化</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-动态数组的初始化函数"><a href="#2-动态数组的初始化函数" class="headerlink" title="(2). 动态数组的初始化函数"></a>(2). 动态数组的初始化函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_arr</span><span class="params">(struct Arr *pArr,<span class="keyword">int</span> length)</span></span>&#123;<span class="comment">//传需要初始化的数组的指针和需要创建的大小</span></span><br><span class="line">    (*pArr).pBase = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*length);</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span>== pArr-&gt;pBase)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;动态内存分配失败\n&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        pArr-&gt;len = length;</span><br><span class="line">        pArr-&gt;cnt = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-动态数组的输出函数"><a href="#3-动态数组的输出函数" class="headerlink" title="(3). 动态数组的输出函数"></a>(3). 动态数组的输出函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show_arr</span><span class="params">(struct Arr *pArr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(is_empty(pArr))&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;数组为空\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span> ; i&lt;pArr-&gt;cnt ; ++i)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,pArr-&gt;pBase[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-动态数组是否为空的判断函数"><a href="#4-动态数组是否为空的判断函数" class="headerlink" title="(4). 动态数组是否为空的判断函数"></a>(4). 动态数组是否为空的判断函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_empty</span><span class="params">(struct Arr * pArr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="number">0</span> == pArr-&gt;cnt)</span><br><span class="line">        <span class="keyword">return</span> ture;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-向动态数组中追加元素的函数"><a href="#5-向动态数组中追加元素的函数" class="headerlink" title="(5). 向动态数组中追加元素的函数"></a>(5). 向动态数组中追加元素的函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">append_arr</span><span class="params">(struct Arr * pArr, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="comment">//满返回false</span></span><br><span class="line">	<span class="keyword">if</span>(is_full(pArr))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">//不满时追加</span></span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        pArr-&gt;pBase[pArr-&gt;cnt] = val;</span><br><span class="line">        (pArr-&gt;cnt)++;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="6-动态数组是否为满的判断函数"><a href="#6-动态数组是否为满的判断函数" class="headerlink" title="(6). 动态数组是否为满的判断函数"></a>(6). 动态数组是否为满的判断函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_full</span><span class="params">(struct Arr * pArr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pArr-&gt;cnt == pArr-&gt;len)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="7-向动态数组中特定位置插入元素的函数"><a href="#7-向动态数组中特定位置插入元素的函数" class="headerlink" title="(7). 向动态数组中特定位置插入元素的函数"></a>(7). 向动态数组中特定位置插入元素的函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">insert_arr</span><span class="params">(struct Arr* pArr,<span class="keyword">int</span> pos, <span class="keyword">int</span> val)</span></span>&#123; <span class="comment">//指定pos的值从1开始</span></span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(is_full(pArr))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(pos&lt;<span class="number">1</span> || pos&gt;pArr-&gt;cnt+<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">//这个for循环是健壮的，如果满了是不会执行的</span></span><br><span class="line">    <span class="keyword">for</span>(i=pArr-&gt;cnt<span class="number">-1</span> ; i&gt;=pos<span class="number">-1</span> ; --i)&#123;</span><br><span class="line">        pArr-&gt;pBase[i+<span class="number">1</span>] = pArr-&gt;pBase[i];</span><br><span class="line">    &#125;</span><br><span class="line">    pArr-&gt;pBase[pos<span class="number">-1</span>] = val;</span><br><span class="line">    (pArr-&gt;cnt)++;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="8-从动态数组某个位置删除元素并返回的函数"><a href="#8-从动态数组某个位置删除元素并返回的函数" class="headerlink" title="(8).从动态数组某个位置删除元素并返回的函数"></a>(8).从动态数组某个位置删除元素并返回的函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">delete_arr</span><span class="params">(struct Arr * pArr , <span class="keyword">int</span> pos , <span class="keyword">int</span> * pVal)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(is_empty(pArr))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(pos&lt;<span class="number">1</span> || pos&gt;pArr-&gt;cnt)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    *pVal = pArr-&gt;pBase[pos<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(i=pos ; i&lt;pArr-&gt;cnt ; ++i)&#123;</span><br><span class="line">        pArr-&gt;pBase[i<span class="number">-1</span>] = pArr-&gt;pBase[i];</span><br><span class="line">    &#125;</span><br><span class="line">    pArr-&gt;cnt--;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="9-把动态数组倒置的函数"><a href="#9-把动态数组倒置的函数" class="headerlink" title="(9). 把动态数组倒置的函数"></a>(9). 把动态数组倒置的函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inversion_arr</span><span class="params">(struct Arr * pArr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = pArr-&gt;cnt<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> tmp;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">        tmp = pArr-&gt;pBAse[i];</span><br><span class="line">        pArr-&gt;pBase[i] = pArr-&gt;pBase[j];</span><br><span class="line">        pArr-&gt;pBase[j] = t;</span><br><span class="line">        ++i;</span><br><span class="line">        --j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="10-对动态数组进行排序的函数"><a href="#10-对动态数组进行排序的函数" class="headerlink" title="(10). 对动态数组进行排序的函数"></a>(10). 对动态数组进行排序的函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一个先和所有的比，比完之后留下最小的数，然后再比第二个以此类推</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort_arr</span><span class="params">(struct Arr * pArr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,t;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span> ; i&lt;pArr-&gt;cnt ; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(j=i+<span class="number">1</span> ; j&lt;pArr-&gt;cnt ; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(pArr-&gt;pBase[i] &gt; pArr-&gt;pBase[j])&#123;</span><br><span class="line">                t = pArr-&gt;pBase[i];</span><br><span class="line">                pArr-&gt;pBase[i] = pArr-&gt;pBase[j];</span><br><span class="line">                pArr-&gt;pBase[j] = t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="4-可以自行扩展的函数"><a href="#4-可以自行扩展的函数" class="headerlink" title="4. 可以自行扩展的函数"></a>4. 可以自行扩展的函数</h4><ul>
-<li>查找数组中是否含有某元素（find_val_arr()）</li>
-<li>删除数组中所有的元素（deleteAll()）</li>
-</ul>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2022/03/24/%E5%89%8D%E7%AB%AF07/">前端07</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2022-03-24T10:12:06.000Z" itemprop="datePublished">
-    2022-03-24
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/JavaScript/">JavaScript</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="JavaScript基础"><a href="#JavaScript基础" class="headerlink" title="JavaScript基础"></a>JavaScript基础</h2><h4 id="1-JavaScript简介"><a href="#1-JavaScript简介" class="headerlink" title="1. JavaScript简介"></a>1. JavaScript简介</h4><p>​    <strong>JavaScript是一种基于对象的编程语言，所有的对象已经由浏览器提供好了</strong>；而Java是属于面向对象语言，面向对象语言是强调类的设计</p>
-<p>​    JavaScript和Java没有本质关系，JavaScript的前身称为LiveScript，后来由于Java在浏览器技术端的发展，后来更名为JavaScript，最新的叫法称为EcmaScript</p>
-<p>​    后来发展超出了JavaScript的预期，它后期开始模拟面向对象编程，可以进行服务器端编程(即Node.js)</p>
-<h4 id="2-JavaScript的使用"><a href="#2-JavaScript的使用" class="headerlink" title="2. JavaScript的使用"></a>2. JavaScript的使用</h4><p>​    JavaScript的基础语法和Java很相似，JavaScript是嵌入在HTML语法之中的编程语言，可以使用”<code>&lt;script&gt;</code> “标记内进行使用，这样就可以实现动态页面的操作效果(前台页面)</p>
-<p>​    范例：第一个JavaScript小程序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//新建一个html文件</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>JavaScript<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">&quot;hello world&quot;</span>);<span class="comment">//弹框hello world</span></span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    注意：<code>type=&quot;text/javascript&quot;</code>此处表示的是使用JavaScript脚本语言，而也可以更换为VBScript、ColdFusion脚本语言，具体看你所要使用的脚本语言</p>
-<h4 id="3-JavaScript文件的导入"><a href="#3-JavaScript文件的导入" class="headerlink" title="3. JavaScript文件的导入"></a>3. JavaScript文件的导入</h4><p>​    JavaScript可以嵌入到HTML文件中使用，但是实际开发过程中，JS的代码是很多的，如果将JS代码写在HTML页面中，就会非常难以维护</p>
-<p>​    所以可以单独建立一个<code>*.js</code>的文件，将JavaScript代码写入，然后再将需要的<code>*.js</code>文件进行导入</p>
-<p>​    范例：通过src属性导入js文件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//导入js文件</span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>JavaScript<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;js/demo.js&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="4-JavaScript基础语法"><a href="#4-JavaScript基础语法" class="headerlink" title="4. JavaScript基础语法"></a>4. JavaScript基础语法</h4><p>​    JavaScript语法上和Java语法非常类似，除了一些关键字不同之外几乎没什么区别</p>
-<h5 id="1-document-write-方法"><a href="#1-document-write-方法" class="headerlink" title="(1).document.write()方法"></a>(1).<code>document.write()</code>方法</h5><p>​    JavaScript里使用“<code>document.write()</code>”，其可以输出HTML代码；其语法上的使用等同于Java的“<code>system.out.println()</code>”</p>
-<p>​    “<code>document.write()</code>”可以控制HTML代码的输出(可以写标签)</p>
-<p>​    范例：使用“<code>document.write()</code>”输出HTML</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.write(<span class="string">&quot;&lt;h1&gt;hello&lt;/h1&gt;&quot;</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    注意：使用js输出页面的话，代码会在原先HTML代码所写的页面之上，所以不会使用这类函数来实现内容输出，以前应该是用这个函数来调试的，现在被淘汰了，用的是下面这个</p>
-<h5 id="2-console-log-方法"><a href="#2-console-log-方法" class="headerlink" title="(2). console.log()方法"></a>(2). <code>console.log()</code>方法</h5><p>​    实现信息的后台输出，通过使用这个方法可以对写的代码进行调试</p>
-<p>​    范例：使用<code>console.log()</code>方法</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">&quot;这是后台输出&quot;</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    在浏览器中，按下F12进入调试控制台，可以在console(控制台)那里看到输出</p>
-<h4 id="5-定义变量"><a href="#5-定义变量" class="headerlink" title="5. 定义变量"></a>5. 定义变量</h4><p>​    在JavaScript中定义变量的格式没有太严格的要求，所有的变量只需要一个<code>var</code>关键字定义即可，至于变量的具体类型是根据为其赋值的结果来确定的</p>
-<h5 id="1-typeof关键字"><a href="#1-typeof关键字" class="headerlink" title="(1). typeof关键字"></a>(1). typeof关键字</h5><p>​    在JavaScript中，对于未知的变量可以使用</p>
-<blockquote>
-<p>typeof 变量名</p>
-</blockquote>
-<p>​    来确定变量的类型，使用上面两种输出方法输出查看即可</p>
-<h5 id="2-undefined类型"><a href="#2-undefined类型" class="headerlink" title="(2). undefined类型"></a>(2). <code>undefined</code>类型</h5><p>​    如果使用var但是不予给其赋值，那么它的类型就为<code>undefined</code>类型，这个类型是可以通过if语句判断的</p>
-<h5 id="3-if-语句"><a href="#3-if-语句" class="headerlink" title="(3). if()语句"></a>(3). if()语句</h5><p>​    JavaScript的if语句中的判断内容不像Java那样严格，可以使用变量直接判断(和C语言类似)，如果变量类型为<code>undefined</code>，在if语句中为假</p>
-<blockquote>
-<p>if(num);  //其中num变量为undefined类型，判断结果为false</p>
-</blockquote>
-<h5 id="4-单引号和双引号同义"><a href="#4-单引号和双引号同义" class="headerlink" title="(4). 单引号和双引号同义"></a>(4). 单引号和双引号同义</h5><p>​    在JavaScript中，变量不管是用单引号赋值还是双引号进行赋值，获得变量的类型都为<code>String</code>类型；即单引号或双引号得到的都是字符串，<strong>JavaScript对于字符串的操作函数和Java是类似的操作</strong></p>
-<p>​    范例：对字符串进行拆分</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> a = <span class="string">&quot;hello wold !&quot;</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> result = num.split(<span class="string">&quot; &quot;</span>);<span class="comment">//按空格拆</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">for</span>(<span class="keyword">var</span> x = <span class="number">0</span>; x &lt; result.length ; x++)&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.write(<span class="string">&quot;&lt;h1&gt;&quot;</span>+(result[x])+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    此时result的类型为object类型，拆出来的元素都为String类型</p>
-<p>​    <strong>注意：JavaScript中的字符串比较只提供“==”这一种操作</strong></p>
-<h5 id="5-while循环、switch等操作与Java的结构很类似"><a href="#5-while循环、switch等操作与Java的结构很类似" class="headerlink" title="(5). while循环、switch等操作与Java的结构很类似"></a>(5). while循环、switch等操作与Java的结构很类似</h5><h5 id="6-数组"><a href="#6-数组" class="headerlink" title="(6). 数组"></a>(6). 数组</h5><p>​    在JavaScript中的数组本身是以一个对象的形式出现，所以数组的创建需要使用关键字new完成</p>
-<p>​    范例：定义数组</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//数组的动态初始化</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Array</span>();</span></span><br><span class="line"><span class="javascript">    result[<span class="number">0</span>] = <span class="string">&quot;hello&quot;</span>;</span></span><br><span class="line">    result[1] = 100;</span><br><span class="line"><span class="javascript">    ressult[<span class="number">2</span>] = <span class="literal">true</span>;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//数组的静态初始化</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> result = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">&quot;hello&quot;</span>,<span class="string">&quot;world&quot;</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    注意：在JavaScript中的数组元素语法没有严格要求，其定义的数组长度上是没有限制的，其数组本身就为动态数组，而数组的元素可以是任意的</p>
-<p>​    可以看到从数组的本质上来说，虽然和Java类似，但是要比Java的数组功能强大，只不过很少会出现这种要直接定义数组的操作</p>
-<h5 id="7-全局变量"><a href="#7-全局变量" class="headerlink" title="(7).全局变量"></a>(7).全局变量</h5><p>​    在JavaScript中，定义变量时，可以不使用var进行定义，直接写，那这样弄出来的变量从语法上来说，属于全局变量(几乎没用)</p>
-<h4 id="6-定义函数"><a href="#6-定义函数" class="headerlink" title="6. 定义函数"></a>6. 定义函数</h4><p>​    JavaScript中定义函数的基本语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function 参数名称(参数)&#123;&#x2F;&#x2F;不需要声明返回值类型</span><br><span class="line">	return 返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    注意：参数可以不写类型</p>
-<p>​    范例：实现加法操作</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> x+y;</span></span><br><span class="line">	&#125;</span><br><span class="line">    alert(add(4,3));</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    注意：在Java中对语法有严格限制，定义多少个参数，函数就只能引用几个参数，但JavaScript没有严格语法限制，</p>
-<p>​    像当前程序如果只传一个参数，只能获得一个NaN(不是一个数字)</p>
-<p>​    此时可以通过<code>函数名称.arguments</code>来修改程序，其表示取得函数的参数内容，返回一个数组，然后通过length，查看长度来修改</p>
-<p>​    程序：修改当前程序</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">    	<span class="keyword">switch</span>(add.arguments.length)&#123;</span></span><br><span class="line"><span class="javascript">    		<span class="keyword">case</span> <span class="number">0</span>:</span></span><br><span class="line"><span class="javascript">    			<span class="keyword">return</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">    		<span class="keyword">case</span> <span class="number">1</span>:</span></span><br><span class="line"><span class="javascript">    			<span class="keyword">return</span> x;</span></span><br><span class="line"><span class="javascript">    		<span class="keyword">case</span> <span class="number">2</span>:</span></span><br><span class="line"><span class="javascript">    			<span class="keyword">return</span> x+y;</span></span><br><span class="line"><span class="javascript">    		<span class="keyword">default</span>:</span></span><br><span class="line"><span class="javascript">    			<span class="keyword">return</span> <span class="string">&quot;不能完成的操作&quot;</span>;</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    alert(add(4,3));</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>​    注意：此时程序拥有了健壮性，但真实情况不可能允许这样写代码，所以应该自己遵守语法严格，怎么定义怎么使用</p>
-<h4 id="7-JavaScript的面向对象"><a href="#7-JavaScript的面向对象" class="headerlink" title="7. JavaScript的面向对象"></a>7. JavaScript的面向对象</h4><p>​    JavaScript原本是属于基于对象编程的语言，但后期人们希望JavaScript可以支持面向对象的编程，但其本身不是面向对象编程，于是就利用函数模拟面向对象编程</p>
-<p>​    范例：类与对象的使用</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">Book</span>(<span class="params">title,price</span>)</span>&#123;<span class="comment">//类</span></span></span><br><span class="line"><span class="javascript">    	<span class="built_in">this</span>.title = title;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">this</span>.price = price;</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="javascript">    <span class="comment">//prototype表示对原生功能的扩展</span></span></span><br><span class="line"><span class="javascript">    Book.prototype.getInfo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="built_in">this</span>.title+<span class="built_in">this</span>.price;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> book = <span class="keyword">new</span> Book(<span class="string">&quot;java&quot;</span>,<span class="number">66</span>);</span></span><br><span class="line">    alert(book.getInfo());</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
 
       
     </div>

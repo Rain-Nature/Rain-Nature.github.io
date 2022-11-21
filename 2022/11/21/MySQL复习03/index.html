@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MySQL复习03 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+            <div>Road is walked by me</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>MySQL复习03</h1>
+    </header>
+
+    <section>
+      <h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h4 id="1-多表关系"><a href="#1-多表关系" class="headerlink" title="1. 多表关系"></a>1. 多表关系</h4><p>​    在数据库表结构设计时，一般各个表结构之间存在着各种联系，基本上分为三种：</p>
+<ul>
+<li>一对多(多对一)</li>
+<li>多对多</li>
+<li>一对一</li>
+</ul>
+<p>​    <strong>一对多(多对一)</strong></p>
+<p>​    案例：部门与员工的关系</p>
+<p>​    关系：一个部门对应多个员工，一个员工对应一个部门</p>
+<p>​    实现：在多的一方建立外键。指向一的一方的主键</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zVAki4"><img src="https://s1.ax1x.com/2022/11/15/zVAki4.png" alt="zVAki4.png"></a></p>
+<p>​    <strong>多对多</strong></p>
+<p>​    案例：学生与课程的关系</p>
+<p>​    关系：一个学生可以选修多门课程，一门课程也可以供多个学生选择</p>
+<p>​    实现：建立第三张中间表，中间表至少包含两个外键，分别关联两方主键</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zVAEW9"><img src="https://s1.ax1x.com/2022/11/15/zVAEW9.png" alt="zVAEW9.png"></a></p>
+<p>​    <strong>一对一</strong></p>
+<p>​    案例：用户与用户详情的关系</p>
+<p>​    关系：一对一关系，多用于单表拆分，将一张表的基础字段放在一张表中，其他详细字段放在另一张表中，以提升操作效率</p>
+<p>​    实现：在任意一方加入外键，关联另外一方的主键，并且设置外键为唯一的(UNIQUE)</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zVEvD0"><img src="https://s1.ax1x.com/2022/11/15/zVEvD0.png" alt="zVEvD0.png"></a></p>
+<h4 id="2-多表查询概述"><a href="#2-多表查询概述" class="headerlink" title="2. 多表查询概述"></a>2. 多表查询概述</h4><p>​    指从多张表中查询数据</p>
+<pre><code> 笛卡尔积</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp,dept;</span><br></pre></td></tr></table></figure>
+
+<p>​    笛卡尔积：两个集合，A集合和B集合的所有组合情况(在多表查询时，需要消除无效的笛卡尔积)</p>
+<p>​    通过where语句可以消除无效的笛卡尔积，但不满足where的数据也会被消除掉</p>
+<p>​    多表查询的分类</p>
+<ul>
+<li>连接查询<ul>
+<li>内连接：相当于查询A、B交集部分数据</li>
+<li>外连接：<ul>
+<li>左外连接：查询左表所有数据，以及两张表交集部分数据</li>
+<li>右外连接：查询右表所有数据，以及两张表交集部分数据</li>
+</ul>
+</li>
+<li>自连接：当前表与自身的连接查询，自连接必须使用表别名</li>
+</ul>
+</li>
+<li>子查询</li>
+</ul>
+<h4 id="3-内连接"><a href="#3-内连接" class="headerlink" title="3. 内连接"></a>3. 内连接</h4><p>​    内连接查询的是两张表的交集部分</p>
+<p>​    内连接查询语法</p>
+<ul>
+<li><p>隐式内连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span>,表<span class="number">2</span> <span class="keyword">WHERE</span> 条件...;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示内连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span> [<span class="keyword">INNER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 连接条件... <span class="keyword">WHERE</span> 筛选条件;</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+<p>​    范例：内连接的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 表结构：emp,dept</span></span><br><span class="line"><span class="comment">-- 连接条件：emp.dept_id = dept.id</span></span><br><span class="line"><span class="comment">-- 查询每一个员工的姓名，以及关联的部门的名称(隐式内连接实现)</span></span><br><span class="line"><span class="keyword">SELECT</span> emp.name,dept.name <span class="keyword">FROM</span> emp,dept <span class="keyword">WHERE</span> emp.dept_id = dept_id;</span><br><span class="line">//如果表名太长可以起别名，但起别名之后WHERE后面的使用字段必须要用别名来引用，不可以用表原名引用</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询每一个员工的姓名。及关联的部门的名称(显示内连接实现)</span></span><br><span class="line"><span class="keyword">SELECT</span> e.name, d.name <span class="keyword">FROM</span> emp e <span class="keyword">INNER</span> <span class="keyword">JOIN</span> dept d <span class="keyword">on</span> e.dept_id = d.id;</span><br><span class="line">//INNER关键字是可以省略的</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：隐式和显式只是语法不同，查询结果是相同的</p>
+<h4 id="4-外连接"><a href="#4-外连接" class="headerlink" title="4. 外连接"></a>4. 外连接</h4><p>​    外连接查询语法</p>
+<ul>
+<li><p>左外连接：查询左表(表1)所有数据，以及两张表交集部分数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span> <span class="keyword">LEFT</span> [<span class="keyword">OUTER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 条件...;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>右外连接：查询右表(表2)所有数据，以及两张表交集部分数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 字段列表 FROM 表1 RIGHT [OUTER] JOIN 表2 ON 条件...;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>​    范例：外连接的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 表结构：emp,dept</span></span><br><span class="line"><span class="comment">-- 连接条件：emp.dept_id = dept.id</span></span><br><span class="line"><span class="comment">-- 1.查询emp表的所有数据，和对应的部门信息(左外连接)</span></span><br><span class="line"><span class="keyword">SELECT</span> e.*,d.name <span class="keyword">FROM</span> emp e <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> dept d <span class="keyword">ON</span> e.dept_id = d.id;</span><br><span class="line">//OUTER关键字可以省略</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询dept表的所有数据，和对应的员工信息(右外连接)</span></span><br><span class="line"><span class="keyword">SELECT</span> d.*,e.name <span class="keyword">FROM</span> emp e <span class="keyword">RIGHT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> dept d <span class="keyword">ON</span> e.dept_id = d.id;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：一般开发中左外连接用的多，因为右外连接可以转化为左外连接</p>
+<h4 id="4-自连接"><a href="#4-自连接" class="headerlink" title="4. 自连接"></a>4. 自连接</h4><p>​    自连接查询语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表A 别名A <span class="keyword">JOIN</span> 表A 别名B <span class="keyword">ON</span> 条件...;</span><br></pre></td></tr></table></figure>
+
+<p>​    自连接可以是内连接也可以是外连接</p>
+<p>​    范例：自连接的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 表结构：emp</span></span><br><span class="line"><span class="comment">-- 1.查询员工及其所属领导的名字</span></span><br><span class="line"><span class="keyword">SELECT</span> a.name,b.name <span class="keyword">FROM</span> emp a, emp b <span class="keyword">WHERE</span> a.managerid = b.id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询所有员工及其领导的名字，如果员工没有领导，也需要查询出来</span></span><br><span class="line"><span class="keyword">SELECT</span> a.name <span class="string">&#x27;员工&#x27;</span>, b.name <span class="string">&#x27;领导&#x27;</span> <span class="keyword">FROM</span> emp a <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> emp b <span class="keyword">ON</span> a.managerid = b.id;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-联合查询"><a href="#5-联合查询" class="headerlink" title="5. 联合查询"></a>5. 联合查询</h4><p>​    联合查询是将多次查询的结果合并起来，形成一个新的查询结果集</p>
+<p>​    联合查询的语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表A...</span><br><span class="line"><span class="keyword">UNION</span> [<span class="keyword">ALL</span>]</span><br><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表B...;</span><br></pre></td></tr></table></figure>
+
+<p>​    对于联合查询的多张表的列数必须保持一致，字段类型也需要保持一致</p>
+<p>​    范例：联合查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.将薪资低于5000的员工和年龄大于50岁的员工全部查询出来</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> salary &lt; <span class="number">5000</span></span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> age &lt; <span class="number">50</span>;</span><br></pre></td></tr></table></figure>
+
+<p>​    联合查询将这两次查询的结果合并在一起显示</p>
+<p>​    <strong>注意：<code>UNION ALL</code>会将查到的全部数据直接合并在一起，<code>UNION</code>会对合并之后的数据去重</strong></p>
+<h4 id="6-子查询概念"><a href="#6-子查询概念" class="headerlink" title="6. 子查询概念"></a>6. 子查询概念</h4><p>​    SQL语句中嵌套SELECT语句，称为嵌套查询，又称子查询</p>
+<p>​    子查询的语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> t1 <span class="keyword">WHERE</span> <span class="keyword">column</span> = (<span class="keyword">SELECT</span> <span class="keyword">column</span> <span class="keyword">FROM</span> t2);</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：子查询外部的语句可以是INSERT、UPDATE、DELETE、SELECT的任意一个</p>
+<p>​    根据子查询结果的不同，将子查询分类为：</p>
+<ul>
+<li>标量子查询(子查询结果为单个值)</li>
+<li>列子查询(子查询结果为一列)</li>
+<li>行子查询(子查询结果为一行)</li>
+<li>表子查询(子查询结果为多行多列)</li>
+</ul>
+<p>​    根据子查询的位置，将子查询分类为：</p>
+<ul>
+<li>WHERE之后</li>
+<li>FROM之后</li>
+<li>SELECT之后</li>
+</ul>
+<h4 id="7-标量子查询"><a href="#7-标量子查询" class="headerlink" title="7. 标量子查询"></a>7. 标量子查询</h4><p>​    子查询返回的结果是单个值(数字、字符串、日期等)，最简单的形式，这种子查询称为标量子查询</p>
+<p>​    常见的操作符：<code>=</code>、<code>&lt;&gt;</code>、<code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&lt;=</code></p>
+<p>​    范例：标量子查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询“销售部”的所有员工信息</span></span><br><span class="line"><span class="comment">-- a.查询“销售部”部门ID</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;销售部&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.根据销售部部门ID，查询员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = <span class="number">2</span>;</span><br><span class="line"><span class="comment">--通过子查询将a与b写为一条语句</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = (<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;销售部&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="8-列子查询"><a href="#8-列子查询" class="headerlink" title="8. 列子查询"></a>8. 列子查询</h4><p>​    子查询返回的结果是一列(即多行)，这种子查询称为列子查询</p>
+<p>​    常用操作符：IN、NOT IN、ANY、SOME、ALL</p>
+<table>
+<thead>
+<tr>
+<th align="center">操作符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">IN</td>
+<td align="center">在指定的集合范围之内，多选一</td>
+</tr>
+<tr>
+<td align="center">NOT IN</td>
+<td align="center">不在指定的集合范围之内</td>
+</tr>
+<tr>
+<td align="center">ANY</td>
+<td align="center">子查询返回列表中，有任意一个满足即可</td>
+</tr>
+<tr>
+<td align="center">SOME</td>
+<td align="center">与ANY等同，使用SOME的地方都可以使用ANY</td>
+</tr>
+<tr>
+<td align="center">ALL</td>
+<td align="center">子查询返回列表的所有值都必须满足</td>
+</tr>
+</tbody></table>
+<p>​    范例：列子查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询“销售部”和“市场部”的所有员工信息</span></span><br><span class="line"><span class="comment">-- a.查询“销售部”和“市场部”的部门ID</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span>=<span class="string">&#x27;销售部&#x27;</span> <span class="keyword">or</span> <span class="keyword">name</span> = <span class="string">&#x27;市场部&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.根据部门ID查询员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id <span class="keyword">IN</span>(<span class="number">3</span>,<span class="number">5</span>);</span><br><span class="line"><span class="comment">-- 将a,b写为一条语句</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id <span class="keyword">IN</span>(<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span>=<span class="string">&#x27;销售部&#x27;</span> <span class="keyword">or</span> <span class="keyword">name</span> = <span class="string">&#x27;市场部&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询比财务部所有人工资都高的员工信息</span></span><br><span class="line"><span class="comment">-- a.查询财务部所有人员的工资</span></span><br><span class="line"><span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = (<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> =<span class="string">&#x27;财务部&#x27;</span>);</span><br><span class="line"><span class="comment">-- b.比财务部所有人工资都高的员工信息,与a结合</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> salary &gt; <span class="keyword">ALL</span>(<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = (<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> =<span class="string">&#x27;财务部&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3.查询比研发部任意一个人工资高的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> salary &gt; <span class="keyword">ANY</span>(<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = (<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> =<span class="string">&#x27;研发部&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="9-行子查询"><a href="#9-行子查询" class="headerlink" title="9. 行子查询"></a>9. 行子查询</h4><p>​    子查询返回的结果是一行(即多列)，这种子查询称为行子查询</p>
+<p>​    常用的操作符：=、&lt;&gt;、IN、NOT IN</p>
+<p>​    范例：行子查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询与“张三”的薪资及直属领导相同的员工信息</span></span><br><span class="line"><span class="comment">-- a.张无忌的薪资及直属领导</span></span><br><span class="line"><span class="keyword">SELECT</span> salary,managerid <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;张无忌&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.查询与“张无忌”的薪资及直属领导相同的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> (salary,managerid) = (<span class="number">1000</span>,<span class="number">2</span>);</span><br><span class="line"><span class="comment">-- 将a,b写为一条语句</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> (salary,managerid) = (<span class="keyword">SELECT</span> salary,managerid <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;张无忌&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-表子查询"><a href="#10-表子查询" class="headerlink" title="10. 表子查询"></a>10. 表子查询</h4><p>​    子查询返回的结果是多行多列，这种子查询称为表子查询，一般放在FROM之后，把查询结果作为一张临时表在和其他表联合查询，也会放在WHERE后面使用IN来完成查找</p>
+<p>​    常用操作符：IN</p>
+<p>​    范例：表子查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询与“张三”，“李四”的职位和薪资相同的员工信息</span></span><br><span class="line"><span class="comment">-- a.查询“张三”，“李四”的职位和薪资</span></span><br><span class="line"><span class="keyword">SELECT</span> job,salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;张三&#x27;</span> <span class="keyword">or</span> <span class="keyword">name</span> = <span class="string">&#x27;李四&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.查询与“张三”，“李四”的职位和薪资相同的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> (job,salary) <span class="keyword">IN</span> (<span class="keyword">SELECT</span> job,salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;张三&#x27;</span> <span class="keyword">or</span> <span class="keyword">name</span> = <span class="string">&#x27;李四&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询入职日期是“2006-01-01”之后的员工信息，及其部门信息</span></span><br><span class="line"><span class="comment">-- a.入职日期是“2006-01-01”之后的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> entrydate&gt;<span class="string">&#x27;2006-01-01&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.查询这部分员工对应的部门信息，因为如果部门为空也要查询出来，所以要用到左外连接</span></span><br><span class="line"><span class="keyword">SELECT</span> e.*,d.* <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> entrydate&gt;<span class="string">&#x27;2006-01-01&#x27;</span>) e <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> dept d <span class="keyword">ON</span> e.dept_id=d.id;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2022-11-21T00:46:50.000Z" itemprop="datePublished">
+              2022-11-21
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/MySQL/">MySQL</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2022 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>

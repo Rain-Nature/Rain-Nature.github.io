@@ -70,6 +70,148 @@
     <header class="title">
       
         <h1>
+          <a href="/2020/12/08/MyBirthday-do/">MyBirthday do</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2020-12-08T09:53:03.000Z" itemprop="datePublished">
+    2020-12-08
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/C/">C#</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="送给生日的代码"><a href="#送给生日的代码" class="headerlink" title="送给生日的代码"></a>送给生日的代码</h2><h3 id="希望之后努力一点，不要再写这种偏落水的代码"><a href="#希望之后努力一点，不要再写这种偏落水的代码" class="headerlink" title="希望之后努力一点，不要再写这种偏落水的代码"></a>希望之后努力一点，不要再写这种偏落水的代码</h3><p>在未来的一年，希望把握住时间，改掉拖延的习惯</p>
+<hr>
+<h3 id="程序（送给2020的自己的代码）"><a href="#程序（送给2020的自己的代码）" class="headerlink" title="程序（送给2020的自己的代码）"></a>程序（送给2020的自己的代码）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Windows.Forms;</span><br><span class="line"></span><br><span class="line">namespace _2021</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            int a;</span><br><span class="line">            Console.WriteLine(&quot;how time is do this ? , It is my birthday&quot;);</span><br><span class="line">            string year1,month1,day1;</span><br><span class="line">            int year,month,day;</span><br><span class="line">            Console.Write(&quot;The year is:&quot;);</span><br><span class="line">            year1&#x3D;Console.ReadLine();</span><br><span class="line">            year &#x3D; int.Parse(year1);</span><br><span class="line">            Console.Write(&quot;The month is:&quot;);</span><br><span class="line">            month1&#x3D;Console.ReadLine();</span><br><span class="line">            month &#x3D; int.Parse(month1);</span><br><span class="line">            Console.Write(&quot;The day is:&quot;);</span><br><span class="line">            day1 &#x3D; Console.ReadLine();</span><br><span class="line">            day &#x3D; int.Parse(day1);</span><br><span class="line">            birth liu &#x3D; new birth();</span><br><span class="line">            a&#x3D;liu.Liu(year, month, day);</span><br><span class="line">            if (a &#x3D;&#x3D; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                MessageBox.Show(&quot;no is not&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class birth</span><br><span class="line">    &#123;</span><br><span class="line">        public int Liu(int a, int b, int c)</span><br><span class="line">        &#123;</span><br><span class="line">            if (a &#x3D;&#x3D; 2020)</span><br><span class="line">            &#123;</span><br><span class="line">                if (b &#x3D;&#x3D; 12)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (c &#x3D;&#x3D; 8)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Console.WriteLine(&quot;Happy Birthday LXS&quot;);</span><br><span class="line">                        MessageBox.Show(&quot;The timely Wind and Rain have to happen in 2021, Let&#39;s to see&quot;);</span><br><span class="line">                        return 1;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        return 0;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    return 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                return 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2020/11/26/%E5%BB%BA%E7%AB%8BC(sharp)%E7%B1%BB%E5%BA%93/">建立C(sharp)类库</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2020-11-26T14:36:57.000Z" itemprop="datePublished">
+    2020-11-26
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/C/">C#</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="用VS2019-在C-新建一个算术类库"><a href="#用VS2019-在C-新建一个算术类库" class="headerlink" title="用VS2019 在C#新建一个算术类库"></a>用VS2019 在C#新建一个算术类库</h2><p>1.在VS2019中新建一个类库程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line"></span><br><span class="line">namespace Tools</span><br><span class="line">&#123;</span><br><span class="line">    public class Tools</span><br><span class="line">    &#123;</span><br><span class="line">        public static double Add(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a + b;</span><br><span class="line">        &#125;</span><br><span class="line">        public static double Sub(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a - b;</span><br><span class="line">        &#125;</span><br><span class="line">        public static double Mul(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a * b;</span><br><span class="line">        &#125;</span><br><span class="line">        public static double Div(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a &#x2F; b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.在编写完成后点击F6在下面的生成中可以看见路径</p>
+<p>3.一般是在bin这个文件夹中，点击进入找到一个dll的文件，此就为生成的类库</p>
+<hr>
+<h2 id="使用生成的类库"><a href="#使用生成的类库" class="headerlink" title="使用生成的类库"></a>使用生成的类库</h2><p>1.新建一个控制台应用程序<br>2.在引用中添加引用，在浏览处选择浏览，找到想要引用的类库添加即可</p>
+<hr>
+<h2 id="类库的修改"><a href="#类库的修改" class="headerlink" title="类库的修改"></a>类库的修改</h2><p>由于依赖性类库需要在现有框架下修改，使用文件.csproj结尾的，添加现有项目XXX.csproj即可在文件中修改，即可以看见该类库的源代码，显示后可以在添加引用项目，解决方案中引用这个类库，修改后先移除原先的再重新引用即可生效。</p>
+<p><strong>使用自己类库的方式和系统给的类库的方式一样</strong></p>
+<p><strong>完结</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2020/11/24/%E4%B8%BB%E9%A2%98-icalm%E7%9A%84%E6%9B%B4%E6%8D%A2/">主题-icalm的更换</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2020-11-24T06:35:11.000Z" itemprop="datePublished">
+    2020-11-24
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%9D%82%E8%AE%B0/">杂记</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h3 id="1-更换主题的代码储存"><a href="#1-更换主题的代码储存" class="headerlink" title="1.更换主题的代码储存"></a>1.更换主题的代码储存</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;D:\blog中的themes中存放blog的主题，在themes的文件夹中有一个本身hexo默认自带的丑主题，现在自己下载了一个叫做hexo-theme-icalm的主题的文件夹也是放在这里，现在对这个主题进行修改。</p>
+<h3 id="2-主题的个性化设置"><a href="#2-主题的个性化设置" class="headerlink" title="2.主题的个性化设置"></a>2.主题的个性化设置</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;打开hexo-theme-icalm文件夹中有 _ config.yml的代码，最后使用win+r，在cmd中打开，如果有下载node.js可以直接用记事本打开，进入后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#Links on sidebar</span><br><span class="line">menu:</span><br><span class="line">  Home: &#x2F;</span><br><span class="line">  Archive: &#x2F;archives&#x2F;</span><br><span class="line">  #Tags: &#x2F;tags&#x2F;</span><br><span class="line">  #Categories: &#x2F;categories&#x2F;</span><br><span class="line">  #About: &#x2F;about&#x2F;</span><br><span class="line"></span><br><span class="line">#Pictures shown on the sidebar</span><br><span class="line">#Use the absolute URL after generating</span><br><span class="line">#avatar: &#x2F;assets&#x2F;tree_small.png</span><br><span class="line">#sidebar_background: &#x2F;assets&#x2F;header.png</span><br><span class="line"></span><br><span class="line">rss: &#x2F;atom.xml</span><br><span class="line"></span><br><span class="line">#Content</span><br><span class="line">excerpt_link: Read On »</span><br><span class="line"></span><br><span class="line">#Will be shown on the bottom.</span><br><span class="line">##To add new icon, just copy .svg to source&#x2F;assets&#x2F; and add entries below.</span><br><span class="line">media:</span><br><span class="line">  #github: https:&#x2F;&#x2F;github.com&#x2F;nameoverflow</span><br><span class="line">  #facebook: https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100004252391322</span><br><span class="line"></span><br><span class="line">source_han_font: true</span><br><span class="line"></span><br><span class="line">#Disqus settings</span><br><span class="line">disqus:</span><br><span class="line">  #&#39;disabled&#39; | &#39;all&#39; | &#39;post&#39;</span><br><span class="line">  enable: disabled</span><br><span class="line">  #Shortname of your disqus website.</span><br><span class="line">  #See disqus admin</span><br><span class="line">  shortname:</span><br><span class="line"></span><br><span class="line">#Miscellaneous</span><br><span class="line">favicon:</span><br></pre></td></tr></table></figure>
+<p><strong>这里#后面都是有一个空格，为了md的可读性我就删了</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;第一行中的menu是文件格式的菜单一共有5个功能，一般现在我能使用的就是前面三个和一个about，但是about还是不太懂弄所以只是显示按钮，如果要把这句话启用，则去除前面的# 就可以了<strong>注意是#和之后的一个空格都需要去掉</strong></p>
+<p>如果需要设置头像可以看到**#avatar: /assets/tree_small.png**这一行，在同路径下可以看到一个叫source的文件夹，在这个文件夹中可以看见有一个assets的文件夹，如HTML一样，把需要的头像改名放在里面，再把这句话启用，把后面照片文件名改成你的，即可以发现照片引用完毕</p>
+<p>还有一个**#sidebar_background: /assets/header.png**大胆的猜测这个是照片后面的背景，但是我觉得没有的话也是很好看就没有启用这个了</p>
+<p><strong>引用样式tags</strong><br>    在每一个blog中都有一个tags标记，这个主题也是一样可以使用tags标记进行使用，在初期没有弄明白tags的使用方式所以这个功能一直没有什么用。<br>启用方式<br>    用win+r，cmd打开控制台窗口，进入到blog这个文件夹中运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n page &quot;tags&quot;</span><br></pre></td></tr></table></figure>
+<p>然后打开这个生成的文件夹，在里面加入type: “tags”<br>加入后是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: tags</span><br><span class="line">date: 2021-04-14 18:55:02</span><br><span class="line">type: &quot;tags&quot;</span><br></pre></td></tr></table></figure>
+<p>至此文件的tags标签即可以正常引用了</p>
+<p>后面的内容待发掘</p>
+<h4 id="待更"><a href="#待更" class="headerlink" title="待更"></a>待更</h4><h3 id="3-需要设置博客的名字与引用主题"><a href="#3-需要设置博客的名字与引用主题" class="headerlink" title="3.需要设置博客的名字与引用主题"></a>3.需要设置博客的名字与引用主题</h3><p>回到blog文件夹中，里面有一个名叫 _ config.yml的文件，一样的方式打开后</p>
+<ul>
+<li>在title中更改你的blog名字</li>
+<li>在subtitle添加你的副标题</li>
+<li>把language改为zh-‘CN’</li>
+<li>找到后面的theme改为你刚刚弄得主题的文件夹名</li>
+</ul>
+<p>至此blog的初始化完成<br><strong>后续功能待更</strong></p>
+<p><strong>更新日期2020/12/26：完成对代码块的样式更改</strong><br><strong>更新日期2021/4/14：完成对tags样式的引用的补充</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2020/11/23/markdown%E7%AC%94%E8%AE%B0/">markdown笔记</a>
         </h1>
       

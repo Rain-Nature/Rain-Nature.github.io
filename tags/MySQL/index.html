@@ -74,6 +74,500 @@
     <header class="title">
       
         <h1>
+          <a href="/2022/11/21/MySQL%E5%A4%8D%E4%B9%A003/">MySQL复习03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-11-21T00:46:50.000Z" itemprop="datePublished">
+    2022-11-21
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/MySQL/">MySQL</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h4 id="1-多表关系"><a href="#1-多表关系" class="headerlink" title="1. 多表关系"></a>1. 多表关系</h4><p>​    在数据库表结构设计时，一般各个表结构之间存在着各种联系，基本上分为三种：</p>
+<ul>
+<li>一对多(多对一)</li>
+<li>多对多</li>
+<li>一对一</li>
+</ul>
+<p>​    <strong>一对多(多对一)</strong></p>
+<p>​    案例：部门与员工的关系</p>
+<p>​    关系：一个部门对应多个员工，一个员工对应一个部门</p>
+<p>​    实现：在多的一方建立外键。指向一的一方的主键</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zVAki4"><img src="https://s1.ax1x.com/2022/11/15/zVAki4.png" alt="zVAki4.png"></a></p>
+<p>​    <strong>多对多</strong></p>
+<p>​    案例：学生与课程的关系</p>
+<p>​    关系：一个学生可以选修多门课程，一门课程也可以供多个学生选择</p>
+<p>​    实现：建立第三张中间表，中间表至少包含两个外键，分别关联两方主键</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zVAEW9"><img src="https://s1.ax1x.com/2022/11/15/zVAEW9.png" alt="zVAEW9.png"></a></p>
+<p>​    <strong>一对一</strong></p>
+<p>​    案例：用户与用户详情的关系</p>
+<p>​    关系：一对一关系，多用于单表拆分，将一张表的基础字段放在一张表中，其他详细字段放在另一张表中，以提升操作效率</p>
+<p>​    实现：在任意一方加入外键，关联另外一方的主键，并且设置外键为唯一的(UNIQUE)</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zVEvD0"><img src="https://s1.ax1x.com/2022/11/15/zVEvD0.png" alt="zVEvD0.png"></a></p>
+<h4 id="2-多表查询概述"><a href="#2-多表查询概述" class="headerlink" title="2. 多表查询概述"></a>2. 多表查询概述</h4><p>​    指从多张表中查询数据</p>
+<pre><code> 笛卡尔积</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp,dept;</span><br></pre></td></tr></table></figure>
+
+<p>​    笛卡尔积：两个集合，A集合和B集合的所有组合情况(在多表查询时，需要消除无效的笛卡尔积)</p>
+<p>​    通过where语句可以消除无效的笛卡尔积，但不满足where的数据也会被消除掉</p>
+<p>​    多表查询的分类</p>
+<ul>
+<li>连接查询<ul>
+<li>内连接：相当于查询A、B交集部分数据</li>
+<li>外连接：<ul>
+<li>左外连接：查询左表所有数据，以及两张表交集部分数据</li>
+<li>右外连接：查询右表所有数据，以及两张表交集部分数据</li>
+</ul>
+</li>
+<li>自连接：当前表与自身的连接查询，自连接必须使用表别名</li>
+</ul>
+</li>
+<li>子查询</li>
+</ul>
+<h4 id="3-内连接"><a href="#3-内连接" class="headerlink" title="3. 内连接"></a>3. 内连接</h4><p>​    内连接查询的是两张表的交集部分</p>
+<p>​    内连接查询语法</p>
+<ul>
+<li><p>隐式内连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span>,表<span class="number">2</span> <span class="keyword">WHERE</span> 条件...;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示内连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span> [<span class="keyword">INNER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 连接条件... <span class="keyword">WHERE</span> 筛选条件;</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+<p>​    范例：内连接的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 表结构：emp,dept</span></span><br><span class="line"><span class="comment">-- 连接条件：emp.dept_id = dept.id</span></span><br><span class="line"><span class="comment">-- 查询每一个员工的姓名，以及关联的部门的名称(隐式内连接实现)</span></span><br><span class="line"><span class="keyword">SELECT</span> emp.name,dept.name <span class="keyword">FROM</span> emp,dept <span class="keyword">WHERE</span> emp.dept_id = dept_id;</span><br><span class="line">//如果表名太长可以起别名，但起别名之后WHERE后面的使用字段必须要用别名来引用，不可以用表原名引用</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询每一个员工的姓名。及关联的部门的名称(显示内连接实现)</span></span><br><span class="line"><span class="keyword">SELECT</span> e.name, d.name <span class="keyword">FROM</span> emp e <span class="keyword">INNER</span> <span class="keyword">JOIN</span> dept d <span class="keyword">on</span> e.dept_id = d.id;</span><br><span class="line">//INNER关键字是可以省略的</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：隐式和显式只是语法不同，查询结果是相同的</p>
+<h4 id="4-外连接"><a href="#4-外连接" class="headerlink" title="4. 外连接"></a>4. 外连接</h4><p>​    外连接查询语法</p>
+<ul>
+<li><p>左外连接：查询左表(表1)所有数据，以及两张表交集部分数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表<span class="number">1</span> <span class="keyword">LEFT</span> [<span class="keyword">OUTER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 条件...;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>右外连接：查询右表(表2)所有数据，以及两张表交集部分数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 字段列表 FROM 表1 RIGHT [OUTER] JOIN 表2 ON 条件...;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>​    范例：外连接的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 表结构：emp,dept</span></span><br><span class="line"><span class="comment">-- 连接条件：emp.dept_id = dept.id</span></span><br><span class="line"><span class="comment">-- 1.查询emp表的所有数据，和对应的部门信息(左外连接)</span></span><br><span class="line"><span class="keyword">SELECT</span> e.*,d.name <span class="keyword">FROM</span> emp e <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> dept d <span class="keyword">ON</span> e.dept_id = d.id;</span><br><span class="line">//OUTER关键字可以省略</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询dept表的所有数据，和对应的员工信息(右外连接)</span></span><br><span class="line"><span class="keyword">SELECT</span> d.*,e.name <span class="keyword">FROM</span> emp e <span class="keyword">RIGHT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> dept d <span class="keyword">ON</span> e.dept_id = d.id;</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：一般开发中左外连接用的多，因为右外连接可以转化为左外连接</p>
+<h4 id="4-自连接"><a href="#4-自连接" class="headerlink" title="4. 自连接"></a>4. 自连接</h4><p>​    自连接查询语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表A 别名A <span class="keyword">JOIN</span> 表A 别名B <span class="keyword">ON</span> 条件...;</span><br></pre></td></tr></table></figure>
+
+<p>​    自连接可以是内连接也可以是外连接</p>
+<p>​    范例：自连接的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 表结构：emp</span></span><br><span class="line"><span class="comment">-- 1.查询员工及其所属领导的名字</span></span><br><span class="line"><span class="keyword">SELECT</span> a.name,b.name <span class="keyword">FROM</span> emp a, emp b <span class="keyword">WHERE</span> a.managerid = b.id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询所有员工及其领导的名字，如果员工没有领导，也需要查询出来</span></span><br><span class="line"><span class="keyword">SELECT</span> a.name <span class="string">&#x27;员工&#x27;</span>, b.name <span class="string">&#x27;领导&#x27;</span> <span class="keyword">FROM</span> emp a <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> emp b <span class="keyword">ON</span> a.managerid = b.id;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-联合查询"><a href="#5-联合查询" class="headerlink" title="5. 联合查询"></a>5. 联合查询</h4><p>​    联合查询是将多次查询的结果合并起来，形成一个新的查询结果集</p>
+<p>​    联合查询的语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表A...</span><br><span class="line"><span class="keyword">UNION</span> [<span class="keyword">ALL</span>]</span><br><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表B...;</span><br></pre></td></tr></table></figure>
+
+<p>​    对于联合查询的多张表的列数必须保持一致，字段类型也需要保持一致</p>
+<p>​    范例：联合查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.将薪资低于5000的员工和年龄大于50岁的员工全部查询出来</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> salary &lt; <span class="number">5000</span></span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> age &lt; <span class="number">50</span>;</span><br></pre></td></tr></table></figure>
+
+<p>​    联合查询将这两次查询的结果合并在一起显示</p>
+<p>​    <strong>注意：<code>UNION ALL</code>会将查到的全部数据直接合并在一起，<code>UNION</code>会对合并之后的数据去重</strong></p>
+<h4 id="6-子查询概念"><a href="#6-子查询概念" class="headerlink" title="6. 子查询概念"></a>6. 子查询概念</h4><p>​    SQL语句中嵌套SELECT语句，称为嵌套查询，又称子查询</p>
+<p>​    子查询的语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> t1 <span class="keyword">WHERE</span> <span class="keyword">column</span> = (<span class="keyword">SELECT</span> <span class="keyword">column</span> <span class="keyword">FROM</span> t2);</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：子查询外部的语句可以是INSERT、UPDATE、DELETE、SELECT的任意一个</p>
+<p>​    根据子查询结果的不同，将子查询分类为：</p>
+<ul>
+<li>标量子查询(子查询结果为单个值)</li>
+<li>列子查询(子查询结果为一列)</li>
+<li>行子查询(子查询结果为一行)</li>
+<li>表子查询(子查询结果为多行多列)</li>
+</ul>
+<p>​    根据子查询的位置，将子查询分类为：</p>
+<ul>
+<li>WHERE之后</li>
+<li>FROM之后</li>
+<li>SELECT之后</li>
+</ul>
+<h4 id="7-标量子查询"><a href="#7-标量子查询" class="headerlink" title="7. 标量子查询"></a>7. 标量子查询</h4><p>​    子查询返回的结果是单个值(数字、字符串、日期等)，最简单的形式，这种子查询称为标量子查询</p>
+<p>​    常见的操作符：<code>=</code>、<code>&lt;&gt;</code>、<code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&lt;=</code></p>
+<p>​    范例：标量子查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询“销售部”的所有员工信息</span></span><br><span class="line"><span class="comment">-- a.查询“销售部”部门ID</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;销售部&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.根据销售部部门ID，查询员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = <span class="number">2</span>;</span><br><span class="line"><span class="comment">--通过子查询将a与b写为一条语句</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = (<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;销售部&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="8-列子查询"><a href="#8-列子查询" class="headerlink" title="8. 列子查询"></a>8. 列子查询</h4><p>​    子查询返回的结果是一列(即多行)，这种子查询称为列子查询</p>
+<p>​    常用操作符：IN、NOT IN、ANY、SOME、ALL</p>
+<table>
+<thead>
+<tr>
+<th align="center">操作符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">IN</td>
+<td align="center">在指定的集合范围之内，多选一</td>
+</tr>
+<tr>
+<td align="center">NOT IN</td>
+<td align="center">不在指定的集合范围之内</td>
+</tr>
+<tr>
+<td align="center">ANY</td>
+<td align="center">子查询返回列表中，有任意一个满足即可</td>
+</tr>
+<tr>
+<td align="center">SOME</td>
+<td align="center">与ANY等同，使用SOME的地方都可以使用ANY</td>
+</tr>
+<tr>
+<td align="center">ALL</td>
+<td align="center">子查询返回列表的所有值都必须满足</td>
+</tr>
+</tbody></table>
+<p>​    范例：列子查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询“销售部”和“市场部”的所有员工信息</span></span><br><span class="line"><span class="comment">-- a.查询“销售部”和“市场部”的部门ID</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span>=<span class="string">&#x27;销售部&#x27;</span> <span class="keyword">or</span> <span class="keyword">name</span> = <span class="string">&#x27;市场部&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.根据部门ID查询员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id <span class="keyword">IN</span>(<span class="number">3</span>,<span class="number">5</span>);</span><br><span class="line"><span class="comment">-- 将a,b写为一条语句</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id <span class="keyword">IN</span>(<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span>=<span class="string">&#x27;销售部&#x27;</span> <span class="keyword">or</span> <span class="keyword">name</span> = <span class="string">&#x27;市场部&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询比财务部所有人工资都高的员工信息</span></span><br><span class="line"><span class="comment">-- a.查询财务部所有人员的工资</span></span><br><span class="line"><span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = (<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> =<span class="string">&#x27;财务部&#x27;</span>);</span><br><span class="line"><span class="comment">-- b.比财务部所有人工资都高的员工信息,与a结合</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> salary &gt; <span class="keyword">ALL</span>(<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = (<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> =<span class="string">&#x27;财务部&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3.查询比研发部任意一个人工资高的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> salary &gt; <span class="keyword">ANY</span>(<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> dept_id = (<span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> <span class="keyword">name</span> =<span class="string">&#x27;研发部&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="9-行子查询"><a href="#9-行子查询" class="headerlink" title="9. 行子查询"></a>9. 行子查询</h4><p>​    子查询返回的结果是一行(即多列)，这种子查询称为行子查询</p>
+<p>​    常用的操作符：=、&lt;&gt;、IN、NOT IN</p>
+<p>​    范例：行子查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询与“张三”的薪资及直属领导相同的员工信息</span></span><br><span class="line"><span class="comment">-- a.张无忌的薪资及直属领导</span></span><br><span class="line"><span class="keyword">SELECT</span> salary,managerid <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;张无忌&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.查询与“张无忌”的薪资及直属领导相同的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> (salary,managerid) = (<span class="number">1000</span>,<span class="number">2</span>);</span><br><span class="line"><span class="comment">-- 将a,b写为一条语句</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> (salary,managerid) = (<span class="keyword">SELECT</span> salary,managerid <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;张无忌&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-表子查询"><a href="#10-表子查询" class="headerlink" title="10. 表子查询"></a>10. 表子查询</h4><p>​    子查询返回的结果是多行多列，这种子查询称为表子查询，一般放在FROM之后，把查询结果作为一张临时表在和其他表联合查询，也会放在WHERE后面使用IN来完成查找</p>
+<p>​    常用操作符：IN</p>
+<p>​    范例：表子查询的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询与“张三”，“李四”的职位和薪资相同的员工信息</span></span><br><span class="line"><span class="comment">-- a.查询“张三”，“李四”的职位和薪资</span></span><br><span class="line"><span class="keyword">SELECT</span> job,salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;张三&#x27;</span> <span class="keyword">or</span> <span class="keyword">name</span> = <span class="string">&#x27;李四&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.查询与“张三”，“李四”的职位和薪资相同的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> (job,salary) <span class="keyword">IN</span> (<span class="keyword">SELECT</span> job,salary <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">name</span> = <span class="string">&#x27;张三&#x27;</span> <span class="keyword">or</span> <span class="keyword">name</span> = <span class="string">&#x27;李四&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2.查询入职日期是“2006-01-01”之后的员工信息，及其部门信息</span></span><br><span class="line"><span class="comment">-- a.入职日期是“2006-01-01”之后的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> entrydate&gt;<span class="string">&#x27;2006-01-01&#x27;</span>;</span><br><span class="line"><span class="comment">-- b.查询这部分员工对应的部门信息，因为如果部门为空也要查询出来，所以要用到左外连接</span></span><br><span class="line"><span class="keyword">SELECT</span> e.*,d.* <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> entrydate&gt;<span class="string">&#x27;2006-01-01&#x27;</span>) e <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> dept d <span class="keyword">ON</span> e.dept_id=d.id;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2022/11/21/MySQL%E5%A4%8D%E4%B9%A002/">MySQL复习02</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2022-11-21T00:45:24.000Z" itemprop="datePublished">
+    2022-11-21
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/MySQL/">MySQL</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="函数与约束"><a href="#函数与约束" class="headerlink" title="函数与约束"></a>函数与约束</h2><h4 id="1-字符串函数"><a href="#1-字符串函数" class="headerlink" title="1. 字符串函数"></a>1. 字符串函数</h4><p>​    MySQL中内置了很多字符串函数，常见的如下表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">concat(S1,S2,…,Sn)</td>
+<td align="center">字符串拼接，将(S1,S2,…,Sn)拼接为一个字符串</td>
+</tr>
+<tr>
+<td align="center">lower(str)</td>
+<td align="center">将字符串str全部转为小写</td>
+</tr>
+<tr>
+<td align="center">upper(str)</td>
+<td align="center">将字符串str全部转为大写</td>
+</tr>
+<tr>
+<td align="center">lpad(str,n,pad)</td>
+<td align="center">左填充，用字符串pad对str的左边进行填充，达到n个字符串长度</td>
+</tr>
+<tr>
+<td align="center">rpad(str,n,pad)</td>
+<td align="center">右填充，用字符串pad对str的右边进行填充，达到n个字符串长度</td>
+</tr>
+<tr>
+<td align="center">trim(str)</td>
+<td align="center">去掉字符串头部和尾部空格</td>
+</tr>
+<tr>
+<td align="center">substring(str,start,len)</td>
+<td align="center">返回从字符串str从start位置起的len长度的字符串，<strong>索引值是从1开始</strong></td>
+</tr>
+</tbody></table>
+<p>​    <strong>注意：str可以传类型是字符串的列名</strong></p>
+<p>​    范例：字符串函数的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- concat</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">concat</span>(<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--lower</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">lower</span>(<span class="string">&#x27;Hello&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--upper</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">upper</span>(<span class="string">&#x27;Hello&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--lpad</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">lpad</span>(<span class="string">&#x27;01&#x27;</span>,<span class="number">5</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--rpad</span></span><br><span class="line"><span class="keyword">SELECT</span> rpad(<span class="string">&#x27;01&#x27;</span>,<span class="number">5</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--trim</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">trim</span>(<span class="string">&#x27; hello world &#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--substring</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">substring</span>(<span class="string">&#x27;12345&#x27;</span>,<span class="number">1</span>,<span class="number">3</span>); //索引值从1开始</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-数值函数"><a href="#2-数值函数" class="headerlink" title="2. 数值函数"></a>2. 数值函数</h4><p>​    常见的数值函数如下表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ceil(x)</td>
+<td align="center">向上取整</td>
+</tr>
+<tr>
+<td align="center">floor(x)</td>
+<td align="center">向下取整</td>
+</tr>
+<tr>
+<td align="center">mod(x,y)</td>
+<td align="center">返回x/y的模</td>
+</tr>
+<tr>
+<td align="center">rand()</td>
+<td align="center">返回0~1内的随机数</td>
+</tr>
+<tr>
+<td align="center">round(x,y)</td>
+<td align="center">得参数x的整体进行四舍五入的值，保留y位小数</td>
+</tr>
+</tbody></table>
+<p>​    范例：数值函数的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ceil</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ceil</span>(<span class="number">1.1</span>);  //结果2</span><br><span class="line"></span><br><span class="line"><span class="comment">-- floor</span></span><br><span class="line">SELSECT floor(1.1) //结果1</span><br><span class="line"></span><br><span class="line"><span class="comment">-- mod</span></span><br><span class="line">SELSET mod(3,4);  //3除4的余数，结果3</span><br><span class="line"></span><br><span class="line"><span class="comment">--rand</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">rand</span>(); //0~1随机数</span><br><span class="line"></span><br><span class="line"><span class="comment">--round</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">round</span>(<span class="number">2.345</span>,<span class="number">2</span>); //结果2.35</span><br></pre></td></tr></table></figure>
+
+<p>​    注意：生成的数字可以作为字符串参与上面字符串函数中</p>
+<h4 id="3-日期函数"><a href="#3-日期函数" class="headerlink" title="3. 日期函数"></a>3. 日期函数</h4><p>​    常见日期函数如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">curdate()</td>
+<td align="center">返回当前日期</td>
+</tr>
+<tr>
+<td align="center">curtime()</td>
+<td align="center">返回当前时间</td>
+</tr>
+<tr>
+<td align="center">now()</td>
+<td align="center">返回当前日期和时间，<strong>即返回的是date类型</strong></td>
+</tr>
+<tr>
+<td align="center">year(date)</td>
+<td align="center">获取指定date的年份</td>
+</tr>
+<tr>
+<td align="center">month(date)</td>
+<td align="center">获取指定date的月份</td>
+</tr>
+<tr>
+<td align="center">day(date)</td>
+<td align="center">获取指定date的日期</td>
+</tr>
+<tr>
+<td align="center">date_add(date,interval expr type)</td>
+<td align="center">在指定日期下增加一个时间间隔，返回该时间值</td>
+</tr>
+<tr>
+<td align="center">datediff(date1,date2)</td>
+<td align="center">返回起始时间date1和结束时间date2之间的天数，结果为date1-date2</td>
+</tr>
+</tbody></table>
+<p>​    范例：日期函数的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- curdate</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">curdate</span>();  //结果2022-11-14</span><br><span class="line"></span><br><span class="line"><span class="comment">-- curtime</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">curtime</span>();  //结果9:29:15</span><br><span class="line"></span><br><span class="line"><span class="comment">-- now</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">now</span>();  //结果2022-11-14 9:29:54</span><br><span class="line"></span><br><span class="line"><span class="comment">-- year</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">year</span>(<span class="keyword">now</span>()); //结果2022</span><br><span class="line"></span><br><span class="line"><span class="comment">-- month</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">month</span>(<span class="keyword">now</span>());  //结果11</span><br><span class="line"></span><br><span class="line"><span class="comment">-- day</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">day</span>(<span class="keyword">now</span>());  //结果14</span><br><span class="line"></span><br><span class="line"><span class="comment">--date_add</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">date_add</span>(<span class="keyword">now</span>(),<span class="built_in">INTERVAL</span> <span class="number">10</span> <span class="keyword">DAY</span>);  //结果2022-11-24 10:05:31</span><br><span class="line"></span><br><span class="line"><span class="comment">-- datediff</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">datediff</span>(<span class="string">&#x27;2022-12-01&#x27;</span>,<span class="string">&#x27;2022-11-1&#x27;</span>); 结果30，注意如果前小后大则值为负数</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-流程函数"><a href="#4-流程函数" class="headerlink" title="4. 流程函数"></a>4. 流程函数</h4><p>​    流程函数在SQL语句中实现条件筛选，从而提高语句的效率</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">if(value,t,f)</td>
+<td align="center">如果value为true，则返回true否则返回f</td>
+</tr>
+<tr>
+<td align="center">ifnull(value1,value2)</td>
+<td align="center">判定第一个参数是否为空，即如果value1不为空，返回value1，否则返回value2</td>
+</tr>
+<tr>
+<td align="center">case [表中字段] when [val] then [res1]…else [default] end</td>
+<td align="center">如果val1与表中数据判断为true返回res1,…(可以写多个判断的)否则返回default默认值</td>
+</tr>
+<tr>
+<td align="center">case when [表中字段]比较运算 then [res1]…else [default] end</td>
+<td align="center">如果不是具体的而是范围，使用该语法</td>
+</tr>
+</tbody></table>
+<p>​    范例：流程控制函数的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- if</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">if</span>(<span class="literal">true</span>,<span class="string">&#x27;ok&#x27;</span>,<span class="string">&#x27;error&#x27;</span>);  //结果ok</span><br><span class="line"></span><br><span class="line"><span class="comment">--ifnull</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ifnull</span>(<span class="literal">null</span>,<span class="string">&#x27;error&#x27;</span>);  //结果error</span><br><span class="line"></span><br><span class="line"><span class="comment">-- case when then else end</span></span><br><span class="line"><span class="comment">-- 需求：查询员工表emp中员工姓名和工作地址(北京/上海---&gt;一线城市，其他---&gt;二线城市)</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">name</span>,</span><br><span class="line">	(<span class="keyword">case</span> workaddress <span class="keyword">when</span> <span class="string">&#x27;北京&#x27;</span> <span class="keyword">then</span> <span class="string">&#x27;一线城市&#x27;</span> <span class="keyword">when</span> <span class="string">&#x27;上海&#x27;</span> <span class="keyword">then</span> <span class="string">&#x27;一线城市&#x27;</span> <span class="keyword">else</span> <span class="string">&#x27;二线城市&#x27;</span> <span class="keyword">end</span>) <span class="keyword">AS</span> <span class="string">&#x27;工作地址&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-约束"><a href="#5-约束" class="headerlink" title="5. 约束"></a>5. 约束</h4><p>​    约束是作用于表中字段上的规则，用于限制存储在表中的数据</p>
+<p>​    约束的目的是保证数据库中数据的正确、有效性和完整性</p>
+<p>​    约束的分类</p>
+<table>
+<thead>
+<tr>
+<th align="center">约束</th>
+<th align="center">描述</th>
+<th align="center">关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">非空约束</td>
+<td align="center">限制该字段的数据不能为null</td>
+<td align="center">NOT NULL</td>
+</tr>
+<tr>
+<td align="center">唯一约束</td>
+<td align="center">保证该字段的所有数据都是唯一、不重复的</td>
+<td align="center">UNIQUE</td>
+</tr>
+<tr>
+<td align="center">主键约束</td>
+<td align="center">主键是一行数据的唯一标识，要求非空且唯一</td>
+<td align="center">PRIMARY KEY</td>
+</tr>
+<tr>
+<td align="center">默认约束</td>
+<td align="center">保存数据时，如果未指定该字段的值，则采用默认值</td>
+<td align="center">DEFAULT</td>
+</tr>
+<tr>
+<td align="center">检查约束</td>
+<td align="center">保证字段值满足某一条件</td>
+<td align="center">CHECK</td>
+</tr>
+<tr>
+<td align="center">外键约束</td>
+<td align="center">用来让两张表的数据之间建立连接，保证数据的一致性和完整性</td>
+<td align="center">FOREIGN KEY</td>
+</tr>
+</tbody></table>
+<p>​    注意：约束是作用于表中字段上的，可以在创建表/修改表的时候添加约束</p>
+<p>​    范例：约束的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span>(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span>;</span><br><span class="line">	name VARCHAR(20) NOT NULL UNIQUE;</span><br><span class="line">	age INT <span class="keyword">CHECK</span>(age&gt;<span class="number">0</span> &amp;&amp; age&lt;=<span class="number">120</span>);</span><br><span class="line">	statues CHAR(1) DEFAULT &#x27;1&#x27;;</span><br><span class="line">)<span class="keyword">COMMENT</span> <span class="string">&#x27;用户表&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-外键约束"><a href="#6-外键约束" class="headerlink" title="6.外键约束"></a>6.外键约束</h4><p>​    概念：用来让两张表的数据之间建立连接，保证数据的一致性和完整性</p>
+<p>​    一般把设立外键的表叫做子表，而让该外键为主键的表叫主表</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zEiZ1x"><img src="https://s1.ax1x.com/2022/11/15/zEiZ1x.png" alt="zEiZ1x.png"></a></p>
+<p>​    设置外键后，当要删除主表的数据时，要判定该数据在子表中是否存在关联关系，如果存在则拒绝删除操作</p>
+<p>​    外键约束的语法：</p>
+<ul>
+<li><p>添加外键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//建表时直接创建</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span><br><span class="line">	字段名 数据类型</span><br><span class="line">	...</span><br><span class="line">	[<span class="keyword">CONSTRAINT</span>] [外键名称] <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(外键字段名) REFRENCES 主表(主表列名)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">//表建立后修改外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 外键名称 <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(外键字段名) <span class="keyword">REFERENCES</span> 主表名(主表列名);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除外键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> 外键名称;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>​    范例：外键的操作</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//增加外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> emp <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_emp_dept_id <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (dept_id) <span class="keyword">REFERENCES</span> dept(<span class="keyword">id</span>);</span><br><span class="line"></span><br><span class="line">//删除外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> emp <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> fk_emp_dept_id;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    外键约束：删除和更新行为</p>
+<table>
+<thead>
+<tr>
+<th align="center">行为</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">NO ACTION</td>
+<td align="center">当主表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有则不允许删除/更新，<strong>外键约束的默认行为</strong></td>
+</tr>
+<tr>
+<td align="center">RESTRICT</td>
+<td align="center">与NO ACTION一致</td>
+</tr>
+<tr>
+<td align="center">CASCADE(级联)</td>
+<td align="center">当在主表中删除/更新对应记录时，首先检查该记录是否有对应外键，如果有，则也删除/更新外键在从表中的记录</td>
+</tr>
+<tr>
+<td align="center">SET NULL</td>
+<td align="center">当在主表中删除对应记录时，首先检查该记录是否对应外键，如果有则设置从表中该外键值为null(此时需要设计时外键允许取null)</td>
+</tr>
+<tr>
+<td align="center">SET DEFAULT</td>
+<td align="center">主表有变更时，子表将外键列设置成一个默认的值(Innodb不支持)</td>
+</tr>
+</tbody></table>
+<p>​    语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 外键名称 <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(外键字段名) <span class="keyword">REFERENCES</span> 主表名(主表列名) <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CASCADE</span> <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">CASCADE</span></span><br></pre></td></tr></table></figure>
+
+<p>​    <code>ON UPDATE</code>：表示更新时怎么操作</p>
+<p>​    <code>ON DELETE</code>：表示删除时怎么操作</p>
+<p>​    前面一段与外键设置时语法相同</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2022/10/31/MySQL%E5%A4%8D%E4%B9%A001/">MySQL复习01</a>
         </h1>
       
@@ -454,9 +948,8 @@
 <td align="center">求和</td>
 </tr>
 </tbody></table>
-<ol start="3">
-<li>语法：</li>
-</ol>
+</li>
+<li><p>语法：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 聚合函数(字段列表) <span class="keyword">FROM</span> 表名;</span><br></pre></td></tr></table></figure>
 
 <p>注意：null值不参与所有聚合函数运算</p>
@@ -485,32 +978,26 @@
 <ol>
 <li><p>语法</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表名 <span class="keyword">ORDER</span> <span class="keyword">BY</span> 字段<span class="number">1</span> 排序方式<span class="number">1</span>, 字段<span class="number">2</span> 排序方式<span class="number">2</span> ...;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>排序方式</li>
-</ol>
+</li>
+<li><p>排序方式</p>
 <ul>
 <li>ASC：升序(默认值)</li>
 <li>DESC：降序</li>
 </ul>
-<ol start="3">
-<li>多字段排序时，第一个字段值相同时才会根据第二个字段排序</li>
-</ol>
+</li>
+<li><p>多字段排序时，第一个字段值相同时才会根据第二个字段排序</p>
 </li>
 </ol>
 <p>​    <strong>DQL-分页查询</strong></p>
 <ol>
 <li><p>语法</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段列表 <span class="keyword">FROM</span> 表名 <span class="keyword">LIMIT</span> 起始索引,查询记录数;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>起始索引从0开始，起始索引 = (要查询页码-1) <code>*</code> 每页显示记录数</p>
 </li>
-<li><p>分页查询在不同数据库中语法不一样，在MySQL中是LIMIT</p>
+<li><p> 起始索引从0开始，起始索引 = (要查询页码-1) <code>*</code> 每页显示记录数</p>
 </li>
-<li><p>如果查询的是第一页数据，起始索引可以省略，直接简写为LIMIT 10</p>
+<li><p> 分页查询在不同数据库中语法不一样，在MySQL中是LIMIT</p>
 </li>
-</ol>
+<li><p> 如果查询的是第一页数据，起始索引可以省略，直接简写为LIMIT 10</p>
 </li>
 </ol>
 <h4 id="5-DCL-SQL开发人员对其操作比较少"><a href="#5-DCL-SQL开发人员对其操作比较少" class="headerlink" title="5. DCL(SQL开发人员对其操作比较少)"></a>5. DCL(SQL开发人员对其操作比较少)</h4><p>​    <strong>DCL-权限控制</strong></p>
