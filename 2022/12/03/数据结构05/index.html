@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>数据结构05 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+            <div>Road is walked by me</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>数据结构05</h1>
+    </header>
+
+    <section>
+      <h2 id="队列-queue"><a href="#队列-queue" class="headerlink" title="队列(queue)"></a>队列(queue)</h2><h4 id="1-队列的概念"><a href="#1-队列的概念" class="headerlink" title="1. 队列的概念"></a>1. 队列的概念</h4><p>​    一种可以实现“先进先出”的存储结构，不能在中间插入，只能在一端入，另一端出，入的那端不能出，出的那端不能入</p>
+<h4 id="2-队列的分类"><a href="#2-队列的分类" class="headerlink" title="2.队列的分类"></a>2.队列的分类</h4><ul>
+<li><p>链式队列    –用链表实现</p>
+</li>
+<li><p>数组队列    –用动态数组实现、</p>
+<p>​    使用数组来实现队列通常都必须是循环队列</p>
+</li>
+</ul>
+<p>​    规定：在队首(front)删除元素，在队尾(rear)加入元素，定义两个变量：front指向队首的第一个元素，rear指向队尾元素的下一个元素</p>
+<p>​    图示如下：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/z8QyZR"><img src="https://s1.ax1x.com/2022/11/23/z8QyZR.png" alt="z8QyZR.png"></a></p>
+<p>​    注意：错开设置是为了方便对队列进行操作，就像链表pHead指向第一个元素的前一个不存储数据的头结点，pTail指向最后一个结点一样</p>
+<h4 id="3-循环队列"><a href="#3-循环队列" class="headerlink" title="3. 循环队列"></a>3. 循环队列</h4><p><strong>(1). 使用数组来实现队列为什么必须为循环队列</strong></p>
+<p>​     当插入元素或者删除元素时，front和rear都是向后移动，此时前面的数组空间都无法使用即被浪费了，所以需要使用循环队列来减少空间浪费</p>
+<p>​    当front或rear指向最后一个元素，且还要再往后移时，此时需要将其指向第一个元素，这样的设计就是一个循环队列</p>
+<p><strong>(2).循环队列需要几个参数来确定，以及参数的含义</strong></p>
+<p>​    需要两个参数来确定：front、rear</p>
+<p>​    这两个参数不同场合有不同的含义</p>
+<ol>
+<li><p>队列初始化</p>
+<p>front和rear的值都是0</p>
+</li>
+<li><p>队列非空</p>
+<p>front代表队列的第一个元素</p>
+<p>rear代表队列的最后一个有效元素的下一个元素</p>
+</li>
+<li><p>队列空</p>
+<p>front和rear的值相等，但不一定就是为0</p>
+</li>
+</ol>
+<p><strong>(3).循环队列入队的伪算法</strong></p>
+<ol>
+<li><p>将值存入rear所指向的位置</p>
+</li>
+<li><p>rear = (rear + 1)%数组的长度</p>
+</li>
+</ol>
+<p><strong>(4).循环队列出队的伪算法</strong></p>
+<p>​    front = (front + 1)%数组长度</p>
+<p><strong>(5).循环队列判断队列为空的伪算法</strong></p>
+<p>​    如果front与rear的值相等，则该队列就一定为空</p>
+<p><strong>(6).循环队列判断队列为满的伪算法</strong></p>
+<p>​    <strong>两种方法：</strong></p>
+<p>​    1. 设定一个len变量来记录数组中有效数据的长度，当达到数组长度时，则拒绝继续添加</p>
+<p>​    <strong>2. 设定：数组中有n个元素，若已经放了n-1个元素，那么数组就已经满了(一般使用第二种方法)</strong></p>
+<p>​    <strong>第二种方法的判断条件</strong></p>
+<p>​    如果<code>front == (rear + 1)%数组长度</code>，则队列已满</p>
+<h4 id="4-算法"><a href="#4-算法" class="headerlink" title="4. 算法"></a>4. 算法</h4><ol>
+<li><p>队列的定义以及初始化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//结构体定义队列</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Queue</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> *pBase;</span><br><span class="line">    <span class="keyword">int</span> front;</span><br><span class="line">    <span class="keyword">int</span> rear;</span><br><span class="line">&#125;QUEUE,*PQUEUE;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//队列的初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(PQUEUE pQ)</span></span>;  <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(PQUEUE pQ)</span></span>&#123;  <span class="comment">//函数体</span></span><br><span class="line">    pQ-&gt;pBase = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*<span class="number">6</span>);</span><br><span class="line">    pQ-&gt;front = <span class="number">0</span>;</span><br><span class="line">    pQ-&gt;rear = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>队满的判断，以及队列的入队操作</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断队列是否为满</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">full_queue</span><span class="params">(PQUEUE pQ)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">full_queue</span><span class="params">(PQUEUE pQ)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pQ-&gt;front == ((pQ-&gt;rear+<span class="number">1</span>)%<span class="number">6</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//入队操作</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">en_queue</span><span class="params">(PQUEUE pQ,<span class="keyword">int</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">en_queue</span><span class="params">(PQUEUE pQ,<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(full_queue(pQ))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    pQ-&gt;pBase[pQ-&gt;rear] = val;</span><br><span class="line">    pQ-&gt;rear = (pQ-&gt;rear+<span class="number">1</span>)%<span class="number">6</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<pre><code>3. 队列的遍历操作
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse_queue</span><span class="params">(PQUEUE pQ)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse_queue</span><span class="params">(PQUEUE pQ)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = pQ-&gt;front;</span><br><span class="line">    <span class="keyword">while</span>(i!=pQ-&gt;rear)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,pQ-&gt;pBase[i]);</span><br><span class="line">        i = (i+<span class="number">1</span>)%<span class="number">6</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+4. 队列判断为空以及出队操作
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">empty_queue</span><span class="params">(PQUEUE pQ)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">empty_queue</span><span class="params">(PQUEUE pQ)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(pQ-&gt;front==pQ-&gt;rear)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">out_queue</span><span class="params">(PQUEUE pQ,<span class="keyword">int</span> * val)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">out_queue</span><span class="params">(PQUEUE pQ,<span class="keyword">int</span> * val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(empty_queue(pQ))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    *val = pQ-&gt;pBase[pQ-&gt;front];</span><br><span class="line">    pQ-&gt;front = (pQ-&gt;front+<span class="number">1</span>)%<span class="number">6</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+5. mian函数
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QUEUE Q;</span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    init(&amp;Q);</span><br><span class="line">    <span class="keyword">if</span>(en_queue(&amp;Q,<span class="number">1</span>))&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;true\n&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;false&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ;</span><br><span class="line">    en_queue(&amp;Q,<span class="number">2</span>);</span><br><span class="line">    en_queue(&amp;Q,<span class="number">3</span>);</span><br><span class="line">    en_queue(&amp;Q,<span class="number">4</span>);</span><br><span class="line">    en_queue(&amp;Q,<span class="number">5</span>);</span><br><span class="line">    en_queue(&amp;Q,<span class="number">6</span>);</span><br><span class="line">    en_queue(&amp;Q,<span class="number">7</span>);</span><br><span class="line">    traverse_queue(&amp;Q);</span><br><span class="line">    <span class="keyword">if</span>(out_queue(&amp;Q,&amp;num))&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\nok,the num is %d&quot;</span>,num);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    traverse_queue(&amp;Q);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
+<h4 id="5-队列的具体应用"><a href="#5-队列的具体应用" class="headerlink" title="5. 队列的具体应用"></a>5. 队列的具体应用</h4><p>​    所有和时间有关的操作都有队列的影子</p>
+<p>​    比如：像操作系统里有等待队列，线程有阻塞队列</p>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2022-12-03T07:22:01.000Z" itemprop="datePublished">
+              2022-12-03
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2022 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>
