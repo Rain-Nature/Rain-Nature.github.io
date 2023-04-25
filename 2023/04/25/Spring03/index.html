@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Spring03 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+            <div>Road is walked by me</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>Spring03</h1>
+    </header>
+
+    <section>
+      <h2 id="Spring集成Web环境"><a href="#Spring集成Web环境" class="headerlink" title="Spring集成Web环境"></a>Spring集成Web环境</h2><h2 id="监听器的使用与Spring集成Web环境"><a href="#监听器的使用与Spring集成Web环境" class="headerlink" title="监听器的使用与Spring集成Web环境"></a>监听器的使用与Spring集成Web环境</h2><h4 id="1-应用上下文的创建"><a href="#1-应用上下文的创建" class="headerlink" title="1. 应用上下文的创建"></a>1. 应用上下文的创建</h4><p>​    因为上下文对象是通过<code>new ClasspathXmlApplicationContext(Spring配置文件)</code>获得，但每一次获取Bean时都要编写一次，这样会使得上下文对象创建多次</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9ipmxH"><img src="https://s1.ax1x.com/2023/04/18/p9ipmxH.png" alt="p9ipmxH.png"></a></p>
+<p>​    <strong>思想：将创建上下文对象的行为放在监听器中，并由监听器存储在ServletContext域中，需要使用对象时，通过ServletContext对象向ServletContext域中获取</strong></p>
+<p>​    <strong>监听器的配置</strong></p>
+<p>​    新建java文件，继承实现监听servletContext的接口</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9i9MpF"><img src="https://s1.ax1x.com/2023/04/18/p9i9MpF.png" alt="p9i9MpF.png"></a></p>
+<p>​    需要在web.xml文件，编写配置告知tomcat有这个监听器</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9i9JTx"><img src="https://s1.ax1x.com/2023/04/18/p9i9JTx.png" alt="p9i9JTx.png"></a></p>
+<p>​    从容器中获取上下文对象</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9i9hcQ"><img src="https://s1.ax1x.com/2023/04/18/p9i9hcQ.png" alt="p9i9hcQ.png"></a></p>
+<h4 id="2-监听器的优化"><a href="#2-监听器的优化" class="headerlink" title="2. 监听器的优化"></a>2. 监听器的优化</h4><p>​    使用web.xml配置**全局初始化参数<code>&lt;context-param&gt;</code> **，<code>&lt;param-name&gt;</code>写自定义的名字，<code>&lt;param-value&gt;</code> 写名字对应的值</p>
+<p>​    web.xml文件配置参数</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9iCPN6"><img src="https://s1.ax1x.com/2023/04/18/p9iCPN6.png" alt="p9iCPN6.png"></a></p>
+<p>​    java文件来读取参数</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9iCA3D"><img src="https://s1.ax1x.com/2023/04/18/p9iCA3D.png" alt="p9iCA3D.png"></a></p>
+<p>​    新建一个工具类将具体的名字，像代码中的<code>&quot;app&quot;</code>给隐藏掉，即当需要对象时直接给对象而不是通过名字获取对象，其实本质就是把那句话变成一个方法返回值，就是一个封装</p>
+<p>​    工具类封装</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EUBNQ"><img src="https://s1.ax1x.com/2023/04/21/p9EUBNQ.png" alt="p9EUBNQ.png"></a></p>
+<p>​    调用类直接使用，doGet为收到GET请求后调用</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EaFDf"><img src="https://s1.ax1x.com/2023/04/21/p9EaFDf.png" alt="p9EaFDf.png"></a></p>
+<h4 id="3-Spring提供上述监听器获取应用上下文工具"><a href="#3-Spring提供上述监听器获取应用上下文工具" class="headerlink" title="3. Spring提供上述监听器获取应用上下文工具"></a>3. Spring提供上述监听器获取应用上下文工具</h4><p>​    上面代码有个同名监听器是仿的，目的是要领会监听器内部的实现</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EdDln"><img src="https://s1.ax1x.com/2023/04/21/p9EdDln.png" alt="p9EdDln.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Ed4p9"><img src="https://s1.ax1x.com/2023/04/21/p9Ed4p9.png" alt="p9Ed4p9.png"></a></p>
+<p>​    在pom.xml文件导入spring-web坐标</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EdLkD"><img src="https://s1.ax1x.com/2023/04/21/p9EdLkD.png" alt="p9EdLkD.png"></a></p>
+<p>​    在web.xml文件下配置监听器，并设置全局初始化参数，因为要获取的是resource下的spring的xml文件的上下文，路径为<code>classpath:XXXX.xml</code></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EwUnx"><img src="https://s1.ax1x.com/2023/04/21/p9EwUnx.png" alt="p9EwUnx.png"></a></p>
+<p>​    通过调用Spring监听器对象提供的方法，如上面写的假的监听器一样，这个方法是static的，获得上下文对象</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EwvUU"><img src="https://s1.ax1x.com/2023/04/21/p9EwvUU.png" alt="p9EwvUU.png"></a></p>
+<h4 id="4-SpringMVC的概述"><a href="#4-SpringMVC的概述" class="headerlink" title="4. SpringMVC的概述"></a>4. SpringMVC的概述</h4><p>​    SpringMVC是一种基于Java的实现MVC设计模型的请求驱动类型的轻量级Web框架，<strong>SpringMVC是属于管项目的web层的</strong></p>
+<p>​    将共有行为抽取出来，由框架封装</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9E5Xlt"><img src="https://s1.ax1x.com/2023/04/21/p9E5Xlt.png" alt="p9E5Xlt.png"></a></p>
+<p>​    <strong>SpringMVC的使用</strong></p>
+<pre><code>1. 导入SpringMVC包
+
+   2. 配置Servlet，先找共有行为再找特有行为
+   3. 编写POJO(普通JavaBean)，也称为Controller
+   4. 通过注解把POJO放到Spring容器中
+   5. 配置spring-mvc.xml文件(配置组件扫描)
+   6. 执行访问测试</code></pre>
+<p>​    在pom.xml文件导入SpringMVC包</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EID1I"><img src="https://s1.ax1x.com/2023/04/21/p9EID1I.png" alt="p9EID1I.png"></a></p>
+<p>​    在web.xml中配置SpringMVC的前端控制器<code>&lt;servlet&gt;</code> ，<code>&lt;load-on-startup&gt;</code> 代表服务器启动时就去加载servlet，不配置则默认为第一次访问时创建对象；<code>&lt;servlet-mapping&gt;</code>为映射地址，  <code>&lt;url-pattern&gt;/&lt;url-pattern&gt;</code>，这个<code>/</code>表示缺省的servlet，即每次访问任何请求都要走这个servlet，也有<code>*.xxx</code>为扩展名为<code>*.xxx</code>时才走这个servlet</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EI53n"><img src="https://s1.ax1x.com/2023/04/21/p9EI53n.png" alt="p9EI53n.png"></a></p>
+<p>​    创建Controller的Java包，return后接要跳转的jsp，用注解将UserController存入spring容器中，注解<code>@RequestMapping(&quot;/quick&quot;)</code>为请求映射，当访问quick时映射到save方法，执行方法的逻辑</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EHSvn"><img src="https://s1.ax1x.com/2023/04/21/p9EHSvn.png" alt="p9EHSvn.png"></a></p>
+<p>​    创建Spring的xml文件，进行组件扫描    </p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9E7HDP"><img src="https://s1.ax1x.com/2023/04/21/p9E7HDP.png" alt="p9E7HDP.png"></a></p>
+<p>​    配置组件扫描的这个xml文件没有加载，所以最先是<code>new ClassPathXmlApplicationContext(&quot;参数为resource文件夹的xml文件路径&quot;)</code>，限制是spring，所以只需要在前端控制器声明有这个配置文件，<code>&lt;init-param&gt;</code> 代表servlet在初始化时执行，<code>&lt;param-name&gt;</code> 是监听器的名字，<code>&lt;param-value&gt;</code> 是路径</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EHart"><img src="https://s1.ax1x.com/2023/04/21/p9EHart.png" alt="p9EHart.png"></a></p>
+<h4 id="5-SpringMVC的执行流程解析"><a href="#5-SpringMVC的执行流程解析" class="headerlink" title="5. SpringMVC的执行流程解析"></a>5. SpringMVC的执行流程解析</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VNbaF"><img src="https://s1.ax1x.com/2023/04/22/p9VNbaF.png" alt="p9VNbaF.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VNzKx"><img src="https://s1.ax1x.com/2023/04/22/p9VNzKx.png" alt="p9VNzKx.png"></a></p>
+<h4 id="6-SpringMVC的组件解析"><a href="#6-SpringMVC的组件解析" class="headerlink" title="6. SpringMVC的组件解析"></a>6. SpringMVC的组件解析</h4><p><code>@RequestMapping</code></p>
+<p><strong>作用：</strong>用于建立请求URL和处理请求方法之间的对应关系</p>
+<p><strong>位置：</strong></p>
+<ul>
+<li><p>类上，请求URL的第一级访问目录，此处不写的话，就相当于根目录</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VaD78"><img src="https://s1.ax1x.com/2023/04/22/p9VaD78.png" alt="p9VaD78.png"></a></p>
+</li>
+<li><p>方法上，请求URL的第二级访问目录，与类上的使用@ReqquestMapping标注的一级目录一起组成访问虚拟路径</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VaOj1"><img src="https://s1.ax1x.com/2023/04/22/p9VaOj1.png" alt="p9VaOj1.png"></a></p>
+<p>这个方式是为了区分是哪个模块的方法，此时return方法返回的是<code>http://localhost:8080/xxx/</code>下的<code>success.jsp</code>页面，如果jsp文件路径不对会报404，可以改为带<code>/success.jsp</code>表示要在当前web应用下找这个资源</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Vd25D"><img src="https://s1.ax1x.com/2023/04/22/p9Vd25D.png" alt="p9Vd25D.png"></a></p>
+</li>
+</ul>
+<p><strong>属性：</strong></p>
+<ul>
+<li>value：用于指定请求的URL，在只有value的情况下可以省略，但多个属性不能省如上面代码完整的应该为<code>@RequestMapping(value=&quot;/quick&quot;)</code></li>
+<li>method：用于指定请求的方式，默认是GET，如果要改为POST，它存储方式是枚举类型为<code>@RequestMapping(value=&quot;/quick&quot;,method=RequestMethod.POST)</code>，注意：jsp表单提交是GET类型的，设置成POST会报错</li>
+<li>params：用于指定限制请求参数的条件，它支持简单的表达式，要求请求参数的key和value必须和配置的一模一样<ul>
+<li><code>params=&#123;&quot;accountName&quot;&#125;</code>，表示请求参数必须有accountName，没有这个参数则该资源不能被你访问</li>
+<li><code>params=&#123;&quot;money!100&quot;&#125;</code>，表示请求参数中money不能是100</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-SpringMVC的组件扫描"><a href="#7-SpringMVC的组件扫描" class="headerlink" title="7. SpringMVC的组件扫描"></a>7. SpringMVC的组件扫描</h4><p>​    springMVC是管理web层的，所以组件扫描时，只扫描web层相关，而其他的像dao层、service层归Spring来扫描</p>
+<p>​    为了让只扫springmvc，可以在其配置的xml文件中进行如下设置</p>
+<p>​    <code>include-filter</code>表示包括如果改为<code>exclude-filter</code>表示不包括，<code>type=&quot;annotation&quot;</code>表示扫描类型为注解，expression=”注解的全限定名”</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9V0b9g"><img src="https://s1.ax1x.com/2023/04/22/p9V0b9g.png" alt="p9V0b9g.png"></a></p>
+<h4 id="8-SpringMVC的xml文件配置"><a href="#8-SpringMVC的xml文件配置" class="headerlink" title="8. SpringMVC的xml文件配置"></a>8. SpringMVC的xml文件配置</h4><p>​    有点难，可以反复看<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1WZ4y1P7Bp/?p=49&spm_id_from=pageDriver&vd_source=41e90cead08809b70890e8713c58ac8b">13-SpringMVC组件解析-SpringMVC的XML配置解析（资源解析器）_哔哩哔哩_bilibili</a></p>
+<p>​    可以自行配置视图解析器，配置完后方法return时指定页面就可以少写页面的前缀和后缀</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VBXGD"><img src="https://s1.ax1x.com/2023/04/22/p9VBXGD.png" alt="p9VBXGD.png"></a></p>
+<h4 id="9-总结"><a href="#9-总结" class="headerlink" title="9. 总结"></a>9. 总结</h4><p>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/p9VDMd0"><img src="https://s1.ax1x.com/2023/04/22/p9VDMd0.png" alt="p9VDMd0.png"></a></p>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2023-04-25T11:24:27.000Z" itemprop="datePublished">
+              2023-04-25
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/SSM/">SSM</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2023 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>

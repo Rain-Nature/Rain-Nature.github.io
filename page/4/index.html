@@ -70,6 +70,285 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/11/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03/">操作系统03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-11-11T06:23:52.000Z" itemprop="datePublished">
+    2021-11-11
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="CPU与多进程"><a href="#CPU与多进程" class="headerlink" title="CPU与多进程"></a>CPU与多进程</h2><h4 id="1-多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心"><a href="#1-多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心" class="headerlink" title="1. 多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心"></a>1. 多进程是管理CPU提出来的，通过管理明白CPU而后会管理其他硬件，所以说多进程是操作系统的核心</h4><h4 id="2-CPU的工作原理"><a href="#2-CPU的工作原理" class="headerlink" title="2. CPU的工作原理"></a>2. CPU的工作原理</h4><p>​    把一个程序存放在内存中，设置一个地址，CPU根据这个地址发出一条取址的命令，即把这个地址从地址总线上由内存发给CPU，CPU得到程序后开始解释执行</p>
+<p>​    <strong>CPU的工作就是不断的自动取址执行</strong></p>
+<h4 id="3-CPU的管理"><a href="#3-CPU的管理" class="headerlink" title="3. CPU的管理"></a>3. CPU的管理</h4><p>​    设置好PC初值就行（<strong>PC是寄存器</strong>），把PC初值设置在一段程序的开始地址</p>
+<p>​    <strong>问题</strong><br>​    但是如果只是设置好PC初值就等待程序执行会出现一个问题，当程序开始磁盘读写(I/O)时(很慢)，CPU不工作进入等待，而一般一个程序计算时间远比磁盘读写时间少，则造成CPU利用率很低，甚至为0</p>
+<p>​    <strong>解决方式：多到程序、交替执行(让CPU更好的工作)</strong><br>​    当CPU执行程序执行不下去时，就切出换到另外的程序去执行。等再执行不下去再切出，由此使得CPU忙碌，但<strong>所有程序终会在来回切换中执行完</strong></p>
+<p>​    一个CPU上交替的执行多个程序叫做<strong>并发</strong></p>
+<h4 id="4-怎么让CPU并发的工作"><a href="#4-怎么让CPU并发的工作" class="headerlink" title="4. 怎么让CPU并发的工作"></a>4. 怎么让CPU并发的工作</h4><ul>
+<li>控制PC进行切换</li>
+<li>记录程序切出去时的程序执行到的地址，样子（运行的程序和静态程序不一样）</li>
+</ul>
+<h4 id="5-刻画运行程序的样子：进程"><a href="#5-刻画运行程序的样子：进程" class="headerlink" title="5. 刻画运行程序的样子：进程"></a>5. 刻画运行程序的样子：进程</h4><p>​    一个运行中的程序就是一个进程<br>​    所有程序的不一样都存在PCB中</p>
+<h4 id="6-用进程描述CPU管理"><a href="#6-用进程描述CPU管理" class="headerlink" title="6. 用进程描述CPU管理"></a>6. 用进程描述CPU管理</h4><p>​    启动一个进程让CPU去执行这个进程，此时CPU工作；而让CPU更好的工作则是操作系统启动多个进程，让CPU去跑这多个进程，提升CPU利用率。</p>
+<h4 id="7-多进程图像从启动开始到关机结束"><a href="#7-多进程图像从启动开始到关机结束" class="headerlink" title="7. 多进程图像从启动开始到关机结束"></a>7. 多进程图像从启动开始到关机结束</h4><p>​    在开机时在main中创建第一个进程（Linux是shell，Windows是桌面）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(!fork()&#123;init();&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>​    之后再通过shell启动其他的进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc,char *argv[])&#123;</span><br><span class="line">	while(1)&#123;</span><br><span class="line">		scanf(&quot;%s&quot;,cmd);</span><br><span class="line">		if(!fork())&#123;</span><br><span class="line">			exec(cmd);</span><br><span class="line">		&#125;</span><br><span class="line">		wait();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    多进程图示<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/IPnpHx"><img src="https://z3.ax1x.com/2021/11/01/IPnpHx.png" alt="IPnpHx.png"></a></p>
+<p>​    通过创建多进程来使用计算机</p>
+<p>​    在Windows下任务管理器可以看见多进程，启动一个进程就是开启一个任务</p>
+<p>​    <strong>操作系统通过管理多线程来管理计算机，用户使用计算机就是启动一堆进程，用户管理计算机就是管理一堆进程</strong></p>
+<h4 id="8-多进程如何组织"><a href="#8-多进程如何组织" class="headerlink" title="8. 多进程如何组织"></a>8. 多进程如何组织</h4><p>​    PCB：用来记录进程信息的数据结构</p>
+<p>​    操作系统通过PCB(进程控制块)来感知和组织进程（用PCB形成队列）</p>
+<p>​    进程状态转换图<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/IEj5qS"><img src="https://z3.ax1x.com/2021/11/03/IEj5qS.png" alt="IEj5qS.png"></a></p>
+<p>​    <strong>状态的转化是操作系统来实现的，通过不断的转化推进进程</strong></p>
+<h4 id="9-进程调度"><a href="#9-进程调度" class="headerlink" title="9. 进程调度"></a>9. 进程调度</h4><ol>
+<li><p>FIFO</p>
+<p>先来先付，最简单的调度，谁第一谁先</p>
+<ol start="2">
+<li>Priority</li>
+</ol>
+<p>优先级设定，最短的先做</p>
+</li>
+</ol>
+<h4 id="10-多进程的地址分离"><a href="#10-多进程的地址分离" class="headerlink" title="10. 多进程的地址分离"></a>10. 多进程的地址分离</h4><p>​    阻止两个以上进程在来回切换时访问同一个地址（通过映射表实现），使得地址在逻辑上可以相同但是物理上是不同</p>
+<p>​    <strong>所以说进程管理连带内存管理形成多进程图像</strong></p>
+<h4 id="11-多进程的合作问题"><a href="#11-多进程的合作问题" class="headerlink" title="11. 多进程的合作问题"></a>11. 多进程的合作问题</h4><p>​    如打印任务，存在一个打印文件队列，有进程往里面放要打印的东西（但是两个进程交替进行但是同时放会产生错误），有进程从中取出进行打印</p>
+<p>​    <strong>解决方式上锁（即进程同步(合理的推进方式)）</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/10/26/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02/">操作系统02</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-10-26T08:26:31.000Z" itemprop="datePublished">
+    2021-10-26
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="操作系统接口"><a href="#操作系统接口" class="headerlink" title="操作系统接口"></a>操作系统接口</h2><h4 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h4><p>​    连接两个东西、完成信号转换、屏蔽细节<br>​    接口表现为函数的调用，函数又由系统提供，也称为系统调用</p>
+<p>​    上层是调用底层（使用接口），而接口就是通过普通的C语言加上一些重要操作系统函数的调用</p>
+<p>​    <strong>操作系统接口表现为函数调用，又由系统提供，所以称为系统调用</strong>，系统调用是操作系统给上层提供的接口</p>
+<p>​    shell是一个永不停机的程序</p>
+<p>​    Linux 0.11没有图形界面</p>
+<h4 id="2-POSIX（统一的接口）"><a href="#2-POSIX（统一的接口）" class="headerlink" title="2. POSIX（统一的接口）"></a>2. POSIX（统一的接口）</h4><p>​    要知道去哪里去查，网上可以下载，如果开发的操作系统满足这个要求，则在Linux上开发的应用程序也可以在你的操作系统上跑</p>
+<h4 id="3-系统调用的实现"><a href="#3-系统调用的实现" class="headerlink" title="3. 系统调用的实现"></a>3. 系统调用的实现</h4><p>​    (1).不能随意的调用内核的数据，这样会使得操作系统不安全（像root被获取）</p>
+<p>​    (2).通过硬件来保证不能随意的调用内核的数据，即（区分内核态用户态(把内存割成两个区域)），<strong>内核态可以访问任何数据，用户态不能访问内核数据</strong>，0是内核态，3是用户态</p>
+<p>​    (3).通过段寄存器来实现(因为内存都是一段一段的)<br>​    DPL&gt;=CPL，只有满足才可以访问<br>​    DPL：(用来描述目标内存段的特权级)，即你要访问的目标段的特权级<br>​    CPL：(CS)，即当前所处在的特权级</p>
+<p>​    (4).硬件提供了主动进入内核的方法(中断指令int)<br>​    是计算机提供的唯一方法进入内核<br>​    int指令将使CS中的CPL改成0，进入内核</p>
+<h4 id="4-系统调用的核心"><a href="#4-系统调用的核心" class="headerlink" title="4. 系统调用的核心"></a>4. 系统调用的核心</h4><ol>
+<li>用户程序中一段包含int指令的代码，进去的话一定是(int 0x80)</li>
+<li>操作系统写中断处理，获取想调程序的编号</li>
+<li>操作系统根据编号执行相应代码</li>
+</ol>
+<h4 id="5-int-0x80的具体实现"><a href="#5-int-0x80的具体实现" class="headerlink" title="5. int 0x80的具体实现"></a>5. int 0x80的具体实现</h4><p>​    int指令通过查看idt表来选择中断需要转去哪里进行执行<br>​    idt表和gdt表长的非常相似<br>​    在系统进行初始化时，就已经对int 0x80进行处理定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sched_init</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">set_system_gate(<span class="number">0x80</span>,&amp;system_call) <span class="comment">//每次要调用时就取中断函数地址system_call调用0x80</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    int 0x80进入后将DPL制成3，CS为8，IP=system_call，CPL为CS的后两位为0</p>
+<p>​    从int 0x80返回后就一切恢复之前</p>
+<h4 id="6-操作系统历史"><a href="#6-操作系统历史" class="headerlink" title="6. 操作系统历史"></a>6. 操作系统历史</h4><h5 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h5><h6 id="1-操作系统的演变"><a href="#1-操作系统的演变" class="headerlink" title="1. 操作系统的演变"></a>1. 操作系统的演变</h6><p>​    随着计算机不断发展后，需要完成多道程序，要使得作业之间进行相互的切换和调度成为核心，如果不切换一定要一个一个等，计算机的速度就会非常的慢，<strong>此时多进程结构和进程管理概念萌芽</strong>，这时制作了OS/360</p>
+<p>​    在之后，任务不可以等到做不下去再进行切换，而是需要主动的进行切换，此时引入了<strong>分时系统</strong>的概念，此时一个计算机可以多个人进行使用，这时制作的是MULTICS</p>
+<p>​    再之后由MULTICS发明了UNIX</p>
+<h6 id="2-PC与DOS"><a href="#2-PC与DOS" class="headerlink" title="2. PC与DOS"></a>2. PC与DOS</h6><p>​    由DOS演变为Windows，Windows主要是磁盘、文件、命令令人使用方便</p>
+<p>​    再之后在Windows3.0加入图形界面</p>
+<p>​    </p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><h6 id="1-操作系统的演变-1"><a href="#1-操作系统的演变-1" class="headerlink" title="1. 操作系统的演变"></a>1. 操作系统的演变</h6><p>​    <strong>多进程结构是操作系统基本图谱，要掌握，并且实现它</strong></p>
+<p>​    多进程结构图示：**(当一个系统进入打印或其他操作使得CPU等待时，跳转到下一个作业，之后再转回来)**</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/54jP0O"><img src="https://z3.ax1x.com/2021/10/25/54jP0O.png" alt="54jP0O.png"></a></p>
+<p>​    对于操作系统实现概念远比理解概念重要</p>
+<h6 id="2-PC与DOS-1"><a href="#2-PC与DOS-1" class="headerlink" title="2. PC与DOS"></a>2. PC与DOS</h6><p>​    文件、开发环境、图形界面对于OS的重要性，<strong>要掌握、实现操作系统的文件操作视图</strong></p>
+<h5 id="核心思想，技术"><a href="#核心思想，技术" class="headerlink" title="核心思想，技术"></a>核心思想，技术</h5><ul>
+<li>程序执行、多线程、程序执行带动其他设备使用的基本结构</li>
+<li>对用户的使用感觉：各种文件、编程环境、图形界面</li>
+</ul>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/10/25/Java14/">Java14</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-10-25T11:25:55.000Z" itemprop="datePublished">
+    2021-10-25
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><h4 id="1-泛型是在JDK1-5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题"><a href="#1-泛型是在JDK1-5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题" class="headerlink" title="1. 泛型是在JDK1.5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题"></a>1. 泛型是在JDK1.5之后主要引入的一项技术，其主要的目的是为了解决类对象的安全隐患问题</h4><h4 id="2-泛型问题的引出"><a href="#2-泛型问题的引出" class="headerlink" title="2. 泛型问题的引出"></a>2. 泛型问题的引出</h4><p>​    在Java中，最方便的参数统一使用Object类型，但是并不是意味所有的Object都可以解决实际问题</p>
+<p>​    现在假设需要一个描述坐标点的信息类(Point)，该类中可以保存三种坐标类型</p>
+<ul>
+<li><p>保存整型</p>
+</li>
+<li><p>保存浮点型</p>
+</li>
+<li><p>保存字符串</p>
+</li>
+</ul>
+<p>​    此时，要保证三类数据的保存，只有通过Object类型可以解决</p>
+<p>​    <strong>Point类的设计</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Object x;</span><br><span class="line">	<span class="keyword">private</span> Object y;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(Object x)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x = x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(Object y)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.y = y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    在使用这个类时，需要进行向上转型输入和向下转型输出。但是，由于Object所能描述的范围太广泛了，所以<strong>可能传入了字符串类型任何转型时不小心转为了int(其他)类型</strong>，此时代码在<strong>编译时可以通过，执行时出现”ClassCastException“异常</strong>，<strong>由此可以看出Object提供的解决方案实际上会存在安全隐患</strong>，所以Object类作为参数是项目中最大的败笔</p>
+<h4 id="3-泛型基本定义"><a href="#3-泛型基本定义" class="headerlink" title="3. 泛型基本定义"></a>3. 泛型基本定义</h4><p>​    通过分析Object作为参数的优缺点，<strong>要想解决对象转型安全隐患问题，最简单的方式就是不转型</strong><br>​    JDk1.5后提供了泛型的概念，泛型&lt; T &gt;最大的特点为，类中的属性类型或方法的参数，可以在类的使用时，动态决定<br>​    <strong>范例：修改Point类的设计</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>&lt;<span class="title">T</span>&gt;</span>&#123; <span class="comment">//T表示Type的意思，不一定要T写其他的也可以</span></span><br><span class="line">	<span class="keyword">private</span> T x;</span><br><span class="line">	<span class="keyword">private</span> T y;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(T x)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x = x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(T y)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.y = y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    在Point类上定义的泛型T实际上只是一个随机设置的名称，表示的是，该类型由使用的时候来决定，<strong>泛型使用时只能使用引用数据类型，不能使用基本类型</strong></p>
+<p>​    范例：使用泛型声明的类Point</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Point&lt;Integer&gt; a &#x3D; new Point&lt;Integer&gt;();</span><br><span class="line">		a.setX(10);</span><br><span class="line">		a.setY(20);</span><br><span class="line">		System.out.println(&quot;x &#x3D; &quot;+a.getX()+ &quot;,y &#x3D; &quot;+a.getY());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>​    注意：使用泛型后，所有程序之中具有泛型标记的部分都会更换为相应的类型标记，这个标记在类对象实例化的时候进行动态的配置，此时就不需要转型了，而且编译时会帮助检测错误</p>
+<p>​    <strong>注意：如果使用了泛型设计类但是使用这个类并没有给泛型，那么会把泛型中所有的T变成Object类型，Object的使用就需要转型了</strong></p>
+<h4 id="4-泛型通配符"><a href="#4-泛型通配符" class="headerlink" title="4. 泛型通配符"></a>4. 泛型通配符</h4><p>​    泛型的出现解决了数据类型的转换安全问题，但是随之而来也会带来引用传递的麻烦。<strong>为解决该问题则用通配符对形参进行约束</strong></p>
+<p>​    范例：泛型的引用传递</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">class Message&lt;T&gt;&#123;</span><br><span class="line">	private T info;</span><br><span class="line">	public void setMessage(T info) &#123;</span><br><span class="line">		this.info &#x3D; info;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public T getMessage() &#123;</span><br><span class="line">		return this.info;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Message&lt;String&gt; msg &#x3D; new Message&lt;String&gt;();</span><br><span class="line">		msg.setMessage(&quot;篮球&quot;);</span><br><span class="line">		print(msg);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void print(Message&lt;String&gt; msg) &#123;</span><br><span class="line">		System.out.println(msg.getMessage());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>注意：</strong></p>
+<ol>
+<li>泛型作为形参不可以作为重载标识，重载的参数类型名以类名作为标识与泛型无关</li>
+<li>泛型在作为形参时需要注明泛型的类型</li>
+<li>如果没有声明泛型类型，传过来则使用Object类型来代替未设置的泛型标记，也就说传过来后的泛型可以设置成任意类型</li>
+</ol>
+<p>​    <em>为了解决3这个问题，泛型里提供了通配符”?“</em><br>​    使用通配符”?“会限制程序不可以修改传过来的对象，此时对象仍然为object类型(可以描述一切的泛型类型)，但无法进行修改(取和改)</p>
+<p>​    在通配符?的基础之上，又产生了两个通配符的应用：</p>
+<ul>
+<li>设置泛型的下限：? super类;<br>​    例如：”? super String“，表示可以设置的泛型类只能够是String以及其父类(Object)</li>
+<li>设置泛型的上限：? extands 类;<br>​    例如：”? extends Number“：表示所设置的泛型类型只能够是Number或者其子类<br>​    <strong>注意：泛型的上限可以对类进行修饰(类&lt; T extends 类(界限)&gt;)</strong></li>
+</ul>
+<h4 id="5-泛型接口"><a href="#5-泛型接口" class="headerlink" title="5. 泛型接口"></a>5. 泛型接口</h4><p>​    泛型也可以应用在接口上，此类接口称为泛型接口</p>
+<p>​    泛型接口的定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface IMessage&lt;T&gt;&#123;</span><br><span class="line">	public void send(T content);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    所有的接口在使用的时候都必须依靠子类，那么在此时子类有两种实现泛型接口的方式</p>
+<ul>
+<li>方式一：在子类中继续指定泛型标记<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(T content)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MessageImpl</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(T content)</span> </span>&#123;</span><br><span class="line">		System.out.println(content);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		IMessage&lt;String&gt; a = <span class="keyword">new</span> MessageImpl&lt;String&gt;();<span class="comment">//后面的String可以省略，尖括号还是需要</span></span><br><span class="line">		a.send(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>​    上面代码的注释中，在JDK1.8出现了一个自动推导泛型的概念，因为每一次前后都需要编写泛型类型，过于复杂，所以现在前面定义了泛型类型，那么后面就可以不需要重复定义了</p>
+<ul>
+<li>方式二：子类不再设置泛型类型，而为父类指派好类型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface IMessage&lt;T&gt;&#123;</span><br><span class="line">	public void send(T content);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MessageImpl implements IMessage&lt;String&gt;&#123;</span><br><span class="line">	public void send(String content) &#123;</span><br><span class="line">		 System.out.println(content);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		IMessage&lt;String&gt; a &#x3D; new MessageImpl();</span><br><span class="line">		a.send(&quot;hello&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-泛型方法"><a href="#6-泛型方法" class="headerlink" title="6. 泛型方法"></a>6. 泛型方法</h4><p>​    所有泛型方法不一定非要定义在泛型的类或泛型接口之中，这也就是说任意一个方法都可以定义为泛型方法，但是需要对泛型标记（&lt;  T &gt;）加以声明</p>
+<p>​    范例：定义泛型方法<br>​    此时对于传入的参数类型就由调用方法的语句来外部定义了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T[] init(T ... args)&#123; <span class="comment">//T[]表示T类型数组</span></span><br><span class="line"><span class="keyword">return</span> args; <span class="comment">//返回是类对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    知道一个方法如何去定义一个泛型就行了</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/10/25/%E5%8F%8D%E5%B0%84%E5%AE%9E%E4%BE%8B/">反射实例</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-10-25T11:24:45.000Z" itemprop="datePublished">
+    2021-10-25
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h3 id="1-静态工厂"><a href="#1-静态工厂" class="headerlink" title="1. 静态工厂"></a>1. 静态工厂</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Message msg &#x3D; factory.getMessage(&quot;PaperMessage&quot;);</span><br><span class="line">		msg.send(&quot;静态工厂&quot;);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Message&#123;</span><br><span class="line">	public void send(String msg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class PaperMessage implements Message&#123;</span><br><span class="line">	public void send(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;【报纸报道】：&quot;+ msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class InternalMessage implements Message&#123;</span><br><span class="line">	public void send(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;【网络报道】：&quot;+ msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;工厂类，隐藏构造方法，提供分发的方法</span><br><span class="line">class factory&#123;</span><br><span class="line">	private factory() &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	public static Message getMessage(String className) &#123;</span><br><span class="line">		if(&quot;PaperMessage&quot;.equals(className)) &#123;</span><br><span class="line">			return new PaperMessage();</span><br><span class="line">		&#125;else if(&quot;InternalMessage&quot;.equals(className)) &#123;</span><br><span class="line">			return new InternalMessage();</span><br><span class="line">		&#125;else</span><br><span class="line">			return null;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用反射修改后的静态工厂"><a href="#2-使用反射修改后的静态工厂" class="headerlink" title="2. 使用反射修改后的静态工厂"></a>2. 使用反射修改后的静态工厂</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Message msg &#x3D; factory.getMessage(&quot;hello.PaperMessage&quot;);</span><br><span class="line">		msg.send(&quot;静态工厂&quot;);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Message&#123;</span><br><span class="line">	public void send(String msg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class PaperMessage implements Message&#123;</span><br><span class="line">	public void send(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;【报纸报道】：&quot;+ msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class InternalMessage implements Message&#123;</span><br><span class="line">	public void send(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;【网络报道】：&quot;+ msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;使用反射修改了工厂类</span><br><span class="line">class factory&#123;</span><br><span class="line">	private factory() &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	public static Message getMessage(String className) &#123;</span><br><span class="line">		Message msg &#x3D; null;</span><br><span class="line">		try &#123;</span><br><span class="line">			msg &#x3D; (Message)Class.forName(className).getDeclaredConstructor().newInstance();</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return msg;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-反射获取类结构"><a href="#3-反射获取类结构" class="headerlink" title="3. 反射获取类结构"></a>3. 反射获取类结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.util.Arrays;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		Class&lt;?&gt; clazz &#x3D; D.class;</span><br><span class="line">		System.out.println(&quot;【包名称：】&quot;+clazz.getPackageName());</span><br><span class="line">		System.out.println(&quot;【继承的父类：】&quot;+clazz.getSuperclass());</span><br><span class="line">		System.out.println(&quot;【继承的接口：】&quot;+Arrays.toString(clazz.getInterfaces()));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface A&#123;&#125;</span><br><span class="line"></span><br><span class="line">interface B&#123;&#125;</span><br><span class="line"></span><br><span class="line">abstract class C implements A,B&#123;&#125;</span><br><span class="line"></span><br><span class="line">abstract class D extends C implements A,B&#123;&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/10/24/Java13/">Java13</a>
         </h1>
       
@@ -1218,276 +1497,17 @@
 
     </li>
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/06/20/Java10/">Java10</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-20T10:19:20.000Z" itemprop="datePublished">
-    2021-06-20
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h4 id="1-异常的概述"><a href="#1-异常的概述" class="headerlink" title="1. 异常的概述"></a>1. 异常的概述</h4><ul>
-<li>异常是一个在程序执行期间发生的事件，它中断了正在执行的程序的正常指令流</li>
-<li>异常产生后，如果不做任何处理，程序会被终止</li>
-<li>异常在Java中也是作为类的实例的形式出现，在某一方法错误时，这个方法会创建一个异常对象，并把他传递给正在运行的系统，通过异常处理机制，可以将非正常情况下的处理代码与程序的主逻辑分离，即在编写代码主流程的同时在其他地方处理异常</li>
-</ul>
-<h4 id="2-jvm默认处理异常的方式"><a href="#2-jvm默认处理异常的方式" class="headerlink" title="2. jvm默认处理异常的方式"></a>2. jvm默认处理异常的方式</h4><ol>
-<li>当某个方法出现异常情况时，会将异常封装成一个异常对象。</li>
-<li>异常对象抛出给调用者，一层一层往上抛，最终到达main方法，主方法也没有办法处理，就抛出给jvm虚拟机</li>
-<li>jvm虚拟机有没有得到指令处理异常，只能将异常的信息通过标准错误流（System.err）打印到控制台，结束自己。</li>
-</ol>
-<h4 id="3-异常的结构"><a href="#3-异常的结构" class="headerlink" title="3. 异常的结构"></a>3. 异常的结构</h4><p>​     <strong>在 Java 中，所有的异常都有一个共同的祖先 Throwable（可抛出类）</strong><br>​     <strong>在java中只有Throwable类型的实例才可以被抛出（throw）或者捕获（catch）</strong><br>​    <strong>Throwable</strong>： 有两个重要的子类：Exception（异常）和 Error（错误），二者都是 Java 异常处理的重要子类，各自都包含大量子类。异常和错误的区别是：异常能被程序本身可以处理，错误是无法处理（但错误也是异常）<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/2qtZ5Q"><img src="https://z3.ax1x.com/2021/06/15/2qtZ5Q.png" alt="2qtZ5Q.png"></a></p>
-<p>​    </p>
-<p>**Error（错误）:**一般来说，最常见的错误有程序进入死循环、内存泄漏等。在这种情况下，程序运行时本身无法解决，只能通过其他程序干预，Error类对象由java虚拟机生成并抛弃（通常Java程序不对这类异常进行处理）</p>
-<p>​    <strong>Exception（异常）</strong>：分两大类，运行时异常(不检查异常)和非运行时异常(编译异常)。程序中应当尽可能去处理这些异常。</p>
-<ul>
-<li><strong>运行时异常</strong>：都是<strong>RuntimeException类及其子类</strong>异常，如NullPointerException(空指针异常)、IndexOutOfBoundsException(下标越界异常)等，<strong>这些异常是不检查异常，程序中可以选择捕获处理，也可以不处理</strong>。这些异常一般是由程序逻辑错误引起的，程序应该从逻辑角度尽可能避免这类异常的发生。运行时异常的特点是<strong>Java编译器不会检查它</strong>，也就是说，当程序中可能出现这类异常，<strong>即使没有用try-catch语句捕获它，也没有用throws子句声明抛出它，也会编译通过</strong>。</li>
-<li><strong>非运行时异常 （编译异常）</strong>：是<strong>RuntimeException以外的异常，类型上都属于Exception类及其子类</strong>。从程序语法角度讲是<strong>必须进行处理的异常，如果不处理，程序就不能编译通过</strong>。如IOException、SQLException等以及用户自定义的Exception异常，一般情况下不自定义检查异常。</li>
-</ul>
-<h4 id="4-异常的处理"><a href="#4-异常的处理" class="headerlink" title="4. 异常的处理"></a>4. 异常的处理</h4><p>​    在Java中如果某个方法抛出异常，可以在当前方法中进行捕捉并处理，也可以将异常向上抛出</p>
-<h4 id="5-异常的捕捉"><a href="#5-异常的捕捉" class="headerlink" title="5. 异常的捕捉"></a>5. 异常的捕捉</h4><p>​    Java语言通过try、catch、finally来处理异常</p>
-<ul>
-<li>try语句块用来存放可能发生异常的Java语句</li>
-<li>catch程序块在try语句块之后，当try语句块里抛出异常时执行</li>
-<li>finally语句块里的内容无论try语句是否跳出，正常都会执行</li>
-</ul>
-<p>​    <strong>注意：如果程序跳到了catch块后会继续向下执行，不会再去执行try代码块的内容</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	 	&#x2F;&#x2F;可能出现异常的代码</span><br><span class="line">&#125; catch (Exception e) &#123;&#x2F;&#x2F;可能出现的异常类型 异常的变量名称,e是引用了抛出的实例</span><br><span class="line">		&#x2F;&#x2F;针对该异常类型的处理办法</span><br><span class="line">&#125;</span><br><span class="line">finally&#123;</span><br><span class="line">	&#x2F;&#x2F;语句块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    获取异常的信息的函数(需要在异常引用变量名称后调用，这是可抛出类(异常最上层父类)的方法)</p>
-<ul>
-<li>getMessage()函数：输出错误性质</li>
-<li>toString()函数：给出异常的类型与性质</li>
-<li>printStackTrace()函数：指出异常的类型、性质、栈层次及出现在程序中的位置</li>
-</ul>
-<h4 id="6-在方法中抛出异常"><a href="#6-在方法中抛出异常" class="headerlink" title="6. 在方法中抛出异常"></a>6. 在方法中抛出异常</h4><p>​    <strong>(1).使用throws关键字抛出异常</strong><br>​    <strong>throws关键字通常被应用在声明方法时，用来指定可能抛出的异常。</strong>多个异常可以使用逗号隔开。当在主函数中调用该方法时，如果发生异常，就会将异常抛给指定异常对象<br>​    <strong>throws关键字声明的方法表示此方法不处理异常，而交给方法调用处进行处理</strong><br>​    <strong>注意：throws不会抛出异常对象只是起通知作用，但是catch块的引用方法按这个通知的来分配异常对象的引用类型，即throws声明了是哪种类型的异常，使它的调用者可以捕获这个异常及其父类</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修饰符 方法名() throws 异常名&#123; &#x2F;&#x2F;异常名必须是JavaException的子类，不可以自己取</span><br><span class="line">	&#x2F;&#x2F;方法内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>注意：写了throws后，调用这个方法的调用方必须要对可能发生异常进行处理(不管程序是否发生异常)，不写throws的话，就正常使用方法，其出错的话编译器报错，但用了接收的try-catch可以处理。</strong><br>​    <strong>而且抛给调用方后，调用方使用try-catch来处理，如果不想处理可以继续向上抛，但最终还是要有能够处理该异常的代码</strong></p>
-<p>​    <strong>(2).使用throw关键字抛出异常</strong><br>​    throw关键字通常用于方法体中，通过throw<strong>抛出一个异常对象</strong>，程序在执行到throw语句时立即终止,必须对该抛出的异常进行处理，要么捕获要么上抛，如果需要该方法上一级代码来捕获处理异常，则需要在方法的声明中使用throws关键字并指明要抛出的异常（是该异常的引用，如果用父类可能会造成问题），捕捉throw抛出的异常用try-catch语句块</p>
-<h4 id="7-自定义的异常"><a href="#7-自定义的异常" class="headerlink" title="7. 自定义的异常"></a>7. 自定义的异常</h4><p>​    在Java中用户通过继承Exception类来自定义异常类<br>​    通常使用throw来抛出自定义异常<br>​    父类Exception的主要构造方法，详细见API文档</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Exception()</span><br><span class="line">	Constructs a new exception with null as its detail message.</span><br><span class="line">	Exception(String message)</span><br><span class="line">	Constructs a new exception with the specified detail message.</span><br></pre></td></tr></table></figure>
-
-<p>​    使用自定义异常的步骤<br>​    (1). 创建自定义异常类<br>​    (2). 在方法中通过throw关键字抛出异常对象<br>​    (3). 对抛出异常进行处理</p>
-<h4 id="7-异常的使用原则"><a href="#7-异常的使用原则" class="headerlink" title="7. 异常的使用原则"></a>7. 异常的使用原则</h4><p>​    异常的处理不应用来控制程序的正常流程，其主要作用是捕获程序在运行时发生的异常并进行相应的处理</p>
-<h4 id="8-异常的注意事项"><a href="#8-异常的注意事项" class="headerlink" title="8. 异常的注意事项"></a>8. 异常的注意事项</h4><ul>
-<li>一个方法被覆盖时，覆盖它的方法必须抛出相同的异常或异常子类</li>
-<li>如果父类抛出多个异常，则覆盖方法必须抛出那些异常的一个子集，不能抛出新异常</li>
-</ul>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/06/15/Java09/">Java09</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-15T11:34:04.000Z" itemprop="datePublished">
-    2021-06-15
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="类的高级特性"><a href="#类的高级特性" class="headerlink" title="类的高级特性"></a>类的高级特性</h2><h4 id="1-类名冲突与完整路径"><a href="#1-类名冲突与完整路径" class="headerlink" title="1. 类名冲突与完整路径"></a>1. 类名冲突与完整路径</h4><p>​    在Java中，同名的两个类需要放在不同的类包(包)中<br>​    完整的类名为包名和类名的组合<br>​    像指定类时是可以写完整类名的但是由于麻烦和可读性就会使用import关键字来引入</p>
-<h4 id="2-同一个包中的类相互访问时，可以不指定包名"><a href="#2-同一个包中的类相互访问时，可以不指定包名" class="headerlink" title="2. 同一个包中的类相互访问时，可以不指定包名"></a>2. 同一个包中的类相互访问时，可以不指定包名</h4><h4 id="3-CLASSPATH"><a href="#3-CLASSPATH" class="headerlink" title="3. CLASSPATH"></a>3. CLASSPATH</h4><p>​    直译的话就是类的路径，配置了classpath后java程序会直接去classpath的路径下去找.class文件运行。这样我们就可以在任意目录下来运行我们的java程序，在连接数据库时我配置了这个的环境变量</p>
-<h4 id="4-package关键字"><a href="#4-package关键字" class="headerlink" title="4. package关键字"></a>4. package关键字</h4><p>​    用来定义包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package 包名</span><br></pre></td></tr></table></figure>
-<p>​    需要将package表达式放置在第一行，它必须是程序第一行非注释代码<br>​    Java包的命名规则：全部使用小写字母</p>
-<h4 id="5-import关键字"><a href="#5-import关键字" class="headerlink" title="5. import关键字"></a>5. import关键字</h4><p>​    (1).用来导入包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import 包名.类名  &#x2F;&#x2F;如果类不在包中则只要类名即可</span><br></pre></td></tr></table></figure>
-<p>​    如果需要使用包中的多个类，类名用 * 代替， * 表所有的类<br>​    <strong>注意：<br>​    如果已经用import引入了一个类，如果还要引用一个和这个类同名的类，则必须使用完整路径</strong></p>
-<p>​    (2).用来导入静态成员</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import static 静态成员 &#x2F;&#x2F;静态成员应为完整路径，可以为静态变量，也可以是静态方法</span><br></pre></td></tr></table></figure>
-<p>​    导入完之后就可以直接使用了，不需要再写完整的路径</p>
-<h4 id="6-final关键字"><a href="#6-final关键字" class="headerlink" title="6. final关键字"></a>6. final关键字</h4><p>​    <strong>(1).final变量</strong><br>​    使用final声明的变量，一旦被设定就不可以再改变它的值，<strong>通常使用这个方式来定义常量，final常量定义时需要使用大写字母命名</strong><br>​    注意：final变量定义的时候，可以先声明，而不给初值，这种变量也称为final空白</p>
-<p>​    final修饰的变量有三种：静态变量、实例变量和局部变量，分别表示三种类型的常量</p>
-<p>​    <strong>(2).final对象</strong><br>​    使用final修饰对象，一旦一个对象的引用被修饰，则它只能恒定指向一个对象，不能改变指向，未被指定时可以随便指<br>​    <strong>注意：数组也可以看作是一个对象来使用这个关键字</strong></p>
-<p>​    <strong>(3).final方法</strong><br>​    定义为final的方法不能被重写，可以被继承<br>​    定义为final的方法的执行效率高于非final的方法<br>​    定义为private不能被子类方法覆盖，private类型的方法默认是final类型的（这句先不说覆不覆盖就private感觉外部就调用不了了）</p>
-<p>​    <strong>(4).final类</strong><br>​    定义为final类不能被继承，没有子类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">final 类名&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>如果一个类设置为final，则类中所有的方法都被隐式设置为final形式，但final类中的成员变量可以被定义为final或者非final形式</strong></p>
-<p>​    <strong>(5).static和final一起使用</strong><br>​    static final用来修饰成员变量和成员方法，可以看作为全局常量</p>
-<ul>
-<li>对于变量，表示一旦给值就不可修改，并且通过类名可以访问</li>
-<li>对于方法，表示不可覆盖，并且可以通过类名直接访问</li>
-</ul>
-<p>​    <strong>注意：对于被static和final修饰过的实例常量，实例本身不能再改变了，但对于一些容器类型（比如，ArrayList、HashMap）的实例变量，不可以改变容器变量本身，但可以修改容器中存放的对象</strong></p>
-<h4 id="7-内部类"><a href="#7-内部类" class="headerlink" title="7. 内部类"></a>7. 内部类</h4><p>​    如果在一个类中再定义一个类，则将这个再定义的类称为内部类，<strong>内部类分为成员内部类、局部内部类、匿名类</strong></p>
-<p>​    <strong>(1).成员内部类</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class Outside&#123; &#x2F;&#x2F;外部类</span><br><span class="line">	private class Inside&#123; &#x2F;&#x2F;内部类,是一个私有成员</span><br><span class="line">		&#x2F;&#x2F;something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>在内部类中可以随意使用外部类的成员方法和成员变量，尽管被修饰为了private</strong><br>​    就像main方法放在类中可以访问该类的私有成员一样<br>​    <strong>但外部类不能直接访问内部类成员，需要先将内部类在外部类中实例化后再使用，内部类为private在外部类实例化后一样也可以使用</strong><br>​    <strong>内部类修饰为private只能外部类访问，其他类没有权限访问（哪怕是继承了外部类的子类）</strong></p>
-<p>​    内部类的实例化需要绑定在外部类的实例上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;内部类的实例化，如果在外部类和外部类非静态方法之外实例内部类对象则需要下面的形式</span><br><span class="line">外部类名.内部类名 引用变量名 &#x3D; 外部实例引用变量.内部实例  &#x2F;&#x2F;内部实例可以是new的也可以是其他只要是内部实例就行</span><br></pre></td></tr></table></figure>
-<p>​    <strong>类中多次实现接口中同一个方法</strong><br>​    在程序中可以用权限修饰符为private的内部类实现。可以在外部提供一个接口，在接口中声明一个方法。如果在实现该接口的内部类中实现该接口的方法，就可以定义多个内部类以不同的方式实现接口中的同一个方法，而在一般的类中是不能多次实现接口中同一个方法的<br>​    此时通过在外部类中写方法实例化这个private内部类，之后用接口的引用来接这个实现接口的实例<br>​    <strong>详细见《Java实例-内部类的基本作用》例一</strong></p>
-<p>​    <strong>外部类中定义的成员变量与内部类的成员变量名称相同，可以使用this关键字</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Outside&#123;</span><br><span class="line">	private int x &#x3D; 0;</span><br><span class="line">	private class Inside&#123;</span><br><span class="line">		private int x &#x3D; 9;</span><br><span class="line">		public void doit(int x)&#123;</span><br><span class="line">			x++;              &#x2F;&#x2F;调用的是形参x</span><br><span class="line">			this.x++          &#x2F;&#x2F;调用的是内部类成员变量x</span><br><span class="line">			Outside.this.x++  &#x2F;&#x2F;调用的是外部类成员变量x</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>(2).局部内部类</strong><br>​    在类的局部进行定义，如在类的方法或任意作用域中定义<br>​    由于内部类在类方法或者任意作用域中，<strong>在方法(作用域)的外部是无法访问该内部类</strong>，而内部类却可以访问当前代码块的常量**(final类型的局部变量)<strong>以及</strong>此外部类的所有成员**<br>​    在方法中的局部变量在内部类中可以访问<br>​    <strong>详细见《Java实例-内部类的基本作用》例二</strong></p>
-<p>​    <strong>(3).匿名内部类</strong><br>​    用时再查，和局部内部类一样在方法中，不过去掉类名，在return语句下在描述类体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;语法</span><br><span class="line">return new A()&#123;&#x2F;&#x2F;A为接口名</span><br><span class="line">	&#x2F;&#x2F;类体</span><br><span class="line">&#125;; &#x2F;&#x2F;注意：这里特殊的需要加一个分号，分号代表接口的引用表达式的创建</span><br></pre></td></tr></table></figure>
-<p>​    匿名内部类编译后会产生以“外部类名$序号”为名称的.class文件，序号以1<del>n排列，分别代表1</del>n个匿名内部类</p>
-<p>​    <strong>(4).静态内部类（少见）</strong><br>​    在内部类前加修饰符static，则为静态内部类，<strong>静态内部类中可以声明static成员，但在非静态内部类中不能声明静态成员</strong><br>​    <strong>静态内部类的特点</strong></p>
-<ul>
-<li>静态内部类内不可以使用外部类的非静态成员</li>
-<li>如果创建静态内部类的对象，不需要其外部类的对象<br>​    在程序测试时需要每个文件设置一个主方法，这会产生许多额外的代码，程序本身不需要这些主方法，所以一般把主方法写到静态内部类中，主要是编译后会产生独立类，测试完后删除即可</li>
-</ul>
-<h4 id="8-内部类的继承"><a href="#8-内部类的继承" class="headerlink" title="8. 内部类的继承"></a>8. 内部类的继承</h4><p>​    内部类的继承比普通类的继承要复杂</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">public class First extends A.B&#123; &#x2F;&#x2F;继承内部类class B</span><br><span class="line">	public First(A a) &#123;</span><br><span class="line">		a.super();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class A&#123;</span><br><span class="line">	class B&#123;</span><br><span class="line">		&#x2F;&#x2F;something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>在某个类继承内部类时，必须硬性给与这个类一个带参数的构造方法，并且该构造方法的参数为需要继承内部类的外部类的引用，同时在构造方法体中使用a.super()语句，这样才为继承提供了必要的对象引用</strong></p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/06/15/Java%E5%AE%9E%E4%BE%8B-%E5%86%85%E9%83%A8%E7%B1%BB/">Java实例-内部类</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-15T11:32:57.000Z" itemprop="datePublished">
-    2021-06-15
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="Java实例-内部类的基本作用"><a href="#Java实例-内部类的基本作用" class="headerlink" title="Java实例-内部类的基本作用"></a>Java实例-内部类的基本作用</h2><h4 id="1-实例内部类–内部类在外部类中，内部类修饰为private"><a href="#1-实例内部类–内部类在外部类中，内部类修饰为private" class="headerlink" title="1. 实例内部类–内部类在外部类中，内部类修饰为private"></a>1. 实例内部类–内部类在外部类中，内部类修饰为private</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface Food&#123;</span><br><span class="line">	public void doing();</span><br><span class="line">&#125;</span><br><span class="line">public class First&#123;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Outside o &#x3D; new Outside();</span><br><span class="line">		Food i &#x3D; o.create(); &#x2F;&#x2F;用接口引用类型来接内部类实现接口的实例</span><br><span class="line">		i.doing();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outside&#123;</span><br><span class="line">	private class Inside implements Food&#123; &#x2F;&#x2F;private只能在外部类访问</span><br><span class="line">		public void doing() &#123;</span><br><span class="line">			System.out.println(&quot;eat egg&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public Inside create() &#123;</span><br><span class="line">		return new Inside();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-局部内部类–内部类在外部类的方法中，内部类无修饰符"><a href="#2-局部内部类–内部类在外部类的方法中，内部类无修饰符" class="headerlink" title="2. 局部内部类–内部类在外部类的方法中，内部类无修饰符"></a>2. 局部内部类–内部类在外部类的方法中，内部类无修饰符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface Food&#123;</span><br><span class="line">	public void doing();</span><br><span class="line">&#125;</span><br><span class="line">public class First&#123;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Outside b &#x3D; new Outside();</span><br><span class="line">		Food c &#x3D; b.a();</span><br><span class="line">		c.doing();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outside&#123;</span><br><span class="line">	public Food a() &#123; &#x2F;&#x2F;方法返回值类型为接口类型</span><br><span class="line">		class Inside implements Food&#123;</span><br><span class="line">			public void doing() &#123;</span><br><span class="line">				System.out.println(&quot;hello&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return new Inside();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/06/05/Java08/">Java08</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-06-05T11:46:05.000Z" itemprop="datePublished">
-    2021-06-05
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h2><h4 id="1-抽象类的引入"><a href="#1-抽象类的引入" class="headerlink" title="1. 抽象类的引入"></a>1. 抽象类的引入</h4><p>​    一般将父类定义为抽象类，然后对这个父类进行继承与多态处理，在继承树中越上方的类越抽象<br>​    在多态机制中，一般不需要将父类初始化对象，只需要子类对象，<strong>在Java中设置的抽象类不能实例化为对象</strong></p>
-<h4 id="2-abstract关键字"><a href="#2-abstract关键字" class="headerlink" title="2. abstract关键字"></a>2. abstract关键字</h4><p>​    abstract关键字定义的类为抽象类，定义的方法为抽象方法，抽象方法没有方法体，方法本身没有意义，但通过重写来获得意义，承载这个抽象方法的抽象类必须被继承，实际上抽象类除了被继承之外没有任何意义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Test&#123;  &#x2F;&#x2F;定义抽象类</span><br><span class="line">	abstract void textAbstract();  &#x2F;&#x2F;定义抽象方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    声明一个抽象的方法，则必须将承载这个抽象方法的类定义为抽象类，不可能在非抽象类获取抽象方法，只要类中有一个抽象方法，这个类就被标记为抽象类<br>​    抽象类被继承后子类若不是抽象类需要实现其中所有的抽象方法，要保证相同的方法名称、参数列表和相同的返回类型<br>​    abstract无法和final共存修饰类，但是抽象类里面可以用final与static修饰变量和方法，若你创建的类不想被创建对象，变量方法不想被继承，但又要可以直接调用，可以实现抽象类</p>
-<h4 id="3-接口的引入"><a href="#3-接口的引入" class="headerlink" title="3. 接口的引入"></a>3. 接口的引入</h4><p>​    当你需要的一系列子类既需要继承重写父类的抽象方法，同时还需要一个共同的方法但实现过程各子类不相同，有些甚至不需要，就可以把这个方法封装在接口中，需要的子类再去实现这个接口，不需要的就不用了<br>​    接口是抽象类的延伸，可以把它看作为一个纯粹的抽象类，接口中的所有方法都没有方法体<br>​    接口用来弥补类无法实现多继承的局限<br>​    由于接口为抽象类，为父类，所以你也可以像之前多态一样去使用接口，具体见<strong>7</strong><br>​    <strong>注意：接口内的方法省略abstract关键字</strong><br>​    如果一个类实现了一个接口中要求的所有的方法，然而没有提供方法体而仅仅只有方法标识，那么这个类一定是一个抽象类</p>
-<h4 id="4-interface关键字"><a href="#4-interface关键字" class="headerlink" title="4. interface关键字"></a>4. interface关键字</h4><p>​    接口使用interface关键字进行定义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface drawTest&#123;&#x2F;&#x2F;public可以不要，有public类时就不需要了</span><br><span class="line">	void draw(); &#x2F;&#x2F;接口内的方法省略abstract关键字</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-implements关键字"><a href="#5-implements关键字" class="headerlink" title="5. implements关键字"></a>5. implements关键字</h4><p>​    一个类实现一个接口，可以使用implements关键字</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;public可以不要，有public类时就不需要了</span><br><span class="line">public class child extends father implements drawTest&#123;&#x2F;&#x2F;可以不继承直接实现接口的，要实现多个接口每个接口用,隔开</span><br><span class="line">	&#x2F;&#x2F;something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-接口的注意事项"><a href="#6-接口的注意事项" class="headerlink" title="6. 接口的注意事项"></a>6. 接口的注意事项</h4><ul>
-<li>在接口中方法必须定义为public或者abstract形式，其他权限修饰符不被Java编译器认可，如果未注明默认就是public and abstract的</li>
-<li>在接口中定义的任何字段都自动是static和final和public的</li>
-<li>继承一个接口时需要实现接口中所有的方法</li>
-<li>一个类可以实现不止一个接口，语法见<strong>5</strong></li>
-</ul>
-<h4 id="7-接口的进阶"><a href="#7-接口的进阶" class="headerlink" title="7. 接口的进阶"></a>7. 接口的进阶</h4><p>​    <strong>我们不能直接去实例化一个接口，因为接口中的方法都是抽象的，是没有方法体的，这样怎么可能产生具体的实例呢？但是，我们可以使用接口类型的引用指向一个实现了该接口的对象，并且可以调用这个接口中的方法</strong></p>
-<p>​    应该优先使用接口而不是类来引用对象。如果有适合的接口类型存在，那么对于参数、返回值、变量和域来说，就都应该使用接口类型进行声明。只有当你利用构造器创建某个对象的时候，才真正需要引用这个对象的类。<br>​    如果你养成了用接口作为类型的习惯，你的程序将会更加灵活</p>
-<h4 id="8-接口的静态方法"><a href="#8-接口的静态方法" class="headerlink" title="8. 接口的静态方法"></a>8. 接口的静态方法</h4><p>​    Java 8允许静态接口方法<br>​    不能覆盖静态接口方法，只能通过使用接口名+静态接口方法名使用该静态接口方法，实例化后是无法调用的<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/4zrWGD"><img src="https://z3.ax1x.com/2021/10/06/4zrWGD.png" alt="4zrWGD.png"></a></p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
 </ul>
 
   <section id="nav-wrapper">
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">« prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">next »</a>
+      <a class="extend prev" rel="prev" href="/page/3/">« prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">next »</a>
     </nav>
   </section>
 
 
             <footer>
-    <div>© 2022 - nature </div>
+    <div>© 2023 - nature </div>
     <div>
         <span>
             Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>

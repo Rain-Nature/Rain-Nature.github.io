@@ -70,6 +70,265 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/06/20/Java10/">Java10</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-06-20T10:19:20.000Z" itemprop="datePublished">
+    2021-06-20
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h4 id="1-异常的概述"><a href="#1-异常的概述" class="headerlink" title="1. 异常的概述"></a>1. 异常的概述</h4><ul>
+<li>异常是一个在程序执行期间发生的事件，它中断了正在执行的程序的正常指令流</li>
+<li>异常产生后，如果不做任何处理，程序会被终止</li>
+<li>异常在Java中也是作为类的实例的形式出现，在某一方法错误时，这个方法会创建一个异常对象，并把他传递给正在运行的系统，通过异常处理机制，可以将非正常情况下的处理代码与程序的主逻辑分离，即在编写代码主流程的同时在其他地方处理异常</li>
+</ul>
+<h4 id="2-jvm默认处理异常的方式"><a href="#2-jvm默认处理异常的方式" class="headerlink" title="2. jvm默认处理异常的方式"></a>2. jvm默认处理异常的方式</h4><ol>
+<li>当某个方法出现异常情况时，会将异常封装成一个异常对象。</li>
+<li>异常对象抛出给调用者，一层一层往上抛，最终到达main方法，主方法也没有办法处理，就抛出给jvm虚拟机</li>
+<li>jvm虚拟机有没有得到指令处理异常，只能将异常的信息通过标准错误流（System.err）打印到控制台，结束自己。</li>
+</ol>
+<h4 id="3-异常的结构"><a href="#3-异常的结构" class="headerlink" title="3. 异常的结构"></a>3. 异常的结构</h4><p>​     <strong>在 Java 中，所有的异常都有一个共同的祖先 Throwable（可抛出类）</strong><br>​     <strong>在java中只有Throwable类型的实例才可以被抛出（throw）或者捕获（catch）</strong><br>​    <strong>Throwable</strong>： 有两个重要的子类：Exception（异常）和 Error（错误），二者都是 Java 异常处理的重要子类，各自都包含大量子类。异常和错误的区别是：异常能被程序本身可以处理，错误是无法处理（但错误也是异常）<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/2qtZ5Q"><img src="https://z3.ax1x.com/2021/06/15/2qtZ5Q.png" alt="2qtZ5Q.png"></a></p>
+<p>​    </p>
+<p>**Error（错误）:**一般来说，最常见的错误有程序进入死循环、内存泄漏等。在这种情况下，程序运行时本身无法解决，只能通过其他程序干预，Error类对象由java虚拟机生成并抛弃（通常Java程序不对这类异常进行处理）</p>
+<p>​    <strong>Exception（异常）</strong>：分两大类，运行时异常(不检查异常)和非运行时异常(编译异常)。程序中应当尽可能去处理这些异常。</p>
+<ul>
+<li><strong>运行时异常</strong>：都是<strong>RuntimeException类及其子类</strong>异常，如NullPointerException(空指针异常)、IndexOutOfBoundsException(下标越界异常)等，<strong>这些异常是不检查异常，程序中可以选择捕获处理，也可以不处理</strong>。这些异常一般是由程序逻辑错误引起的，程序应该从逻辑角度尽可能避免这类异常的发生。运行时异常的特点是<strong>Java编译器不会检查它</strong>，也就是说，当程序中可能出现这类异常，<strong>即使没有用try-catch语句捕获它，也没有用throws子句声明抛出它，也会编译通过</strong>。</li>
+<li><strong>非运行时异常 （编译异常）</strong>：是<strong>RuntimeException以外的异常，类型上都属于Exception类及其子类</strong>。从程序语法角度讲是<strong>必须进行处理的异常，如果不处理，程序就不能编译通过</strong>。如IOException、SQLException等以及用户自定义的Exception异常，一般情况下不自定义检查异常。</li>
+</ul>
+<h4 id="4-异常的处理"><a href="#4-异常的处理" class="headerlink" title="4. 异常的处理"></a>4. 异常的处理</h4><p>​    在Java中如果某个方法抛出异常，可以在当前方法中进行捕捉并处理，也可以将异常向上抛出</p>
+<h4 id="5-异常的捕捉"><a href="#5-异常的捕捉" class="headerlink" title="5. 异常的捕捉"></a>5. 异常的捕捉</h4><p>​    Java语言通过try、catch、finally来处理异常</p>
+<ul>
+<li>try语句块用来存放可能发生异常的Java语句</li>
+<li>catch程序块在try语句块之后，当try语句块里抛出异常时执行</li>
+<li>finally语句块里的内容无论try语句是否跳出，正常都会执行</li>
+</ul>
+<p>​    <strong>注意：如果程序跳到了catch块后会继续向下执行，不会再去执行try代码块的内容</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	 	&#x2F;&#x2F;可能出现异常的代码</span><br><span class="line">&#125; catch (Exception e) &#123;&#x2F;&#x2F;可能出现的异常类型 异常的变量名称,e是引用了抛出的实例</span><br><span class="line">		&#x2F;&#x2F;针对该异常类型的处理办法</span><br><span class="line">&#125;</span><br><span class="line">finally&#123;</span><br><span class="line">	&#x2F;&#x2F;语句块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    获取异常的信息的函数(需要在异常引用变量名称后调用，这是可抛出类(异常最上层父类)的方法)</p>
+<ul>
+<li>getMessage()函数：输出错误性质</li>
+<li>toString()函数：给出异常的类型与性质</li>
+<li>printStackTrace()函数：指出异常的类型、性质、栈层次及出现在程序中的位置</li>
+</ul>
+<h4 id="6-在方法中抛出异常"><a href="#6-在方法中抛出异常" class="headerlink" title="6. 在方法中抛出异常"></a>6. 在方法中抛出异常</h4><p>​    <strong>(1).使用throws关键字抛出异常</strong><br>​    <strong>throws关键字通常被应用在声明方法时，用来指定可能抛出的异常。</strong>多个异常可以使用逗号隔开。当在主函数中调用该方法时，如果发生异常，就会将异常抛给指定异常对象<br>​    <strong>throws关键字声明的方法表示此方法不处理异常，而交给方法调用处进行处理</strong><br>​    <strong>注意：throws不会抛出异常对象只是起通知作用，但是catch块的引用方法按这个通知的来分配异常对象的引用类型，即throws声明了是哪种类型的异常，使它的调用者可以捕获这个异常及其父类</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修饰符 方法名() throws 异常名&#123; &#x2F;&#x2F;异常名必须是JavaException的子类，不可以自己取</span><br><span class="line">	&#x2F;&#x2F;方法内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>注意：写了throws后，调用这个方法的调用方必须要对可能发生异常进行处理(不管程序是否发生异常)，不写throws的话，就正常使用方法，其出错的话编译器报错，但用了接收的try-catch可以处理。</strong><br>​    <strong>而且抛给调用方后，调用方使用try-catch来处理，如果不想处理可以继续向上抛，但最终还是要有能够处理该异常的代码</strong></p>
+<p>​    <strong>(2).使用throw关键字抛出异常</strong><br>​    throw关键字通常用于方法体中，通过throw<strong>抛出一个异常对象</strong>，程序在执行到throw语句时立即终止,必须对该抛出的异常进行处理，要么捕获要么上抛，如果需要该方法上一级代码来捕获处理异常，则需要在方法的声明中使用throws关键字并指明要抛出的异常（是该异常的引用，如果用父类可能会造成问题），捕捉throw抛出的异常用try-catch语句块</p>
+<h4 id="7-自定义的异常"><a href="#7-自定义的异常" class="headerlink" title="7. 自定义的异常"></a>7. 自定义的异常</h4><p>​    在Java中用户通过继承Exception类来自定义异常类<br>​    通常使用throw来抛出自定义异常<br>​    父类Exception的主要构造方法，详细见API文档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Exception()</span><br><span class="line">	Constructs a new exception with null as its detail message.</span><br><span class="line">	Exception(String message)</span><br><span class="line">	Constructs a new exception with the specified detail message.</span><br></pre></td></tr></table></figure>
+
+<p>​    使用自定义异常的步骤<br>​    (1). 创建自定义异常类<br>​    (2). 在方法中通过throw关键字抛出异常对象<br>​    (3). 对抛出异常进行处理</p>
+<h4 id="7-异常的使用原则"><a href="#7-异常的使用原则" class="headerlink" title="7. 异常的使用原则"></a>7. 异常的使用原则</h4><p>​    异常的处理不应用来控制程序的正常流程，其主要作用是捕获程序在运行时发生的异常并进行相应的处理</p>
+<h4 id="8-异常的注意事项"><a href="#8-异常的注意事项" class="headerlink" title="8. 异常的注意事项"></a>8. 异常的注意事项</h4><ul>
+<li>一个方法被覆盖时，覆盖它的方法必须抛出相同的异常或异常子类</li>
+<li>如果父类抛出多个异常，则覆盖方法必须抛出那些异常的一个子集，不能抛出新异常</li>
+</ul>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/06/15/Java09/">Java09</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-06-15T11:34:04.000Z" itemprop="datePublished">
+    2021-06-15
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="类的高级特性"><a href="#类的高级特性" class="headerlink" title="类的高级特性"></a>类的高级特性</h2><h4 id="1-类名冲突与完整路径"><a href="#1-类名冲突与完整路径" class="headerlink" title="1. 类名冲突与完整路径"></a>1. 类名冲突与完整路径</h4><p>​    在Java中，同名的两个类需要放在不同的类包(包)中<br>​    完整的类名为包名和类名的组合<br>​    像指定类时是可以写完整类名的但是由于麻烦和可读性就会使用import关键字来引入</p>
+<h4 id="2-同一个包中的类相互访问时，可以不指定包名"><a href="#2-同一个包中的类相互访问时，可以不指定包名" class="headerlink" title="2. 同一个包中的类相互访问时，可以不指定包名"></a>2. 同一个包中的类相互访问时，可以不指定包名</h4><h4 id="3-CLASSPATH"><a href="#3-CLASSPATH" class="headerlink" title="3. CLASSPATH"></a>3. CLASSPATH</h4><p>​    直译的话就是类的路径，配置了classpath后java程序会直接去classpath的路径下去找.class文件运行。这样我们就可以在任意目录下来运行我们的java程序，在连接数据库时我配置了这个的环境变量</p>
+<h4 id="4-package关键字"><a href="#4-package关键字" class="headerlink" title="4. package关键字"></a>4. package关键字</h4><p>​    用来定义包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">package 包名</span><br></pre></td></tr></table></figure>
+<p>​    需要将package表达式放置在第一行，它必须是程序第一行非注释代码<br>​    Java包的命名规则：全部使用小写字母</p>
+<h4 id="5-import关键字"><a href="#5-import关键字" class="headerlink" title="5. import关键字"></a>5. import关键字</h4><p>​    (1).用来导入包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import 包名.类名  &#x2F;&#x2F;如果类不在包中则只要类名即可</span><br></pre></td></tr></table></figure>
+<p>​    如果需要使用包中的多个类，类名用 * 代替， * 表所有的类<br>​    <strong>注意：<br>​    如果已经用import引入了一个类，如果还要引用一个和这个类同名的类，则必须使用完整路径</strong></p>
+<p>​    (2).用来导入静态成员</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import static 静态成员 &#x2F;&#x2F;静态成员应为完整路径，可以为静态变量，也可以是静态方法</span><br></pre></td></tr></table></figure>
+<p>​    导入完之后就可以直接使用了，不需要再写完整的路径</p>
+<h4 id="6-final关键字"><a href="#6-final关键字" class="headerlink" title="6. final关键字"></a>6. final关键字</h4><p>​    <strong>(1).final变量</strong><br>​    使用final声明的变量，一旦被设定就不可以再改变它的值，<strong>通常使用这个方式来定义常量，final常量定义时需要使用大写字母命名</strong><br>​    注意：final变量定义的时候，可以先声明，而不给初值，这种变量也称为final空白</p>
+<p>​    final修饰的变量有三种：静态变量、实例变量和局部变量，分别表示三种类型的常量</p>
+<p>​    <strong>(2).final对象</strong><br>​    使用final修饰对象，一旦一个对象的引用被修饰，则它只能恒定指向一个对象，不能改变指向，未被指定时可以随便指<br>​    <strong>注意：数组也可以看作是一个对象来使用这个关键字</strong></p>
+<p>​    <strong>(3).final方法</strong><br>​    定义为final的方法不能被重写，可以被继承<br>​    定义为final的方法的执行效率高于非final的方法<br>​    定义为private不能被子类方法覆盖，private类型的方法默认是final类型的（这句先不说覆不覆盖就private感觉外部就调用不了了）</p>
+<p>​    <strong>(4).final类</strong><br>​    定义为final类不能被继承，没有子类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">final 类名&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>如果一个类设置为final，则类中所有的方法都被隐式设置为final形式，但final类中的成员变量可以被定义为final或者非final形式</strong></p>
+<p>​    <strong>(5).static和final一起使用</strong><br>​    static final用来修饰成员变量和成员方法，可以看作为全局常量</p>
+<ul>
+<li>对于变量，表示一旦给值就不可修改，并且通过类名可以访问</li>
+<li>对于方法，表示不可覆盖，并且可以通过类名直接访问</li>
+</ul>
+<p>​    <strong>注意：对于被static和final修饰过的实例常量，实例本身不能再改变了，但对于一些容器类型（比如，ArrayList、HashMap）的实例变量，不可以改变容器变量本身，但可以修改容器中存放的对象</strong></p>
+<h4 id="7-内部类"><a href="#7-内部类" class="headerlink" title="7. 内部类"></a>7. 内部类</h4><p>​    如果在一个类中再定义一个类，则将这个再定义的类称为内部类，<strong>内部类分为成员内部类、局部内部类、匿名类</strong></p>
+<p>​    <strong>(1).成员内部类</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class Outside&#123; &#x2F;&#x2F;外部类</span><br><span class="line">	private class Inside&#123; &#x2F;&#x2F;内部类,是一个私有成员</span><br><span class="line">		&#x2F;&#x2F;something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>在内部类中可以随意使用外部类的成员方法和成员变量，尽管被修饰为了private</strong><br>​    就像main方法放在类中可以访问该类的私有成员一样<br>​    <strong>但外部类不能直接访问内部类成员，需要先将内部类在外部类中实例化后再使用，内部类为private在外部类实例化后一样也可以使用</strong><br>​    <strong>内部类修饰为private只能外部类访问，其他类没有权限访问（哪怕是继承了外部类的子类）</strong></p>
+<p>​    内部类的实例化需要绑定在外部类的实例上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;内部类的实例化，如果在外部类和外部类非静态方法之外实例内部类对象则需要下面的形式</span><br><span class="line">外部类名.内部类名 引用变量名 &#x3D; 外部实例引用变量.内部实例  &#x2F;&#x2F;内部实例可以是new的也可以是其他只要是内部实例就行</span><br></pre></td></tr></table></figure>
+<p>​    <strong>类中多次实现接口中同一个方法</strong><br>​    在程序中可以用权限修饰符为private的内部类实现。可以在外部提供一个接口，在接口中声明一个方法。如果在实现该接口的内部类中实现该接口的方法，就可以定义多个内部类以不同的方式实现接口中的同一个方法，而在一般的类中是不能多次实现接口中同一个方法的<br>​    此时通过在外部类中写方法实例化这个private内部类，之后用接口的引用来接这个实现接口的实例<br>​    <strong>详细见《Java实例-内部类的基本作用》例一</strong></p>
+<p>​    <strong>外部类中定义的成员变量与内部类的成员变量名称相同，可以使用this关键字</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Outside&#123;</span><br><span class="line">	private int x &#x3D; 0;</span><br><span class="line">	private class Inside&#123;</span><br><span class="line">		private int x &#x3D; 9;</span><br><span class="line">		public void doit(int x)&#123;</span><br><span class="line">			x++;              &#x2F;&#x2F;调用的是形参x</span><br><span class="line">			this.x++          &#x2F;&#x2F;调用的是内部类成员变量x</span><br><span class="line">			Outside.this.x++  &#x2F;&#x2F;调用的是外部类成员变量x</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>(2).局部内部类</strong><br>​    在类的局部进行定义，如在类的方法或任意作用域中定义<br>​    由于内部类在类方法或者任意作用域中，<strong>在方法(作用域)的外部是无法访问该内部类</strong>，而内部类却可以访问当前代码块的常量**(final类型的局部变量)<strong>以及</strong>此外部类的所有成员**<br>​    在方法中的局部变量在内部类中可以访问<br>​    <strong>详细见《Java实例-内部类的基本作用》例二</strong></p>
+<p>​    <strong>(3).匿名内部类</strong><br>​    用时再查，和局部内部类一样在方法中，不过去掉类名，在return语句下在描述类体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;语法</span><br><span class="line">return new A()&#123;&#x2F;&#x2F;A为接口名</span><br><span class="line">	&#x2F;&#x2F;类体</span><br><span class="line">&#125;; &#x2F;&#x2F;注意：这里特殊的需要加一个分号，分号代表接口的引用表达式的创建</span><br></pre></td></tr></table></figure>
+<p>​    匿名内部类编译后会产生以“外部类名$序号”为名称的.class文件，序号以1<del>n排列，分别代表1</del>n个匿名内部类</p>
+<p>​    <strong>(4).静态内部类（少见）</strong><br>​    在内部类前加修饰符static，则为静态内部类，<strong>静态内部类中可以声明static成员，但在非静态内部类中不能声明静态成员</strong><br>​    <strong>静态内部类的特点</strong></p>
+<ul>
+<li>静态内部类内不可以使用外部类的非静态成员</li>
+<li>如果创建静态内部类的对象，不需要其外部类的对象<br>​    在程序测试时需要每个文件设置一个主方法，这会产生许多额外的代码，程序本身不需要这些主方法，所以一般把主方法写到静态内部类中，主要是编译后会产生独立类，测试完后删除即可</li>
+</ul>
+<h4 id="8-内部类的继承"><a href="#8-内部类的继承" class="headerlink" title="8. 内部类的继承"></a>8. 内部类的继承</h4><p>​    内部类的继承比普通类的继承要复杂</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">public class First extends A.B&#123; &#x2F;&#x2F;继承内部类class B</span><br><span class="line">	public First(A a) &#123;</span><br><span class="line">		a.super();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class A&#123;</span><br><span class="line">	class B&#123;</span><br><span class="line">		&#x2F;&#x2F;something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    <strong>在某个类继承内部类时，必须硬性给与这个类一个带参数的构造方法，并且该构造方法的参数为需要继承内部类的外部类的引用，同时在构造方法体中使用a.super()语句，这样才为继承提供了必要的对象引用</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/06/15/Java%E5%AE%9E%E4%BE%8B-%E5%86%85%E9%83%A8%E7%B1%BB/">Java实例-内部类</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-06-15T11:32:57.000Z" itemprop="datePublished">
+    2021-06-15
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java%E5%AE%9E%E4%BE%8B/">Java实例</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="Java实例-内部类的基本作用"><a href="#Java实例-内部类的基本作用" class="headerlink" title="Java实例-内部类的基本作用"></a>Java实例-内部类的基本作用</h2><h4 id="1-实例内部类–内部类在外部类中，内部类修饰为private"><a href="#1-实例内部类–内部类在外部类中，内部类修饰为private" class="headerlink" title="1. 实例内部类–内部类在外部类中，内部类修饰为private"></a>1. 实例内部类–内部类在外部类中，内部类修饰为private</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface Food&#123;</span><br><span class="line">	public void doing();</span><br><span class="line">&#125;</span><br><span class="line">public class First&#123;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Outside o &#x3D; new Outside();</span><br><span class="line">		Food i &#x3D; o.create(); &#x2F;&#x2F;用接口引用类型来接内部类实现接口的实例</span><br><span class="line">		i.doing();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outside&#123;</span><br><span class="line">	private class Inside implements Food&#123; &#x2F;&#x2F;private只能在外部类访问</span><br><span class="line">		public void doing() &#123;</span><br><span class="line">			System.out.println(&quot;eat egg&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public Inside create() &#123;</span><br><span class="line">		return new Inside();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-局部内部类–内部类在外部类的方法中，内部类无修饰符"><a href="#2-局部内部类–内部类在外部类的方法中，内部类无修饰符" class="headerlink" title="2. 局部内部类–内部类在外部类的方法中，内部类无修饰符"></a>2. 局部内部类–内部类在外部类的方法中，内部类无修饰符</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface Food&#123;</span><br><span class="line">	public void doing();</span><br><span class="line">&#125;</span><br><span class="line">public class First&#123;	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Outside b &#x3D; new Outside();</span><br><span class="line">		Food c &#x3D; b.a();</span><br><span class="line">		c.doing();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Outside&#123;</span><br><span class="line">	public Food a() &#123; &#x2F;&#x2F;方法返回值类型为接口类型</span><br><span class="line">		class Inside implements Food&#123;</span><br><span class="line">			public void doing() &#123;</span><br><span class="line">				System.out.println(&quot;hello&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return new Inside();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/06/05/Java08/">Java08</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-06-05T11:46:05.000Z" itemprop="datePublished">
+    2021-06-05
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Java/">Java</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h2><h4 id="1-抽象类的引入"><a href="#1-抽象类的引入" class="headerlink" title="1. 抽象类的引入"></a>1. 抽象类的引入</h4><p>​    一般将父类定义为抽象类，然后对这个父类进行继承与多态处理，在继承树中越上方的类越抽象<br>​    在多态机制中，一般不需要将父类初始化对象，只需要子类对象，<strong>在Java中设置的抽象类不能实例化为对象</strong></p>
+<h4 id="2-abstract关键字"><a href="#2-abstract关键字" class="headerlink" title="2. abstract关键字"></a>2. abstract关键字</h4><p>​    abstract关键字定义的类为抽象类，定义的方法为抽象方法，抽象方法没有方法体，方法本身没有意义，但通过重写来获得意义，承载这个抽象方法的抽象类必须被继承，实际上抽象类除了被继承之外没有任何意义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Test&#123;  &#x2F;&#x2F;定义抽象类</span><br><span class="line">	abstract void textAbstract();  &#x2F;&#x2F;定义抽象方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    声明一个抽象的方法，则必须将承载这个抽象方法的类定义为抽象类，不可能在非抽象类获取抽象方法，只要类中有一个抽象方法，这个类就被标记为抽象类<br>​    抽象类被继承后子类若不是抽象类需要实现其中所有的抽象方法，要保证相同的方法名称、参数列表和相同的返回类型<br>​    abstract无法和final共存修饰类，但是抽象类里面可以用final与static修饰变量和方法，若你创建的类不想被创建对象，变量方法不想被继承，但又要可以直接调用，可以实现抽象类</p>
+<h4 id="3-接口的引入"><a href="#3-接口的引入" class="headerlink" title="3. 接口的引入"></a>3. 接口的引入</h4><p>​    当你需要的一系列子类既需要继承重写父类的抽象方法，同时还需要一个共同的方法但实现过程各子类不相同，有些甚至不需要，就可以把这个方法封装在接口中，需要的子类再去实现这个接口，不需要的就不用了<br>​    接口是抽象类的延伸，可以把它看作为一个纯粹的抽象类，接口中的所有方法都没有方法体<br>​    接口用来弥补类无法实现多继承的局限<br>​    由于接口为抽象类，为父类，所以你也可以像之前多态一样去使用接口，具体见<strong>7</strong><br>​    <strong>注意：接口内的方法省略abstract关键字</strong><br>​    如果一个类实现了一个接口中要求的所有的方法，然而没有提供方法体而仅仅只有方法标识，那么这个类一定是一个抽象类</p>
+<h4 id="4-interface关键字"><a href="#4-interface关键字" class="headerlink" title="4. interface关键字"></a>4. interface关键字</h4><p>​    接口使用interface关键字进行定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface drawTest&#123;&#x2F;&#x2F;public可以不要，有public类时就不需要了</span><br><span class="line">	void draw(); &#x2F;&#x2F;接口内的方法省略abstract关键字</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-implements关键字"><a href="#5-implements关键字" class="headerlink" title="5. implements关键字"></a>5. implements关键字</h4><p>​    一个类实现一个接口，可以使用implements关键字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;public可以不要，有public类时就不需要了</span><br><span class="line">public class child extends father implements drawTest&#123;&#x2F;&#x2F;可以不继承直接实现接口的，要实现多个接口每个接口用,隔开</span><br><span class="line">	&#x2F;&#x2F;something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-接口的注意事项"><a href="#6-接口的注意事项" class="headerlink" title="6. 接口的注意事项"></a>6. 接口的注意事项</h4><ul>
+<li>在接口中方法必须定义为public或者abstract形式，其他权限修饰符不被Java编译器认可，如果未注明默认就是public and abstract的</li>
+<li>在接口中定义的任何字段都自动是static和final和public的</li>
+<li>继承一个接口时需要实现接口中所有的方法</li>
+<li>一个类可以实现不止一个接口，语法见<strong>5</strong></li>
+</ul>
+<h4 id="7-接口的进阶"><a href="#7-接口的进阶" class="headerlink" title="7. 接口的进阶"></a>7. 接口的进阶</h4><p>​    <strong>我们不能直接去实例化一个接口，因为接口中的方法都是抽象的，是没有方法体的，这样怎么可能产生具体的实例呢？但是，我们可以使用接口类型的引用指向一个实现了该接口的对象，并且可以调用这个接口中的方法</strong></p>
+<p>​    应该优先使用接口而不是类来引用对象。如果有适合的接口类型存在，那么对于参数、返回值、变量和域来说，就都应该使用接口类型进行声明。只有当你利用构造器创建某个对象的时候，才真正需要引用这个对象的类。<br>​    如果你养成了用接口作为类型的习惯，你的程序将会更加灵活</p>
+<h4 id="8-接口的静态方法"><a href="#8-接口的静态方法" class="headerlink" title="8. 接口的静态方法"></a>8. 接口的静态方法</h4><p>​    Java 8允许静态接口方法<br>​    不能覆盖静态接口方法，只能通过使用接口名+静态接口方法名使用该静态接口方法，实例化后是无法调用的<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/4zrWGD"><img src="https://z3.ax1x.com/2021/10/06/4zrWGD.png" alt="4zrWGD.png"></a></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/06/04/Java07/">Java07</a>
         </h1>
       
@@ -562,245 +821,17 @@
 
     </li>
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/05/05/%E9%9F%B3%E4%B9%90%E5%B0%8F%E7%A8%8B%E5%BA%8F03/">音乐小程序03</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-05-05T09:24:17.000Z" itemprop="datePublished">
-    2021-05-05
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E9%9F%B3%E4%B9%90%E5%B0%8F%E7%A8%8B%E5%BA%8F/">音乐小程序</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="首页的编写"><a href="#首页的编写" class="headerlink" title="首页的编写"></a>首页的编写</h2><p><strong>1. 轮播图</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;block&gt;&lt;&#x2F;block&gt;组件</span><br><span class="line">作用：作为一个结点并不会渲染到界面上，一般把wx:for放在里面，循环中每个选项默认的值是item</span><br></pre></td></tr></table></figure>
-<p>wxml代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;需要对swiper(大盒子)和image(小盒子)进行wxss大小的限定</span><br><span class="line">&lt;swiper autoplay&#x3D;&quot;true&quot; circular&#x3D;&quot;true&quot; indicator-dots&#x3D;&quot;true&quot; class&#x3D;&quot;head&quot;&gt;</span><br><span class="line">  &lt;block wx:for&#x3D;&quot;&#123;&#123;swiperpictures&#125;&#125;&quot;&gt;</span><br><span class="line">    &lt;swiper-item&gt;</span><br><span class="line">      &lt;image src&#x3D;&quot;&#123;&#123;item.url&#125;&#125;&quot; mode&#x3D;&quot;widthFix&quot; class&#x3D;&quot;swiperimg&quot;&gt;&lt;&#x2F;image&gt;  &#x2F;&#x2F;url是在js代码中自己定义的对象名</span><br><span class="line">    &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;&#x2F;block&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br></pre></td></tr></table></figure>
-
-<p>wxss代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.head&#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 544rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.swiperimg&#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>在js中data里的数据就是需要展示在页面中的数据</strong><br>js代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">	&#x2F;&#x2F;建立一个数组swiperpictures</span><br><span class="line">    swiperpictures:[  </span><br><span class="line">	  &#x2F;&#x2F;每一个花括号里面是一个对象,对象名自己起</span><br><span class="line">      &#123;</span><br><span class="line">        &#x2F;&#x2F;对象里面放的是图片的网络地址</span><br><span class="line">        url:&quot;https:&#x2F;&#x2F;636c-cloud-7gxr9uz450402f24-1305716784.tcb.qcloud.la&#x2F;2020.jpg&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        url:&quot;https:&#x2F;&#x2F;636c-cloud-7gxr9uz450402f24-1305716784.tcb.qcloud.la&#x2F;2020.jpg&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        url:&quot;https:&#x2F;&#x2F;636c-cloud-7gxr9uz450402f24-1305716784.tcb.qcloud.la&#x2F;2020.jpg&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-
-<p><strong>2. 组件化开发</strong><br>    (1)组件：在用户界面开发领域，组件是一种面向用户的、独立的、可复用的交互元素的封装<br>    (2)组件的构成<br>    结构-&gt;wxml<br>    逻辑-&gt;js<br>    样式-&gt;wxss<br>    还会有json文件（对当前组件的配置文件）<br>    (3)组件并不一定需要多次使用</p>
-<p><strong>3. 自定义歌单组件</strong><br>​    <strong>(1)创建自定义组件</strong><br>​    在miniprogram中新建一个文件夹components(组件)，再在该文件夹下创建playlist(歌单)文件夹，再在该文件夹下创建component名字可以和文件夹相同<br>​    <strong>(2)自定义组件的引用</strong><br>​    首先要完成自定义组件的构成，如只在wxss中写一段话<br>​    在想要引用的页面的文件的json文件中”usingComponents”中写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;usingComponents&quot;: &#123;</span><br><span class="line">   &quot;l-playlist&quot;: &quot;..&#x2F;..&#x2F;components&#x2F;playlist&#x2F;playlist&quot;  &#x2F;&#x2F;前面是自己对组件起名，后面是写组件的路径，这个路径要精确到文件夹下的文件，不需要写后缀</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>​    之后就在引用组件的页面的wxml文件夹中引用标签名，标签名为你所起的名字<br>​    如，在home.wxml(首页)中引用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;l-playlist&gt;&lt;&#x2F;l-playlist&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​     <strong>(3).从页面向自定义组件传参</strong><br>​     在页面的js文件中的page下新建一个数组playlist_data，再在里面放一些对象(数据)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">playlist_data:[</span><br><span class="line">      &#123;&quot;_id&quot;:&quot;08560c9e5d042a5c0174f1ca26f1d7b2&quot;,&quot;copywrier&quot;:&quot;热门推荐&quot;,&quot;playCount&quot;:1.4641238e+06,&quot;highQuality&quot;:false,&quot;type&quot;:0.0,&quot;canDislike&quot;:true,&quot;name&quot;:&quot;天气转热了，适合听点凉爽的歌。&quot;,&quot;alg&quot;:&quot;cityLevel_unknow&quot;,&quot;createTime&quot;:&#123;&quot;$date&quot;:&quot;2019-06-14T23:14:36.746Z&quot;&#125;,&quot;id&quot;:2.780381322e+09,&quot;picUrl&quot;:&quot;https:&#x2F;&#x2F;p2.music.126.net&#x2F;Biky7TE4CtW6NjGuqoUKZg&#x3D;&#x3D;&#x2F;109951164041827987.jpg&quot;,&quot;trackCount&quot;:53.0&#125;,</span><br><span class="line">      &#123;&quot;_id&quot;:&quot;08560c9e5d042a5c0174f1da7aa357aa&quot;,&quot;highQuality&quot;:false,&quot;copywriter&quot;:&quot;热门推荐&quot;,&quot;canDislike&quot;:true,&quot;playCount&quot;:622822.6,&quot;id&quot;:2.740107647e+09,&quot;name&quot;:&quot;「时空潜行」囿于昼夜的空想主义者&quot;,&quot;type&quot;:0.0,&quot;alg&quot;:&quot;cityLevel_unknow&quot;,&quot;createTime&quot;:&#123;&quot;$date&quot;:&quot;2019-06-14T23:14:36.955Z&quot;&#125;,&quot;picUrl&quot;:&quot;https:&#x2F;&#x2F;p2.music.126.net&#x2F;Q0eS0avwGK04LufWM7qJug&#x3D;&#x3D;&#x2F;109951164116217181.jpg&quot;,&quot;trackCount&quot;:20.0&#125;,</span><br><span class="line">      &#123;&quot;_id&quot;:&quot;08560c9e5d042a5c0174f1de21c7e79e&quot;,&quot;id&quot;:2.828842343e+09,&quot;type&quot;:0.0,&quot;name&quot;:&quot;粤语情诗：与你听风声，观赏过夜星&quot;,&quot;picUrl&quot;:&quot;https:&#x2F;&#x2F;p2.music.126.net&#x2F;K9IcG8cU6v4_SwuQ_x2xMA&#x3D;&#x3D;&#x2F;109951164124604652.jpg&quot;,&quot;highQuality&quot;:false,&quot;alg&quot;:&quot;cityLevel_unknow&quot;,&quot;playCount&quot;:1.785097e+06,&quot;trackCount&quot;:52.0,&quot;copywriter&quot;:&quot;热门推荐&quot;,&quot;canDislike&quot;:true,&quot;createTime&quot;:&#123;&quot;$date&quot;:&quot;2019-06-14T23:14:36.982Z&quot;&#125;&#125;,</span><br><span class="line">      &#123;&quot;_id&quot;:&quot;08560c9e5d042a5d0174f1e67d1bb16f&quot;,&quot;playCount&quot;:7.719329e+06,&quot;highQuality&quot;:false,&quot;trackCount&quot;:950.0,&quot;alg&quot;:&quot;cityLevel_unknow&quot;,&quot;id&quot;:9.17794768e+08,&quot;type&quot;:0.0,&quot;name&quot;:&quot;翻唱简史：日本四百首&quot;,&quot;canDislike&quot;:true,&quot;createTime&quot;:&#123;&quot;$date&quot;:&quot;2019-06-14T23:14:37.037Z&quot;&#125;,&quot;copywriter&quot;:&quot;热门推荐&quot;,&quot;picUrl&quot;:&quot;https:&#x2F;&#x2F;p2.music.126.net&#x2F;NczCuurE5eVvObUjssoGjQ&#x3D;&#x3D;&#x2F;109951163788653124.jpg&quot;&#125;,</span><br><span class="line">      &#123;&quot;_id&quot;:&quot;08560c9e5d042a5d0174f1ea32c4c288&quot;,&quot;type&quot;:0.0,&quot;copywriter&quot;:&quot;热门推荐&quot;,&quot;highQuality&quot;:false,&quot;createTime&quot;:&#123;&quot;$date&quot;:&quot;2019-06-14T23:14:37.097Z&quot;&#125;,&quot;id&quot;:2.201879658e+09,&quot;alg&quot;:&quot;cityLevel_unknow&quot;,&quot;playCount&quot;:1.06749088e+08,&quot;name&quot;:&quot;你的青春里有没有属于你的一首歌？&quot;,&quot;picUrl&quot;:&quot;https:&#x2F;&#x2F;p2.music.126.net&#x2F;wpahk9cQCDtdzJPE52EzJQ&#x3D;&#x3D;&#x2F;109951163271025942.jpg&quot;,&quot;canDislike&quot;:true,&quot;trackCount&quot;:169.0&#125;,</span><br><span class="line">      &#123;&quot;_id&quot;:&quot;08560c9e5d0829820362a79f4b049d2d&quot;,&quot;alg&quot;:&quot;cityLevel_unknow&quot;,&quot;name&quot;:&quot;「乐队的夏天」参赛歌曲合集丨EP04更新&quot;,&quot;highQuality&quot;:false,&quot;picUrl&quot;:&quot;http:&#x2F;&#x2F;p2.music.126.net&#x2F;2WE5C2EypEwLJd2qXFd4cw&#x3D;&#x3D;&#x2F;109951164086686815.jpg&quot;,&quot;trackCount&quot;:158.0,&quot;createTime&quot;:&#123;&quot;$date&quot;:&quot;2019-06-18T00:00:02.553Z&quot;&#125;,&quot;copywriter&quot;:&quot;热门推荐&quot;,&quot;playCount&quot;:1.5742008e+06,&quot;canDislike&quot;:true,&quot;id&quot;:2.79477263e+09,&quot;type&quot;:0.0&#125;</span><br><span class="line"></span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-<p>​      之后在该页面的wxml文件中，循环遍历这个控件的标签</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;view&gt;   &#x2F;&#x2F;view标签是之后可以设计一些样式</span><br><span class="line">  &lt;block wx:for&#x3D;&quot;&#123;&#123;playlist_data&#125;&#125;&quot;&gt;</span><br><span class="line">    &lt;l-playlist send_data&#x3D;&quot;&#123;&#123;item&#125;&#125;&quot;&gt;&lt;&#x2F;l-playlist&gt;  &#x2F;&#x2F;send_data:将数据传出去,名字随便起的</span><br><span class="line">  &lt;&#x2F;block&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>(4).在自定义组件中接收参数</strong><br>​    在自定义组件的js文件中<br>​    properties:{}是用来接收传过来的参数的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">properties: &#123;</span><br><span class="line">	  &#x2F;&#x2F;冒号前的名字与之前页面自定义控件起的属性名一致</span><br><span class="line">	  send_data:&#123;</span><br><span class="line">        type:Object  &#x2F;&#x2F;指定传入参数的类型，类型给与的是对象用object，其他值后面再定义</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-<p>​    data:{}里面放的是组件内部的数据<br>​    methods:{}里面放组件里对应的一些方法(如点击跳转)</p>
-<p>​    <strong>(5).在组件中显示这些传过来的参数</strong><br>​    在组件的wxml文件中引用这些传过来的参数，通过在组件js的属性名来引用对象中具体的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;playlist-content&quot;&gt;</span><br><span class="line">  &lt;image src&#x3D;&quot;&#123;&#123;send_data.picUrl&#125;&#125;&quot; class&#x3D;&quot;playlist-img&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;text class&#x3D;&quot;playlist-playCount&quot;&gt;&#123;&#123;send_data.playCount&#125;&#125;&lt;&#x2F;text&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;playlist-name&quot;&gt;&#123;&#123;send_data.name&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
-<p>​    之后再通过组件的wxss文件来写一些css样式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">.playlist-content&#123;</span><br><span class="line">  width: 220rpx;</span><br><span class="line">  position: relative;</span><br><span class="line">  padding-bottom: 20rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.playlist-img&#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  height: 220rpx;</span><br><span class="line">  border-radius: 6rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.playlist-playCount&#123;</span><br><span class="line">  font-size: 24rpx;</span><br><span class="line">  color: white;</span><br><span class="line">  text-shadow: 1px 0px 0px black;</span><br><span class="line">  position: absolute;</span><br><span class="line">  right: 10rpx;</span><br><span class="line">  top: 4rpx;</span><br><span class="line">  padding-left: 26rpx; </span><br><span class="line">  background: ;   &#x2F;&#x2F;自行引入base64的图片</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.playlist-name&#123;</span><br><span class="line">  font-size: 26rpx;</span><br><span class="line">  line-height: 1.2;</span><br><span class="line">  padding: 2px 0px 0px;</span><br><span class="line">  display: -webkit-box;</span><br><span class="line">  -webkit-box-orient: vertical;</span><br><span class="line">  -webkit-line-clamp: 2;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">  text-overflow: ellipsis;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>注意：小程序中的背景图片是不允许使用网页图片的，只能使用小程序的本地图片，或者base64的图片(百度一下很多网站都可以在线把图片转base64)</strong><br>​    之后对控件在页面的位置再在页面的wxss中写一些布局(css)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.home-playlist&#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-wrap: wrap;</span><br><span class="line">  justify-content: space-around;</span><br><span class="line">  margin-top: 10rpx;</span><br><span class="line">  flex-direction: row;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>(6).组件化开发的数据监听器</strong><br>​    当数据变化时可以监听到数据的变化<br>​    在组件的js文件中的properties的同级写一个数据监听器observers:{}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">   * 数据监听器</span><br><span class="line">   *&#x2F;</span><br><span class="line">  observers:&#123;</span><br><span class="line">  &#x2F;&#x2F;里面写对谁进行数据监听，对应的是一个方法</span><br><span class="line">    send_data(count)&#123;</span><br><span class="line">      console.log(count) &#x2F;&#x2F;此时打印出整个对象</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    如果要监听对象里的某个具体属性，需要改为</span><br><span class="line">    [&#39;send_data.playCount&#39;](count)&#123;</span><br><span class="line">      console.log(count)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>(7).对组件化开发监听器监听的数据的格式化处理</strong><br>​    在组件的js文件中的methods:{}中自己定义一个方法<br>​    注意：私有方法的命名格式以_开头</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    _tranNumber(num,point)&#123;</span><br><span class="line">      let numStr &#x3D; num.toString().split(&#39;.&#39;)[0]   &#x2F;&#x2F;把数字转为字符串类型，并忽略小数点，split表分隔作用，[0]取第一部分</span><br><span class="line">      &#x2F;&#x2F;对数字转化</span><br><span class="line">      if(numStr.length &lt; 6)&#123;</span><br><span class="line">        return numStr</span><br><span class="line">      &#125;</span><br><span class="line">      &#x2F;&#x2F;substring(start,end)(得到的子字符串不包含end位置的字符)</span><br><span class="line">      else if(numStr.length &gt;&#x3D; 6 &amp;&amp; numStr.length &lt;&#x3D; 8)&#123;</span><br><span class="line">        let decimal &#x3D; numStr.substring(numStr.length - 4 ,numStr.length - 4 + point) </span><br><span class="line">        return parseFloat(parseInt(num &#x2F; 10000) + &quot;.&quot; + decimal) + &quot;万&quot;</span><br><span class="line">      &#125;</span><br><span class="line">      else if(numStr.length &gt; 8)&#123;</span><br><span class="line">        let decimal &#x3D; numStr.substring(numStr.length - 8 , numStr.length - 8 + point)</span><br><span class="line">        return parseFloat(parseInt(num &#x2F; 100000000) + &quot;.&quot; + decimal) + &quot;亿&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>(7).通过this.setData的方式将处理的数据显示在页面上</strong><br>​    <strong>需要引用第二个值来接收处理完的数据，，因为如果继续给[‘send_data.playCount’]，那又会被数据监听器监听到会进入一个死循环,==即不能对当前监听的值进行赋值==</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 数据监听器</span><br><span class="line"> *&#x2F;</span><br><span class="line">observers:&#123;</span><br><span class="line">  [&#39;send_data.playCount&#39;](count)&#123;</span><br><span class="line">    console.log(count)</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      _count:this._tranNumber(count,2)  &#x2F;&#x2F;将处理后的数据赋值给刚刚声明的变量</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 组件的初始数据</span><br><span class="line"> *&#x2F;</span><br><span class="line">data: &#123;</span><br><span class="line">  _count:0   &#x2F;&#x2F;重新声明一个值来接收处理后的值</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p>​    页面上应该显示_count的值，所以需要修改控件的wxml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;text class&#x3D;&quot;playlist-playCount&quot;&gt;&#123;&#123;_count&#125;&#125;&lt;&#x2F;text&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>4. wx:key的使用</strong><br>​    在使用wx:for时，应该写入一个wx:key来提高程序的性能<br>​    <strong>(1).对于遍历时对于每个对象的重命名，通过wx:for-item来改名</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;将每一个对象重命名为data</span><br><span class="line">&lt;block wx:for&#x3D;&quot;&#123;&#123;arr&#125;&#125;&quot; wx:for-item&#x3D;&quot;data&quot;&gt; </span><br><span class="line">	&lt;view&gt;&#123;&#123;data&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;block&gt;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>(2).索引的使用</strong><br>​    通过index来引用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;block wx:for&#x3D;&quot;&#123;&#123;arr&#125;&#125;&quot; wx:for-item&#x3D;&quot;data&quot;&gt; </span><br><span class="line">	&lt;view&gt;&#123;&#123;index&#125;&#125;:&#123;&#123;data&#125;&#125;&lt;&#x2F;view&gt;   &#x2F;&#x2F;使用索引，从0开始</span><br><span class="line">&lt;&#x2F;block&gt;</span><br></pre></td></tr></table></figure>
-<p>​    如果要更改索引的名字，通过wx:for-index来改名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;block wx:for&#x3D;&quot;&#123;&#123;arr&#125;&#125;&quot; wx:for-item&#x3D;&quot;data&quot; wx:for-index&#x3D;&quot;idx&quot;&gt; </span><br><span class="line">	&lt;view&gt;&#123;&#123;idx&#125;&#125;:&#123;&#123;data&#125;&#125;&lt;&#x2F;view&gt;   &#x2F;&#x2F;使用索引，从0开始</span><br><span class="line">&lt;&#x2F;block&gt;</span><br></pre></td></tr></table></figure>
-<p>​    <strong>(3).wx:key的作用</strong><br>​    <strong>当遍历的对象会随着一些变化而变化时，当前这些对象要保持自己的一些状态就需要使用wx:key</strong><br>​    小程序中提供*this来指向元素本身</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx:key&#x3D;&quot;&#123;&#123;*this&#125;&#125;&quot;</span><br></pre></td></tr></table></figure>
-
-<p>​    如果指定的是对象的话，只需要指定对象的一个唯一的属性作为wx:key中两个花括号里的参数就行</p>
-<p>​    因此，现在把项目中的一些警告修改一下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">遍历向组件传参时，此时_id为对象的主键，把他作为wx:key的参数</span><br><span class="line">&lt;block wx:for&#x3D;&quot;&#123;&#123;playlist_data&#125;&#125;&quot; wx:key&#x3D;&quot;_id&quot;&gt;</span><br><span class="line"></span><br><span class="line">遍历轮播图时，把轮播图图片的对象url作为wx:key的参数</span><br><span class="line">&lt;block wx:for&#x3D;&quot;&#123;&#123;swiperpictures&#125;&#125;&quot; wx:key&#x3D;&quot;url&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>此时，警告都会消除</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/05/05/%E8%AE%BA%E9%9B%B6%E7%A2%8E%E5%8C%96%E6%97%B6%E9%97%B4%E7%9A%84%E7%94%B1%E6%9D%A5/">论零碎化时间的由来</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-05-05T02:50:42.000Z" itemprop="datePublished">
-    2021-05-05
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/my-think/">my-think</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <p>​    零碎化的时间确实是宝贵的，但完整的时间更为珍贵，利用零碎化的时间是好的，但把原先完整的时间打碎然后再装模做样的说零碎化的时间怎么怎么样就是在自欺欺人。<br>​    但为什么完整的时间会被打乱，第一是计划问题，一个无能的，乱七八糟的计划会使你本不富裕的时间雪上加霜，大多数时间花费在了无用功身上，还有一个就是放纵在手机和电脑的影响下，原本要做的事情没有做，反而会向下压，这样你就少了更多的时间那么当你完成这些事情后，你的完整的时间要么变成了零碎化的时间，要么甚至就是没有。<br>​    所以，更应该保护完整的时间，在完整的时间下多做一些事情，而不是在消极把原本完整的时间碎片化。</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/05/04/Java02/">Java02</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-05-04T03:12:43.000Z" itemprop="datePublished">
-    2021-05-04
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><h4 id="1-if条件语句"><a href="#1-if条件语句" class="headerlink" title="1. if条件语句"></a>1. if条件语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if()&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>   if后面”()”内的值必须是boolean型的,若语句中仅有一条语句，则可以省略条件语句中的”{}”，书上说为增强程序可读性最好不要省略<br>   <strong>注意：if语句是从上到下执行，上面有满足条件就算下面满足条件也不执行</strong></p>
-<h4 id="2-if-else与三元运算符的转化"><a href="#2-if-else与三元运算符的转化" class="headerlink" title="2. if~else与三元运算符的转化"></a>2. if~else与三元运算符的转化</h4><p>例：求绝对值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(a&gt;0)</span><br><span class="line">	b &#x3D; a;</span><br><span class="line">else</span><br><span class="line">	b &#x3D; -a;</span><br><span class="line">可以转化为</span><br><span class="line">b &#x3D; a &gt; 0?a:-a; &#x2F;&#x2F;问号前面的表达式为真则返回问号与冒号之间的表达式，否则把冒号后面的表达式给b，注意：三元运算符是有一个返回值的</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-switch多分支语句"><a href="#3-switch多分支语句" class="headerlink" title="3. switch多分支语句"></a>3. switch多分支语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">switch(表达式) &#x2F;*在JDK1.6以前常量值必须是整型或字符型，在JDK1.7中，常量值除了整型或字符型还可以是字符串类型，注意常量值绝对不能是实数，如1.1就不行*&#x2F;</span><br><span class="line">&#123;</span><br><span class="line">	注意：同一个switch语句，case的常量值必须不互相同</span><br><span class="line">	case 常量值1:</span><br><span class="line">	语句块1;</span><br><span class="line">	break;</span><br><span class="line">	...</span><br><span class="line">	case 常量值n:</span><br><span class="line">	语句块n;</span><br><span class="line">	break;</span><br><span class="line">	default:</span><br><span class="line">	语句块n+1; &#x2F;&#x2F;default不需要break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-while循环语句-先判断再执行"><a href="#4-while循环语句-先判断再执行" class="headerlink" title="4. while循环语句(先判断再执行)"></a>4. while循环语句(先判断再执行)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while(条件表达式)&#123;  &#x2F;&#x2F;条件表达式返回值为真继续循环，为假退出循环</span><br><span class="line">	执行语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-do…while循环语句-先执行再判断"><a href="#5-do…while循环语句-先执行再判断" class="headerlink" title="5. do…while循环语句(先执行再判断)"></a>5. do…while循环语句(先执行再判断)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">do</span><br><span class="line">&#123;</span><br><span class="line">	执行语句</span><br><span class="line">&#125;</span><br><span class="line">while(条件表达式);  &#x2F;&#x2F;注意这里是比while循环多一个分号</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-for循环语句"><a href="#6-for循环语句" class="headerlink" title="6. for循环语句"></a>6. for循环语句</h4><p>与c一样<br><strong>注意：for循环里第一个表达式里是填初始化表达式，可以为空，但不可以直接填一个变量(不管什么类型)，哪怕这个变量前面已经定义赋值</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(i;i&lt;12;i++) &#x2F;&#x2F;错误的，i因改为i&#x3D;0，若i是已经定义赋值的这个第一个表达式也可以直接为空不写东西</span><br></pre></td></tr></table></figure>
-
-<h4 id="7-foreach语句"><a href="#7-foreach语句" class="headerlink" title="7. foreach语句"></a>7. foreach语句</h4><p>foreach是for语句的特殊简化版本，不能完全取代for语句，任何foreach语句都可以改写为for语句版本，foreach语句一般用于遍历数组等方面,在这种方面给与程序员很大的方便</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(元素变量x:遍历对象obj)&#123;</span><br><span class="line">	引用了x的java语句;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例：输出一维数组中全部元素</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String args[]) &#123;</span><br><span class="line">		int[] arr &#x3D; &#123;3,5,7,4&#125;;</span><br><span class="line">		for(int x:arr) &#123;</span><br><span class="line">			System.out.println(x);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="8-循环控制"><a href="#8-循环控制" class="headerlink" title="8. 循环控制"></a>8. 循环控制</h4><p>(1).break<br>中断循环<br><strong>注意：break只能跳出一层循环，如果想直接跳到外层的循环，可以使用“标签”(java提供的功能)</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标签名:循环体&#123;</span><br><span class="line">	break 标签名;  &#x2F;&#x2F;直接跳出有标签名的循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>(2).continue<br>跳过本次循环执行下一次循环<br>**注意：continue也支持标签功能</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标签名:循环体&#123;</span><br><span class="line">	continue 标签名;  &#x2F;&#x2F;直接跳出有标签名的循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/05/03/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A405/">图灵工作室05</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-05-03T14:18:27.000Z" itemprop="datePublished">
-    2021-05-03
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <p>在app.json中配置全局的属性，pages为你要的页面的种类，window为标题栏的样式。<br>配置下标栏关键字为tabBar，在这里面有list属性用来进行编写（最少是两个，最多不能超过五个）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;tabBar&quot;: &#123;</span><br><span class="line">	&quot;color&quot;:&quot;#474747&quot;,           &#x2F;&#x2F;文字未选中时的颜色</span><br><span class="line">	&quot;selectedColor&quot;:&quot;#d43c43&quot;    &#x2F;&#x2F;文字选中时的颜色</span><br><span class="line">    &quot;list&quot;: [&#123;</span><br><span class="line">      &quot;pagePath&quot;: &quot;pages&#x2F;home-page&#x2F;home-page&quot;,    &#x2F;&#x2F;页面路径</span><br><span class="line">      &quot;text&quot;: &quot;首页&quot;,                             &#x2F;&#x2F;页面下面名字</span><br><span class="line">      &quot;iconPath&quot;: &quot;.&#x2F;pages&#x2F;image&#x2F;icon-home-normal.png&quot;,  &#x2F;&#x2F;未点击时图标样式</span><br><span class="line">      &quot;selectedIconPath&quot;: &quot;.&#x2F;pages&#x2F;image&#x2F;icon-home-primary.png&quot; &#x2F;&#x2F;&#x2F;点击时图标样式</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    ]&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>js里不要随意加，</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
 </ul>
 
   <section id="nav-wrapper">
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">« prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">next »</a>
+      <a class="extend prev" rel="prev" href="/page/4/">« prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">next »</a>
     </nav>
   </section>
 
 
             <footer>
-    <div>© 2022 - nature </div>
+    <div>© 2023 - nature </div>
     <div>
         <span>
             Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>

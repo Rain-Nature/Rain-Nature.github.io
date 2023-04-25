@@ -70,6 +70,191 @@
     <header class="title">
       
         <h1>
+          <a href="/2021/04/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%95%86%E5%93%81%E9%A1%B5%E9%9D%A2/">微信小程序-商品页面</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-04-18T09:56:15.000Z" itemprop="datePublished">
+    2021-04-18
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/wx%E5%AE%9E%E8%B7%B5/">wx实践</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;swiper class&#x3D;&quot;myswiper&quot; bindchange&#x3D;&quot;changeImg&quot; indicator-dots&#x3D;&quot;ture&quot; autoplay&#x3D;&quot;ture&quot; circular&#x3D;&quot;ture&quot;&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;租借图片&#x2F;毕业季.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;apple.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;hw1.jpg?sign&#x3D;fee0f936bbe930fb6d94b51747d7a213&amp;t&#x3D;1618020235&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;parent&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color1&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text1&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;money&quot;&gt;￥&#123;&#123;price&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text2&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;people&quot;&gt;0人买过&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color2&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text3&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple&quot;&gt;&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text4&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple_computer&quot;&gt;这是&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;bottom&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture1&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;server&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-question.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;bottom_text&quot;&gt;客服&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture2&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;shop&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-shop.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;bottom_text&quot;&gt;商店&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;last&quot;&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;button&quot;&gt;立即购买&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h3><p>.picture{<br>  width: 100%;<br>}</p>
+<p>.myswiper{<br>  width: 100%;<br>  height: 750rpx;<br>}</p>
+<p>.parent{<br>  width: 100%;<br>  height: 250rpx;<br>  display: flex;<br>  flex-direction: column;<br>  /* background-color:blue; */<br>}</p>
+<p>.color1{<br>  width: 100%;<br>  display: flex;<br>  flex-direction: row;<br>  /* background-color: yellow; */<br>  flex-grow: 1;<br>}</p>
+<p>.color2{<br>  width: 100%;<br>  display: flex;<br>  flex-direction:column;<br>  /* background-color:green; */<br>  flex-grow: 2;<br>}</p>
+<p>.text1{<br>  /* background-color: red; */<br>  padding-left: 25rpx;<br>  display: flex;<br>  flex-direction: column;<br>  align-items: flex-start;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
+<p>.text2{<br>  /* background-color: blue; */<br>  display: flex;<br>  flex-direction: column;<br>  padding-right: 25rpx;<br>  align-items: flex-end;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
+<p>.text3{<br>  /* background-color: blue; */<br>  display: flex;<br>  padding-left: 20rpx;<br>  flex-direction: column;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
+<p>.text4{<br>  /* background-color: brown; */<br>  display: flex;<br>  padding-left: 20rpx;<br>  flex-direction: column;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
+<p>.money{<br>  color: red;<br>  font-size: 40rpx;<br>  font-weight: bold;<br>}</p>
+<p>.people{<br>  color:#DCDCDC;<br>  font-size: 25rpx;<br>}</p>
+<p>.apple{<br>  font-size: 40rpx;<br>  font-weight: bold;<br>}</p>
+<p>.apple_computer{<br>  color:#DCDCDC;<br>  font-size: 25rpx;<br>}</p>
+<p>.bottom{<br>  position: fixed;<br>  bottom: 0;<br>  width: 100%;<br>  height: 100rpx;<br>  /* background:yellow; */<br>  display:flex;<br>  flex-direction: row;<br>}</p>
+<p>.bottom_picture1{<br>  /* background-color: aqua; */<br>  padding-left: 14rpx;<br>  width: 13%;<br>  height: 100rpx;<br>  display: flex;<br>  flex-direction:column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
+<p>.server{<br>  width: 55rpx;<br>}</p>
+<p>.shop{<br>  width: 55rpx;<br>}</p>
+<p>.bottom_picture2{<br>  /* background-color: rgb(71, 127, 190); */<br>  width: 13%;<br>  height: 100rpx;<br>  display: flex;<br>  flex-direction:column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
+<p>.bottom_text{<br>  font-size: 28rpx;<br>}</p>
+<p>.last{<br>  padding-left: 30rpx;<br>  display: flex;<br>  flex-direction: column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
+<p>.button{<br>  width: 460rpx !important;<br>  background: #f12711;  /* fallback for old browsers <em>/<br>  background: -webkit-linear-gradient(to right, #f5af19, #f12711);  /</em> Chrome 10-25, Safari 5.1-6 <em>/<br>  background: linear-gradient(to right, #f5af19, #f12711); /</em> W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */</p>
+<p>  border-radius: 140rpx;<br>  color: white !important;<br>  font-weight: normal;<br>  font-size: 14px;<br>}</p>
+<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><p>Page({<br>  data:{<br>    price:200,<br>    shopname:’我们毕业了’<br>  },<br>  changeImg:function(e){<br>    console.log(e.detail.current)<br>    var currentIndex=e.detail.current<br>    if(currentIndex==0){<br>      this.setData({<br>        price:200,<br>        shopname:’我们毕业了’<br>      })<br>    }else if(currentIndex==1){<br>      this.setData({<br>        price:5700,<br>        shopname:’苹果电脑’<br>      })<br>    }else{<br>      this.setData({<br>        price:12000,<br>        shopname:’华为笔记本’<br>      })<br>    }<br>  }<br>})</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/04/16/%E8%87%B3%E7%8E%B0%E5%9C%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E8%AF%97/">至现在自己的诗</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-04-16T12:29:30.000Z" itemprop="datePublished">
+    2021-04-16
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/my-think/">my-think</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="至现在自己的诗-2021-04-16"><a href="#至现在自己的诗-2021-04-16" class="headerlink" title="至现在自己的诗(2021-04-16)"></a>至现在自己的诗(2021-04-16)</h2><p>  <strong>泊秦淮</strong><br>               杜牧<br>烟笼寒水月笼沙，<br>夜泊秦淮近酒家。<br><strong>商女不知亡国恨，<br>隔江犹唱后庭花。</strong></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/04/16/%E8%AE%BA%E8%87%AA%E5%88%B6%E5%8A%9B%E6%98%AF%E6%80%8E%E6%A0%B7%E4%B8%A7%E5%A4%B1%E7%9A%84/">论自制力是怎样丧失的</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-04-16T12:27:09.000Z" itemprop="datePublished">
+    2021-04-16
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/my-think/">my-think</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="论人的自制力是怎样消失的"><a href="#论人的自制力是怎样消失的" class="headerlink" title="论人的自制力是怎样消失的"></a>论人的自制力是怎样消失的</h2><p>1.首先必须要有一个安逸的环境，安逸的环境令人神往，当然这也是大多数人奋斗的目标，当达到这个指标时，人的思维就会停滞不前，而且会觉得只要保持这个状态就可以了，不需要去花费多余的时间去做别的事情，而这种状态是不可能靠着这样维持的，当放纵的时间足够长，实力亦然不支持继续保持这种状态时，平衡必将被打破，于是乎，此时必然会想办法硬着头皮冲（即：头铁）过这段时间，而后换了一个环境后，又开始从头来过，循环往复，这也是大多数普通人想的吧。</p>
+<p>2.其次需要一部手机和一个好玩上瘾的游戏，此时，快乐的时光必然来临，多巴胺的分泌让人感到愉悦感，而喷人同样令人痛快，双重感觉下时间如梭，而万一连跪则可以把脾气发泄到一堆陌生的废物身上，这让本来沮丧的心情又平添了一番趣味，而靠着赌我就不信可以一直输的心态继续恶心队友，而游戏的elo必然会妥协的就像不会让你一直赢一样，这会使你感觉，哦，原来我打败了系统，系统还是向我低头了，而征服的感觉会继续让你沉迷其中不得自拔。</p>
+<p>3.还有就是过分的自信，觉得自己可以去战胜懒惰，可以不需要任何的计划就完全的避开慵懒，也许刚开始是有一定作用的，但是到了后面在懒惰向心力的作用下，只受单力作用的你，必然做平抛运动直刺深渊。</p>
+<p><strong>当一个人丧失了斗志，变得随遇而安，那必将离失败不远，而赌徒的心态和极高的欲望心会使得你向着地狱踩下油门。</strong></p>
+<hr>
+<p>至此，必须需要摆正自己的定位，不要老想着未来眼高手低，脚踏实地一步一个脚印。</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2021/04/11/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day03/">图灵工作室day03</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2021-04-11T08:51:34.000Z" itemprop="datePublished">
+    2021-04-11
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h2><p>1.任何一个容器都可以启用flex布局<br>2.flex布局也叫弹性布局</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">(1).display:flex  &#x2F;&#x2F;启用flex布局</span><br><span class="line">(2).flex-direction属性决定主轴方向</span><br><span class="line">    flex-direction：column &#x2F;&#x2F;设置垂直方向为主轴</span><br><span class="line">    flex-direction：raw &#x2F;&#x2F;设置横轴方向为主轴</span><br><span class="line">    交叉轴等于法向量，主轴于盒子方向相同</span><br><span class="line"></span><br><span class="line">(3).对盒子先设置大盒子，justity-content：center;对主轴居中对齐</span><br><span class="line">                     他的其他属性</span><br><span class="line">                     flex-start（默认值）：左对齐</span><br><span class="line">                     flex-end：右对齐</span><br><span class="line">                     center： 居中</span><br><span class="line">                     space-between：两端对齐，项目之间的间隔都相等。</span><br><span class="line">                     space-around：每个项目两侧的间隔相等。所以，项目之间                                    的间隔比项目与边框的间隔大一倍。</span><br><span class="line">                     </span><br><span class="line">                     align-items：center；对交叉轴居中对齐</span><br><span class="line">              	     他的其他属性</span><br><span class="line">              	     flex-start：交叉轴的起点对齐。</span><br><span class="line">                     flex-end：交叉轴的终点对齐。</span><br><span class="line">                     center：交叉轴的中点对齐。</span><br><span class="line">                     baseline: 项目的第一行文字的基线对齐。</span><br><span class="line">                     stretch（默认值）：如果项目未设置高度或设为auto，将占                                       满整个容器的高度。</span><br><span class="line">    </span><br><span class="line">    在此之后每制造一个小盒子都会按照设定方式排列</span><br><span class="line"></span><br><span class="line">(4).flex-wrap属性决定盒子排不下的时候是否换行</span><br><span class="line">    flex-wrap:nowrap(默认); &#x2F;&#x2F;不换行，如果放不下的情况下会让所有盒子等比例缩小来放</span><br><span class="line">    flex-wrap:wrap;        &#x2F;&#x2F;换行，第一行在上方</span><br><span class="line">    flex-wrap:wrap-reverse &#x2F;&#x2F;换行，第一行在下方</span><br><span class="line"></span><br><span class="line">(5).order属性</span><br><span class="line">    order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0</span><br><span class="line">    order &#x3D; 1;</span><br><span class="line">    </span><br><span class="line">(6).flex-grow属性</span><br><span class="line">    flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</span><br><span class="line"></span><br><span class="line">当一个flex-grow为1，而其他为0时，该盒子会占去除那些为0盒子占的空间外的全部空间</span><br><span class="line"></span><br><span class="line">(7).flex布局自动计算高度不需要去手动分配，会适得其反</span><br></pre></td></tr></table></figure>
+
+<p><strong>其他的暂时没有用上就先不补了</strong></p>
+<h2 id="js部分语法"><a href="#js部分语法" class="headerlink" title="js部分语法"></a>js部分语法</h2><p>1.js中不分’ ‘,” “,一般用’ ‘</p>
+<p>2.let 块作用域，var 函数作用域（整个函数中在哪定义生命周期为整个函数）</p>
+<p>3.控制台打印<br>console.log()函数 //普通文本<br>console.warn()函数 //警告文本<br>console.error()函数 //出错文本</p>
+<p>4.input控件disable控制是否允许输入</p>
+<p>5.转浮点和整型来做差来判断精度是否丢失</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2021/04/09/%E7%BC%96%E7%A0%81%E7%9A%84%E8%A7%84%E5%88%99/">编码的规则</a>
         </h1>
       
@@ -354,206 +539,17 @@
 
     </li>
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/03/13/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day01/">图灵工作室day01</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-03-13T12:12:25.000Z" itemprop="datePublished">
-    2021-03-13
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h3 id="微信小程序简介"><a href="#微信小程序简介" class="headerlink" title="微信小程序简介"></a>微信小程序简介</h3><p>1.微信小程序是以微信为载体，使用微信内置的浏览器</p>
-<p>2.微信开创了二维码时代</p>
-<p>3.微信公众平台是微信开发的一个综合性平台</p>
-<p>4.微信小商店(新)可以去玩下</p>
-<h3 id="微信小程序开发"><a href="#微信小程序开发" class="headerlink" title="微信小程序开发"></a>微信小程序开发</h3><p>1.初学者一般使用pages文件下的文件组进行开发,常用的是index.wxml,index.wxss<br>2.image的属性中除了src还有代码mode=”widthFix”等比例缩放<br>3.swiper滚动特效(轮播器),swiper标签下面必须要跟多组swiper-item标签,在swiper-item中可以继续使用    其他标签<br>4.html与css关系<br>属性(html)=&gt;样式(css)<br>class=&gt;.<br>id=&gt;#<br>5.插入图片(html部分)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;image src&#x3D;&quot;..&#x2F;xxxx&#x2F;xxxx&#x2F;xxx.png&quot;&gt;     &#x2F;&#x2F;图片格式随意</span><br></pre></td></tr></table></figure>
-<p>6.css的一些样式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.text-align:center;居中 &#x2F;&#x2F;注意这个需要在外部盒子中写,影响内部盒子</span><br><span class="line">2.font-size:30rpx; 设置字体大小 &#x2F;&#x2F;rpx结尾则字体可随设备变化而比例变化,px就不行</span><br><span class="line">3.text-decoration:underline; 设置下划线 &#x2F;&#x2F;引用则产生下划线</span><br><span class="line">4.text-decoration-color:blue; 设置下划线颜色 &#x2F;&#x2F;这里为蓝色,可以用#加数字来弄颜色</span><br><span class="line">5.width:90%; 宽度为屏幕的90% </span><br></pre></td></tr></table></figure>
-<p>7.用QQ截取颜色<br>打开QQ的截图功能,放在电脑屏幕中要的颜色上,按ctrl+c复制色号在剪贴板</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/03/08/%E8%BD%B0%E7%82%B8%E4%BB%A3%E7%A0%81/">轰炸代码</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-03-08T11:52:33.000Z" itemprop="datePublished">
-    2021-03-08
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/C/">C</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="C语言实现QQ的代码轰炸"><a href="#C语言实现QQ的代码轰炸" class="headerlink" title="C语言实现QQ的代码轰炸"></a>C语言实现QQ的代码轰炸</h2><h3 id="1-原理"><a href="#1-原理" class="headerlink" title="1.原理"></a>1.原理</h3><p>通过使用Windows的句柄来实现对桌面窗口的控制，获取QQ界面发送的句柄，然后通过虚拟键盘来控制，来实现键盘控制QQ消息的发送</p>
-<h3 id="2-代码"><a href="#2-代码" class="headerlink" title="2.代码"></a>2.代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;Windows.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a&#x3D;0,i,j;</span><br><span class="line">    char name[100];</span><br><span class="line">    char sentence[100];</span><br><span class="line"></span><br><span class="line">    printf(&quot;Window of name:&quot;);</span><br><span class="line">    scanf(&quot;%s&quot;,name);</span><br><span class="line">    HWND h &#x3D; FindWindow(0,name);</span><br><span class="line">    printf(&quot;The once:&quot;);</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;a);</span><br><span class="line">    printf(&quot;The Sentence is:&quot;);</span><br><span class="line">    scanf(&quot;%s&quot;,sentence);</span><br><span class="line">    for(i&#x3D;0;i&lt;a;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        for(j&#x3D;0;j&lt;strlen(sentence);j++)</span><br><span class="line">        &#123;</span><br><span class="line">            SendMessage(h,WM_CHAR,sentence[j]&amp;0xff,0);</span><br><span class="line">        &#125;</span><br><span class="line">        SendMessage(h,WM_KEYDOWN,VK_RETURN,0);</span><br><span class="line">        SendMessage(h,WM_KEYUP,VK_RETURN,0);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n\nfinish&quot;);</span><br><span class="line">    return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-使用方法"><a href="#3-使用方法" class="headerlink" title="3.使用方法"></a>3.使用方法</h3><ul>
-<li>首先打开QQ打开想要轰炸的代码窗口<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/6lbHZ4"><img src="https://s3.ax1x.com/2021/03/08/6lbHZ4.jpg" alt="6lbHZ4.jpg"></a></li>
-<li>输入窗体名称（将窗口最小化后把鼠标放在最小化窗口上）</li>
-<li>输入轰炸次数</li>
-<li>输入轰炸内容<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/6lqkFA"><img src="https://s3.ax1x.com/2021/03/08/6lqkFA.jpg" alt="6lqkFA.jpg"></a></li>
-<li>确保要轰炸的窗口保持在黑窗口下</li>
-<li>按Enter键开始轰炸</li>
-</ul>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/02/11/elo-rating-system/">elo rating system</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-02-11T03:00:56.000Z" itemprop="datePublished">
-    2021-02-11
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/C/">C#</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="elo-rating-system"><a href="#elo-rating-system" class="headerlink" title="elo rating system"></a>elo rating system</h2><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>ELO等级分制度 是美国物理学家 Arpad Elo 创建的一个衡量各类对弈活动选手水平的评分方法，是当今对弈水平评估的公认的权威方法。被广泛应用于国际象棋、围棋、足球等运动，以及很多网游与电子竞技产业（如王者荣耀）。</p>
-<h3 id="2-主要用途"><a href="#2-主要用途" class="headerlink" title="2.主要用途"></a>2.主要用途</h3><p>ELO机制主要应用在排位或者某些匹配上，可以为你寻找到和你水平相近的对手，但是在多人组队时对中高水平者不友好。</p>
-<h3 id="3-ELO的计算方法"><a href="#3-ELO的计算方法" class="headerlink" title="3.ELO的计算方法"></a>3.ELO的计算方法</h3><p>Ra：A玩家当前的积分<br>Rb：B玩家当前的积分<br>Sa：实际胜负值，胜=1，平=0.5，负=0<br>Ea：预期A选手的胜负值<br>Eb：预期B选手的胜负值<br>因为E值也为预估，则Ea+ Eb=1<br><a target="_blank" rel="noopener" href="https://imgchr.com/i/yBV99s"><img src="https://s3.ax1x.com/2021/02/11/yBV99s.png" alt="yBV99s.png"></a></p>
-<p>如果选手的表现比期望要好，那么此选手的排名应该上升。相反，若表现不如期望，则排名会下降。</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/yBVUCd"><img src="https://s3.ax1x.com/2021/02/11/yBVUCd.png" alt="yBVUCd.png"></a></p>
-<p>次Ra为比赛完后A玩家的积分</p>
-<h3 id="4-程序：王者荣耀巅峰赛积分模拟"><a href="#4-程序：王者荣耀巅峰赛积分模拟" class="headerlink" title="4.程序：王者荣耀巅峰赛积分模拟"></a>4.程序：王者荣耀巅峰赛积分模拟</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _2020</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            string result1;</span><br><span class="line">            double result;</span><br><span class="line">            string grand1, grand2;</span><br><span class="line">            double a, b;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;无限循环</span><br><span class="line">            while (true)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;Two person are grand&quot;);</span><br><span class="line">                grand1 &#x3D; Console.ReadLine();</span><br><span class="line">                grand2 &#x3D; Console.ReadLine();</span><br><span class="line">                a &#x3D; double.Parse(grand1);</span><br><span class="line">                b &#x3D; double.Parse(grand2);</span><br><span class="line">                Console.WriteLine(&quot;Please enter a numbr such as, 1 is A win , 0.5 is flat, 0 is A lost&quot;);</span><br><span class="line">                result1 &#x3D; Console.ReadLine();</span><br><span class="line">                result &#x3D; double.Parse(result1);</span><br><span class="line">                </span><br><span class="line">                &#x2F;&#x2F;跳出循环</span><br><span class="line">                if (result &#x3D;&#x3D; -1)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine(&quot;Esc is ok&quot;);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                switch (result)</span><br><span class="line">                &#123;</span><br><span class="line">                    case 1:</span><br><span class="line">                        Player.liu(1, a, b);</span><br><span class="line">                        break;</span><br><span class="line">                    case 0:</span><br><span class="line">                        Player.liu(0, a, b);</span><br><span class="line">                        break;</span><br><span class="line">                    case 0.5:</span><br><span class="line">                        Player.liu(0.5, a, b);</span><br><span class="line">                        break;</span><br><span class="line">                    default:</span><br><span class="line">                        Console.WriteLine(&quot;it is not right number&quot;);</span><br><span class="line">                        break;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Player</span><br><span class="line">    &#123;</span><br><span class="line">        public Player(double player1)</span><br><span class="line">        &#123;</span><br><span class="line">            this.score &#x3D; player1;</span><br><span class="line">        &#125;</span><br><span class="line">        double score;</span><br><span class="line"></span><br><span class="line">        public static void liu(double result, double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            Player person1 &#x3D; new Player(a);</span><br><span class="line">            Player person2 &#x3D; new Player(b);</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;K值给了24</span><br><span class="line">            double c &#x3D; person1.score + 24 * (result - 1 &#x2F; (1 + Math.Pow(10, (person2.score - person1.score) &#x2F; 400)));</span><br><span class="line">            double d &#x3D; person2.score + 24 * ((1 - result) - 1 &#x2F; (1 + Math.Pow(10, (person1.score - person2.score) &#x2F; 400)));</span><br><span class="line"></span><br><span class="line">            Console.WriteLine(&quot;So the person1 of score &#123;0&#125; the person2 of score &#123;1&#125;&quot;, c, d);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2020/12/27/Csharp%E7%9A%84%E6%97%B6%E9%92%9F%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0-%E7%AA%97%E4%BD%93/">Csharp的时钟功能的实现(窗体)</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2020-12-27T13:22:18.000Z" itemprop="datePublished">
-    2020-12-27
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/C/">C#</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h3 id="小程序（制作了一个简易的数字时钟）-lt-C-gt"><a href="#小程序（制作了一个简易的数字时钟）-lt-C-gt" class="headerlink" title="小程序（制作了一个简易的数字时钟）&lt;C#&gt;"></a>小程序（制作了一个简易的数字时钟）&lt;C#&gt;</h3><h4 id="锻炼"><a href="#锻炼" class="headerlink" title="锻炼"></a>锻炼</h4><ol>
-<li>对Tostring()的熟练使用<br> 在使用Tostring的过程中括号内可不加东西，为直接转换为字符串，在括号内加入引号，在写格式码，可以对转换的字符串的格式输出再做转化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如ToString(&quot;D2&quot;);    &#x2F;&#x2F;D大小写随意,表示未达到两位数时，按两位数格式输出前面补0</span><br></pre></td></tr></table></figure></li>
-<li>对于textBox.text属性的掌握<br>字符串在该属性上显示字符串的格式为<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tetBox.text1&#x3D;变量名(变量须为字符串类型)+&#39;常字符串&#39;; &#x2F;&#x2F;这两个不同的格式按需求使用，用&#39;+&#39;连接</span><br></pre></td></tr></table></figure></li>
-<li>对方法DateTime方法的理解</li>
-</ol>
-<hr>
-<h4 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h4><p>当点击一键查询按钮时会在对应位置显示今日的日期和时间</p>
-<hr>
-<h4 id="窗体"><a href="#窗体" class="headerlink" title="窗体"></a>窗体</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/rIBx1I"><img src="https://s3.ax1x.com/2020/12/27/rIBx1I.md.png" alt="rIBx1I.md.png"></a></p>
-<hr>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.ComponentModel;</span><br><span class="line">using System.Data;</span><br><span class="line">using System.Drawing;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Windows.Forms;</span><br><span class="line"></span><br><span class="line">namespace _2021</span><br><span class="line">&#123;</span><br><span class="line">    public partial class Form1 : Form</span><br><span class="line">    &#123;</span><br><span class="line">        public Form1()</span><br><span class="line">        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void button1_Click(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            int year,month,day;</span><br><span class="line">            year &#x3D; DateTime.Now.Year;</span><br><span class="line">            month &#x3D; DateTime.Now.Month;</span><br><span class="line">            day &#x3D; DateTime.Now.Day;</span><br><span class="line"></span><br><span class="line">            int hour, min, Second;</span><br><span class="line">            hour &#x3D; DateTime.Now.Hour;</span><br><span class="line">            min &#x3D; DateTime.Now.Minute;</span><br><span class="line">            Second &#x3D; DateTime.Now.Second;</span><br><span class="line"></span><br><span class="line">            textBox1.Text &#x3D; year.ToString()+&#39;年&#39;+month.ToString(&quot;D2&quot;)+&#39;月&#39;+day.ToString(&quot;D2&quot;)+&#39;日&#39;;</span><br><span class="line">            textBox2.Text &#x3D; hour.ToString(&quot;D2&quot;) + &#39;:&#39;+min.ToString(&quot;D2&quot;) + &#39;:&#39; + Second.ToString(&quot;D2&quot;);</span><br><span class="line">        &#125;                                                                                      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/rIy0ET"><img src="https://s3.ax1x.com/2020/12/27/rIy0ET.png" alt="rIy0ET.png"></a></p>
-<p><strong>完结</strong></p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
 </ul>
 
   <section id="nav-wrapper">
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/6/">« prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">next »</a>
+      <a class="extend prev" rel="prev" href="/page/6/">« prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">next »</a>
     </nav>
   </section>
 
 
             <footer>
-    <div>© 2022 - nature </div>
+    <div>© 2023 - nature </div>
     <div>
         <span>
             Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Spring02 | Blog of ChiFun</title>
+  
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url()">
+        <div class='av-pic' style="background-image: url(/assets/blog.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Blog of ChiFun</div>
+        
+            <div>Road is walked by me</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>Spring02</h1>
+    </header>
+
+    <section>
+      <h2 id="数据库连接池与Spring注解"><a href="#数据库连接池与Spring注解" class="headerlink" title="数据库连接池与Spring注解"></a>数据库连接池与Spring注解</h2><h4 id="1-数据源-连接池-的作用"><a href="#1-数据源-连接池-的作用" class="headerlink" title="1. 数据源(连接池)的作用"></a>1. 数据源(连接池)的作用</h4><ul>
+<li>提高程序性能</li>
+<li>实例化数据源，初始化部分连接资源</li>
+<li>使用连接资源时从数据源中获取</li>
+<li>使用完毕后连接资源归还给数据源</li>
+</ul>
+<p>​    常见的数据源(连接池)：DBCP、C3P0、BoneCP、Druid等</p>
+<h4 id="2-数据源的开发步骤"><a href="#2-数据源的开发步骤" class="headerlink" title="2. 数据源的开发步骤"></a>2. 数据源的开发步骤</h4><pre><code>1. 导入数据源的坐标(jar)和数据库驱动坐标(jar)
+   2. 创建数据源对象
+   3. 设置数据源的基本连接数据库的数据
+   4. 使用数据源获取连接资源和归还连接资源</code></pre>
+<p>​    在pom.xml文件中导入坐标，mysql、c3p0、druid</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppOCFxS"><img src="https://s1.ax1x.com/2023/04/11/ppOCFxS.png" alt="ppOCFxS.png"></a></p>
+<p>​    在java代码，创建c3p0数据源对象，以及给对应数据库的参数，获取数据库连接对象</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppOCdG6"><img src="https://s1.ax1x.com/2023/04/11/ppOCdG6.png" alt="ppOCdG6.png"></a></p>
+<p>​    番外：创建druid数据源对象</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppOCHds"><img src="https://s1.ax1x.com/2023/04/11/ppOCHds.png" alt="ppOCHds.png"></a></p>
+<h4 id="3-数据库参数的提取"><a href="#3-数据库参数的提取" class="headerlink" title="3. 数据库参数的提取"></a>3. 数据库参数的提取</h4><p>​    在上述数据库配置时，代码是耦合的，为了降低耦合需要将数据库参数字符串单独提取到一个(<code>XXXXX.properties</code>)文件存放</p>
+<p>​    在resource文件夹下创建jdbc.properties文件</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppjkMkQ"><img src="https://s1.ax1x.com/2023/04/12/ppjkMkQ.png" alt="ppjkMkQ.png"></a></p>
+<p>​    加载.properties文件来连接数据库，通过Java提供的ResourceBundle类以及该类提供的getBundle(“.properties文件的类加载路径，且该文件不需要写扩展名”)方法，来导入.properties文件。通过ResourceBundle对象的getString(“.properties文件中定义的key值”)，来获得对应的字符串</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppjA7G9"><img src="https://s1.ax1x.com/2023/04/12/ppjA7G9.png" alt="ppjA7G9.png"></a></p>
+<h4 id="4-Spring产生数据源对象"><a href="#4-Spring产生数据源对象" class="headerlink" title="4. Spring产生数据源对象"></a>4. Spring产生数据源对象</h4><p>​    对于c3p0连接池的对象dataSource的创建使用Spring容器完成</p>
+<p>​    创建xml文件把CombopooledDataSource类进行注入，并通过类中已编写的set方法(该类为第三方jar包的)注入参数</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppjEfSA"><img src="https://s1.ax1x.com/2023/04/12/ppjEfSA.png" alt="ppjEfSA.png"></a></p>
+<p>​    java文件完成对Spring的加载以及对数据库对象的打印</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppjVV61"><img src="https://s1.ax1x.com/2023/04/12/ppjVV61.png" alt="ppjVV61.png"></a></p>
+<h4 id="5-进一步优化，Spring抽取jdbc配置文件"><a href="#5-进一步优化，Spring抽取jdbc配置文件" class="headerlink" title="5. 进一步优化，Spring抽取jdbc配置文件"></a>5. 进一步优化，Spring抽取jdbc配置文件</h4><p>​     在spring的xml文件中加载.properties文件获得连接信息</p>
+<p>​    需要引入命名空间(beans标签下直接引入)和约束路径(在属性<code>xsi:schemaLocation</code>下作为属性值引入)</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppz0y8S"><img src="https://s1.ax1x.com/2023/04/14/ppz0y8S.png" alt="ppz0y8S.png"></a></p>
+<p>​    加载properties文件，其中<code>classpath:</code>表示该文件在类加载路径下</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppzBZIP"><img src="https://s1.ax1x.com/2023/04/14/ppzBZIP.png" alt="ppzBZIP.png"></a></p>
+<p>​    引入.properties文件中对应的值，通过<code>$&#123;&#125;</code>来引入</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppzBvLj"><img src="https://s1.ax1x.com/2023/04/14/ppzBvLj.png" alt="ppzBvLj.png"></a></p>
+<h4 id="6-Spring注解开发"><a href="#6-Spring注解开发" class="headerlink" title="6. Spring注解开发"></a>6. Spring注解开发</h4><p>​    Spring是轻代码重配置的框架，配置比较繁重影响开发效率，所以注解开发时一种趋势，注解代替xml配置文件可以简化配置，提高开发效率</p>
+<h4 id="7-Spring的原始注解-老一点注解"><a href="#7-Spring的原始注解-老一点注解" class="headerlink" title="7. Spring的原始注解(老一点注解)"></a>7. Spring的原始注解(老一点注解)</h4><p>​    Spring原始注解主要是代替<code>&lt;Bean&gt;</code> 的配置</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9SdWjJ"><img src="https://s1.ax1x.com/2023/04/14/p9SdWjJ.png" alt="p9SdWjJ.png"></a></p>
+<p>​    <strong>使用原始注解可以对xml文件内编写的内容进行替代，如果要使用注解需要在Spring的xml文件中进行声明</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9pMbDS"><img src="https://s1.ax1x.com/2023/04/15/p9pMbDS.png" alt="p9pMbDS.png"></a></p>
+<p>​    <code>base-package=&quot;包名&quot;</code>，其会扫描该包下所有的子包，包下所有使用了注解的都会被扫描到</p>
+<p>​    使用注解<code>@Component（&quot;唯一标识&quot;）</code>等同于对xml文件中的bean的配置，在需要Spring配置的类的上方写注解</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9pKqYR"><img src="https://s1.ax1x.com/2023/04/15/p9pKqYR.png" alt="p9pKqYR.png"></a></p>
+<p>​    如果需要进行注入，则可以使用<code>@Autowired</code>和<code>@Qualifier(&quot;要注入的对象&quot;)</code>进行注入，注入代码需要写在类的里面</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9pMJXT"><img src="https://s1.ax1x.com/2023/04/15/p9pMJXT.png" alt="p9pMJXT.png"></a></p>
+<p>​    在Spring的xml文件中配置组件扫描</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9pQ85d"><img src="https://s1.ax1x.com/2023/04/15/p9pQ85d.png" alt="p9pQ85d.png"></a></p>
+<h4 id="8-原始注解详解"><a href="#8-原始注解详解" class="headerlink" title="8. 原始注解详解"></a>8. 原始注解详解</h4><p><strong>1. 代码的可读性</strong></p>
+<p>​    在不同的层中都使用@Component会造成代码可读性下降，为了让可读性增加有了<code>@Controller</code>—web层；<code>@Service</code>—service层；<code>@Repository</code>—dao层，功能都是一样的只是方便读代码</p>
+<p><strong>2. set方法的省略</strong></p>
+<p>​    如果使用的是注解方式进行Spring配置，则可以省略set方法，因为注解直接写在java文件的属性上，所以不需要为属性再写set方法</p>
+<p>​    </p>
+<p><strong>3. <code>@Autowired</code>和<code>@Qualifier</code>的区别，以及注解<code>@Resource</code></strong></p>
+<p>​    <code>@Autowired</code>是按照数据类型从Spring容器中进行匹配</p>
+<p>​    如下面代码，其会在Spring容器中寻找一个UserDao类型的对象赋值给变量userDao</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserDao userDao;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    <code>@Qualifier</code>是按照id值从容器中进行匹配，但其要结合<code>@Autowired</code>一起使用</p>
+<p>​    <code>@Resource(name=&quot;id值&quot;)</code>，其相当于上述两个注解一起使用</p>
+<p><strong>4. <code>@Value</code></strong></p>
+<p>​    <code>@Value(&quot;要注入的值&quot;)</code>是对常量数据进行注入</p>
+<p>​    对变量driver进行注入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;itcast&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String driver;</span><br></pre></td></tr></table></figure>
+
+<p>​    除了注入常量还可以注入键值对，只要Spring容器中加载了.properties文件就可以直接通过<code>$&#123;&#125;</code>进行注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Value(&quot;$&#123;jdbc.drive&#125;&quot;)</span><br><span class="line">private String driver;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>5. <code>@Scope</code></strong></p>
+<p>​    <code>@Scope(&quot;属性值&quot;)</code>，具体属性值见笔记<code>Spring01.md</code>，其写在类的上方，用来指定<code>&lt;bean&gt;</code> 是可以创造单例还是多例</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9pyj3t"><img src="https://s1.ax1x.com/2023/04/15/p9pyj3t.png" alt="p9pyj3t.png"></a></p>
+<p><strong>6. <code>@PostConstruct</code>和<code>@preDestroy</code></strong></p>
+<p>​    写在类中的方法前，表示对象在创建或者销毁时要执行的方法</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9p6l59"><img src="https://s1.ax1x.com/2023/04/15/p9p6l59.png" alt="p9p6l59.png"></a></p>
+<h4 id="9-Spring新注解"><a href="#9-Spring新注解" class="headerlink" title="9. Spring新注解"></a>9. Spring新注解</h4><p>​    原始注解不能完全代替xml配置文件，还需要使用注解替代的配置如下：</p>
+<ul>
+<li>非自定义的Bean的配置：如第三方jar包中的类</li>
+<li>加载properties文件的配置：<code>&lt;context:property-placeholder&gt;</code></li>
+<li>组件扫描的配置：<code>&lt;context:component-scan&gt;</code></li>
+<li>引入其他文件：<code>&lt;import&gt;</code> </li>
+</ul>
+<p>​    Spring新注解 </p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9p6xi9"><img src="https://s1.ax1x.com/2023/04/15/p9p6xi9.png" alt="p9p6xi9.png"></a></p>
+<h4 id="10-Spring新注解详解"><a href="#10-Spring新注解详解" class="headerlink" title="10. Spring新注解详解"></a>10. Spring新注解详解</h4><p>​    通过新建一个java类并在类中使用新注解来替代spring的xml文件</p>
+<p><strong>1. <code>@Configuration</code></strong></p>
+<p>​    写在类前标志该类为Spring核心配置类</p>
+<p><strong>2. <code>@ComponentScan(&quot;包名&quot;)</code></strong></p>
+<p>​    相当于xml文件中的配置组件扫描</p>
+<p><strong>3. <code>@PropertySource(&quot;路径&quot;)</code></strong></p>
+<p>​    <code>@PropertySource(&quot;路径&quot;)</code>为导入.properties文件到Spring容器中</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p99RpcR"><img src="https://s1.ax1x.com/2023/04/16/p99RpcR.png" alt="p99RpcR.png"></a></p>
+<p><strong>4. <code>@Bean(&quot;自己设定的id&quot;)</code></strong></p>
+<p>​    <code>@Bean(&quot;自己设定的id&quot;)</code>写在方法前，用于将当前方法的返回值以自己设定的id名称存储到Spring容器中</p>
+<p>​    下图代码已经将.properties文件抽取到Spring容器中，但是<code>$&#123;&#125;</code>是在xml文件中才可以这样写，所以需要使用<code>@value</code>来获取.properties文件的值，这个代码返回了数据库连接池c3p0的对象</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p99RqxA"><img src="https://s1.ax1x.com/2023/04/16/p99RqxA.png" alt="p99RqxA.png"></a></p>
+<p><strong>5. <code>@Import(&quot;需要加载的类的名字.class&quot;)</code></strong></p>
+<p>​    其本质是一个数组，可以一次多个添加</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p99Wco8"><img src="https://s1.ax1x.com/2023/04/16/p99Wco8.png" alt="p99Wco8.png"></a></p>
+<h4 id="11-main方法对于使用注解-配置类-后的加载"><a href="#11-main方法对于使用注解-配置类-后的加载" class="headerlink" title="11. main方法对于使用注解(配置类)后的加载"></a>11. main方法对于使用注解(配置类)后的加载</h4><p>​    因为之前充当web测试的main方法它引入的是xml文件，所以应改为<code>AnnotationConfigApplicationContext(要引入的类名.class)</code></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p99f9w6"><img src="https://s1.ax1x.com/2023/04/16/p99f9w6.png" alt="p99f9w6.png"></a></p>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2023-04-25T11:22:16.000Z" itemprop="datePublished">
+              2023-04-25
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/SSM/">SSM</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2023 - nature </div>
+    <div>
+        <span>
+            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+        </span>
+        ,
+        <span>
+            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
+        </span>
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+
+<script src="/js/pager/dist/singlepager.js"></script>
+
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>
