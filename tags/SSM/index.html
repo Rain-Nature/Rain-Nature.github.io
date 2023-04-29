@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Blog of ChiFun</title>
+  <title>祈雨</title>
   
   
   
@@ -25,9 +25,7 @@
         </div>
     </section>
     <section class='menu'>
-        <div>Blog of ChiFun</div>
-        
-            <div>Road is walked by me</div>
+        <div>祈雨</div>
         
         <ul>
           
@@ -304,7 +302,7 @@
     </header>
     <div>
       
-        <h2 id="Spring集成Web环境"><a href="#Spring集成Web环境" class="headerlink" title="Spring集成Web环境"></a>Spring集成Web环境</h2><h2 id="监听器的使用与Spring集成Web环境"><a href="#监听器的使用与Spring集成Web环境" class="headerlink" title="监听器的使用与Spring集成Web环境"></a>监听器的使用与Spring集成Web环境</h2><h4 id="1-应用上下文的创建"><a href="#1-应用上下文的创建" class="headerlink" title="1. 应用上下文的创建"></a>1. 应用上下文的创建</h4><p>​    因为上下文对象是通过<code>new ClasspathXmlApplicationContext(Spring配置文件)</code>获得，但每一次获取Bean时都要编写一次，这样会使得上下文对象创建多次</p>
+        <h2 id="监听器的使用与Spring集成Web环境"><a href="#监听器的使用与Spring集成Web环境" class="headerlink" title="监听器的使用与Spring集成Web环境"></a>监听器的使用与Spring集成Web环境</h2><h4 id="1-应用上下文的创建"><a href="#1-应用上下文的创建" class="headerlink" title="1. 应用上下文的创建"></a>1. 应用上下文的创建</h4><p>​    因为上下文对象是通过<code>new ClasspathXmlApplicationContext(Spring配置文件)</code>获得，但每一次获取Bean时都要编写一次，这样会使得上下文对象创建多次</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9ipmxH"><img src="https://s1.ax1x.com/2023/04/18/p9ipmxH.png" alt="p9ipmxH.png"></a></p>
 <p>​    <strong>思想：将创建上下文对象的行为放在监听器中，并由监听器存储在ServletContext域中，需要使用对象时，通过ServletContext对象向ServletContext域中获取</strong></p>
 <p>​    <strong>监听器的配置</strong></p>
