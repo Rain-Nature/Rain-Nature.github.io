@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Spring03, Rain">
+    <meta name="keywords" content="Spring05, Rain">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Spring03 | Rain</title>
+    <title>Spring05 | Rain</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Spring03</h1>
+                    <h1 class="description center-align post-title">Spring05</h1>
                 </div>
             </div>
         </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2023-04-25
+                    2023-04-29
                 </div>
                 
 
@@ -468,83 +468,99 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="监听器的使用与Spring集成Web环境"><a href="#监听器的使用与Spring集成Web环境" class="headerlink" title="监听器的使用与Spring集成Web环境"></a>监听器的使用与Spring集成Web环境</h2><h4 id="1-应用上下文的创建"><a href="#1-应用上下文的创建" class="headerlink" title="1. 应用上下文的创建"></a>1. 应用上下文的创建</h4><p>​    因为上下文对象是通过<code>new ClasspathXmlApplicationContext(Spring配置文件)</code>获得，但每一次获取Bean时都要编写一次，这样会使得上下文对象创建多次</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9ipmxH"><img src="https://s1.ax1x.com/2023/04/18/p9ipmxH.png" alt="p9ipmxH.png"></a></p>
-<p>​    <strong>思想：将创建上下文对象的行为放在监听器中，并由监听器存储在ServletContext域中，需要使用对象时，通过ServletContext对象向ServletContext域中获取</strong></p>
-<p>​    <strong>监听器的配置</strong></p>
-<p>​    新建java文件，继承实现监听servletContext的接口</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9i9MpF"><img src="https://s1.ax1x.com/2023/04/18/p9i9MpF.png" alt="p9i9MpF.png"></a></p>
-<p>​    需要在web.xml文件，编写配置告知tomcat有这个监听器</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9i9JTx"><img src="https://s1.ax1x.com/2023/04/18/p9i9JTx.png" alt="p9i9JTx.png"></a></p>
-<p>​    从容器中获取上下文对象</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9i9hcQ"><img src="https://s1.ax1x.com/2023/04/18/p9i9hcQ.png" alt="p9i9hcQ.png"></a></p>
-<h4 id="2-监听器的优化"><a href="#2-监听器的优化" class="headerlink" title="2. 监听器的优化"></a>2. 监听器的优化</h4><p>​    使用web.xml配置**全局初始化参数<code>&lt;context-param&gt;</code> **，<code>&lt;param-name&gt;</code>写自定义的名字，<code>&lt;param-value&gt;</code> 写名字对应的值</p>
-<p>​    web.xml文件配置参数</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9iCPN6"><img src="https://s1.ax1x.com/2023/04/18/p9iCPN6.png" alt="p9iCPN6.png"></a></p>
-<p>​    java文件来读取参数</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9iCA3D"><img src="https://s1.ax1x.com/2023/04/18/p9iCA3D.png" alt="p9iCA3D.png"></a></p>
-<p>​    新建一个工具类将具体的名字，像代码中的<code>&quot;app&quot;</code>给隐藏掉，即当需要对象时直接给对象而不是通过名字获取对象，其实本质就是把那句话变成一个方法返回值，就是一个封装</p>
-<p>​    工具类封装</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EUBNQ"><img src="https://s1.ax1x.com/2023/04/21/p9EUBNQ.png" alt="p9EUBNQ.png"></a></p>
-<p>​    调用类直接使用，doGet为收到GET请求后调用</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EaFDf"><img src="https://s1.ax1x.com/2023/04/21/p9EaFDf.png" alt="p9EaFDf.png"></a></p>
-<h4 id="3-Spring提供上述监听器获取应用上下文工具"><a href="#3-Spring提供上述监听器获取应用上下文工具" class="headerlink" title="3. Spring提供上述监听器获取应用上下文工具"></a>3. Spring提供上述监听器获取应用上下文工具</h4><p>​    上面代码有个同名监听器是仿的，目的是要领会监听器内部的实现</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EdDln"><img src="https://s1.ax1x.com/2023/04/21/p9EdDln.png" alt="p9EdDln.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Ed4p9"><img src="https://s1.ax1x.com/2023/04/21/p9Ed4p9.png" alt="p9Ed4p9.png"></a></p>
-<p>​    在pom.xml文件导入spring-web坐标</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EdLkD"><img src="https://s1.ax1x.com/2023/04/21/p9EdLkD.png" alt="p9EdLkD.png"></a></p>
-<p>​    在web.xml文件下配置监听器，并设置全局初始化参数，因为要获取的是resource下的spring的xml文件的上下文，路径为<code>classpath:XXXX.xml</code></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EwUnx"><img src="https://s1.ax1x.com/2023/04/21/p9EwUnx.png" alt="p9EwUnx.png"></a></p>
-<p>​    通过调用Spring监听器对象提供的方法，如上面写的假的监听器一样，这个方法是static的，获得上下文对象</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EwvUU"><img src="https://s1.ax1x.com/2023/04/21/p9EwvUU.png" alt="p9EwvUU.png"></a></p>
-<h4 id="4-SpringMVC的概述"><a href="#4-SpringMVC的概述" class="headerlink" title="4. SpringMVC的概述"></a>4. SpringMVC的概述</h4><p>​    SpringMVC是一种基于Java的实现MVC设计模型的请求驱动类型的轻量级Web框架，<strong>SpringMVC是属于管项目的web层的</strong></p>
-<p>​    将共有行为抽取出来，由框架封装</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9E5Xlt"><img src="https://s1.ax1x.com/2023/04/21/p9E5Xlt.png" alt="p9E5Xlt.png"></a></p>
-<p>​    <strong>SpringMVC的使用</strong></p>
-<p>​    1. 导入SpringMVC包<br>​    2. 配置Servlet，先找共有行为再找特有行为<br>​    3. 编写POJO(普通JavaBean)，也称为Controller<br>​    4. 通过注解把POJO放到Spring容器中<br>​    5. 配置spring-mvc.xml文件(配置组件扫描)<br>​    6. 执行访问测试</p>
-<p>​    在pom.xml文件导入SpringMVC包</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EID1I"><img src="https://s1.ax1x.com/2023/04/21/p9EID1I.png" alt="p9EID1I.png"></a></p>
-<p>​    在web.xml中配置SpringMVC的前端控制器<code>&lt;servlet&gt;</code> ，<code>&lt;load-on-startup&gt;</code> 代表服务器启动时就去加载servlet，不配置则默认为第一次访问时创建对象；<code>&lt;servlet-mapping&gt;</code>为映射地址，  <code>&lt;url-pattern&gt;/&lt;url-pattern&gt;</code>，这个<code>/</code>表示缺省的servlet，即每次访问任何请求都要走这个servlet，也有<code>*.xxx</code>为扩展名为<code>*.xxx</code>时才走这个servlet</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EI53n"><img src="https://s1.ax1x.com/2023/04/21/p9EI53n.png" alt="p9EI53n.png"></a></p>
-<p>​    创建Controller的Java包，return后接要跳转的jsp，用注解将UserController存入spring容器中，注解<code>@RequestMapping(&quot;/quick&quot;)</code>为请求映射，当访问quick时映射到save方法，执行方法的逻辑</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EHSvn"><img src="https://s1.ax1x.com/2023/04/21/p9EHSvn.png" alt="p9EHSvn.png"></a></p>
-<p>​    创建Spring的xml文件，进行组件扫描    </p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9E7HDP"><img src="https://s1.ax1x.com/2023/04/21/p9E7HDP.png" alt="p9E7HDP.png"></a></p>
-<p>​    配置组件扫描的这个xml文件没有加载，所以最先是<code>new ClassPathXmlApplicationContext(&quot;参数为resource文件夹的xml文件路径&quot;)</code>，限制是spring，所以只需要在前端控制器声明有这个配置文件，<code>&lt;init-param&gt;</code> 代表servlet在初始化时执行，<code>&lt;param-name&gt;</code> 是监听器的名字，<code>&lt;param-value&gt;</code> 是路径</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EHart"><img src="https://s1.ax1x.com/2023/04/21/p9EHart.png" alt="p9EHart.png"></a></p>
-<h4 id="5-SpringMVC的执行流程解析"><a href="#5-SpringMVC的执行流程解析" class="headerlink" title="5. SpringMVC的执行流程解析"></a>5. SpringMVC的执行流程解析</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VNbaF"><img src="https://s1.ax1x.com/2023/04/22/p9VNbaF.png" alt="p9VNbaF.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VNzKx"><img src="https://s1.ax1x.com/2023/04/22/p9VNzKx.png" alt="p9VNzKx.png"></a></p>
-<h4 id="6-SpringMVC的组件解析"><a href="#6-SpringMVC的组件解析" class="headerlink" title="6. SpringMVC的组件解析"></a>6. SpringMVC的组件解析</h4><p><code>@RequestMapping</code></p>
-<p><strong>作用：</strong>用于建立请求URL和处理请求方法之间的对应关系</p>
-<p><strong>位置：</strong></p>
+                <h2 id="JdbcTemplate与SpringMVC异常处理"><a href="#JdbcTemplate与SpringMVC异常处理" class="headerlink" title="JdbcTemplate与SpringMVC异常处理"></a>JdbcTemplate与SpringMVC异常处理</h2><h4 id="1-JdbcTemplate概述"><a href="#1-JdbcTemplate概述" class="headerlink" title="1. JdbcTemplate概述"></a>1. JdbcTemplate概述</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9m5UyR"><img src="https://s1.ax1x.com/2023/04/24/p9m5UyR.png" alt="p9m5UyR.png"></a></p>
+<h4 id="2-JdbcTemplate开发步骤"><a href="#2-JdbcTemplate开发步骤" class="headerlink" title="2. JdbcTemplate开发步骤"></a>2. JdbcTemplate开发步骤</h4><p>​    1. 导入spring-jdbc和spring-tx坐标<br>​    2. 创建数据库表和实体<br>​    3. 创建JdbcTemplate对象<br>​    4. 执行数据库操作</p>
+<p>​    在pom.xml文件下导入坐标</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9mbzA1"><img src="https://s1.ax1x.com/2023/04/24/p9mbzA1.png" alt="p9mbzA1.png"></a></p>
+<p>​     创建数据库表，编写实体类，编写实体类对象的get方法和set方法</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9mLyQS"><img src="https://s1.ax1x.com/2023/04/24/p9mLyQS.png" alt="p9mLyQS.png"></a></p>
+<p>​    使用数据源对象获取数据库相关参数，使用无参构造产生一个JdbcTemplate对象，通过<code>JdbcTemplate.setDataSource(数据源对象)</code>方法获得与数据库的连接，之后就可以通过JdbcTemplate对象对数据库进行操作(增删改查)，<strong>数据库进行操作(增删改)使用的方法都是这一个<code>update(sql语句)</code>只需要修改对应的sql语句即可</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9mzdoQ"><img src="https://s1.ax1x.com/2023/04/24/p9mzdoQ.png" alt="p9mzdoQ.png"></a></p>
+<h4 id="3-优化：使用Spring产生JdbcTenplate对象"><a href="#3-优化：使用Spring产生JdbcTenplate对象" class="headerlink" title="3. 优化：使用Spring产生JdbcTenplate对象"></a>3. 优化：使用Spring产生JdbcTenplate对象</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9nSGtJ"><img src="https://s1.ax1x.com/2023/04/24/p9nSGtJ.png" alt="p9nSGtJ.png"></a></p>
+<p>​    创建一个Spring的配置文件叫做applicationContext.xml，在里面配置数据源对象和jdbc模板对象，<strong>这里数据库端口号写错了应该为3306</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9n9Ezn"><img src="https://s1.ax1x.com/2023/04/24/p9n9Ezn.png" alt="p9n9Ezn.png"></a></p>
+<p>​    在Java代码中编写</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9n9UeK"><img src="https://s1.ax1x.com/2023/04/24/p9n9UeK.png" alt="p9n9UeK.png"></a></p>
+<p>​    当然，还可以进一步抽取jdbc.properties，前面笔记有过，这里不记了；先建立jdbc.properties文件，命名空间导入，然后加载jdbc.properties文件，最后用<code>$&#123;&#125;</code>引出数据</p>
+<p>​    注意：之后对于jdbc的配置，看见直接就是这样一套</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9nCvHf"><img src="https://s1.ax1x.com/2023/04/24/p9nCvHf.png" alt="p9nCvHf.png"></a></p>
+<h4 id="4-JdbcTemplate的查询操作"><a href="#4-JdbcTemplate的查询操作" class="headerlink" title="4. JdbcTemplate的查询操作"></a>4. JdbcTemplate的查询操作</h4><p><strong>查询全部</strong></p>
+<p>​    对于查询多个参数使用的query()方法有两个参数，第一个参数是sql语句，第二个参数是<code>RowMapper&lt;T&gt;</code> 它是一个接口，返回<code>List&lt;T&gt;</code>的数据，在使用时传递一个Spring已经实现好这个接口的实现类<code>BeanPropertyRowMapper</code>，当然这个接口<code>RowMapper&lt;T&gt;</code>的实现类还有其他的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//泛型使用account，它是自己建的实体类的名称，方法传参传递该对象的字节码，即Account.class</span></span><br><span class="line">List&lt;Account&gt; accountList = jdbcTemplate.query(<span class="string">&quot;select * from account&quot;</span>,<span class="keyword">new</span> BeanPropertyRowMapper&lt;account&gt;(Account.class));</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>总结</strong>：查询表中的对象，使用<code>queryForObject(sql语句,RowMapper&lt;&gt;(),Object args)</code>,第二个参数可以写RowMapper接口的实现类实例，<code>BeanPropertyRowMappe&lt;标注返回类类型&gt;(返回类.class)</code>；第三个参数是你想要放入sql中的条件；</p>
+<p><strong>查询一个对象</strong></p>
+<p>​    queryForObject方法第一个参数是sql，第二个参数是接口的实现类<code>BeanPropertyRowMapper</code>，第三个参数传递<code>?</code>的值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Account account = jdbcTemplate.queryForObject(<span class="string">&quot;select *from account where name=?&quot;</span>,<span class="keyword">new</span> BeanPropertyRowMapper&lt;Account&gt;(Account.class),<span class="string">&quot;Tom&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>聚合查询</strong></p>
+<p>​    这个queryForObject方法第一个参数是sql，第二个参数是<code>Class&lt;T&gt; requiredType</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbcTemplate.queryForObject(&quot;select count(*) from account&quot;,Long.class);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-拦截器-interceptor"><a href="#5-拦截器-interceptor" class="headerlink" title="5. 拦截器(interceptor)"></a>5. 拦截器(interceptor)</h4><p><strong>(1)拦截器的作用</strong></p>
+<p>​    SpringMVC的拦截器类似于Servlet开发中的过滤器Filter，用于对处理器进行<strong>预处理</strong>和<strong>后处理</strong>，拦截器对访问目标资源(Controller)的方法时做一些相应的干预</p>
+<p><strong>(2)拦截器和过滤器的区别</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9K7YJx"><img src="https://s1.ax1x.com/2023/04/26/p9K7YJx.png" alt="p9K7YJx.png"></a></p>
+<p>​    拦截范围的配置是在web.xml文件中</p>
+<p><strong>(3)自定义拦截器的步骤</strong></p>
+<p>​    1. 创建拦截器类实现<code>HandlerInterceptor</code>接口<br>​    2. 在Spring-mvc.xml配置interceptor<br>​    3. 测试拦截器的拦截效果</p>
+<p>​    <strong>插入的小知识</strong></p>
+<p>​    <strong>default关键字介绍：</strong></p>
+<p>​    default是在java8中引入的关键字，也可称为Virtual extension methods——虚拟扩展方法。出现该关键字的原因是，由于接口在Java中定义之初，有一个缺点，那就是，如果定义了一个接口，接口中又定义了N个方法，那么某个具体的类在实现该接口时，需要实现接口中的所有方法，不管是否需要用到接口中的方法。如果接口中的某个方法被default关键字修饰了，那么具体的实现类中可以不用实现方法。<strong>default关键字在接口中修饰方法时，方法可以有方法体</strong></p>
+<p>​    被拦截的Controller设计为</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9MkvuQ"><img src="https://s1.ax1x.com/2023/04/26/p9MkvuQ.png" alt="p9MkvuQ.png"></a></p>
+<p>​    新建一个拦截器的实现类实现<code>HandlerInterceptor</code>接口，该接口中的方法都是使用default修饰符来空实现，所以需要将要使用的方法覆盖，方法的种类：preHandle()方法是在目标方法执行之前执行；postHandle()方法是在目标方法执行之后，视图对象返回之前执行；afterCompletion()方法是在目标方法执行完毕后执行</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9MpI76"><img src="https://s1.ax1x.com/2023/04/26/p9MpI76.png" alt="p9MpI76.png"></a></p>
+<p>​    在Spring-mvc.xml文件里配置拦截器，<code>&lt;mvc:interceptors&gt;</code> 标签内部可以配置多个拦截器，<code>&lt;mvc:interceptor&gt;</code>表示一个拦截器，<code>&lt;bean&gt;</code>中注入拦截器实现类的全限定名，<code>&lt;mvc:mapping&gt;</code>中写对哪些资源执行拦截操作，<code>path=&quot;/**&quot;/</code>表示对所有的目标方法都执行拦截操作</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9MkP6e"><img src="https://s1.ax1x.com/2023/04/26/p9MkP6e.png" alt="p9MkP6e.png"></a></p>
+<p>​    测试结果：因为preHandle()方法的返回值为false，所以页面由原先显示的内容变为无显示，控制台打印为</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Mk87n"><img src="https://s1.ax1x.com/2023/04/26/p9Mk87n.png" alt="p9Mk87n.png"></a></p>
+<p>​    改为true后，执行结果为，第二个打印来自Controller层的println方法</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9MkwX4"><img src="https://s1.ax1x.com/2023/04/26/p9MkwX4.png" alt="p9MkwX4.png"></a></p>
+<p><strong>(4)拦截器方法详解</strong></p>
 <ul>
-<li><p>类上，请求URL的第一级访问目录，此处不写的话，就相当于根目录</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VaD78"><img src="https://s1.ax1x.com/2023/04/22/p9VaD78.png" alt="p9VaD78.png"></a></p>
+<li><p>preHandle(HttpServletRequest request,HttpServletResponse response,Object handler)</p>
+<p>主要使用request和response，如http请求封装在request中，return的true和false当作开关使用，如果是false不让页面访问可以使用request转发或者response重定向</p>
 </li>
-<li><p>方法上，请求URL的第二级访问目录，与类上的使用@ReqquestMapping标注的一级目录一起组成访问虚拟路径</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VaOj1"><img src="https://s1.ax1x.com/2023/04/22/p9VaOj1.png" alt="p9VaOj1.png"></a></p>
-<p>这个方式是为了区分是哪个模块的方法，此时return方法返回的是<code>http://localhost:8080/xxx/</code>下的<code>success.jsp</code>页面，如果jsp文件路径不对会报404，可以改为带<code>/success.jsp</code>表示要在当前web应用下找这个资源</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Vd25D"><img src="https://s1.ax1x.com/2023/04/22/p9Vd25D.png" alt="p9Vd25D.png"></a></p>
+<li><p>postHandle(HttpServletRequest request,HttpServletResponse response,Object handler,ModelAndView modelandview)</p>
+<p>有个modelandview变量，可以把本应该传到页面的模型和视图给更改掉</p>
+</li>
+<li><p>afterCompletion(HttpServletRequest request,HttpServletResponse response,Object handle,Exception ex)</p>
+<p>用的比较少，ex是将最后拿到的异常给封装</p>
 </li>
 </ul>
-<p><strong>属性：</strong></p>
+<p><strong>(5)多个拦截器拦截一个页面其中函数的运行效果</strong></p>
+<p>​    在spring-mvc.xml的配置顺序决定了拦截器的率先执行顺序</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9M30Tf"><img src="https://s1.ax1x.com/2023/04/26/p9M30Tf.png" alt="p9M30Tf.png"></a></p>
+<h4 id="6-项目中出现的异常"><a href="#6-项目中出现的异常" class="headerlink" title="6. 项目中出现的异常"></a>6. 项目中出现的异常</h4><p>​    一般会在dao层抛出异常，在service层解决异常(try&amp;catch)</p>
+<h4 id="7-SpringMVC异常处理机制"><a href="#7-SpringMVC异常处理机制" class="headerlink" title="7. SpringMVC异常处理机制"></a>7. SpringMVC异常处理机制</h4><p><strong>异常的种类</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9QR8iT"><img src="https://s1.ax1x.com/2023/04/27/p9QR8iT.png" alt="p9QR8iT.png"></a></p>
+<p><strong>Springmvc框架对于异常的处理思路</strong></p>
+<p> <a target="_blank" rel="noopener" href="https://imgse.com/i/p9QRsJO"><img src="https://s1.ax1x.com/2023/04/27/p9QRsJO.png" alt="p9QRsJO.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9QRcSe"><img src="https://s1.ax1x.com/2023/04/27/p9QRcSe.png" alt="p9QRcSe.png"></a></p>
+<p>​    <code>HandlerExceptionResolver</code>异常处理器中SpringMVC框架已经定义好了一些异常处理，如果不想用也可以自己定义(逻辑操作、代码操作)</p>
+<p><strong>异常处理的两种方式</strong></p>
 <ul>
-<li>value：用于指定请求的URL，在只有value的情况下可以省略，但多个属性不能省如上面代码完整的应该为<code>@RequestMapping(value=&quot;/quick&quot;)</code></li>
-<li>method：用于指定请求的方式，默认是GET，如果要改为POST，它存储方式是枚举类型为<code>@RequestMapping(value=&quot;/quick&quot;,method=RequestMethod.POST)</code>，注意：jsp表单提交是GET类型的，设置成POST会报错</li>
-<li>params：用于指定限制请求参数的条件，它支持简单的表达式，要求请求参数的key和value必须和配置的一模一样<ul>
-<li><code>params=&#123;&quot;accountName&quot;&#125;</code>，表示请求参数必须有accountName，没有这个参数则该资源不能被你访问</li>
-<li><code>params=&#123;&quot;money!100&quot;&#125;</code>，表示请求参数中money不能是100</li>
+<li>使用SpringMVC提供的简单异常处理器SimpleMappingExceptionResolver</li>
+<li>实现Spring的异常处理接口HandleExceptionResolver自定义自己的异常处理器，其可以自己对应操作跳页、直接处理、记录日志等</li>
 </ul>
-</li>
-</ul>
-<h4 id="7-SpringMVC的组件扫描"><a href="#7-SpringMVC的组件扫描" class="headerlink" title="7. SpringMVC的组件扫描"></a>7. SpringMVC的组件扫描</h4><p>​    springMVC是管理web层的，所以组件扫描时，只扫描web层相关，而其他的像dao层、service层归Spring来扫描</p>
-<p>​    为了让只扫springmvc，可以在其配置的xml文件中进行如下设置</p>
-<p>​    <code>include-filter</code>表示包括如果改为<code>exclude-filter</code>表示不包括，<code>type=&quot;annotation&quot;</code>表示扫描类型为注解，expression=”注解的全限定名”</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9V0b9g"><img src="https://s1.ax1x.com/2023/04/22/p9V0b9g.png" alt="p9V0b9g.png"></a></p>
-<h4 id="8-SpringMVC的xml文件配置"><a href="#8-SpringMVC的xml文件配置" class="headerlink" title="8. SpringMVC的xml文件配置"></a>8. SpringMVC的xml文件配置</h4><p>​    有点难，可以反复看<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1WZ4y1P7Bp/?p=49&spm_id_from=pageDriver&vd_source=41e90cead08809b70890e8713c58ac8b">13-SpringMVC组件解析-SpringMVC的XML配置解析（资源解析器）_哔哩哔哩_bilibili</a></p>
-<p>​    可以自行配置视图解析器，配置完后方法return时指定页面就可以少写页面的前缀和后缀</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VBXGD"><img src="https://s1.ax1x.com/2023/04/22/p9VBXGD.png" alt="p9VBXGD.png"></a></p>
-<h4 id="9-总结"><a href="#9-总结" class="headerlink" title="9. 总结"></a>9. 总结</h4><p>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/p9VDMd0"><img src="https://s1.ax1x.com/2023/04/22/p9VDMd0.png" alt="p9VDMd0.png"></a></p>
+<h4 id="8-简单异常处理器SimpleMappingExceptionResolver"><a href="#8-简单异常处理器SimpleMappingExceptionResolver" class="headerlink" title="8. 简单异常处理器SimpleMappingExceptionResolver"></a>8. 简单异常处理器SimpleMappingExceptionResolver</h4><p>​    SpringMVC已经定义好了该类型转换器，在使用时可以根据项目情况进行相应异常与视图的映射配置，即主要是发现异常并跳转到指定的页面，只是一种异常和要跳转页面的映射关系</p>
+<p>​    在Spring-mvc.xml文件中可以配置简单映射异常处理器</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p91zsV1"><img src="https://s1.ax1x.com/2023/04/29/p91zsV1.png" alt="p91zsV1.png"></a></p>
+<p>​    其中，<code>name=&quot;defaultErrorView&quot;</code>表示默认错误视图，value的属性值为要跳转的视图名称，<code>name=&quot;exceptionMappings&quot;</code>表示异常的映射们，key的属性值为异常的全限定名，当有该异常时跳转到后面value指定的页面(<strong>不同的异常类型可以设置跳转到不同的视图</strong>)，若都没有则执行默认的，即跳转到默认错误视图指定的那个页面</p>
+<h4 id="9-自定义异常处理步骤"><a href="#9-自定义异常处理步骤" class="headerlink" title="9. 自定义异常处理步骤"></a>9. 自定义异常处理步骤</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p93S1zD"><img src="https://s1.ax1x.com/2023/04/29/p93S1zD.png" alt="p93S1zD.png"></a></p>
+<p>​    新建一个Java类，在Java类中实现<code>HandlerExceptionResolver</code>接口，实现接口中的方法<code>resolveException(HttpServletRequest hsrt,HttpServletResonse hsre,Objecr o,Exception e)</code>，通过判断不同的异常执行不同的操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	参数Exception：异常对象</span></span><br><span class="line"><span class="comment">	返回值：ModelAndView：跳转到错误视图信息</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9393bd"><img src="https://s1.ax1x.com/2023/04/29/p9393bd.png" alt="p9393bd.png"></a></p>
+<p>​    在Spring-mvc.xml中配置自定义的异常处理器</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p939sVs"><img src="https://s1.ax1x.com/2023/04/29/p939sVs.png" alt="p939sVs.png"></a></p>
+<p>​    最后测试完成就行</p>
+<h4 id="10-SpringMVC异常处理的总结"><a href="#10-SpringMVC异常处理的总结" class="headerlink" title="10. SpringMVC异常处理的总结"></a>10. SpringMVC异常处理的总结</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9392GV"><img src="https://s1.ax1x.com/2023/04/29/p9392GV.png" alt="p9392GV.png"></a></p>
 
                 
             </div>
@@ -571,7 +587,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/04/25/Spring03/">http://example.com/2023/04/25/Spring03/</a>
+                    <a href="http://example.com/2023/04/29/Spring05/">http://example.com/2023/04/29/Spring05/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -780,17 +796,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2023/04/25/Spring04/">
+                <a href="/2023/04/29/Spring05/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Spring04">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Spring05">
                         
-                        <span class="card-title">Spring04</span>
+                        <span class="card-title">Spring05</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -800,9 +817,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -811,6 +828,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -829,13 +847,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/04/25/Spring02/">
+                <a href="/2023/04/25/Spring04/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Spring02">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Spring04">
                         
-                        <span class="card-title">Spring02</span>
+                        <span class="card-title">Spring04</span>
                     </div>
                 </a>
                 <div class="card-content article-content">

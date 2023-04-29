@@ -470,32 +470,21 @@
             <div id="articleContent">
                 <h2 id="Spring开发入门"><a href="#Spring开发入门" class="headerlink" title="Spring开发入门"></a>Spring开发入门</h2><h4 id="1-传统Javaweb开发的困惑与解决方案"><a href="#1-传统Javaweb开发的困惑与解决方案" class="headerlink" title="1. 传统Javaweb开发的困惑与解决方案"></a>1. 传统Javaweb开发的困惑与解决方案</h4><p>问题1：传统javaweb的开发中对于数据的操作，往往都需要new对象来完成操作</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppbxDFU"><img src="https://s1.ax1x.com/2023/04/10/ppbxDFU.png" alt="ppbxDFU.png"></a></p>
-<pre><code>解决思路：程序代码中不去new对象，第三方根据要求为程序提供需要的Bean对象</code></pre>
+<p>​    解决思路：程序代码中不去new对象，第三方根据要求为程序提供需要的Bean对象</p>
 <p>问题2：事物功能、日志功能耦合在业务代码中</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppbxrYF"><img src="https://s1.ax1x.com/2023/04/10/ppbxrYF.png" alt="ppbxrYF.png"></a></p>
-<pre><code>解决思路：第三方提供Bean对象的**代理对象(BeanProxy)**，该对象是对Bean的增强，可以完成事物操作</code></pre>
-<h4 id="2-IoC、DI、AOP思想"><a href="#2-IoC、DI、AOP思想" class="headerlink" title="2. IoC、DI、AOP思想"></a>2. IoC、DI、AOP思想</h4><pre><code>IoC思想：控制反转，强调的是原来在程序中创建Bean的权利反转给第三方
-
-DI思想：依赖注入，强调的Bean之间关系，这种关系第三方负责去设置
-
-AOP思想：面向切面编程，功能的横向抽取，主要的实现方式是Proxy。(面向对象编程是纵向设计一个Bean)</code></pre>
-<h4 id="3-框架概念"><a href="#3-框架概念" class="headerlink" title="3. 框架概念"></a>3. 框架概念</h4><pre><code>框架是基于基础技术之上，从众多业务中抽取出的通用解决方案，可以提升开发效率，并且框架具备扩展性</code></pre>
-<h4 id="4-Spring的简介"><a href="#4-Spring的简介" class="headerlink" title="4.Spring的简介"></a>4.Spring的简介</h4><pre><code>spring是分层的JavaSE/EE应用full-stack轻量级开源框架，以Ioc(反转控制)和AOP(面向切面编程)为内核</code></pre>
-<h4 id="5-Spring程序开发步骤"><a href="#5-Spring程序开发步骤" class="headerlink" title="5. Spring程序开发步骤"></a>5. Spring程序开发步骤</h4><pre><code>在jsp/servlet中，会用接口来引用接口实现的对象。
-
-对于Spring开发，会在xml配置文件中用id标识来获取接口实现类全限定名，而后接口类通过Spring框架读取xml文件根据标识来获取对象，如下图所示</code></pre>
+<p>​    解决思路：第三方提供Bean对象的**代理对象(BeanProxy)**，该对象是对Bean的增强，可以完成事物操作</p>
+<h4 id="2-IoC、DI、AOP思想"><a href="#2-IoC、DI、AOP思想" class="headerlink" title="2. IoC、DI、AOP思想"></a>2. IoC、DI、AOP思想</h4><p>​    IoC思想：控制反转，强调的是原来在程序中创建Bean的权利反转给第三方<br>​<br>​    DI思想：依赖注入，强调的Bean之间关系，这种关系第三方负责去设置<br>​<br>​    AOP思想：面向切面编程，功能的横向抽取，主要的实现方式是Proxy。(面向对象编程是纵向设计一个Bean)</p>
+<h4 id="3-框架概念"><a href="#3-框架概念" class="headerlink" title="3. 框架概念"></a>3. 框架概念</h4><p>​    框架是基于基础技术之上，从众多业务中抽取出的通用解决方案，可以提升开发效率，并且框架具备扩展性</p>
+<h4 id="4-Spring的简介"><a href="#4-Spring的简介" class="headerlink" title="4.Spring的简介"></a>4.Spring的简介</h4><p>​    spring是分层的JavaSE/EE应用full-stack轻量级开源框架，以Ioc(反转控制)和AOP(面向切面编程)为内核</p>
+<h4 id="5-Spring程序开发步骤"><a href="#5-Spring程序开发步骤" class="headerlink" title="5. Spring程序开发步骤"></a>5. Spring程序开发步骤</h4><p>​    在jsp/servlet中，会用接口来引用接口实现的对象。<br>​<br>​    对于Spring开发，会在xml配置文件中用id标识来获取接口实现类全限定名，而后接口类通过Spring框架读取xml文件根据标识来获取对象，如下图所示</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppb9xOA"><img src="https://s1.ax1x.com/2023/04/09/ppb9xOA.png" alt="ppb9xOA.png"></a></p>
-<pre><code>步骤总结：
-
-1. 通过maven导入Spring开发的基本包坐标
- 2. 编写Dao接口和实现类
- 3. 创建Spring核心配置文件，在main/resources/创建xml文件
- 4. 在Spring配置文件中配置UserDaoImpl
- 5. 使用Spring的API获得Bean实例</code></pre>
+<p>​    步骤总结：</p>
+<p>​    1. 通过maven导入Spring开发的基本包坐标<br>​    2. 编写Dao接口和实现类<br>​    3. 创建Spring核心配置文件，在main/resources/创建xml文件<br>​    4. 在Spring配置文件中配置UserDaoImpl<br>​    5. 使用Spring的API获得Bean实例</p>
 <h4 id="6-Spring配置文件xml的介绍"><a href="#6-Spring配置文件xml的介绍" class="headerlink" title="6.Spring配置文件xml的介绍"></a>6.Spring配置文件xml的介绍</h4><h5 id="1-Bean标签基本配置"><a href="#1-Bean标签基本配置" class="headerlink" title="(1)Bean标签基本配置"></a>(1)Bean标签基本配置</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;唯一标识&quot; class=&quot;类的全限定名&quot;&gt;&lt;/bean&gt; //bean和class是基本属性</span><br></pre></td></tr></table></figure>
 
-<pre><code>默认情况下它调用的是类中的无参构造函数，如果没有无参构造函数则不能创建成功</code></pre>
-<h5 id="2-Bean标签的范围配置"><a href="#2-Bean标签的范围配置" class="headerlink" title="(2)Bean标签的范围配置"></a>(2)Bean标签的范围配置</h5><pre><code>属性  scope：指对象的作用范围，取值如下：</code></pre>
+<p>​    默认情况下它调用的是类中的无参构造函数，如果没有无参构造函数则不能创建成功</p>
+<h5 id="2-Bean标签的范围配置"><a href="#2-Bean标签的范围配置" class="headerlink" title="(2)Bean标签的范围配置"></a>(2)Bean标签的范围配置</h5><p>​    属性  scope：指对象的作用范围，取值如下：</p>
 <table>
 <thead>
 <tr>
@@ -525,16 +514,12 @@ AOP思想：面向切面编程，功能的横向抽取，主要的实现方式�
 </tr>
 </tbody></table>
 <p>单例和多例的区别：</p>
-<pre><code>单例是不管getBean(&quot;id&quot;)获取几次，都是同一地址的对象，多例获取几次，就创造几个对象，详细如下图所示</code></pre>
+<p>​    单例是不管getBean(“id”)获取几次，都是同一地址的对象，多例获取几次，就创造几个对象，详细如下图所示</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppb8rIf"><img src="https://s1.ax1x.com/2023/04/09/ppb8rIf.png" alt="ppb8rIf.png"></a></p>
-<h5 id="3-Bean生命周期的配置"><a href="#3-Bean生命周期的配置" class="headerlink" title="(3)Bean生命周期的配置"></a>(3)Bean生命周期的配置</h5><pre><code>属性  init-method：指定类中的初始化方法名称
-
-属性  destroy-method：指定类中销毁方法名称
-
-这些要指定的方法需要在接口实现类中编写，在使用bean标签加载时指定</code></pre>
+<h5 id="3-Bean生命周期的配置"><a href="#3-Bean生命周期的配置" class="headerlink" title="(3)Bean生命周期的配置"></a>(3)Bean生命周期的配置</h5><p>​    属性  init-method：指定类中的初始化方法名称<br>​<br>​    属性  destroy-method：指定类中销毁方法名称<br>​<br>​    这些要指定的方法需要在接口实现类中编写，在使用bean标签加载时指定</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;唯一标识&quot; class=&quot;类的全限定名&quot; init-method=&quot;bean初始化要执行的方法名&quot; destroy-method=&quot;bean销毁时要执行的方法名&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
 
-<pre><code>bean的创建是在main函数中用Spring的API创建</code></pre>
+<p>​    bean的创建是在main函数中用Spring的API创建</p>
 <h5 id="4-Bean实例化三种方法"><a href="#4-Bean实例化三种方法" class="headerlink" title="(4)Bean实例化三种方法"></a>(4)Bean实例化三种方法</h5><ul>
 <li><p><strong>无参构造方法实例化</strong></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;给接口类起的唯一标识名&quot; class=&quot;该接口实现类的全限定名&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
@@ -549,79 +534,56 @@ AOP思想：面向切面编程，功能的横向抽取，主要的实现方式�
 
 </li>
 </ul>
-<pre><code>工厂方式实例化在JDBC获取时会使用到，但重点还是应该深入了解无参构造方法实例化</code></pre>
+<p>​    工厂方式实例化在JDBC获取时会使用到，但重点还是应该深入了解无参构造方法实例化</p>
 <h4 id="7-Bean的依赖注入"><a href="#7-Bean的依赖注入" class="headerlink" title="7. Bean的依赖注入"></a>7. Bean的依赖注入</h4><h5 id="1-从spring容器外部获取"><a href="#1-从spring容器外部获取" class="headerlink" title="1.从spring容器外部获取"></a>1.从spring容器外部获取</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppql3kT"><img src="https://s1.ax1x.com/2023/04/10/ppql3kT.png" alt="ppql3kT.png"></a></p>
-<pre><code>在项目中会写service层调用dao层的实例，可以在编写service方法时，用spring获取dao类的实例，通过实例调用dao层的方法。
-
-这个操作相当于在Spring容器外将Dao组装到service内部完成操作</code></pre>
+<p>​    在项目中会写service层调用dao层的实例，可以在编写service方法时，用spring获取dao类的实例，通过实例调用dao层的方法。<br>​<br>​    这个操作相当于在Spring容器外将Dao组装到service内部完成操作</p>
 <h5 id="2-从spring容器内部注入-依赖注入"><a href="#2-从spring容器内部注入-依赖注入" class="headerlink" title="2. 从spring容器内部注入(依赖注入)"></a>2. 从spring容器内部注入(依赖注入)</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppqln6s"><img src="https://s1.ax1x.com/2023/04/10/ppqln6s.png" alt="ppqln6s.png"></a></p>
 <p><strong>两种注入方法</strong></p>
 <p><strong>(1)使用set方法注入：</strong></p>
-<pre><code>需要设置service层获得spring的对象，设置spring.xml文件将dao层对象注入，核心是编写xml文件完成注入
-
-service层的实现中需要编写一个私有的dao的对象，并且编写setXxxx方法将私有dao对象赋值</code></pre>
+<p>​    需要设置service层获得spring的对象，设置spring.xml文件将dao层对象注入，核心是编写xml文件完成注入<br>​<br>​    service层的实现中需要编写一个私有的dao的对象，并且编写setXxxx方法将私有dao对象赋值</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppq1MgH"><img src="https://s1.ax1x.com/2023/04/10/ppq1MgH.png" alt="ppq1MgH.png"></a></p>
-<pre><code>spring的xml文件中的注入代码`property`的`name`属性写之前service层中setXxxx方法的xxxx(注意大小写)，ref属性写要注入的类的id</code></pre>
+<p>​    spring的xml文件中的注入代码<code>property</code>的<code>name</code>属性写之前service层中setXxxx方法的xxxx(注意大小写)，ref属性写要注入的类的id</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppq3VMj"><img src="https://s1.ax1x.com/2023/04/10/ppq3VMj.png" alt="ppq3VMj.png"></a></p>
-<pre><code>番外：`property`可以用p命名空间注入简化，引入命名空间是在`beans`标签引入</code></pre>
+<p>​    番外：<code>property</code>可以用p命名空间注入简化，引入命名空间是在<code>beans</code>标签引入</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppq89X9"><img src="https://s1.ax1x.com/2023/04/10/ppq89X9.png" alt="ppq89X9.png"></a></p>
-<pre><code>所以上面spring的xml文件的代码也可以改为</code></pre>
+<p>​    所以上面spring的xml文件的代码也可以改为</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppq83AP"><img src="https://s1.ax1x.com/2023/04/10/ppq83AP.png" alt="ppq83AP.png"></a></p>
 <p><strong>(2)使用有参构造方法注入：</strong></p>
-<pre><code>service层的实现中需要编写一个私有的dao的对象，并且编写有参构造方法在构造时对私有dao对象赋值，同时为了编码规范应该在声明无参构造方法</code></pre>
+<p>​    service层的实现中需要编写一个私有的dao的对象，并且编写有参构造方法在构造时对私有dao对象赋值，同时为了编码规范应该在声明无参构造方法</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppqHEUH"><img src="https://s1.ax1x.com/2023/04/10/ppqHEUH.png" alt="ppqHEUH.png"></a></p>
-<pre><code>在spring的xml文件中完成注入，其中`constructor-arg`中的`name`属性值为上面构造方法的参数名，ref属性写要注入的类的id</code></pre>
+<p>​    在spring的xml文件中完成注入，其中<code>constructor-arg</code>中的<code>name</code>属性值为上面构造方法的参数名，ref属性写要注入的类的id</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppqH8aQ"><img src="https://s1.ax1x.com/2023/04/10/ppqH8aQ.png" alt="ppqH8aQ.png"></a></p>
 <h5 id="3-补充：依赖注入的概念"><a href="#3-补充：依赖注入的概念" class="headerlink" title="3.补充：依赖注入的概念"></a>3.补充：依赖注入的概念</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppqlc1H"><img src="https://s1.ax1x.com/2023/04/10/ppqlc1H.png" alt="ppqlc1H.png"></a></p>
-<h4 id="8-Bean的依赖注入的数据类型"><a href="#8-Bean的依赖注入的数据类型" class="headerlink" title="8. Bean的依赖注入的数据类型"></a>8. Bean的依赖注入的数据类型</h4><pre><code>除对象的引用可以注入，普通数据类型，集合都可以在容器中进行注入(用set或者构造方法)</code></pre>
-<h5 id="1-普通数据类型的注入"><a href="#1-普通数据类型的注入" class="headerlink" title="1.普通数据类型的注入"></a>1.普通数据类型的注入</h5><pre><code>在dao的实现类中，建立成员变量，编写set方法</code></pre>
+<h4 id="8-Bean的依赖注入的数据类型"><a href="#8-Bean的依赖注入的数据类型" class="headerlink" title="8. Bean的依赖注入的数据类型"></a>8. Bean的依赖注入的数据类型</h4><p>​    除对象的引用可以注入，普通数据类型，集合都可以在容器中进行注入(用set或者构造方法)</p>
+<h5 id="1-普通数据类型的注入"><a href="#1-普通数据类型的注入" class="headerlink" title="1.普通数据类型的注入"></a>1.普通数据类型的注入</h5><p>​    在dao的实现类中，建立成员变量，编写set方法</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppqHqzt"><img src="https://s1.ax1x.com/2023/04/10/ppqHqzt.png" alt="ppqHqzt.png"></a></p>
-<pre><code>在spring的xml文件完成注入，name属性值为set后面一串首字母小写，因为是普通数据类型用value赋值</code></pre>
+<p>​    在spring的xml文件完成注入，name属性值为set后面一串首字母小写，因为是普通数据类型用value赋值</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppqHjL8"><img src="https://s1.ax1x.com/2023/04/10/ppqHjL8.png" alt="ppqHjL8.png"></a></p>
-<h5 id="2-集合的注入"><a href="#2-集合的注入" class="headerlink" title="2.集合的注入"></a>2.集合的注入</h5><pre><code>在dao的实现类中，建立成员变量，编写set方法</code></pre>
+<h5 id="2-集合的注入"><a href="#2-集合的注入" class="headerlink" title="2.集合的注入"></a>2.集合的注入</h5><p>​    在dao的实现类中，建立成员变量，编写set方法</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppqqC7D"><img src="https://s1.ax1x.com/2023/04/10/ppqqC7D.png" alt="ppqqC7D.png"></a></p>
-<pre><code>在spring的xml文件完成注入，name属性值为set后面一串首字母小写，因为值比较特殊需要在`property`内部设置值，在其内部有子标签</code></pre>
+<p>​    在spring的xml文件完成注入，name属性值为set后面一串首字母小写，因为值比较特殊需要在<code>property</code>内部设置值，在其内部有子标签</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppqqaHU"><img src="https://s1.ax1x.com/2023/04/10/ppqqaHU.png" alt="ppqqaHU.png"></a></p>
-<pre><code>而后通过子标签配置值，如list标签设置为下图所示，其余两个略</code></pre>
+<p>​    而后通过子标签配置值，如list标签设置为下图所示，其余两个略</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppqq2DK"><img src="https://s1.ax1x.com/2023/04/10/ppqq2DK.png" alt="ppqq2DK.png"></a></p>
-<h4 id="9-Spring配置文件的import标签"><a href="#9-Spring配置文件的import标签" class="headerlink" title="9.Spring配置文件的import标签"></a>9.Spring配置文件的import标签</h4><pre><code>项目中的不同模块需要拆分，此时要在主配置文件引入这些模块需要使用import标签进行加载
-
-语法：resource属性值为要引入的Spring配置文件的位置</code></pre>
+<h4 id="9-Spring配置文件的import标签"><a href="#9-Spring配置文件的import标签" class="headerlink" title="9.Spring配置文件的import标签"></a>9.Spring配置文件的import标签</h4><p>​    项目中的不同模块需要拆分，此时要在主配置文件引入这些模块需要使用import标签进行加载<br>​<br>​    语法：resource属性值为要引入的Spring配置文件的位置</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">import</span> resource=<span class="string">&quot;applicationContext-xxx.xml&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
 
-<pre><code>当主文件加载时，分文件也会被加载
-
-[![ppLLaXq.png](https://s1.ax1x.com/2023/04/11/ppLLaXq.png)](https://imgse.com/i/ppLLaXq)</code></pre>
+<p>​    当主文件加载时，分文件也会被加载<br>​<br>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/ppLLaXq"><img src="https://s1.ax1x.com/2023/04/11/ppLLaXq.png" alt="ppLLaXq.png"></a></p>
 <h4 id="10-小结"><a href="#10-小结" class="headerlink" title="10. 小结"></a>10. 小结</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppLOigs"><img src="https://s1.ax1x.com/2023/04/11/ppLOigs.png" alt="ppLOigs.png"></a></p>
 <h4 id="11-Spring相关API"><a href="#11-Spring相关API" class="headerlink" title="11. Spring相关API"></a>11. Spring相关API</h4><p><strong>1. ApplicationContext继承体系</strong></p>
-<pre><code>applicationContext：接口类型，可以通过其实例获得Spring容器的Bean对象</code></pre>
+<p>​    applicationContext：接口类型，可以通过其实例获得Spring容器的Bean对象</p>
 <p>​    </p>
 <p><strong>2. ApplicationContext的实现类</strong></p>
-<pre><code>(1).ClassPathXmlApplicationContext(&quot;参数为resource文件夹的xml文件路径&quot;)
-
-    它是从类的根路径下加载配置文件(推荐使用)
-
-(2).FileSystemXmlApplicationContext(&quot;参数为xml文件在电脑中的磁盘路径&quot;)
-
-    它是从磁盘路径上加载配置文件，配置文件可以在磁盘的任意位置
-
-(3).AnnotationConfigApplicationContext
-
-    当使用注解配置容器对象时，需要使用此类来创建spring容器，它用来读取注解(之后再学)</code></pre>
+<p>​    (1).ClassPathXmlApplicationContext(“参数为resource文件夹的xml文件路径”)<br>​<br>​    ​    它是从类的根路径下加载配置文件(推荐使用)</p>
+<p>​    (2).FileSystemXmlApplicationContext(“参数为xml文件在电脑中的磁盘路径”)<br>​<br>​    ​    它是从磁盘路径上加载配置文件，配置文件可以在磁盘的任意位置</p>
+<p>​    (3).AnnotationConfigApplicationContext<br>​<br>​    ​    当使用注解配置容器对象时，需要使用此类来创建spring容器，它用来读取注解(之后再学)</p>
 <p><strong>3. getBean()方法使用</strong></p>
-<pre><code>getBean()的API文档</code></pre>
+<p>​    getBean()的API文档</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppLjplj"><img src="https://s1.ax1x.com/2023/04/11/ppLjplj.png" alt="ppLjplj.png"></a></p>
-<pre><code>第一个是上面使用过的，传递的是xml文件中设置的id值
-
-第二个是传字节码对象类型(xxxx.class)
-
-第一个允许出现相同类型的bean因为可以用id进行区分，第二个只能由一种类型的bean
-
-
-
-相同效果的两种方式的代码编写</code></pre>
+<p>​    第一个是上面使用过的，传递的是xml文件中设置的id值<br>​<br>​    第二个是传字节码对象类型(xxxx.class)<br>​<br>​    第一个允许出现相同类型的bean因为可以用id进行区分，第二个只能由一种类型的bean</p>
+<p>​    相同效果的两种方式的代码编写</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppLjXuR"><img src="https://s1.ax1x.com/2023/04/11/ppLjXuR.png" alt="ppLjXuR.png"></a></p>
-<pre><code>这个UserService是接口类，等于是获得接口类的反射</code></pre>
+<p>​    这个UserService是接口类，等于是获得接口类的反射</p>
 
                 
             </div>

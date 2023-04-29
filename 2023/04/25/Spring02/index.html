@@ -475,10 +475,7 @@
 <li>使用完毕后连接资源归还给数据源</li>
 </ul>
 <p>​    常见的数据源(连接池)：DBCP、C3P0、BoneCP、Druid等</p>
-<h4 id="2-数据源的开发步骤"><a href="#2-数据源的开发步骤" class="headerlink" title="2. 数据源的开发步骤"></a>2. 数据源的开发步骤</h4><pre><code>1. 导入数据源的坐标(jar)和数据库驱动坐标(jar)
-   2. 创建数据源对象
-   3. 设置数据源的基本连接数据库的数据
-   4. 使用数据源获取连接资源和归还连接资源</code></pre>
+<h4 id="2-数据源的开发步骤"><a href="#2-数据源的开发步骤" class="headerlink" title="2. 数据源的开发步骤"></a>2. 数据源的开发步骤</h4><p>​    1. 导入数据源的坐标(jar)和数据库驱动坐标(jar)<br>​    2. 创建数据源对象<br>​    3. 设置数据源的基本连接数据库的数据<br>​    4. 使用数据源获取连接资源和归还连接资源</p>
 <p>​    在pom.xml文件中导入坐标，mysql、c3p0、druid</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppOCFxS"><img src="https://s1.ax1x.com/2023/04/11/ppOCFxS.png" alt="ppOCFxS.png"></a></p>
 <p>​    在java代码，创建c3p0数据源对象，以及给对应数据库的参数，获取数据库连接对象</p>
