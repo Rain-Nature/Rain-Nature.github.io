@@ -1,573 +1,584 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>祈雨</title>
+  <meta charset="utf-8">
   
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
 
+  
+  <title>祈雨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="祈雨">
+<meta property="og:url" content="http://example.com/page/7/index.html">
+<meta property="og:site_name" content="祈雨">
+<meta property="og:locale">
+<meta property="article:author" content="nature">
+<meta property="article:tag" content="Rain">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
   
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/blog.png)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>祈雨</div>
-        
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
-        
-            
-                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
-                    <img src="/assets/github.svg" />
-                </a>
-            
-        
-    </section>
-</aside>
-
-    <div class="container">
-        <div data-pager-shell>
-            <ul class="Index">
-  
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祈雨</a>
+      </h1>
       
-        <h1>
-          <a href="/2021/04/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%95%86%E5%93%81%E9%A1%B5%E9%9D%A2/">微信小程序-商品页面</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-18T09:56:15.000Z" itemprop="datePublished">
-    2021-04-18
-  </time>
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
   
-  | 
-  <ul>
+    <article id="post-elo-rating-system" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/11/elo-rating-system/" class="article-date">
+  <time datetime="2021-02-11T03:00:56.000Z" itemprop="datePublished">2021-02-11</time>
+</a>
     
-  <li class="meta-text">
-  { <a href="/tags/wx%E5%AE%9E%E8%B7%B5/">wx实践</a> }
-  </li>
-
-
-  </ul>
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/11/elo-rating-system/">elo rating system</a>
+    </h1>
   
-</div>
 
-    </header>
-    <div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;swiper class&#x3D;&quot;myswiper&quot; bindchange&#x3D;&quot;changeImg&quot; indicator-dots&#x3D;&quot;ture&quot; autoplay&#x3D;&quot;ture&quot; circular&#x3D;&quot;ture&quot;&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;租借图片&#x2F;毕业季.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;apple.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;hw1.jpg?sign&#x3D;fee0f936bbe930fb6d94b51747d7a213&amp;t&#x3D;1618020235&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;parent&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color1&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text1&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;money&quot;&gt;￥&#123;&#123;price&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text2&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;people&quot;&gt;0人买过&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color2&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text3&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple&quot;&gt;&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text4&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple_computer&quot;&gt;这是&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;bottom&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture1&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;server&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-question.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;bottom_text&quot;&gt;客服&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture2&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;shop&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-shop.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;bottom_text&quot;&gt;商店&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;last&quot;&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;button&quot;&gt;立即购买&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+        <h2 id="elo-rating-system"><a href="#elo-rating-system" class="headerlink" title="elo rating system"></a>elo rating system</h2><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>ELO等级分制度 是美国物理学家 Arpad Elo 创建的一个衡量各类对弈活动选手水平的评分方法，是当今对弈水平评估的公认的权威方法。被广泛应用于国际象棋、围棋、足球等运动，以及很多网游与电子竞技产业（如王者荣耀）。</p>
+<h3 id="2-主要用途"><a href="#2-主要用途" class="headerlink" title="2.主要用途"></a>2.主要用途</h3><p>ELO机制主要应用在排位或者某些匹配上，可以为你寻找到和你水平相近的对手，但是在多人组队时对中高水平者不友好。</p>
+<h3 id="3-ELO的计算方法"><a href="#3-ELO的计算方法" class="headerlink" title="3.ELO的计算方法"></a>3.ELO的计算方法</h3><p>Ra：A玩家当前的积分<br>Rb：B玩家当前的积分<br>Sa：实际胜负值，胜=1，平=0.5，负=0<br>Ea：预期A选手的胜负值<br>Eb：预期B选手的胜负值<br>因为E值也为预估，则Ea+ Eb=1<br><a target="_blank" rel="noopener" href="https://imgchr.com/i/yBV99s"><img src="https://s3.ax1x.com/2021/02/11/yBV99s.png" alt="yBV99s.png"></a></p>
+<p>如果选手的表现比期望要好，那么此选手的排名应该上升。相反，若表现不如期望，则排名会下降。</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/yBVUCd"><img src="https://s3.ax1x.com/2021/02/11/yBVUCd.png" alt="yBVUCd.png"></a></p>
+<p>次Ra为比赛完后A玩家的积分</p>
+<h3 id="4-程序：王者荣耀巅峰赛积分模拟"><a href="#4-程序：王者荣耀巅峰赛积分模拟" class="headerlink" title="4.程序：王者荣耀巅峰赛积分模拟"></a>4.程序：王者荣耀巅峰赛积分模拟</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _2020</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            string result1;</span><br><span class="line">            double result;</span><br><span class="line">            string grand1, grand2;</span><br><span class="line">            double a, b;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;无限循环</span><br><span class="line">            while (true)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;Two person are grand&quot;);</span><br><span class="line">                grand1 &#x3D; Console.ReadLine();</span><br><span class="line">                grand2 &#x3D; Console.ReadLine();</span><br><span class="line">                a &#x3D; double.Parse(grand1);</span><br><span class="line">                b &#x3D; double.Parse(grand2);</span><br><span class="line">                Console.WriteLine(&quot;Please enter a numbr such as, 1 is A win , 0.5 is flat, 0 is A lost&quot;);</span><br><span class="line">                result1 &#x3D; Console.ReadLine();</span><br><span class="line">                result &#x3D; double.Parse(result1);</span><br><span class="line">                </span><br><span class="line">                &#x2F;&#x2F;跳出循环</span><br><span class="line">                if (result &#x3D;&#x3D; -1)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine(&quot;Esc is ok&quot;);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                switch (result)</span><br><span class="line">                &#123;</span><br><span class="line">                    case 1:</span><br><span class="line">                        Player.liu(1, a, b);</span><br><span class="line">                        break;</span><br><span class="line">                    case 0:</span><br><span class="line">                        Player.liu(0, a, b);</span><br><span class="line">                        break;</span><br><span class="line">                    case 0.5:</span><br><span class="line">                        Player.liu(0.5, a, b);</span><br><span class="line">                        break;</span><br><span class="line">                    default:</span><br><span class="line">                        Console.WriteLine(&quot;it is not right number&quot;);</span><br><span class="line">                        break;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Player</span><br><span class="line">    &#123;</span><br><span class="line">        public Player(double player1)</span><br><span class="line">        &#123;</span><br><span class="line">            this.score &#x3D; player1;</span><br><span class="line">        &#125;</span><br><span class="line">        double score;</span><br><span class="line"></span><br><span class="line">        public static void liu(double result, double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            Player person1 &#x3D; new Player(a);</span><br><span class="line">            Player person2 &#x3D; new Player(b);</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;K值给了24</span><br><span class="line">            double c &#x3D; person1.score + 24 * (result - 1 &#x2F; (1 + Math.Pow(10, (person2.score - person1.score) &#x2F; 400)));</span><br><span class="line">            double d &#x3D; person2.score + 24 * ((1 - result) - 1 &#x2F; (1 + Math.Pow(10, (person1.score - person2.score) &#x2F; 400)));</span><br><span class="line"></span><br><span class="line">            Console.WriteLine(&quot;So the person1 of score &#123;0&#125; the person2 of score &#123;1&#125;&quot;, c, d);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h3><p>.picture{<br>  width: 100%;<br>}</p>
-<p>.myswiper{<br>  width: 100%;<br>  height: 750rpx;<br>}</p>
-<p>.parent{<br>  width: 100%;<br>  height: 250rpx;<br>  display: flex;<br>  flex-direction: column;<br>  /* background-color:blue; */<br>}</p>
-<p>.color1{<br>  width: 100%;<br>  display: flex;<br>  flex-direction: row;<br>  /* background-color: yellow; */<br>  flex-grow: 1;<br>}</p>
-<p>.color2{<br>  width: 100%;<br>  display: flex;<br>  flex-direction:column;<br>  /* background-color:green; */<br>  flex-grow: 2;<br>}</p>
-<p>.text1{<br>  /* background-color: red; */<br>  padding-left: 25rpx;<br>  display: flex;<br>  flex-direction: column;<br>  align-items: flex-start;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
-<p>.text2{<br>  /* background-color: blue; */<br>  display: flex;<br>  flex-direction: column;<br>  padding-right: 25rpx;<br>  align-items: flex-end;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
-<p>.text3{<br>  /* background-color: blue; */<br>  display: flex;<br>  padding-left: 20rpx;<br>  flex-direction: column;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
-<p>.text4{<br>  /* background-color: brown; */<br>  display: flex;<br>  padding-left: 20rpx;<br>  flex-direction: column;<br>  justify-content: center;<br>  flex-grow: 1;<br>}</p>
-<p>.money{<br>  color: red;<br>  font-size: 40rpx;<br>  font-weight: bold;<br>}</p>
-<p>.people{<br>  color:#DCDCDC;<br>  font-size: 25rpx;<br>}</p>
-<p>.apple{<br>  font-size: 40rpx;<br>  font-weight: bold;<br>}</p>
-<p>.apple_computer{<br>  color:#DCDCDC;<br>  font-size: 25rpx;<br>}</p>
-<p>.bottom{<br>  position: fixed;<br>  bottom: 0;<br>  width: 100%;<br>  height: 100rpx;<br>  /* background:yellow; */<br>  display:flex;<br>  flex-direction: row;<br>}</p>
-<p>.bottom_picture1{<br>  /* background-color: aqua; */<br>  padding-left: 14rpx;<br>  width: 13%;<br>  height: 100rpx;<br>  display: flex;<br>  flex-direction:column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
-<p>.server{<br>  width: 55rpx;<br>}</p>
-<p>.shop{<br>  width: 55rpx;<br>}</p>
-<p>.bottom_picture2{<br>  /* background-color: rgb(71, 127, 190); */<br>  width: 13%;<br>  height: 100rpx;<br>  display: flex;<br>  flex-direction:column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
-<p>.bottom_text{<br>  font-size: 28rpx;<br>}</p>
-<p>.last{<br>  padding-left: 30rpx;<br>  display: flex;<br>  flex-direction: column;<br>  align-items: center;<br>  justify-content: center;<br>}</p>
-<p>.button{<br>  width: 460rpx !important;<br>  background: #f12711;  /* fallback for old browsers <em>/<br>  background: -webkit-linear-gradient(to right, #f5af19, #f12711);  /</em> Chrome 10-25, Safari 5.1-6 <em>/<br>  background: linear-gradient(to right, #f5af19, #f12711); /</em> W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */</p>
-<p>  border-radius: 140rpx;<br>  color: white !important;<br>  font-weight: normal;<br>  font-size: 14px;<br>}</p>
-<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><p>Page({<br>  data:{<br>    price:200,<br>    shopname:’我们毕业了’<br>  },<br>  changeImg:function(e){<br>    console.log(e.detail.current)<br>    var currentIndex=e.detail.current<br>    if(currentIndex==0){<br>      this.setData({<br>        price:200,<br>        shopname:’我们毕业了’<br>      })<br>    }else if(currentIndex==1){<br>      this.setData({<br>        price:5700,<br>        shopname:’苹果电脑’<br>      })<br>    }else{<br>      this.setData({<br>        price:12000,<br>        shopname:’华为笔记本’<br>      })<br>    }<br>  }<br>})</p>
+
+
 
       
     </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/11/elo-rating-system/" data-id="clh1gs36m001yakwcaedk1i42" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
 </article>
 
-    </li>
+
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/16/%E8%87%B3%E7%8E%B0%E5%9C%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E8%AF%97/">至现在自己的诗</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-16T12:29:30.000Z" itemprop="datePublished">
-    2021-04-16
-  </time>
-  
-  | 
-  <ul>
+    <article id="post-Csharp的时钟功能的实现-窗体" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/27/Csharp%E7%9A%84%E6%97%B6%E9%92%9F%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0-%E7%AA%97%E4%BD%93/" class="article-date">
+  <time datetime="2020-12-27T13:22:18.000Z" itemprop="datePublished">2020-12-27</time>
+</a>
     
-  <li class="meta-text">
-  { <a href="/tags/my-think/">my-think</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="至现在自己的诗-2021-04-16"><a href="#至现在自己的诗-2021-04-16" class="headerlink" title="至现在自己的诗(2021-04-16)"></a>至现在自己的诗(2021-04-16)</h2><p>  <strong>泊秦淮</strong><br>               杜牧<br>烟笼寒水月笼沙，<br>夜泊秦淮近酒家。<br><strong>商女不知亡国恨，<br>隔江犹唱后庭花。</strong></p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/16/%E8%AE%BA%E8%87%AA%E5%88%B6%E5%8A%9B%E6%98%AF%E6%80%8E%E6%A0%B7%E4%B8%A7%E5%A4%B1%E7%9A%84/">论自制力是怎样丧失的</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-16T12:27:09.000Z" itemprop="datePublished">
-    2021-04-16
-  </time>
-  
-  | 
-  <ul>
+  </div>
+  <div class="article-inner">
     
-  <li class="meta-text">
-  { <a href="/tags/my-think/">my-think</a> }
-  </li>
-
-
-  </ul>
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/27/Csharp%E7%9A%84%E6%97%B6%E9%92%9F%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0-%E7%AA%97%E4%BD%93/">Csharp的时钟功能的实现(窗体)</a>
+    </h1>
   
-</div>
 
-    </header>
-    <div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="论人的自制力是怎样消失的"><a href="#论人的自制力是怎样消失的" class="headerlink" title="论人的自制力是怎样消失的"></a>论人的自制力是怎样消失的</h2><p>1.首先必须要有一个安逸的环境，安逸的环境令人神往，当然这也是大多数人奋斗的目标，当达到这个指标时，人的思维就会停滞不前，而且会觉得只要保持这个状态就可以了，不需要去花费多余的时间去做别的事情，而这种状态是不可能靠着这样维持的，当放纵的时间足够长，实力亦然不支持继续保持这种状态时，平衡必将被打破，于是乎，此时必然会想办法硬着头皮冲（即：头铁）过这段时间，而后换了一个环境后，又开始从头来过，循环往复，这也是大多数普通人想的吧。</p>
-<p>2.其次需要一部手机和一个好玩上瘾的游戏，此时，快乐的时光必然来临，多巴胺的分泌让人感到愉悦感，而喷人同样令人痛快，双重感觉下时间如梭，而万一连跪则可以把脾气发泄到一堆陌生的废物身上，这让本来沮丧的心情又平添了一番趣味，而靠着赌我就不信可以一直输的心态继续恶心队友，而游戏的elo必然会妥协的就像不会让你一直赢一样，这会使你感觉，哦，原来我打败了系统，系统还是向我低头了，而征服的感觉会继续让你沉迷其中不得自拔。</p>
-<p>3.还有就是过分的自信，觉得自己可以去战胜懒惰，可以不需要任何的计划就完全的避开慵懒，也许刚开始是有一定作用的，但是到了后面在懒惰向心力的作用下，只受单力作用的你，必然做平抛运动直刺深渊。</p>
-<p><strong>当一个人丧失了斗志，变得随遇而安，那必将离失败不远，而赌徒的心态和极高的欲望心会使得你向着地狱踩下油门。</strong></p>
+        <h3 id="小程序（制作了一个简易的数字时钟）-lt-C-gt"><a href="#小程序（制作了一个简易的数字时钟）-lt-C-gt" class="headerlink" title="小程序（制作了一个简易的数字时钟）&lt;C#&gt;"></a>小程序（制作了一个简易的数字时钟）&lt;C#&gt;</h3><h4 id="锻炼"><a href="#锻炼" class="headerlink" title="锻炼"></a>锻炼</h4><ol>
+<li>对Tostring()的熟练使用<br> 在使用Tostring的过程中括号内可不加东西，为直接转换为字符串，在括号内加入引号，在写格式码，可以对转换的字符串的格式输出再做转化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如ToString(&quot;D2&quot;);    &#x2F;&#x2F;D大小写随意,表示未达到两位数时，按两位数格式输出前面补0</span><br></pre></td></tr></table></figure></li>
+<li>对于textBox.text属性的掌握<br>字符串在该属性上显示字符串的格式为<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tetBox.text1&#x3D;变量名(变量须为字符串类型)+&#39;常字符串&#39;; &#x2F;&#x2F;这两个不同的格式按需求使用，用&#39;+&#39;连接</span><br></pre></td></tr></table></figure></li>
+<li>对方法DateTime方法的理解</li>
+</ol>
 <hr>
-<p>至此，必须需要摆正自己的定位，不要老想着未来眼高手低，脚踏实地一步一个脚印。</p>
+<h4 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h4><p>当点击一键查询按钮时会在对应位置显示今日的日期和时间</p>
+<hr>
+<h4 id="窗体"><a href="#窗体" class="headerlink" title="窗体"></a>窗体</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/rIBx1I"><img src="https://s3.ax1x.com/2020/12/27/rIBx1I.md.png" alt="rIBx1I.md.png"></a></p>
+<hr>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.ComponentModel;</span><br><span class="line">using System.Data;</span><br><span class="line">using System.Drawing;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Windows.Forms;</span><br><span class="line"></span><br><span class="line">namespace _2021</span><br><span class="line">&#123;</span><br><span class="line">    public partial class Form1 : Form</span><br><span class="line">    &#123;</span><br><span class="line">        public Form1()</span><br><span class="line">        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void button1_Click(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            int year,month,day;</span><br><span class="line">            year &#x3D; DateTime.Now.Year;</span><br><span class="line">            month &#x3D; DateTime.Now.Month;</span><br><span class="line">            day &#x3D; DateTime.Now.Day;</span><br><span class="line"></span><br><span class="line">            int hour, min, Second;</span><br><span class="line">            hour &#x3D; DateTime.Now.Hour;</span><br><span class="line">            min &#x3D; DateTime.Now.Minute;</span><br><span class="line">            Second &#x3D; DateTime.Now.Second;</span><br><span class="line"></span><br><span class="line">            textBox1.Text &#x3D; year.ToString()+&#39;年&#39;+month.ToString(&quot;D2&quot;)+&#39;月&#39;+day.ToString(&quot;D2&quot;)+&#39;日&#39;;</span><br><span class="line">            textBox2.Text &#x3D; hour.ToString(&quot;D2&quot;) + &#39;:&#39;+min.ToString(&quot;D2&quot;) + &#39;:&#39; + Second.ToString(&quot;D2&quot;);</span><br><span class="line">        &#125;                                                                                      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/rIy0ET"><img src="https://s3.ax1x.com/2020/12/27/rIy0ET.png" alt="rIy0ET.png"></a></p>
+<p><strong>完结</strong></p>
 
       
     </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/27/Csharp%E7%9A%84%E6%97%B6%E9%92%9F%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0-%E7%AA%97%E4%BD%93/" data-id="clh1gs35d0001akwc0u1r4oeh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
 </article>
 
-    </li>
+
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/11/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day03/">图灵工作室day03</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-11T08:51:34.000Z" itemprop="datePublished">
-    2021-04-11
-  </time>
-  
-  | 
-  <ul>
+    <article id="post-C语言寒假复习-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/16/C%E8%AF%AD%E8%A8%80%E5%AF%92%E5%81%87%E5%A4%8D%E4%B9%A0-1/" class="article-date">
+  <time datetime="2020-12-16T14:15:13.000Z" itemprop="datePublished">2020-12-16</time>
+</a>
     
-  <li class="meta-text">
-  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
-  </li>
-
-
-  </ul>
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/16/C%E8%AF%AD%E8%A8%80%E5%AF%92%E5%81%87%E5%A4%8D%E4%B9%A0-1/">C语言寒假复习(1)</a>
+    </h1>
   
-</div>
 
-    </header>
-    <div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h2><p>1.任何一个容器都可以启用flex布局<br>2.flex布局也叫弹性布局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">(1).display:flex  &#x2F;&#x2F;启用flex布局</span><br><span class="line">(2).flex-direction属性决定主轴方向</span><br><span class="line">    flex-direction：column &#x2F;&#x2F;设置垂直方向为主轴</span><br><span class="line">    flex-direction：raw &#x2F;&#x2F;设置横轴方向为主轴</span><br><span class="line">    交叉轴等于法向量，主轴于盒子方向相同</span><br><span class="line"></span><br><span class="line">(3).对盒子先设置大盒子，justity-content：center;对主轴居中对齐</span><br><span class="line">                     他的其他属性</span><br><span class="line">                     flex-start（默认值）：左对齐</span><br><span class="line">                     flex-end：右对齐</span><br><span class="line">                     center： 居中</span><br><span class="line">                     space-between：两端对齐，项目之间的间隔都相等。</span><br><span class="line">                     space-around：每个项目两侧的间隔相等。所以，项目之间                                    的间隔比项目与边框的间隔大一倍。</span><br><span class="line">                     </span><br><span class="line">                     align-items：center；对交叉轴居中对齐</span><br><span class="line">              	     他的其他属性</span><br><span class="line">              	     flex-start：交叉轴的起点对齐。</span><br><span class="line">                     flex-end：交叉轴的终点对齐。</span><br><span class="line">                     center：交叉轴的中点对齐。</span><br><span class="line">                     baseline: 项目的第一行文字的基线对齐。</span><br><span class="line">                     stretch（默认值）：如果项目未设置高度或设为auto，将占                                       满整个容器的高度。</span><br><span class="line">    </span><br><span class="line">    在此之后每制造一个小盒子都会按照设定方式排列</span><br><span class="line"></span><br><span class="line">(4).flex-wrap属性决定盒子排不下的时候是否换行</span><br><span class="line">    flex-wrap:nowrap(默认); &#x2F;&#x2F;不换行，如果放不下的情况下会让所有盒子等比例缩小来放</span><br><span class="line">    flex-wrap:wrap;        &#x2F;&#x2F;换行，第一行在上方</span><br><span class="line">    flex-wrap:wrap-reverse &#x2F;&#x2F;换行，第一行在下方</span><br><span class="line"></span><br><span class="line">(5).order属性</span><br><span class="line">    order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0</span><br><span class="line">    order &#x3D; 1;</span><br><span class="line">    </span><br><span class="line">(6).flex-grow属性</span><br><span class="line">    flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</span><br><span class="line"></span><br><span class="line">当一个flex-grow为1，而其他为0时，该盒子会占去除那些为0盒子占的空间外的全部空间</span><br><span class="line"></span><br><span class="line">(7).flex布局自动计算高度不需要去手动分配，会适得其反</span><br></pre></td></tr></table></figure>
-
-<p><strong>其他的暂时没有用上就先不补了</strong></p>
-<h2 id="js部分语法"><a href="#js部分语法" class="headerlink" title="js部分语法"></a>js部分语法</h2><p>1.js中不分’ ‘,” “,一般用’ ‘</p>
-<p>2.let 块作用域，var 函数作用域（整个函数中在哪定义生命周期为整个函数）</p>
-<p>3.控制台打印<br>console.log()函数 //普通文本<br>console.warn()函数 //警告文本<br>console.error()函数 //出错文本</p>
-<p>4.input控件disable控制是否允许输入</p>
-<p>5.转浮点和整型来做差来判断精度是否丢失</p>
+        <h2 id="C语言寒假复习-1"><a href="#C语言寒假复习-1" class="headerlink" title="C语言寒假复习(1)"></a>C语言寒假复习(1)</h2><h3 id="C语言基础代码（Hello-world）"><a href="#C语言基础代码（Hello-world）" class="headerlink" title="C语言基础代码（Hello world）"></a>C语言基础代码（Hello world）</h3><p><strong>使用记事本来完成，在Linux环境下编译</strong><br>#include &lt;stdio.h&gt;<br>int main(void){<br>    printf(“Hello world”);<br>    return 0;<br>}</p>
+<p><strong>错误的将头文件stdio.h写成了studio.h，要多练，不练必废</strong><br>成功生成<br><img src="https://s3.ax1x.com/2020/12/17/rGrlVK.jpg" alt="Hello world" title="Hello world"></p>
+<hr>
 
       
     </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/16/C%E8%AF%AD%E8%A8%80%E5%AF%92%E5%81%87%E5%A4%8D%E4%B9%A0-1/" data-id="clh1gs35j0006akwc57rnb6zr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
+
+    </footer>
+  </div>
+  
 </article>
 
-    </li>
+
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/09/%E7%BC%96%E7%A0%81%E7%9A%84%E8%A7%84%E5%88%99/">编码的规则</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-09T13:59:14.000Z" itemprop="datePublished">
-    2021-04-09
-  </time>
-  
-  | 
-  <ul>
+    <article id="post-月下独酌四首-其一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/08/%E6%9C%88%E4%B8%8B%E7%8B%AC%E9%85%8C%E5%9B%9B%E9%A6%96-%E5%85%B6%E4%B8%80/" class="article-date">
+  <time datetime="2020-12-08T10:01:10.000Z" itemprop="datePublished">2020-12-08</time>
+</a>
     
-  <li class="meta-text">
-  { <a href="/tags/C/">C</a> }
-  </li>
-
-
-  </ul>
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/08/%E6%9C%88%E4%B8%8B%E7%8B%AC%E9%85%8C%E5%9B%9B%E9%A6%96-%E5%85%B6%E4%B8%80/">月下独酌四首_其一</a>
+    </h1>
   
-</div>
 
-    </header>
-    <div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="记事本的四种编码规则"><a href="#记事本的四种编码规则" class="headerlink" title="记事本的四种编码规则"></a>记事本的四种编码规则</h2><h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h3><p>在C语言程序中当调用记事本文件时，当里面含有汉字时可能会产生乱码，导致程序的运行失败，写这篇bolg的目的是为了记录一下记事本的四种编码区别</p>
-<h3 id="2-getchar-函数来抓取字符"><a href="#2-getchar-函数来抓取字符" class="headerlink" title="2.getchar()函数来抓取字符"></a>2.getchar()函数来抓取字符</h3><p>当程序从文件中读字符时，如果遇到了文件末尾，就会得到 EOF，EOF 并不是一个字符。但是，从标准输入（就是你的终端）读字符的时候，不可能出现文件末尾的情况，所以终端提供了一个功能，就是当你按下 ctrl+z（Windows）/ ctrl+d（Linux）时，终端告诉程序“标准输入”到了文件末尾，此时你的程序 getchar 会得到 EOF(不一定是-1，目前在CB上是-1)<br><strong>注意：getchar是从缓存中读数据（getchar是以行为单位进行存取的），也就是说，你输入a，程序并不反映，只是把a存到缓存中，直到你输入结束，输了回车，程序才反映</strong></p>
-<h2 id="ANSI编码"><a href="#ANSI编码" class="headerlink" title="ANSI编码"></a>ANSI编码</h2><ol>
-<li>若为英文操作系统则为ASCII码<br> 每个字符用一个字节（8位）表示，最高位恒为0，剩下7位（2^7次方=128）。因为128个值就足够表示所有英文字符，数字字符，英文标点字符，和控制字符了。</li>
-</ol>
-<p><strong>2. 若为中文操作系统则为GBK码<br>    兼容ASCII码表示的字符以外，延伸0x80-0xff。用2个字节表示一个中文字符。解析的时候，如果第一个字节大于127，直接再往后读取一个字节，显示为对应的中文字符。（GBK码的字符集包含了简体和繁体）。</strong><br>3. 若为日文操作系统则为JIS码<br>    里面为日文字符</p>
-<p><strong>所以在不同语种的操作系统下，打开同一个通过ANSI编码的txt，除了ASCII所表示的字符正常显示外，其他字符会有出现乱码的情况，因为解码和编码方式就是不一样的，如修改windows的默认语言为日语，即ANSI编码即为JIS编码</strong></p>
-<h2 id="Unicode编码（把地球上所有的语言的符号，都用统一的字符集来表示）"><a href="#Unicode编码（把地球上所有的语言的符号，都用统一的字符集来表示）" class="headerlink" title="Unicode编码（把地球上所有的语言的符号，都用统一的字符集来表示）"></a>Unicode编码（把地球上所有的语言的符号，都用统一的字符集来表示）</h2><h3 id="UTF-8编码"><a href="#UTF-8编码" class="headerlink" title="UTF-8编码"></a>UTF-8编码</h3><ol>
-<li><p>UTF8是一种变长编码，根据不同的Unicode码值采用不同的存储长度。</p>
-</li>
-<li><p>0xxxxxxx,如果是这样的01串,也就是以0开头后面是啥就不用管了XX代表任意bit.就表示把一个字节做为一个单元.就跟ASCII完全一样.<br> 110xxxxx 10xxxxxx.如果是这样的格式，以110开头则把两个字节当一个单元</p>
-<p> 1110xxxx 10xxxxxx 10xxxxxx 如果是这种格式，以1110开头则是三个字节当一个单元.（正好x的个数是16个）</p>
-</li>
-<li><p>UTF-8的好处是在网络环境下，比较节约流量，毕竟网络里英文的数据还是最多的</p>
-</li>
-</ol>
-<h3 id="UTF-16编码"><a href="#UTF-16编码" class="headerlink" title="UTF-16编码"></a>UTF-16编码</h3><ol>
-<li><p>UTF-16就是Windows模式的编码模式(Windows里说的Unicode一般都是指这种编码），用2个字节表示任意字符</p>
-</li>
-<li><p>UTF-16分为大端序和小端序（就是字节序，主要是与硬件相关（处理器的架构），与编程语言无关）</p>
-</li>
-</ol>
+        <h2 id="致20岁生日的诗"><a href="#致20岁生日的诗" class="headerlink" title="致20岁生日的诗"></a>致20岁生日的诗</h2><p><strong>月下独酌四首.其一</strong><br>花间一壶酒，独酌无相亲。<br>举杯邀明月，对影成三人。<br>月既不解饮，影徒随我身。<br>暂伴月将影，行乐须及春。<br>我歌月徘徊，我舞影零乱。<br>醒时相交欢，醉后各分散。<br>永结无情游，相期邈云汉。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/08/%E6%9C%88%E4%B8%8B%E7%8B%AC%E9%85%8C%E5%9B%9B%E9%A6%96-%E5%85%B6%E4%B8%80/" data-id="clh1gs37d0047akwchhzxhbsl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/my-think/" rel="tag">my-think</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-MyBirthday-do" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/08/MyBirthday-do/" class="article-date">
+  <time datetime="2020-12-08T09:53:03.000Z" itemprop="datePublished">2020-12-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/08/MyBirthday-do/">MyBirthday do</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="送给生日的代码"><a href="#送给生日的代码" class="headerlink" title="送给生日的代码"></a>送给生日的代码</h2><h3 id="希望之后努力一点，不要再写这种偏落水的代码"><a href="#希望之后努力一点，不要再写这种偏落水的代码" class="headerlink" title="希望之后努力一点，不要再写这种偏落水的代码"></a>希望之后努力一点，不要再写这种偏落水的代码</h3><p>在未来的一年，希望把握住时间，改掉拖延的习惯</p>
+<hr>
+<h3 id="程序（送给2020的自己的代码）"><a href="#程序（送给2020的自己的代码）" class="headerlink" title="程序（送给2020的自己的代码）"></a>程序（送给2020的自己的代码）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Windows.Forms;</span><br><span class="line"></span><br><span class="line">namespace _2021</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            int a;</span><br><span class="line">            Console.WriteLine(&quot;how time is do this ? , It is my birthday&quot;);</span><br><span class="line">            string year1,month1,day1;</span><br><span class="line">            int year,month,day;</span><br><span class="line">            Console.Write(&quot;The year is:&quot;);</span><br><span class="line">            year1&#x3D;Console.ReadLine();</span><br><span class="line">            year &#x3D; int.Parse(year1);</span><br><span class="line">            Console.Write(&quot;The month is:&quot;);</span><br><span class="line">            month1&#x3D;Console.ReadLine();</span><br><span class="line">            month &#x3D; int.Parse(month1);</span><br><span class="line">            Console.Write(&quot;The day is:&quot;);</span><br><span class="line">            day1 &#x3D; Console.ReadLine();</span><br><span class="line">            day &#x3D; int.Parse(day1);</span><br><span class="line">            birth liu &#x3D; new birth();</span><br><span class="line">            a&#x3D;liu.Liu(year, month, day);</span><br><span class="line">            if (a &#x3D;&#x3D; 0)</span><br><span class="line">            &#123;</span><br><span class="line">                MessageBox.Show(&quot;no is not&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    class birth</span><br><span class="line">    &#123;</span><br><span class="line">        public int Liu(int a, int b, int c)</span><br><span class="line">        &#123;</span><br><span class="line">            if (a &#x3D;&#x3D; 2020)</span><br><span class="line">            &#123;</span><br><span class="line">                if (b &#x3D;&#x3D; 12)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (c &#x3D;&#x3D; 8)</span><br><span class="line">                    &#123;</span><br><span class="line">                        Console.WriteLine(&quot;Happy Birthday LXS&quot;);</span><br><span class="line">                        MessageBox.Show(&quot;The timely Wind and Rain have to happen in 2021, Let&#39;s to see&quot;);</span><br><span class="line">                        return 1;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                    &#123;</span><br><span class="line">                        return 0;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    return 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                return 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/08/MyBirthday-do/" data-id="clh1gs36c001fakwcag3gdk79" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-建立C(sharp)类库" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/26/%E5%BB%BA%E7%AB%8BC(sharp)%E7%B1%BB%E5%BA%93/" class="article-date">
+  <time datetime="2020-11-26T14:36:57.000Z" itemprop="datePublished">2020-11-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/26/%E5%BB%BA%E7%AB%8BC(sharp)%E7%B1%BB%E5%BA%93/">建立C(sharp)类库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="用VS2019-在C-新建一个算术类库"><a href="#用VS2019-在C-新建一个算术类库" class="headerlink" title="用VS2019 在C#新建一个算术类库"></a>用VS2019 在C#新建一个算术类库</h2><p>1.在VS2019中新建一个类库程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line"></span><br><span class="line">namespace Tools</span><br><span class="line">&#123;</span><br><span class="line">    public class Tools</span><br><span class="line">    &#123;</span><br><span class="line">        public static double Add(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a + b;</span><br><span class="line">        &#125;</span><br><span class="line">        public static double Sub(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a - b;</span><br><span class="line">        &#125;</span><br><span class="line">        public static double Mul(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a * b;</span><br><span class="line">        &#125;</span><br><span class="line">        public static double Div(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a &#x2F; b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.在编写完成后点击F6在下面的生成中可以看见路径</p>
+<p>3.一般是在bin这个文件夹中，点击进入找到一个dll的文件，此就为生成的类库</p>
+<hr>
+<h2 id="使用生成的类库"><a href="#使用生成的类库" class="headerlink" title="使用生成的类库"></a>使用生成的类库</h2><p>1.新建一个控制台应用程序<br>2.在引用中添加引用，在浏览处选择浏览，找到想要引用的类库添加即可</p>
+<hr>
+<h2 id="类库的修改"><a href="#类库的修改" class="headerlink" title="类库的修改"></a>类库的修改</h2><p>由于依赖性类库需要在现有框架下修改，使用文件.csproj结尾的，添加现有项目XXX.csproj即可在文件中修改，即可以看见该类库的源代码，显示后可以在添加引用项目，解决方案中引用这个类库，修改后先移除原先的再重新引用即可生效。</p>
+<p><strong>使用自己类库的方式和系统给的类库的方式一样</strong></p>
+<p><strong>完结</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/11/26/%E5%BB%BA%E7%AB%8BC(sharp)%E7%B1%BB%E5%BA%93/" data-id="clh1gs3720039akwcgl6h46ay" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-主题-icalm的更换" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/24/%E4%B8%BB%E9%A2%98-icalm%E7%9A%84%E6%9B%B4%E6%8D%A2/" class="article-date">
+  <time datetime="2020-11-24T06:35:11.000Z" itemprop="datePublished">2020-11-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/24/%E4%B8%BB%E9%A2%98-icalm%E7%9A%84%E6%9B%B4%E6%8D%A2/">主题-icalm的更换</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-更换主题的代码储存"><a href="#1-更换主题的代码储存" class="headerlink" title="1.更换主题的代码储存"></a>1.更换主题的代码储存</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;D:\blog中的themes中存放blog的主题，在themes的文件夹中有一个本身hexo默认自带的丑主题，现在自己下载了一个叫做hexo-theme-icalm的主题的文件夹也是放在这里，现在对这个主题进行修改。</p>
+<h3 id="2-主题的个性化设置"><a href="#2-主题的个性化设置" class="headerlink" title="2.主题的个性化设置"></a>2.主题的个性化设置</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;打开hexo-theme-icalm文件夹中有 _ config.yml的代码，最后使用win+r，在cmd中打开，如果有下载node.js可以直接用记事本打开，进入后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#Links on sidebar</span><br><span class="line">menu:</span><br><span class="line">  Home: &#x2F;</span><br><span class="line">  Archive: &#x2F;archives&#x2F;</span><br><span class="line">  #Tags: &#x2F;tags&#x2F;</span><br><span class="line">  #Categories: &#x2F;categories&#x2F;</span><br><span class="line">  #About: &#x2F;about&#x2F;</span><br><span class="line"></span><br><span class="line">#Pictures shown on the sidebar</span><br><span class="line">#Use the absolute URL after generating</span><br><span class="line">#avatar: &#x2F;assets&#x2F;tree_small.png</span><br><span class="line">#sidebar_background: &#x2F;assets&#x2F;header.png</span><br><span class="line"></span><br><span class="line">rss: &#x2F;atom.xml</span><br><span class="line"></span><br><span class="line">#Content</span><br><span class="line">excerpt_link: Read On »</span><br><span class="line"></span><br><span class="line">#Will be shown on the bottom.</span><br><span class="line">##To add new icon, just copy .svg to source&#x2F;assets&#x2F; and add entries below.</span><br><span class="line">media:</span><br><span class="line">  #github: https:&#x2F;&#x2F;github.com&#x2F;nameoverflow</span><br><span class="line">  #facebook: https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100004252391322</span><br><span class="line"></span><br><span class="line">source_han_font: true</span><br><span class="line"></span><br><span class="line">#Disqus settings</span><br><span class="line">disqus:</span><br><span class="line">  #&#39;disabled&#39; | &#39;all&#39; | &#39;post&#39;</span><br><span class="line">  enable: disabled</span><br><span class="line">  #Shortname of your disqus website.</span><br><span class="line">  #See disqus admin</span><br><span class="line">  shortname:</span><br><span class="line"></span><br><span class="line">#Miscellaneous</span><br><span class="line">favicon:</span><br></pre></td></tr></table></figure>
+<p><strong>这里#后面都是有一个空格，为了md的可读性我就删了</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;第一行中的menu是文件格式的菜单一共有5个功能，一般现在我能使用的就是前面三个和一个about，但是about还是不太懂弄所以只是显示按钮，如果要把这句话启用，则去除前面的# 就可以了<strong>注意是#和之后的一个空格都需要去掉</strong></p>
+<p>如果需要设置头像可以看到**#avatar: /assets/tree_small.png**这一行，在同路径下可以看到一个叫source的文件夹，在这个文件夹中可以看见有一个assets的文件夹，如HTML一样，把需要的头像改名放在里面，再把这句话启用，把后面照片文件名改成你的，即可以发现照片引用完毕</p>
+<p>还有一个**#sidebar_background: /assets/header.png**大胆的猜测这个是照片后面的背景，但是我觉得没有的话也是很好看就没有启用这个了</p>
+<p><strong>引用样式tags</strong><br>    在每一个blog中都有一个tags标记，这个主题也是一样可以使用tags标记进行使用，在初期没有弄明白tags的使用方式所以这个功能一直没有什么用。<br>启用方式<br>    用win+r，cmd打开控制台窗口，进入到blog这个文件夹中运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n page &quot;tags&quot;</span><br></pre></td></tr></table></figure>
+<p>然后打开这个生成的文件夹，在里面加入type: “tags”<br>加入后是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: tags</span><br><span class="line">date: 2021-04-14 18:55:02</span><br><span class="line">type: &quot;tags&quot;</span><br></pre></td></tr></table></figure>
+<p>至此文件的tags标签即可以正常引用了</p>
+<p>后面的内容待发掘</p>
+<h4 id="待更"><a href="#待更" class="headerlink" title="待更"></a>待更</h4><h3 id="3-需要设置博客的名字与引用主题"><a href="#3-需要设置博客的名字与引用主题" class="headerlink" title="3.需要设置博客的名字与引用主题"></a>3.需要设置博客的名字与引用主题</h3><p>回到blog文件夹中，里面有一个名叫 _ config.yml的文件，一样的方式打开后</p>
 <ul>
-<li>Big-endian（大端序）：       数据的高位字节存放在地址的低端 低位字节存放在地址高端(按原来顺序存储)</li>
-<li>Little-endian（小端序）：    数据的高位字节存放在地址的高端 低位字节存放在地址低端(颠倒顺序存储)</li>
+<li>在title中更改你的blog名字</li>
+<li>在subtitle添加你的副标题</li>
+<li>把language改为zh-‘CN’</li>
+<li>找到后面的theme改为你刚刚弄得主题的文件夹名</li>
 </ul>
-<p>##记事本中的BOM标签</p>
-<ol>
-<li><p>记事本要支持Unicode，就需要使用BOM标签</p>
+<p>至此blog的初始化完成<br><strong>后续功能待更</strong></p>
+<p><strong>更新日期2020/12/26：完成对代码块的样式更改</strong><br><strong>更新日期2021/4/14：完成对tags样式的引用的补充</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/11/24/%E4%B8%BB%E9%A2%98-icalm%E7%9A%84%E6%9B%B4%E6%8D%A2/" data-id="clh1gs36q002cakwc5fs3fsi7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E8%AE%B0/" rel="tag">杂记</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-markdown笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/23/markdown%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-11-23T01:35:50.000Z" itemprop="datePublished">2020-11-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/23/markdown%E7%AC%94%E8%AE%B0/">markdown笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="markdown使用规范"><a href="#markdown使用规范" class="headerlink" title="markdown使用规范"></a>markdown使用规范</h1><p><strong>makedown的标记都为英文状态</strong></p>
+<h2 id="1-对标题的放大缩小"><a href="#1-对标题的放大缩小" class="headerlink" title="1.对标题的放大缩小"></a>1.对标题的放大缩小</h2><h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><p>中间注意是有空格的</p>
+<h2 id="2-加粗与斜体"><a href="#2-加粗与斜体" class="headerlink" title="2.加粗与斜体"></a>2.加粗与斜体</h2><p><strong>加粗</strong><br><em>斜体</em><br><strong><em>加粗且斜体</em></strong><br>注意这里中间不能有空格</p>
+<h2 id="3-删除线"><a href="#3-删除线" class="headerlink" title="3.删除线"></a>3.删除线</h2><p><del>删除线</del><br>注意这里中间不能有空格</p>
+<h2 id="4-引用内容"><a href="#4-引用内容" class="headerlink" title="4. 引用内容"></a>4. 引用内容</h2><blockquote>
+<p>很好</p>
+<blockquote>
+<blockquote>
+<p>这个引用需要多个&gt;来弄只有一级没什么效果</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5.分割线"></a>5.分割线</h2><hr>
+<p>三个或三个以上的</p>
+<h2 id="6-插入图片"><a href="#6-插入图片" class="headerlink" title="6.插入图片"></a>6.插入图片</h2><p><img src="%E5%9B%BE%E7%89%87" alt="图片下面的文字" title="鼠标放在图片上显示的文字"></p>
+<p><img src="https://s3.ax1x.com/2020/11/23/DG42sx.jpg" alt="hello" title="企鹅"></p>
+<p>[]里是显示文字的这里不知道为什么显示不出来</p>
+<h2 id="7-插入超链接"><a href="#7-插入超链接" class="headerlink" title="7.插入超链接"></a>7.插入超链接</h2><p><strong>不能跳转页面打开</strong><br>[超链接名字] (超链接地址) 中间空格去掉<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/191d1e21f7ed/">简书-markdown</a></p>
+<p><strong>可以跳转页面打开</strong><br><a href="https://www.jianshu.com/u/1f5ac0cf6a8b" target="_blank">简书</a></p>
+<h2 id="8-无序列表"><a href="#8-无序列表" class="headerlink" title="8.无序列表"></a>8.无序列表</h2><ul>
+<li><ul>
+<li><ul>
+<li>三种样式</li>
+</ul>
 </li>
-<li><p>一段二进制编码，如何确定它是GBK还是BIG5还是UTF-16/UTF-8？记事本的做法是在TXT文件的最前面保存一个标签，如果记事本打开一个TXT，发现这个标签，就说明是unicode。标签叫BOM，如果是0xFF 0xFE，是UTF16LE，如果是0xFE 0xFF则UTF16BE，如果是0xEF 0xBB 0xBF，则是UTF-8。如果没有这三个东西，那么就是ANSI，使用操作系统的默认语言编码来解释。</p>
+</ul>
+</li>
+</ul>
+<p>分别是- + * 后接空格来处理的</p>
+<h2 id="9-有序列表"><a href="#9-有序列表" class="headerlink" title="9.有序列表"></a>9.有序列表</h2><p>语法：数字加.  按回车自动生成后面的部分，也可以在.后加一个空格字体会后置，不需要继续有序列表的的话在后面不加内容直接回车即可<br>1.A<br>2.B</p>
+<ol>
+<li>A</li>
+<li>B</li>
+</ol>
+<h2 id="10-列表嵌套"><a href="#10-列表嵌套" class="headerlink" title="10.列表嵌套"></a>10.列表嵌套</h2><p>上一级和下一级之间敲三个空格即可</p>
+<ol>
+<li>A<ul>
+<li>1<ul>
+<li>a</li>
+</ul>
+</li>
+</ul>
 </li>
 </ol>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">表头|表头|表头</span><br><span class="line">---|:--:|---:</span><br><span class="line">内容|内容|内容</span><br><span class="line">内容|内容|内容</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th align="center">学号</th>
+<th align="right">年级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>张三</td>
+<td align="center">0001</td>
+<td align="right">2019</td>
+</tr>
+<tr>
+<td>李四</td>
+<td align="center">0002</td>
+<td align="right">2020</td>
+</tr>
+</tbody></table>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">三个~~~上下框选住代码即可</span><br></pre></td></tr></table></figure>
+
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p>源代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;flow</span><br><span class="line">st&#x3D;&gt;start: start</span><br><span class="line">op&#x3D;&gt;operation: My Operation</span><br><span class="line">cond&#x3D;&gt;condition: Yes or No?</span><br><span class="line">e&#x3D;&gt;end</span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br><span class="line">&#96;&#96;&#96;</span><br><span class="line">注意cond()里面只能是小写,大写就弄不成</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">st&#x3D;&gt;start: start</span><br><span class="line">op&#x3D;&gt;operation: My Operation</span><br><span class="line">cond&#x3D;&gt;condition: Yes or No?</span><br><span class="line">e&#x3D;&gt;end</span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br></pre></td></tr></table></figure>
+
+<h2 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h2><pre><code>&amp;nbsp；表示空格，注意分号为英文状态下</code></pre>
+<p><strong>最后一次更新日期2020/12/26：更新内容完成对后面内容的补充</strong><br><strong>完结</strong></p>
 
       
     </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/11/23/markdown%E7%AC%94%E8%AE%B0/" data-id="clh1gs36p0027akwc63qx2kaq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E8%AE%B0/" rel="tag">杂记</a></li></ul>
+
+    </footer>
+  </div>
+  
 </article>
 
-    </li>
+
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E8%BD%AE%E6%92%AD%E5%9B%BE/">微信小程序-轮播图</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-07T00:25:02.000Z" itemprop="datePublished">
-    2021-04-07
-  </time>
-  
-  | 
-  <ul>
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/23/hello-world/" class="article-date">
+  <time datetime="2020-11-23T01:07:01.453Z" itemprop="datePublished">2020-11-23</time>
+</a>
     
-  <li class="meta-text">
-  { <a href="/tags/wx%E5%AE%9E%E8%B7%B5/">wx实践</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="微信小程序-轮播图"><a href="#微信小程序-轮播图" class="headerlink" title="微信小程序-轮播图"></a>微信小程序-轮播图</h2><h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;test&quot;&gt;</span><br><span class="line">  &lt;image class&#x3D;&quot;picture&quot; src&#x3D;&quot;..&#x2F;image&#x2F;unity.jpeg&quot; mode&#x3D;&quot;widthFix&quot;&gt;</span><br><span class="line">  &lt;&#x2F;image&gt;</span><br><span class="line">  &lt;view&gt;</span><br><span class="line">    unity的游戏开发view</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line"></span><br><span class="line">&lt;swiper class&#x3D;&quot;myswiper&quot; indicator-dots&#x3D;&quot;true&quot; autoplay&#x3D;&quot;true&quot; circular&#x3D;&quot;true&quot;&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image src&#x3D;&quot;..&#x2F;image&#x2F;2020.jpg&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image src&#x3D;&quot;..&#x2F;image&#x2F;2020.jpg&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image src&#x3D;&quot;..&#x2F;image&#x2F;2020.jpg&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h3><p>.test{<br>  text-align:center;<br>  font-size: 30rpx;<br>  text-decoration: underline;<br>  text-decoration-color: blue;</p>
-<p>}</p>
-<p>.picture{<br>   width: 90%;</p>
-<p>}</p>
-<p>.myswiper{<br>  height: 540rpx;<br>  text-align: center;<br>}<br>.myswiper swiper-item &gt;image{<br>  width: 98%;<br>}</p>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A8/">微信小程序-加法计算器</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-04-07T00:20:46.000Z" itemprop="datePublished">
-    2021-04-07
-  </time>
-  
-  | 
-  <ul>
+  </div>
+  <div class="article-inner">
     
-  <li class="meta-text">
-  { <a href="/tags/wx%E5%AE%9E%E8%B7%B5/">wx实践</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="微信小程序-加法计算器"><a href="#微信小程序-加法计算器" class="headerlink" title="微信小程序:加法计算器"></a>微信小程序:加法计算器</h2><h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;head&quot;&gt;加法计算器&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;body&quot;&gt;</span><br><span class="line">  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; placeholder&#x3D;&quot;请输入数据&quot; bindinput&#x3D;&quot;count1&quot;&#x2F;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text2&quot;&gt;+&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; placeholder&#x3D;&quot;请输入数据&quot; bindinput&#x3D;&quot;count2&quot;&#x2F;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text2&quot;&gt;&#x3D;&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text1&quot;&gt;&#123;&#123;a&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view&gt;</span><br><span class="line">  &lt;button class&#x3D;&quot;button&quot; bindtap&#x3D;&quot;button1&quot;&gt;等于&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="wsss"><a href="#wsss" class="headerlink" title="wsss"></a>wsss</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">.head&#123;</span><br><span class="line">  text-align: center;</span><br><span class="line">  letter-spacing: 10rpx;</span><br><span class="line">  font-size: 80rpx;</span><br><span class="line">  color: deepskyblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.body&#123;</span><br><span class="line">  margin-top: 80rpx;</span><br><span class="line">  width: 100%;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction:&quot;row&quot;;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.text1&#123;</span><br><span class="line">  width: 200rpx;</span><br><span class="line">  height: 53rpx;</span><br><span class="line">  border: 4rpx solid green;</span><br><span class="line">  margin-left: 15rpx; &#x2F;*外边距*&#x2F;</span><br><span class="line">  font-size: 36rpx;</span><br><span class="line">  padding-left: 14rpx; &#x2F;*内边距*&#x2F;</span><br><span class="line">  border-radius: 10rpx; &#x2F;*设置圆角*&#x2F;</span><br><span class="line">  color: aqua;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.text2&#123;</span><br><span class="line">  font-size: 36rpx;</span><br><span class="line">  margin-left: 10rpx;</span><br><span class="line">  font-weight: bolder;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.button&#123;</span><br><span class="line">  margin-top: 50rpx;</span><br><span class="line">  width: 200rpx !important;</span><br><span class="line">  color: black !important;</span><br><span class="line">  background-color: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var b;</span><br><span class="line">var c;</span><br><span class="line">Page(&#123;</span><br><span class="line">  data:(&#123;</span><br><span class="line">    a:Number.parseFloat(0)</span><br><span class="line">  &#125;),</span><br><span class="line">  count1(e)&#123; &#x2F;*带参是把控件的值传进来 *&#x2F;</span><br><span class="line">    console.log(e)</span><br><span class="line">    b &#x3D; e.detail.value</span><br><span class="line">    b &#x3D; Number.parseFloat(b)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  count2(e)&#123; &#x2F;*带参是把控件的值传进来 *&#x2F;</span><br><span class="line">    console.log(e)</span><br><span class="line">    c&#x3D;e.detail.value</span><br><span class="line">    c &#x3D; Number.parseFloat(c)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  button1(e)&#123;</span><br><span class="line">    let d&#x3D;Number.parseFloat(this.data.a)</span><br><span class="line">    d&#x3D;b+c</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      a:d</span><br><span class="line">    &#125;)</span><br><span class="line">    console.warn(d)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/03/26/wxss%E5%B1%9E%E6%80%A7%E7%AC%94%E8%AE%B0/">wxss属性笔记</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-03-26T12:38:08.000Z" itemprop="datePublished">
-    2021-03-26
-  </time>
-  
-  | 
-  <ul>
     
-  <li class="meta-text">
-  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
-  </li>
-
-
-  </ul>
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/23/hello-world/">Hello World</a>
+    </h1>
   
-</div>
 
-    </header>
-    <div>
-      
-        <h2 id="WXSS属性笔记"><a href="#WXSS属性笔记" class="headerlink" title="WXSS属性笔记"></a>WXSS属性笔记</h2><h3 id="1-文字修饰"><a href="#1-文字修饰" class="headerlink" title="1.文字修饰"></a>1.文字修饰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">文本对齐：text-align:&quot;left&#x2F;center&#x2F;right&#x2F;justify&quot;</span><br><span class="line">汉字间距：letter-spacing:10rpx(一般用rpx这样可以随编译器变化)</span><br><span class="line">英文间距：word-spacing:10rpx</span><br><span class="line">行距：line-height:10rpx  &#x2F;&#x2F;当行距等于行的距离时，文字为居中状态</span><br><span class="line">文字颜色：color:red; &#x2F;&#x2F;文字颜色为红色</span><br><span class="line">文字加粗：font-weight：bold; </span><br><span class="line">下划线：text-decoration:underline;</span><br><span class="line">下划线颜色：text-decoration-color:red&#x2F;#000FFF;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-盒子修饰"><a href="#2-盒子修饰" class="headerlink" title="2.盒子修饰"></a>2.盒子修饰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设置背景颜色：background-color:red; &#x2F;&#x2F;背景色为红色</span><br><span class="line">设置内边距对于外部盒子而言：padding-left: 30rpx; &#x2F;&#x2F;左边距为30rpx</span><br><span class="line">					   padding-right: 30rpx  &#x2F;&#x2F;右边距为30rpx</span><br><span class="line">设置外左边距：margin-left:10rpx;  &#x2F;&#x2F;其他依次类推</span><br><span class="line">设置圆角：border-radius: 10rpx;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-</article>
-
-    </li>
-  
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/03/25/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day02/">图灵工作室day02</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-03-25T14:39:23.000Z" itemprop="datePublished">
-    2021-03-25
-  </time>
-  
-  | 
-  <ul>
+      </header>
     
-  <li class="meta-text">
-  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
+    <div class="article-entry" itemprop="articleBody">
       
-        <p>1.选择器的优先级<br>id&gt;class&gt;标签选择器<br>可以提供样式的多元化</p>
-<p>2.class可以多次使用，id只能使用一次</p>
-<p>3.最外层为id选择器可以逐步进入层次修改样式,当用父子的时候只可以高的向低的层次调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#39;&gt;&#39;为父子级的所有的调用</span><br><span class="line">&#39; &#39;为跨级的调用，底下所有的都会跨级调用</span><br><span class="line">&#39;&gt;&#39;优先级大于&#39; &#39;</span><br><span class="line"></span><br><span class="line">4.只有文字可以进行样式渗透</span><br><span class="line"></span><br><span class="line">5.!important强制优先显示，但同时有还是看优先级</span><br></pre></td></tr></table></figure>
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>6.js基础格式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">	data:(&#123;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>7.各种标签的使用<br>(1)view标签</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;view&gt;&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>最常使用的标签（方便简洁）</p>
-<p>(2)input标签（显示文本框）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;input &#x2F;&gt;</span><br><span class="line">内置一般属性</span><br><span class="line">type&#x3D;&quot;text&quot; 点击文本框时弹出键盘  &#x2F;&#x2F;还有其他三种弹出方式，详情见开发者文档</span><br><span class="line">value&#x3D;&quot;&quot; 里面放置的文字直接显示在文本框上</span><br><span class="line">placeholder&#x3D;&quot;&quot; 里面放置的文字为文本框前的提示</span><br><span class="line">bindinput&#x3D;&quot;&quot; 里面自己起名字是连接js用的类似前面的选择器，在js调用时，直接写名字加一个参数</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>(3)button标签</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;button&gt;&lt;&#x2F;button&gt;</span><br><span class="line">内置一般属性</span><br><span class="line">type&#x3D;&quot;&quot; 设置按钮的样式，自定义的话要加最高级</span><br><span class="line">bindtap&#x3D;&quot;&quot; bindinput&#x3D;&quot;&quot; 里面自己起名字是连接js用的类似前面的选择器，在js调用时，直接写名字加一个参数</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
       
     </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/11/23/hello-world/" data-id="clh1gs36n0020akwc5uru2g7q" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
 </article>
 
-    </li>
+
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2021/03/14/%E6%88%91%E5%96%9C%E6%AC%A2%E7%9A%84%E6%B8%B8%E6%88%8F/">我喜欢的游戏</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2021-03-14T14:40:31.000Z" itemprop="datePublished">
-    2021-03-14
-  </time>
-  
-  | 
-  <ul>
+
+
+  <nav id="page-nav">
     
-  <li class="meta-text">
-  { <a href="/tags/%E6%B8%B8%E6%88%8F/">游戏</a> }
-  </li>
+    <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+  </nav>
 
-
-  </ul>
+</section>
+        
+      </div>
+      <footer id="footer">
   
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="我心目中的游戏"><a href="#我心目中的游戏" class="headerlink" title="我心目中的游戏"></a>我心目中的游戏</h2><ul>
-<li>大制作，环境特效炸裂，空间尽量小</li>
-<li>既要显示我的贵族身份，又不能让我多花钱。</li>
-<li>英雄不能太灵活，我会觉得花里胡哨，英雄不能太死板，我会觉得很无脑。</li>
-<li>皮肤不能太创新，我会觉得脱离概念。皮肤不能太保守，我会觉得是星元。</li>
-<li>对抗体验不飙血，但起码要刺激，但最好也别太刺激，我觉得光污染。</li>
-<li>排位系统还是要的，为了显示我有技术有智商，不是个只会屯皮肤的傻儿子。</li>
-<li>机制要合理，要有一定难度，但我伸伸手就能够到，让我多伸伸手的我都不愿意。但如果别人伸<br>伸手也能够到呢？我觉得，这款游戏没有表现出我多么特别，就是个lj游戏。</li>
-<li>所以你得公布场次，公布战力。我要告诉全世界，我是靠1000场打上王者的，跟隔壁傻乎乎的张大胖，靠1200场打上去的，就是不一样。</li>
-</ul>
-
-      
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 nature<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
-</article>
-
-    </li>
-  
-</ul>
-
-  <section id="nav-wrapper">
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/6/">« prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">next »</a>
-    </nav>
-  </section>
-
-
-            <footer>
-    <div>© 2023 - nature </div>
-    <div>
-        <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
-    </div>
+  </div>
 </footer>
-
-        </div>
     </div>
-</div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
 
-<script src="/js/pager/dist/singlepager.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script>
-var sp = new Pager('data-pager-shell')
 
-</script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
 </body>
 </html>

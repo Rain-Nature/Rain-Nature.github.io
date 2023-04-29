@@ -1,73 +1,87 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>数据结构05 | 祈雨</title>
+  <meta charset="utf-8">
   
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
 
+  
+  <title>数据结构05 | 祈雨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="队列(queue)1. 队列的概念​    一种可以实现“先进先出”的存储结构，不能在中间插入，只能在一端入，另一端出，入的那端不能出，出的那端不能入 2.队列的分类 链式队列    –用链表实现  数组队列    –用动态数组实现、 ​    使用数组来实现队列通常都必须是循环队列   ​    规定：在队首(front)删除元素，在队尾(rear)加入元素，定义两个变量：front指向队首的第">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构05">
+<meta property="og:url" content="http://example.com/2022/12/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8405/index.html">
+<meta property="og:site_name" content="祈雨">
+<meta property="og:description" content="队列(queue)1. 队列的概念​    一种可以实现“先进先出”的存储结构，不能在中间插入，只能在一端入，另一端出，入的那端不能出，出的那端不能入 2.队列的分类 链式队列    –用链表实现  数组队列    –用动态数组实现、 ​    使用数组来实现队列通常都必须是循环队列   ​    规定：在队首(front)删除元素，在队尾(rear)加入元素，定义两个变量：front指向队首的第">
+<meta property="og:locale">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/23/z8QyZR.png">
+<meta property="article:published_time" content="2022-12-03T07:22:01.000Z">
+<meta property="article:modified_time" content="2022-12-03T07:28:33.428Z">
+<meta property="article:author" content="nature">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/11/23/z8QyZR.png">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
   
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/blog.png)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>祈雨</div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祈雨</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
+      </nav>
+      <nav id="sub-nav">
         
-            
-                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
-                    <img src="/assets/github.svg" />
-                </a>
-            
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-数据结构05" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/12/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8405/" class="article-date">
+  <time datetime="2022-12-03T07:22:01.000Z" itemprop="datePublished">2022-12-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </section>
-</aside>
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构05
+    </h1>
+  
 
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>数据结构05</h1>
-    </header>
-
-    <section>
-      <h2 id="队列-queue"><a href="#队列-queue" class="headerlink" title="队列(queue)"></a>队列(queue)</h2><h4 id="1-队列的概念"><a href="#1-队列的概念" class="headerlink" title="1. 队列的概念"></a>1. 队列的概念</h4><p>​    一种可以实现“先进先出”的存储结构，不能在中间插入，只能在一端入，另一端出，入的那端不能出，出的那端不能入</p>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="队列-queue"><a href="#队列-queue" class="headerlink" title="队列(queue)"></a>队列(queue)</h2><h4 id="1-队列的概念"><a href="#1-队列的概念" class="headerlink" title="1. 队列的概念"></a>1. 队列的概念</h4><p>​    一种可以实现“先进先出”的存储结构，不能在中间插入，只能在一端入，另一端出，入的那端不能出，出的那端不能入</p>
 <h4 id="2-队列的分类"><a href="#2-队列的分类" class="headerlink" title="2.队列的分类"></a>2.队列的分类</h4><ul>
 <li><p>链式队列    –用链表实现</p>
 </li>
@@ -157,58 +171,68 @@
 <h4 id="5-队列的具体应用"><a href="#5-队列的具体应用" class="headerlink" title="5. 队列的具体应用"></a>5. 队列的具体应用</h4><p>​    所有和时间有关的操作都有队列的影子</p>
 <p>​    比如：像操作系统里有等待队列，线程有阻塞队列</p>
 
-
       
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8405/" data-id="clh1gs37b0042akwcbj9ha12w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
 
-    </section>
+    </footer>
+  </div>
+  
     
-      <section class='ArticleMeta'>
-          <div>
-            发布于&nbsp;
-            <time datetime="2022-12-03T07:22:01.000Z" itemprop="datePublished">
-              2022-12-03
-            </time>
-          </div>
-          
-            <div>
-              tags: 
-  <li class="meta-text">
-  { <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> }
-  </li>
-
-
-            </div>
-          
-      </section>
-    
-    
-</article>
+<nav id="article-nav">
+  
+    <a href="/2022/12/11/%E7%94%9F%E6%97%A5-%E4%B8%AA%E4%BA%BA%E6%8F%90%E5%8D%87%E8%AE%A1%E5%88%922023/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          生日-个人提升计划2023
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/11/21/MySQL%E5%A4%8D%E4%B9%A003/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MySQL复习03</div>
+    </a>
+  
+</nav>
 
   
-</div>
+</article>
 
-            <footer>
-    <div>© 2023 - nature </div>
-    <div>
-        <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 nature<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
+  </div>
 </footer>
-
-        </div>
     </div>
-</div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
 
-<script src="/js/pager/dist/singlepager.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script>
-var sp = new Pager('data-pager-shell')
 
-</script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
 </body>
 </html>

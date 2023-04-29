@@ -1,73 +1,97 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Java15 | 祈雨</title>
+  <meta charset="utf-8">
   
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
 
+  
+  <title>Java15 | 祈雨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="多线程编程1. 多线程编程的本质就是并发编程​    并发编程的本质是指的发挥出所有硬件的最大性能 ​    Java是为数不多的真正支持有多线程并发编程的开发语言，所以在整体的处理性能上是最高的 ​    而python是多进程编程的注意区分 2. 进程​    传统硬件只有一个CPU(单核CPU)，为了发挥硬件的全部性能，引入了多进程编程模式  进程指的是一个具有一定独立功能的程序关于某个数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java15">
+<meta property="og:url" content="http://example.com/2021/11/11/Java15/index.html">
+<meta property="og:site_name" content="祈雨">
+<meta property="og:description" content="多线程编程1. 多线程编程的本质就是并发编程​    并发编程的本质是指的发挥出所有硬件的最大性能 ​    Java是为数不多的真正支持有多线程并发编程的开发语言，所以在整体的处理性能上是最高的 ​    而python是多进程编程的注意区分 2. 进程​    传统硬件只有一个CPU(单核CPU)，为了发挥硬件的全部性能，引入了多进程编程模式  进程指的是一个具有一定独立功能的程序关于某个数据">
+<meta property="og:locale">
+<meta property="og:image" content="https://z3.ax1x.com/2021/10/26/5oHkGR.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/10/26/5o7LPs.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/10/26/5oqIr6.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/10/31/IpE5DS.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/10/31/IpeYNQ.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/01/ICrjVP.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/01/IC5xIJ.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/05/IuYocT.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/06/IQEGtg.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/10/IaYMUs.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/10/IaNHEQ.png">
+<meta property="article:published_time" content="2021-11-11T06:25:01.000Z">
+<meta property="article:modified_time" content="2021-11-11T06:25:28.082Z">
+<meta property="article:author" content="nature">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/10/26/5oHkGR.png">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
   
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/blog.png)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>祈雨</div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祈雨</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
+      </nav>
+      <nav id="sub-nav">
         
-            
-                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
-                    <img src="/assets/github.svg" />
-                </a>
-            
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java15" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/11/Java15/" class="article-date">
+  <time datetime="2021-11-11T06:25:01.000Z" itemprop="datePublished">2021-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </section>
-</aside>
+  
+    <h1 class="article-title" itemprop="name">
+      Java15
+    </h1>
+  
 
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>Java15</h1>
-    </header>
-
-    <section>
-      <h2 id="多线程编程"><a href="#多线程编程" class="headerlink" title="多线程编程"></a>多线程编程</h2><h4 id="1-多线程编程的本质就是并发编程"><a href="#1-多线程编程的本质就是并发编程" class="headerlink" title="1. 多线程编程的本质就是并发编程"></a>1. 多线程编程的本质就是并发编程</h4><p>​    并发编程的本质是指的发挥出所有硬件的最大性能</p>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="多线程编程"><a href="#多线程编程" class="headerlink" title="多线程编程"></a>多线程编程</h2><h4 id="1-多线程编程的本质就是并发编程"><a href="#1-多线程编程的本质就是并发编程" class="headerlink" title="1. 多线程编程的本质就是并发编程"></a>1. 多线程编程的本质就是并发编程</h4><p>​    并发编程的本质是指的发挥出所有硬件的最大性能</p>
 <p>​    Java是为数不多的真正支持有多线程并发编程的开发语言，所以在整体的处理性能上是最高的</p>
 <p>​    而python是多进程编程的注意区分</p>
 <h4 id="2-进程"><a href="#2-进程" class="headerlink" title="2. 进程"></a>2. 进程</h4><p>​    传统硬件只有一个CPU(单核CPU)，为了发挥硬件的全部性能，引入了多进程编程模式</p>
@@ -439,58 +463,68 @@
 <p>​    在实际的项目中，死锁是通过大量的程序测试得出来的，上述代码只是死锁的表现，不具有真实开发意义</p>
 <p>​    </p>
 
-
       
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/11/Java15/" data-id="clh1gs382005sakwcdh2x1ula" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
 
-    </section>
+    </footer>
+  </div>
+  
     
-      <section class='ArticleMeta'>
-          <div>
-            发布于&nbsp;
-            <time datetime="2021-11-11T06:25:01.000Z" itemprop="datePublished">
-              2021-11-11
-            </time>
-          </div>
-          
-            <div>
-              tags: 
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-            </div>
-          
-      </section>
-    
-    
-</article>
+<nav id="article-nav">
+  
+    <a href="/2021/11/15/JavaEE-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaEE-01
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">操作系统03</div>
+    </a>
+  
+</nav>
 
   
-</div>
+</article>
 
-            <footer>
-    <div>© 2023 - nature </div>
-    <div>
-        <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 nature<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
+  </div>
 </footer>
-
-        </div>
     </div>
-</div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
 
-<script src="/js/pager/dist/singlepager.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script>
-var sp = new Pager('data-pager-shell')
 
-</script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
 </body>
 </html>

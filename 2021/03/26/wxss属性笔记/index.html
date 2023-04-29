@@ -1,128 +1,150 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>wxss属性笔记 | 祈雨</title>
+  <meta charset="utf-8">
   
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
 
+  
+  <title>wxss属性笔记 | 祈雨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="WXSS属性笔记1.文字修饰12345678文本对齐：text-align:&quot;left&#x2F;center&#x2F;right&#x2F;justify&quot;汉字间距：letter-spacing:10rpx(一般用rpx这样可以随编译器变化)英文间距：word-spacing:10rpx行距：line-height:10rpx  &#x2F;&#x2F;当行距等于行的距离时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wxss属性笔记">
+<meta property="og:url" content="http://example.com/2021/03/26/wxss%E5%B1%9E%E6%80%A7%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="祈雨">
+<meta property="og:description" content="WXSS属性笔记1.文字修饰12345678文本对齐：text-align:&quot;left&#x2F;center&#x2F;right&#x2F;justify&quot;汉字间距：letter-spacing:10rpx(一般用rpx这样可以随编译器变化)英文间距：word-spacing:10rpx行距：line-height:10rpx  &#x2F;&#x2F;当行距等于行的距离时">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-03-26T12:38:08.000Z">
+<meta property="article:modified_time" content="2021-05-05T02:26:38.588Z">
+<meta property="article:author" content="nature">
+<meta property="article:tag" content="图灵工作室">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
   
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/blog.png)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>祈雨</div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祈雨</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
+      </nav>
+      <nav id="sub-nav">
         
-            
-                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
-                    <img src="/assets/github.svg" />
-                </a>
-            
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-wxss属性笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/26/wxss%E5%B1%9E%E6%80%A7%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2021-03-26T12:38:08.000Z" itemprop="datePublished">2021-03-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </section>
-</aside>
+  
+    <h1 class="article-title" itemprop="name">
+      wxss属性笔记
+    </h1>
+  
 
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>wxss属性笔记</h1>
-    </header>
-
-    <section>
-      <h2 id="WXSS属性笔记"><a href="#WXSS属性笔记" class="headerlink" title="WXSS属性笔记"></a>WXSS属性笔记</h2><h3 id="1-文字修饰"><a href="#1-文字修饰" class="headerlink" title="1.文字修饰"></a>1.文字修饰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">文本对齐：text-align:&quot;left&#x2F;center&#x2F;right&#x2F;justify&quot;</span><br><span class="line">汉字间距：letter-spacing:10rpx(一般用rpx这样可以随编译器变化)</span><br><span class="line">英文间距：word-spacing:10rpx</span><br><span class="line">行距：line-height:10rpx  &#x2F;&#x2F;当行距等于行的距离时，文字为居中状态</span><br><span class="line">文字颜色：color:red; &#x2F;&#x2F;文字颜色为红色</span><br><span class="line">文字加粗：font-weight：bold; </span><br><span class="line">下划线：text-decoration:underline;</span><br><span class="line">下划线颜色：text-decoration-color:red&#x2F;#000FFF;</span><br></pre></td></tr></table></figure>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="WXSS属性笔记"><a href="#WXSS属性笔记" class="headerlink" title="WXSS属性笔记"></a>WXSS属性笔记</h2><h3 id="1-文字修饰"><a href="#1-文字修饰" class="headerlink" title="1.文字修饰"></a>1.文字修饰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">文本对齐：text-align:&quot;left&#x2F;center&#x2F;right&#x2F;justify&quot;</span><br><span class="line">汉字间距：letter-spacing:10rpx(一般用rpx这样可以随编译器变化)</span><br><span class="line">英文间距：word-spacing:10rpx</span><br><span class="line">行距：line-height:10rpx  &#x2F;&#x2F;当行距等于行的距离时，文字为居中状态</span><br><span class="line">文字颜色：color:red; &#x2F;&#x2F;文字颜色为红色</span><br><span class="line">文字加粗：font-weight：bold; </span><br><span class="line">下划线：text-decoration:underline;</span><br><span class="line">下划线颜色：text-decoration-color:red&#x2F;#000FFF;</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-盒子修饰"><a href="#2-盒子修饰" class="headerlink" title="2.盒子修饰"></a>2.盒子修饰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设置背景颜色：background-color:red; &#x2F;&#x2F;背景色为红色</span><br><span class="line">设置内边距对于外部盒子而言：padding-left: 30rpx; &#x2F;&#x2F;左边距为30rpx</span><br><span class="line">					   padding-right: 30rpx  &#x2F;&#x2F;右边距为30rpx</span><br><span class="line">设置外左边距：margin-left:10rpx;  &#x2F;&#x2F;其他依次类推</span><br><span class="line">设置圆角：border-radius: 10rpx;</span><br></pre></td></tr></table></figure>
 
-
       
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/26/wxss%E5%B1%9E%E6%80%A7%E7%AC%94%E8%AE%B0/" data-id="clh1gs36q002aakwc70t74lta" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/" rel="tag">图灵工作室</a></li></ul>
 
-    </section>
+    </footer>
+  </div>
+  
     
-      <section class='ArticleMeta'>
-          <div>
-            发布于&nbsp;
-            <time datetime="2021-03-26T12:38:08.000Z" itemprop="datePublished">
-              2021-03-26
-            </time>
-          </div>
-          
-            <div>
-              tags: 
-  <li class="meta-text">
-  { <a href="/tags/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4/">图灵工作室</a> }
-  </li>
-
-
-            </div>
-          
-      </section>
-    
-    
-</article>
+<nav id="article-nav">
+  
+    <a href="/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          微信小程序-加法计算器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/25/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A4day02/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">图灵工作室day02</div>
+    </a>
+  
+</nav>
 
   
-</div>
+</article>
 
-            <footer>
-    <div>© 2023 - nature </div>
-    <div>
-        <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 nature<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
+  </div>
 </footer>
-
-        </div>
     </div>
-</div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
 
-<script src="/js/pager/dist/singlepager.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script>
-var sp = new Pager('data-pager-shell')
 
-</script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
 </body>
 </html>

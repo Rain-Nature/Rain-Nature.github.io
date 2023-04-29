@@ -1,129 +1,151 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>微信小程序-加法计算器 | 祈雨</title>
+  <meta charset="utf-8">
   
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
 
+  
+  <title>微信小程序-加法计算器 | 祈雨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="微信小程序:加法计算器wxml1234567891011&lt;view class&#x3D;&quot;head&quot;&gt;加法计算器&lt;&#x2F;view&gt;&lt;view class&#x3D;&quot;body&quot;&gt;  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; plac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序-加法计算器">
+<meta property="og:url" content="http://example.com/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A8/index.html">
+<meta property="og:site_name" content="祈雨">
+<meta property="og:description" content="微信小程序:加法计算器wxml1234567891011&lt;view class&#x3D;&quot;head&quot;&gt;加法计算器&lt;&#x2F;view&gt;&lt;view class&#x3D;&quot;body&quot;&gt;  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; plac">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-04-07T00:20:46.000Z">
+<meta property="article:modified_time" content="2021-04-18T09:57:18.061Z">
+<meta property="article:author" content="nature">
+<meta property="article:tag" content="wx实践">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
   
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/blog.png)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>祈雨</div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祈雨</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
+      </nav>
+      <nav id="sub-nav">
         
-            
-                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
-                    <img src="/assets/github.svg" />
-                </a>
-            
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-微信小程序-加法计算器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A8/" class="article-date">
+  <time datetime="2021-04-07T00:20:46.000Z" itemprop="datePublished">2021-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </section>
-</aside>
+  
+    <h1 class="article-title" itemprop="name">
+      微信小程序-加法计算器
+    </h1>
+  
 
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>微信小程序-加法计算器</h1>
-    </header>
-
-    <section>
-      <h2 id="微信小程序-加法计算器"><a href="#微信小程序-加法计算器" class="headerlink" title="微信小程序:加法计算器"></a>微信小程序:加法计算器</h2><h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;head&quot;&gt;加法计算器&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;body&quot;&gt;</span><br><span class="line">  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; placeholder&#x3D;&quot;请输入数据&quot; bindinput&#x3D;&quot;count1&quot;&#x2F;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text2&quot;&gt;+&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; placeholder&#x3D;&quot;请输入数据&quot; bindinput&#x3D;&quot;count2&quot;&#x2F;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text2&quot;&gt;&#x3D;&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text1&quot;&gt;&#123;&#123;a&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view&gt;</span><br><span class="line">  &lt;button class&#x3D;&quot;button&quot; bindtap&#x3D;&quot;button1&quot;&gt;等于&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="微信小程序-加法计算器"><a href="#微信小程序-加法计算器" class="headerlink" title="微信小程序:加法计算器"></a>微信小程序:加法计算器</h2><h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;head&quot;&gt;加法计算器&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;body&quot;&gt;</span><br><span class="line">  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; placeholder&#x3D;&quot;请输入数据&quot; bindinput&#x3D;&quot;count1&quot;&#x2F;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text2&quot;&gt;+&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;input class&#x3D;&quot;text1&quot; value&#x3D;&quot;&quot; placeholder&#x3D;&quot;请输入数据&quot; bindinput&#x3D;&quot;count2&quot;&#x2F;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text2&quot;&gt;&#x3D;&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;text1&quot;&gt;&#123;&#123;a&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view&gt;</span><br><span class="line">  &lt;button class&#x3D;&quot;button&quot; bindtap&#x3D;&quot;button1&quot;&gt;等于&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="wsss"><a href="#wsss" class="headerlink" title="wsss"></a>wsss</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">.head&#123;</span><br><span class="line">  text-align: center;</span><br><span class="line">  letter-spacing: 10rpx;</span><br><span class="line">  font-size: 80rpx;</span><br><span class="line">  color: deepskyblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.body&#123;</span><br><span class="line">  margin-top: 80rpx;</span><br><span class="line">  width: 100%;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction:&quot;row&quot;;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.text1&#123;</span><br><span class="line">  width: 200rpx;</span><br><span class="line">  height: 53rpx;</span><br><span class="line">  border: 4rpx solid green;</span><br><span class="line">  margin-left: 15rpx; &#x2F;*外边距*&#x2F;</span><br><span class="line">  font-size: 36rpx;</span><br><span class="line">  padding-left: 14rpx; &#x2F;*内边距*&#x2F;</span><br><span class="line">  border-radius: 10rpx; &#x2F;*设置圆角*&#x2F;</span><br><span class="line">  color: aqua;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.text2&#123;</span><br><span class="line">  font-size: 36rpx;</span><br><span class="line">  margin-left: 10rpx;</span><br><span class="line">  font-weight: bolder;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.button&#123;</span><br><span class="line">  margin-top: 50rpx;</span><br><span class="line">  width: 200rpx !important;</span><br><span class="line">  color: black !important;</span><br><span class="line">  background-color: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var b;</span><br><span class="line">var c;</span><br><span class="line">Page(&#123;</span><br><span class="line">  data:(&#123;</span><br><span class="line">    a:Number.parseFloat(0)</span><br><span class="line">  &#125;),</span><br><span class="line">  count1(e)&#123; &#x2F;*带参是把控件的值传进来 *&#x2F;</span><br><span class="line">    console.log(e)</span><br><span class="line">    b &#x3D; e.detail.value</span><br><span class="line">    b &#x3D; Number.parseFloat(b)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  count2(e)&#123; &#x2F;*带参是把控件的值传进来 *&#x2F;</span><br><span class="line">    console.log(e)</span><br><span class="line">    c&#x3D;e.detail.value</span><br><span class="line">    c &#x3D; Number.parseFloat(c)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  button1(e)&#123;</span><br><span class="line">    let d&#x3D;Number.parseFloat(this.data.a)</span><br><span class="line">    d&#x3D;b+c</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      a:d</span><br><span class="line">    &#125;)</span><br><span class="line">    console.warn(d)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
       
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A8/" data-id="clh1gs373003cakwc1atc4nzd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wx%E5%AE%9E%E8%B7%B5/" rel="tag">wx实践</a></li></ul>
 
-    </section>
+    </footer>
+  </div>
+  
     
-      <section class='ArticleMeta'>
-          <div>
-            发布于&nbsp;
-            <time datetime="2021-04-07T00:20:46.000Z" itemprop="datePublished">
-              2021-04-07
-            </time>
-          </div>
-          
-            <div>
-              tags: 
-  <li class="meta-text">
-  { <a href="/tags/wx%E5%AE%9E%E8%B7%B5/">wx实践</a> }
-  </li>
-
-
-            </div>
-          
-      </section>
-    
-    
-</article>
+<nav id="article-nav">
+  
+    <a href="/2021/04/07/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E8%BD%AE%E6%92%AD%E5%9B%BE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          微信小程序-轮播图
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/26/wxss%E5%B1%9E%E6%80%A7%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">wxss属性笔记</div>
+    </a>
+  
+</nav>
 
   
-</div>
+</article>
 
-            <footer>
-    <div>© 2023 - nature </div>
-    <div>
-        <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 nature<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
+  </div>
 </footer>
-
-        </div>
     </div>
-</div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
 
-<script src="/js/pager/dist/singlepager.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script>
-var sp = new Pager('data-pager-shell')
 
-</script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
 </body>
 </html>

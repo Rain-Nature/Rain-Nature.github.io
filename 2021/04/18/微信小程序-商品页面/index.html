@@ -1,73 +1,85 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>微信小程序-商品页面 | 祈雨</title>
+  <meta charset="utf-8">
   
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
 
+  
+  <title>微信小程序-商品页面 | 祈雨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="wxml1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&lt;swiper class&#x3D;&quot;myswiper&quot; bindchange&#x3D;&quot;changeImg&quot; indicator-dots&#x3D;&quot;ture">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序-商品页面">
+<meta property="og:url" content="http://example.com/2021/04/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%95%86%E5%93%81%E9%A1%B5%E9%9D%A2/index.html">
+<meta property="og:site_name" content="祈雨">
+<meta property="og:description" content="wxml1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&lt;swiper class&#x3D;&quot;myswiper&quot; bindchange&#x3D;&quot;changeImg&quot; indicator-dots&#x3D;&quot;ture">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-04-18T09:56:15.000Z">
+<meta property="article:modified_time" content="2021-04-18T10:01:34.101Z">
+<meta property="article:author" content="nature">
+<meta property="article:tag" content="wx实践">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
   
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/blog.png)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>祈雨</div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祈雨</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
+      </nav>
+      <nav id="sub-nav">
         
-            
-                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
-                    <img src="/assets/github.svg" />
-                </a>
-            
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-微信小程序-商品页面" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/04/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%95%86%E5%93%81%E9%A1%B5%E9%9D%A2/" class="article-date">
+  <time datetime="2021-04-18T09:56:15.000Z" itemprop="datePublished">2021-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </section>
-</aside>
+  
+    <h1 class="article-title" itemprop="name">
+      微信小程序-商品页面
+    </h1>
+  
 
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>微信小程序-商品页面</h1>
-    </header>
-
-    <section>
-      <h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;swiper class&#x3D;&quot;myswiper&quot; bindchange&#x3D;&quot;changeImg&quot; indicator-dots&#x3D;&quot;ture&quot; autoplay&#x3D;&quot;ture&quot; circular&#x3D;&quot;ture&quot;&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;租借图片&#x2F;毕业季.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;apple.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;hw1.jpg?sign&#x3D;fee0f936bbe930fb6d94b51747d7a213&amp;t&#x3D;1618020235&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;parent&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color1&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text1&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;money&quot;&gt;￥&#123;&#123;price&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text2&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;people&quot;&gt;0人买过&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color2&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text3&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple&quot;&gt;&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text4&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple_computer&quot;&gt;这是&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;bottom&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture1&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;server&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-question.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;bottom_text&quot;&gt;客服&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture2&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;shop&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-shop.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;bottom_text&quot;&gt;商店&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;last&quot;&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;button&quot;&gt;立即购买&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;swiper class&#x3D;&quot;myswiper&quot; bindchange&#x3D;&quot;changeImg&quot; indicator-dots&#x3D;&quot;ture&quot; autoplay&#x3D;&quot;ture&quot; circular&#x3D;&quot;ture&quot;&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;租借图片&#x2F;毕业季.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;apple.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;hw1.jpg?sign&#x3D;fee0f936bbe930fb6d94b51747d7a213&amp;t&#x3D;1618020235&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;parent&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color1&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text1&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;money&quot;&gt;￥&#123;&#123;price&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text2&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;people&quot;&gt;0人买过&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color2&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text3&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple&quot;&gt;&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text4&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple_computer&quot;&gt;这是&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;bottom&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture1&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;server&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-question.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;bottom_text&quot;&gt;客服&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture2&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;shop&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-shop.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;bottom_text&quot;&gt;商店&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;last&quot;&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;button&quot;&gt;立即购买&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h3><p>.picture{<br>  width: 100%;<br>}</p>
 <p>.myswiper{<br>  width: 100%;<br>  height: 750rpx;<br>}</p>
@@ -93,58 +105,68 @@
 <p>  border-radius: 140rpx;<br>  color: white !important;<br>  font-weight: normal;<br>  font-size: 14px;<br>}</p>
 <h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><p>Page({<br>  data:{<br>    price:200,<br>    shopname:’我们毕业了’<br>  },<br>  changeImg:function(e){<br>    console.log(e.detail.current)<br>    var currentIndex=e.detail.current<br>    if(currentIndex==0){<br>      this.setData({<br>        price:200,<br>        shopname:’我们毕业了’<br>      })<br>    }else if(currentIndex==1){<br>      this.setData({<br>        price:5700,<br>        shopname:’苹果电脑’<br>      })<br>    }else{<br>      this.setData({<br>        price:12000,<br>        shopname:’华为笔记本’<br>      })<br>    }<br>  }<br>})</p>
 
-
       
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%95%86%E5%93%81%E9%A1%B5%E9%9D%A2/" data-id="clh1gs373003eakwc7v9tclxs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wx%E5%AE%9E%E8%B7%B5/" rel="tag">wx实践</a></li></ul>
 
-    </section>
+    </footer>
+  </div>
+  
     
-      <section class='ArticleMeta'>
-          <div>
-            发布于&nbsp;
-            <time datetime="2021-04-18T09:56:15.000Z" itemprop="datePublished">
-              2021-04-18
-            </time>
-          </div>
-          
-            <div>
-              tags: 
-  <li class="meta-text">
-  { <a href="/tags/wx%E5%AE%9E%E8%B7%B5/">wx实践</a> }
-  </li>
-
-
-            </div>
-          
-      </section>
-    
-    
-</article>
+<nav id="article-nav">
+  
+    <a href="/2021/04/18/%E5%9B%BE%E7%81%B5%E5%B7%A5%E4%BD%9C%E5%AE%A404/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          图灵工作室04
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/16/%E8%87%B3%E7%8E%B0%E5%9C%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E8%AF%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">至现在自己的诗</div>
+    </a>
+  
+</nav>
 
   
-</div>
+</article>
 
-            <footer>
-    <div>© 2023 - nature </div>
-    <div>
-        <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 nature<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
+  </div>
 </footer>
-
-        </div>
     </div>
-</div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
 
-<script src="/js/pager/dist/singlepager.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script>
-var sp = new Pager('data-pager-shell')
 
-</script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
 </body>
 </html>

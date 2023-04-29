@@ -1,73 +1,113 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Spring03 | 祈雨</title>
+  <meta charset="utf-8">
   
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
 
+  
+  <title>Spring03 | 祈雨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="监听器的使用与Spring集成Web环境1. 应用上下文的创建​    因为上下文对象是通过new ClasspathXmlApplicationContext(Spring配置文件)获得，但每一次获取Bean时都要编写一次，这样会使得上下文对象创建多次  ​    思想：将创建上下文对象的行为放在监听器中，并由监听器存储在ServletContext域中，需要使用对象时，通过ServletCon">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring03">
+<meta property="og:url" content="http://example.com/2023/04/25/Spring03/index.html">
+<meta property="og:site_name" content="祈雨">
+<meta property="og:description" content="监听器的使用与Spring集成Web环境1. 应用上下文的创建​    因为上下文对象是通过new ClasspathXmlApplicationContext(Spring配置文件)获得，但每一次获取Bean时都要编写一次，这样会使得上下文对象创建多次  ​    思想：将创建上下文对象的行为放在监听器中，并由监听器存储在ServletContext域中，需要使用对象时，通过ServletCon">
+<meta property="og:locale">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/18/p9ipmxH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/18/p9i9MpF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/18/p9i9JTx.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/18/p9i9hcQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/18/p9iCPN6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/18/p9iCA3D.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9EUBNQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9EaFDf.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9EdDln.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9Ed4p9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9EdLkD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9EwUnx.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9EwvUU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9E5Xlt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9EID1I.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9EI53n.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9EHSvn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9E7HDP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9EHart.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/22/p9VNbaF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/22/p9VNzKx.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/22/p9VaD78.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/22/p9VaOj1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/22/p9Vd25D.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/22/p9V0b9g.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/22/p9VBXGD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/22/p9VDMd0.png">
+<meta property="article:published_time" content="2023-04-25T11:24:27.000Z">
+<meta property="article:modified_time" content="2023-04-25T11:30:02.214Z">
+<meta property="article:author" content="nature">
+<meta property="article:tag" content="SSM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/04/18/p9ipmxH.png">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
   
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/blog.png)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>祈雨</div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祈雨</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
+      </nav>
+      <nav id="sub-nav">
         
-            
-                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
-                    <img src="/assets/github.svg" />
-                </a>
-            
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Spring03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/04/25/Spring03/" class="article-date">
+  <time datetime="2023-04-25T11:24:27.000Z" itemprop="datePublished">2023-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </section>
-</aside>
+  
+    <h1 class="article-title" itemprop="name">
+      Spring03
+    </h1>
+  
 
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>Spring03</h1>
-    </header>
-
-    <section>
-      <h2 id="监听器的使用与Spring集成Web环境"><a href="#监听器的使用与Spring集成Web环境" class="headerlink" title="监听器的使用与Spring集成Web环境"></a>监听器的使用与Spring集成Web环境</h2><h4 id="1-应用上下文的创建"><a href="#1-应用上下文的创建" class="headerlink" title="1. 应用上下文的创建"></a>1. 应用上下文的创建</h4><p>​    因为上下文对象是通过<code>new ClasspathXmlApplicationContext(Spring配置文件)</code>获得，但每一次获取Bean时都要编写一次，这样会使得上下文对象创建多次</p>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="监听器的使用与Spring集成Web环境"><a href="#监听器的使用与Spring集成Web环境" class="headerlink" title="监听器的使用与Spring集成Web环境"></a>监听器的使用与Spring集成Web环境</h2><h4 id="1-应用上下文的创建"><a href="#1-应用上下文的创建" class="headerlink" title="1. 应用上下文的创建"></a>1. 应用上下文的创建</h4><p>​    因为上下文对象是通过<code>new ClasspathXmlApplicationContext(Spring配置文件)</code>获得，但每一次获取Bean时都要编写一次，这样会使得上下文对象创建多次</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9ipmxH"><img src="https://s1.ax1x.com/2023/04/18/p9ipmxH.png" alt="p9ipmxH.png"></a></p>
 <p>​    <strong>思想：将创建上下文对象的行为放在监听器中，并由监听器存储在ServletContext域中，需要使用对象时，通过ServletContext对象向ServletContext域中获取</strong></p>
 <p>​    <strong>监听器的配置</strong></p>
@@ -151,58 +191,68 @@
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VBXGD"><img src="https://s1.ax1x.com/2023/04/22/p9VBXGD.png" alt="p9VBXGD.png"></a></p>
 <h4 id="9-总结"><a href="#9-总结" class="headerlink" title="9. 总结"></a>9. 总结</h4><p>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/p9VDMd0"><img src="https://s1.ax1x.com/2023/04/22/p9VDMd0.png" alt="p9VDMd0.png"></a></p>
 
-
       
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/04/25/Spring03/" data-id="clh1gs36j001uakwc18tu385l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSM/" rel="tag">SSM</a></li></ul>
 
-    </section>
+    </footer>
+  </div>
+  
     
-      <section class='ArticleMeta'>
-          <div>
-            发布于&nbsp;
-            <time datetime="2023-04-25T11:24:27.000Z" itemprop="datePublished">
-              2023-04-25
-            </time>
-          </div>
-          
-            <div>
-              tags: 
-  <li class="meta-text">
-  { <a href="/tags/SSM/">SSM</a> }
-  </li>
-
-
-            </div>
-          
-      </section>
-    
-    
-</article>
+<nav id="article-nav">
+  
+    <a href="/2023/04/25/Spring04/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Spring04
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/04/25/Spring02/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Spring02</div>
+    </a>
+  
+</nav>
 
   
-</div>
+</article>
 
-            <footer>
-    <div>© 2023 - nature </div>
-    <div>
-        <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 nature<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
+  </div>
 </footer>
-
-        </div>
     </div>
-</div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
 
-<script src="/js/pager/dist/singlepager.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script>
-var sp = new Pager('data-pager-shell')
 
-</script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
 </body>
 </html>

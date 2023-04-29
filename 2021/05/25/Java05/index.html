@@ -1,73 +1,85 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Java05 | 祈雨</title>
+  <meta charset="utf-8">
   
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
 
+  
+  <title>Java05 | 祈雨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="类和对象1. 在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法12345&#x2F;&#x2F;成员方法的语法格式	权限修饰符 返回值类型 方法名(参数类型 参数名)&amp;#123;	&#x2F;&#x2F;方法体	return 返回值;&amp;#125;  2. 权限修饰符类权限(注意：类权限会约束类成员的权限设定，大于类的权限的类成员都会默认为类的权限进行约束)    访问包位置 pri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java05">
+<meta property="og:url" content="http://example.com/2021/05/25/Java05/index.html">
+<meta property="og:site_name" content="祈雨">
+<meta property="og:description" content="类和对象1. 在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法12345&#x2F;&#x2F;成员方法的语法格式	权限修饰符 返回值类型 方法名(参数类型 参数名)&amp;#123;	&#x2F;&#x2F;方法体	return 返回值;&amp;#125;  2. 权限修饰符类权限(注意：类权限会约束类成员的权限设定，大于类的权限的类成员都会默认为类的权限进行约束)    访问包位置 pri">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-05-25T13:30:52.000Z">
+<meta property="article:modified_time" content="2021-10-11T13:34:32.203Z">
+<meta property="article:author" content="nature">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
   
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/blog.png)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>祈雨</div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祈雨</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
+      </nav>
+      <nav id="sub-nav">
         
-            
-                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
-                    <img src="/assets/github.svg" />
-                </a>
-            
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java05" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/05/25/Java05/" class="article-date">
+  <time datetime="2021-05-25T13:30:52.000Z" itemprop="datePublished">2021-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </section>
-</aside>
+  
+    <h1 class="article-title" itemprop="name">
+      Java05
+    </h1>
+  
 
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>Java05</h1>
-    </header>
-
-    <section>
-      <h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><h4 id="1-在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法"><a href="#1-在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法" class="headerlink" title="1. 在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法"></a>1. 在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;成员方法的语法格式</span><br><span class="line">	权限修饰符 返回值类型 方法名(参数类型 参数名)&#123;</span><br><span class="line">	&#x2F;&#x2F;方法体</span><br><span class="line">	return 返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><h4 id="1-在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法"><a href="#1-在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法" class="headerlink" title="1. 在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法"></a>1. 在Java中对象的属性也被称为成员变量，类对象的行为叫做成员方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;成员方法的语法格式</span><br><span class="line">	权限修饰符 返回值类型 方法名(参数类型 参数名)&#123;</span><br><span class="line">	&#x2F;&#x2F;方法体</span><br><span class="line">	return 返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-权限修饰符"><a href="#2-权限修饰符" class="headerlink" title="2. 权限修饰符"></a>2. 权限修饰符</h4><p><strong>类权限(注意：类权限会约束类成员的权限设定，大于类的权限的类成员都会默认为类的权限进行约束)</strong></p>
 <table>
@@ -144,58 +156,68 @@
 </ul>
 <p>​    <strong>注意:Java的垃圾回收器只能销毁new操作符创建的对象</strong><br>​    为了回收不通过new操作符来在内存中获取存储空间的对象,Java还提供object类中的finalize()方法被声明为protected,用户可以自己的类中定义这个方法来回收垃圾(不保证一定发生,当Java虚拟机内存耗尽时,则不会执行垃圾回收处理)<br>​    Java还提供了System.gc()方法强制启动垃圾回收器</p>
 
-
       
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/05/25/Java05/" data-id="clh1gs35r000lakwcd9g5clty" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
 
-    </section>
+    </footer>
+  </div>
+  
     
-      <section class='ArticleMeta'>
-          <div>
-            发布于&nbsp;
-            <time datetime="2021-05-25T13:30:52.000Z" itemprop="datePublished">
-              2021-05-25
-            </time>
-          </div>
-          
-            <div>
-              tags: 
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-            </div>
-          
-      </section>
-    
-    
-</article>
+<nav id="article-nav">
+  
+    <a href="/2021/06/02/Java06/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java06
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/05/23/Java04/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java04</div>
+    </a>
+  
+</nav>
 
   
-</div>
+</article>
 
-            <footer>
-    <div>© 2023 - nature </div>
-    <div>
-        <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 nature<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
+  </div>
 </footer>
-
-        </div>
     </div>
-</div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
 
-<script src="/js/pager/dist/singlepager.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script>
-var sp = new Pager('data-pager-shell')
 
-</script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
 </body>
 </html>

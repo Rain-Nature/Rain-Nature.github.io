@@ -1,73 +1,85 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Java07 | 祈雨</title>
+  <meta charset="utf-8">
   
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
 
+  
+  <title>Java07 | 祈雨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="类的继承，多态1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法2. extends关键字​    用来标识两个类的继承关系 123456789&#x2F;&#x2F;父类class bookStore&amp;#123;	&amp;#125;&#x2F;&#x2F;子类class book extend">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java07">
+<meta property="og:url" content="http://example.com/2021/06/04/Java07/index.html">
+<meta property="og:site_name" content="祈雨">
+<meta property="og:description" content="类的继承，多态1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法2. extends关键字​    用来标识两个类的继承关系 123456789&#x2F;&#x2F;父类class bookStore&amp;#123;	&amp;#125;&#x2F;&#x2F;子类class book extend">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-06-04T14:37:40.000Z">
+<meta property="article:modified_time" content="2022-10-10T06:07:00.014Z">
+<meta property="article:author" content="nature">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
   
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/blog.png)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>祈雨</div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祈雨</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
+      </nav>
+      <nav id="sub-nav">
         
-            
-                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
-                    <img src="/assets/github.svg" />
-                </a>
-            
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java07" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/06/04/Java07/" class="article-date">
+  <time datetime="2021-06-04T14:37:40.000Z" itemprop="datePublished">2021-06-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </section>
-</aside>
+  
+    <h1 class="article-title" itemprop="name">
+      Java07
+    </h1>
+  
 
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>Java07</h1>
-    </header>
-
-    <section>
-      <h2 id="类的继承，多态"><a href="#类的继承，多态" class="headerlink" title="类的继承，多态"></a>类的继承，多态</h2><h4 id="1-继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写-覆盖-父类中的某些方法"><a href="#1-继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写-覆盖-父类中的某些方法" class="headerlink" title="1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法"></a>1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法</h4><h4 id="2-extends关键字"><a href="#2-extends关键字" class="headerlink" title="2. extends关键字"></a>2. extends关键字</h4><p>​    用来标识两个类的继承关系</p>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="类的继承，多态"><a href="#类的继承，多态" class="headerlink" title="类的继承，多态"></a>类的继承，多态</h2><h4 id="1-继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写-覆盖-父类中的某些方法"><a href="#1-继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写-覆盖-父类中的某些方法" class="headerlink" title="1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法"></a>1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法</h4><h4 id="2-extends关键字"><a href="#2-extends关键字" class="headerlink" title="2. extends关键字"></a>2. extends关键字</h4><p>​    用来标识两个类的继承关系</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;父类</span><br><span class="line">class bookStore&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;子类</span><br><span class="line">class book extends bookStore&#123;</span><br><span class="line">	&#x2F;&#x2F;当子类再次声明与父类一样的成员变量时，就有两个名字一样的成员变量，要使用父类的话需用super()关键字来引用父类(无关键字时，子类中和父类中的属性或方法同名，则父类中的方法或属性将被覆盖或隐藏)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="3-super关键字"><a href="#3-super关键字" class="headerlink" title="3. super关键字"></a>3. super关键字</h4><p>​    (1).在Java类中使用super关键字来引用父类的成分，它是一个指代变量，用于在子类中指代父类对象<br>​    (2).只能用于子类的构造函数和实例方法中，不能用于子类的类（静态）方法中。原因是super指代的是一个父类的对象，它需要在运行时被创建，而静态方法是类方法，它是类的一部分。当类被加载时，方法已经存在，但是这时候父类对象还没有被初始化</p>
@@ -120,58 +132,68 @@
 <p>​    通过定义一个父类，让它的所有子类通过向上转型的原则作为一个方法的参数，再在这个方法中做出一些限定，后可以做出每个子类自己独有的事情。<br>​    这样的处理可以很好解决代码的冗余问题，同时使得程序易于维护，可以随意增加子类，只需要改变传参就可以了</p>
 <p><strong>多态的样例代码见请看笔记《Java实例-多态》</strong></p>
 
-
       
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/06/04/Java07/" data-id="clh1gs35o000hakwch00vc33c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
 
-    </section>
+    </footer>
+  </div>
+  
     
-      <section class='ArticleMeta'>
-          <div>
-            发布于&nbsp;
-            <time datetime="2021-06-04T14:37:40.000Z" itemprop="datePublished">
-              2021-06-04
-            </time>
-          </div>
-          
-            <div>
-              tags: 
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-            </div>
-          
-      </section>
-    
-    
-</article>
+<nav id="article-nav">
+  
+    <a href="/2021/06/05/Java08/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java08
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/06/04/Java%E5%AE%9E%E4%BE%8B-%E5%A4%9A%E6%80%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java实例-多态</div>
+    </a>
+  
+</nav>
 
   
-</div>
+</article>
 
-            <footer>
-    <div>© 2023 - nature </div>
-    <div>
-        <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 nature<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
+  </div>
 </footer>
-
-        </div>
     </div>
-</div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
 
-<script src="/js/pager/dist/singlepager.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script>
-var sp = new Pager('data-pager-shell')
 
-</script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
 </body>
 </html>

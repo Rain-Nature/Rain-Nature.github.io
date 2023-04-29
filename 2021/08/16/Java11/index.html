@@ -1,73 +1,87 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Java11 | 祈雨</title>
+  <meta charset="utf-8">
   
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
 
+  
+  <title>Java11 | 祈雨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="对象数组(集合类)1. 在java.util包中提供一些集合类，集合类又被称为容器&#x2F;对象数组2. 集合类和数组的区别 数组的长度是固定的，集合类的长度是可变的 数组用来存放基本数据类型的数据，集合类用来存放对象**(基本数据类型需要用包装类)**的引用  3. 对象数组的优势 对象数组属于Java语言的原生支持，不需要手工实现(简单) 对象数组根据索引的数据查询性能是“O(1)”。但若根据的是内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java11">
+<meta property="og:url" content="http://example.com/2021/08/16/Java11/index.html">
+<meta property="og:site_name" content="祈雨">
+<meta property="og:description" content="对象数组(集合类)1. 在java.util包中提供一些集合类，集合类又被称为容器&#x2F;对象数组2. 集合类和数组的区别 数组的长度是固定的，集合类的长度是可变的 数组用来存放基本数据类型的数据，集合类用来存放对象**(基本数据类型需要用包装类)**的引用  3. 对象数组的优势 对象数组属于Java语言的原生支持，不需要手工实现(简单) 对象数组根据索引的数据查询性能是“O(1)”。但若根据的是内容">
+<meta property="og:locale">
+<meta property="og:image" content="https://z3.ax1x.com/2021/08/15/f2JSeS.png">
+<meta property="article:published_time" content="2021-08-16T04:51:24.000Z">
+<meta property="article:modified_time" content="2022-08-23T14:04:21.590Z">
+<meta property="article:author" content="nature">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/08/15/f2JSeS.png">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
   
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/blog.png)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>祈雨</div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祈雨</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
+      </nav>
+      <nav id="sub-nav">
         
-            
-                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
-                    <img src="/assets/github.svg" />
-                </a>
-            
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/16/Java11/" class="article-date">
+  <time datetime="2021-08-16T04:51:24.000Z" itemprop="datePublished">2021-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </section>
-</aside>
+  
+    <h1 class="article-title" itemprop="name">
+      Java11
+    </h1>
+  
 
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>Java11</h1>
-    </header>
-
-    <section>
-      <h2 id="对象数组-集合类"><a href="#对象数组-集合类" class="headerlink" title="对象数组(集合类)"></a>对象数组(集合类)</h2><h4 id="1-在java-util包中提供一些集合类，集合类又被称为容器-对象数组"><a href="#1-在java-util包中提供一些集合类，集合类又被称为容器-对象数组" class="headerlink" title="1. 在java.util包中提供一些集合类，集合类又被称为容器/对象数组"></a>1. 在java.util包中提供一些集合类，集合类又被称为容器/对象数组</h4><h4 id="2-集合类和数组的区别"><a href="#2-集合类和数组的区别" class="headerlink" title="2. 集合类和数组的区别"></a>2. 集合类和数组的区别</h4><ul>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="对象数组-集合类"><a href="#对象数组-集合类" class="headerlink" title="对象数组(集合类)"></a>对象数组(集合类)</h2><h4 id="1-在java-util包中提供一些集合类，集合类又被称为容器-对象数组"><a href="#1-在java-util包中提供一些集合类，集合类又被称为容器-对象数组" class="headerlink" title="1. 在java.util包中提供一些集合类，集合类又被称为容器/对象数组"></a>1. 在java.util包中提供一些集合类，集合类又被称为容器/对象数组</h4><h4 id="2-集合类和数组的区别"><a href="#2-集合类和数组的区别" class="headerlink" title="2. 集合类和数组的区别"></a>2. 集合类和数组的区别</h4><ul>
 <li>数组的长度是固定的，集合类的长度是可变的</li>
 <li>数组用来存放基本数据类型的数据，集合类用来存放对象**(基本数据类型需要用包装类)**的引用</li>
 </ul>
@@ -201,58 +215,68 @@
 </ul>
 <p>​    <strong>注意：可以通过HashMap类创建Map集合，当需要顺序输出时，再创建一个完成相同映射关系的TreeMap类实例</strong></p>
 
-
       
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/08/16/Java11/" data-id="clh1gs3670012akwc1opb2z80" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
 
-    </section>
+    </footer>
+  </div>
+  
     
-      <section class='ArticleMeta'>
-          <div>
-            发布于&nbsp;
-            <time datetime="2021-08-16T04:51:24.000Z" itemprop="datePublished">
-              2021-08-16
-            </time>
-          </div>
-          
-            <div>
-              tags: 
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-            </div>
-          
-      </section>
-    
-    
-</article>
+<nav id="article-nav">
+  
+    <a href="/2021/09/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          操作系统01
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/06/20/Java10/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java10</div>
+    </a>
+  
+</nav>
 
   
-</div>
+</article>
 
-            <footer>
-    <div>© 2023 - nature </div>
-    <div>
-        <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 nature<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
+  </div>
 </footer>
-
-        </div>
     </div>
-</div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
 
-<script src="/js/pager/dist/singlepager.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script>
-var sp = new Pager('data-pager-shell')
 
-</script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
 </body>
 </html>

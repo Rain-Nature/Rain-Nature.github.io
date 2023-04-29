@@ -1,73 +1,93 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Java12 | 祈雨</title>
+  <meta charset="utf-8">
   
-  
-  
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
 
+  
+  <title>Java12 | 祈雨</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="I&#x2F;O（Input&amp;Output）1. Java中的输入&#x2F;输出流​    Java语言定义了许多类负责各种方式的输入&#x2F;输出，java的io是所有语言之最，这些类都放在java.io包中。核心组成：一个类(File)、一个接口(Serializable)、四个抽象类(InputStream，OutputStream，Reader，Writer) 2. File类的简介(1).File类是整个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java12">
+<meta property="og:url" content="http://example.com/2021/09/19/Java12/index.html">
+<meta property="og:site_name" content="祈雨">
+<meta property="og:description" content="I&#x2F;O（Input&amp;Output）1. Java中的输入&#x2F;输出流​    Java语言定义了许多类负责各种方式的输入&#x2F;输出，java的io是所有语言之最，这些类都放在java.io包中。核心组成：一个类(File)、一个接口(Serializable)、四个抽象类(InputStream，OutputStream，Reader，Writer) 2. File类的简介(1).File类是整个">
+<meta property="og:locale">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/10/hve0eI.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/10/hveNSe.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/10/hveKy9.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/10/hvZBPU.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/14/4Eka5Q.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/15/4VFHJJ.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/09/15/4Ve0Ln.png">
+<meta property="article:published_time" content="2021-09-19T08:19:54.000Z">
+<meta property="article:modified_time" content="2022-11-05T07:10:50.649Z">
+<meta property="article:author" content="nature">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/09/10/hve0eI.png">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
   
 <link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 5.2.0"></head>
 
 <body>
-<div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url()">
-        <div class='av-pic' style="background-image: url(/assets/blog.png)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>祈雨</div>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">祈雨</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-            <a href="/about/" class="Btn">
-              <li>About</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
+      </nav>
+      <nav id="sub-nav">
         
-            
-                <a target="_blank" rel="noopener" href="https://github.com/Magician-Snow">
-                    <img src="/assets/github.svg" />
-                </a>
-            
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java12" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/09/19/Java12/" class="article-date">
+  <time datetime="2021-09-19T08:19:54.000Z" itemprop="datePublished">2021-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </section>
-</aside>
+  
+    <h1 class="article-title" itemprop="name">
+      Java12
+    </h1>
+  
 
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>Java12</h1>
-    </header>
-
-    <section>
-      <h2 id="I-O（Input-amp-Output）"><a href="#I-O（Input-amp-Output）" class="headerlink" title="I/O（Input&amp;Output）"></a>I/O（Input&amp;Output）</h2><h3 id="1-Java中的输入-输出流"><a href="#1-Java中的输入-输出流" class="headerlink" title="1. Java中的输入/输出流"></a>1. Java中的输入/输出流</h3><p>​    Java语言定义了许多类负责各种方式的输入/输出，java的io是所有语言之最，这些类都放在java.io包中。<strong>核心组成：一个类(File)、一个接口(Serializable)、四个抽象类(InputStream，OutputStream，Reader，Writer)</strong></p>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="I-O（Input-amp-Output）"><a href="#I-O（Input-amp-Output）" class="headerlink" title="I/O（Input&amp;Output）"></a>I/O（Input&amp;Output）</h2><h3 id="1-Java中的输入-输出流"><a href="#1-Java中的输入-输出流" class="headerlink" title="1. Java中的输入/输出流"></a>1. Java中的输入/输出流</h3><p>​    Java语言定义了许多类负责各种方式的输入/输出，java的io是所有语言之最，这些类都放在java.io包中。<strong>核心组成：一个类(File)、一个接口(Serializable)、四个抽象类(InputStream，OutputStream，Reader，Writer)</strong></p>
 <h3 id="2-File类的简介"><a href="#2-File类的简介" class="headerlink" title="2. File类的简介"></a>2. File类的简介</h3><h4 id="1-File类是整个java-io包中唯一一个与文件本身有关-可以进行操作文档的路径指派，可以创建或者删除文件，以及还可以获取文件的相关信息内容-的操作类"><a href="#1-File类是整个java-io包中唯一一个与文件本身有关-可以进行操作文档的路径指派，可以创建或者删除文件，以及还可以获取文件的相关信息内容-的操作类" class="headerlink" title="(1).File类是整个java.io包中唯一一个与文件本身有关(可以进行操作文档的路径指派，可以创建或者删除文件，以及还可以获取文件的相关信息内容)的操作类"></a>(1).File类是整个java.io包中唯一一个<strong>与文件本身有关</strong>(可以进行操作文档的路径指派，可以创建或者删除文件，以及还可以获取文件的相关信息内容)的操作类</h4><h4 id="2-File类的常用构造方法"><a href="#2-File类的常用构造方法" class="headerlink" title="(2).File类的常用构造方法"></a>(2).File类的常用构造方法</h4><p>​    </p>
 <table>
 <thead>
@@ -467,58 +487,68 @@
 </li>
 </ol>
 
-
       
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/09/19/Java12/" data-id="clh1gs381005pakwcaug1agyn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
 
-    </section>
+    </footer>
+  </div>
+  
     
-      <section class='ArticleMeta'>
-          <div>
-            发布于&nbsp;
-            <time datetime="2021-09-19T08:19:54.000Z" itemprop="datePublished">
-              2021-09-19
-            </time>
-          </div>
-          
-            <div>
-              tags: 
-  <li class="meta-text">
-  { <a href="/tags/Java/">Java</a> }
-  </li>
-
-
-            </div>
-          
-      </section>
-    
-    
-</article>
+<nav id="article-nav">
+  
+    <a href="/2021/09/29/%E6%96%87%E4%BB%B6%E5%AE%9E%E4%BE%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          文件实例
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/09/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">操作系统01</div>
+    </a>
+  
+</nav>
 
   
-</div>
+</article>
 
-            <footer>
-    <div>© 2023 - nature </div>
-    <div>
-        <span>
-            Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
-        </span>
-        ,
-        <span>
-            Theme - <a target="_blank" rel="noopener" href="https://github.com/nameoverflow/hexo-theme-icalm">Icalm</a>
-        </span>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 nature<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
+  </div>
 </footer>
-
-        </div>
     </div>
-</div>
+    <nav id="mobile-nav">
+  
+</nav>
+    
 
-<script src="/js/pager/dist/singlepager.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<script>
-var sp = new Pager('data-pager-shell')
 
-</script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
 </body>
 </html>
