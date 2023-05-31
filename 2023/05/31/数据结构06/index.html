@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Java动态代理, Rain">
+    <meta name="keywords" content="数据结构06, Rain">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Java动态代理 | Rain</title>
+    <title>数据结构06 | Rain</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Java动态代理</h1>
+                    <h1 class="description center-align post-title">数据结构06</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/SSM/">
-                                <span class="chip bg-color">SSM</span>
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                <span class="chip bg-color">数据结构</span>
                             </a>
                         
                     </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2023-05-04
+                    2023-05-31
                 </div>
                 
 
@@ -468,89 +468,40 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="1-代理模式的概念"><a href="#1-代理模式的概念" class="headerlink" title="1. 代理模式的概念"></a>1. 代理模式的概念</h4><p>​    为其他对象提供一种代理以控制对这个对象的访问，在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户类和目标对象之间起到桥梁的作用</p>
-<h4 id="2-代理的作用"><a href="#2-代理的作用" class="headerlink" title="2. 代理的作用"></a>2. 代理的作用</h4><p>​    1. 功能增强：在原有的功能上增加额外的功能，新增加的功能叫做功能增强<br>​    2. 控制访问：代理类不让直接访问目标</p>
-<h4 id="3-代理的实现方式"><a href="#3-代理的实现方式" class="headerlink" title="3. 代理的实现方式"></a>3. 代理的实现方式</h4><ol>
-<li><p>静态代理</p>
-<p>代理类是自己手工实现的，自己创建一个Java类，表示代理类，同时你所要代理的目标类是确定的</p>
-</li>
-<li><p>动态代理</p>
-<p>当静态代理中目标类很多的时候，可以使用动态代理，避免静态代理具有的缺点</p>
-</li>
+                <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><h4 id="1-递归的定义"><a href="#1-递归的定义" class="headerlink" title="1. 递归的定义"></a>1. 递归的定义</h4><p>​    一个函数自己直接或间接调用自己</p>
+<h4 id="2-递归满足的三个条件"><a href="#2-递归满足的三个条件" class="headerlink" title="2. 递归满足的三个条件"></a>2. 递归满足的三个条件</h4><ol>
+<li>一个明确的终止条件</li>
+<li>该函数所处理的数据规模必须在递减(相对于终止条件而言)</li>
+<li>这个转化必须是可解的</li>
 </ol>
-<h4 id="4-静态代理详解"><a href="#4-静态代理详解" class="headerlink" title="4. 静态代理详解"></a>4. 静态代理详解</h4><p>​    静态代理的特点：实现简单、容易理解</p>
-<p>​    静态代理的缺点：当目标类增加，代理类可能也需要成倍的增加，造成代理类数量过多；当接口中功能增加或者修改会影响众多的实现类，厂家类，代理都需要修改</p>
-<p>​    范例：模拟一个用户买u盘的行为，用户是客户端类，商家是代理，厂家是目标类；商家和厂家都是卖u盘的，他们完成的功能是一致的</p>
-<p>​    三者的关系：用户(客户端)—–商家(代理)—–厂家(目标)</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9JZg3Q"><img src="https://s1.ax1x.com/2023/05/02/p9JZg3Q.png" alt="p9JZg3Q.png"></a></p>
-<p>​    代码太low不想copy了，大致思路：创建一个卖u盘方法，厂家实现这个方法，商家也要实现这个方法，在这个方法中商家调用厂家实现的方法，在此基础上增加一点功能(给优惠券、加价格)，用户通过调用商家的方法购买u盘</p>
-<p>​    代理类完成的功能：<br>​    1. 目标类中方法的调用<br>​    2.  功能增强</p>
-<h4 id="5-动态代理详解"><a href="#5-动态代理详解" class="headerlink" title="5. 动态代理详解"></a>5. 动态代理详解</h4><p>​    动态代理是指代理类对象在程序运行时由JVM根据反射机制动态生成的。动态代理不需要定义代理类的.java源文件</p>
-<p>​    动态代理时jdk运行期间，动态创建class字节码并加载到JVM。</p>
-<p>​    <strong>动态代理的实现方式常用的有两种</strong></p>
+<h4 id="3-循环和递归的区别"><a href="#3-循环和递归的区别" class="headerlink" title="3. 循环和递归的区别"></a>3. 循环和递归的区别</h4><p>​    理论上所有的循环都可以转化为递归，但用递归解决的问题用循环不一定可以解决</p>
+<p><strong>递归的特点</strong></p>
 <ul>
-<li>使用JDK动态代理：使用Java反射包<code>(java.lang.reflect)</code>中的类<code>(InvocationHandler,Method,Proxy)</code>和接口实现动态代理的功能</li>
-<li>通过CGLIB动态代理：cglib是第三方的工具库，它可以创建代理对象；cglib的原理是继承，cglib通过继承目标类，创建它的子类，在子类中重写父类中同名的方法，实现功能的修改，因为cglib是继承，重写方法，所以要求目标类不能是final的，方法也不能是final的。cglib这个要求比较宽松所以其在很多框架都有使用，如<code>mybatis</code>，<code>spring</code></li>
+<li>易理解</li>
+<li>速度慢</li>
+<li>存储空间大</li>
 </ul>
-<p>​    注意：对于无接口的类，要为其创建动态代理，就要使用cglib实现</p>
-<h4 id="6-JDK动态代理"><a href="#6-JDK动态代理" class="headerlink" title="6. JDK动态代理"></a>6. JDK动态代理</h4><p><strong>反射机制在动态代理的应用</strong></p>
-<p>​    新建一个print接口以及printImpl和printImpl2实现类</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9YpmBF"><img src="https://s1.ax1x.com/2023/05/03/p9YpmBF.png" alt="p9YpmBF.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Yp191"><img src="https://s1.ax1x.com/2023/05/03/p9Yp191.png" alt="p9Yp191.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9YptBD"><img src="https://s1.ax1x.com/2023/05/03/p9YptBD.png" alt="p9YptBD.png"></a></p>
-<p>​    通过反射机制，使得只需要替换实例的名字，就可以执行不同语句的输出</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9YpbbF"><img src="https://s1.ax1x.com/2023/05/03/p9YpbbF.png" alt="p9YpbbF.png"></a></p>
-<p>​    运行结果</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Ypx81"><img src="https://s1.ax1x.com/2023/05/03/p9Ypx81.png" alt="p9Ypx81.png"></a></p>
-<p><strong>JDK动态代理的实现</strong></p>
-<p>​    反射包java.lang.reflect，三个类：InvocationHandler，Method，Proxy</p>
-<p>​    InvocationHandler(中文名：调用处理器)接口：其中只有一个方法invoke()</p>
-<p>​    invoke方法表示代理对象要执行的功能代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy,Method method,Object[] args)</span></span></span><br></pre></td></tr></table></figure>
-
-<p>invoke方法的参数：</p>
+<p><strong>循环的特点</strong></p>
 <ul>
-<li>Object proxy：jdk创建的代理对象，通过静态方法newProxyInstance()创建该代理对象，详细见下面</li>
-<li>Method：目标类中的方法</li>
-<li>Object[] args：目标类中方法的参数</li>
+<li>不易理解</li>
+<li>速度快</li>
+<li>存储空间小</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">newProxyInstance</span><span class="params">(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="4-汉诺塔"><a href="#4-汉诺塔" class="headerlink" title="4. 汉诺塔"></a>4. 汉诺塔</h4><p>​     汉诺塔的伪算法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(n &gt; <span class="number">1</span>)&#123;</span><br><span class="line">	先把A柱子上的前n<span class="number">-1</span>个盘子从A借助C移动到B</span><br><span class="line">	将A柱子上的第n个盘子直接移到C</span><br><span class="line">	再将B柱子上的n<span class="number">-1</span>个盘子借助A移到C</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//当n的值等于1时可以直接移动</span></span><br></pre></td></tr></table></figure>
 
-<p>newProxyInstance方法的参数：</p>
-<ul>
-<li>ClassLoader：类加载器，负责向内存中加载对象，使用反射获取对象的classLoader，如：<code>a.getclass().getClassLoader()</code>。使用时需要<strong>目标对象的类加载器</strong></li>
-<li>Class&lt;?&gt;[]：接口，<strong>目标对象实现的接口</strong>，也是反射获取的</li>
-<li>InvocationHandler：<strong>自己写的代理类</strong>要完成的功能</li>
-<li>返回值：就是代理对象</li>
-</ul>
-<p><strong>实现动态代理的步骤</strong></p>
-<ol>
-<li>创建接口，定义目标类要完成的功能</li>
-<li>创建目标类实现接口</li>
-<li>创建InvocationHandler接口的实现类，在invoke方法中完成代理类的功能<ul>
-<li>调用目标方法</li>
-<li>增强功能</li>
-</ul>
-</li>
-<li>使用proxy类的静态方法，创建代理对象，并把返回值转为接口类型</li>
-</ol>
-<p>​    创建learn接口，定义day方法</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Yv1De"><img src="https://s1.ax1x.com/2023/05/04/p9Yv1De.png" alt="p9Yv1De.png"></a></p>
-<p>​    创建learnImpl目标类实现该接口</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Yv0KS"><img src="https://s1.ax1x.com/2023/05/04/p9Yv0KS.png" alt="p9Yv0KS.png"></a></p>
-<p>​    创建handle类实现InvocationHandler接口，并在invoke方法中完成代理类的功能</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9YvWvT"><img src="https://s1.ax1x.com/2023/05/04/p9YvWvT.png" alt="p9YvWvT.png"></a></p>
-<p>​    创建main类，在main方法中使用proxy类的静态方法创建代理对象，并由代理对象执行接口方法(增强后的)</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9YxQGq"><img src="https://s1.ax1x.com/2023/05/04/p9YxQGq.png" alt="p9YxQGq.png"></a></p>
-<h4 id="7-Proxy-newProxyInstance-方法的补充"><a href="#7-Proxy-newProxyInstance-方法的补充" class="headerlink" title="7. Proxy.newProxyInstance()方法的补充"></a>7. Proxy.newProxyInstance()方法的补充</h4><p>​    该方法的API</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">newProxyInstance</span><span class="params">(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</span></span></span><br></pre></td></tr></table></figure>
 
-<p>​    第一个参数：loader为用于定义代理类的类加载器，目前我已知有两种写法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.先获得对象，如上面获得对象a，调用a.getClass().getClassLoader()获得</span></span><br><span class="line"><span class="comment">//2.知道对象的类，使用反射加载，如上面代码以learn接口为例，使用learn.class.getClassLoader()获得</span></span><br></pre></td></tr></table></figure>
 
-<p>​    第二个参数：interfaces为代理类要实现的接口列表，目前我已知也有两种写法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.先获得对象，如上面获得对象a，调用a.getClass().getInterfaces()获得</span></span><br><span class="line"><span class="comment">//2.知道对象的类，使用反射加载，如上面代码以learn接口为例，使用new class[]&#123;learn.class&#125;获得</span></span><br></pre></td></tr></table></figure>
+<p>​    C语言对于汉诺塔的实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="comment">//函数参数的意义：将n个盘子从x借助y移动到z</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hannota</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">char</span> x,<span class="keyword">char</span> y,<span class="keyword">char</span> z)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> x = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">    <span class="keyword">char</span> y = <span class="string">&#x27;B&#x27;</span>;</span><br><span class="line">    <span class="keyword">char</span> z = <span class="string">&#x27;C&#x27;</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入有几个盘子：\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="comment">//将A上n个盘子借助B移动到C</span></span><br><span class="line">    hannota(n,x,y,z);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//x,y,z对应A,B,C</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">hannota</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">char</span> x,<span class="keyword">char</span> y,<span class="keyword">char</span> z)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="number">1</span> == n)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;直接将第%d个盘子从%c移动到%c\n&quot;</span>,n,x,z);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//将A上的n-1个盘子借助C移动到B</span></span><br><span class="line">        hannota(n<span class="number">-1</span>,x,z,y);</span><br><span class="line">        <span class="comment">//将第n个盘子从A移动到C</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;直接将第%d个盘子从%c移动到%c\n&quot;</span>,n,x,z);</span><br><span class="line">        <span class="comment">//最后将B上n-1个盘子借助A移动到C，此时B等于是之前的A，A与B的角色相互转化</span></span><br><span class="line">        hannota(n<span class="number">-1</span>,y,x,z);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+<h4 id="5-递归的应用"><a href="#5-递归的应用" class="headerlink" title="5. 递归的应用"></a>5. 递归的应用</h4><p>​    树和森林就是递归的方式定义的</p>
+<p>​    树和图的很多算法都是以递归来实现</p>
+<p>​    很多数学公式就是以递归方式定义的，如斐波拉契序列(1,2,3,5,8,13,21,34)</p>
+<h4 id="6-为什么数据结构难"><a href="#6-为什么数据结构难" class="headerlink" title="6. 为什么数据结构难"></a>6. 为什么数据结构难</h4><p>​    需要将现实中多维的事务在计算机中以一维内存的方式进行表示</p>
+<p>​    在Java中，ArrayList是数组实现的，LinkedList是链表实现的</p>
 
                 
             </div>
@@ -577,7 +528,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/05/04/Java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">http://example.com/2023/05/04/Java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</a>
+                    <a href="http://example.com/2023/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8406/">http://example.com/2023/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8406/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -615,8 +566,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/SSM/">
-                                    <span class="chip bg-color">SSM</span>
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                    <span class="chip bg-color">数据结构</span>
                                 </a>
                             
                         </div>
@@ -790,13 +741,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2023/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8406/">
+                <a href="/2023/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8407/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="数据结构06">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="数据结构07">
                         
-                        <span class="card-title">数据结构06</span>
+                        <span class="card-title">数据结构07</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -835,13 +786,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/04/29/Spring05/">
+                <a href="/2023/05/04/Java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Spring05">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Java动态代理">
                         
-                        <span class="card-title">Spring05</span>
+                        <span class="card-title">Java动态代理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -852,7 +803,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-04
                             </span>
                         <span class="publish-author">
                             
