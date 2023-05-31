@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="数据结构07, Rain">
+    <meta name="keywords" content="Spring06, Rain">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>数据结构07 | Rain</title>
+    <title>Spring06 | Rain</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">数据结构07</h1>
+                    <h1 class="description center-align post-title">Spring06</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                                <span class="chip bg-color">数据结构</span>
+                            <a href="/tags/Spring/">
+                                <span class="chip bg-color">Spring</span>
                             </a>
                         
                     </div>
@@ -468,115 +468,126 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h4 id="1-树的定义"><a href="#1-树的定义" class="headerlink" title="1. 树的定义"></a>1. 树的定义</h4><p>​    <strong>专业的定义：</strong></p>
-<p>​    1. 有且只有一个称为根的节点<br>​    2. 有若干个互不相交的子树，这些子树本身也是一颗树</p>
-<p>​    <strong>通俗的定义：</strong></p>
-<p>​    1. 树是由节点和边(指针)组成<br>​    2. 每个节点只有一个父节点但可以有多个子节点<br>​    3. 但有一个节点例外，该节点没有父节点，此节点称为根节点</p>
-<h4 id="2-树的专业术语"><a href="#2-树的专业术语" class="headerlink" title="2. 树的专业术语"></a>2. 树的专业术语</h4><ul>
-<li>节点：树的节点由数据元素及其若干分支组成</li>
-<li>父节点：节点上面紧挨着的节点</li>
-<li>子节点：父节点下面一层的节点</li>
-<li>兄弟：父节点下的所有子结点互为兄弟结点</li>
-<li>子孙：以某节点为根的子树中的任一节点</li>
-<li>深度：从根节点到最底层节点的层数，根节点是第一层</li>
-<li>叶子节点：没有子节点的节点</li>
-<li>非终端节点：非叶子节点</li>
-<li>度：子节点的个数</li>
+                <h4 id="1-SpringAOP的入门"><a href="#1-SpringAOP的入门" class="headerlink" title="1. SpringAOP的入门"></a>1. SpringAOP的入门</h4><p><strong>SpringAOP的简介</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9GSeds"><img src="https://s1.ax1x.com/2023/05/01/p9GSeds.png" alt="p9GSeds.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9GS1QU"><img src="https://s1.ax1x.com/2023/05/01/p9GS1QU.png" alt="p9GS1QU.png"></a></p>
+<p>​    你可以理解为，一个项目A功能要和B、C、D三个功能结合形成三个不同的功能，传统OOP哪怕封装也需要进行调用，而AOP则是写好A功能放那就行，通过配置的方式使用A功能，<strong>即这4个功能相互独立，在运行时(内存中)通过配置指定结合，A功能可以看作一个增强，A和B功能通过配置方式结合组合的功能叫做切面</strong></p>
+<p><strong>AOP的作用及其优势</strong></p>
+<ul>
+<li>作用：在程序运行期间，在不修改源码的情况下对方法进行功能增强</li>
+<li>优势：减少重复代码，提高开发效率，并且便于维护</li>
 </ul>
-<p>​    </p>
-<h4 id="3-树的分类"><a href="#3-树的分类" class="headerlink" title="3. 树的分类"></a>3. 树的分类</h4><ul>
-<li><p>一般树</p>
-<p>任意一个节点的子节点的个数都不受限制</p>
-</li>
-<li><p>二叉树</p>
-<p>任意一个节点的子节点的个数最多两个，且子节点的位置不可更改</p>
-</li>
-<li><p>森林</p>
-<p>n个互不相交的树的集合</p>
-</li>
+<p><strong>AOP的底层实现</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9GpwAs"><img src="https://s1.ax1x.com/2023/05/01/p9GpwAs.png" alt="p9GpwAs.png"></a></p>
+<p><strong>SpringAOP的动态代理技术</strong></p>
+<ul>
+<li>JDK代理：基于接口的动态代理技术</li>
+<li>cglib代理：基于父类的动态代理技术</li>
 </ul>
-<h4 id="4-二叉树的分类"><a href="#4-二叉树的分类" class="headerlink" title="4. 二叉树的分类"></a>4. 二叉树的分类</h4><ul>
-<li><p>一般二叉树</p>
-</li>
-<li><p>满二叉树</p>
-<p>在不增加树的层数的情况下，无法再多添加一个节点的二叉树</p>
-</li>
-<li><p>完全二叉树</p>
-<p>如果只是删除了满二叉树最底层最右边的连续若干个节点，这样形成的二叉树就是完全二叉树</p>
-</li>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9GpfE9"><img src="https://s1.ax1x.com/2023/05/01/p9GpfE9.png" alt="p9GpfE9.png"></a></p>
+<p><strong>JDK代理</strong></p>
+<p>​    上一个blog有详细代码，这里略</p>
+<p><strong>cglib代理</strong></p>
+<p>​    在导入的<code>Spring-conntext</code>中已经集成了cglib的坐标，不需要额外导包</p>
+<p>​    基于cglib生成代理对象的步骤</p>
+<pre><code>1. 创建增强器
+ 2. 设置父类
+ 3. 设置回调
+ 4. 创建代理对象</code></pre>
+<p>​    cglib的代码演示，Target是目标对象，Advice是添加功能的对象里面有要添加的方法，内部的intercept方法类似invoke方法其中methodProxy形参不用管</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9NNBuR"><img src="https://s1.ax1x.com/2023/05/05/p9NNBuR.png" alt="p9NNBuR.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9NNPcd"><img src="https://s1.ax1x.com/2023/05/05/p9NNPcd.png" alt="p9NNPcd.png"></a></p>
+<h4 id="2-AOP相关概念"><a href="#2-AOP相关概念" class="headerlink" title="2. AOP相关概念"></a>2. AOP相关概念</h4><p>​    <strong>AOP的相关术语</strong></p>
+<ul>
+<li>Target(目标对象)：代理的目标对象</li>
+<li>Proxy(代理)：一个类被AOP植入增强后产生的一个结果代理类</li>
+<li>Joinpoint(连接点)：所谓连接点是指那些被拦截到的点(方法)。在Spring中，这些点指的是方法，因为Spring只支持方法类型的连接点，<strong>可以被增强的方法叫做连接点</strong></li>
+<li><strong>Pointcut(切入点)**：切入点是指我们要对哪些Joipoint进行拦截的定义，</strong>连接点真正要被增强了叫做切入点**</li>
+<li><strong>Advice(通知/增强)**：通知是指拦截到Joinpoint之后所要做的事情就是通知，</strong>将连接点和一些功能结合的方法叫做增强**</li>
+<li>**Aspect(切面)**：是切入点和通知(引介)的结合</li>
+<li>Weaving(织入)：是指把增强应用到目标对象来创建新的代理对象的过程。Spring采用动态代理织入，而Aspect采用编译期织入和类装载期织入，<strong>切入点和通知结合的过程</strong></li>
 </ul>
-<h4 id="5-树的存储"><a href="#5-树的存储" class="headerlink" title="5. 树的存储"></a>5. 树的存储</h4><h5 id="1-二叉树的存储-比较成熟"><a href="#1-二叉树的存储-比较成熟" class="headerlink" title="(1) 二叉树的存储(比较成熟)"></a>(1) 二叉树的存储(比较成熟)</h5><p>​    <strong>连续存储[必须是完全二叉树]</strong></p>
-<p>​    优点：查找某个节点的父节点和子节点(也包括判断有没有子节点)速度很快，时间复杂度O(1)</p>
-<p>​    缺点：耗用内存空间过大</p>
-<p>​    当二叉树不是完全的时候需要去补全，先转换为满二叉树再转化为完全二叉树，如下图所示，蓝色为补全节点，黄框可以不补全</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9IHXcR"><img src="https://s1.ax1x.com/2023/05/22/p9IHXcR.png" alt="图5.1 二叉树补全"></a></p>
-<p>​    存蓝点的原因是方便还原树的形状</p>
-<p>​    通过先序、中序、后序可以将树从非线性结构转换为线性结构，使用数组存储时，不可以 只存储有效节点，因为只通过先序、中序、后序的任一一种无法还原原先的二叉树</p>
-<p>​    <strong>链式存储(不是链表存)</strong></p>
-<p>​    每一个节点分成三个部分，左右存指针，中间存数据</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9oSKUI"><img src="https://s1.ax1x.com/2023/05/22/p9oSKUI.png" alt="图5.2 链式存储树的方式"></a></p>
-<p>​    内存浪费：空指针浪费n+1个</p>
-<p>​    找父节点也很困难</p>
-<h5 id="2-一般树的存储方法"><a href="#2-一般树的存储方法" class="headerlink" title="(2) 一般树的存储方法"></a>(2) 一般树的存储方法</h5><ol>
-<li><p>双亲表示法</p>
-<p>使用数组的方式进行存储，一个存储块分为两个区域，一个区域存节点名，另一个区域存父节点所在的数组元素的下标</p>
-<p><strong>双亲表示法求父节点方便</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9TKczF"><img src="https://s1.ax1x.com/2023/05/23/p9TKczF.png" alt="p9TKczF.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9TKBaq"><img src="https://s1.ax1x.com/2023/05/23/p9TKBaq.png" alt="双亲表示法"></a></p>
-</li>
-<li><p>孩子表示法</p>
-<p>使用数组的方式进行存储，也是分成两个区域，一个区域存节点，另一个区域是链表存指针依次指向其子节点</p>
-<p><strong>孩子表示法求子节点方便</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9TJNbF"><img src="https://s1.ax1x.com/2023/05/23/p9TJNbF.png" alt="左边为树，右边是表示方法"></a></p>
-</li>
-<li><p>孩子双亲表示法</p>
-<p>把上面两种方法结合在一起，在数组中存放三个域</p>
-<p><strong>求父节点和子节点都很方便</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9TJI2t"><img src="https://s1.ax1x.com/2023/05/23/p9TJI2t.png" alt="p9TJI2t.png"></a></p>
-</li>
-<li><p>二叉树表示法</p>
-<p>因为在实现过程中对于孩子双亲表示法不方便，所以使用了二叉树表示法，<strong>二叉树方便使用代码来表示</strong>，详细见第6大节</p>
-</li>
+<h4 id="3-AOP开发明确的事项"><a href="#3-AOP开发明确的事项" class="headerlink" title="3. AOP开发明确的事项"></a>3. AOP开发明确的事项</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9NgXkQ"><img src="https://s1.ax1x.com/2023/05/05/p9NgXkQ.png" alt="p9NgXkQ.png"></a></p>
+<h4 id="4-基于XML的AOP开发"><a href="#4-基于XML的AOP开发" class="headerlink" title="4. 基于XML的AOP开发"></a>4. 基于XML的AOP开发</h4><p> <strong>(1)基于XML的AOP开发的步骤</strong></p>
+<ol>
+<li>导入AOP相关坐标</li>
+<li>创建目标接口和目标类(内部有切点)</li>
+<li>创建切面类(内部有增强方法)</li>
+<li>将目标类和切面类的对象创建权交给spring</li>
+<li>在<code>applicationContext.xml</code>中配置织入关系</li>
+<li>测试代码</li>
 </ol>
-<h5 id="3-森林的存储"><a href="#3-森林的存储" class="headerlink" title="(3) 森林的存储"></a>(3) 森林的存储</h5><p>​    一般是把森林转化为二叉树再进行存储</p>
-<p>​    把森林中每一个树的根节点当作兄弟节点，然后像一般树转化为二叉树那样将森林转换为二叉树</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p97CHeS"><img src="https://s1.ax1x.com/2023/05/24/p97CHeS.png" alt="森林转化为二叉树"></a></p>
-<h4 id="6-普通树的二叉树表示法"><a href="#6-普通树的二叉树表示法" class="headerlink" title="6. 普通树的二叉树表示法"></a>6. 普通树的二叉树表示法</h4><p>​    把一个普通树转化成二叉树来存储</p>
-<p>​    <strong>转换方法：设法保证任意一个节点的左指针域指向它的第一个孩子，右指针域指向它的兄弟节点，只要能满足此条件，就可以把一个普通树转化为二叉树</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9TYbS1"><img src="https://s1.ax1x.com/2023/05/23/p9TYbS1.png" alt="普通树转化为二叉树图示"></a></p>
-<p>​    一个普通树转化成的二叉树一定没有右子树</p>
-<h4 id="7-二叉树的操作"><a href="#7-二叉树的操作" class="headerlink" title="7. 二叉树的操作"></a>7. 二叉树的操作</h4><p>​    1. 遍历，先中后的遍历都是指二叉树的遍历<br>​    2. 已知两种遍历序列求原始二叉树</p>
-<p>​        <strong>通过先中或中后遍历序列可以还原二叉树</strong>，但先后不能还原出原始二叉树</p>
-<p>​    <strong>注意：遍历时当访问到根节点时将该节点记录</strong></p>
-<h5 id="1-二叉树的先序遍历"><a href="#1-二叉树的先序遍历" class="headerlink" title="(1). 二叉树的先序遍历"></a>(1). 二叉树的先序遍历</h5><p>​    <strong>先序遍历[先访问根节点]</strong></p>
-<p>​    递归的进行(先访问树的根节点，再访问左子树，再访问右子树)</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9bvb4A"><img src="https://s1.ax1x.com/2023/05/26/p9bvb4A.png" alt="p9bvb4A.png"></a></p>
-<h5 id="2-二叉树的中序遍历"><a href="#2-二叉树的中序遍历" class="headerlink" title="(2). 二叉树的中序遍历"></a>(2). 二叉树的中序遍历</h5><p>​    <strong>中序遍历[中间访问根节点]</strong></p>
-<p>​    递归的进行(先遍历树的左子树，再访问根节点，再遍历右子树)</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9qSLC9"><img src="https://s1.ax1x.com/2023/05/26/p9qSLC9.png" alt="p9qSLC9.png"></a></p>
-<h5 id="3-二叉树的后序遍历"><a href="#3-二叉树的后序遍历" class="headerlink" title="(3). 二叉树的后序遍历"></a>(3). 二叉树的后序遍历</h5><p>​    <strong>后序遍历[最后访问根节点]</strong></p>
-<p>​    递归的进行(先遍历树的左子树，再遍历右子树，再访问根节点)</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9qPRaT"><img src="https://s1.ax1x.com/2023/05/26/p9qPRaT.png" alt="p9qPRaT.png"></a></p>
-<h5 id="4-已知先序和中序求后序"><a href="#4-已知先序和中序求后序" class="headerlink" title="(4). 已知先序和中序求后序"></a>(4). 已知先序和中序求后序</h5><p>​    首先使用先序和中序将二叉树求出来，然后再通过二叉树求出后序</p>
-<p>​    使用先序确定节点顺序(找每个子树的根节点)，中序确定是左子树还是右子树</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9X15FS"><img src="https://s1.ax1x.com/2023/05/29/p9X15FS.png" alt="由先序和中序得出原始二叉树"></a></p>
-<p>​    从树可以得出后序为：DECBHGFA</p>
-<h5 id="5-已知中序和后序求先序"><a href="#5-已知中序和后序求先序" class="headerlink" title="(5). 已知中序和后序求先序"></a>(5). 已知中序和后序求先序</h5><p>​    首先使用中序和后序将二叉树求出来，然后再通过二叉树求出先序</p>
-<p>​    使用后序确定节点顺序(找根节点，子树中最后出现的节点为根节点)，中序确定是左子树还是右子树，把大的树不断递归上面方法变成小树最后得出具体节点</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9X82Uf"><img src="https://s1.ax1x.com/2023/05/29/p9X82Uf.png" alt="由中序和后序得出原始二叉树"></a></p>
-<p>​    从树可以得出先序为：ABCDEFGH</p>
-<h4 id="8-树的应用"><a href="#8-树的应用" class="headerlink" title="8. 树的应用"></a>8. 树的应用</h4><ul>
-<li><p>树是数据库中数据组织一种重要形式</p>
-</li>
-<li><p>操作系统子、父进程的关系本身就是一棵树</p>
-</li>
-<li><p>面向对象语言中类的继承关系</p>
-</li>
-<li><p>哈夫曼树：一个事物有n种可能取值，每一种取值又有不同的概率，如何使得工作的效率达到最高</p>
-</li>
+<p>​    在pom.xml导入spring-context和aspectjweaver坐标，spring本身有aop的实现，第三方aspectj也有且很优秀，spring官方主张使用aspectj</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9NhHIO"><img src="https://s1.ax1x.com/2023/05/05/p9NhHIO.png" alt="p9NhHIO.png"></a></p>
+<p>​    创建目标接口和目标类，下图只有目标类</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9N5Pn1"><img src="https://s1.ax1x.com/2023/05/05/p9N5Pn1.png" alt="p9N5Pn1.png"></a></p>
+<p>​    创建切面类</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9N4sld"><img src="https://s1.ax1x.com/2023/05/05/p9N4sld.png" alt="p9N4sld.png"></a></p>
+<p>​    创建xml文件完成配置，将目标对象和切面对象交给Spring管理，并在xml文件中告诉Spring框架哪些切点需要被增强。<strong>注意：aop需要引入命名空间</strong>。其中，<code>aop:before</code>表示在切点之前执行<code>mehod=&quot;&quot;</code>方法，pointcut里面配置的是切点表达式里面的方法是要被增强的方法</p>
+<p>​    <code>&lt;aop:config&gt;</code>：表示aop的配置</p>
+<p>​    <code>&lt;aop:aspect ref=&quot;myAspect&quot;&gt;</code>：指定切面是谁</p>
+<p>​    <code>&lt;aop:before&gt;</code>：表示增强(通知)的类型</p>
+<p>​    <code>method=&quot;before&quot;&gt;</code>：表示前置增强要执行的方法的名字是什么，即切面myAspect内部的before方法</p>
+<p>​    <code>pointcup=&quot;execution(public void com.itheima.aop.Target.save())&quot;</code>：表示切点表达式，<strong>可以通过切点表达式指定多个方法，见下面详解</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9NHU0A"><img src="https://s1.ax1x.com/2023/05/05/p9NHU0A.png" alt="p9NHU0A.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9NHkWT"><img src="https://s1.ax1x.com/2023/05/05/p9NHkWT.png" alt="p9NHkWT.png"></a></p>
+<p>​    测试代码，在pom.xml配置</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9NbQBj"><img src="https://s1.ax1x.com/2023/05/05/p9NbQBj.png" alt="p9NbQBj.png"></a></p>
+<p>​    编写测试代码</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9NbUvF"><img src="https://s1.ax1x.com/2023/05/05/p9NbUvF.png" alt="p9NbUvF.png"></a></p>
+<p>​    运行结果</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9NbDER"><img src="https://s1.ax1x.com/2023/05/05/p9NbDER.png" alt="p9NbDER.png"></a></p>
+<p> <strong>(2)切点表达式的写法</strong></p>
+<p>​    表达式语法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//execution是关键字</span></span><br><span class="line">execution([修饰符] 方法返回值类型 包名.类名.方法名(参数))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>访问修饰符可以省略</li>
+<li>返回值类型、包名、类名、方法名可以使用星号<code>*</code>代表任意</li>
+<li>包名与类名之间一个点<code>.</code>代表当前包下的类，两个点<code>..</code>表示当前包及该包子包下的类</li>
+<li>参数列表可以使用两个点<code>..</code>表示任意个数、任意类型的参数列表</li>
 </ul>
-<h4 id="9-链式二叉树遍历的具体程序演示"><a href="#9-链式二叉树遍历的具体程序演示" class="headerlink" title="9. 链式二叉树遍历的具体程序演示"></a>9. 链式二叉树遍历的具体程序演示</h4><p>​    静态链式二叉树的创建与先序、中序、后序遍历代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//二叉树英文叫Binart Tree</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BTNode</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> data;</span><br><span class="line">    <span class="comment">//p是指针 L是左 child是子节点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">BTNode</span> *<span class="title">pLchild</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">BTNode</span> *<span class="title">pRchlid</span>;</span></span><br><span class="line">&#125;BTN,*PBTN;</span><br><span class="line"></span><br><span class="line"><span class="comment">//该函数为静态的创造树，但内存是需要动态分配的</span></span><br><span class="line"><span class="function">PBTN <span class="title">CreateBTree</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="comment">//先序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">void</span>  <span class="title">PreTraverseBTree</span><span class="params">(PBTN pT)</span></span>;</span><br><span class="line"><span class="comment">//中序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">void</span>  <span class="title">InTraverseBTree</span><span class="params">(PBTN pT)</span></span>;</span><br><span class="line"><span class="comment">//后序遍历</span></span><br><span class="line"><span class="function"><span class="keyword">void</span>  <span class="title">PostTraverseBTree</span><span class="params">(PBTN pT)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">PBTN <span class="title">CreateBTree</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    PBTN pA = (PBTN)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BTN));</span><br><span class="line">    PBTN pB = (PBTN)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BTN));</span><br><span class="line">    PBTN pC = (PBTN)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BTN));</span><br><span class="line">    PBTN pD = (PBTN)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BTN));</span><br><span class="line">    PBTN pE = (PBTN)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BTN));</span><br><span class="line"></span><br><span class="line">    pA-&gt;data = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">    pA-&gt;pLchild = pB;</span><br><span class="line">    pA-&gt;pRchlid = pC;</span><br><span class="line">    pB-&gt;data = <span class="string">&#x27;B&#x27;</span>;</span><br><span class="line">    pB-&gt;pLchild = pB-&gt;pRchlid = <span class="literal">NULL</span>;</span><br><span class="line">    pC-&gt;data = <span class="string">&#x27;C&#x27;</span>;</span><br><span class="line">    pC-&gt;pLchild = pD;</span><br><span class="line">    pC-&gt;pRchlid = <span class="literal">NULL</span>;</span><br><span class="line">    pD-&gt;data = <span class="string">&#x27;D&#x27;</span>;</span><br><span class="line">    pD-&gt;pLchild = <span class="literal">NULL</span>;</span><br><span class="line">    pD-&gt;pRchlid = pE;</span><br><span class="line">    pE-&gt;data = <span class="string">&#x27;E&#x27;</span>;</span><br><span class="line">    pE-&gt;pLchild = pE-&gt;pRchlid = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回根节点的地址</span></span><br><span class="line">    <span class="keyword">return</span> pA;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PreTraverseBTree</span><span class="params">(PBTN pT)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> != pT)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>,pT-&gt;data);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">NULL</span> != pT-&gt;pLchild)&#123;</span><br><span class="line">            PreTraverseBTree(pT-&gt;pLchild);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">NULL</span> != pT-&gt;pRchlid)&#123;</span><br><span class="line">            PreTraverseBTree(pT-&gt;pRchlid);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span>  <span class="title">InTraverseBTree</span><span class="params">(PBTN pT)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> != pT)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">NULL</span> != pT-&gt;pLchild)&#123;</span><br><span class="line">            InTraverseBTree(pT-&gt;pLchild);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>,pT-&gt;data);</span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">NULL</span> != pT-&gt;pRchlid)&#123;</span><br><span class="line">            InTraverseBTree(pT-&gt;pRchlid);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span>  <span class="title">PostTraverseBTree</span><span class="params">(PBTN pT)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> != pT)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">NULL</span> != pT-&gt;pLchild)&#123;</span><br><span class="line">            PostTraverseBTree(pT-&gt;pLchild);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">NULL</span> != pT-&gt;pRchlid)&#123;</span><br><span class="line">            PostTraverseBTree(pT-&gt;pRchlid);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>,pT-&gt;data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    PBTN pT = CreateBTree();</span><br><span class="line">    PostTraverseBTree(pT);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    最常用的形式：表示aop包下的任意类的任意方法任意参数任意返回值</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9UOiee"><img src="https://s1.ax1x.com/2023/05/06/p9UOiee.png" alt="p9UOiee.png"></a></p>
+<p> <strong>(3)通知的种类</strong></p>
+<p>​    通知的配置语法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;aop:通知类型 method=&quot;切面类中方法名&quot; pointcut=&quot;切点表达式&quot;&gt;&lt;/aop:通知类型&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    通知的类型</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9UOtS0"><img src="https://s1.ax1x.com/2023/05/06/p9UOtS0.png" alt="p9UOtS0.png"></a></p>
+<p>​    <strong>注意：除环绕通知外其余的都比较简单，不需要传特定参数，直接使用就行</strong></p>
+<p>​    环绕通知</p>
+<p>​    因为无法区分里面的方法是在之前执行还是之后执行，所以在编写环绕通知的方法时要给一个参数类型<code>ProceedingJoinPoint pjp</code>该参数表示切点，通过<code>pjp.proceed()</code>方法区分在其前面执行的方法在切点前执行，在其后执行的方法在切点后执行</p>
+<p>​    在MyAspect.java中编写环绕通知的方法</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9UXobF"><img src="https://s1.ax1x.com/2023/05/06/p9UXobF.png" alt="p9UXobF.png"></a></p>
+<p> <strong>(4)切点表达式的抽取</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9UjM5j"><img src="https://s1.ax1x.com/2023/05/06/p9UjM5j.png" alt="p9UjM5j.png"></a></p>
+<p>​    对之前代码进行抽取</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Uj32q"><img src="https://s1.ax1x.com/2023/05/06/p9Uj32q.png" alt="p9Uj32q.png"></a></p>
+<p> <strong>(5)知识要点总结</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Ujrxx"><img src="https://s1.ax1x.com/2023/05/06/p9Ujrxx.png" alt="p9Ujrxx.png"></a></p>
+<h4 id="5-基于注解的AOP开发"><a href="#5-基于注解的AOP开发" class="headerlink" title="5. 基于注解的AOP开发"></a>5. 基于注解的AOP开发</h4><p><strong>(1)基于注解的aop开发步骤</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9ar2nO"><img src="https://s1.ax1x.com/2023/05/06/p9ar2nO.png" alt="p9ar2nO.png"></a></p>
+<p>​    编写目标类，接口略</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9aRBq0"><img src="https://s1.ax1x.com/2023/05/06/p9aRBq0.png" alt="p9aRBq0.png"></a></p>
+<p>​    编写切面类</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9aWaFO"><img src="https://s1.ax1x.com/2023/05/06/p9aWaFO.png" alt="p9aWaFO.png"></a></p>
+<p>​    编写xml配置</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9aWx1J"><img src="https://s1.ax1x.com/2023/05/06/p9aWx1J.png" alt="p9aWx1J.png"></a></p>
+<p>​    编写测试类</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9af34S"><img src="https://s1.ax1x.com/2023/05/06/p9af34S.png" alt="p9af34S.png"></a></p>
+<p><strong>(2)注解通知的类型</strong></p>
+<p>​    通知配置的语法：<code>@通知注解(&quot;切点表达式&quot;)</code></p>
+<p>​    注解通知的类型</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9af2uR"><img src="https://s1.ax1x.com/2023/05/06/p9af2uR.png" alt="p9af2uR.png"></a></p>
+<p>​    注意：注解只是替代原先xml文件的配置，但是需要的方法还是要有的，例如环绕配置如下</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9afoCD"><img src="https://s1.ax1x.com/2023/05/06/p9afoCD.png" alt="p9afoCD.png"></a></p>
+<p><strong>(3)切点表达式的抽取</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9ahFrn"><img src="https://s1.ax1x.com/2023/05/06/p9ahFrn.png" alt="p9ahFrn.png"></a></p>
+<p><strong>(4)注解开发aop的小结</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9ahaxH"><img src="https://s1.ax1x.com/2023/05/06/p9ahaxH.png" alt="p9ahaxH.png"></a></p>
 
                 
             </div>
@@ -603,7 +614,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8407/">http://example.com/2023/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8407/</a>
+                    <a href="http://example.com/2023/05/31/Spring06/">http://example.com/2023/05/31/Spring06/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -641,8 +652,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                                    <span class="chip bg-color">数据结构</span>
+                                <a href="/tags/Spring/">
+                                    <span class="chip bg-color">Spring</span>
                                 </a>
                             
                         </div>
@@ -816,13 +827,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2023/05/31/Spring06/">
+                <a href="/2023/05/31/Spring07/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Spring06">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Spring07">
                         
-                        <span class="card-title">Spring06</span>
+                        <span class="card-title">Spring07</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -861,13 +872,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8406/">
+                <a href="/2023/05/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8407/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="数据结构06">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="数据结构07">
                         
-                        <span class="card-title">数据结构06</span>
+                        <span class="card-title">数据结构07</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
