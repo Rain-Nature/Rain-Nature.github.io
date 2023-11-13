@@ -508,9 +508,9 @@
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EI53n"><img src="https://s1.ax1x.com/2023/04/21/p9EI53n.png" alt="p9EI53n.png"></a></p>
 <p>​    创建Controller的Java包，return后接要跳转的jsp，用注解将UserController存入spring容器中，注解<code>@RequestMapping(&quot;/quick&quot;)</code>为请求映射，当访问quick时映射到save方法，执行方法的逻辑</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EHSvn"><img src="https://s1.ax1x.com/2023/04/21/p9EHSvn.png" alt="p9EHSvn.png"></a></p>
-<p>​    创建Spring的xml文件，进行组件扫描    </p>
+<p>​    创建SpringMVC的xml文件，进行组件扫描，SpringMVC只管Web层所以只扫描controller</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9E7HDP"><img src="https://s1.ax1x.com/2023/04/21/p9E7HDP.png" alt="p9E7HDP.png"></a></p>
-<p>​    配置组件扫描的这个xml文件没有加载，所以最先是<code>new ClassPathXmlApplicationContext(&quot;参数为resource文件夹的xml文件路径&quot;)</code>，限制是spring，所以只需要在前端控制器声明有这个配置文件，<code>&lt;init-param&gt;</code> 代表servlet在初始化时执行，<code>&lt;param-name&gt;</code> 是监听器的名字，<code>&lt;param-value&gt;</code> 是路径</p>
+<p>​    配置组件扫描的这个Spring-mvc.xml文件没有加载，在Spring的xml文件加载时是<code>new ClassPathXmlApplicationContext(&quot;参数为resource文件夹的xml文件路径&quot;)</code>，在Spring-mvc.xml的组件扫描，需要在前端控制器声明有这个配置文件，在<code>&lt;init-param&gt;</code> 标签进行声明，<code>&lt;init-param&gt;</code>代表servlet在初始化时执行，<code>contextConfigLocation</code> 是一个常见的初始化参数，用于指定Spring MVC配置文件的位置，<code>&lt;param-value&gt;</code> 写Spring-mvc.xml文件的路径</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EHart"><img src="https://s1.ax1x.com/2023/04/21/p9EHart.png" alt="p9EHart.png"></a></p>
 <h4 id="5-SpringMVC的执行流程解析"><a href="#5-SpringMVC的执行流程解析" class="headerlink" title="5. SpringMVC的执行流程解析"></a>5. SpringMVC的执行流程解析</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VNbaF"><img src="https://s1.ax1x.com/2023/04/22/p9VNbaF.png" alt="p9VNbaF.png"></a></p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VNzKx"><img src="https://s1.ax1x.com/2023/04/22/p9VNzKx.png" alt="p9VNzKx.png"></a></p>
