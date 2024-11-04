@@ -475,43 +475,41 @@
 <h4 id="2-MyBatis简介"><a href="#2-MyBatis简介" class="headerlink" title="2. MyBatis简介"></a>2. MyBatis简介</h4><p>​    MyBatis就是实现上面解决方案的框架</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p907DEQ"><img src="https://s1.ax1x.com/2023/05/09/p907DEQ.png" alt="p907DEQ.png"></a></p>
 <p>​    注意：持久层指的就是Dao层</p>
-<h4 id="3-MyBatis开发步骤"><a href="#3-MyBatis开发步骤" class="headerlink" title="3. MyBatis开发步骤"></a>3. MyBatis开发步骤</h4><p>​    1. 添加MyBatis坐标<br>​    2. 创建user数据表<br>​    3. 编写User实体类<br>​    4. 编写接口定义需要的方法(这个是我学到后面加的,因为MyBatis是动态代理的)<br>​    5. 编写映射文件UserMapper.xml，里面主要写sql语句<br>​    6. 编写核心文件SqlMapConfig.xml，里面主要是MyBatis框架的核心配置<br>​    7. 编写测试类</p>
+<h4 id="3-MyBatis传统开发步骤"><a href="#3-MyBatis传统开发步骤" class="headerlink" title="3. MyBatis传统开发步骤"></a>3. MyBatis传统开发步骤</h4><p>​    1. 添加MyBatis坐标<br>​    2. 创建user数据表，添加数据<br>​    3. 编写User实体类<br>​    4. 编写接口定义需要的方法(这个是我学到后面加的,因为MyBatis是动态代理的)<br>​    5. 编写映射文件UserMapper.xml，里面主要写sql语句<br>​    6. 编写核心文件SqlMapConfig.xml，里面主要是MyBatis框架的核心配置<br>​    7. 编写测试类</p>
 <p>​    在pom.xml文件中引入坐标，主要是要引入jdbc驱动和MyBatis框架</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p90HdR1"><img src="https://s1.ax1x.com/2023/05/09/p90HdR1.png" alt="p90HdR1.png"></a></p>
 <p>​    创建User数据库表</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p90HrqO"><img src="https://s1.ax1x.com/2023/05/09/p90HrqO.png" alt="p90HrqO.png"></a></p>
 <p>​    创建数据库表对应的实体，生成get()、set()以及toString()方法</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p90H6de"><img src="https://s1.ax1x.com/2023/05/09/p90H6de.png" alt="p90H6de.png"></a></p>
-<p>​    编写映射文件UserMapper.xml，在文件中需要引入约束头，这个约束头是官网可以找到的，下图中前两行为约束头；namespace为命名空间通过命名空间才能找到对应的sql语句；id为命名空间下对应的sql方法，resultType为对应实体表的映射，表示查询结果放在映射的实体类的对象中吗，<strong>namespace不可以随意写，他是接口的全限定名</strong></p>
+<p>​    编写映射文件UserMapper.xml，在文件中需要引入约束头，这个约束头是官网可以找到的，下图中前两行为约束头；namespace为命名空间通过命名空间才能找到对应的sql语句；id为命名空间下对应的sql方法，resultType为对应实体表的映射，表示查询结果放在映射的实体类的对象中吗，namespace可以随意写。另外，如果没有在Idea和数据库连接，那么idea不会自动识别表信息则<code>user</code>会爆红</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p90bpeU"><img src="https://s1.ax1x.com/2023/05/09/p90bpeU.png" alt="p90bpeU.png"></a></p>
-<p>​    编写核心文件，配置MyBatis框架，核心文件也有对应的约束头，下图前两行为约束头；default表示默认的数据源环境，将要默认的数据源的id作为属性值传入，<code>&lt;transactionManager type=&quot;&quot;&gt;</code>表示事务管理器要指定的类型；<code>&lt;dataSource type=&quot;&quot;&gt;</code>表示数据源的类型，内部为jdbc连接参数</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p90buwD"><img src="https://s1.ax1x.com/2023/05/09/p90buwD.png" alt="p90buwD.png"></a></p>
-<p>​    核心文件中除了配置数据源环境还需要加载映射文件</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9B95y4"><img src="https://s1.ax1x.com/2023/05/09/p9B95y4.png" alt="p9B95y4.png"></a></p>
+<p>​    编写核心文件，配置MyBatis框架，核心文件也有对应的约束头，下图前两行为约束头；default表示默认的数据源环境，将要默认的数据源的id作为属性值传入，<code>&lt;transactionManager type=&quot;&quot;&gt;</code>表示事务管理器要指定的类型；<code>&lt;dataSource type=&quot;&quot;&gt;</code>表示数据源的类型，内部为jdbc连接参数，核心文件中除了配置数据源环境还需要加载映射文件</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p90buwD"><img src="https://s1.ax1x.com/2023/05/09/p90buwD.png" alt="核心文件图1"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9B95y4"><img src="https://s1.ax1x.com/2023/05/09/p9B95y4.png" alt="核心文件图1"></a></p>
 <p>​    新建一个java类编写测试代码</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BC44P"><img src="https://s1.ax1x.com/2023/05/09/p9BC44P.png" alt="p9BC44P.png"></a></p>
 <h4 id="4-MyBatis映射文件概述"><a href="#4-MyBatis映射文件概述" class="headerlink" title="4. MyBatis映射文件概述"></a>4. MyBatis映射文件概述</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9B1lpF"><img src="https://s1.ax1x.com/2023/05/09/p9B1lpF.png" alt="p9B1lpF.png"></a></p>
-<h4 id="5-MyBatis的增删改操作"><a href="#5-MyBatis的增删改操作" class="headerlink" title="5. MyBatis的增删改操作"></a>5. MyBatis的增删改操作</h4><p>​    注意：查是从数据库取，增删改是往数据库里面放，所以一个配置是resultType(以指定的类型取)，而另一个是parameterType(以指定的类型放)</p>
-<h5 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h5><p>​    只需要修改UserMapper和测试代码，其余的和查询代码一致，<code>#&#123;&#125;</code>中的内容为parameterType指定的实体的属性名称</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BdsGn"><img src="https://s1.ax1x.com/2023/05/09/p9BdsGn.png" alt="p9BdsGn.png"></a></p>
-<p>​    测试代码为，只需要修改执行操作，insert()方法第一个参数为上面xml设置的namespace.id，第二个参数为parameterType指定的类的对象</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Bw3eU"><img src="https://s1.ax1x.com/2023/05/09/p9Bw3eU.png" alt="p9Bw3eU.png"></a></p>
-<p>​    <strong>注意：MyBatis默认事务是不提交的，如果事务不提交那么对于数据库表的操作是无效的</strong>，所以在执行操作代码后需要增加事务的提交操作</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BwxmT"><img src="https://s1.ax1x.com/2023/05/09/p9BwxmT.png" alt="p9BwxmT.png"></a></p>
-<p>​    插入操作总结</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BDwyq"><img src="https://s1.ax1x.com/2023/05/09/p9BDwyq.png" alt="p9BDwyq.png"></a></p>
-<h5 id="修改操作"><a href="#修改操作" class="headerlink" title="修改操作"></a>修改操作</h5><p>​    修改操作和增加操作很像</p>
-<p>​    在UserMapper.xml文件中编写修改操作</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BDgfJ"><img src="https://s1.ax1x.com/2023/05/09/p9BDgfJ.png" alt="p9BDgfJ.png"></a></p>
-<p>​    在测试类中进行测试</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BrCtg"><img src="https://s1.ax1x.com/2023/05/09/p9BrCtg.png" alt="p9BrCtg.png"></a></p>
-<h5 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h5><p>​    删除操作只需要传递一个id数字即可删除整行，所以不需要传递对象</p>
-<p>​    在UserMapper.xml文件中编写删除操作，因为是传递整型，所以parameterType的值为整型的全包名；<code>#&#123;id&#125;</code>因为这里是只有一个类型且是简单类型的值，所以写啥都可以比如<code>#&#123;XXX&#125;</code>，写成id是为了提高代码可读性</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BrMh4"><img src="https://s1.ax1x.com/2023/05/09/p9BrMh4.png" alt="p9BrMh4.png"></a></p>
-<p>​    在测试类中进行测试</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Br2E8"><img src="https://s1.ax1x.com/2023/05/09/p9Br2E8.png" alt="p9Br2E8.png"></a></p>
-<p>​    删除操作的注意事项</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BsFUO"><img src="https://s1.ax1x.com/2023/05/09/p9BsFUO.png" alt="p9BsFUO.png"></a></p>
+<h4 id="5-MyBatis的代理开发方式-企业开发常用"><a href="#5-MyBatis的代理开发方式-企业开发常用" class="headerlink" title="5. MyBatis的代理开发方式(企业开发常用)"></a>5. MyBatis的代理开发方式(企业开发常用)</h4><h5 id="1-代理开发方式的要求"><a href="#1-代理开发方式的要求" class="headerlink" title="(1) 代理开发方式的要求"></a>(1) 代理开发方式的要求</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCQvj2t"><img src="https://s1.ax1x.com/2023/06/17/pCQvj2t.png" alt="要求1"></a></p>
+<p>​    即如下图所示</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCQxCVg"><img src="https://s1.ax1x.com/2023/06/17/pCQxCVg.png" alt="pCQxCVg.png"></a></p>
+<p>​    <strong>注意：除了上述要求外，代理开发中xml文件和Mapper接口要放置在同一目录下</strong></p>
+<p>​    <strong>(2)代理开发方式步骤</strong></p>
+<p>​    编写xml文件和Dao的接口，按照上面四点配置一一对应</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCQx8R1"><img src="https://s1.ax1x.com/2023/06/17/pCQx8R1.png" alt="pCQx8R1.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCQxtsK"><img src="https://s1.ax1x.com/2023/06/17/pCQxtsK.png" alt="pCQxtsK.png"></a></p>
+<p>​    在service层中通过反射获取接口的对象，注意：与原先传统方式有别的是sqlSession对象调用的方法，且传统是在Dao的实现进行配置，而代理方式直接在service层进行相应配置，这个<strong>生成的mapper对象可以调用所有配置好的方法</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCQxDJA"><img src="https://s1.ax1x.com/2023/06/17/pCQxDJA.png" alt="pCQxDJA.png"></a></p>
+<p>​    <strong>(3)代理开发的包扫描</strong></p>
+<p>​    在代理开发中，核心配置文件的xml文件扫描可以替换为包扫描，这样可以简化开发</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--加载sql映射文件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;com/test/mapper/UserMapper.xml/&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--Mapper代理方式的包扫描--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;com/test/mapper&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 <h4 id="6-MyBatis的核心配置文件中的标签"><a href="#6-MyBatis的核心配置文件中的标签" class="headerlink" title="6. MyBatis的核心配置文件中的标签"></a>6. MyBatis的核心配置文件中的标签</h4><h5 id="1-environments标签"><a href="#1-environments标签" class="headerlink" title="(1) environments标签"></a>(1) environments标签</h5><p>​    数据库环境的配置，支持多环境配置</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCkg661"><img src="https://s1.ax1x.com/2023/06/08/pCkg661.png" alt="pCkg661.png"></a></p>
 <p>​    注意：default的属性值给的是下面的id值，表示默认环境</p>
@@ -539,6 +537,7 @@
 <p>​    注意：第一个参数是MyBatis的xml文件所定义的方法，第二个参数是xml文件中所定义的方法要的参数</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCm3Pb9"><img src="https://s1.ax1x.com/2023/06/13/pCm3Pb9.png" alt="pCm3Pb9.png"></a></p>
 <p>​    后两个方法是事务的操作</p>
+<p>​    注意：后面学习Spring框架后，事务交给Spring完成</p>
 
                 
             </div>
@@ -778,13 +777,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2023/11/13/Mabatis02/">
+                <a href="/2023/11/13/Mabatis03/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Mabatis02">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Mabatis03">
                         
-                        <span class="card-title">Mabatis02</span>
+                        <span class="card-title">Mabatis03</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1048,9 +1047,9 @@
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2023-2024</span>
+                <span id="year">2021-2024</span>
             
-            <span id="year">2023</span>
+            <span id="year">2021</span>
             <a href="/about" target="_blank">Rain</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
