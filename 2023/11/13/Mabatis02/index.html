@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Mabatis01, Rain">
+    <meta name="keywords" content="Mabatis02, Rain">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Mabatis01 | Rain</title>
+    <title>Mabatis02 | Rain</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Mabatis01</h1>
+                    <h1 class="description center-align post-title">Mabatis02</h1>
                 </div>
             </div>
         </div>
@@ -471,80 +471,186 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="1-原始jdbc操作分析"><a href="#1-原始jdbc操作分析" class="headerlink" title="1. 原始jdbc操作分析"></a>1. 原始jdbc操作分析</h4><p>​    原始jdbc开发存在的问题如下：</p>
-<p>​    1. 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能<br>​    2. sql语句在代码中硬编码，造成代码不易维护，实际应用sql变化的可能较大，sql变动需要改变java代码<br>​    3. 查询操作时，需要手动将结果集的数据手动封装到实体中。插入操作时，需要手动将实体的数据设置到sql语句的占位符位置</p>
-<p>​    应对上述问题给出的解决方案</p>
-<p>​    1. 使用数据库连接池初始化连接资源<br>​    2. 将sql语句抽取到xml配置文件中<br>​    3. 使用反射、内省等底层技术，自动将实体与表进行属性与字段的自动映射    </p>
-<h4 id="2-MyBatis简介"><a href="#2-MyBatis简介" class="headerlink" title="2. MyBatis简介"></a>2. MyBatis简介</h4><p>​    MyBatis就是实现上面解决方案的框架</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p907DEQ"><img src="https://s1.ax1x.com/2023/05/09/p907DEQ.png" alt="p907DEQ.png"></a></p>
-<p>​    注意：持久层指的就是Dao层</p>
-<h4 id="3-MyBatis传统开发步骤"><a href="#3-MyBatis传统开发步骤" class="headerlink" title="3. MyBatis传统开发步骤"></a>3. MyBatis传统开发步骤</h4><p>​    1. 添加MyBatis坐标<br>​    2. 创建user数据表，添加数据<br>​    3. 编写User实体类<br>​    4. 编写接口定义需要的方法(这个是我学到后面加的,因为MyBatis是动态代理的)<br>​    5. 编写映射文件UserMapper.xml，里面主要写sql语句<br>​    6. 编写核心文件SqlMapConfig.xml，里面主要是MyBatis框架的核心配置<br>​    7. 编写测试类</p>
-<p>​    在pom.xml文件中引入坐标，主要是要引入jdbc驱动和MyBatis框架</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p90HdR1"><img src="https://s1.ax1x.com/2023/05/09/p90HdR1.png" alt="p90HdR1.png"></a></p>
-<p>​    创建User数据库表</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p90HrqO"><img src="https://s1.ax1x.com/2023/05/09/p90HrqO.png" alt="p90HrqO.png"></a></p>
-<p>​    创建数据库表对应的实体，生成get()、set()以及toString()方法</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p90H6de"><img src="https://s1.ax1x.com/2023/05/09/p90H6de.png" alt="p90H6de.png"></a></p>
-<p>​    编写映射文件UserMapper.xml，在文件中需要引入约束头，这个约束头是官网可以找到的，下图中前两行为约束头；namespace为命名空间通过命名空间才能找到对应的sql语句；id为命名空间下对应的sql方法，resultType为对应实体表的映射，表示查询结果放在映射的实体类的对象中吗，namespace可以随意写。另外，如果没有在Idea和数据库连接，那么idea不会自动识别表信息则<code>user</code>会爆红</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p90bpeU"><img src="https://s1.ax1x.com/2023/05/09/p90bpeU.png" alt="p90bpeU.png"></a></p>
-<p>​    编写核心文件，配置MyBatis框架，核心文件也有对应的约束头，下图前两行为约束头；default表示默认的数据源环境，将要默认的数据源的id作为属性值传入，<code>&lt;transactionManager type=&quot;&quot;&gt;</code>表示事务管理器要指定的类型；<code>&lt;dataSource type=&quot;&quot;&gt;</code>表示数据源的类型，内部为jdbc连接参数，核心文件中除了配置数据源环境还需要加载映射文件</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p90buwD"><img src="https://s1.ax1x.com/2023/05/09/p90buwD.png" alt="核心文件图1"></a></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9B95y4"><img src="https://s1.ax1x.com/2023/05/09/p9B95y4.png" alt="核心文件图1"></a></p>
-<p>​    新建一个java类编写测试代码</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BC44P"><img src="https://s1.ax1x.com/2023/05/09/p9BC44P.png" alt="p9BC44P.png"></a></p>
-<h4 id="4-MyBatis映射文件概述"><a href="#4-MyBatis映射文件概述" class="headerlink" title="4. MyBatis映射文件概述"></a>4. MyBatis映射文件概述</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9B1lpF"><img src="https://s1.ax1x.com/2023/05/09/p9B1lpF.png" alt="p9B1lpF.png"></a></p>
-<h4 id="5-MyBatis的代理开发方式-企业开发常用"><a href="#5-MyBatis的代理开发方式-企业开发常用" class="headerlink" title="5. MyBatis的代理开发方式(企业开发常用)"></a>5. MyBatis的代理开发方式(企业开发常用)</h4><h5 id="1-代理开发方式的要求"><a href="#1-代理开发方式的要求" class="headerlink" title="(1) 代理开发方式的要求"></a>(1) 代理开发方式的要求</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCQvj2t"><img src="https://s1.ax1x.com/2023/06/17/pCQvj2t.png" alt="要求1"></a></p>
-<p>​    即如下图所示</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCQxCVg"><img src="https://s1.ax1x.com/2023/06/17/pCQxCVg.png" alt="pCQxCVg.png"></a></p>
-<p>​    <strong>注意：除了上述要求外，代理开发中xml文件和Mapper接口要放置在同一目录下</strong></p>
-<p>​    <strong>(2)代理开发方式步骤</strong></p>
-<p>​    编写xml文件和Dao的接口，按照上面四点配置一一对应</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCQx8R1"><img src="https://s1.ax1x.com/2023/06/17/pCQx8R1.png" alt="pCQx8R1.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCQxtsK"><img src="https://s1.ax1x.com/2023/06/17/pCQxtsK.png" alt="pCQxtsK.png"></a></p>
-<p>​    在service层中通过反射获取接口的对象，注意：与原先传统方式有别的是sqlSession对象调用的方法，且传统是在Dao的实现进行配置，而代理方式直接在service层进行相应配置，这个<strong>生成的mapper对象可以调用所有配置好的方法</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCQxDJA"><img src="https://s1.ax1x.com/2023/06/17/pCQxDJA.png" alt="pCQxDJA.png"></a></p>
-<p>​    <strong>(3)代理开发的包扫描</strong></p>
-<p>​    在代理开发中，核心配置文件的xml文件扫描可以替换为包扫描，这样可以简化开发</p>
-<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--加载sql映射文件--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">resource</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com/test/mapper/UserMapper.xml/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                <h4 id="1-MyBatis的增删改查操作"><a href="#1-MyBatis的增删改查操作" class="headerlink" title="1. MyBatis的增删改查操作"></a>1. MyBatis的增删改查操作</h4><p>​    MyBatis实现增删改查操作需要三步：<br>​<br>​    1. 编写接口方法：(Mapper接口，参数，返回值)<br>​    2. 编写SQL：xml映射文件<br>​    3. 执行方法</p>
+<h4 id="2-MyBatis的查询操作"><a href="#2-MyBatis的查询操作" class="headerlink" title="2. MyBatis的查询操作"></a>2. MyBatis的查询操作</h4><h5 id="1-查询所有数据步骤"><a href="#1-查询所有数据步骤" class="headerlink" title="(1)查询所有数据步骤"></a>(1)查询所有数据步骤</h5><p>​    编写接口方法：Mapper接口</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFm7yTS"><img src="https://s11.ax1x.com/2024/01/26/pFm7yTS.png" alt="BrandMapper"></a></p>
+<p>​    编写xml映射文件</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFm7cFg"><img src="https://s11.ax1x.com/2024/01/26/pFm7cFg.png" alt="BrandMapper.xml"></a></p>
+<p>​    执行测试</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFm7fln"><img src="https://s11.ax1x.com/2024/01/26/pFm7fln.png" alt="测试方法以及运行结果"></a></p>
+<p>​    上述为最基本的使用代理的查询方式，但是注意，查询到的数据有些是封装上的，有些没有被封装上为null。原因是因为表的字段名称与实体类的字段名称不一致，如表中叫<code>brand_name</code>，而实体类中叫<code>brandName</code></p>
+<p>​    解决方案1：将查询的sql语句起别名，别名与实体类一致；缺点每个sql查询都要定义一次别名</p>
+<p>​    解决方案1优化：使用sql片段防止重复写一段sql，注意sql标签要写在mapper标签里面；缺点不灵活</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!--在BrandMapper.xml中使用sql片段--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">namespace</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mapper.BrandMapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    
+	<span class="token comment">&lt;!--sql片段--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sql</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>brand_column<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        id,brand_name as brandName,company_name as companyName,ordered,description,status
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sql</span><span class="token punctuation">></span></span>
+    
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectAll<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pojo.Brand<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        select <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span> <span class="token attr-name">refid</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>brand_column<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+        from tb_brand
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment">&lt;!--Mapper代理方式的包扫描--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>package</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com/test/mapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-
+<p>​    解决方案2：使用resultMap灵活的解决（最常用）</p>
+<p>​    resultMap可以将实体类属性与表的字段映射，使用resultMap替换之前的resultType</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- 自己对比代码感受一下，首先是type="pojo.Brand"是全限定名，id是唯一标识--></span>
+<span class="token comment">&lt;!-- 这里&lt;select id="selectAll" resultMap="brandResultMap">使用的是resultMap，而不是resultType--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">namespace</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mapper.BrandMapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token comment">&lt;!-- property是实体类属性名，column是数据库里列名--></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>brandResultMap<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pojo.Brand<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token comment">&lt;!-- 主键用id，其他键用result--></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>brandName<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>brand_name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>result</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>companyName<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>company_name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>result</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">></span></span>
+    
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectAll<span class="token punctuation">"</span></span> <span class="token attr-name">resultMap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>brandResultMap<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        select *
+        from tb_brand
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h4 id="6-MyBatis的核心配置文件中的标签"><a href="#6-MyBatis的核心配置文件中的标签" class="headerlink" title="6. MyBatis的核心配置文件中的标签"></a>6. MyBatis的核心配置文件中的标签</h4><h5 id="1-environments标签"><a href="#1-environments标签" class="headerlink" title="(1) environments标签"></a>(1) environments标签</h5><p>​    数据库环境的配置，支持多环境配置</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCkg661"><img src="https://s1.ax1x.com/2023/06/08/pCkg661.png" alt="pCkg661.png"></a></p>
-<p>​    注意：default的属性值给的是下面的id值，表示默认环境</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCk22gs"><img src="https://s1.ax1x.com/2023/06/08/pCk22gs.png" alt="pCk22gs.png"></a></p>
-<p>​    UNPOOLED表面于POOLED效果差不多，但是它的底层实现没有使用数据源连接池，而是使用传统的JDBC的获得请求，释放请求资源</p>
-<h5 id="2-mapper标签"><a href="#2-mapper标签" class="headerlink" title="(2) mapper标签"></a>(2) mapper标签</h5><p>​    该标签的作用是加载映射的，加载方式有如下几种：</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCkRxQs"><img src="https://s1.ax1x.com/2023/06/08/pCkRxQs.png" alt="pCkRxQs.png"></a></p>
-<p>​    第三种是注释的方式，第四种是指扫包，意味着包下的全部实现注册为映射器，第一种是当前用的最多也是最重要的方式</p>
-<h5 id="3-Properties标签"><a href="#3-Properties标签" class="headerlink" title="(3) Properties标签"></a>(3) Properties标签</h5><p>​    实际开发中，习惯将数据源的配置信息单独抽取成一个properties文件，该标签可以加载额外配置的properties文件</p>
-<p>​    通过导入对应properties文件来解耦合</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCZuiB6"><img src="https://s1.ax1x.com/2023/06/11/pCZuiB6.png" alt="pCZuiB6.png"></a></p>
-<h5 id="4-typeAliases标签"><a href="#4-typeAliases标签" class="headerlink" title="(4) typeAliases标签"></a>(4) typeAliases标签</h5><p>​    通过typeAliases标签设置全限定名的别名</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCZKCGQ"><img src="https://s1.ax1x.com/2023/06/11/pCZKCGQ.png" alt="pCZKCGQ.png"></a>    全限定名的使用场景</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCZKixs"><img src="https://s1.ax1x.com/2023/06/11/pCZKixs.png" alt="pCZKixs.png"></a></p>
-<p>​    使用别名后</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCZKKG4"><img src="https://s1.ax1x.com/2023/06/11/pCZKKG4.png" alt="pCZKKG4.png"></a></p>
-<p>​    注意：常用的类型MyBatis已经帮我们设置好了别名，下表数据类型没有写权限定名有些不够严谨，如下图所示</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCZKILq"><img src="https://s1.ax1x.com/2023/06/11/pCZKILq.png" alt="pCZKILq.png"></a></p>
-<h5 id="5-标签的顺序"><a href="#5-标签的顺序" class="headerlink" title="(5) 标签的顺序"></a>(5) 标签的顺序</h5><p>​    在MyBatis的xml配置文件中，标签应该按照如下顺序进行配置</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCZK2FS"><img src="https://s1.ax1x.com/2023/06/11/pCZK2FS.png" alt="pCZK2FS.png"></a></p>
-<h4 id="7-MyBatis相应API"><a href="#7-MyBatis相应API" class="headerlink" title="7. MyBatis相应API"></a>7. MyBatis相应API</h4><h5 id="1-SqlSession工厂构建器SqlSessionFactoryBuilder"><a href="#1-SqlSession工厂构建器SqlSessionFactoryBuilder" class="headerlink" title="(1) SqlSession工厂构建器SqlSessionFactoryBuilder"></a>(1) SqlSession工厂构建器SqlSessionFactoryBuilder</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCm1kp8"><img src="https://s1.ax1x.com/2023/06/13/pCm1kp8.png" alt="pCm1kp8.png"></a></p>
-<h5 id="2-SqlSession工厂对象SqlSessionFactory"><a href="#2-SqlSession工厂对象SqlSessionFactory" class="headerlink" title="(2) SqlSession工厂对象SqlSessionFactory"></a>(2) SqlSession工厂对象SqlSessionFactory</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCm1gHA"><img src="https://s1.ax1x.com/2023/06/13/pCm1gHA.png" alt="pCm1gHA.png"></a></p>
-<p>​    注意：只有增删改操作会用到这个事物操作</p>
-<h5 id="3-SqlSession会话对象"><a href="#3-SqlSession会话对象" class="headerlink" title="(3) SqlSession会话对象"></a>(3) SqlSession会话对象</h5><p>​    第一个API是指查询一个对象(返回值是泛型)，后四个为查增改删操作</p>
-<p>​    注意：第一个参数是MyBatis的xml文件所定义的方法，第二个参数是xml文件中所定义的方法要的参数</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCm3Pb9"><img src="https://s1.ax1x.com/2023/06/13/pCm3Pb9.png" alt="pCm3Pb9.png"></a></p>
-<p>​    后两个方法是事务的操作</p>
-<p>​    注意：后面学习Spring框架后，事务交给Spring完成</p>
+<h5 id="2-通过id查询某条记录详情"><a href="#2-通过id查询某条记录详情" class="headerlink" title="(2)通过id查询某条记录详情"></a>(2)通过id查询某条记录详情</h5><p>​    编写mapper接口方法：selectById(int id)</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFnLfJO"><img src="https://s11.ax1x.com/2024/01/27/pFnLfJO.png" alt="BrandMapper.java"></a></p>
+<p>​    编写xml映射文件，注意：参数类型：parameterType可以省略，因为只传了一个参数</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFnL5Se"><img src="https://s11.ax1x.com/2024/01/27/pFnL5Se.png" alt="BrandMapper.xml"></a></p>
+<p>​    执行测试</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFnLOFf"><img src="https://s11.ax1x.com/2024/01/27/pFnLOFf.png" alt="运行结果"></a></p>
+<p>​    <strong>知识点：mybatis参数占位符</strong></p>
+<ol>
+<li><p>#{}：在执行sql时会将其替换为?，可以防止SQL注入</p>
+<pre class="line-numbers language-none"><code class="language-none">select * from tb_brand where id&#x3D;#&#123;id&#125;
+&#x2F;&#x2F;假设传值1
+&#x2F;&#x2F;执行结果：select * from tb_brand where id&#x3D;?<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>${}：拼sql，会存在SQL注入问题</p>
+<pre class="line-numbers language-none"><code class="language-none">select * from tb_brand where id&#x3D;$&#123;id&#125;
+&#x2F;&#x2F;假设传值1
+&#x2F;&#x2F;执行结果：select * from tb_brand where id&#x3D;1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>使用时机</p>
+<ul>
+<li>参数传递的时候使用：#{}</li>
+<li>动态传递sql的表名或列名不固定时使用：${}</li>
+</ul>
+</li>
+</ol>
+<p>​    <strong>知识点：特殊字符处理方法</strong></p>
+<p>​    因为sql语句是写在xml文件中，所以有些字符不能正常使用比如<code>&lt;</code> </p>
+<ol>
+<li><p>使用转义字符</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">//原sql：select * from tb_brand where id&lt;$&#123;id&#125;
+//转义改为
+select * from tb_brand where id <span class="token entity named-entity" title="&lt;">&amp;lt;</span> $&#123;id&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>使用CDATA区</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;原sql：select * from tb_brand where id&lt;$&#123;id&#125;
+&#x2F;&#x2F;CDATA区&lt;![CDATA[ 内容 ]]&gt;，中间写要用的字符
+select * from tb_brandwhere id &lt;![CDATA[ &lt; ]]&gt; #&#123;id&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+</li>
+</ol>
+<h5 id="3-多条件查询-难点-：通过多个条件查询记录"><a href="#3-多条件查询-难点-：通过多个条件查询记录" class="headerlink" title="(3)多条件查询(难点)：通过多个条件查询记录"></a>(3)多条件查询(难点)：通过多个条件查询记录</h5><p>​    对于多条件参数的接收mybatis有三种接收方式</p>
+<ol>
+<li><p>使用注解<code>@Param接收</code>：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Brand</span><span class="token punctuation">></span></span> <span class="token function">selectByCondition</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">"status"</span><span class="token punctuation">)</span><span class="token keyword">int</span> status<span class="token punctuation">,</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">"companyName"</span><span class="token punctuation">)</span><span class="token class-name">String</span> companyName<span class="token punctuation">,</span><span class="token annotation punctuation">@Param</span><span class="token punctuation">(</span><span class="token string">"brandName"</span><span class="token punctuation">)</span><span class="token class-name">String</span> brandName<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>注意：@Param(“值”)要和xml中#{值}相对应</p>
+</li>
+<li><p>使用实体类封装后传参：用实体类set方法封装</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Brand</span><span class="token punctuation">></span></span> <span class="token function">selectByCondition</span><span class="token punctuation">(</span><span class="token class-name">Brand</span> brand<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p> 注意：这里要作为条件的brand实体类的属性要和xml中#{}里的值一一对应，不然会封装不上</p>
+</li>
+<li><p>使用map封装后传参：</p>
+ <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Brand</span><span class="token punctuation">></span></span> <span class="token function">selectByCondition</span><span class="token punctuation">(</span><span class="token class-name">Map</span> map<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p> 注意：这里要作为条件的Map的键要和xml中#{}里的值一一对应，不然会封装不上</p>
+</li>
+</ol>
+<p>​    </p>
+<p>​    上面三个条件查询mapper统一对应的xml如下所示</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selectByCondition<span class="token punctuation">"</span></span> <span class="token attr-name">resultMap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>brandResultMap<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+	select *
+	from tb_brand
+	where
+		status=#&#123;status&#125;
+		and company_name like #&#123;companyName&#125;
+		and brand_name like #&#123;brandName&#125;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    <strong>对第一种做一个示例</strong></p>
+<p>​    编写mapper方法selectByCondition</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFuNMrV"><img src="https://s11.ax1x.com/2024/01/29/pFuNMrV.png" alt="BrandMapper.java"></a></p>
+<p>​    编写mapper的xml映射文件</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFuN3aF"><img src="https://s11.ax1x.com/2024/01/29/pFuN3aF.png" alt="BrandMapper.xml"></a></p>
+<p>​    测试执行，注意我这里为方便数据直接写了”%华为%”，正常是需要字符串选择模糊查询的方式<code>%</code>or<code>_</code></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFuNNx1"><img src="https://s11.ax1x.com/2024/01/29/pFuNNx1.png" alt="运行测试"></a></p>
+<p>​    注意：此时可以查询到数据，但是用户输入数据时可以不是三个，是一个或者两个，那么这时需要使用动态的多条件查询</p>
+<h5 id="4-动态多条件查询-难点-：解决上面条件查询的问题"><a href="#4-动态多条件查询-难点-：解决上面条件查询的问题" class="headerlink" title="(4)动态多条件查询(难点)：解决上面条件查询的问题"></a>(4)动态多条件查询(难点)：解决上面条件查询的问题</h5><p>​    SQL语句会随着用户的输入或外部条件的变化而变化，我们称为动态SQL </p>
+<p>​    将3示例改为动态SQL查询只需要修改mapper的xml映射文件为动态SQL，修改后的xml文件如下图所示</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pF3v2Fg"><img src="https://s11.ax1x.com/2024/02/11/pF3v2Fg.png" alt="修改后的xml映射文件"></a></p>
+<p>​    注意：这里xml使用了三个参数在定义的mapper映射里面也要有三个参数对应，使用接口方法时的传参可以是null因为这里我使用动态sql保证程序正常运行</p>
+<h4 id="3-动态sql语句"><a href="#3-动态sql语句" class="headerlink" title="3. 动态sql语句"></a>3. 动态sql语句</h4><p>​    MyBatis的动态sql提供if、choose、trim、foreach</p>
+<h5 id="1-动态sql-if"><a href="#1-动态sql-if" class="headerlink" title="(1) 动态sql-if"></a>(1) 动态sql-if</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pClpOw8"><img src="https://s1.ax1x.com/2023/06/17/pClpOw8.png" alt="if的使用例子"></a></p>
+<p>​    其中where标签类似于<code>1=1</code>，让sql语句在没有where条件的时候也能正常执行，但<code>1=1</code>在没有条件时会查询出表中所有字段，而使用where标签就不会</p>
+<p>​    if标签中的test<strong>必写</strong>，test里面写判断条件，写的是传入参数的判断，标签里写要拼凑的sql语句</p>
+<h5 id="2-动态sql-choose-when-otherwise-：选择一个，类似Java中的switch语句"><a href="#2-动态sql-choose-when-otherwise-：选择一个，类似Java中的switch语句" class="headerlink" title="(2) 动态sql-choose(when,otherwise)：选择一个，类似Java中的switch语句"></a>(2) 动态sql-choose(when,otherwise)：选择一个，类似Java中的switch语句</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pF89iDI"><img src="https://s11.ax1x.com/2024/02/11/pF89iDI.png" alt="choose的使用例子"></a></p>
+<p>​    注意：这里where语句可以使用<code>&lt;where&gt;</code> 标签</p>
+<h5 id="3-动态sql-foreach"><a href="#3-动态sql-foreach" class="headerlink" title="(3) 动态sql-foreach"></a>(3) 动态sql-foreach</h5><p>​    对于where传递参数像in关键字(多个or)时，可以使用foreach</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCNRplT"><img src="https://s1.ax1x.com/2023/06/25/pCNRplT.png" alt="pCNRplT.png"></a></p>
+<p>​    注意，<code>collection</code> 属性的值是传递集合应该与要传递的集合的名字一致，该集合可以是Java自带的，也可以是自定义的，以便 MyBatis 可以正确地将参数值传递给 <code>foreach</code> 元素进行循环迭代。</p>
+<p>​    <code>open</code> 属性指定在循环开始时要输出的字符串，<code>separator</code> 属性指定在每个元素之间要输出的字符串，<code>close</code> 属性指定在循环结束时要输出的字符串。</p>
+<p>​    <code>foreach</code> 元素的 <code>item</code> 属性指定循环中的当前元素变量名，其类似于增强for循环的x，作循环输出使用。<code>#&#123;id&#125;</code> 是一个占位符，代表当前循环的元素，这里使用了 MyBatis 的参数注入方式。</p>
+<p>​    <code>item=&quot;id&quot;</code> 表示在循环中每个元素的变量名是 <code>id</code>。<code>#&#123;id&#125;</code> 则用于在 SQL 语句中引用这个变量，并将它替换为实际的元素值</p>
+<h4 id="4-MyBatis的添加操作"><a href="#4-MyBatis的添加操作" class="headerlink" title="4. MyBatis的添加操作"></a>4. MyBatis的添加操作</h4><h5 id="修改操作"><a href="#修改操作" class="headerlink" title="修改操作"></a>修改操作</h5><p>​    修改操作和增加操作很像</p>
+<p>​    在UserMapper.xml文件中编写修改操作</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BDgfJ"><img src="https://s1.ax1x.com/2023/05/09/p9BDgfJ.png" alt="p9BDgfJ.png"></a></p>
+<p>​    在测试类中进行测试</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BrCtg"><img src="https://s1.ax1x.com/2023/05/09/p9BrCtg.png" alt="p9BrCtg.png"></a></p>
+<h5 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h5><p>​    删除操作只需要传递一个id数字即可删除整行，所以不需要传递对象</p>
+<p>​    在UserMapper.xml文件中编写删除操作，因为是传递整型，所以parameterType的值为整型的全包名；<code>#&#123;id&#125;</code>因为这里是只有一个类型且是简单类型的值，所以写啥都可以比如<code>#&#123;XXX&#125;</code>，写成id是为了提高代码可读性</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BrMh4"><img src="https://s1.ax1x.com/2023/05/09/p9BrMh4.png" alt="p9BrMh4.png"></a></p>
+<p>​    在测试类中进行测试</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Br2E8"><img src="https://s1.ax1x.com/2023/05/09/p9Br2E8.png" alt="p9Br2E8.png"></a></p>
+<p>​    删除操作的注意事项</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BsFUO"><img src="https://s1.ax1x.com/2023/05/09/p9BsFUO.png" alt="p9BsFUO.png"></a></p>
+<h4 id="2-MyBatis映射文件深入"><a href="#2-MyBatis映射文件深入" class="headerlink" title="2. MyBatis映射文件深入"></a>2. MyBatis映射文件深入</h4><h5 id="4-sql语句的抽取"><a href="#4-sql语句的抽取" class="headerlink" title="(4) sql语句的抽取"></a>(4) sql语句的抽取</h5><pre><code>  使用sql标签进行抽取，抽取后通过定义的id名进行引入</code></pre>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCNRXuD"><img src="https://s1.ax1x.com/2023/06/25/pCNRXuD.png" alt="pCNRXuD.png"></a></p>
+<h4 id="3-MyBatis核心配置文件深入"><a href="#3-MyBatis核心配置文件深入" class="headerlink" title="3. MyBatis核心配置文件深入"></a>3. MyBatis核心配置文件深入</h4><h5 id="1-typeHandlers标签"><a href="#1-typeHandlers标签" class="headerlink" title="(1) typeHandlers标签"></a>(1) typeHandlers标签</h5><p>​    因为在Java和JDBC数据提取与存储的过程中相同的数据类型在这两种语言的存储方式是不一样的，MyBatis使用默认的类型处理器来对数据类型进行转换，有时如果需要指定类型转换就需要使用typeHandlers标签自定义进行转换</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCNW6VH"><img src="https://s1.ax1x.com/2023/06/25/pCNW6VH.png" alt="pCNW6VH.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCNWxMT"><img src="https://s1.ax1x.com/2023/06/25/pCNWxMT.png" alt="pCNWxMT.png"></a></p>
+<p>​    实际开发中，泛型改为你要转化的类型，回调方法是MyBatis框架会自动调用，只需要将其设置好就可以了</p>
+<p>​    自定义类型转换器的实现</p>
+<p>​    实现<code>BaseTypeHandler&lt;T&gt;</code>接口，并实现其对应的四个方法</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCNjsLd"><img src="https://s1.ax1x.com/2023/06/25/pCNjsLd.png" alt="前两个方法"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCNj5Qg"><img src="https://s1.ax1x.com/2023/06/25/pCNj5Qg.png" alt="后两个方法"></a></p>
+<p>​    在MyBatis核心配置文件中配置，把该类的全限定名进行配置</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCNvlkt"><img src="https://s1.ax1x.com/2023/06/25/pCNvlkt.png" alt="pCNvlkt.png"></a></p>
+<p>​    编写测试代码</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCNvd7n"><img src="https://s1.ax1x.com/2023/06/25/pCNvd7n.png" alt="pCNvd7n.png"></a></p>
+<h5 id="2-plugins标签-插件标签"><a href="#2-plugins标签-插件标签" class="headerlink" title="(2) plugins标签(插件标签)"></a>(2) plugins标签(插件标签)</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCNxn3T"><img src="https://s1.ax1x.com/2023/06/25/pCNxn3T.png" alt="pCNxn3T.png"></a></p>
+<p>​    plugins标签的解析步骤</p>
+<p>​    在pom.xml文件中导入pagehelper坐标和jsqlparser</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCNx4bj"><img src="https://s1.ax1x.com/2023/06/25/pCNx4bj.png" alt="pCNx4bj.png"></a></p>
+<p>​    在MyBatis核心配置文件中编写配置PageHelper插件</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pC0uvGt"><img src="https://s1.ax1x.com/2023/06/29/pC0uvGt.png" alt="pC0uvGt.png"></a></p>
+<p>​    在数据库中进行分页查询时，不同的数据库系统可能有不同的方言（Dialect）来支持分页查询。以下是一些常见的数据库系统及其对应的方言：</p>
+<ol>
+<li>MySQL：MySQL 方言的分页查询可以使用 LIMIT 和 OFFSET 子句。通常的语法是 <code>LIMIT &lt;pageSize&gt; OFFSET &lt;offset&gt;</code>，其中 <code>&lt;pageSize&gt;</code> 是每页的记录数，<code>&lt;offset&gt;</code> 是偏移量（页数减一乘以每页记录数）。</li>
+</ol>
+<p>​    在测试代码中设置分页相关的参数，除了代码演示的还有很多，包括是否为第一页、是否为最后一页等</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pC0Qk3q"><img src="https://s1.ax1x.com/2023/06/29/pC0Qk3q.png" alt="pC0Qk3q.png"></a></p>
+<h4 id="4-知识小结"><a href="#4-知识小结" class="headerlink" title="4. 知识小结"></a>4. 知识小结</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pC0QmbF"><img src="https://s1.ax1x.com/2023/06/29/pC0QmbF.png" alt="pC0QmbF.png"></a></p>
 
                 
             </div>
@@ -571,7 +677,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/11/13/Mabatis01/">http://example.com/2023/11/13/Mabatis01/</a>
+                    <a href="http://example.com/2023/11/13/Mabatis02/">http://example.com/2023/11/13/Mabatis02/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -658,13 +764,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2023/11/13/Mabatis02/">
+                <a href="/2023/11/13/Mabatis03/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Mabatis02">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Mabatis03">
                         
-                        <span class="card-title">Mabatis02</span>
+                        <span class="card-title">Mabatis03</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -703,13 +809,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/11/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8408/">
+                <a href="/2023/11/13/Mabatis01/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="数据结构08">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Mabatis01">
                         
-                        <span class="card-title">数据结构08</span>
+                        <span class="card-title">Mabatis01</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -733,8 +839,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                        <span class="chip bg-color">数据结构</span>
+                    <a href="/tags/SSM/">
+                        <span class="chip bg-color">SSM</span>
                     </a>
                     
                 </div>
