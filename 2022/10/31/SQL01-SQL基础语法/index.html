@@ -846,7 +846,7 @@ selete 字段<span class="token number">1</span><span class="token punctuation">
 <p>​    </p>
 <h5 id="4-DQL-分组查询-将已经查询好的记录分组排列"><a href="#4-DQL-分组查询-将已经查询好的记录分组排列" class="headerlink" title="(4)DQL-分组查询(将已经查询好的记录分组排列)"></a>(4)DQL-分组查询(将已经查询好的记录分组排列)</h5><p>​    <strong><code>GROUP BY</code> 语句是在 SQL 查询中用于对查询结果进行分组，它不会改变查询的总记录数，只是对查询结果中的数据进行分组</strong>，并允许你在每个组上执行聚合操作（比如 <code>COUNT()</code>、<code>SUM()</code>、<code>AVG()</code> 等</p>
 <h6 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h6><p>​    <strong>group by是对该列内容相同的字段分成一组，放同一个组之后若直接遇到select，则将分组内的第一行进行输出，其他的行被丢弃</strong></p>
-<p>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/pALtsq1"><img src="https://s21.ax1x.com/2024/12/17/pALtsq1.png" alt="pALtsq1.png"></a></p>
+<p>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/pALtsq1"><img src="https://s21.ax1x.com/2024/12/17/pALtsq1.png" alt="sql题"></a></p>
 <h6 id="书本语法"><a href="#书本语法" class="headerlink" title="书本语法"></a>书本语法</h6><ol>
 <li><p>语法：</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">     <span class="token keyword">select</span> 字段列表 <span class="token keyword">from</span> 表名 <span class="token punctuation">[</span><span class="token keyword">where</span> 条件<span class="token punctuation">]</span> <span class="token keyword">group</span> <span class="token keyword">by</span> 分组字段名 <span class="token punctuation">[</span><span class="token keyword">having</span> 分组后过滤条件<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
