@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -470,11 +473,21 @@
             <div id="articleContent">
                 <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h4 id="1-typedef"><a href="#1-typedef" class="headerlink" title="1. typedef"></a>1. typedef</h4><p>​    C语言允许为一个数据类型起一个新的别名，使用typedef关键字来进行定义</p>
 <p>​    typedef 的用法一般为：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span>  oldName  newName;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span>  oldName  newName<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​    注意：一般新名字全部字母大写</p>
 <p>​    范例：为结构体起一个别名</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Student</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> sid;</span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">100</span>];</span><br><span class="line">	<span class="keyword">char</span> sex;</span><br><span class="line">&#125;ST,*PST;<span class="comment">//ST等价于struct Student, PST等价于struct Student *</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    ST st;</span><br><span class="line">    st.sid = <span class="number">200</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,st.sid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">Student</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> sid<span class="token punctuation">;</span>
+	<span class="token keyword">char</span> name<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token keyword">char</span> sex<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>ST<span class="token punctuation">,</span><span class="token operator">*</span>PST<span class="token punctuation">;</span><span class="token comment">//ST等价于struct Student, PST等价于struct Student *</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    ST st<span class="token punctuation">;</span>
+    st<span class="token punctuation">.</span>sid <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>st<span class="token punctuation">.</span>sid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -494,7 +507,11 @@
 <h4 id="3-链表结点数据类型的表示"><a href="#3-链表结点数据类型的表示" class="headerlink" title="3. 链表结点数据类型的表示"></a>3. 链表结点数据类型的表示</h4><p>​    一个结点可以分为两个部分：数据域和指针域</p>
 <p>​    指针域中的指针指向了一个完整的结点</p>
 <p>​    范例：结点的定义</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> data;  <span class="comment">//数据域</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">pNext</span>;</span> <span class="comment">//指针域</span></span><br><span class="line">&#125;NODE,*PNODE;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">Node</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">int</span> data<span class="token punctuation">;</span>  <span class="token comment">//数据域</span>
+	<span class="token keyword">struct</span> <span class="token class-name">Node</span> <span class="token operator">*</span> pNext<span class="token punctuation">;</span> <span class="token comment">//指针域</span>
+<span class="token punctuation">&#125;</span>NODE<span class="token punctuation">,</span><span class="token operator">*</span>PNODE<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -511,7 +528,15 @@
 </li>
 </ol>
 <p>​    伪算法</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种方式</span></span><br><span class="line">r = p-&gt;pNext;</span><br><span class="line">p-&gt;pNext = q;</span><br><span class="line">q-&gt;pNext = r;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种方式</span></span><br><span class="line">q-&gt;pNext = p-&gt;pNext;</span><br><span class="line">p-&gt;pNext = q;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//第一种方式</span>
+r <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+p<span class="token operator">-></span>pNext <span class="token operator">=</span> q<span class="token punctuation">;</span>
+q<span class="token operator">-></span>pNext <span class="token operator">=</span> r<span class="token punctuation">;</span>
+
+<span class="token comment">//第二种方式</span>
+q<span class="token operator">-></span>pNext <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+p<span class="token operator">-></span>pNext <span class="token operator">=</span> q<span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -521,12 +546,84 @@
 </li>
 </ol>
 <p>​    伪算法</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注意:由于直接连会导致中间那个结点找不到从而导致内存的浪费,所以要先存起来,最后也要进行释放</span></span><br><span class="line">r = p-&gt;pNext;</span><br><span class="line">p-&gt;pNext = p-&gt;pNext-&gt;pNext;</span><br><span class="line"><span class="built_in">free</span>(r);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//注意:由于直接连会导致中间那个结点找不到从而导致内存的浪费,所以要先存起来,最后也要进行释放</span>
+r <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+p<span class="token operator">-></span>pNext <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+<span class="token function">free</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    </p>
 <h4 id="6-链表的算法"><a href="#6-链表的算法" class="headerlink" title="6. 链表的算法"></a>6. 链表的算法</h4><ol>
 <li><p><strong>算法–链表的创建以及链表的遍历</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义链表</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">count</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> number;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">count</span> * <span class="title">pNext</span>;</span></span><br><span class="line">&#125;NODE,* PNODE;</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="function">PNODE <span class="title">count_create</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">count_write</span><span class="params">(PNODE pHead)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设置头指针</span></span><br><span class="line">    PNODE pHead = <span class="literal">NULL</span>;</span><br><span class="line">    pHead = count_create(); <span class="comment">//创建一个非循环单链表，并返回头结点地址</span></span><br><span class="line">    count_write(pHead); <span class="comment">//遍历打印出来</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">PNODE <span class="title">count_create</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> tmp; <span class="comment">//临时存放用户输入的数据</span></span><br><span class="line">    <span class="keyword">int</span> num; <span class="comment">//存放有效结点的个数</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//设置头指针指向头结点，头结点不存放任何有效数据</span></span><br><span class="line">    PNODE pHead = (PNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">    <span class="comment">//头结点的指针域设为NULL，防止后面没有结点</span></span><br><span class="line">    pHead-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> == pHead)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//链表的尾指针，用来挂每一个新生成的链表结点</span></span><br><span class="line">    PNODE pTail = pHead;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;please input number :&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;num);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; num ; i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;The %d number:&quot;</span>,i+<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;tmp);</span><br><span class="line">        PNODE new_Node = (PNODE) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">NULL</span> == new_Node)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//新生成结点的指针域设置为NULL</span></span><br><span class="line">        new_Node-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="comment">//新生成的结点的数据域设置值</span></span><br><span class="line">        new_Node-&gt;number =tmp;</span><br><span class="line">        <span class="comment">//将新生成的结点挂在尾指针上</span></span><br><span class="line">        pTail-&gt;pNext = new_Node;</span><br><span class="line">        <span class="comment">//将尾指针指向新生成的新结点</span></span><br><span class="line">        pTail = new_Node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pHead;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">count_write</span><span class="params">(PNODE pHead)</span></span>&#123;</span><br><span class="line">    PNODE pTail = pHead-&gt;pNext;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">NULL</span>!=pTail)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span> ,pTail-&gt;number);</span><br><span class="line">        <span class="comment">//将指针向后移</span></span><br><span class="line">        pTail = pTail-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;malloc.h></span></span>
+
+<span class="token comment">//定义链表</span>
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">count</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> number<span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">count</span> <span class="token operator">*</span> pNext<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>NODE<span class="token punctuation">,</span><span class="token operator">*</span> PNODE<span class="token punctuation">;</span>
+
+<span class="token comment">//函数声明</span>
+PNODE <span class="token function">count_create</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">count_write</span><span class="token punctuation">(</span>PNODE pHead<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">//设置头指针</span>
+    PNODE pHead <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    pHead <span class="token operator">=</span> <span class="token function">count_create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//创建一个非循环单链表，并返回头结点地址</span>
+    <span class="token function">count_write</span><span class="token punctuation">(</span>pHead<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//遍历打印出来</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+PNODE <span class="token function">count_create</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> tmp<span class="token punctuation">;</span> <span class="token comment">//临时存放用户输入的数据</span>
+    <span class="token keyword">int</span> num<span class="token punctuation">;</span> <span class="token comment">//存放有效结点的个数</span>
+
+    <span class="token comment">//设置头指针指向头结点，头结点不存放任何有效数据</span>
+    PNODE pHead <span class="token operator">=</span> <span class="token punctuation">(</span>PNODE<span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>NODE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//头结点的指针域设为NULL，防止后面没有结点</span>
+    pHead<span class="token operator">-></span>pNext <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token constant">NULL</span> <span class="token operator">==</span> pHead<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//链表的尾指针，用来挂每一个新生成的链表结点</span>
+    PNODE pTail <span class="token operator">=</span> pHead<span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"please input number :"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span><span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> num <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"The %d number:"</span><span class="token punctuation">,</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        PNODE new_Node <span class="token operator">=</span> <span class="token punctuation">(</span>PNODE<span class="token punctuation">)</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>NODE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token constant">NULL</span> <span class="token operator">==</span> new_Node<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">//新生成结点的指针域设置为NULL</span>
+        new_Node<span class="token operator">-></span>pNext <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+        <span class="token comment">//新生成的结点的数据域设置值</span>
+        new_Node<span class="token operator">-></span>number <span class="token operator">=</span>tmp<span class="token punctuation">;</span>
+        <span class="token comment">//将新生成的结点挂在尾指针上</span>
+        pTail<span class="token operator">-></span>pNext <span class="token operator">=</span> new_Node<span class="token punctuation">;</span>
+        <span class="token comment">//将尾指针指向新生成的新结点</span>
+        pTail <span class="token operator">=</span> new_Node<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> pHead<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">void</span> <span class="token function">count_write</span><span class="token punctuation">(</span>PNODE pHead<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    PNODE pTail <span class="token operator">=</span> pHead<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token operator">!=</span>pTail<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span> <span class="token punctuation">,</span>pTail<span class="token operator">-></span>number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//将指针向后移</span>
+        pTail <span class="token operator">=</span> pTail<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -534,7 +631,27 @@
 </ol>
 <ol start="2">
 <li><p><strong>算法–链表的是否为空的判断和求链表长度</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断是否为空的函数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;  //C语言使用bool类型需要导入的头文件</span></span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_empty</span><span class="params">(PNODE pHead)</span></span>; <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_empty</span><span class="params">(PNODE pHead)</span></span>&#123; <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span> == pHead-&gt;pNext)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求链表长度</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">count_len</span><span class="params">(PNODE pHead)</span></span>; <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">count_len</span><span class="params">(PNODE pHead)</span></span>&#123; <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">    PNODE p = pHead-&gt;pNext;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">NULL</span> != p)&#123;</span><br><span class="line">        ++len;</span><br><span class="line">        p = p-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//判断是否为空的函数</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdbool.h></span>  <span class="token comment">//C语言使用bool类型需要导入的头文件</span></span>
+bool <span class="token function">is_empty</span><span class="token punctuation">(</span>PNODE pHead<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//函数声明</span>
+bool <span class="token function">is_empty</span><span class="token punctuation">(</span>PNODE pHead<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token comment">//函数体</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token constant">NULL</span> <span class="token operator">==</span> pHead<span class="token operator">-></span>pNext<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">//求链表长度</span>
+<span class="token keyword">int</span> <span class="token function">count_len</span><span class="token punctuation">(</span>PNODE pHead<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//函数声明</span>
+<span class="token keyword">int</span> <span class="token function">count_len</span><span class="token punctuation">(</span>PNODE pHead<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token comment">//函数体</span>
+    <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    PNODE p <span class="token operator">=</span> pHead<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token constant">NULL</span> <span class="token operator">!=</span> p<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token operator">++</span>len<span class="token punctuation">;</span>
+        p <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> len<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -542,7 +659,27 @@
 </ol>
 <ol start="3">
 <li><p><strong>算法–链表的冒泡排序</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//冒泡排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">count_sort</span><span class="params">(PNODE pHead)</span></span>; <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">count_sort</span><span class="params">(PNODE pHead)</span></span>&#123; <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">int</span> i,j,tmp;</span><br><span class="line">    <span class="keyword">int</span> len = count_len(pHead);</span><br><span class="line">    PNODE p = pHead-&gt;pNext;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i&lt;len<span class="number">-1</span> ; i++)&#123;</span><br><span class="line">        PNODE q = p-&gt;pNext;</span><br><span class="line">        <span class="keyword">for</span>(j = i+<span class="number">1</span>; j &lt; len ; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(p-&gt;number&gt;q-&gt;number)&#123;</span><br><span class="line">                tmp = p-&gt;number;</span><br><span class="line">                p-&gt;number = q-&gt;number;</span><br><span class="line">                q-&gt;number = tmp;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            q = q-&gt;pNext;</span><br><span class="line">        &#125;</span><br><span class="line">        p = p-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//冒泡排序</span>
+<span class="token keyword">void</span> <span class="token function">count_sort</span><span class="token punctuation">(</span>PNODE pHead<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//函数声明</span>
+<span class="token keyword">void</span> <span class="token function">count_sort</span><span class="token punctuation">(</span>PNODE pHead<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token comment">//函数体</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span>j<span class="token punctuation">,</span>tmp<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token function">count_len</span><span class="token punctuation">(</span>pHead<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    PNODE p <span class="token operator">=</span> pHead<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>len<span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        PNODE q <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>j <span class="token operator">=</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> len <span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token operator">-></span>number<span class="token operator">></span>q<span class="token operator">-></span>number<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                tmp <span class="token operator">=</span> p<span class="token operator">-></span>number<span class="token punctuation">;</span>
+                p<span class="token operator">-></span>number <span class="token operator">=</span> q<span class="token operator">-></span>number<span class="token punctuation">;</span>
+                q<span class="token operator">-></span>number <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+
+            <span class="token punctuation">&#125;</span>
+            q <span class="token operator">=</span> q<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        p <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -550,7 +687,55 @@
 </ol>
 <ol start="4">
 <li><p><strong>算法–链表的插入元素和删除元素</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//链表的插入算法</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">count_insert</span><span class="params">(PNODE pHead, <span class="keyword">int</span> pos , <span class="keyword">int</span> val)</span></span>; <span class="comment">//函数声明 pos表示在有效结点第pos个增加结点</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">count_insert</span><span class="params">(PNODE pHead, <span class="keyword">int</span> pos , <span class="keyword">int</span> val)</span></span>&#123; <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(pos&lt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE p = pHead;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i&lt;pos; i++)&#123;</span><br><span class="line">        p = p-&gt;pNext;</span><br><span class="line">        <span class="comment">//一定要判空，否则程序有bug</span></span><br><span class="line">        <span class="keyword">if</span>(p==<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE pNew = (PNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">    pNew-&gt;number = val;</span><br><span class="line">    pNew-&gt;pNext = p-&gt;pNext;</span><br><span class="line">    p-&gt;pNext = pNew;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//链表的删除算法</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">count_delete</span><span class="params">(PNODE pHead, <span class="keyword">int</span> pos , <span class="keyword">int</span> *val)</span></span>; <span class="comment">//函数声明，pos表示删除有效结点的第pos个</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">count_delete</span><span class="params">(PNODE pHead, <span class="keyword">int</span> pos , <span class="keyword">int</span> *val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(pos&lt;<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE p = pHead;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span> ; i&lt;pos ;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;pNext==<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        p = p-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(p-&gt;pNext==<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE tmp = p-&gt;pNext;</span><br><span class="line">    *val = tmp-&gt;number;</span><br><span class="line">    <span class="comment">//将p指针指向下下个结点</span></span><br><span class="line">    p-&gt;pNext = p-&gt;pNext-&gt;pNext;</span><br><span class="line">    <span class="built_in">free</span>(tmp);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//链表的插入算法</span>
+bool <span class="token function">count_insert</span><span class="token punctuation">(</span>PNODE pHead<span class="token punctuation">,</span> <span class="token keyword">int</span> pos <span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//函数声明 pos表示在有效结点第pos个增加结点</span>
+bool <span class="token function">count_insert</span><span class="token punctuation">(</span>PNODE pHead<span class="token punctuation">,</span> <span class="token keyword">int</span> pos <span class="token punctuation">,</span> <span class="token keyword">int</span> val<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token comment">//函数体</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>pos<span class="token operator">&lt;</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    PNODE p <span class="token operator">=</span> pHead<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>pos<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        p <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+        <span class="token comment">//一定要判空，否则程序有bug</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token operator">==</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    PNODE pNew <span class="token operator">=</span> <span class="token punctuation">(</span>PNODE<span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>NODE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    pNew<span class="token operator">-></span>number <span class="token operator">=</span> val<span class="token punctuation">;</span>
+    pNew<span class="token operator">-></span>pNext <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+    p<span class="token operator">-></span>pNext <span class="token operator">=</span> pNew<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">//链表的删除算法</span>
+bool <span class="token function">count_delete</span><span class="token punctuation">(</span>PNODE pHead<span class="token punctuation">,</span> <span class="token keyword">int</span> pos <span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//函数声明，pos表示删除有效结点的第pos个</span>
+bool <span class="token function">count_delete</span><span class="token punctuation">(</span>PNODE pHead<span class="token punctuation">,</span> <span class="token keyword">int</span> pos <span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>val<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>pos<span class="token operator">&lt;</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    PNODE p <span class="token operator">=</span> pHead<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span> <span class="token punctuation">;</span> i<span class="token operator">&lt;</span>pos <span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token operator">-></span>pNext<span class="token operator">==</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        p <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>p<span class="token operator">-></span>pNext<span class="token operator">==</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    PNODE tmp <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+    <span class="token operator">*</span>val <span class="token operator">=</span> tmp<span class="token operator">-></span>number<span class="token punctuation">;</span>
+    <span class="token comment">//将p指针指向下下个结点</span>
+    p<span class="token operator">-></span>pNext <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -669,13 +854,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2022/10/31/MySQL01-SQL%E8%AF%AD%E5%8F%A5%E5%85%A8%E8%AF%AD%E6%B3%95/">
+                <a href="/2022/10/31/SQL01-SQL%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="MySQL01-SQL语句全语法">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="SQL01-SQL基础语法">
                         
-                        <span class="card-title">MySQL01-SQL语句全语法</span>
+                        <span class="card-title">SQL01-SQL基础语法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -699,8 +884,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
+                    <a href="/tags/SQL/">
+                        <span class="chip bg-color">SQL</span>
                     </a>
                     
                 </div>

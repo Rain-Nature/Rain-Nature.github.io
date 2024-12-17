@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -494,7 +497,7 @@
 <p>​    去官网下载安装版，Tomcat本身很小，所以电脑上需要有额外的JDK，Tomcat在电脑中的运行必须有JDK的支持，或者简化版JRE支持，在安装Tomcat时会进行选择。</p>
 <p>​    安装完成后会自动在Windows的服务里面进行服务的注册，但是不可以在这里启动</p>
 <p>​    <strong>Tomcat的安装目录</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\Apache Software Foundation\Tomcat 10.0</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">C:\Program Files\Apache Software Foundation\Tomcat 10.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li><p>bin：包含了所有的可执行的程序命令，使用“Tomcat10.exe”命令可以启动Tomcat服务器，<strong>打开服务器之后，就可以利用浏览器访问，输入：<a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></strong></p>
@@ -519,7 +522,7 @@
 <li><p>这个目录有建立要求，在这个目录中必须存在有一个WEB-INF/web.xml(大小写不能错)文件（从Tomcat的安装目录webapps-&gt;ROOT可以拷贝出来）</p>
 </li>
 <li><p>此时Tomcat不知道硬盘存在此目录，所以需要修改Tomcat的配置文件(conf/server.xml),在“<code>&lt;/Host&gt;</code> ”上面编写这行代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context path &#x3D; &quot;&#x2F;lxs&quot; docBase &#x3D; &quot;D:\lxsweb&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;Context path &#x3D; &quot;&#x2F;lxs&quot; docBase &#x3D; &quot;D:\lxsweb&quot; &#x2F;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>配置意义：</p>
 <ul>
@@ -531,7 +534,7 @@
 <li><p>在默认情况下，如果直接输入路径会出现404(HTTP状态码，表示路径不可访问)错误，因为没有输入具体执行文件名称，输入后就可以访问。另外，从Tomca6.5开始关闭了页面列表功能，此时通过修改conf/web.xml文件打开列表，查找文件中listings，把其值改为true，此时就可以进行列表显示</p>
 </li>
 <li><p>默认情况下，所有的网络服务器都是有监听端口的，Tomcat默认的端口为8080端口，但是如果不想输入端口，则可以将监听端口设置为80这个默认端口(当你不写端口号时默认去寻找的就是80端口)，修改conf/server.xml文件即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port&#x3D;&quot;8080&quot; protocol&#x3D;&quot;HTTP&#x2F;1.1&quot; &#x2F;&#x2F;8080改为80</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;Connector port&#x3D;&quot;8080&quot; protocol&#x3D;&quot;HTTP&#x2F;1.1&quot; &#x2F;&#x2F;8080改为80<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>此时访问时就不需要写端口8080了：<code>http://localhost/lxs/</code> ，此时如果加了8080反而进不去</p>
 </li>
@@ -541,7 +544,17 @@
 <p><strong>注意：所有的配置文件修改后，Tomcat需要重新启动才可以加载到新的内容</strong></p>
 <h4 id="3-第一个JSP程序"><a href="#3-第一个JSP程序" class="headerlink" title="3. 第一个JSP程序"></a>3. 第一个JSP程序</h4><p>​    范例：在页面上输出”hello world”</p>
 <p>​    此时需要定义一个JSP文件</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello JSP<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		&lt;%	//此处为JSP代码</span><br><span class="line">			out.println(&quot;hello world&quot;); //页面输出</span><br><span class="line">		%&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Hello JSP<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+		
+		&lt;%	//此处为JSP代码
+			out.println("hello world"); //页面输出
+		%>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    程序要想正常执行，必须将其保存在服务器工作区内(虚拟目录)，随后打开浏览器输入访问地址执行<a target="_blank" rel="noopener" href="http://localhost/lxs/Hello.jsp">http://localhost/lxs/Hello.jsp</a></p>
 <p>​    <strong>一般第一次会比第二次慢</strong></p>
@@ -561,7 +574,19 @@
 <p><strong>注意：所有转换和编译后的文件都保存在work目录下</strong></p>
 <p>​    <strong>如果电脑变慢可能导致这个流程异常，即怎样修改文件都执行无变化，此时将Tomcat关上，而后将work目录清空即可</strong></p>
 <p>​    范例：输出更多内容</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello JSP<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		&lt;%	//此处为JSP代码</span><br><span class="line">			out.println(&quot;hello world&quot;); //页面输出</span><br><span class="line">			out.println(&quot;<span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>&quot;); </span><br><span class="line">			out.println(&quot;<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span> = <span class="string">&#x27;text/javascript&#x27;</span>&gt;</span><span class="javascript">alert(<span class="string">&#x27;hello world&#x27;</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>&quot;); </span><br><span class="line">		%&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>Hello JSP<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+		
+		&lt;%	//此处为JSP代码
+			out.println("hello world"); //页面输出
+			out.println("<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>hello world<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>"); 
+			out.println("<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">'</span>text/javascript<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'hello world'</span><span class="token punctuation">)</span></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>"); 
+		%>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    <strong>关系</strong></p>
 <p>​        <strong>JavaScript可以控制HTML代码的输出</strong></p>
@@ -569,11 +594,18 @@
 <h4 id="4-接收客户端请求数据"><a href="#4-接收客户端请求数据" class="headerlink" title="4. 接收客户端请求数据"></a>4. 接收客户端请求数据</h4><p>​    动态Web最大的特征就是交互性，而交互性的关键是必须由用户输入数据，在HTML中已经提供了表单给用户进行输入数据的空间，而所有的输入数据应由服务器端进行接收</p>
 <p>​    <strong>如果要在服务器端接收数据可以使用操作：request.getParameter(String 参数名称(表单中的name属性))，该操作返回的是String型数据(可以通过正则验证且可以向任意数据类型转换)</strong></p>
 <p>​    范例：编写表单–input.html</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span> = <span class="string">&quot;input.jsp&quot;</span> <span class="attr">method</span> = <span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">	请输入信息：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;text&quot;</span> <span class="attr">name</span> = <span class="string">&quot;msg&quot;</span> <span class="attr">id</span> = <span class="string">&quot;msg&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;submit&quot;</span> <span class="attr">value</span> = <span class="string">&quot;send&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>input.jsp<span class="token punctuation">"</span></span> <span class="token attr-name">method</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+	请输入信息：<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>msg<span class="token punctuation">"</span></span> <span class="token attr-name">id</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>msg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>send<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    当点击提交按钮之后会自动的将表单的输入参数内容发送给服务器端，服务器端可以进行接收</p>
 <p>​    范例：接收参数–input.jsp</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">	String str = request.getParameter(&quot;msg&quot;);</span><br><span class="line">	out.println(&quot;<span class="tag">&lt;<span class="name">h1</span>&gt;</span>&quot;+str+&quot;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>&quot;);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">&lt;%
+	String str = request.getParameter("msg");
+	out.println("<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>"+str+"<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>");
+%><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    此时用客户端输入的内容服务器端都可以接收到</p>
 <p>​    <strong>注意：服务器若出现500，则表示代码错误</strong></p>

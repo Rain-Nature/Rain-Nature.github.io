@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -481,7 +484,12 @@
    5. 需要的包要在pom.xml中声明</code></pre>
 <p>​    <strong>欢迎页与列表</strong></p>
 <p>​    在项目新建后即可运行，点击运行可以运行项目自动生成的jsp欢迎页面，但在学习过程中需要列表来显示所有页面，此时可以通过修改Tomcat中的<code>conf/web.xml</code>文件的<code>welcome-file-list</code>来更改</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//web.xml文件里的默认设置；名叫index的页面作为主页，这几个页面(不一定只有三个)都有的话显示优先级为从上到下</span><br><span class="line"><span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.html<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.htm<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.jsp<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">//web.xml文件里的默认设置；名叫index的页面作为主页，这几个页面(不一定只有三个)都有的话显示优先级为从上到下
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>welcome-file-list</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>welcome-file</span><span class="token punctuation">></span></span>index.html<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>welcome-file</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>welcome-file</span><span class="token punctuation">></span></span>index.htm<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>welcome-file</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>welcome-file</span><span class="token punctuation">></span></span>index.jsp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>welcome-file</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>welcome-file-list</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    可以把这串设置复制到自己项目的xml文件中，然后自己修改首次登录页面(如果项目中没有设置默认是使用Tomcat提供的xml中的设置)，<strong>如果项目中没有名叫这几个的页面，则显示列表</strong></p>
 <h4 id="2-Javaweb的jdbc连接"><a href="#2-Javaweb的jdbc连接" class="headerlink" title="2. Javaweb的jdbc连接"></a>2. Javaweb的jdbc连接</h4><p>​    使用jsp来引入jdbc，<strong>此时mysql的驱动程序应当复制一份到Tomcat的<code>lib</code>目录下</strong></p>
@@ -489,12 +497,12 @@
 <p>C:\Program Files\Apache Software Foundation\Tomcat 8.5_Tomcat8new\lib</p>
 </blockquote>
 <p>​    否则会出现错误：数据库无法找到</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javax.servlet.ServletException: java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">javax.servlet.ServletException: java.lang.ClassNotFoundException: com.mysql.jdbc.Driver<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
 <p>​    还有一种情况是url书写时发生错误，如端口号写错，则提示错误：数据库连接异常</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javax.servlet.ServletException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">javax.servlet.ServletException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 

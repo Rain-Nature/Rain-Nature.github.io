@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -474,7 +477,87 @@
 <p>如果选手的表现比期望要好，那么此选手的排名应该上升。相反，若表现不如期望，则排名会下降。</p>
 <p><a target="_blank" rel="noopener" href="https://imgchr.com/i/yBVUCd"><img src="https://s3.ax1x.com/2021/02/11/yBVUCd.png" alt="yBVUCd.png"></a></p>
 <p>次Ra为比赛完后A玩家的积分</p>
-<h3 id="4-程序：王者荣耀巅峰赛积分模拟"><a href="#4-程序：王者荣耀巅峰赛积分模拟" class="headerlink" title="4.程序：王者荣耀巅峰赛积分模拟"></a>4.程序：王者荣耀巅峰赛积分模拟</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace _2020</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            string result1;</span><br><span class="line">            double result;</span><br><span class="line">            string grand1, grand2;</span><br><span class="line">            double a, b;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;无限循环</span><br><span class="line">            while (true)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;Two person are grand&quot;);</span><br><span class="line">                grand1 &#x3D; Console.ReadLine();</span><br><span class="line">                grand2 &#x3D; Console.ReadLine();</span><br><span class="line">                a &#x3D; double.Parse(grand1);</span><br><span class="line">                b &#x3D; double.Parse(grand2);</span><br><span class="line">                Console.WriteLine(&quot;Please enter a numbr such as, 1 is A win , 0.5 is flat, 0 is A lost&quot;);</span><br><span class="line">                result1 &#x3D; Console.ReadLine();</span><br><span class="line">                result &#x3D; double.Parse(result1);</span><br><span class="line">                </span><br><span class="line">                &#x2F;&#x2F;跳出循环</span><br><span class="line">                if (result &#x3D;&#x3D; -1)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine(&quot;Esc is ok&quot;);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                switch (result)</span><br><span class="line">                &#123;</span><br><span class="line">                    case 1:</span><br><span class="line">                        Player.liu(1, a, b);</span><br><span class="line">                        break;</span><br><span class="line">                    case 0:</span><br><span class="line">                        Player.liu(0, a, b);</span><br><span class="line">                        break;</span><br><span class="line">                    case 0.5:</span><br><span class="line">                        Player.liu(0.5, a, b);</span><br><span class="line">                        break;</span><br><span class="line">                    default:</span><br><span class="line">                        Console.WriteLine(&quot;it is not right number&quot;);</span><br><span class="line">                        break;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Player</span><br><span class="line">    &#123;</span><br><span class="line">        public Player(double player1)</span><br><span class="line">        &#123;</span><br><span class="line">            this.score &#x3D; player1;</span><br><span class="line">        &#125;</span><br><span class="line">        double score;</span><br><span class="line"></span><br><span class="line">        public static void liu(double result, double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            Player person1 &#x3D; new Player(a);</span><br><span class="line">            Player person2 &#x3D; new Player(b);</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;K值给了24</span><br><span class="line">            double c &#x3D; person1.score + 24 * (result - 1 &#x2F; (1 + Math.Pow(10, (person2.score - person1.score) &#x2F; 400)));</span><br><span class="line">            double d &#x3D; person2.score + 24 * ((1 - result) - 1 &#x2F; (1 + Math.Pow(10, (person1.score - person2.score) &#x2F; 400)));</span><br><span class="line"></span><br><span class="line">            Console.WriteLine(&quot;So the person1 of score &#123;0&#125; the person2 of score &#123;1&#125;&quot;, c, d);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-程序：王者荣耀巅峰赛积分模拟"><a href="#4-程序：王者荣耀巅峰赛积分模拟" class="headerlink" title="4.程序：王者荣耀巅峰赛积分模拟"></a>4.程序：王者荣耀巅峰赛积分模拟</h3><pre class="line-numbers language-none"><code class="language-none">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _2020
+&#123;
+    class Program
+    &#123;
+        static void Main(string[] args)
+        &#123;
+            string result1;
+            double result;
+            string grand1, grand2;
+            double a, b;
+
+            &#x2F;&#x2F;无限循环
+            while (true)
+            &#123;
+                Console.WriteLine(&quot;Two person are grand&quot;);
+                grand1 &#x3D; Console.ReadLine();
+                grand2 &#x3D; Console.ReadLine();
+                a &#x3D; double.Parse(grand1);
+                b &#x3D; double.Parse(grand2);
+                Console.WriteLine(&quot;Please enter a numbr such as, 1 is A win , 0.5 is flat, 0 is A lost&quot;);
+                result1 &#x3D; Console.ReadLine();
+                result &#x3D; double.Parse(result1);
+                
+                &#x2F;&#x2F;跳出循环
+                if (result &#x3D;&#x3D; -1)
+                &#123;
+                    Console.WriteLine(&quot;Esc is ok&quot;);
+                    break;
+                &#125;
+                switch (result)
+                &#123;
+                    case 1:
+                        Player.liu(1, a, b);
+                        break;
+                    case 0:
+                        Player.liu(0, a, b);
+                        break;
+                    case 0.5:
+                        Player.liu(0.5, a, b);
+                        break;
+                    default:
+                        Console.WriteLine(&quot;it is not right number&quot;);
+                        break;
+                &#125;
+
+
+            &#125;
+        &#125;
+    &#125;
+
+    class Player
+    &#123;
+        public Player(double player1)
+        &#123;
+            this.score &#x3D; player1;
+        &#125;
+        double score;
+
+        public static void liu(double result, double a, double b)
+        &#123;
+
+            Player person1 &#x3D; new Player(a);
+            Player person2 &#x3D; new Player(b);
+
+            &#x2F;&#x2F;K值给了24
+            double c &#x3D; person1.score + 24 * (result - 1 &#x2F; (1 + Math.Pow(10, (person2.score - person1.score) &#x2F; 400)));
+            double d &#x3D; person2.score + 24 * ((1 - result) - 1 &#x2F; (1 + Math.Pow(10, (person1.score - person2.score) &#x2F; 400)));
+
+            Console.WriteLine(&quot;So the person1 of score &#123;0&#125; the person2 of score &#123;1&#125;&quot;, c, d);
+
+        &#125;
+
+    &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 

@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -506,7 +509,7 @@
 <p>​    反射包java.lang.reflect，三个类：InvocationHandler，Method，Proxy</p>
 <p>​    InvocationHandler(中文名：调用处理器)接口：其中只有一个方法invoke()</p>
 <p>​    invoke方法表示代理对象要执行的功能代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy,Method method,Object[] args)</span></span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">invoke</span><span class="token punctuation">(</span><span class="token class-name">Object</span> proxy<span class="token punctuation">,</span><span class="token class-name">Method</span> method<span class="token punctuation">,</span><span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>invoke方法的参数：</p>
 <ul>
@@ -514,7 +517,7 @@
 <li>Method：目标类中的方法</li>
 <li>Object[] args：目标类中方法的参数</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">newProxyInstance</span><span class="params">(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</span></span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Object</span> <span class="token function">newProxyInstance</span><span class="token punctuation">(</span><span class="token class-name">ClassLoader</span> loader<span class="token punctuation">,</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> interfaces<span class="token punctuation">,</span><span class="token class-name">InvocationHandler</span> h<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>newProxyInstance方法的参数：</p>
 <ul>
@@ -543,13 +546,15 @@
 <p>​    创建main类，在main方法中使用proxy类的静态方法创建代理对象，并由代理对象执行接口方法(增强后的)</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9YxQGq"><img src="https://s1.ax1x.com/2023/05/04/p9YxQGq.png" alt="p9YxQGq.png"></a></p>
 <h4 id="7-Proxy-newProxyInstance-方法的补充"><a href="#7-Proxy-newProxyInstance-方法的补充" class="headerlink" title="7. Proxy.newProxyInstance()方法的补充"></a>7. Proxy.newProxyInstance()方法的补充</h4><p>​    该方法的API</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">newProxyInstance</span><span class="params">(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</span></span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Object</span> <span class="token function">newProxyInstance</span><span class="token punctuation">(</span><span class="token class-name">ClassLoader</span> loader<span class="token punctuation">,</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> interfaces<span class="token punctuation">,</span><span class="token class-name">InvocationHandler</span> h<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​    第一个参数：loader为用于定义代理类的类加载器，目前我已知有两种写法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.先获得对象，如上面获得对象a，调用a.getClass().getClassLoader()获得</span></span><br><span class="line"><span class="comment">//2.知道对象的类，使用反射加载，如上面代码以learn接口为例，使用learn.class.getClassLoader()获得</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//1.先获得对象，如上面获得对象a，调用a.getClass().getClassLoader()获得</span>
+<span class="token comment">//2.知道对象的类，使用反射加载，如上面代码以learn接口为例，使用learn.class.getClassLoader()获得</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>​    第二个参数：interfaces为代理类要实现的接口列表，目前我已知也有两种写法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.先获得对象，如上面获得对象a，调用a.getClass().getInterfaces()获得</span></span><br><span class="line"><span class="comment">//2.知道对象的类，使用反射加载，如上面代码以learn接口为例，使用new class[]&#123;learn.class&#125;获得</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//1.先获得对象，如上面获得对象a，调用a.getClass().getInterfaces()获得</span>
+<span class="token comment">//2.知道对象的类，使用反射加载，如上面代码以learn接口为例，使用new class[]&#123;learn.class&#125;获得</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
                 

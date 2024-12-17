@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -475,7 +478,7 @@
 <h4 id="2-exit-函数"><a href="#2-exit-函数" class="headerlink" title="2. exit()函数"></a>2. exit()函数</h4><p>​    所在头文件：stdlib.h<br>​    功 能: 关闭所有文件，终止正在执行的进程。<br>​    exit(1)表示异常退出.这个1是返回给操作系统的。<br>​    exit(x)（x不为0）都表示异常退出<br>​    exit(0)表示正常退出<br>​    exit()的参数会被传递给一些操作系统，包括UNIX,Linux,和MS DOS，以供其他程序使用</p>
 <p>​    <em>注意：return是函数的退出(返回)；exit是进程的退出，return是语言级别的，它表示了调用堆栈的返回；而exit是系统调用级别的，它表示了一个进程的结束</em></p>
 <h4 id="3-return-函数的使用"><a href="#3-return-函数的使用" class="headerlink" title="3. return()函数的使用"></a>3. return()函数的使用</h4><p>​    即使返回值为void的时，最好可以写为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">return;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​    可以有效的告诉别人这个函数已经结束了，不写的话可能别人不知道你的函数已经终止了</p>
 <p>​    <strong>注意：如果函数需要有两个或多个返回值，需要使用指针来帮助存储</strong></p>

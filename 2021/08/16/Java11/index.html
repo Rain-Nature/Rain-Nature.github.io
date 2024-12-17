@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -508,7 +511,7 @@
 <h4 id="4-迭代器（Iterator-lt-E-gt-接口，E为元素迭代器返回元素类型）"><a href="#4-迭代器（Iterator-lt-E-gt-接口，E为元素迭代器返回元素类型）" class="headerlink" title="4. 迭代器（Iterator&lt; E &gt;接口，E为元素迭代器返回元素类型）"></a>4. 迭代器（Iterator&lt; E &gt;接口，E为元素迭代器返回元素类型）</h4><p>​    在Java中，有很多的数据容器，对于这些的操作有很多的共性。Java采用了迭代器来为各种容器提供了公共的操作接口。这样使得对容器的遍历操作与其具体的底层实现相隔离，达到解耦的效果，<strong>即：迭代器的作用是用来遍历集合元素</strong>，我们无需关心该序列的底层结构是什么样子的。只要拿到这个对象,使用迭代器就可以遍历这个对象的内部</p>
 <p>​    <strong>注意：一般使用增强for也可以遍历元素，但如果是无序的则需要用迭代器了</strong></p>
 <p>​    迭代器的创建</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;String&gt; a &#x3D; list.iterator();  &#x2F;&#x2F;在集合list下创建它的迭代器</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">Iterator&lt;String&gt; a &#x3D; list.iterator();  &#x2F;&#x2F;在集合list下创建它的迭代器<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​    迭代器的方法</p>
 <ul>
@@ -534,7 +537,9 @@
 <li>LinkedList类<br>​    采用链表结构保存对象，优点便于向集合中插入和删除对象，缺点对于随机访问时效率低，<strong>其操作是定位节点</strong><br>​    <strong>LinkedList是使用双向链表实现的</strong></li>
 </ul>
 <p>​    (4).List集合的声明<br>​    <strong>通常声明为List类型，然后通过不同的实现类来进行实例化</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;E为Java中合法的数据类型</span><br><span class="line">List&lt;E&gt; list &#x3D; new ArrayList&lt;&gt;(); </span><br><span class="line">List&lt;E&gt; list2 &#x3D; new LinkedList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;E为Java中合法的数据类型
+List&lt;E&gt; list &#x3D; new ArrayList&lt;&gt;(); 
+List&lt;E&gt; list2 &#x3D; new LinkedList&lt;&gt;();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p><strong>注意1：代码中小括号内是可以设置容量的，如果不写的话JDK 1.8 默认是10且建议初始化容量减少系统初始化容量的耗时</strong><br><strong>注意2：该构造方法并不是将ArrayList()初始化为指定长度，而是指定了其内部的Object数组的长度，也就是其容量。当我们调用size()时，返回的是其实际长度，而非容量大小。对超出ArrayList长度的部分进行访问或赋值操作时也会造成访问越界，尽管它的容量大小足够</strong></p>
 <p>​    <strong>注意：集合的索引与数组一样从0开始，而且使用remove方法删除数据时需要注意是否越界，即使用该方法时同时使用try-catch来捕捉异常</strong></p>
 <h4 id="5-Set集合"><a href="#5-Set集合" class="headerlink" title="5. Set集合"></a>5. Set集合</h4><p>​    (1).Set集合的对象不按特定的方式排序，只是简单的把对象加入集合中<br>​    <strong>Set的构造有一个约束条件，传入的Collection对象不能有重复值，加入Set的元素必须定义equals()方法以确保对象的唯一性(在上面List中是可以重复的) ，小心操作可变可变对象导致出现问题</strong> </p>
@@ -580,7 +585,7 @@
 </tbody></table>
 <p><a target="_blank" rel="noopener" href="https://imgtu.com/i/f2JSeS"><img src="https://z3.ax1x.com/2021/08/15/f2JSeS.png" alt="f2JSeS.png"></a></p>
 <p>​    (2).<strong>注意：Map是双列的,Collection是单列的</strong><br>​    Map集合的实例化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;*,*&gt; map &#x3D; new HashMap&lt;&gt;() &#x2F;&#x2F;*为你要的数据类型</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">Map&lt;*,*&gt; map &#x3D; new HashMap&lt;&gt;() &#x2F;&#x2F;*为你要的数据类型<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​    <strong>(3).Map和Set和List的关系</strong></p>
 <ul>

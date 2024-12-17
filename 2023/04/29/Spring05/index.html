@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -486,18 +489,19 @@
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9nCvHf"><img src="https://s1.ax1x.com/2023/04/24/p9nCvHf.png" alt="p9nCvHf.png"></a></p>
 <h4 id="4-JdbcTemplate的查询操作"><a href="#4-JdbcTemplate的查询操作" class="headerlink" title="4. JdbcTemplate的查询操作"></a>4. JdbcTemplate的查询操作</h4><p><strong>查询全部</strong></p>
 <p>​    对于查询多个参数使用的query()方法有两个参数，第一个参数是sql语句，第二个参数是<code>RowMapper&lt;T&gt;</code> 它是一个接口，返回<code>List&lt;T&gt;</code>的数据，在使用时传递一个Spring已经实现好这个接口的实现类<code>BeanPropertyRowMapper</code>，当然这个接口<code>RowMapper&lt;T&gt;</code>的实现类还有其他的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//泛型使用account，它是自己建的实体类的名称，方法传参传递该对象的字节码，即Account.class</span></span><br><span class="line">List&lt;Account&gt; accountList = jdbcTemplate.query(<span class="string">&quot;select * from account&quot;</span>,<span class="keyword">new</span> BeanPropertyRowMapper&lt;account&gt;(Account.class));</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//泛型使用account，它是自己建的实体类的名称，方法传参传递该对象的字节码，即Account.class</span>
+<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Account</span><span class="token punctuation">></span></span> accountList <span class="token operator">=</span> jdbcTemplate<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token string">"select * from account"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">BeanPropertyRowMapper</span><span class="token generics"><span class="token punctuation">&lt;</span>account<span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token class-name">Account</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>​    <strong>总结</strong>：查询表中的对象，使用<code>queryForObject(sql语句,RowMapper&lt;&gt;(),Object args)</code>,第二个参数可以写RowMapper接口的实现类实例，<code>BeanPropertyRowMappe&lt;标注返回类类型&gt;(返回类.class)</code>；第三个参数是你想要放入sql中的条件；</p>
 <p><strong>查询一个对象</strong></p>
 <p>​    queryForObject方法第一个参数是sql，第二个参数是接口的实现类<code>BeanPropertyRowMapper</code>，第三个参数传递<code>?</code>的值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Account account = jdbcTemplate.queryForObject(<span class="string">&quot;select *from account where name=?&quot;</span>,<span class="keyword">new</span> BeanPropertyRowMapper&lt;Account&gt;(Account.class),<span class="string">&quot;Tom&quot;</span>);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Account</span> account <span class="token operator">=</span> jdbcTemplate<span class="token punctuation">.</span><span class="token function">queryForObject</span><span class="token punctuation">(</span><span class="token string">"select *from account where name=?"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">BeanPropertyRowMapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Account</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token class-name">Account</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"Tom"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
 <p><strong>聚合查询</strong></p>
 <p>​    这个queryForObject方法第一个参数是sql，第二个参数是<code>Class&lt;T&gt; requiredType</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbcTemplate.queryForObject(&quot;select count(*) from account&quot;,Long.class);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">jdbcTemplate.queryForObject(&quot;select count(*) from account&quot;,Long.class);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
@@ -554,7 +558,10 @@
 <p>​    其中，<code>name=&quot;defaultErrorView&quot;</code>表示默认错误视图，value的属性值为要跳转的视图名称，<code>name=&quot;exceptionMappings&quot;</code>表示异常的映射们，key的属性值为异常的全限定名，当有该异常时跳转到后面value指定的页面(<strong>不同的异常类型可以设置跳转到不同的视图</strong>)，若都没有则执行默认的，即跳转到默认错误视图指定的那个页面</p>
 <h4 id="9-自定义异常处理步骤"><a href="#9-自定义异常处理步骤" class="headerlink" title="9. 自定义异常处理步骤"></a>9. 自定义异常处理步骤</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p93S1zD"><img src="https://s1.ax1x.com/2023/04/29/p93S1zD.png" alt="p93S1zD.png"></a></p>
 <p>​    新建一个Java类，在Java类中实现<code>HandlerExceptionResolver</code>接口，实现接口中的方法<code>resolveException(HttpServletRequest hsrt,HttpServletResonse hsre,Objecr o,Exception e)</code>，通过判断不同的异常执行不同的操作</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	参数Exception：异常对象</span></span><br><span class="line"><span class="comment">	返回值：ModelAndView：跳转到错误视图信息</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/*
+	参数Exception：异常对象
+	返回值：ModelAndView：跳转到错误视图信息
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9393bd"><img src="https://s1.ax1x.com/2023/04/29/p9393bd.png" alt="p9393bd.png"></a></p>
 <p>​    在Spring-mvc.xml中配置自定义的异常处理器</p>

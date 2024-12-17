@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -507,7 +510,26 @@
 </tbody></table>
 <p>​    <strong>注意：str可以传类型是字符串的列名</strong></p>
 <p>​    范例：字符串函数的使用</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- concat</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">concat</span>(<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--lower</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">lower</span>(<span class="string">&#x27;Hello&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--upper</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">upper</span>(<span class="string">&#x27;Hello&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--lpad</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">lpad</span>(<span class="string">&#x27;01&#x27;</span>,<span class="number">5</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--rpad</span></span><br><span class="line"><span class="keyword">SELECT</span> rpad(<span class="string">&#x27;01&#x27;</span>,<span class="number">5</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--trim</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">trim</span>(<span class="string">&#x27; hello world &#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--substring</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">substring</span>(<span class="string">&#x27;12345&#x27;</span>,<span class="number">1</span>,<span class="number">3</span>); //索引值从1开始</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- concat</span>
+<span class="token keyword">SELECT</span> concat<span class="token punctuation">(</span><span class="token string">'hello'</span><span class="token punctuation">,</span><span class="token string">'world'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">--lower</span>
+<span class="token keyword">SELECT</span> lower<span class="token punctuation">(</span><span class="token string">'Hello'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">--upper</span>
+<span class="token keyword">SELECT</span> upper<span class="token punctuation">(</span><span class="token string">'Hello'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">--lpad</span>
+<span class="token keyword">SELECT</span> lpad<span class="token punctuation">(</span><span class="token string">'01'</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token string">'0'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">--rpad</span>
+<span class="token keyword">SELECT</span> rpad<span class="token punctuation">(</span><span class="token string">'01'</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token string">'0'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">--trim</span>
+<span class="token keyword">SELECT</span> trim<span class="token punctuation">(</span><span class="token string">' hello world '</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">--substring</span>
+<span class="token keyword">SELECT</span> substring<span class="token punctuation">(</span><span class="token string">'12345'</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//索引值从1开始</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -541,7 +563,20 @@
 </tr>
 </tbody></table>
 <p>​    范例：数值函数的使用</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ceil</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ceil</span>(<span class="number">1.1</span>);  //结果2</span><br><span class="line"></span><br><span class="line"><span class="comment">-- floor</span></span><br><span class="line">SELSECT floor(1.1) //结果1</span><br><span class="line"></span><br><span class="line"><span class="comment">-- mod</span></span><br><span class="line">SELSET mod(3,4);  //3除4的余数，结果3</span><br><span class="line"></span><br><span class="line"><span class="comment">--rand</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">rand</span>(); //0~1随机数</span><br><span class="line"></span><br><span class="line"><span class="comment">--round</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">round</span>(<span class="number">2.345</span>,<span class="number">2</span>); //结果2.35</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- ceil</span>
+<span class="token keyword">SELECT</span> ceil<span class="token punctuation">(</span><span class="token number">1.1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//结果2</span>
+
+<span class="token comment">-- floor</span>
+SELSECT floor<span class="token punctuation">(</span><span class="token number">1.1</span><span class="token punctuation">)</span> <span class="token comment">//结果1</span>
+
+<span class="token comment">-- mod</span>
+SELSET <span class="token function">mod</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//3除4的余数，结果3</span>
+
+<span class="token comment">--rand</span>
+<span class="token keyword">SELECT</span> rand<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//0~1随机数</span>
+
+<span class="token comment">--round</span>
+<span class="token keyword">SELECT</span> <span class="token function">round</span><span class="token punctuation">(</span><span class="token number">2.345</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//结果2.35</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    注意：生成的数字可以作为字符串参与上面字符串函数中</p>
 <h4 id="3-日期函数"><a href="#3-日期函数" class="headerlink" title="3. 日期函数"></a>3. 日期函数</h4><p>​    常见日期函数如下：</p>
@@ -586,7 +621,29 @@
 </tr>
 </tbody></table>
 <p>​    范例：日期函数的使用</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- curdate</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">curdate</span>();  //结果2022-11-14</span><br><span class="line"></span><br><span class="line"><span class="comment">-- curtime</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">curtime</span>();  //结果9:29:15</span><br><span class="line"></span><br><span class="line"><span class="comment">-- now</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">now</span>();  //结果2022-11-14 9:29:54</span><br><span class="line"></span><br><span class="line"><span class="comment">-- year</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">year</span>(<span class="keyword">now</span>()); //结果2022</span><br><span class="line"></span><br><span class="line"><span class="comment">-- month</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">month</span>(<span class="keyword">now</span>());  //结果11</span><br><span class="line"></span><br><span class="line"><span class="comment">-- day</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">day</span>(<span class="keyword">now</span>());  //结果14</span><br><span class="line"></span><br><span class="line"><span class="comment">--date_add</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">date_add</span>(<span class="keyword">now</span>(),<span class="built_in">INTERVAL</span> <span class="number">10</span> <span class="keyword">DAY</span>);  //结果2022-11-24 10:05:31</span><br><span class="line"></span><br><span class="line"><span class="comment">-- datediff</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">datediff</span>(<span class="string">&#x27;2022-12-01&#x27;</span>,<span class="string">&#x27;2022-11-1&#x27;</span>); 结果30，注意如果前小后大则值为负数</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- curdate</span>
+<span class="token keyword">SELECT</span> curdate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//结果2022-11-14</span>
+
+<span class="token comment">-- curtime</span>
+<span class="token keyword">SELECT</span> curtime<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//结果9:29:15</span>
+
+<span class="token comment">-- now</span>
+<span class="token keyword">SELECT</span> <span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//结果2022-11-14 9:29:54</span>
+
+<span class="token comment">-- year</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">year</span><span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//结果2022</span>
+
+<span class="token comment">-- month</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">month</span><span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//结果11</span>
+
+<span class="token comment">-- day</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">day</span><span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//结果14</span>
+
+<span class="token comment">--date_add</span>
+<span class="token keyword">SELECT</span> date_add<span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">INTERVAL</span> <span class="token number">10</span> <span class="token keyword">DAY</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//结果2022-11-24 10:05:31</span>
+
+<span class="token comment">-- datediff</span>
+<span class="token keyword">SELECT</span> datediff<span class="token punctuation">(</span><span class="token string">'2022-12-01'</span><span class="token punctuation">,</span><span class="token string">'2022-11-1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 结果<span class="token number">30</span>，注意如果前小后大则值为负数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -616,7 +673,18 @@
 </tr>
 </tbody></table>
 <p>​    范例：流程控制函数的使用</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- if</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">if</span>(<span class="literal">true</span>,<span class="string">&#x27;ok&#x27;</span>,<span class="string">&#x27;error&#x27;</span>);  //结果ok</span><br><span class="line"></span><br><span class="line"><span class="comment">--ifnull</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ifnull</span>(<span class="literal">null</span>,<span class="string">&#x27;error&#x27;</span>);  //结果error</span><br><span class="line"></span><br><span class="line"><span class="comment">-- case when then else end</span></span><br><span class="line"><span class="comment">-- 需求：查询员工表emp中员工姓名和工作地址(北京/上海---&gt;一线城市，其他---&gt;二线城市)</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">name</span>,</span><br><span class="line">	(<span class="keyword">case</span> workaddress <span class="keyword">when</span> <span class="string">&#x27;北京&#x27;</span> <span class="keyword">then</span> <span class="string">&#x27;一线城市&#x27;</span> <span class="keyword">when</span> <span class="string">&#x27;上海&#x27;</span> <span class="keyword">then</span> <span class="string">&#x27;一线城市&#x27;</span> <span class="keyword">else</span> <span class="string">&#x27;二线城市&#x27;</span> <span class="keyword">end</span>) <span class="keyword">AS</span> <span class="string">&#x27;工作地址&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- if</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token string">'ok'</span><span class="token punctuation">,</span><span class="token string">'error'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//结果ok</span>
+
+<span class="token comment">--ifnull</span>
+<span class="token keyword">SELECT</span> ifnull<span class="token punctuation">(</span><span class="token boolean">null</span><span class="token punctuation">,</span><span class="token string">'error'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//结果error</span>
+
+<span class="token comment">-- case when then else end</span>
+<span class="token comment">-- 需求：查询员工表emp中员工姓名和工作地址(北京/上海--->一线城市，其他--->二线城市)</span>
+<span class="token keyword">SELECT</span>
+	name<span class="token punctuation">,</span>
+	<span class="token punctuation">(</span><span class="token keyword">case</span> workaddress <span class="token keyword">when</span> <span class="token string">'北京'</span> <span class="token keyword">then</span> <span class="token string">'一线城市'</span> <span class="token keyword">when</span> <span class="token string">'上海'</span> <span class="token keyword">then</span> <span class="token string">'一线城市'</span> <span class="token keyword">else</span> <span class="token string">'二线城市'</span> <span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'工作地址'</span>
+<span class="token keyword">FROM</span> emp<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -664,7 +732,12 @@
 </tbody></table>
 <p>​    注意：约束是作用于表中字段上的，可以在创建表/修改表的时候添加约束</p>
 <p>​    范例：约束的使用</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span>(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span>;</span><br><span class="line">	name VARCHAR(20) NOT NULL UNIQUE;</span><br><span class="line">	age INT <span class="keyword">CHECK</span>(age&gt;<span class="number">0</span> &amp;&amp; age&lt;=<span class="number">120</span>);</span><br><span class="line">	statues CHAR(1) DEFAULT &#x27;1&#x27;;</span><br><span class="line">)<span class="keyword">COMMENT</span> <span class="string">&#x27;用户表&#x27;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">user</span><span class="token punctuation">(</span>
+	id <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">;</span>
+	name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">UNIQUE</span><span class="token punctuation">;</span>
+	age <span class="token keyword">INT</span> <span class="token keyword">CHECK</span><span class="token punctuation">(</span>age<span class="token operator">></span><span class="token number">0</span> <span class="token operator">&amp;&amp;</span> age<span class="token operator">&lt;=</span><span class="token number">120</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	statues <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token string">'1'</span><span class="token punctuation">;</span>
+<span class="token punctuation">)</span><span class="token keyword">COMMENT</span> <span class="token string">'用户表'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -675,17 +748,29 @@
 <p>​    外键约束的语法：</p>
 <ul>
 <li><p>添加外键</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//建表时直接创建</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span><br><span class="line">	字段名 数据类型</span><br><span class="line">	...</span><br><span class="line">	[<span class="keyword">CONSTRAINT</span>] [外键名称] <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(外键字段名) REFRENCES 主表(主表列名)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">//表建立后修改外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 外键名称 <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(外键字段名) <span class="keyword">REFERENCES</span> 主表名(主表列名);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//建表时直接创建</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> 表名<span class="token punctuation">(</span>
+	字段名 数据类型
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+	<span class="token punctuation">[</span><span class="token keyword">CONSTRAINT</span><span class="token punctuation">]</span> <span class="token punctuation">[</span>外键名称<span class="token punctuation">]</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>外键字段名<span class="token punctuation">)</span> REFRENCES 主表<span class="token punctuation">(</span>主表列名<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//表建立后修改外键</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> 表名 <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> 外键名称 <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>外键字段名<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> 主表名<span class="token punctuation">(</span>主表列名<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>删除外键</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> 外键名称;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> 表名 <span class="token keyword">DROP</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> 外键名称<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
 </li>
 </ul>
 <p>​    范例：外键的操作</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//增加外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> emp <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_emp_dept_id <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (dept_id) <span class="keyword">REFERENCES</span> dept(<span class="keyword">id</span>);</span><br><span class="line"></span><br><span class="line">//删除外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> emp <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> fk_emp_dept_id;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//增加外键</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> emp <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> fk_emp_dept_id <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>dept_id<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> dept<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//删除外键</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> emp <span class="token keyword">DROP</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> fk_emp_dept_id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -719,7 +804,7 @@
 </tr>
 </tbody></table>
 <p>​    语法：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 外键名称 <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(外键字段名) <span class="keyword">REFERENCES</span> 主表名(主表列名) <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CASCADE</span> <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">CASCADE</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> 表名 <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> 外键名称 <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>外键字段名<span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> 主表名<span class="token punctuation">(</span>主表列名<span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​    <code>ON UPDATE</code>：表示更新时怎么操作</p>
 <p>​    <code>ON DELETE</code>：表示删除时怎么操作</p>

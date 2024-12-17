@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -553,24 +556,92 @@
 <h4 id="4-page属性范围-pageContext"><a href="#4-page属性范围-pageContext" class="headerlink" title="4. page属性范围(pageContext)"></a>4. page属性范围(pageContext)</h4><p>​    <strong>page属性范围：对象只能够在当前的JSP页面中使用</strong></p>
 <p>​    注意：page属性范围不是只使用page对象操作，事实上没有这个对象，我们是使用pageContext对象完成</p>
 <p>​    范例：通过pageContext设置本页面属性</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件page.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	pageContext.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>);</span><br><span class="line">	pageContext.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date());</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) pageContext.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) pageContext.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&#x2F;&#x2F;编写文件page.jsp
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.util.*&quot;%&gt;
+&lt;%&#x2F;&#x2F;设置属性
+	pageContext.setAttribute(&quot;name&quot;,&quot;LXS&quot;);
+	pageContext.setAttribute(&quot;this_time&quot;,new Date());
+%&gt;
+
+&lt;%&#x2F;&#x2F;取得属性
+	String tname &#x3D; (String) pageContext.getAttribute(&quot;name&quot;);
+	Date this_time &#x3D; (Date) pageContext.getAttribute(&quot;this_time&quot;);
+%&gt;
+&lt;h1&gt;姓名：&lt;%&#x3D;tname%&gt;&lt;&#x2F;h1&gt;
+&lt;h1&gt;时刻：&lt;%&#x3D;this_time%&gt;&lt;&#x2F;h1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    注意：pageContext的属性作用范围只在当前页面，如果发生跳转(不管是服务器跳转还是客户端跳转)那么pageContext所设置的属性的值不会保留到其他页面</p>
 <h4 id="5-request属性范围-request"><a href="#5-request属性范围-request" class="headerlink" title="5. request属性范围(request)"></a>5. request属性范围(request)</h4><p>​    如果想在执行服务器跳转后依然可以取得设置的属性内容，则可以采用request属性范围</p>
 <p>​    范例：使用request对象来传递服务器跳转的值</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件request_a.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	request.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>);</span><br><span class="line">	request.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date());</span><br><span class="line">%&gt;</span><br><span class="line"><span class="comment">//服务器端跳转</span></span><br><span class="line">&lt;jsp:forward page=<span class="string">&quot;request.jsp&quot;</span>/&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//编写文件request_b.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) request.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) request.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&#x2F;&#x2F;编写文件request_a.jsp
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.util.*&quot;%&gt;
+&lt;%&#x2F;&#x2F;设置属性
+	request.setAttribute(&quot;name&quot;,&quot;LXS&quot;);
+	request.setAttribute(&quot;this_time&quot;,new Date());
+%&gt;
+&#x2F;&#x2F;服务器端跳转
+&lt;jsp:forward page&#x3D;&quot;request.jsp&quot;&#x2F;&gt;
+
+
+&#x2F;&#x2F;编写文件request_b.jsp
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.util.*&quot;%&gt;
+&lt;%&#x2F;&#x2F;取得属性
+	String tname &#x3D; (String) request.getAttribute(&quot;name&quot;);
+	Date this_time &#x3D; (Date) request.getAttribute(&quot;this_time&quot;);
+%&gt;
+&lt;h1&gt;姓名：&lt;%&#x3D;tname%&gt;&lt;&#x2F;h1&gt;
+&lt;h1&gt;时刻：&lt;%&#x3D;this_time%&gt;&lt;&#x2F;h1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    注意：只有是服务器端跳转无论跳转几次，request设置的属性可以一直被保留下来</p>
 <p>​    <strong>注意：服务器端跳转与客户端跳转的最大使用区别：服务器端跳转可以传递request属性，而客户端跳转不能传递request属性</strong></p>
 <h4 id="6-session属性范围-session"><a href="#6-session属性范围-session" class="headerlink" title="6. session属性范围(session)"></a>6. session属性范围(session)</h4><p>​    如果不想受到跳转的类型限制，则可以继续扩大属性的保存范围，使用session范围，只要设置了一个session属性，那所有与之相关联的所有页面都可以访问。</p>
 <p>​    范例：session对象的使用</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件session_a.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	session.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>);</span><br><span class="line">	session.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date());</span><br><span class="line">%&gt;</span><br><span class="line"><span class="comment">//客户端跳转</span></span><br><span class="line">&lt;a href=&quot;session_b&quot;&gt;跳转&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//编写文件session_b.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) session.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) session.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&#x2F;&#x2F;编写文件session_a.jsp
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.util.*&quot;%&gt;
+&lt;%&#x2F;&#x2F;设置属性
+	session.setAttribute(&quot;name&quot;,&quot;LXS&quot;);
+	session.setAttribute(&quot;this_time&quot;,new Date());
+%&gt;
+&#x2F;&#x2F;客户端跳转
+&lt;a href&#x3D;&quot;session_b&quot;&gt;跳转&lt;&#x2F;a&gt;
+
+
+&#x2F;&#x2F;编写文件session_b.jsp
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.util.*&quot;%&gt;
+&lt;%&#x2F;&#x2F;取得属性
+	String tname &#x3D; (String) session.getAttribute(&quot;name&quot;);
+	Date this_time &#x3D; (Date) session.getAttribute(&quot;this_time&quot;);
+%&gt;
+&lt;h1&gt;姓名：&lt;%&#x3D;tname%&gt;&lt;&#x2F;h1&gt;
+&lt;h1&gt;时刻：&lt;%&#x3D;this_time%&gt;&lt;&#x2F;h1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    注意：虽然session属性范围可以包括所有的跳转页面，但如果关闭浏览器再次访问，session设置的属性会失效</p>
 <p>​    <strong>session最简单的概念为用于客户端描述一个个用户的信息，每个用户的信息彼此独立</strong></p>
 <h4 id="7-application属性范围-application"><a href="#7-application属性范围-application" class="headerlink" title="7. application属性范围(application)"></a>7. application属性范围(application)</h4><p>​    如果需要在浏览器关闭后，再次打开依然可以访问到我们设置的属性，那么需要将属性范围设置为application范围</p>
 <p>​    范例：application对象的使用</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件application_a.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	application.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>);</span><br><span class="line">	application.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date());</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//编写文件application_b.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) application.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) application.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&#x2F;&#x2F;编写文件application_a.jsp
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.util.*&quot;%&gt;
+&lt;%&#x2F;&#x2F;设置属性
+	application.setAttribute(&quot;name&quot;,&quot;LXS&quot;);
+	application.setAttribute(&quot;this_time&quot;,new Date());
+%&gt;
+
+
+&#x2F;&#x2F;编写文件application_b.jsp
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.util.*&quot;%&gt;
+&lt;%&#x2F;&#x2F;取得属性
+	String tname &#x3D; (String) application.getAttribute(&quot;name&quot;);
+	Date this_time &#x3D; (Date) application.getAttribute(&quot;this_time&quot;);
+%&gt;
+&lt;h1&gt;姓名：&lt;%&#x3D;tname%&gt;&lt;&#x2F;h1&gt;
+&lt;h1&gt;时刻：&lt;%&#x3D;this_time%&gt;&lt;&#x2F;h1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    注意：上述代码并没有写跳转语句，但当打开<code>application_a.jsp</code>再打开<code>application_b.jsp</code>，依然可以访问到设置的属性</p>
 <p>​    <strong>注意：只要设置了此属性，那么意味着属性保存在服务器上，所有的用户都可以访问到，与是否关闭浏览器无关，但如果关闭服务器，则该设置的属性失效，即如果服务器不关闭，该设置的属性将一直存在</strong></p>
@@ -616,7 +687,24 @@
 </tr>
 </tbody></table>
 <p>​    范例pageContext对应方法的进阶使用</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件pageContext_a.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//设置属性</span></span><br><span class="line">	pageContext.setAttribute(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;LXS&quot;</span>,<span class="number">4</span>);</span><br><span class="line">	pageContext.setAttribute(<span class="string">&quot;this_time&quot;</span>,<span class="keyword">new</span> Date(),<span class="number">4</span>);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//编写文件pageContext_b.jsp</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	String tname = (String) application.getAttribute(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	Date this_time = (Date) application.getAttribute(<span class="string">&quot;this_time&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;姓名：&lt;%=tname%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;时刻：&lt;%=this_time%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&#x2F;&#x2F;编写文件pageContext_a.jsp
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.util.*&quot;%&gt;
+&lt;%&#x2F;&#x2F;设置属性
+	pageContext.setAttribute(&quot;name&quot;,&quot;LXS&quot;,4);
+	pageContext.setAttribute(&quot;this_time&quot;,new Date(),4);
+%&gt;
+
+
+&#x2F;&#x2F;编写文件pageContext_b.jsp
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.util.*&quot;%&gt;
+&lt;%&#x2F;&#x2F;取得属性
+	String tname &#x3D; (String) application.getAttribute(&quot;name&quot;);
+	Date this_time &#x3D; (Date) application.getAttribute(&quot;this_time&quot;);
+%&gt;
+&lt;h1&gt;姓名：&lt;%&#x3D;tname%&gt;&lt;&#x2F;h1&gt;
+&lt;h1&gt;时刻：&lt;%&#x3D;this_time%&gt;&lt;&#x2F;h1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    pageContext是一个功能强大的对象，但是这个对象只能够在JSP中使用</p>
 

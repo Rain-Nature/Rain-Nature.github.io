@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -481,7 +484,7 @@
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppb9xOA"><img src="https://s1.ax1x.com/2023/04/09/ppb9xOA.png" alt="ppb9xOA.png"></a></p>
 <p>​    步骤总结：</p>
 <p>​    1. 通过maven导入Spring开发的基本包坐标<br>​    2. 编写Dao接口和实现类<br>​    3. 创建Spring核心配置文件，在main/resources/创建xml文件<br>​    4. 在Spring配置文件中配置UserDaoImpl<br>​    5. 使用Spring的API获得Bean实例</p>
-<h4 id="6-Spring配置文件xml的介绍"><a href="#6-Spring配置文件xml的介绍" class="headerlink" title="6.Spring配置文件xml的介绍"></a>6.Spring配置文件xml的介绍</h4><h5 id="1-Bean标签基本配置"><a href="#1-Bean标签基本配置" class="headerlink" title="(1)Bean标签基本配置"></a>(1)Bean标签基本配置</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;唯一标识&quot; class=&quot;类的全限定名&quot;&gt;&lt;/bean&gt; //bean和class是基本属性</span><br></pre></td></tr></table></figure>
+<h4 id="6-Spring配置文件xml的介绍"><a href="#6-Spring配置文件xml的介绍" class="headerlink" title="6.Spring配置文件xml的介绍"></a>6.Spring配置文件xml的介绍</h4><h5 id="1-Bean标签基本配置"><a href="#1-Bean标签基本配置" class="headerlink" title="(1)Bean标签基本配置"></a>(1)Bean标签基本配置</h5><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"唯一标识"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"类的全限定名"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span> <span class="token comment">//bean和class是基本属性</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​    默认情况下它调用的是类中的无参构造函数，如果没有无参构造函数则不能创建成功</p>
 <h5 id="2-Bean标签的范围配置"><a href="#2-Bean标签的范围配置" class="headerlink" title="(2)Bean标签的范围配置"></a>(2)Bean标签的范围配置</h5><p>​    属性  scope：指对象的作用范围，取值如下：</p>
@@ -517,18 +520,19 @@
 <p>​    单例是不管getBean(“id”)获取几次，都是同一地址的对象，多例获取几次，就创造几个对象，详细如下图所示</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppb8rIf"><img src="https://s1.ax1x.com/2023/04/09/ppb8rIf.png" alt="ppb8rIf.png"></a></p>
 <h5 id="3-Bean生命周期的配置"><a href="#3-Bean生命周期的配置" class="headerlink" title="(3)Bean生命周期的配置"></a>(3)Bean生命周期的配置</h5><p>​    属性  init-method：指定类中的初始化方法名称<br>​<br>​    属性  destroy-method：指定类中销毁方法名称<br>​<br>​    这些要指定的方法需要在接口实现类中编写，在使用bean标签加载时指定</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;唯一标识&quot; class=&quot;类的全限定名&quot; init-method=&quot;bean初始化要执行的方法名&quot; destroy-method=&quot;bean销毁时要执行的方法名&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"唯一标识"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"类的全限定名"</span> init<span class="token operator">-</span>method<span class="token operator">=</span><span class="token string">"bean初始化要执行的方法名"</span> destroy<span class="token operator">-</span>method<span class="token operator">=</span><span class="token string">"bean销毁时要执行的方法名"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​    bean的创建是在main函数中用Spring的API创建</p>
 <h5 id="4-Bean实例化三种方法"><a href="#4-Bean实例化三种方法" class="headerlink" title="(4)Bean实例化三种方法"></a>(4)Bean实例化三种方法</h5><ul>
 <li><p><strong>无参构造方法实例化</strong></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;给接口类起的唯一标识名&quot; class=&quot;该接口实现类的全限定名&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"给接口类起的唯一标识名"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"该接口实现类的全限定名"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>工厂静态方法实例化</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;给接口起的唯一标识名&quot; class=&quot;工厂类的全限定名&quot; factory-method=&quot;工厂类中返回该接口实现类的静态方法的名字&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"给接口起的唯一标识名"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"工厂类的全限定名"</span> factory<span class="token operator">-</span>method<span class="token operator">=</span><span class="token string">"工厂类中返回该接口实现类的静态方法的名字"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>工厂实例方法实例化</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;给工厂类起的唯一标识名&quot; class=&quot;工厂类的全限定名&quot;&gt;&lt;/bean&gt;</span><br><span class="line">&lt;bean id=&quot;给接口起的唯一标识名&quot; factory-bean=&quot;给工厂类起的唯一标识名&quot; factory-method=&quot;工厂类中返回该接口实现类的动态方法的名字&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"给工厂类起的唯一标识名"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"工厂类的全限定名"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span>
+<span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">"给接口起的唯一标识名"</span> factory<span class="token operator">-</span>bean<span class="token operator">=</span><span class="token string">"给工厂类起的唯一标识名"</span> factory<span class="token operator">-</span>method<span class="token operator">=</span><span class="token string">"工厂类中返回该接口实现类的动态方法的名字"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 
@@ -566,7 +570,7 @@
 <p>​    而后通过子标签配置值，如list标签设置为下图所示，其余两个略</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppqq2DK"><img src="https://s1.ax1x.com/2023/04/10/ppqq2DK.png" alt="ppqq2DK.png"></a></p>
 <h4 id="9-Spring配置文件的import标签"><a href="#9-Spring配置文件的import标签" class="headerlink" title="9.Spring配置文件的import标签"></a>9.Spring配置文件的import标签</h4><p>​    项目中的不同模块需要拆分，此时要在主配置文件引入这些模块需要使用import标签进行加载<br>​<br>​    语法：resource属性值为要引入的Spring配置文件的位置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">import</span> resource=<span class="string">&quot;applicationContext-xxx.xml&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span><span class="token keyword">import</span> <span class="token namespace">resource</span><span class="token operator">=</span><span class="token string">"applicationContext-xxx.xml"</span><span class="token operator">/</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​    当主文件加载时，分文件也会被加载<br>​<br>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/ppLLaXq"><img src="https://s1.ax1x.com/2023/04/11/ppLLaXq.png" alt="ppLLaXq.png"></a></p>
 <h4 id="10-小结"><a href="#10-小结" class="headerlink" title="10. 小结"></a>10. 小结</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppLOigs"><img src="https://s1.ax1x.com/2023/04/11/ppLOigs.png" alt="ppLOigs.png"></a></p>

@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -524,7 +527,10 @@
 </ul>
 <h4 id="7-浏览器的默认值"><a href="#7-浏览器的默认值" class="headerlink" title="7. 浏览器的默认值"></a>7. 浏览器的默认值</h4><p>​    在浏览器中，本身默认会自己设置一定的margin值和padding值</p>
 <p>​    要取消掉浏览器的默认值，则可以</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">	<span class="attribute">margin</span>:<span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">0px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">body</span><span class="token punctuation">&#123;</span>
+	<span class="token property">margin</span><span class="token punctuation">:</span>0px<span class="token punctuation">;</span>
+	<span class="token property">padding</span><span class="token punctuation">:</span>0px<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    上段代码就是手工初始化CSS</p>
 <h4 id="8-display属性和实例"><a href="#8-display属性和实例" class="headerlink" title="8. display属性和实例"></a>8. display属性和实例</h4><h5 id="行高"><a href="#行高" class="headerlink" title="行高"></a>行高</h5><p>​    行内元素在浏览器中只能得到一行高度的空间，行高由<code>line-height</code> 属性(像素或百分比为单位)决定，如果没有设置该属性，则为内容的默认高度</p>

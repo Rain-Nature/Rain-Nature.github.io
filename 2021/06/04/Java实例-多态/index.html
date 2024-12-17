@@ -463,12 +463,77 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="多态实例"><a href="#多态实例" class="headerlink" title="多态实例"></a>多态实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.text.DecimalFormat;</span><br><span class="line">import java.util.Random;</span><br><span class="line">import java.lang.Math;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		choose(new child1());</span><br><span class="line">		choose(new child2());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void choose(father a) &#123;</span><br><span class="line">		a.Todo();</span><br><span class="line">		if(a instanceof child1) &#123;</span><br><span class="line">			((child1) a).eat();&#x2F;&#x2F;父类中没有的方法和类型必须要向下转型后才能调用</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		else if(a instanceof child2) &#123;</span><br><span class="line">			((child2) a).eat();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class father&#123;</span><br><span class="line">	public father() &#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void Todo() &#123;</span><br><span class="line">		System.out.println(&quot;work&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class child1 extends father&#123;</span><br><span class="line">	public child1() &#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void Todo() &#123;</span><br><span class="line">		System.out.println(&quot;study&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void eat() &#123;</span><br><span class="line">		System.out.println(&quot;fish&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class child2 extends father&#123;</span><br><span class="line">	public child2() &#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void Todo() &#123;</span><br><span class="line">		System.out.println(&quot;sing&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void eat() &#123;</span><br><span class="line">		System.out.println(&quot;fish&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                <h2 id="多态实例"><a href="#多态实例" class="headerlink" title="多态实例"></a>多态实例</h2><pre class="line-numbers language-none"><code class="language-none">package hello;
+
+import java.text.DecimalFormat;
+import java.util.Random;
+import java.lang.Math;
+
+public class First&#123;
+	
+	
+	public static void main(String[] args) &#123;
+		choose(new child1());
+		choose(new child2());
+	&#125;
+	
+	public static void choose(father a) &#123;
+		a.Todo();
+		if(a instanceof child1) &#123;
+			((child1) a).eat();&#x2F;&#x2F;父类中没有的方法和类型必须要向下转型后才能调用
+		&#125;
+		
+		else if(a instanceof child2) &#123;
+			((child2) a).eat();
+		&#125;
+	&#125;
+&#125;
+
+class father&#123;
+	public father() &#123;
+		
+	&#125;
+	
+	public void Todo() &#123;
+		System.out.println(&quot;work&quot;);
+	&#125;
+&#125;
+
+class child1 extends father&#123;
+	public child1() &#123;
+		super();
+	&#125;
+	
+	public void Todo() &#123;
+		System.out.println(&quot;study&quot;);
+	&#125;
+	
+	public void eat() &#123;
+		System.out.println(&quot;fish&quot;);
+	&#125;
+&#125;
+
+class child2 extends father&#123;
+	public child2() &#123;
+		super();
+	&#125;
+	
+	public void Todo() &#123;
+		System.out.println(&quot;sing&quot;);
+	&#125;
+	
+	public void eat() &#123;
+		System.out.println(&quot;fish&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>

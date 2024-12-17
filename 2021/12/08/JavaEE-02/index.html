@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -472,15 +475,16 @@
 <ul>
 <li><p>显式注释</p>
 <p>使用的是HTML风格的注释</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--注释--&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;!--注释--&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>隐式注释</p>
 <ul>
 <li><p>使用Java语言提供的注释</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">单行注释(&#x2F;&#x2F;)</span><br><span class="line">多行注释(&#x2F;* ... *&#x2F;)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">单行注释(&#x2F;&#x2F;)
+多行注释(&#x2F;* ... *&#x2F;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 <li><p>JSP提供的注释</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%-- 注释 --%&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;%-- 注释 --%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
@@ -495,32 +499,95 @@
 <p>​    <strong>注意：一个JSP文件里面可以同时编写多个Scriptlet，且相互关联</strong></p>
 <h5 id="第一种Scriptlet：-lt-gt"><a href="#第一种Scriptlet：-lt-gt" class="headerlink" title="第一种Scriptlet：&lt;%%&gt;"></a>第一种Scriptlet：&lt;%%&gt;</h5><p>​    在这种Scriptlet里面只能够编写<strong>局部变量、程序语句</strong></p>
 <p>​    范例：观察&lt;%%&gt;</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">	<span class="comment">//局部变量，每次页面刷新(执行)都要重新执行(重复声明)</span></span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">100</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+num+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%
+	&#x2F;&#x2F;局部变量，每次页面刷新(执行)都要重新执行(重复声明)
+	int num &#x3D; 100;
+%&gt;
+
+&lt;%
+	out.println(&quot;&lt;h1&gt;&quot;+num+&quot;&lt;&#x2F;h1&gt;&quot;);
+%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    一般，在一个JSP文件中使用的最多的就是“&lt;%%&gt;”，里面就定义一些基础的局部变量</p>
 <h5 id="第二种Scriptlet：-lt-gt"><a href="#第二种Scriptlet：-lt-gt" class="headerlink" title="第二种Scriptlet：&lt;%!%&gt;"></a>第二种Scriptlet：&lt;%!%&gt;</h5><p>​    这种Scriptlet定义的变量为全局变量，还可以定义全局常量、方法、类</p>
 <p>​    范例：定义全局变量</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        <span class="comment">//声明全局变量，只在第一次生成页面时声明，之后刷新页面不会再将100赋值给num，num为最近一次更新的值</span></span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">100</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+num+++<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%!        &#x2F;&#x2F;声明全局变量，只在第一次生成页面时声明，之后刷新页面不会再将100赋值给num，num为最近一次更新的值
+	int num &#x3D; 100;
+%&gt;
+
+&lt;%
+	out.println(&quot;&lt;h1&gt;&quot;+num+++&quot;&lt;&#x2F;h1&gt;&quot;);
+%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    此时，随着页面刷新，显示的数字也会不断增加，重新打开界面仍为之前退出去前的数字</p>
 <p>​    <strong>注意：一般不会这样使用代码来编写程序</strong></p>
 <p>​    范例：定义全局常量</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String str = <span class="string">&quot;HELLO&quot;</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+str+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%!        
+	public static final String str &#x3D; &quot;HELLO&quot;;
+%&gt;
+
+&lt;%
+	out.println(&quot;&lt;h1&gt;&quot;+str+&quot;&lt;&#x2F;h1&gt;&quot;);
+%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    <strong>基本上在“&lt;%!%&gt;”能用到的只是定义全局常量(常量)功能</strong></p>
 <p>​    范例：定义类和方法</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        </span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">fish</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> String name;</span><br><span class="line">		<span class="keyword">private</span> String color;</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">fish</span><span class="params">(String name,String color)</span></span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.name = name;</span><br><span class="line">			<span class="keyword">this</span>.color = color;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> String <span class="title">getfish</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&quot;name: &quot;</span>+<span class="keyword">this</span>.name +<span class="string">&quot; color : &quot;</span>+<span class="keyword">this</span>.color;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">buy</span><span class="params">(<span class="keyword">double</span> ... args)</span></span>&#123;</span><br><span class="line">		<span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">double</span> x: args)&#123;</span><br><span class="line">			sum = sum+x;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+<span class="keyword">new</span> fish(<span class="string">&quot;red fish&quot;</span>,<span class="string">&quot;red&quot;</span>).getfish()+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">	out.println(<span class="string">&quot;&lt;h1&gt;&quot;</span>+buy(<span class="number">11.1</span>,<span class="number">56.3</span>)+<span class="string">&quot;&lt;/h1&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%!        
+	class fish&#123;
+		private String name;
+		private String color;
+		
+		public fish(String name,String color)&#123;
+			this.name &#x3D; name;
+			this.color &#x3D; color;
+		&#125;
+
+		public String getfish()&#123;
+			return &quot;name: &quot;+this.name +&quot; color : &quot;+this.color;
+		&#125;
+	&#125;
+	public static double buy(double ... args)&#123;
+		double sum &#x3D; 0;
+		for(double x: args)&#123;
+			sum &#x3D; sum+x;
+		&#125;
+		return sum;
+	&#125;
+%&gt;
+
+&lt;%
+	out.println(&quot;&lt;h1&gt;&quot;+new fish(&quot;red fish&quot;,&quot;red&quot;).getfish()+&quot;&lt;&#x2F;h1&gt;&quot;);
+	out.println(&quot;&lt;h1&gt;&quot;+buy(11.1,56.3)+&quot;&lt;&#x2F;h1&gt;&quot;);
+%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    一般也不会这样写代码，只有业余的那部分人会在JSP里面直接编写一堆的Java类或者是方法。</p>
 <h5 id="第三种Scriptlet：-lt-gt"><a href="#第三种Scriptlet：-lt-gt" class="headerlink" title="第三种Scriptlet：&lt;%=%&gt;"></a>第三种Scriptlet：&lt;%=%&gt;</h5><p>​    out.println()可以向页面中进行内容显示输出，但是在JSP中，<strong>输出某个变量、常量、方法的返回值，可以使用表达式输出的Scriptlet完成：&lt;%=%&gt;</strong></p>
 <p>​    范例：观察表达式输出</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!        </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String str = <span class="string">&quot;HELLO&quot;</span>;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;&lt;%=str%&gt;&lt;h1&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%!        
+	public static final String str &#x3D; &quot;HELLO&quot;;
+%&gt;
+
+&lt;h1&gt;&lt;%&#x3D;str%&gt;&lt;h1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    这种Scriptlet可以很好的代替out.println()</p>
 <p>​    <strong>那么这两种输出方式选哪种</strong></p>
 <p>​    范例：使用两种形式打印乘法口诀表</p>
 <p>1.使用out.println()打印</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;table&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">1</span> ; x &lt;= <span class="number">9</span> ; x++)&#123;</span><br><span class="line">		out.println(<span class="string">&quot;&lt;tr&gt;&quot;</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> y = <span class="number">1</span> ; y&lt;=x ;y++)&#123;</span><br><span class="line">			out.println(<span class="string">&quot;&lt;td&gt;&quot;</span>+x+<span class="string">&quot;*&quot;</span>+ y+<span class="string">&quot;=&quot;</span>+x*y+<span class="string">&quot;&lt;/td&gt;&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		out.println(<span class="string">&quot;&lt;/tr&gt;&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	out.println(<span class="string">&quot;&lt;/table&gt;&quot;</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%
+	out.println(&quot;&lt;table&gt;&quot;);
+%&gt;
+&lt;%
+	for(int x &#x3D; 1 ; x &lt;&#x3D; 9 ; x++)&#123;
+		out.println(&quot;&lt;tr&gt;&quot;);
+		for(int y &#x3D; 1 ; y&lt;&#x3D;x ;y++)&#123;
+			out.println(&quot;&lt;td&gt;&quot;+x+&quot;*&quot;+ y+&quot;&#x3D;&quot;+x*y+&quot;&lt;&#x2F;td&gt;&quot;);
+		&#125;
+		out.println(&quot;&lt;&#x2F;tr&gt;&quot;);
+	&#125;
+%&gt;
+&lt;%
+	out.println(&quot;&lt;&#x2F;table&gt;&quot;);
+%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    以上代码完成了开发需要，但是存在如下问题</p>
 <ul>
@@ -531,49 +598,82 @@
 </li>
 </ul>
 <p>2.使用表达式输出</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">1</span> ; x &lt;= <span class="number">9</span> ; x++)&#123;</span><br><span class="line">%&gt;</span><br><span class="line">	&lt;tr&gt;</span><br><span class="line">&lt;%</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> y = <span class="number">1</span> ; y&lt;x ;y++)&#123;</span><br><span class="line">%&gt;</span><br><span class="line">		&lt;td&gt;&lt;%=x%&gt;*&lt;%=y%&gt;=&lt;%=x*y%&gt;&lt;/td&gt;</span><br><span class="line">&lt;%</span><br><span class="line">		&#125;</span><br><span class="line">%&gt;</span><br><span class="line">	&lt;/tr&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;table&gt;
+&lt;%
+	for(int x &#x3D; 1 ; x &lt;&#x3D; 9 ; x++)&#123;
+%&gt;
+	&lt;tr&gt;
+&lt;%
+		for(int y &#x3D; 1 ; y&lt;x ;y++)&#123;
+%&gt;
+		&lt;td&gt;&lt;%&#x3D;x%&gt;*&lt;%&#x3D;y%&gt;&#x3D;&lt;%&#x3D;x*y%&gt;&lt;&#x2F;td&gt;
+&lt;%
+		&#125;
+%&gt;
+	&lt;&#x2F;tr&gt;
+&lt;%
+	&#125;
+%&gt;
+&lt;&#x2F;table&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    此时的程序与out.println()相比最大的好处在于代码简化，而且功能又相同</p>
 <p>​    <strong>注意：在以后的所有开发中，只要是JSP页面不允许使用out.println()输出，JSP的内容输出永远都依靠表达式输出完成</strong></p>
 <h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>​    如果把JSP页面当成一个Java类的话</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class xxx.jsp&#123;</span><br><span class="line">	全局变量; &lt;%!%&gt;</span><br><span class="line">	全局常量; &lt;%!%&gt;</span><br><span class="line">	public void 方法()&#123;</span><br><span class="line">		局部变量;&lt;%%&gt;</span><br><span class="line">		语句;&lt;%%&gt;</span><br><span class="line">		输出;&lt;%&#x3D;%&gt;</span><br><span class="line">	&#125;</span><br><span class="line">	class 内部类&#123;&#125;&lt;%!%&gt;</span><br><span class="line">	方法;&lt;%!%&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">class xxx.jsp&#123;
+	全局变量; &lt;%!%&gt;
+	全局常量; &lt;%!%&gt;
+	public void 方法()&#123;
+		局部变量;&lt;%%&gt;
+		语句;&lt;%%&gt;
+		输出;&lt;%&#x3D;%&gt;
+	&#125;
+	class 内部类&#123;&#125;&lt;%!%&gt;
+	方法;&lt;%!%&gt;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <h4 id="3-page指令"><a href="#3-page指令" class="headerlink" title="3. page指令"></a>3. page指令</h4><p>​    page主要功能是定义一个页面中的全部属性，里面会包含很多的选项</p>
 <p>​    page是JSP页面开发中用到的最多的一个操作</p>
 <p>​    <strong>page指令的语法格式</strong></p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page 属性名<span class="number">1</span> = <span class="string">&quot;value1&quot;</span> 属性名<span class="number">2</span> = <span class="string">&quot;value2&quot;</span> ... %&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%@ page 属性名1 &#x3D; &quot;value1&quot; 属性名2 &#x3D; &quot;value2&quot; ... %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
 <h5 id="1-解决显示乱码"><a href="#1-解决显示乱码" class="headerlink" title="1. 解决显示乱码"></a>1. 解决显示乱码</h5><p>​    (1).如果是一个<strong>HTML文件</strong>，对于乱码可以使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meta charset &#x3D; &#39;UTF-8&#39;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">meta charset &#x3D; &#39;UTF-8&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>的方式解决，<strong>其指定了页面的编码</strong>，浏览器在解析的时候被指定了编码，就可以准确的使用特定的解码方式进行显示</p>
 <p>​    (2).<strong>jsp如果要设置浏览器支持的编码(浏览器会有默认的解码格式)，可以使用pageEncoding属性完成</strong></p>
 <p>​    范例：设置浏览器的编码(.jsp文件)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@page</span> pageEncoding = <span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;中文&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%@page pageEncoding &#x3D; &quot;UTF-8&quot;%&gt;
+&lt;h1&gt;中文&lt;&#x2F;h1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>​    <strong>注意：pageEncoding的编码设置只能一次，多次会报错</strong></p>
 <p>​    (3).设置MIME类型</p>
 <p>​    MIME指的是多路Internet媒体访问协议。相当于通过MIME类型定义出当前页面的执行方式</p>
 <p>​    所有支持的MIME类型都在Tomcat安装目录中/conf/web.xml文件里面定义，<strong>里面定义了各种文件的执行方式</strong></p>
 <p>​    范例：设置MIME类型，其优先级大于第二种设置方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType&#x3D;&quot;text&#x2F;html; charset&#x3D;UTF-8&quot;%&gt;</span><br><span class="line">&lt;h1&gt;中文&lt;&#x2F;h1&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&lt;%@ page contentType&#x3D;&quot;text&#x2F;html; charset&#x3D;UTF-8&quot;%&gt;
+&lt;h1&gt;中文&lt;&#x2F;h1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>​    <strong>注意：不要乱加空格，尤其是等号那里</strong></p>
 <p>​    这个设置与上面的第二种不冲突</p>
 <p>​    MIME类型一般不需要设置，默认就是“text/html”</p>
 <p>​    <strong>contentType为MIME类型，设置文件运行方式，可以更改为其他形式，如更改为word形式</strong></p>
 <p>​    范例：将jsp页面 以word格式下载</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;application/msword&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;中文&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%@ page contentType&#x3D;&quot;application&#x2F;msword&quot;%&gt;
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;h1&gt;中文&lt;&#x2F;h1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>​    此时运行会弹出下载框，下载word文件，<strong>这个在ie中才明显，一般浏览器感受不到</strong></p>
 <p>​    现在对于编码的设置一般都是使用第二种</p>
 <h5 id="2-使用page来使用Java中的import操作"><a href="#2-使用page来使用Java中的import操作" class="headerlink" title="2. 使用page来使用Java中的import操作"></a>2. 使用<code>page</code>来使用Java中的<code>import</code>操作</h5><p>​     在page指令里面几乎所有的指令都只能够设置一次，但是import指令可以使用多次，表示导入开发包</p>
 <p>​    范例：使用Java中的<code>import</code>(可以一行导入也可以多行导入)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.io.*,java.text.*&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;&lt;%=new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(new Date())%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.io.*,java.text.*&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.util.*&quot;%&gt;
+&lt;h1&gt;&lt;%&#x3D;new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(new Date())%&gt;&lt;&#x2F;h1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    只要能导包，那么所有的系统类都可以调用</p>
 <h5 id="3-数据库操作"><a href="#3-数据库操作" class="headerlink" title="3. 数据库操作"></a>3. 数据库操作</h5><p>​    因为可以进行导包操作，所以意味着可以在JSP页面上进行数据库的数据操作</p>
@@ -587,11 +687,24 @@
 </ul>
 <p>​    很明显第二种更加适合代码维护，所以此处就需要使用包含指令，但<strong>在JSP中对于包含指令有两种提供形式</strong></p>
 <h5 id="1-静态包含：-lt-include-gt"><a href="#1-静态包含：-lt-include-gt" class="headerlink" title="1. 静态包含：&lt;%@include%&gt;"></a>1. 静态包含：<code>&lt;%@include%&gt;</code></h5><p>​    静态包含的语法：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">&quot;包含文件路径&quot;</span>%&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;%@include file&#x3D;&quot;包含文件路径&quot;%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​    <strong>静态包含可以包含任意的文件内容</strong></p>
 <p>​    范例：实现静态包含操作(定义几个被包含的页面)   </p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.jsp页面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&#x27;UTF-8&#x27;</span>%&gt;</span><br><span class="line">&lt;% String str = <span class="string">&quot;这是页面一&quot;</span>;%&gt;</span><br><span class="line">&lt;%=str%&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.html页面</span></span><br><span class="line">&lt;meta charset = <span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&#x27;UTF-8&#x27;</span>%&gt; <span class="comment">//保证引用后页面中文不会乱码</span></span><br><span class="line">&lt;h1&gt;这是页面2&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//all.jsp</span></span><br><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html; charset=UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">&quot;2.html&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@include</span> file=<span class="string">&quot;1.jsp&quot;</span>%&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&#x2F;&#x2F;1.jsp页面
+&lt;%@ page pageEncoding&#x3D;&#39;UTF-8&#39;%&gt;
+&lt;% String str &#x3D; &quot;这是页面一&quot;;%&gt;
+&lt;%&#x3D;str%&gt;
+
+&#x2F;&#x2F;2.html页面
+&lt;meta charset &#x3D; &quot;UTF-8&quot;&gt;
+&lt;%@ page pageEncoding&#x3D;&#39;UTF-8&#39;%&gt; &#x2F;&#x2F;保证引用后页面中文不会乱码
+&lt;h1&gt;这是页面2&lt;&#x2F;h2&gt;
+
+&#x2F;&#x2F;all.jsp
+&lt;%@ page contentType&#x3D;&quot;text&#x2F;html; charset&#x3D;UTF-8&quot;%&gt;
+&lt;%@include file&#x3D;&quot;2.html&quot;%&gt;
+&lt;%@include file&#x3D;&quot;1.jsp&quot;%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    <strong>注意：使用jsp包含html页面时，会一起编译为java代码进行处理，此时就需要对html页面进行设置防止乱码</strong></p>
 <p>​    在这个程序中文件名为中文不影响结果</p>
@@ -607,7 +720,7 @@
 <p>​    动态包含的语法格式定义：</p>
 <ul>
 <li><p>定义一：包含的页面不接收递参数</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:include page=<span class="string">&quot;路径&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;jsp:include page&#x3D;&quot;路径&quot;&#x2F;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
@@ -615,7 +728,12 @@
 </ul>
 <ul>
 <li><p>定义二：包含的页面需要接收参数</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:include page=<span class="string">&quot;路径&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/jsp:include&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;jsp:include page&#x3D;&quot;路径&quot;&gt;
+	&lt;jsp:param name&#x3D;&quot;参数名称&quot; value&#x3D;&quot;参数内容&quot;&#x2F;&gt;
+	&lt;jsp:param name&#x3D;&quot;参数名称&quot; value&#x3D;&quot;参数内容&quot;&#x2F;&gt;
+	&lt;jsp:param name&#x3D;&quot;参数名称&quot; value&#x3D;&quot;参数内容&quot;&#x2F;&gt;
+	...
+&lt;&#x2F;jsp:include&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -625,7 +743,19 @@
 <p>​    <strong>注意：标签指令不能写在Scriptlet里面，其和HTML标签相似</strong></p>
 <p>​    如果要在标签指令中使用Scriptlet里面定义的变量内容，则必须使用表达式输出的方式(<code>&lt;%=%&gt;</code>)</p>
 <p>​    范例：实现参数的发送和接收</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//send.jsp,发送并显示receive.jsp界面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;jsp:include page=<span class="string">&quot;receive.jsp&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;a&quot;</span> value=<span class="string">&quot;刘旭晟&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;do&quot;</span> value=<span class="string">&quot;说&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;proclaim&quot;</span> value=<span class="string">&quot;共产党万岁&quot;</span>/&gt;</span><br><span class="line">&lt;/jsp:include&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//receive.jsp,接收端需要接收参数传递内容</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%=request.getParameter(<span class="string">&quot;a&quot;</span>)%&gt;</span><br><span class="line">&lt;%=request.getParameter(<span class="string">&quot;do&quot;</span>)%&gt;</span><br><span class="line">&lt;%=request.getParameter(<span class="string">&quot;proclaim&quot;</span>)%&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&#x2F;&#x2F;send.jsp,发送并显示receive.jsp界面
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;jsp:include page&#x3D;&quot;receive.jsp&quot;&gt;
+	&lt;jsp:param name&#x3D;&quot;a&quot; value&#x3D;&quot;刘旭晟&quot;&#x2F;&gt;
+	&lt;jsp:param name&#x3D;&quot;do&quot; value&#x3D;&quot;说&quot;&#x2F;&gt;
+	&lt;jsp:param name&#x3D;&quot;proclaim&quot; value&#x3D;&quot;共产党万岁&quot;&#x2F;&gt;
+&lt;&#x2F;jsp:include&gt;
+
+&#x2F;&#x2F;receive.jsp,接收端需要接收参数传递内容
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%&#x3D;request.getParameter(&quot;a&quot;)%&gt;
+&lt;%&#x3D;request.getParameter(&quot;do&quot;)%&gt;
+&lt;%&#x3D;request.getParameter(&quot;proclaim&quot;)%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -645,7 +775,7 @@
 <p>​    跳转指令的两种定义形式：</p>
 <ul>
 <li><p>定义一：不向跳转页面传递参数：</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:forward page=<span class="string">&quot;路径&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;jsp:forward page&#x3D;&quot;路径&quot;&#x2F;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
@@ -653,18 +783,35 @@
 </ul>
 <ul>
 <li><p>定义二：向跳转页面传递参数</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:forward page=<span class="string">&quot;路径&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;参数名称&quot;</span> value=<span class="string">&quot;参数内容&quot;</span>/&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/jsp:forward&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;jsp:forward page&#x3D;&quot;路径&quot;&gt;
+	&lt;jsp:param name&#x3D;&quot;参数名称&quot; value&#x3D;&quot;参数内容&quot;&#x2F;&gt;
+	&lt;jsp:param name&#x3D;&quot;参数名称&quot; value&#x3D;&quot;参数内容&quot;&#x2F;&gt;
+	&lt;jsp:param name&#x3D;&quot;参数名称&quot; value&#x3D;&quot;参数内容&quot;&#x2F;&gt;
+	...
+&lt;&#x2F;jsp:forward&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 </li>
 </ul>
 <p>​    范例：实现跳转</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//要跳转到的界面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;h1&gt;&lt;%=request.getParameter(&quot;paramA&quot;)%&gt;&lt;/h1&gt;</span><br><span class="line">&lt;h1&gt;&lt;%=request.getParameter(&quot;paramB&quot;)%&gt;&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//跳转界面</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;jsp:forward page=<span class="string">&quot;param.jsp&quot;</span>&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;paramA&quot;</span> value=<span class="string">&quot;int&quot;</span>/&gt;</span><br><span class="line">	&lt;jsp:param name=<span class="string">&quot;paramB&quot;</span> value=<span class="string">&quot;double&quot;</span>/&gt;</span><br><span class="line">&lt;/jsp:forward&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&#x2F;&#x2F;要跳转到的界面
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;h1&gt;&lt;%&#x3D;request.getParameter(&quot;paramA&quot;)%&gt;&lt;&#x2F;h1&gt;
+&lt;h1&gt;&lt;%&#x3D;request.getParameter(&quot;paramB&quot;)%&gt;&lt;&#x2F;h1&gt;
+
+&#x2F;&#x2F;跳转界面
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;jsp:forward page&#x3D;&quot;param.jsp&quot;&gt;
+	&lt;jsp:param name&#x3D;&quot;paramA&quot; value&#x3D;&quot;int&quot;&#x2F;&gt;
+	&lt;jsp:param name&#x3D;&quot;paramB&quot; value&#x3D;&quot;double&quot;&#x2F;&gt;
+&lt;&#x2F;jsp:forward&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    像以上代码这种跳转之后地址栏不发生改变，但页面内容发生改变，<strong>这种跳转称为服务器端跳转</strong></p>
 <p>​    <strong>还有一种跳转会连地址栏一起跳转的叫客户端跳转</strong>，实现方式是使用Javascript，或者可以使用超链接跳转也是一样的</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="built_in">window</span>.location = <span class="string">&quot;param.jsp&quot;</span>;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+	window<span class="token punctuation">.</span>location <span class="token operator">=</span> <span class="token string">"param.jsp"</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>​    <strong>结论</strong>    </p>
 <p>​    地址栏不改变的跳转称为服务器跳转</p>

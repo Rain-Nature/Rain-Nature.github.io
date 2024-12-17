@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -484,7 +487,9 @@
 <li>操作系统根据编号执行相应代码</li>
 </ol>
 <h4 id="5-int-0x80的具体实现"><a href="#5-int-0x80的具体实现" class="headerlink" title="5. int 0x80的具体实现"></a>5. int 0x80的具体实现</h4><p>​    int指令通过查看idt表来选择中断需要转去哪里进行执行<br>​    idt表和gdt表长的非常相似<br>​    在系统进行初始化时，就已经对int 0x80进行处理定义</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sched_init</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">set_system_gate(<span class="number">0x80</span>,&amp;system_call) <span class="comment">//每次要调用时就取中断函数地址system_call调用0x80</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">sched_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+<span class="token function">set_system_gate</span><span class="token punctuation">(</span><span class="token number">0x80</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>system_call<span class="token punctuation">)</span> <span class="token comment">//每次要调用时就取中断函数地址system_call调用0x80</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>​    int 0x80进入后将DPL制成3，CS为8，IP=system_call，CPL为CS的后两位为0</p>
 <p>​    从int 0x80返回后就一切恢复之前</p>

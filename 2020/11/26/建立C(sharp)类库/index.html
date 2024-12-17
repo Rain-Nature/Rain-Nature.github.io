@@ -463,13 +463,39 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="用VS2019-在C-新建一个算术类库"><a href="#用VS2019-在C-新建一个算术类库" class="headerlink" title="用VS2019 在C#新建一个算术类库"></a>用VS2019 在C#新建一个算术类库</h2><p>1.在VS2019中新建一个类库程序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line"></span><br><span class="line">namespace Tools</span><br><span class="line">&#123;</span><br><span class="line">    public class Tools</span><br><span class="line">    &#123;</span><br><span class="line">        public static double Add(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a + b;</span><br><span class="line">        &#125;</span><br><span class="line">        public static double Sub(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a - b;</span><br><span class="line">        &#125;</span><br><span class="line">        public static double Mul(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a * b;</span><br><span class="line">        &#125;</span><br><span class="line">        public static double Div(double a, double b)</span><br><span class="line">        &#123;</span><br><span class="line">            return a &#x2F; b;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">using System;
+
+namespace Tools
+&#123;
+    public class Tools
+    &#123;
+        public static double Add(double a, double b)
+        &#123;
+            return a + b;
+        &#125;
+        public static double Sub(double a, double b)
+        &#123;
+            return a - b;
+        &#125;
+        public static double Mul(double a, double b)
+        &#123;
+            return a * b;
+        &#125;
+        public static double Div(double a, double b)
+        &#123;
+            return a &#x2F; b;
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>2.在编写完成后点击F6在下面的生成中可以看见路径</p>
 <p>3.一般是在bin这个文件夹中，点击进入找到一个dll的文件，此就为生成的类库</p>

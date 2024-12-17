@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -510,13 +513,112 @@
 </ol>
 <h4 id="5-动态栈的算法"><a href="#5-动态栈的算法" class="headerlink" title="5. 动态栈的算法"></a>5. 动态栈的算法</h4><ol>
 <li><p>算法-栈的定义、栈的初始化、压栈、遍历栈</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义栈中的每一个结点</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> * <span class="title">pNext</span>;</span></span><br><span class="line">&#125;NODE,*PNODE;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义栈</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Stack</span>&#123;</span></span><br><span class="line">    PNODE pTop;</span><br><span class="line">    PNODE pBottom;</span><br><span class="line">&#125;STACK,*PSTACK;</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(PSTACK pSt)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(PSTACK pSt,<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    STACK st;    <span class="comment">//定义栈</span></span><br><span class="line">    init(&amp;st);   <span class="comment">//栈的初始化</span></span><br><span class="line">    push(&amp;st,<span class="number">1</span>); <span class="comment">//压栈</span></span><br><span class="line">    push(&amp;st,<span class="number">2</span>);</span><br><span class="line">    write_stack(&amp;st); <span class="comment">//遍历栈</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//栈的初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(PSTACK pSt)</span></span>&#123;</span><br><span class="line">    pSt-&gt;pTop = (PNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">NULL</span>==pSt-&gt;pTop)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    pSt-&gt;pBottom = pSt-&gt;pTop;</span><br><span class="line">    <span class="comment">//指针域置为空</span></span><br><span class="line">    pSt-&gt;pTop-&gt;pNext = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//压栈</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(PSTACK pSt,<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">    PNODE p = (PNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));</span><br><span class="line">    p-&gt;data = num;</span><br><span class="line">    p-&gt;pNext = pSt-&gt;pTop;</span><br><span class="line">    pSt-&gt;pTop =p;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_stack</span><span class="params">(PSTACK pSt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    PNODE p = pSt-&gt;pTop;</span><br><span class="line">    <span class="keyword">while</span>(pSt-&gt;pBottom!=p)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,p-&gt;data);</span><br><span class="line">        p=p-&gt;pNext;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;malloc.h></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+
+<span class="token comment">//定义栈中的每一个结点</span>
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">Node</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> data<span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">Node</span> <span class="token operator">*</span> pNext<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>NODE<span class="token punctuation">,</span><span class="token operator">*</span>PNODE<span class="token punctuation">;</span>
+
+<span class="token comment">//定义栈</span>
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">Stack</span><span class="token punctuation">&#123;</span>
+    PNODE pTop<span class="token punctuation">;</span>
+    PNODE pBottom<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>STACK<span class="token punctuation">,</span><span class="token operator">*</span>PSTACK<span class="token punctuation">;</span>
+
+<span class="token comment">//函数声明</span>
+<span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span>PSTACK pSt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span>PSTACK pSt<span class="token punctuation">,</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    STACK st<span class="token punctuation">;</span>    <span class="token comment">//定义栈</span>
+    <span class="token function">init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>st<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//栈的初始化</span>
+    <span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>st<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//压栈</span>
+    <span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>st<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">write_stack</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>st<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//遍历栈</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">//栈的初始化</span>
+<span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span>PSTACK pSt<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    pSt<span class="token operator">-></span>pTop <span class="token operator">=</span> <span class="token punctuation">(</span>PNODE<span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>NODE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token operator">==</span>pSt<span class="token operator">-></span>pTop<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    pSt<span class="token operator">-></span>pBottom <span class="token operator">=</span> pSt<span class="token operator">-></span>pTop<span class="token punctuation">;</span>
+    <span class="token comment">//指针域置为空</span>
+    pSt<span class="token operator">-></span>pTop<span class="token operator">-></span>pNext <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">//压栈</span>
+<span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span>PSTACK pSt<span class="token punctuation">,</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    PNODE p <span class="token operator">=</span> <span class="token punctuation">(</span>PNODE<span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>NODE<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    p<span class="token operator">-></span>data <span class="token operator">=</span> num<span class="token punctuation">;</span>
+    p<span class="token operator">-></span>pNext <span class="token operator">=</span> pSt<span class="token operator">-></span>pTop<span class="token punctuation">;</span>
+    pSt<span class="token operator">-></span>pTop <span class="token operator">=</span>p<span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">//遍历</span>
+<span class="token keyword">void</span> <span class="token function">write_stack</span><span class="token punctuation">(</span>PSTACK pSt<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    PNODE p <span class="token operator">=</span> pSt<span class="token operator">-></span>pTop<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>pSt<span class="token operator">-></span>pBottom<span class="token operator">!=</span>p<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d "</span><span class="token punctuation">,</span>p<span class="token operator">-></span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        p<span class="token operator">=</span>p<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>算法-栈是否为空的判断、出栈</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt; //bool类型需要声明的头文件</span></span></span><br><span class="line"><span class="comment">//判断栈是否为空</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">(PSTACK pST)</span></span>;  <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">(PSTACK pSt)</span></span>&#123;  <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">if</span>(pSt-&gt;pTop==pSt-&gt;pBottom)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//出栈，并返回出栈的值</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pop</span><span class="params">(PSTACK pSt,<span class="keyword">int</span> * val)</span></span>;  <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pop</span><span class="params">(PSTACK pSt,<span class="keyword">int</span> * val)</span></span>&#123;  <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">if</span>(empty(pSt))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE p = pSt-&gt;pTop;</span><br><span class="line">    pSt-&gt;pTop = pSt-&gt;pTop-&gt;pNext;</span><br><span class="line">    *val = p-&gt;data;</span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    p = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdbool.h></span> <span class="token comment">//bool类型需要声明的头文件</span></span>
+<span class="token comment">//判断栈是否为空</span>
+bool <span class="token function">empty</span><span class="token punctuation">(</span>PSTACK pST<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//函数声明</span>
+bool <span class="token function">empty</span><span class="token punctuation">(</span>PSTACK pSt<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>  <span class="token comment">//函数体</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>pSt<span class="token operator">-></span>pTop<span class="token operator">==</span>pSt<span class="token operator">-></span>pBottom<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">//出栈，并返回出栈的值</span>
+bool <span class="token function">pop</span><span class="token punctuation">(</span>PSTACK pSt<span class="token punctuation">,</span><span class="token keyword">int</span> <span class="token operator">*</span> val<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//函数声明</span>
+bool <span class="token function">pop</span><span class="token punctuation">(</span>PSTACK pSt<span class="token punctuation">,</span><span class="token keyword">int</span> <span class="token operator">*</span> val<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>  <span class="token comment">//函数体</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">empty</span><span class="token punctuation">(</span>pSt<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    PNODE p <span class="token operator">=</span> pSt<span class="token operator">-></span>pTop<span class="token punctuation">;</span>
+    pSt<span class="token operator">-></span>pTop <span class="token operator">=</span> pSt<span class="token operator">-></span>pTop<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+    <span class="token operator">*</span>val <span class="token operator">=</span> p<span class="token operator">-></span>data<span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    p <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>算法-栈的清空</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">(PSTACK pSt)</span></span>;  <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">(PSTACK pSt)</span></span>&#123;  <span class="comment">//函数体</span></span><br><span class="line">    <span class="keyword">if</span>(empty(pSt))&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PNODE p = pSt-&gt;pTop;</span><br><span class="line">    PNODE q = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">while</span>(p!=pSt-&gt;pBottom)&#123;</span><br><span class="line">        q = p-&gt;pNext;</span><br><span class="line">        <span class="built_in">free</span>(p);</span><br><span class="line">        p = q;</span><br><span class="line">    &#125;</span><br><span class="line">    pSt-&gt;pTop = pSt-&gt;pBottom;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">clear</span><span class="token punctuation">(</span>PSTACK pSt<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//函数声明</span>
+<span class="token keyword">void</span> <span class="token function">clear</span><span class="token punctuation">(</span>PSTACK pSt<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>  <span class="token comment">//函数体</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">empty</span><span class="token punctuation">(</span>pSt<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    PNODE p <span class="token operator">=</span> pSt<span class="token operator">-></span>pTop<span class="token punctuation">;</span>
+    PNODE q <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>p<span class="token operator">!=</span>pSt<span class="token operator">-></span>pBottom<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        q <span class="token operator">=</span> p<span class="token operator">-></span>pNext<span class="token punctuation">;</span>
+        <span class="token function">free</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        p <span class="token operator">=</span> q<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    pSt<span class="token operator">-></span>pTop <span class="token operator">=</span> pSt<span class="token operator">-></span>pBottom<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -683,13 +785,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/10/31/MySQL01-SQL%E8%AF%AD%E5%8F%A5%E5%85%A8%E8%AF%AD%E6%B3%95/">
+                <a href="/2022/10/31/SQL01-SQL%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="MySQL01-SQL语句全语法">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="SQL01-SQL基础语法">
                         
-                        <span class="card-title">MySQL01-SQL语句全语法</span>
+                        <span class="card-title">SQL01-SQL基础语法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -713,8 +815,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
+                    <a href="/tags/SQL/">
+                        <span class="chip bg-color">SQL</span>
                     </a>
                     
                 </div>

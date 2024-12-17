@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -557,7 +560,8 @@
 </li>
 <li><p>第三种来源：地址重写</p>
 <p>地址重写的基本结构：<code>xxxxxx.jsp?参数名称=内容&amp;参数名称=内容...</code></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如以下代码为向inpuut.jsp页面传递了两个参数</span></span><br><span class="line">&lt;a href=&quot;input.jsp?msg=hello&amp;mid=30&quot;&gt;访问&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&#x2F;&#x2F;如以下代码为向inpuut.jsp页面传递了两个参数
+&lt;a href&#x3D;&quot;input.jsp?msg&#x3D;hello&amp;mid&#x3D;30&quot;&gt;访问&lt;&#x2F;a&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>地址重写相当于GET请求</p>
 </li>
@@ -629,7 +633,39 @@
 </tbody></table>
 <p>​    </p>
 <p>​    范例：动态的接收参数</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//发送方 form.jsp文件</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;form action=<span class="string">&quot;request.jsp&quot;</span> method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">	&lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;text1&quot;</span> /&gt;</span><br><span class="line">	&lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;**box&quot;</span> value=<span class="string">&quot;1&quot;</span>&gt;<span class="number">1</span></span><br><span class="line">	&lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;**box&quot;</span> value=<span class="string">&quot;2&quot;</span>&gt;<span class="number">2</span></span><br><span class="line">	&lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;**box&quot;</span> value=<span class="string">&quot;3&quot;</span>&gt;<span class="number">3</span></span><br><span class="line">	&lt;input type=<span class="string">&quot;checkbox&quot;</span> name=<span class="string">&quot;**box&quot;</span> value=<span class="string">&quot;4&quot;</span>&gt;<span class="number">4</span></span><br><span class="line">	&lt;input type=<span class="string">&quot;submit&quot;</span> name=<span class="string">&quot;submit1&quot;</span> value=<span class="string">&quot;提交&quot;</span>/&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//接收方 request.jsp文件</span></span><br><span class="line">&lt;%@ page pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.*&quot;</span>%&gt;</span><br><span class="line">&lt;%<span class="comment">//取得属性</span></span><br><span class="line">	request.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">	Enumeration&lt;String&gt; e = request.getParameterNames();</span><br><span class="line">	<span class="keyword">while</span>(e.hasMoreElements())&#123;</span><br><span class="line">		String s = e.nextElement();</span><br><span class="line">		<span class="keyword">if</span>(s.startsWith(<span class="string">&quot;**&quot;</span>))&#123;</span><br><span class="line">			String[] str = request.getParameterValues(s);</span><br><span class="line">%&gt;</span><br><span class="line">			&lt;h3&gt;&lt;%=Arrays.toString(str)%&gt;&lt;/h3&gt;</span><br><span class="line">&lt;%</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">%&gt;</span><br><span class="line">			&lt;h4&gt;&lt;%=request.getParameter(s)%&gt;&lt;/h4&gt;</span><br><span class="line">&lt;%</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&#x2F;&#x2F;发送方 form.jsp文件
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.util.*&quot;%&gt;
+&lt;form action&#x3D;&quot;request.jsp&quot; method&#x3D;&quot;post&quot;&gt;
+	&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;text1&quot; &#x2F;&gt;
+	&lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;**box&quot; value&#x3D;&quot;1&quot;&gt;1
+	&lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;**box&quot; value&#x3D;&quot;2&quot;&gt;2
+	&lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;**box&quot; value&#x3D;&quot;3&quot;&gt;3
+	&lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;**box&quot; value&#x3D;&quot;4&quot;&gt;4
+	&lt;input type&#x3D;&quot;submit&quot; name&#x3D;&quot;submit1&quot; value&#x3D;&quot;提交&quot;&#x2F;&gt;
+&lt;&#x2F;form&gt;
+
+&#x2F;&#x2F;接收方 request.jsp文件
+&lt;%@ page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%@ page import&#x3D;&quot;java.util.*&quot;%&gt;
+&lt;%&#x2F;&#x2F;取得属性
+	request.setCharacterEncoding(&quot;UTF-8&quot;);
+	Enumeration&lt;String&gt; e &#x3D; request.getParameterNames();
+	while(e.hasMoreElements())&#123;
+		String s &#x3D; e.nextElement();
+		if(s.startsWith(&quot;**&quot;))&#123;
+			String[] str &#x3D; request.getParameterValues(s);
+%&gt;
+			&lt;h3&gt;&lt;%&#x3D;Arrays.toString(str)%&gt;&lt;&#x2F;h3&gt;
+&lt;%
+		&#125;else&#123;
+%&gt;
+			&lt;h4&gt;&lt;%&#x3D;request.getParameter(s)%&gt;&lt;&#x2F;h4&gt;
+&lt;%
+		&#125;
+
+	&#125;
+%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    注意：为了区分接收的一个参数是对应一个值还是多个值，对多个值参数在设置<code>name</code>属性时一般在前面加<code>**</code>，如<code>**XXXX</code>，用作区分</p>
 <h4 id="6-通过request对象实现资源定位"><a href="#6-通过request对象实现资源定位" class="headerlink" title="6. 通过request对象实现资源定位"></a>6. 通过request对象实现资源定位</h4><p>​    在request对象中还有一个重要的操作方法：取得路径名称(该方法在<code>javax.servlet.http.HttpServletRequest</code>中定义)</p>
@@ -650,7 +686,17 @@
 <p>​    getContextPath()取得的是整个虚拟目录的映射路径，在之前Tomcat的<code>conf/server.xml</code>中设置添加了<code>&lt;Context path = &quot;/lxs&quot; docBase = &quot;D:\lxsweb&quot; /&gt;</code>，getContextPath()方法取得的是<code>/lxs</code></p>
 <p>​    通过取得整个虚拟目录的映射路径，我们可以实现资源定位。在实际开发中，我们会导入img、css、js，此时文件通常是使用传统<code>../</code>、<code>/</code>的形式进行引用，但此时如果代码文件发生移动，那么其的路径会发生变化则需要重写配置<code>../</code>、<code>/</code>。而使用getContextPath()可以解决这个问题。</p>
 <p>​    范例：1.输出项目根路径，2.实现资源定位</p>
-<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//test.jsp与images同级</span></span><br><span class="line"><span class="comment">//新建文件夹images，导入图片文件img_1.jpg</span></span><br><span class="line"><span class="comment">//编写文件test.jsp文件</span></span><br><span class="line">&lt;%<span class="meta">@page</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	String contextpath = request.getContextPath();</span><br><span class="line">%&gt;</span><br><span class="line"><span class="comment">//输出项目根路径</span></span><br><span class="line">&lt;h1&gt;&lt;%=contextpath%&gt;&lt;/h1&gt;</span><br><span class="line"><span class="comment">//实现资源定位</span></span><br><span class="line">&lt;img src=<span class="string">&quot;&lt;%=contextpath%&gt;/images/img_1.jpg&quot;</span> height=<span class="string">&quot;40%&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&#x2F;&#x2F;test.jsp与images同级
+&#x2F;&#x2F;新建文件夹images，导入图片文件img_1.jpg
+&#x2F;&#x2F;编写文件test.jsp文件
+&lt;%@page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%
+	String contextpath &#x3D; request.getContextPath();
+%&gt;
+&#x2F;&#x2F;输出项目根路径
+&lt;h1&gt;&lt;%&#x3D;contextpath%&gt;&lt;&#x2F;h1&gt;
+&#x2F;&#x2F;实现资源定位
+&lt;img src&#x3D;&quot;&lt;%&#x3D;contextpath%&gt;&#x2F;images&#x2F;img_1.jpg&quot; height&#x3D;&quot;40%&quot;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    注意：此时不管test.jsp放在什么位置，图片都可以正常的显示出来，<strong>在实际开发中都会使用这种方式来引用资源</strong></p>
 <h4 id="7-通过request对象取得基础信息"><a href="#7-通过request对象取得基础信息" class="headerlink" title="7. 通过request对象取得基础信息"></a>7. 通过request对象取得基础信息</h4><p>​    在<code>javax.servlet.http.HttpServletRequest</code>接口的父接口<code>javax.servlet.ServletRequest</code>中提供有取得其他基本信息的方法</p>
@@ -684,7 +730,24 @@
 </tr>
 </tbody></table>
 <p>​    范例：上述方法的使用以及获取项目的基本路径</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编写文件path.jsp</span></span><br><span class="line">&lt;%<span class="meta">@page</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	String ip = request.getRemoteAddr();</span><br><span class="line">	String scheme = request.getScheme();</span><br><span class="line">	String name = request.getServerName();</span><br><span class="line">	<span class="keyword">int</span> port = request.getServerPort();</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;ip地址：&lt;%=ip%&gt;&lt;/h3&gt;</span><br><span class="line">&lt;h3&gt;协议：&lt;%=scheme%&gt;&lt;/h3&gt;</span><br><span class="line">&lt;h3&gt;主机名：&lt;%=name%&gt;&lt;/h3&gt;</span><br><span class="line">&lt;h3&gt;端口号：&lt;%=port%&gt;&lt;/h3&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	String path = request.getScheme()+<span class="string">&quot;://&quot;</span>+ request.getServerName()+<span class="string">&quot;:&quot;</span>+request.getServerPort()+request.getContextPath();</span><br><span class="line">%&gt;</span><br><span class="line">&lt;h1&gt;访问路径：&lt;%=path%&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&#x2F;&#x2F;编写文件path.jsp
+&lt;%@page pageEncoding&#x3D;&quot;UTF-8&quot;%&gt;
+&lt;%
+	String ip &#x3D; request.getRemoteAddr();
+	String scheme &#x3D; request.getScheme();
+	String name &#x3D; request.getServerName();
+	int port &#x3D; request.getServerPort();
+%&gt;
+
+&lt;h3&gt;ip地址：&lt;%&#x3D;ip%&gt;&lt;&#x2F;h3&gt;
+&lt;h3&gt;协议：&lt;%&#x3D;scheme%&gt;&lt;&#x2F;h3&gt;
+&lt;h3&gt;主机名：&lt;%&#x3D;name%&gt;&lt;&#x2F;h3&gt;
+&lt;h3&gt;端口号：&lt;%&#x3D;port%&gt;&lt;&#x2F;h3&gt;
+
+&lt;%
+	String path &#x3D; request.getScheme()+&quot;:&#x2F;&#x2F;&quot;+ request.getServerName()+&quot;:&quot;+request.getServerPort()+request.getContextPath();
+%&gt;
+&lt;h1&gt;访问路径：&lt;%&#x3D;path%&gt;&lt;&#x2F;h1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id=""><a href="#" class="headerlink" title=""></a></h4><p>####8. getAttribute()和getParameter()的区别</p>
 <p>​    1、getAttribute是返回(object)对象,getParameter返回字符串。</p>

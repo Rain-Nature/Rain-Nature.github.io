@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -480,20 +483,86 @@
 </ul>
 <p>​    此时，要保证三类数据的保存，只有通过Object类型可以解决</p>
 <p>​    <strong>Point类的设计</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Object x;</span><br><span class="line">	<span class="keyword">private</span> Object y;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(Object x)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x = x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(Object y)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.y = y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Point</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">private</span> <span class="token class-name">Object</span> x<span class="token punctuation">;</span>
+	<span class="token keyword">private</span> <span class="token class-name">Object</span> y<span class="token punctuation">;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setX</span><span class="token punctuation">(</span><span class="token class-name">Object</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>x <span class="token operator">=</span> x<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setY</span><span class="token punctuation">(</span><span class="token class-name">Object</span> y<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>y <span class="token operator">=</span> y<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	
+	<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">getX</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	
+	<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">getY</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    在使用这个类时，需要进行向上转型输入和向下转型输出。但是，由于Object所能描述的范围太广泛了，所以<strong>可能传入了字符串类型任何转型时不小心转为了int(其他)类型</strong>，此时代码在<strong>编译时可以通过，执行时出现”ClassCastException“异常</strong>，<strong>由此可以看出Object提供的解决方案实际上会存在安全隐患</strong>，所以Object类作为参数是项目中最大的败笔</p>
 <h4 id="3-泛型基本定义"><a href="#3-泛型基本定义" class="headerlink" title="3. 泛型基本定义"></a>3. 泛型基本定义</h4><p>​    通过分析Object作为参数的优缺点，<strong>要想解决对象转型安全隐患问题，最简单的方式就是不转型</strong><br>​    JDk1.5后提供了泛型的概念，泛型&lt; T &gt;最大的特点为，类中的属性类型或方法的参数，可以在类的使用时，动态决定<br>​    <strong>范例：修改Point类的设计</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>&lt;<span class="title">T</span>&gt;</span>&#123; <span class="comment">//T表示Type的意思，不一定要T写其他的也可以</span></span><br><span class="line">	<span class="keyword">private</span> T x;</span><br><span class="line">	<span class="keyword">private</span> T y;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(T x)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x = x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(T y)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.y = y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.x;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">getY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Point</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span><span class="token punctuation">&#123;</span> <span class="token comment">//T表示Type的意思，不一定要T写其他的也可以</span>
+	<span class="token keyword">private</span> <span class="token class-name">T</span> x<span class="token punctuation">;</span>
+	<span class="token keyword">private</span> <span class="token class-name">T</span> y<span class="token punctuation">;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setX</span><span class="token punctuation">(</span><span class="token class-name">T</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>x <span class="token operator">=</span> x<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setY</span><span class="token punctuation">(</span><span class="token class-name">T</span> y<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>y <span class="token operator">=</span> y<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	
+	<span class="token keyword">public</span> <span class="token class-name">T</span> <span class="token function">getX</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	
+	<span class="token keyword">public</span> <span class="token class-name">T</span> <span class="token function">getY</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    在Point类上定义的泛型T实际上只是一个随机设置的名称，表示的是，该类型由使用的时候来决定，<strong>泛型使用时只能使用引用数据类型，不能使用基本类型</strong></p>
 <p>​    范例：使用泛型声明的类Point</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Point&lt;Integer&gt; a &#x3D; new Point&lt;Integer&gt;();</span><br><span class="line">		a.setX(10);</span><br><span class="line">		a.setY(20);</span><br><span class="line">		System.out.println(&quot;x &#x3D; &quot;+a.getX()+ &quot;,y &#x3D; &quot;+a.getY());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">public static void main(String[] args) throws Exception&#123;
+		Point&lt;Integer&gt; a &#x3D; new Point&lt;Integer&gt;();
+		a.setX(10);
+		a.setY(20);
+		System.out.println(&quot;x &#x3D; &quot;+a.getX()+ &quot;,y &#x3D; &quot;+a.getY());
+	&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>​    注意：使用泛型后，所有程序之中具有泛型标记的部分都会更换为相应的类型标记，这个标记在类对象实例化的时候进行动态的配置，此时就不需要转型了，而且编译时会帮助检测错误</p>
 <p>​    <strong>注意：如果使用了泛型设计类但是使用这个类并没有给泛型，那么会把泛型中所有的T变成Object类型，Object的使用就需要转型了</strong></p>
 <h4 id="4-泛型通配符"><a href="#4-泛型通配符" class="headerlink" title="4. 泛型通配符"></a>4. 泛型通配符</h4><p>​    泛型的出现解决了数据类型的转换安全问题，但是随之而来也会带来引用传递的麻烦。<strong>为解决该问题则用通配符对形参进行约束</strong></p>
 <p>​    范例：泛型的引用传递</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">class Message&lt;T&gt;&#123;</span><br><span class="line">	private T info;</span><br><span class="line">	public void setMessage(T info) &#123;</span><br><span class="line">		this.info &#x3D; info;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public T getMessage() &#123;</span><br><span class="line">		return this.info;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		Message&lt;String&gt; msg &#x3D; new Message&lt;String&gt;();</span><br><span class="line">		msg.setMessage(&quot;篮球&quot;);</span><br><span class="line">		print(msg);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void print(Message&lt;String&gt; msg) &#123;</span><br><span class="line">		System.out.println(msg.getMessage());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">package hello;
+
+class Message&lt;T&gt;&#123;
+	private T info;
+	public void setMessage(T info) &#123;
+		this.info &#x3D; info;
+	&#125;
+	
+	public T getMessage() &#123;
+		return this.info;
+	&#125;
+&#125;
+
+public class First&#123;
+	public static void main(String[] args) throws Exception&#123;
+		Message&lt;String&gt; msg &#x3D; new Message&lt;String&gt;();
+		msg.setMessage(&quot;篮球&quot;);
+		print(msg);
+	&#125;
+	
+	public static void print(Message&lt;String&gt; msg) &#123;
+		System.out.println(msg.getMessage());
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>​    <strong>注意：</strong></p>
 <ol>
 <li>泛型作为形参不可以作为重载标识，重载的参数类型名以类名作为标识与泛型无关</li>
@@ -508,10 +577,29 @@
 </ul>
 <h4 id="5-泛型接口"><a href="#5-泛型接口" class="headerlink" title="5. 泛型接口"></a>5. 泛型接口</h4><p>​    泛型也可以应用在接口上，此类接口称为泛型接口</p>
 <p>​    泛型接口的定义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface IMessage&lt;T&gt;&#123;</span><br><span class="line">	public void send(T content);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">interface IMessage&lt;T&gt;&#123;
+	public void send(T content);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>​    所有的接口在使用的时候都必须依靠子类，那么在此时子类有两种实现泛型接口的方式</p>
 <ul>
-<li>方式一：在子类中继续指定泛型标记<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(T content)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MessageImpl</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">IMessage</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(T content)</span> </span>&#123;</span><br><span class="line">		System.out.println(content);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		IMessage&lt;String&gt; a = <span class="keyword">new</span> MessageImpl&lt;String&gt;();<span class="comment">//后面的String可以省略，尖括号还是需要</span></span><br><span class="line">		a.send(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>方式一：在子类中继续指定泛型标记<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">hello</span><span class="token punctuation">;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">IMessage</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token class-name">T</span> content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MessageImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token keyword">implements</span> <span class="token class-name">IMessage</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token class-name">T</span> content<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">First</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span>
+		<span class="token class-name">IMessage</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MessageImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//后面的String可以省略，尖括号还是需要</span>
+		a<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 </li>
 </ul>
@@ -519,11 +607,30 @@
 <ul>
 <li>方式二：子类不再设置泛型类型，而为父类指派好类型</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">interface IMessage&lt;T&gt;&#123;</span><br><span class="line">	public void send(T content);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MessageImpl implements IMessage&lt;String&gt;&#123;</span><br><span class="line">	public void send(String content) &#123;</span><br><span class="line">		 System.out.println(content);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		IMessage&lt;String&gt; a &#x3D; new MessageImpl();</span><br><span class="line">		a.send(&quot;hello&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">package hello;
+
+interface IMessage&lt;T&gt;&#123;
+	public void send(T content);
+&#125;
+
+class MessageImpl implements IMessage&lt;String&gt;&#123;
+	public void send(String content) &#123;
+		 System.out.println(content);
+	&#125;
+&#125;
+
+public class First&#123;
+	public static void main(String[] args) throws Exception&#123;
+		IMessage&lt;String&gt; a &#x3D; new MessageImpl();
+		a.send(&quot;hello&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="6-泛型方法"><a href="#6-泛型方法" class="headerlink" title="6. 泛型方法"></a>6. 泛型方法</h4><p>​    所有泛型方法不一定非要定义在泛型的类或泛型接口之中，这也就是说任意一个方法都可以定义为泛型方法，但是需要对泛型标记（&lt;  T &gt;）加以声明</p>
 <p>​    范例：定义泛型方法<br>​    此时对于传入的参数类型就由调用方法的语句来外部定义了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T[] init(T ... args)&#123; <span class="comment">//T[]表示T类型数组</span></span><br><span class="line"><span class="keyword">return</span> args; <span class="comment">//返回是类对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token class-name">T</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token class-name">T</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token comment">//T[]表示T类型数组</span>
+<span class="token keyword">return</span> args<span class="token punctuation">;</span> <span class="token comment">//返回是类对象</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>​    知道一个方法如何去定义一个泛型就行了</p>
 
                 

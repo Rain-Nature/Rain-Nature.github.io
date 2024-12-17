@@ -463,12 +463,61 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;swiper class&#x3D;&quot;myswiper&quot; bindchange&#x3D;&quot;changeImg&quot; indicator-dots&#x3D;&quot;ture&quot; autoplay&#x3D;&quot;ture&quot; circular&#x3D;&quot;ture&quot;&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;租借图片&#x2F;毕业季.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;apple.jpg&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">  &lt;swiper-item&gt;</span><br><span class="line">    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;hw1.jpg?sign&#x3D;fee0f936bbe930fb6d94b51747d7a213&amp;t&#x3D;1618020235&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">  &lt;&#x2F;swiper-item&gt;</span><br><span class="line">&lt;&#x2F;swiper&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;parent&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color1&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text1&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;money&quot;&gt;￥&#123;&#123;price&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text2&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;people&quot;&gt;0人买过&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;color2&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text3&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple&quot;&gt;&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;text4&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;apple_computer&quot;&gt;这是&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view class&#x3D;&quot;bottom&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture1&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;server&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-question.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;bottom_text&quot;&gt;客服&lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;bottom_picture2&quot;&gt;</span><br><span class="line">    &lt;view&gt;</span><br><span class="line">      &lt;image class&#x3D;&quot;shop&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-shop.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;bottom_text&quot;&gt;商店&lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;last&quot;&gt;</span><br><span class="line">    &lt;button class&#x3D;&quot;button&quot;&gt;立即购买&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+                <h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><pre class="line-numbers language-none"><code class="language-none">&lt;swiper class&#x3D;&quot;myswiper&quot; bindchange&#x3D;&quot;changeImg&quot; indicator-dots&#x3D;&quot;ture&quot; autoplay&#x3D;&quot;ture&quot; circular&#x3D;&quot;ture&quot;&gt;
+  &lt;swiper-item&gt;
+    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;租借图片&#x2F;毕业季.jpg&quot;&gt;&lt;&#x2F;image&gt;
+  &lt;&#x2F;swiper-item&gt;
+  &lt;swiper-item&gt;
+    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;apple.jpg&quot;&gt;&lt;&#x2F;image&gt;
+  &lt;&#x2F;swiper-item&gt;
+  &lt;swiper-item&gt;
+    &lt;image class&#x3D;&quot;picture&quot; mode&#x3D;&quot;widthFix&quot; src&#x3D;&quot;https:&#x2F;&#x2F;6e61-navicat-3g86zpey3c832d18-1304777099.tcb.qcloud.la&#x2F;%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87&#x2F;%E7%94%B5%E8%84%91&#x2F;hw1.jpg?sign&#x3D;fee0f936bbe930fb6d94b51747d7a213&amp;t&#x3D;1618020235&quot;&gt;&lt;&#x2F;image&gt;
+  &lt;&#x2F;swiper-item&gt;
+&lt;&#x2F;swiper&gt;
+&lt;view class&#x3D;&quot;parent&quot;&gt;
+  &lt;view class&#x3D;&quot;color1&quot;&gt;
+    &lt;view class&#x3D;&quot;text1&quot;&gt;
+      &lt;view class&#x3D;&quot;money&quot;&gt;￥&#123;&#123;price&#125;&#125;&lt;&#x2F;view&gt;
+    &lt;&#x2F;view&gt;
+    &lt;view class&#x3D;&quot;text2&quot;&gt;
+      &lt;view class&#x3D;&quot;people&quot;&gt;0人买过&lt;&#x2F;view&gt;
+    &lt;&#x2F;view&gt;
+  &lt;&#x2F;view&gt;
+  &lt;view class&#x3D;&quot;color2&quot;&gt;
+    &lt;view class&#x3D;&quot;text3&quot;&gt;
+      &lt;view class&#x3D;&quot;apple&quot;&gt;&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;
+    &lt;&#x2F;view&gt;
+    &lt;view class&#x3D;&quot;text4&quot;&gt;
+      &lt;view class&#x3D;&quot;apple_computer&quot;&gt;这是&#123;&#123;shopname&#125;&#125;&lt;&#x2F;view&gt;
+    &lt;&#x2F;view&gt;
+  &lt;&#x2F;view&gt;
+&lt;&#x2F;view&gt;
+&lt;view class&#x3D;&quot;bottom&quot;&gt;
+  &lt;view class&#x3D;&quot;bottom_picture1&quot;&gt;
+    &lt;view&gt;
+      &lt;image class&#x3D;&quot;server&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-question.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;
+    &lt;&#x2F;view&gt;
+    &lt;view class&#x3D;&quot;bottom_text&quot;&gt;客服&lt;&#x2F;view&gt;
+  &lt;&#x2F;view&gt;
+  &lt;view class&#x3D;&quot;bottom_picture2&quot;&gt;
+    &lt;view&gt;
+      &lt;image class&#x3D;&quot;shop&quot; src&#x3D;&quot;..&#x2F;image&#x2F;icon-shop.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;
+      &lt;view class&#x3D;&quot;bottom_text&quot;&gt;商店&lt;&#x2F;view&gt;
+    &lt;&#x2F;view&gt;
+  &lt;&#x2F;view&gt;
+  &lt;view class&#x3D;&quot;last&quot;&gt;
+    &lt;button class&#x3D;&quot;button&quot;&gt;立即购买&lt;&#x2F;button&gt;
+  &lt;&#x2F;view&gt;
+
+&lt;&#x2F;view&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="wxss"><a href="#wxss" class="headerlink" title="wxss"></a>wxss</h3><p>.picture{<br>  width: 100%;<br>}</p>
 <p>.myswiper{<br>  width: 100%;<br>  height: 750rpx;<br>}</p>

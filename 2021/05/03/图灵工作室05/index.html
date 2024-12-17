@@ -463,13 +463,27 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>在app.json中配置全局的属性，pages为你要的页面的种类，window为标题栏的样式。<br>配置下标栏关键字为tabBar，在这里面有list属性用来进行编写（最少是两个，最多不能超过五个）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;tabBar&quot;: &#123;</span><br><span class="line">	&quot;color&quot;:&quot;#474747&quot;,           &#x2F;&#x2F;文字未选中时的颜色</span><br><span class="line">	&quot;selectedColor&quot;:&quot;#d43c43&quot;    &#x2F;&#x2F;文字选中时的颜色</span><br><span class="line">    &quot;list&quot;: [&#123;</span><br><span class="line">      &quot;pagePath&quot;: &quot;pages&#x2F;home-page&#x2F;home-page&quot;,    &#x2F;&#x2F;页面路径</span><br><span class="line">      &quot;text&quot;: &quot;首页&quot;,                             &#x2F;&#x2F;页面下面名字</span><br><span class="line">      &quot;iconPath&quot;: &quot;.&#x2F;pages&#x2F;image&#x2F;icon-home-normal.png&quot;,  &#x2F;&#x2F;未点击时图标样式</span><br><span class="line">      &quot;selectedIconPath&quot;: &quot;.&#x2F;pages&#x2F;image&#x2F;icon-home-primary.png&quot; &#x2F;&#x2F;&#x2F;点击时图标样式</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    ]&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&quot;tabBar&quot;: &#123;
+	&quot;color&quot;:&quot;#474747&quot;,           &#x2F;&#x2F;文字未选中时的颜色
+	&quot;selectedColor&quot;:&quot;#d43c43&quot;    &#x2F;&#x2F;文字选中时的颜色
+    &quot;list&quot;: [&#123;
+      &quot;pagePath&quot;: &quot;pages&#x2F;home-page&#x2F;home-page&quot;,    &#x2F;&#x2F;页面路径
+      &quot;text&quot;: &quot;首页&quot;,                             &#x2F;&#x2F;页面下面名字
+      &quot;iconPath&quot;: &quot;.&#x2F;pages&#x2F;image&#x2F;icon-home-normal.png&quot;,  &#x2F;&#x2F;未点击时图标样式
+      &quot;selectedIconPath&quot;: &quot;.&#x2F;pages&#x2F;image&#x2F;icon-home-primary.png&quot; &#x2F;&#x2F;&#x2F;点击时图标样式
+    &#125;,
+    ...
+    ]&#125;
+    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>js里不要随意加，</p>
 

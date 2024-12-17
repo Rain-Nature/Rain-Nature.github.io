@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -483,7 +486,7 @@
 <p>​    <strong>注意：该方法不能被重写</strong></p>
 <h4 id="4-反射的根源是Class类，Java对实例化的操作提供三类支持，实际项目都是混用都重要"><a href="#4-反射的根源是Class类，Java对实例化的操作提供三类支持，实际项目都是混用都重要" class="headerlink" title="4. 反射的根源是Class类，Java对实例化的操作提供三类支持，实际项目都是混用都重要"></a>4. 反射的根源是Class类，Java对实例化的操作提供三类支持，实际项目都是混用都重要</h4><ol>
 <li>利用Object类中提供的getClass()方法，通过实例化调用获得</li>
-<li>利用“类.class”的Java原生代码操作实现<br>示例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; clsA &#x3D; java.util.Date.class  &#x2F;&#x2F;这个类必须存在</span><br></pre></td></tr></table></figure></li>
+<li>利用“类.class”的Java原生代码操作实现<br>示例<pre class="line-numbers language-none"><code class="language-none">Class&lt;?&gt; clsA &#x3D; java.util.Date.class  &#x2F;&#x2F;这个类必须存在<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li>利用Class类中提供的forName()方法进行实例化<table>
 <thead>
 <tr>
@@ -499,7 +502,7 @@
 </li>
 </ol>
 <p>​    示例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; clsA &#x3D; Class.forName(&quot;java.util.Date&quot;) &#x2F;&#x2F;需要包.类</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">Class&lt;?&gt; clsA &#x3D; Class.forName(&quot;java.util.Date&quot;) &#x2F;&#x2F;需要包.类<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>这个与第二个的区别是第二个必须要类存在,这个写错的话会报异常</p>
 <p>​    <strong>总结：三种形式获取Class类实例的特点</strong></p>
 <ul>
@@ -522,16 +525,41 @@
 </tr>
 </tbody></table>
 <p>注意：由于反射定义中的泛型比较尴尬所以出现“?”居多，“?”的返回为Object</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;clazz表示class的实例化对象</span><br><span class="line">Class&lt;?&gt; clazz &#x3D; Class.forName(&quot;java.util.Date&quot;);</span><br><span class="line">Object obj &#x3D; clazz.newInstance(); &#x2F;&#x2F;反射实例化对象，相当于表示“new java.util.Date()”</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;clazz表示class的实例化对象
+Class&lt;?&gt; clazz &#x3D; Class.forName(&quot;java.util.Date&quot;);
+Object obj &#x3D; clazz.newInstance(); &#x2F;&#x2F;反射实例化对象，相当于表示“new java.util.Date()”<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>注意：上面代码反射为Object类型，如果要使用Date类的对象需要对obj进行向下转型，若只是需要对象则可以直接使用obj</strong></p>
 <h5 id="2-反射与工厂设计模式"><a href="#2-反射与工厂设计模式" class="headerlink" title="2. 反射与工厂设计模式"></a>2. 反射与工厂设计模式</h5><p>​    工厂设计模式常用来获取接口实例，属于java面向对象编程的基本模型<br>​    使用工厂模式，在使用new操作符时，也叫做静态工厂</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class factory&#123;</span><br><span class="line">	private factory() &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	public static Message getMessage(String className) &#123;</span><br><span class="line">		if(&quot;PaperMessage&quot;.equals(className)) &#123;</span><br><span class="line">			return new PaperMessage();</span><br><span class="line">		&#125;else if(&quot;InternalMessage&quot;.equals(className)) &#123;</span><br><span class="line">			return new InternalMessage();</span><br><span class="line">		&#125;else</span><br><span class="line">			return null;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">class factory&#123;
+	private factory() &#123;&#125;
+	
+	public static Message getMessage(String className) &#123;
+		if(&quot;PaperMessage&quot;.equals(className)) &#123;
+			return new PaperMessage();
+		&#125;else if(&quot;InternalMessage&quot;.equals(className)) &#123;
+			return new InternalMessage();
+		&#125;else
+			return null;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>详细完整代码见反射实例例一</strong></p>
 <p>​    <strong>静态工厂类的缺点</strong><br>​    当你要添加或者删除接口子类很多时，传统的静态工厂类将无法满足需要，问题产生的原因是关键字“new”，关键字“new”是Java提供的原生对象实例化支持，但需要使用特定的结构使用，一个好的代码new使用的少，所以此时需要使用反射机制来解决</p>
 <p>​    <strong>反射机制的思路</strong><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/5ZJDt1"><img src="https://z3.ax1x.com/2021/10/11/5ZJDt1.png" alt="5ZJDt1.png"></a></p>
 <p>​     用反射机制修改工厂类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class factory&#123;</span><br><span class="line">	private factory() &#123;&#125;</span><br><span class="line">	</span><br><span class="line">	public static Message getMessage(String className) &#123; </span><br><span class="line">		Message msg &#x3D; null;</span><br><span class="line">		try &#123;</span><br><span class="line">			msg &#x3D; (Message)Class.forName(className).getDeclaredConstructor().newInstance();</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return msg;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">class factory&#123;
+	private factory() &#123;&#125;
+	
+	public static Message getMessage(String className) &#123; 
+		Message msg &#x3D; null;
+		try &#123;
+			msg &#x3D; (Message)Class.forName(className).getDeclaredConstructor().newInstance();
+		&#125; catch (Exception e) &#123;
+			e.printStackTrace();
+		&#125;
+		return msg;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    <strong>注意：此时由于调用Class.forname()所以方法传字符串(className)必须是完整路径，包+类名</strong></p>
 <p>​    <strong>详细完整代码见反射实例例二</strong></p>
@@ -541,10 +569,55 @@
 <p>​    懒汉式就是创建对象时比较懒，先不急着创建对象，在需要加载配置文件的时候再去创建。饿汉式就是在系统初始化的时候我们已经把对象创建好了，需要用的时候直接拿过来用就好了</p>
 <ul>
 <li><p>设计饿汉式单例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class SingletonEH &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     *是否 Lazy 初始化：否</span><br><span class="line">     *是否多线程安全：是</span><br><span class="line">     *实现难度：易</span><br><span class="line">     *描述：这种方式比较常用，但容易产生垃圾对象。</span><br><span class="line">     *优点：没有加锁，执行效率会提高。</span><br><span class="line">     *缺点：类加载时就初始化，浪费内存。</span><br><span class="line">     *它基于 classloder 机制避免了多线程的同步问题，</span><br><span class="line">     * 不过，instance 在类装载时就实例化，虽然导致类装载的原因有很多种，</span><br><span class="line">     * 在单例模式中大多数都是调用 getInstance 方法，</span><br><span class="line">     * 但是也不能确定有其他的方式（或者其他的静态方法）导致类装载，</span><br><span class="line">     * 这时候初始化 instance 显然没有达到 lazy loading 的效果。</span><br><span class="line">     * 饿汉就是类一旦加载（ java文件通过编译器变成了.class文件），就把单例初始化完成，保证getInstance的时候，单例是已经存在的了</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private static SingletonEH instance &#x3D; new SingletonEH();</span><br><span class="line">    private SingletonEH ()&#123;&#125;</span><br><span class="line">    public static SingletonEH getInstance() &#123;</span><br><span class="line">        System.out.println(&quot;instance:&quot;+instance);</span><br><span class="line">        System.out.println(&quot;加载饿汉式....&quot;);</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">class SingletonEH &#123;
+    &#x2F;**
+     *是否 Lazy 初始化：否
+     *是否多线程安全：是
+     *实现难度：易
+     *描述：这种方式比较常用，但容易产生垃圾对象。
+     *优点：没有加锁，执行效率会提高。
+     *缺点：类加载时就初始化，浪费内存。
+     *它基于 classloder 机制避免了多线程的同步问题，
+     * 不过，instance 在类装载时就实例化，虽然导致类装载的原因有很多种，
+     * 在单例模式中大多数都是调用 getInstance 方法，
+     * 但是也不能确定有其他的方式（或者其他的静态方法）导致类装载，
+     * 这时候初始化 instance 显然没有达到 lazy loading 的效果。
+     * 饿汉就是类一旦加载（ java文件通过编译器变成了.class文件），就把单例初始化完成，保证getInstance的时候，单例是已经存在的了
+     *&#x2F;
+    private static SingletonEH instance &#x3D; new SingletonEH();
+    private SingletonEH ()&#123;&#125;
+    public static SingletonEH getInstance() &#123;
+        System.out.println(&quot;instance:&quot;+instance);
+        System.out.println(&quot;加载饿汉式....&quot;);
+        return instance;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>设计懒汉式单例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Singleton&#123;</span><br><span class="line">&#x2F;**</span><br><span class="line">     *是否 Lazy 初始化：是</span><br><span class="line">     *是否多线程安全：否</span><br><span class="line">     *实现难度：易</span><br><span class="line">     *描述：这种方式是最基本的实现方式，这种实现最大的问题就是不支持多线程。因为没有加锁 synchronized，所以严格意义上它并不算单例模式。</span><br><span class="line">     *这种方式 lazy loading 很明显，不要求线程安全，在多线程不能正常工作。</span><br><span class="line">	*&#x2F;</span><br><span class="line">	&#x2F;&#x2F;设置单例，保证只有一个单例</span><br><span class="line">	private static Singleton instance;</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;私有化构造方法，使之只能在内部调用实例化</span><br><span class="line">	private Singleton()&#123;</span><br><span class="line">		System.out.println(&quot;hello&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;通过公有化方法提供对外部的接口</span><br><span class="line">	public static Singleton getInstance() &#123;</span><br><span class="line">		if(instance &#x3D;&#x3D; null) &#123;</span><br><span class="line">			instance &#x3D; new Singleton();</span><br><span class="line">		&#125;</span><br><span class="line">		return instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">class Singleton&#123;
+&#x2F;**
+     *是否 Lazy 初始化：是
+     *是否多线程安全：否
+     *实现难度：易
+     *描述：这种方式是最基本的实现方式，这种实现最大的问题就是不支持多线程。因为没有加锁 synchronized，所以严格意义上它并不算单例模式。
+     *这种方式 lazy loading 很明显，不要求线程安全，在多线程不能正常工作。
+	*&#x2F;
+	&#x2F;&#x2F;设置单例，保证只有一个单例
+	private static Singleton instance;
+	
+	&#x2F;&#x2F;私有化构造方法，使之只能在内部调用实例化
+	private Singleton()&#123;
+		System.out.println(&quot;hello&quot;);
+	&#125;
+	
+	&#x2F;&#x2F;通过公有化方法提供对外部的接口
+	public static Singleton getInstance() &#123;
+		if(instance &#x3D;&#x3D; null) &#123;
+			instance &#x3D; new Singleton();
+		&#125;
+		return instance;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 </li>
 </ul>
@@ -552,7 +625,26 @@
 <p>​    需要解决问题需要增加同步处理<br>​    <strong>同步是否添加的因素：如果读取不要加同步，如果更新要加同步</strong><br>​    如果直接在方法外增加同步，线程若有10w个线程获取Singleton类的对象，则这10w个线程排队等待，性能会下降<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/5mxlan"><img src="https://z3.ax1x.com/2021/10/12/5mxlan.png" alt="5mxlan.png"></a></p>
 <p>​    所以应该在方法内增加同步，而同步内用的对象的获取则使用反射机制</p>
 <p>​    <strong>解决代码</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;此时即保证了getInstance()方法的操作性能，同时又保护了Singleton类对象的实例化次数</span><br><span class="line">class Singleton&#123;</span><br><span class="line">	private static Singleton instance;</span><br><span class="line">	</span><br><span class="line">	private Singleton()&#123;</span><br><span class="line">		System.out.println(&quot;hello&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static Singleton getInstance() &#123;</span><br><span class="line">		if(instance &#x3D;&#x3D; null) &#123;</span><br><span class="line">			synchronized(Singleton.class) &#123;</span><br><span class="line">				if(instance &#x3D;&#x3D; null) &#123;</span><br><span class="line">					instance &#x3D; new Singleton();</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;此时即保证了getInstance()方法的操作性能，同时又保护了Singleton类对象的实例化次数
+class Singleton&#123;
+	private static Singleton instance;
+	
+	private Singleton()&#123;
+		System.out.println(&quot;hello&quot;);
+	&#125;
+	
+	public static Singleton getInstance() &#123;
+		if(instance &#x3D;&#x3D; null) &#123;
+			synchronized(Singleton.class) &#123;
+				if(instance &#x3D;&#x3D; null) &#123;
+					instance &#x3D; new Singleton();
+				&#125;
+				
+			&#125;
+		&#125;
+		return instance;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    <strong>代码解释图示</strong><br><a target="_blank" rel="noopener" href="https://imgtu.com/i/5nSyuD"><img src="https://z3.ax1x.com/2021/10/12/5nSyuD.png" alt="5nSyuD.png"></a></p>
 <h4 id="6-反射与类操作"><a href="#6-反射与类操作" class="headerlink" title="6. 反射与类操作"></a>6. 反射与类操作</h4><p>​    反射可以完整的实现Java允许规定的类的操作形式<br>​    传统的Java二进制文件对其进行操作就是进行类加载(import、CLASSPATH)；实例化类对象并操作，<strong>对于这些二进制文件的分析(Java中允许你做到的)就是反射</strong>，如果要对这个文件进行更深入的分析，需要使用第三方工具包</p>
@@ -630,7 +722,33 @@
 </tr>
 </tbody></table>
 <p>​    范例：利用反射调用指定参数的构造进行实例化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line">import java.lang.reflect.Constructor;</span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line">class Ball&#123;</span><br><span class="line">	private String name;</span><br><span class="line">	private double price;</span><br><span class="line">	</span><br><span class="line">	public Ball(String name,double price) &#123;</span><br><span class="line">		this.name &#x3D; name;</span><br><span class="line">		this.price &#x3D; price;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void print() &#123;</span><br><span class="line">		System.out.println(&quot;球的名字为：&quot;+this.name+&quot;、价格为：&quot; + this.price);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException&#123;</span><br><span class="line">		Class&lt;?&gt; clazz &#x3D; Ball.class;&#x2F;&#x2F;获取反射对象</span><br><span class="line">		Constructor&lt;?&gt; con &#x3D; clazz.getDeclaredConstructor(String.class,double.class);</span><br><span class="line">		Ball ball &#x3D; (Ball)con.newInstance(&quot;足球&quot;,12.5);</span><br><span class="line">		ball.print();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">package hello;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+class Ball&#123;
+	private String name;
+	private double price;
+	
+	public Ball(String name,double price) &#123;
+		this.name &#x3D; name;
+		this.price &#x3D; price;
+	&#125;
+	
+	public void print() &#123;
+		System.out.println(&quot;球的名字为：&quot;+this.name+&quot;、价格为：&quot; + this.price);
+	&#125;
+&#125;
+
+public class First&#123;
+
+	public static void main(String[] args) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException&#123;
+		Class&lt;?&gt; clazz &#x3D; Ball.class;&#x2F;&#x2F;获取反射对象
+		Constructor&lt;?&gt; con &#x3D; clazz.getDeclaredConstructor(String.class,double.class);
+		Ball ball &#x3D; (Ball)con.newInstance(&quot;足球&quot;,12.5);
+		ball.print();
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    以上操作是JDK1.9之后官方推荐的做法，在JDK1.8及以前的版本里面，关于反射对象的实例化操作实际上提供了两个不同的方法</p>
 <ul>
@@ -672,13 +790,35 @@
 </tbody></table>
 <p>​    当获取了一个方法之后将以Method类的实例进行该方法的描述，Method类的定义方式如下：</p>
 <p>​    <strong>Method类的定义</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public final class Method extends Executable</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">public final class Method extends Executable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>​    这个类的定义方式和之前Constructor类是完全一样的</p>
 <p>​    图示：</p>
 <p><a target="_blank" rel="noopener" href="https://imgtu.com/i/5w4OD1"><img src="https://z3.ax1x.com/2021/10/19/5w4OD1.png" alt="5w4OD1.png"></a> </p>
 <p>​    在Java里面可以利用Method明确的描述一个可以调用的方法结构，可以利用Method实现类中全部方法的输出</p>
 <p>​    范例：获取Ball类中所有的public方法,包括所有父类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Balls</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">toDo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ball</span> <span class="keyword">extends</span> <span class="title">Balls</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException</span>&#123;</span><br><span class="line">		Class&lt;?&gt; clazz = Ball.class;</span><br><span class="line">		Method method[] = clazz.getMethods();</span><br><span class="line">		<span class="keyword">for</span>(Method x:method) &#123;</span><br><span class="line">			System.out.println(x);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">hello</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span></span><span class="token class-name">InvocationTargetException</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span></span><span class="token class-name">Method</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Balls</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">toDo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Ball</span> <span class="token keyword">extends</span> <span class="token class-name">Balls</span><span class="token punctuation">&#123;</span>
+	
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">First</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">NoSuchMethodException</span><span class="token punctuation">,</span> <span class="token class-name">SecurityException</span><span class="token punctuation">,</span> <span class="token class-name">InstantiationException</span><span class="token punctuation">,</span> <span class="token class-name">IllegalAccessException</span><span class="token punctuation">,</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">,</span> <span class="token class-name">InvocationTargetException</span><span class="token punctuation">&#123;</span>
+		<span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> clazz <span class="token operator">=</span> <span class="token class-name">Ball</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">;</span>
+		<span class="token class-name">Method</span> method<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token class-name">Method</span> x<span class="token operator">:</span>method<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    获取method实例后对<strong>该方法</strong>信息获得的方法<strong>（Method类或者其父类（Executable）下的方法）</strong>：</p>
 <table>
@@ -717,12 +857,38 @@
 </tbody></table>
 <p>​    <strong>注意：getModifiers()方法的返回值为int类型，因为所有的权限都是数字的组合(相加)，在java.lang.reflect.Modifier类中有static String toString(int mod)方法，将这些数字反推权限修饰符的字符串</strong></p>
 <p>​    程序配置了任何的第三方工具包,各个开发工具之所以可以进行代码的检测以及方法的获取,就是由于反射机制的支持(二进制数据流的解析处理),但是对于我们开发人员来讲**,真正有意义的代码在于Method类中提供的反射调用方法(非常重要,使用Method类中最有意义的操作)**:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public Object invoke(Object obj,Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">public Object invoke(Object obj,Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​    <strong>invoke()可以直接依据Object类的实例化对象(不一定是具体类型)实现反射方法调用</strong></p>
 <p>​    注意：所有的简单Java类一定要提供有无参构造方法,同时所有的属性必须封装(private),封装后的属性必须编写setter、getter方法</p>
 <p>​    <strong>范例：利用反射调用setter、getter方法</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ball</span> </span>&#123;</span><br><span class="line">	String name;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		Class&lt;?&gt; clazz = Class.forName(<span class="string">&quot;hello.Ball&quot;</span>);</span><br><span class="line">		Object obj = clazz.getDeclaredConstructor().newInstance(); <span class="comment">//实例化对象</span></span><br><span class="line">		Method setmethod = clazz.getDeclaredMethod(<span class="string">&quot;setName&quot;</span>, String.class); <span class="comment">//参数类型暂时无法动态获取，先固定一个String.class</span></span><br><span class="line">		setmethod.invoke(obj, <span class="string">&quot;篮球&quot;</span>); <span class="comment">//等价于“实例化对象.setName(&quot;篮球&quot;)”</span></span><br><span class="line">		Method getmethod = clazz.getDeclaredMethod(<span class="string">&quot;getName&quot;</span>);</span><br><span class="line">		Object a = getmethod.invoke(obj);</span><br><span class="line">		System.out.println(a);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">hello</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span></span><span class="token class-name">Method</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Ball</span> <span class="token punctuation">&#123;</span>
+	<span class="token class-name">String</span> name<span class="token punctuation">;</span>
+	
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	
+	<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">First</span><span class="token punctuation">&#123;</span>
+
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span>
+		<span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> clazz <span class="token operator">=</span> <span class="token class-name">Class</span><span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"hello.Ball"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">Object</span> obj <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getDeclaredConstructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//实例化对象</span>
+		<span class="token class-name">Method</span> setmethod <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"setName"</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//参数类型暂时无法动态获取，先固定一个String.class</span>
+		setmethod<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">"篮球"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//等价于“实例化对象.setName("篮球")”</span>
+		<span class="token class-name">Method</span> getmethod <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getDeclaredMethod</span><span class="token punctuation">(</span><span class="token string">"getName"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">Object</span> a <span class="token operator">=</span> getmethod<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    此时程序实现了方法的反射调用，同时也解释了为什么简单Java类中的命名要有setter、getter规则</p>
 <h5 id="4-反射调用成员属性"><a href="#4-反射调用成员属性" class="headerlink" title="4. 反射调用成员属性"></a>4. 反射调用成员属性</h5><p>​    类结构里面包含的三个组成：构造、方法、成员属性，那么对于所有的成员属性也是可以通过反射来实现调用，在class类中提供有如下的与成员有关的操作方法</p>
@@ -790,7 +956,24 @@
 <p>​    <a target="_blank" rel="noopener" href="https://imgtu.com/i/5DuKSI"><img src="https://z3.ax1x.com/2021/10/20/5DuKSI.png" alt="5DuKSI.png"></a></p>
 <p>​    <strong>注意：setAccessible(boolean flag)方法是在AccessibleObject类中定义的方法，所以下面继承此类的方法都可以进行调用，从而解除封装</strong></p>
 <p>​    范例：调用类中的属性</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ball</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		Class&lt;?&gt; clazz = Ball.class;</span><br><span class="line">		Object obj = clazz.getDeclaredConstructor().newInstance();</span><br><span class="line">		Field field = clazz.getDeclaredField(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">		field.setAccessible(<span class="keyword">true</span>); <span class="comment">//解除封装</span></span><br><span class="line">		field.set(obj, <span class="string">&quot;篮球&quot;</span>); <span class="comment">//等价于&quot;对象.name = &quot;篮球&quot;&quot;</span></span><br><span class="line">		System.out.println(field.get(obj)); <span class="comment">//等价于&quot;System.out.println(对象.name)&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">hello</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Ball</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+	
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">First</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span>
+		<span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> clazz <span class="token operator">=</span> <span class="token class-name">Ball</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">;</span>
+		<span class="token class-name">Object</span> obj <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getDeclaredConstructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">Field</span> field <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getDeclaredField</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		field<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//解除封装</span>
+		field<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">"篮球"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//等价于"对象.name = "篮球""</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>field<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//等价于"System.out.println(对象.name)"</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    <strong>注意：类中所谓的封装只是局限于标准语法的访问的限制，但是如果直接利用反射就可以打破这种封装所带来的影响，只不过大多数情况不会这样操作</strong></p>
 

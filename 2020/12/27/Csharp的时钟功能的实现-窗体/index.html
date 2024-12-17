@@ -463,14 +463,17 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="小程序（制作了一个简易的数字时钟）-lt-C-gt"><a href="#小程序（制作了一个简易的数字时钟）-lt-C-gt" class="headerlink" title="小程序（制作了一个简易的数字时钟）&lt;C#&gt;"></a>小程序（制作了一个简易的数字时钟）&lt;C#&gt;</h3><h4 id="锻炼"><a href="#锻炼" class="headerlink" title="锻炼"></a>锻炼</h4><ol>
-<li>对Tostring()的熟练使用<br> 在使用Tostring的过程中括号内可不加东西，为直接转换为字符串，在括号内加入引号，在写格式码，可以对转换的字符串的格式输出再做转化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如ToString(&quot;D2&quot;);    &#x2F;&#x2F;D大小写随意,表示未达到两位数时，按两位数格式输出前面补0</span><br></pre></td></tr></table></figure></li>
-<li>对于textBox.text属性的掌握<br>字符串在该属性上显示字符串的格式为<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tetBox.text1&#x3D;变量名(变量须为字符串类型)+&#39;常字符串&#39;; &#x2F;&#x2F;这两个不同的格式按需求使用，用&#39;+&#39;连接</span><br></pre></td></tr></table></figure></li>
+<li>对Tostring()的熟练使用<br> 在使用Tostring的过程中括号内可不加东西，为直接转换为字符串，在括号内加入引号，在写格式码，可以对转换的字符串的格式输出再做转化<pre class="line-numbers language-none"><code class="language-none">如ToString(&quot;D2&quot;);    &#x2F;&#x2F;D大小写随意,表示未达到两位数时，按两位数格式输出前面补0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li>对于textBox.text属性的掌握<br>字符串在该属性上显示字符串的格式为<pre class="line-numbers language-none"><code class="language-none">tetBox.text1&#x3D;变量名(变量须为字符串类型)+&#39;常字符串&#39;; &#x2F;&#x2F;这两个不同的格式按需求使用，用&#39;+&#39;连接<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li>对方法DateTime方法的理解</li>
 </ol>
 <hr>
@@ -478,7 +481,42 @@
 <hr>
 <h4 id="窗体"><a href="#窗体" class="headerlink" title="窗体"></a>窗体</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/rIBx1I"><img src="https://s3.ax1x.com/2020/12/27/rIBx1I.md.png" alt="rIBx1I.md.png"></a></p>
 <hr>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.ComponentModel;</span><br><span class="line">using System.Data;</span><br><span class="line">using System.Drawing;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Windows.Forms;</span><br><span class="line"></span><br><span class="line">namespace _2021</span><br><span class="line">&#123;</span><br><span class="line">    public partial class Form1 : Form</span><br><span class="line">    &#123;</span><br><span class="line">        public Form1()</span><br><span class="line">        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void button1_Click(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            int year,month,day;</span><br><span class="line">            year &#x3D; DateTime.Now.Year;</span><br><span class="line">            month &#x3D; DateTime.Now.Month;</span><br><span class="line">            day &#x3D; DateTime.Now.Day;</span><br><span class="line"></span><br><span class="line">            int hour, min, Second;</span><br><span class="line">            hour &#x3D; DateTime.Now.Hour;</span><br><span class="line">            min &#x3D; DateTime.Now.Minute;</span><br><span class="line">            Second &#x3D; DateTime.Now.Second;</span><br><span class="line"></span><br><span class="line">            textBox1.Text &#x3D; year.ToString()+&#39;年&#39;+month.ToString(&quot;D2&quot;)+&#39;月&#39;+day.ToString(&quot;D2&quot;)+&#39;日&#39;;</span><br><span class="line">            textBox2.Text &#x3D; hour.ToString(&quot;D2&quot;) + &#39;:&#39;+min.ToString(&quot;D2&quot;) + &#39;:&#39; + Second.ToString(&quot;D2&quot;);</span><br><span class="line">        &#125;                                                                                      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-none"><code class="language-none">using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace _2021
+&#123;
+    public partial class Form1 : Form
+    &#123;
+        public Form1()
+        &#123;
+            InitializeComponent();
+        &#125;
+
+        private void button1_Click(object sender, EventArgs e)
+        &#123;
+            int year,month,day;
+            year &#x3D; DateTime.Now.Year;
+            month &#x3D; DateTime.Now.Month;
+            day &#x3D; DateTime.Now.Day;
+
+            int hour, min, Second;
+            hour &#x3D; DateTime.Now.Hour;
+            min &#x3D; DateTime.Now.Minute;
+            Second &#x3D; DateTime.Now.Second;
+
+            textBox1.Text &#x3D; year.ToString()+&#39;年&#39;+month.ToString(&quot;D2&quot;)+&#39;月&#39;+day.ToString(&quot;D2&quot;)+&#39;日&#39;;
+            textBox2.Text &#x3D; hour.ToString(&quot;D2&quot;) + &#39;:&#39;+min.ToString(&quot;D2&quot;) + &#39;:&#39; + Second.ToString(&quot;D2&quot;);
+        &#125;                                                                                      
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <hr>
 <h4 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/rIy0ET"><img src="https://s3.ax1x.com/2020/12/27/rIy0ET.png" alt="rIy0ET.png"></a></p>

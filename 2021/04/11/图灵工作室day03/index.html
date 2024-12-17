@@ -463,13 +463,54 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h2><p>1.任何一个容器都可以启用flex布局<br>2.flex布局也叫弹性布局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">(1).display:flex  &#x2F;&#x2F;启用flex布局</span><br><span class="line">(2).flex-direction属性决定主轴方向</span><br><span class="line">    flex-direction：column &#x2F;&#x2F;设置垂直方向为主轴</span><br><span class="line">    flex-direction：raw &#x2F;&#x2F;设置横轴方向为主轴</span><br><span class="line">    交叉轴等于法向量，主轴于盒子方向相同</span><br><span class="line"></span><br><span class="line">(3).对盒子先设置大盒子，justity-content：center;对主轴居中对齐</span><br><span class="line">                     他的其他属性</span><br><span class="line">                     flex-start（默认值）：左对齐</span><br><span class="line">                     flex-end：右对齐</span><br><span class="line">                     center： 居中</span><br><span class="line">                     space-between：两端对齐，项目之间的间隔都相等。</span><br><span class="line">                     space-around：每个项目两侧的间隔相等。所以，项目之间                                    的间隔比项目与边框的间隔大一倍。</span><br><span class="line">                     </span><br><span class="line">                     align-items：center；对交叉轴居中对齐</span><br><span class="line">              	     他的其他属性</span><br><span class="line">              	     flex-start：交叉轴的起点对齐。</span><br><span class="line">                     flex-end：交叉轴的终点对齐。</span><br><span class="line">                     center：交叉轴的中点对齐。</span><br><span class="line">                     baseline: 项目的第一行文字的基线对齐。</span><br><span class="line">                     stretch（默认值）：如果项目未设置高度或设为auto，将占                                       满整个容器的高度。</span><br><span class="line">    </span><br><span class="line">    在此之后每制造一个小盒子都会按照设定方式排列</span><br><span class="line"></span><br><span class="line">(4).flex-wrap属性决定盒子排不下的时候是否换行</span><br><span class="line">    flex-wrap:nowrap(默认); &#x2F;&#x2F;不换行，如果放不下的情况下会让所有盒子等比例缩小来放</span><br><span class="line">    flex-wrap:wrap;        &#x2F;&#x2F;换行，第一行在上方</span><br><span class="line">    flex-wrap:wrap-reverse &#x2F;&#x2F;换行，第一行在下方</span><br><span class="line"></span><br><span class="line">(5).order属性</span><br><span class="line">    order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0</span><br><span class="line">    order &#x3D; 1;</span><br><span class="line">    </span><br><span class="line">(6).flex-grow属性</span><br><span class="line">    flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</span><br><span class="line"></span><br><span class="line">当一个flex-grow为1，而其他为0时，该盒子会占去除那些为0盒子占的空间外的全部空间</span><br><span class="line"></span><br><span class="line">(7).flex布局自动计算高度不需要去手动分配，会适得其反</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">(1).display:flex  &#x2F;&#x2F;启用flex布局
+(2).flex-direction属性决定主轴方向
+    flex-direction：column &#x2F;&#x2F;设置垂直方向为主轴
+    flex-direction：raw &#x2F;&#x2F;设置横轴方向为主轴
+    交叉轴等于法向量，主轴于盒子方向相同
+
+(3).对盒子先设置大盒子，justity-content：center;对主轴居中对齐
+                     他的其他属性
+                     flex-start（默认值）：左对齐
+                     flex-end：右对齐
+                     center： 居中
+                     space-between：两端对齐，项目之间的间隔都相等。
+                     space-around：每个项目两侧的间隔相等。所以，项目之间                                    的间隔比项目与边框的间隔大一倍。
+                     
+                     align-items：center；对交叉轴居中对齐
+              	     他的其他属性
+              	     flex-start：交叉轴的起点对齐。
+                     flex-end：交叉轴的终点对齐。
+                     center：交叉轴的中点对齐。
+                     baseline: 项目的第一行文字的基线对齐。
+                     stretch（默认值）：如果项目未设置高度或设为auto，将占                                       满整个容器的高度。
+    
+    在此之后每制造一个小盒子都会按照设定方式排列
+
+(4).flex-wrap属性决定盒子排不下的时候是否换行
+    flex-wrap:nowrap(默认); &#x2F;&#x2F;不换行，如果放不下的情况下会让所有盒子等比例缩小来放
+    flex-wrap:wrap;        &#x2F;&#x2F;换行，第一行在上方
+    flex-wrap:wrap-reverse &#x2F;&#x2F;换行，第一行在下方
+
+(5).order属性
+    order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0
+    order &#x3D; 1;
+    
+(6).flex-grow属性
+    flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大
+
+当一个flex-grow为1，而其他为0时，该盒子会占去除那些为0盒子占的空间外的全部空间
+
+(7).flex布局自动计算高度不需要去手动分配，会适得其反<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>其他的暂时没有用上就先不补了</strong></p>
 <h2 id="js部分语法"><a href="#js部分语法" class="headerlink" title="js部分语法"></a>js部分语法</h2><p>1.js中不分’ ‘,” “,一般用’ ‘</p>

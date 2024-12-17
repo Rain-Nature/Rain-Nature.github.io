@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -514,7 +517,7 @@
 </ul>
 <p>​    java考虑到这个问题所以是互通的，但写大量的<code>//</code>或<code>\\</code>转义处理非常麻烦，所以<strong>一般使用File类中提供的常量(public static final String separator)</strong>,早期命名规范与现在不同所以是小写separator</p>
 <p>​    <strong>separator常量的使用</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;Hello.txt&quot;);</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;Hello.txt&quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>​    <strong>注意：以后编写代码所有路径分隔符尽量通过常量separator来进行定义</strong></p>
 <h4 id="3-File类在父-多-目录下子文件的创建"><a href="#3-File类在父-多-目录下子文件的创建" class="headerlink" title="(3).File类在父(多)目录下子文件的创建"></a>(3).File类在父(多)目录下子文件的创建</h4><p>​    子文件在父目录下创建时必须保证父目录是存在的，不然会产生异常</p>
 <p>​    <strong>对目录创建的File类中的方法</strong></p>
@@ -639,7 +642,7 @@
 <td align="center">重命名由此抽象路径名表示的文件，即改变文件名</td>
 </tr>
 </tbody></table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oldfile.renameTo(newFile); &#x2F;&#x2F;把旧文件名转化为新文件名，这两个都是绝对路径</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">oldfile.renameTo(newFile); &#x2F;&#x2F;把旧文件名转化为新文件名，这两个都是绝对路径<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>​    实例：文件的批量更名，见文件实例例二、例三</p>
 <h3 id="3-流"><a href="#3-流" class="headerlink" title="3. 流"></a>3. 流</h3><h4 id="1-File类本身实现了文件自身的处理操作，但是并未规定其文件内容的操作，而要想实现文件内容就必须使用流的概念"><a href="#1-File类本身实现了文件自身的处理操作，但是并未规定其文件内容的操作，而要想实现文件内容就必须使用流的概念" class="headerlink" title="(1).File类本身实现了文件自身的处理操作，但是并未规定其文件内容的操作，而要想实现文件内容就必须使用流的概念"></a>(1).File类本身实现了文件自身的处理操作，但是并未规定其文件内容的操作，而要想实现文件内容就必须使用流的概念</h4><h4 id="3-流的简介"><a href="#3-流的简介" class="headerlink" title="(3).流的简介"></a>(3).流的简介</h4><p>​    流指的是数据的处理方式，以及目标的内容的处理机制，所有的流都分为输入流或输出流，Java针对输入流和输出流分为了两种类型：</p>
@@ -799,7 +802,11 @@
 </tr>
 </tbody></table>
 <p>​    Writer抽象类与之前的OutputStream类相比，多实现了一个Appendable接口，里面只有一个append方法，<strong>append方法用来追加内容</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public interface Appendable&#123; &#x2F;&#x2F;Appendable接口定义的三种方法</span><br><span class="line">	public Appendable append(CharSequence csq) throws IOException;</span><br><span class="line">	public Appendable append(CharSequence csq,int start,int end) throws IOException;</span><br><span class="line">	public Appendable append(char c) throws IOException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">public interface Appendable&#123; &#x2F;&#x2F;Appendable接口定义的三种方法
+	public Appendable append(CharSequence csq) throws IOException;
+	public Appendable append(CharSequence csq,int start,int end) throws IOException;
+	public Appendable append(char c) throws IOException;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    在使用Writer类进行输出的时候最大的操作特点在于其可以直接进行字符串的数据处理</p>
 <table>

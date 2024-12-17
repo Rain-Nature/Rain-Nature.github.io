@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -519,7 +522,8 @@
 <p><strong>3. <code>@Autowired</code>和<code>@Qualifier</code>的区别，以及注解<code>@Resource</code></strong></p>
 <p>​    <code>@Autowired</code>是按照数据类型从Spring容器中进行匹配</p>
 <p>​    如下面代码，其会在Spring容器中寻找一个UserDao类型的对象赋值给变量userDao</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserDao userDao;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
+<span class="token keyword">private</span> <span class="token class-name">UserDao</span> userDao<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 
@@ -528,10 +532,12 @@
 <p><strong>4. <code>@Value</code></strong></p>
 <p>​    <code>@Value(&quot;要注入的值&quot;)</code>是对常量数据进行注入</p>
 <p>​    对变量driver进行注入</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;itcast&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String driver;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"itcast"</span><span class="token punctuation">)</span>
+<span class="token keyword">private</span> <span class="token class-name">String</span> driver<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>​    除了注入常量还可以注入键值对，只要Spring容器中加载了.properties文件就可以直接通过<code>$&#123;&#125;</code>进行注入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Value(&quot;$&#123;jdbc.drive&#125;&quot;)</span><br><span class="line">private String driver;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">@Value(&quot;$&#123;jdbc.drive&#125;&quot;)
+private String driver;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 

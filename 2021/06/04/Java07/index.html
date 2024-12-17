@@ -463,16 +463,36 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="类的继承，多态"><a href="#类的继承，多态" class="headerlink" title="类的继承，多态"></a>类的继承，多态</h2><h4 id="1-继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写-覆盖-父类中的某些方法"><a href="#1-继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写-覆盖-父类中的某些方法" class="headerlink" title="1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法"></a>1. 继承的基本思想是基于某个父类进行拓展，得到一个新子类，该子类可以继承父类原有的属性和方法，可以增加父类不具备的属性和方法，可以重写(覆盖)父类中的某些方法</h4><h4 id="2-extends关键字"><a href="#2-extends关键字" class="headerlink" title="2. extends关键字"></a>2. extends关键字</h4><p>​    用来标识两个类的继承关系</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;父类</span><br><span class="line">class bookStore&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;子类</span><br><span class="line">class book extends bookStore&#123;</span><br><span class="line">	&#x2F;&#x2F;当子类再次声明与父类一样的成员变量时，就有两个名字一样的成员变量，要使用父类的话需用super()关键字来引用父类(无关键字时，子类中和父类中的属性或方法同名，则父类中的方法或属性将被覆盖或隐藏)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;父类
+class bookStore&#123;
+	
+&#125;
+
+&#x2F;&#x2F;子类
+class book extends bookStore&#123;
+	&#x2F;&#x2F;当子类再次声明与父类一样的成员变量时，就有两个名字一样的成员变量，要使用父类的话需用super()关键字来引用父类(无关键字时，子类中和父类中的属性或方法同名，则父类中的方法或属性将被覆盖或隐藏)
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="3-super关键字"><a href="#3-super关键字" class="headerlink" title="3. super关键字"></a>3. super关键字</h4><p>​    (1).在Java类中使用super关键字来引用父类的成分，它是一个指代变量，用于在子类中指代父类对象<br>​    (2).只能用于子类的构造函数和实例方法中，不能用于子类的类（静态）方法中。原因是super指代的是一个父类的对象，它需要在运行时被创建，而静态方法是类方法，它是类的一部分。当类被加载时，方法已经存在，但是这时候父类对象还没有被初始化</p>
-<h4 id="4-子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类"><a href="#4-子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类" class="headerlink" title="4. 子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类"></a>4. 子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class bookStore&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;子类</span><br><span class="line">class book extends bookStore&#123;</span><br><span class="line">	public book()&#123;</span><br><span class="line">		super();  &#x2F;&#x2F;初始化父类</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类"><a href="#4-子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类" class="headerlink" title="4. 子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类"></a>4. 子类是父类的派生类，它的实例化依赖于父类的实例化。所以它的任何一个构造函数都必须要初始化父类</h4><pre class="line-numbers language-none"><code class="language-none">class bookStore&#123;
+	
+&#125;
+
+&#x2F;&#x2F;子类
+class book extends bookStore&#123;
+	public book()&#123;
+		super();  &#x2F;&#x2F;初始化父类
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>​    <strong>注意：</strong></p>
 <ul>
 <li>在我们子类的构造函数中，如果我们没有显式调用super来初始化父类的话，那么Java会隐式的调用super();来调用父类无参构造函数并把它放在构造函数的第一行</li>
@@ -498,19 +518,23 @@
 </ul>
 <h4 id="8-对象类型的转换"><a href="#8-对象类型的转换" class="headerlink" title="8. 对象类型的转换"></a>8. 对象类型的转换</h4><ul>
 <li><p>向上转型(多态)<br>​    把子类对象赋值给父类类型的引用变量<br>​    <strong>父类的引用可以调用子类中重写的父类的方法，但不能调用子类中独有的方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">父类型 a &#x3D; new 子类型();</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">父类型 a &#x3D; new 子类型();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>向下转型(显式类型转换)<br>​    把父类对象强制转化为子类型，赋值给子类引用变量<br>​    进行向下转型时，如果父类对象不是子类的实例，会产生ClassCastException异常，所以经常使用instanceof操作符来完成判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">子类型 b &#x3D; (子类型)父类对象的引用变量;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">子类型 b &#x3D; (子类型)父类对象的引用变量;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>​    父类中没有的方法和类型必须要向下转型后才能调用</p>
 </li>
 </ul>
 <h4 id="9-instanceof操作符"><a href="#9-instanceof操作符" class="headerlink" title="9. instanceof操作符"></a>9. instanceof操作符</h4><p>​    用来判断是否一个类实现了某个接口，还可以判断一个实例的对象是否属于一个类(子类一定时属于父类的，不能说父类属于子类，即平行四边形属于四边形，但四边形不属于平行四边形)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">子对象 instanceof 父类型; &#x2F;&#x2F;返回true</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">子对象 instanceof 父类型; &#x2F;&#x2F;返回true<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>​    该方式经常与向下转型连用，当不属于时把父类强制转化为子类<br>​    当两个类完全没有关系时使用这个操作符来操作会报错</p>
 <p><strong>详细使用请看笔记《Java实例-多态》</strong></p>
 <h4 id="10-方法的重载"><a href="#10-方法的重载" class="headerlink" title="10. 方法的重载"></a>10. 方法的重载</h4><p>​    在同一个类中允许存在一个以上的同名方法，只要这些方法的参数个数或类型不同即可<br>​    <strong>注意：方法重载中可以使两个方法的返回值类型不同，但只有返回值类型不同不足以区分两个方法的重载</strong><br>​    编译器是利用方法名、方法各参数类型和参数的个数以及参数的顺序来确定类中的方法是否唯一</p>
-<h4 id="11-不定长参数"><a href="#11-不定长参数" class="headerlink" title="11. 不定长参数"></a>11. 不定长参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;定义不定长参数方法</span><br><span class="line"> &#x2F;&#x2F;返回值 方法名(参数数据类型...参数名称)</span><br><span class="line">public static int add(int...a)&#123;不定长参数a为一个数组，a的长度取决于调用时传的参数</span><br><span class="line">	&#x2F;&#x2F;方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="11-不定长参数"><a href="#11-不定长参数" class="headerlink" title="11. 不定长参数"></a>11. 不定长参数</h4><pre class="line-numbers language-none"><code class="language-none"> &#x2F;&#x2F;定义不定长参数方法
+ &#x2F;&#x2F;返回值 方法名(参数数据类型...参数名称)
+public static int add(int...a)&#123;不定长参数a为一个数组，a的长度取决于调用时传的参数
+	&#x2F;&#x2F;方法体
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>​    不定长参数方法可以作为一个单独的重载方法</p>
 <h4 id="12-多态"><a href="#12-多态" class="headerlink" title="12. 多态"></a>12. 多态</h4><p>​    多态存在的三个前提</p>
 <ul>

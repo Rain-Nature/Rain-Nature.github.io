@@ -463,28 +463,178 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="文件操作实例"><a href="#文件操作实例" class="headerlink" title="文件操作实例"></a>文件操作实例</h2><h4 id="1-D-盘删盘程序"><a href="#1-D-盘删盘程序" class="headerlink" title="1. D:盘删盘程序"></a>1. D:盘删盘程序</h4><p>​    <strong>可以通过修改位置删除指定文件夹</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		File file &#x3D; new File(&quot;D:&quot;+File.separator);</span><br><span class="line">		test(file);</span><br><span class="line">	&#125;</span><br><span class="line">	 </span><br><span class="line">	public static void test(File file) &#123;</span><br><span class="line">		if(file.isDirectory()) &#123;</span><br><span class="line">			File[] s &#x3D; file.listFiles();</span><br><span class="line">			for(File a : s) &#123;</span><br><span class="line">				test(a);	</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		file.delete();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">package hello;
+
+import java.io.*;
+
+public class First&#123;
+	public static void main(String[] args) &#123;
+		File file &#x3D; new File(&quot;D:&quot;+File.separator);
+		test(file);
+	&#125;
+	 
+	public static void test(File file) &#123;
+		if(file.isDirectory()) &#123;
+			File[] s &#x3D; file.listFiles();
+			for(File a : s) &#123;
+				test(a);	
+			&#125;
+		&#125;
+		file.delete();
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <p>​    <strong>创建一堆文件</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		File fileOld &#x3D; new File(&quot;D:&quot;+File.separator+&quot;test-java&quot;);</span><br><span class="line">		for(int x &#x3D; 0 ; x &lt; 100 ; x++) &#123;</span><br><span class="line">			new File(fileOld,&quot;mldn-&quot; + getTime() + &quot;-&quot; + x + &quot;.log&quot;).createNewFile();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static String getTime() &#123;</span><br><span class="line">		return new SimpleDateFormat(&quot;yyyyMMddHHmmssSSS&quot;).format(new java.util.Date());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">package hello;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+
+public class First&#123;
+	public static void main(String[] args) throws Exception &#123;
+		File fileOld &#x3D; new File(&quot;D:&quot;+File.separator+&quot;test-java&quot;);
+		for(int x &#x3D; 0 ; x &lt; 100 ; x++) &#123;
+			new File(fileOld,&quot;mldn-&quot; + getTime() + &quot;-&quot; + x + &quot;.log&quot;).createNewFile();
+		&#125;
+	&#125;
+	
+	public static String getTime() &#123;
+		return new SimpleDateFormat(&quot;yyyyMMddHHmmssSSS&quot;).format(new java.util.Date());
+	&#125;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <p>​    <strong>对同类型的文件批量更改文件名（补零操作）</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;test-java&quot;);</span><br><span class="line">		Count a &#x3D; new Count();</span><br><span class="line">		a.to(file);</span><br><span class="line">		a.rename(file);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Count&#123;</span><br><span class="line">	private int max &#x3D; 0;</span><br><span class="line">	private String filename &#x3D; null;</span><br><span class="line">	private int length &#x3D; 0;</span><br><span class="line">	</span><br><span class="line">	public void to(File file) &#123;</span><br><span class="line">		if(file.isDirectory()) &#123;&#x2F;&#x2F;判断是否为文件夹</span><br><span class="line">			File a[] &#x3D; file.listFiles();&#x2F;&#x2F;获得所有子文件</span><br><span class="line">			if(a !&#x3D; null) &#123;</span><br><span class="line">				for(File childFile : a) &#123;</span><br><span class="line">					 to(childFile);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			if(file.isFile()) &#123;</span><br><span class="line">				if(file.getName().matches(&quot;mldn\\-\\d&#123;17&#125;\\-\\d+\\.log&quot;))&#123;&#x2F;&#x2F;需要修改路径的文件名称</span><br><span class="line">					this.getMaxLength(file.getName());</span><br><span class="line">					</span><br><span class="line">				&#125;</span><br><span class="line">					</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void getMaxFileLength() &#123;</span><br><span class="line">		this.length &#x3D; this.filename.substring(this.filename.lastIndexOf(&quot;-&quot;) + 1, this.filename.lastIndexOf(&quot;.&quot;)).length();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String getNewFileName(String oldName) &#123;</span><br><span class="line">		</span><br><span class="line">		StringBuffer buffer &#x3D; new StringBuffer(oldName);</span><br><span class="line">		while(buffer.length() &lt; this.length) &#123;</span><br><span class="line">			buffer.insert(0, 0);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		return buffer.toString();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void getMaxLength(String fileName) &#123;</span><br><span class="line">		if(this.max &lt; fileName.length()) &#123;</span><br><span class="line">			this.max &#x3D; fileName.length();</span><br><span class="line">			this.filename &#x3D; fileName;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void rename(File file) &#123;</span><br><span class="line">		if(file.isDirectory()) &#123;</span><br><span class="line">			File a[] &#x3D; file.listFiles();</span><br><span class="line">			if(a !&#x3D; null) &#123;</span><br><span class="line">				for(File childFile : a) &#123;</span><br><span class="line">					rename(childFile);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			if(file.isFile()) &#123;</span><br><span class="line">				if(file.getName().matches(&quot;mldn\\-\\d&#123;17&#125;\\-\\d+\\.log&quot;))&#123;&#x2F;&#x2F;需要修改路径的文件名称</span><br><span class="line">					if(this.filename !&#x3D; null) &#123;</span><br><span class="line">						this.getMaxFileLength();</span><br><span class="line">						String oldFileName &#x3D; file.getName().substring(file.getName().lastIndexOf(&quot;-&quot;) + 1, file.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">						String newFileName &#x3D; file.getName().substring(0,file.getName().lastIndexOf(&quot;-&quot;) + 1) + this.getNewFileName(oldFileName) + file.getName().substring(file.getName().lastIndexOf(&quot;.&quot;));</span><br><span class="line">						File newFile &#x3D; new File(file.getParentFile(),newFileName);</span><br><span class="line">						file.renameTo(newFile);</span><br><span class="line">						</span><br><span class="line">					&#125;</span><br><span class="line">					</span><br><span class="line">					</span><br><span class="line">					</span><br><span class="line">					</span><br><span class="line">					</span><br><span class="line">				&#125;</span><br><span class="line">					</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">package hello;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+
+public class First&#123;
+
+	
+	
+	public static void main(String[] args)&#123;
+		File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;test-java&quot;);
+		Count a &#x3D; new Count();
+		a.to(file);
+		a.rename(file);
+		
+	&#125;
+	
+&#125;
+
+class Count&#123;
+	private int max &#x3D; 0;
+	private String filename &#x3D; null;
+	private int length &#x3D; 0;
+	
+	public void to(File file) &#123;
+		if(file.isDirectory()) &#123;&#x2F;&#x2F;判断是否为文件夹
+			File a[] &#x3D; file.listFiles();&#x2F;&#x2F;获得所有子文件
+			if(a !&#x3D; null) &#123;
+				for(File childFile : a) &#123;
+					 to(childFile);
+				&#125;
+			&#125;
+		&#125;else &#123;
+			if(file.isFile()) &#123;
+				if(file.getName().matches(&quot;mldn\\-\\d&#123;17&#125;\\-\\d+\\.log&quot;))&#123;&#x2F;&#x2F;需要修改路径的文件名称
+					this.getMaxLength(file.getName());
+					
+				&#125;
+					
+			&#125;
+		&#125;
+	&#125;
+	
+	public void getMaxFileLength() &#123;
+		this.length &#x3D; this.filename.substring(this.filename.lastIndexOf(&quot;-&quot;) + 1, this.filename.lastIndexOf(&quot;.&quot;)).length();
+	&#125;
+	
+	public String getNewFileName(String oldName) &#123;
+		
+		StringBuffer buffer &#x3D; new StringBuffer(oldName);
+		while(buffer.length() &lt; this.length) &#123;
+			buffer.insert(0, 0);
+			
+		&#125;
+		return buffer.toString();
+	&#125;
+	
+	public void getMaxLength(String fileName) &#123;
+		if(this.max &lt; fileName.length()) &#123;
+			this.max &#x3D; fileName.length();
+			this.filename &#x3D; fileName;
+		&#125;
+		
+	&#125;
+	
+	public void rename(File file) &#123;
+		if(file.isDirectory()) &#123;
+			File a[] &#x3D; file.listFiles();
+			if(a !&#x3D; null) &#123;
+				for(File childFile : a) &#123;
+					rename(childFile);
+				&#125;
+			&#125;
+		&#125;else &#123;
+			if(file.isFile()) &#123;
+				if(file.getName().matches(&quot;mldn\\-\\d&#123;17&#125;\\-\\d+\\.log&quot;))&#123;&#x2F;&#x2F;需要修改路径的文件名称
+					if(this.filename !&#x3D; null) &#123;
+						this.getMaxFileLength();
+						String oldFileName &#x3D; file.getName().substring(file.getName().lastIndexOf(&quot;-&quot;) + 1, file.getName().lastIndexOf(&quot;.&quot;));
+						String newFileName &#x3D; file.getName().substring(0,file.getName().lastIndexOf(&quot;-&quot;) + 1) + this.getNewFileName(oldFileName) + file.getName().substring(file.getName().lastIndexOf(&quot;.&quot;));
+						File newFile &#x3D; new File(file.getParentFile(),newFileName);
+						file.renameTo(newFile);
+						
+					&#125;
+					
+					
+					
+					
+					
+				&#125;
+					
+			&#125;
+		&#125;
+	&#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <p>​    <strong>OutputStream类与其子类FileOutputStream的应用</strong><br>​    创建文件并且向文件中写入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package hello;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line"></span><br><span class="line">public class First&#123;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;java-test&quot;+File.separator+&quot;test.txt&quot;);&#x2F;&#x2F;文件与其路径现在是不存在的，代码并没有进行手动创建，但文件还是直接生成了</span><br><span class="line">		if(!file.getParentFile().exists()) &#123;&#x2F;&#x2F;创建父路径</span><br><span class="line">			file.getParentFile().mkdirs();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		OutputStream output &#x3D; new FileOutputStream(file);</span><br><span class="line">		output.write(&quot;hello&quot;.getBytes());</span><br><span class="line">		output.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">package hello;
+
+import java.io.*;
+
+public class First&#123;
+	public static void main(String[] args) throws Exception&#123;
+		File file &#x3D; new File(&quot;D:&quot;+File.separator+&quot;java-test&quot;+File.separator+&quot;test.txt&quot;);&#x2F;&#x2F;文件与其路径现在是不存在的，代码并没有进行手动创建，但文件还是直接生成了
+		if(!file.getParentFile().exists()) &#123;&#x2F;&#x2F;创建父路径
+			file.getParentFile().mkdirs();
+		&#125;
+
+		OutputStream output &#x3D; new FileOutputStream(file);
+		output.write(&quot;hello&quot;.getBytes());
+		output.close();
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>

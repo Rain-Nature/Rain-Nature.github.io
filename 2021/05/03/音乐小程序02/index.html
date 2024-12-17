@@ -463,30 +463,151 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="云开发的基本环境的配置"><a href="#云开发的基本环境的配置" class="headerlink" title="云开发的基本环境的配置"></a>云开发的基本环境的配置</h2><p><strong>1. 在miniprogram文件下的app.js中有一个onLaunch生命周期函数(当小程序运行时自动调用 这个生命周期函数)</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">onLaunch: function () &#123;</span><br><span class="line">	&#x2F;&#x2F;首先检查是否支持云开发，之后再看基础库的版本(在详情中的本地设置里可以选择调试基础库的版本，最低2.2.3)</span><br><span class="line">    if (!wx.cloud) &#123;</span><br><span class="line">      console.error(&#39;请使用 2.2.3 或以上的基础库以使用云能力&#39;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      wx.cloud.init(&#123;</span><br><span class="line">        &#x2F;&#x2F; env 参数说明：</span><br><span class="line">        &#x2F;&#x2F;   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源</span><br><span class="line">        &#x2F;&#x2F;   此处请填入环境 ID, 环境 ID 可打开云控制台查看</span><br><span class="line">        &#x2F;&#x2F;   如不填则使用默认环境（第一个创建的环境）</span><br><span class="line">        &#x2F;&#x2F;env是环境的意思，这里填环境的id(id在云开发控制台里找)</span><br><span class="line">        env: &#39;cloud-7gxr9uz450402f24&#39;, &#x2F;&#x2F;已将环境改为第一环境cloud的环境id</span><br><span class="line">        &#x2F;&#x2F;在云开发的控制台中可以观察到访问过小程序的用户(为true时)，以倒叙方式显示</span><br><span class="line">        traceUser: true,</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">	&#x2F;&#x2F;当前小程序全局的属性和方法</span><br><span class="line">    this.globalData &#x3D; &#123;&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">onLaunch: function () &#123;
+	&#x2F;&#x2F;首先检查是否支持云开发，之后再看基础库的版本(在详情中的本地设置里可以选择调试基础库的版本，最低2.2.3)
+    if (!wx.cloud) &#123;
+      console.error(&#39;请使用 2.2.3 或以上的基础库以使用云能力&#39;)
+    &#125; else &#123;
+      wx.cloud.init(&#123;
+        &#x2F;&#x2F; env 参数说明：
+        &#x2F;&#x2F;   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
+        &#x2F;&#x2F;   此处请填入环境 ID, 环境 ID 可打开云控制台查看
+        &#x2F;&#x2F;   如不填则使用默认环境（第一个创建的环境）
+        &#x2F;&#x2F;env是环境的意思，这里填环境的id(id在云开发控制台里找)
+        env: &#39;cloud-7gxr9uz450402f24&#39;, &#x2F;&#x2F;已将环境改为第一环境cloud的环境id
+        &#x2F;&#x2F;在云开发的控制台中可以观察到访问过小程序的用户(为true时)，以倒叙方式显示
+        traceUser: true,
+      &#125;)
+    &#125;
+	&#x2F;&#x2F;当前小程序全局的属性和方法
+    this.globalData &#x3D; &#123;&#125;
+  &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>2. 在miniprogram文件下的app.json文件</strong><br>在当前项目下的全局的配置文件<br><strong>注意在.json文件下是不能写注释的，写的话会报错</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&#x2F;&#x2F;pages即当前项目的文件的路径，这些是默认的一会删掉</span><br><span class="line">  &quot;pages&quot;: [</span><br><span class="line">    &quot;pages&#x2F;index&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;getOpenId&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;getMiniProgramCode&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;deployService&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;createCollection&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;uploadFile&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;selectRecord&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;updateRecord&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;updateRecordResult&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;updateRecordSuccess&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;sumRecord&#x2F;index&quot;,</span><br><span class="line">    &quot;pages&#x2F;sumRecordResult&#x2F;index&quot;</span><br><span class="line">  ],</span><br><span class="line">  &#x2F;&#x2F;window对于窗口的配置</span><br><span class="line">  &quot;window&quot;: &#123;</span><br><span class="line">    &quot;backgroundColor&quot;: &quot;#F6F6F6&quot;,</span><br><span class="line">    &quot;backgroundTextStyle&quot;: &quot;light&quot;,</span><br><span class="line">    &quot;navigationBarBackgroundColor&quot;: &quot;#F6F6F6&quot;,  &#x2F;&#x2F;导航栏的颜色</span><br><span class="line">    &quot;navigationBarTitleText&quot;: &quot;云开发 QuickStart&quot;, &#x2F;&#x2F;导航栏的标题字体</span><br><span class="line">    &quot;navigationBarTextStyle&quot;: &quot;black&quot; &#x2F;&#x2F;导航栏标题字体的颜色</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;&#x2F;小程序的一些内部搜索，它还有自己的配置文件</span><br><span class="line">  &quot;sitemapLocation&quot;: &quot;sitemap.json&quot;,</span><br><span class="line">  &quot;style&quot;: &quot;v2&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#123;
+&#x2F;&#x2F;pages即当前项目的文件的路径，这些是默认的一会删掉
+  &quot;pages&quot;: [
+    &quot;pages&#x2F;index&#x2F;index&quot;,
+    &quot;pages&#x2F;getOpenId&#x2F;index&quot;,
+    &quot;pages&#x2F;getMiniProgramCode&#x2F;index&quot;,
+    &quot;pages&#x2F;deployService&#x2F;index&quot;,
+    &quot;pages&#x2F;createCollection&#x2F;index&quot;,
+    &quot;pages&#x2F;uploadFile&#x2F;index&quot;,
+    &quot;pages&#x2F;selectRecord&#x2F;index&quot;,
+    &quot;pages&#x2F;updateRecord&#x2F;index&quot;,
+    &quot;pages&#x2F;updateRecordResult&#x2F;index&quot;,
+    &quot;pages&#x2F;updateRecordSuccess&#x2F;index&quot;,
+    &quot;pages&#x2F;sumRecord&#x2F;index&quot;,
+    &quot;pages&#x2F;sumRecordResult&#x2F;index&quot;
+  ],
+  &#x2F;&#x2F;window对于窗口的配置
+  &quot;window&quot;: &#123;
+    &quot;backgroundColor&quot;: &quot;#F6F6F6&quot;,
+    &quot;backgroundTextStyle&quot;: &quot;light&quot;,
+    &quot;navigationBarBackgroundColor&quot;: &quot;#F6F6F6&quot;,  &#x2F;&#x2F;导航栏的颜色
+    &quot;navigationBarTitleText&quot;: &quot;云开发 QuickStart&quot;, &#x2F;&#x2F;导航栏的标题字体
+    &quot;navigationBarTextStyle&quot;: &quot;black&quot; &#x2F;&#x2F;导航栏标题字体的颜色
+  &#125;,
+  &#x2F;&#x2F;小程序的一些内部搜索，它还有自己的配置文件
+  &quot;sitemapLocation&quot;: &quot;sitemap.json&quot;,
+  &quot;style&quot;: &quot;v2&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>3.  在miniprogram文件下的app.wxss文件</strong><br>自带的一些全局的样式，在视频中全部删掉了</p>
 <p><strong>4.  在miniprogram文件下的README.md文件</strong><br>可以写一些对于自己微信小程序的说明</p>
 <p><strong>5.  在miniprogram文件下的project.config.json文件</strong><br>当前小程序的项目的配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &#x2F;&#x2F;小程序前端部分的代码，与前面那个miniprogram文件夹是相对应的</span><br><span class="line">  &quot;miniprogramRoot&quot;: &quot;miniprogram&#x2F;&quot;, </span><br><span class="line">  &#x2F;&#x2F;小程序开发云函数的文件路径，名字也是与云函数的文件夹相对应</span><br><span class="line">  &quot;cloudfunctionRoot&quot;: &quot;cloudfunctions&#x2F;&quot;,</span><br><span class="line">  &quot;setting&quot;: &#123;</span><br><span class="line">    &quot;urlCheck&quot;: true,</span><br><span class="line">    &quot;es6&quot;: true,</span><br><span class="line">    &quot;enhance&quot;: true,</span><br><span class="line">    &quot;postcss&quot;: true,</span><br><span class="line">    &quot;preloadBackgroundData&quot;: false,</span><br><span class="line">    &quot;minified&quot;: true,</span><br><span class="line">    &quot;newFeature&quot;: true,</span><br><span class="line">    &quot;coverView&quot;: true,</span><br><span class="line">    &quot;nodeModules&quot;: false,</span><br><span class="line">    &quot;autoAudits&quot;: false,</span><br><span class="line">    &quot;showShadowRootInWxmlPanel&quot;: true,</span><br><span class="line">    &quot;scopeDataCheck&quot;: false,</span><br><span class="line">    &quot;uglifyFileName&quot;: false,</span><br><span class="line">    &quot;checkInvalidKey&quot;: true,</span><br><span class="line">    &quot;checkSiteMap&quot;: true,</span><br><span class="line">    &quot;uploadWithSourceMap&quot;: true,</span><br><span class="line">    &quot;compileHotReLoad&quot;: false,</span><br><span class="line">    &quot;useMultiFrameRuntime&quot;: true,</span><br><span class="line">    &quot;useApiHook&quot;: true,</span><br><span class="line">    &quot;useApiHostProcess&quot;: false,</span><br><span class="line">    &quot;babelSetting&quot;: &#123;</span><br><span class="line">      &quot;ignore&quot;: [],</span><br><span class="line">      &quot;disablePlugins&quot;: [],</span><br><span class="line">      &quot;outputPath&quot;: &quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;enableEngineNative&quot;: false,</span><br><span class="line">    &quot;useIsolateContext&quot;: true,</span><br><span class="line">    &quot;useCompilerModule&quot;: true,</span><br><span class="line">    &quot;userConfirmedUseCompilerModuleSwitch&quot;: false,</span><br><span class="line">    &quot;userConfirmedBundleSwitch&quot;: false,</span><br><span class="line">    &quot;packNpmManually&quot;: false,</span><br><span class="line">    &quot;packNpmRelationList&quot;: [],</span><br><span class="line">    &quot;minifyWXSS&quot;: true</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;appid&quot;: &quot;wx466a6c8b6726bf3d&quot;,</span><br><span class="line">  &quot;projectname&quot;: &quot;%E4%B8%80%E8%B5%B7%E5%90%AC%E4%B8%80%E5%90%AC&quot;,</span><br><span class="line">  &quot;libVersion&quot;: &quot;2.14.1&quot;,</span><br><span class="line">  &quot;cloudfunctionTemplateRoot&quot;: &quot;cloudfunctionTemplate&quot;,</span><br><span class="line">  &quot;condition&quot;: &#123;</span><br><span class="line">    &quot;search&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;conversation&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;plugin&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;game&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;miniprogram&quot;: &#123;</span><br><span class="line">      &quot;list&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;id&quot;: -1,</span><br><span class="line">          &quot;name&quot;: &quot;db guide&quot;,</span><br><span class="line">          &quot;pathName&quot;: &quot;pages&#x2F;databaseGuide&#x2F;databaseGuide&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">&#123;
+  &#x2F;&#x2F;小程序前端部分的代码，与前面那个miniprogram文件夹是相对应的
+  &quot;miniprogramRoot&quot;: &quot;miniprogram&#x2F;&quot;, 
+  &#x2F;&#x2F;小程序开发云函数的文件路径，名字也是与云函数的文件夹相对应
+  &quot;cloudfunctionRoot&quot;: &quot;cloudfunctions&#x2F;&quot;,
+  &quot;setting&quot;: &#123;
+    &quot;urlCheck&quot;: true,
+    &quot;es6&quot;: true,
+    &quot;enhance&quot;: true,
+    &quot;postcss&quot;: true,
+    &quot;preloadBackgroundData&quot;: false,
+    &quot;minified&quot;: true,
+    &quot;newFeature&quot;: true,
+    &quot;coverView&quot;: true,
+    &quot;nodeModules&quot;: false,
+    &quot;autoAudits&quot;: false,
+    &quot;showShadowRootInWxmlPanel&quot;: true,
+    &quot;scopeDataCheck&quot;: false,
+    &quot;uglifyFileName&quot;: false,
+    &quot;checkInvalidKey&quot;: true,
+    &quot;checkSiteMap&quot;: true,
+    &quot;uploadWithSourceMap&quot;: true,
+    &quot;compileHotReLoad&quot;: false,
+    &quot;useMultiFrameRuntime&quot;: true,
+    &quot;useApiHook&quot;: true,
+    &quot;useApiHostProcess&quot;: false,
+    &quot;babelSetting&quot;: &#123;
+      &quot;ignore&quot;: [],
+      &quot;disablePlugins&quot;: [],
+      &quot;outputPath&quot;: &quot;&quot;
+    &#125;,
+    &quot;enableEngineNative&quot;: false,
+    &quot;useIsolateContext&quot;: true,
+    &quot;useCompilerModule&quot;: true,
+    &quot;userConfirmedUseCompilerModuleSwitch&quot;: false,
+    &quot;userConfirmedBundleSwitch&quot;: false,
+    &quot;packNpmManually&quot;: false,
+    &quot;packNpmRelationList&quot;: [],
+    &quot;minifyWXSS&quot;: true
+  &#125;,
+  &quot;appid&quot;: &quot;wx466a6c8b6726bf3d&quot;,
+  &quot;projectname&quot;: &quot;%E4%B8%80%E8%B5%B7%E5%90%AC%E4%B8%80%E5%90%AC&quot;,
+  &quot;libVersion&quot;: &quot;2.14.1&quot;,
+  &quot;cloudfunctionTemplateRoot&quot;: &quot;cloudfunctionTemplate&quot;,
+  &quot;condition&quot;: &#123;
+    &quot;search&quot;: &#123;
+      &quot;list&quot;: []
+    &#125;,
+    &quot;conversation&quot;: &#123;
+      &quot;list&quot;: []
+    &#125;,
+    &quot;plugin&quot;: &#123;
+      &quot;list&quot;: []
+    &#125;,
+    &quot;game&quot;: &#123;
+      &quot;list&quot;: []
+    &#125;,
+    &quot;miniprogram&quot;: &#123;
+      &quot;list&quot;: [
+        &#123;
+          &quot;id&quot;: -1,
+          &quot;name&quot;: &quot;db guide&quot;,
+          &quot;pathName&quot;: &quot;pages&#x2F;databaseGuide&#x2F;databaseGuide&quot;
+        &#125;
+      ]
+    &#125;
+  &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>6. 后记(代码规范)</strong><br>    一般每一个公司都会有自己的代码规范，为了沟通也需要去遵守代码规范<br>    (1).一般使用let和const来定义变量和常量，而不用var<br>    因为var的作用域太大，所以可能会造成不安全<br>    (2).当我们在定义变量时一般之间用大括号来定义,可以像面向对象那样使用new，但还是用大括号，数组也是一样的用中括号来直接定义<br>    如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const obj &#x3D; &#123;&#125;  &#x2F;&#x2F;定义对象,每一个对象的属性后面最好都加,哪怕最后一个</span><br><span class="line">const arr &#x3D; []  &#x2F;&#x2F;定义数组</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">const obj &#x3D; &#123;&#125;  &#x2F;&#x2F;定义对象,每一个对象的属性后面最好都加,哪怕最后一个
+const arr &#x3D; []  &#x2F;&#x2F;定义数组<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <pre><code>(3).对于生命周期函数
 系统的默认的定义方式是</code></pre>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onLoad:function(options)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">onLoad:function(options)&#123;
+
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <pre><code>还可以写成这样(建议这样去写)</code></pre>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onLoad()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">onLoad()&#123;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>

@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -486,7 +489,9 @@
 <p>​    Model表示模型，作用为封装数据；View表示视图，作用为展示数据。在返回视图给页面时可以不携带数据，只展示视图</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VOPjH"><img src="https://s1.ax1x.com/2023/04/22/p9VOPjH.png" alt="p9VOPjH.png"></a></p>
 <p>​    modelAndView.setViewName(“页面路径”)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ModelAndView mv = <span class="keyword">new</span> ModelAndView(<span class="string">&quot;/user/save/result&quot;</span>);<span class="comment">//默认为forward模式  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//ModelAndView mv = new ModelAndView(&quot;redirect:/user/save/result&quot;);//redirect模式</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ModelAndView</span> mv <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ModelAndView</span><span class="token punctuation">(</span><span class="token string">"/user/save/result"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//默认为forward模式  </span>
+
+<span class="token comment">//ModelAndView mv = new ModelAndView("redirect:/user/save/result");//redirect模式</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 
 

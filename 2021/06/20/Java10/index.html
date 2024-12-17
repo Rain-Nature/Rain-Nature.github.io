@@ -463,6 +463,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -494,7 +497,14 @@
 <li>finally语句块里的内容无论try语句是否跳出，正常都会执行</li>
 </ul>
 <p>​    <strong>注意：如果程序跳到了catch块后会继续向下执行，不会再去执行try代码块的内容</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	 	&#x2F;&#x2F;可能出现异常的代码</span><br><span class="line">&#125; catch (Exception e) &#123;&#x2F;&#x2F;可能出现的异常类型 异常的变量名称,e是引用了抛出的实例</span><br><span class="line">		&#x2F;&#x2F;针对该异常类型的处理办法</span><br><span class="line">&#125;</span><br><span class="line">finally&#123;</span><br><span class="line">	&#x2F;&#x2F;语句块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">try &#123;
+	 	&#x2F;&#x2F;可能出现异常的代码
+&#125; catch (Exception e) &#123;&#x2F;&#x2F;可能出现的异常类型 异常的变量名称,e是引用了抛出的实例
+		&#x2F;&#x2F;针对该异常类型的处理办法
+&#125;
+finally&#123;
+	&#x2F;&#x2F;语句块
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    获取异常的信息的函数(需要在异常引用变量名称后调用，这是可抛出类(异常最上层父类)的方法)</p>
 <ul>
@@ -503,11 +513,16 @@
 <li>printStackTrace()函数：指出异常的类型、性质、栈层次及出现在程序中的位置</li>
 </ul>
 <h4 id="6-在方法中抛出异常"><a href="#6-在方法中抛出异常" class="headerlink" title="6. 在方法中抛出异常"></a>6. 在方法中抛出异常</h4><p>​    <strong>(1).使用throws关键字抛出异常</strong><br>​    <strong>throws关键字通常被应用在声明方法时，用来指定可能抛出的异常。</strong>多个异常可以使用逗号隔开。当在主函数中调用该方法时，如果发生异常，就会将异常抛给指定异常对象<br>​    <strong>throws关键字声明的方法表示此方法不处理异常，而交给方法调用处进行处理</strong><br>​    <strong>注意：throws不会抛出异常对象只是起通知作用，但是catch块的引用方法按这个通知的来分配异常对象的引用类型，即throws声明了是哪种类型的异常，使它的调用者可以捕获这个异常及其父类</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修饰符 方法名() throws 异常名&#123; &#x2F;&#x2F;异常名必须是JavaException的子类，不可以自己取</span><br><span class="line">	&#x2F;&#x2F;方法内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">修饰符 方法名() throws 异常名&#123; &#x2F;&#x2F;异常名必须是JavaException的子类，不可以自己取
+	&#x2F;&#x2F;方法内容
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>​    <strong>注意：写了throws后，调用这个方法的调用方必须要对可能发生异常进行处理(不管程序是否发生异常)，不写throws的话，就正常使用方法，其出错的话编译器报错，但用了接收的try-catch可以处理。</strong><br>​    <strong>而且抛给调用方后，调用方使用try-catch来处理，如果不想处理可以继续向上抛，但最终还是要有能够处理该异常的代码</strong></p>
 <p>​    <strong>(2).使用throw关键字抛出异常</strong><br>​    throw关键字通常用于方法体中，通过throw<strong>抛出一个异常对象</strong>，程序在执行到throw语句时立即终止,必须对该抛出的异常进行处理，要么捕获要么上抛，如果需要该方法上一级代码来捕获处理异常，则需要在方法的声明中使用throws关键字并指明要抛出的异常（是该异常的引用，如果用父类可能会造成问题），捕捉throw抛出的异常用try-catch语句块</p>
 <h4 id="7-自定义的异常"><a href="#7-自定义的异常" class="headerlink" title="7. 自定义的异常"></a>7. 自定义的异常</h4><p>​    在Java中用户通过继承Exception类来自定义异常类<br>​    通常使用throw来抛出自定义异常<br>​    父类Exception的主要构造方法，详细见API文档</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Exception()</span><br><span class="line">	Constructs a new exception with null as its detail message.</span><br><span class="line">	Exception(String message)</span><br><span class="line">	Constructs a new exception with the specified detail message.</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">Exception()
+	Constructs a new exception with null as its detail message.
+	Exception(String message)
+	Constructs a new exception with the specified detail message.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    使用自定义异常的步骤<br>​    (1). 创建自定义异常类<br>​    (2). 在方法中通过throw关键字抛出异常对象<br>​    (3). 对抛出异常进行处理</p>
 <h4 id="7-异常的使用原则"><a href="#7-异常的使用原则" class="headerlink" title="7. 异常的使用原则"></a>7. 异常的使用原则</h4><p>​    异常的处理不应用来控制程序的正常流程，其主要作用是捕获程序在运行时发生的异常并进行相应的处理</p>
