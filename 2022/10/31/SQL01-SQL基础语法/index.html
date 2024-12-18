@@ -784,6 +784,7 @@ selete 字段<span class="token number">1</span><span class="token punctuation">
 <td align="center">某字段(不)为空</td>
 </tr>
 </tbody></table>
+<hr>
 <table>
 <thead>
 <tr>
@@ -804,7 +805,28 @@ selete 字段<span class="token number">1</span><span class="token punctuation">
 <td align="center">非(不是)</td>
 </tr>
 </tbody></table>
-<h5 id="3-DQL补充-聚合函数-在分组查询中使用"><a href="#3-DQL补充-聚合函数-在分组查询中使用" class="headerlink" title="(3)DQL补充-聚合函数(在分组查询中使用)"></a>(3)DQL补充-聚合函数(在分组查询中使用)</h5><ol>
+<h5 id="3-DQL-分组查询-将已经查询好的记录分组排列"><a href="#3-DQL-分组查询-将已经查询好的记录分组排列" class="headerlink" title="(3)DQL-分组查询(将已经查询好的记录分组排列)"></a>(3)DQL-分组查询(将已经查询好的记录分组排列)</h5><p>​    <strong><code>GROUP BY</code> 语句是在 SQL 查询中用于对查询结果进行分组，它不会改变查询的总记录数，只是对查询结果中的数据进行分组</strong>，并允许你在每个组上执行聚合操作（比如 <code>COUNT()</code>、<code>SUM()</code>、<code>AVG()</code> 等</p>
+<h6 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h6><p>​    <strong>group by是对该列内容相同的字段分成一组，放同一个组之后若直接遇到select，则将分组内的第一行进行输出，其他的行被丢弃</strong></p>
+<p>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/pALtsq1"><img src="https://s21.ax1x.com/2024/12/17/pALtsq1.png" alt="sql题"></a></p>
+<h6 id="书本语法"><a href="#书本语法" class="headerlink" title="书本语法"></a>书本语法</h6><ol>
+<li><p>语法：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">     <span class="token keyword">select</span> 字段列表 <span class="token keyword">from</span> 表名 <span class="token punctuation">[</span><span class="token keyword">where</span> 条件<span class="token punctuation">]</span> <span class="token keyword">group</span> <span class="token keyword">by</span> 分组字段名 <span class="token punctuation">[</span><span class="token keyword">having</span> 分组后过滤条件<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>where和having的区别</p>
+<ul>
+<li>执行时机不同：where是分组之前进行过滤，不满足where条件则不参与分组，而having是分组之后对结果进行过滤</li>
+<li>判断条件不同：where不能对聚合函数进行判断，而having可以</li>
+</ul>
+</li>
+<li><p>执行顺序：where&gt;聚合函数&gt;having</p>
+</li>
+<li><p>分组之后查询的字段一般为聚合函数和进行分组的字段，查询其他字段无任何意义</p>
+</li>
+</ol>
+<h5 id="4-DQL补充-聚合函数-在分组查询中使用"><a href="#4-DQL补充-聚合函数-在分组查询中使用" class="headerlink" title="(4)DQL补充-聚合函数(在分组查询中使用)"></a>(4)DQL补充-聚合函数(在分组查询中使用)</h5><h6 id="样例-1"><a href="#样例-1" class="headerlink" title="样例"></a>样例</h6><p>​    <strong><code>COUNT(1)</code> 是一个常见的聚合函数，表示对查询结果中每一行进行计数</strong>，<code>COUNT(1)</code> 和 <code>COUNT(*)</code> 的行为在大多数数据库中是一样的，都是统计符合条件的行数</p>
+<p>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/pALffW4"><img src="https://s21.ax1x.com/2024/12/18/pALffW4.png" alt="聚合函数和分组查询"></a></p>
+<p>​    </p>
+<h6 id="书本语法-1"><a href="#书本语法-1" class="headerlink" title="书本语法"></a>书本语法</h6><ol>
 <li><p>聚合函数的概念：将一列数据作为一个整体进行纵向计算</p>
 </li>
 <li><p>常见聚合函数</p>
@@ -841,25 +863,6 @@ selete 字段<span class="token number">1</span><span class="token punctuation">
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 聚合函数<span class="token punctuation">(</span>字段列表<span class="token punctuation">)</span> <span class="token keyword">from</span> 表名<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>注意：null值不参与所有聚合函数运算</p>
-</li>
-</ol>
-<p>​    </p>
-<h5 id="4-DQL-分组查询-将已经查询好的记录分组排列"><a href="#4-DQL-分组查询-将已经查询好的记录分组排列" class="headerlink" title="(4)DQL-分组查询(将已经查询好的记录分组排列)"></a>(4)DQL-分组查询(将已经查询好的记录分组排列)</h5><p>​    <strong><code>GROUP BY</code> 语句是在 SQL 查询中用于对查询结果进行分组，它不会改变查询的总记录数，只是对查询结果中的数据进行分组</strong>，并允许你在每个组上执行聚合操作（比如 <code>COUNT()</code>、<code>SUM()</code>、<code>AVG()</code> 等</p>
-<h6 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h6><p>​    <strong>group by是对该列内容相同的字段分成一组，放同一个组之后若直接遇到select，则将分组内的第一行进行输出，其他的行被丢弃</strong></p>
-<p>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/pALtsq1"><img src="https://s21.ax1x.com/2024/12/17/pALtsq1.png" alt="sql题"></a></p>
-<h6 id="书本语法"><a href="#书本语法" class="headerlink" title="书本语法"></a>书本语法</h6><ol>
-<li><p>语法：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">     <span class="token keyword">select</span> 字段列表 <span class="token keyword">from</span> 表名 <span class="token punctuation">[</span><span class="token keyword">where</span> 条件<span class="token punctuation">]</span> <span class="token keyword">group</span> <span class="token keyword">by</span> 分组字段名 <span class="token punctuation">[</span><span class="token keyword">having</span> 分组后过滤条件<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li><p>where和having的区别</p>
-<ul>
-<li>执行时机不同：where是分组之前进行过滤，不满足where条件则不参与分组，而having是分组之后对结果进行过滤</li>
-<li>判断条件不同：where不能对聚合函数进行判断，而having可以</li>
-</ul>
-</li>
-<li><p>执行顺序：where&gt;聚合函数&gt;having</p>
-</li>
-<li><p>分组之后查询的字段一般为聚合函数和进行分组的字段，查询其他字段无任何意义</p>
 </li>
 </ol>
 <h5 id="5-DQL-排序查询"><a href="#5-DQL-排序查询" class="headerlink" title="(5)DQL-排序查询"></a>(5)DQL-排序查询</h5><ol>
@@ -920,7 +923,7 @@ selete 字段<span class="token number">1</span><span class="token punctuation">
 
 </li>
 </ol>
-<p>==2024.12.17(已校验)==</p>
+<p><code>2024.12.17(已校验)</code></p>
 
                 
             </div>
