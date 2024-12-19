@@ -484,6 +484,7 @@
 <p>​    整改日志</p>
 <p>​    11.30：完成页面文字的更新</p>
 <p>​    12.03：完成搜索功能</p>
+<p>​    12.19：高亮优化、目录优化，启动一期整改，SQL、JS整改</p>
 
                 
             </div>
@@ -771,7 +772,7 @@
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h2, h3, h4, h5'
         });
 
         // modify the toc link href to support Chinese.
@@ -783,7 +784,7 @@
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h2, h3, h4, h5').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
