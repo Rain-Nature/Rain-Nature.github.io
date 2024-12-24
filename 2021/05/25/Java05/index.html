@@ -866,7 +866,7 @@ Book book; &#x2F;&#x2F;引用不需要有一个对象相关联<span aria-hidden=
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4, h5'
+            headingSelector: 'h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -878,7 +878,7 @@ Book book; &#x2F;&#x2F;引用不需要有一个对象相关联<span aria-hidden=
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4, h5').each(function () {
+        $('#articleContent').children('h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 

@@ -471,23 +471,23 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="1-作用域"><a href="#1-作用域" class="headerlink" title="1. 作用域"></a>1. 作用域</h4><p>​    规定变量被访问的范围</p>
+                <h3 id="1-作用域"><a href="#1-作用域" class="headerlink" title="1. 作用域"></a>1. 作用域</h3><p>​    规定变量被访问的范围</p>
 <p>​    <code>JS中共有4种作用域：全局作用域、局部作用域(块作用域)、函数作用域(普通函数)以及eval作用域，作用域会影响this的指向</code></p>
-<h5 id="1-局部作用域：-1-函数作用域、2-块作用域"><a href="#1-局部作用域：-1-函数作用域、2-块作用域" class="headerlink" title="(1)局部作用域：{1.函数作用域、2.块作用域}"></a>(1)局部作用域：{1.函数作用域、2.块作用域}</h5><p>​    1.函数内部声明的变量只能在函数内部被访问，函数执行完毕，函数内部的变量实际被清空了</p>
+<h4 id="1-局部作用域：-1-函数作用域、2-块作用域"><a href="#1-局部作用域：-1-函数作用域、2-块作用域" class="headerlink" title="(1)局部作用域：{1.函数作用域、2.块作用域}"></a>(1)局部作用域：{1.函数作用域、2.块作用域}</h4><p>​    1.函数内部声明的变量只能在函数内部被访问，函数执行完毕，函数内部的变量实际被清空了</p>
 <p>​    2.<code>&#123;&#125;</code>包裹的为代码块（包括if的，for的），let、const会产生块作用域，var不会产生块作用域</p>
 <p>​    注意：局部作用域外部未再次定义就使用会报错</p>
-<h5 id="2-全局作用域"><a href="#2-全局作用域" class="headerlink" title="(2)全局作用域"></a>(2)全局作用域</h5><p>​    <code>&lt;script&gt;</code> 标签内和.js文件内，即【最外层】就是所谓的全局作用域，全局作用域中声明的变量，任何其他作用域都可以被访问</p>
-<h5 id="3-垃圾回收机制"><a href="#3-垃圾回收机制" class="headerlink" title="(3)垃圾回收机制"></a>(3)垃圾回收机制</h5><ul>
+<h4 id="2-全局作用域"><a href="#2-全局作用域" class="headerlink" title="(2)全局作用域"></a>(2)全局作用域</h4><p>​    <code>&lt;script&gt;</code> 标签内和.js文件内，即【最外层】就是所谓的全局作用域，全局作用域中声明的变量，任何其他作用域都可以被访问</p>
+<h4 id="3-垃圾回收机制"><a href="#3-垃圾回收机制" class="headerlink" title="(3)垃圾回收机制"></a>(3)垃圾回收机制</h4><ul>
 <li>引用计数法：跟踪被引用的次数，如果为0则释放内存，缺点：相互引用的变量无法销毁会造成内存泄漏</li>
 <li>标记清除法：从根部扫描对象，查不到的对象会被回收，解决了引用计数法的缺点</li>
 </ul>
-<h5 id="4-闭包"><a href="#4-闭包" class="headerlink" title="(4)闭包"></a>(4)闭包</h5><p>​    内层函数访问到外层函数的作用域：闭包=内层函数 + 外层函数的变量</p>
+<h4 id="4-闭包"><a href="#4-闭包" class="headerlink" title="(4)闭包"></a>(4)闭包</h4><p>​    内层函数访问到外层函数的作用域：闭包=内层函数 + 外层函数的变量</p>
 <p>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/pAqh4IO"><img src="https://s21.ax1x.com/2024/12/15/pAqh4IO.png" alt="闭包的使用"></a></p>
 <p>​    此时，调用fun()函数可以打印出a的值，调用outer()也可以</p>
-<h6 id="闭包的应用"><a href="#闭包的应用" class="headerlink" title="闭包的应用"></a>闭包的应用</h6><p>​    1. 在内定义数据，实现数据的私有</p>
-<h6 id="闭包引发的问题"><a href="#闭包引发的问题" class="headerlink" title="闭包引发的问题"></a>闭包引发的问题</h6><p>​    因为函数一直被调用，变量无法回收，会导致内存的泄露</p>
-<h5 id="5-变量提升"><a href="#5-变量提升" class="headerlink" title="(5)变量提升"></a>(5)变量提升</h5><p>​    属于JS语言缺陷，它允许变量声明之前即被访问（仅存在于var声明变量），只提升声明不提升赋值且仅提升到当前作用域最前面，实际开发少用var</p>
-<h4 id="2-函数进阶"><a href="#2-函数进阶" class="headerlink" title="2. 函数进阶"></a>2. 函数进阶</h4><h5 id="1-函数提升"><a href="#1-函数提升" class="headerlink" title="(1)函数提升"></a>(1)函数提升</h5><p>​    函数在声明之前就可以被调用，原因：JS会把所有函数声明提升到当前作用域的最前面</p>
+<h5 id="闭包的应用"><a href="#闭包的应用" class="headerlink" title="闭包的应用"></a>闭包的应用</h5><p>​    1. 在内定义数据，实现数据的私有</p>
+<h5 id="闭包引发的问题"><a href="#闭包引发的问题" class="headerlink" title="闭包引发的问题"></a>闭包引发的问题</h5><p>​    因为函数一直被调用，变量无法回收，会导致内存的泄露</p>
+<h4 id="5-变量提升"><a href="#5-变量提升" class="headerlink" title="(5)变量提升"></a>(5)变量提升</h4><p>​    属于JS语言缺陷，它允许变量声明之前即被访问（仅存在于var声明变量），只提升声明不提升赋值且仅提升到当前作用域最前面，实际开发少用var</p>
+<h3 id="2-函数进阶"><a href="#2-函数进阶" class="headerlink" title="2. 函数进阶"></a>2. 函数进阶</h3><h4 id="1-函数提升"><a href="#1-函数提升" class="headerlink" title="(1)函数提升"></a>(1)函数提升</h4><p>​    函数在声明之前就可以被调用，原因：JS会把所有函数声明提升到当前作用域的最前面</p>
 <pre class="line-numbers language-none"><code class="language-none">&lt;script&gt;
 	fn()
 	function fu()&#123;
@@ -498,7 +498,7 @@
 
 
 
-<h5 id="2-普通函数的两种定义格式-命名函数和匿名函数"><a href="#2-普通函数的两种定义格式-命名函数和匿名函数" class="headerlink" title="(2)普通函数的两种定义格式(命名函数和匿名函数)"></a>(2)普通函数的两种定义格式(命名函数和匿名函数)</h5><h6 id="命名函数"><a href="#命名函数" class="headerlink" title="命名函数"></a>命名函数</h6><p>​    有一个确切的名字，可以直接使用</p>
+<h4 id="2-普通函数的两种定义格式-命名函数和匿名函数"><a href="#2-普通函数的两种定义格式-命名函数和匿名函数" class="headerlink" title="(2)普通函数的两种定义格式(命名函数和匿名函数)"></a>(2)普通函数的两种定义格式(命名函数和匿名函数)</h4><h5 id="命名函数"><a href="#命名函数" class="headerlink" title="命名函数"></a>命名函数</h5><p>​    有一个确切的名字，可以直接使用</p>
 <p>​    语法：</p>
 <pre class="line-numbers language-none"><code class="language-none">function fn1() &#123; 
 	console.log(&quot;这是命名函数&quot;) 
@@ -506,7 +506,7 @@
 
 
 
-<h6 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h6><p>​    匿名函数本身没有名字，但可以通过变量 <code>fn2</code> 来调用它</p>
+<h5 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h5><p>​    匿名函数本身没有名字，但可以通过变量 <code>fn2</code> 来调用它</p>
 <p>​    匿名函数属于函数表达式，不存在函数提升</p>
 <p>​    语法：</p>
 <pre class="line-numbers language-none"><code class="language-none">const fn2 &#x3D; function() &#123; 
@@ -515,8 +515,8 @@
 
 
 
-<h5 id="3-普通函数-命名函数和匿名函数-的this"><a href="#3-普通函数-命名函数和匿名函数-的this" class="headerlink" title="(3)普通函数(命名函数和匿名函数)的this"></a>(3)普通函数(命名函数和匿名函数)的this</h5><p>​    命名函数 和 匿名函数在 <code>this</code> 的绑定行为上是相同的，<code>this</code> 的值由函数的调用方式决定</p>
-<h5 id="4-箭头函数"><a href="#4-箭头函数" class="headerlink" title="(4)箭头函数"></a>(4)箭头函数</h5><p>​    箭头函数属于表达式函数，不存在函数提升</p>
+<h4 id="3-普通函数-命名函数和匿名函数-的this"><a href="#3-普通函数-命名函数和匿名函数-的this" class="headerlink" title="(3)普通函数(命名函数和匿名函数)的this"></a>(3)普通函数(命名函数和匿名函数)的this</h4><p>​    命名函数 和 匿名函数在 <code>this</code> 的绑定行为上是相同的，<code>this</code> 的值由函数的调用方式决定</p>
+<h4 id="4-箭头函数"><a href="#4-箭头函数" class="headerlink" title="(4)箭头函数"></a>(4)箭头函数</h4><p>​    箭头函数属于表达式函数，不存在函数提升</p>
 <p>​    <strong>基本语法，有简写小心区分</strong></p>
 <p>​    1. 最基本的语法</p>
 <pre class="line-numbers language-none"><code class="language-none">&lt;script&gt;
@@ -541,7 +541,7 @@ fn(&#39;刘就成&#39;)<span aria-hidden="true" class="line-numbers-rows"><span>
 
 
 
-<h5 id="5-箭头函数的this（一定要注意作用域）"><a href="#5-箭头函数的this（一定要注意作用域）" class="headerlink" title="(5)箭头函数的this（一定要注意作用域）"></a>(5)箭头函数的this（一定要注意作用域）</h5><p>​    在普通函数中，每一个新函数根据它是如何被调用的来定义这个函数的this值</p>
+<h4 id="5-箭头函数的this（一定要注意作用域）"><a href="#5-箭头函数的this（一定要注意作用域）" class="headerlink" title="(5)箭头函数的this（一定要注意作用域）"></a>(5)箭头函数的this（一定要注意作用域）</h4><p>​    在普通函数中，每一个新函数根据它是如何被调用的来定义这个函数的this值</p>
 <p>​    箭头函数不会创建自己的this，它只会从自己的作用域链的上一层沿用this，即看上一层作用域的this指向谁</p>
 <p>​    <em>易错代码1</em></p>
 <pre class="line-numbers language-none"><code class="language-none">&lt;script&gt;
@@ -571,8 +571,8 @@ obj.greet();  &#x2F;&#x2F; 输出 &#39;Alice&#39;<span aria-hidden="true" class=
 
 
 
-<h4 id="3-解构、遍历与过滤"><a href="#3-解构、遍历与过滤" class="headerlink" title="3. 解构、遍历与过滤"></a>3. 解构、遍历与过滤</h4><p>​    解构是快速批量的将[值/对象属性和方法]给变量的简洁语法</p>
-<h5 id="1-数组解构"><a href="#1-数组解构" class="headerlink" title="(1)数组解构"></a>(1)数组解构</h5><p>​    变量的顺序对应数组单元值的位置</p>
+<h3 id="3-解构、遍历与过滤"><a href="#3-解构、遍历与过滤" class="headerlink" title="3. 解构、遍历与过滤"></a>3. 解构、遍历与过滤</h3><p>​    解构是快速批量的将[值/对象属性和方法]给变量的简洁语法</p>
+<h4 id="1-数组解构"><a href="#1-数组解构" class="headerlink" title="(1)数组解构"></a>(1)数组解构</h4><p>​    变量的顺序对应数组单元值的位置</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//1.普通情况</span>
 <span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span>
 <span class="token comment">//数组解构</span>
@@ -597,7 +597,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 
 
-<h5 id="2-对象解构"><a href="#2-对象解构" class="headerlink" title="(2)对象解构"></a>(2)对象解构</h5><p>​    <strong>解构的变量名必须和原对象的属性名一致，如果找不到对应的会被赋值为undefined</strong>，要起别名可以使用<code>名称:新名称</code></p>
+<h4 id="2-对象解构"><a href="#2-对象解构" class="headerlink" title="(2)对象解构"></a>(2)对象解构</h4><p>​    <strong>解构的变量名必须和原对象的属性名一致，如果找不到对应的会被赋值为undefined</strong>，要起别名可以使用<code>名称:新名称</code></p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;普通情况
 const obj &#x3D; &#123;
 	uname:&#39;刘就成&#39;,
@@ -625,8 +625,8 @@ const &#123;family&#125; &#x3D; pig<span aria-hidden="true" class="line-numbers-
 
 
 
-<h5 id="3-foreach遍历数组"><a href="#3-foreach遍历数组" class="headerlink" title="(3)foreach遍历数组"></a>(3)foreach遍历数组</h5><p>​    只能遍历数组不能遍历对象，且内部没有return</p>
-<h6 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h6><p>​    语法：当前数组元素必写，索引号可选</p>
+<h4 id="3-foreach遍历数组"><a href="#3-foreach遍历数组" class="headerlink" title="(3)foreach遍历数组"></a>(3)foreach遍历数组</h4><p>​    只能遍历数组不能遍历对象，且内部没有return</p>
+<h5 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h5><p>​    语法：当前数组元素必写，索引号可选</p>
 <pre class="line-numbers language-none"><code class="language-none">被遍历的数组.forEach(function(当前数组元素,【当前数组索引号】))&#123;
 	&#x2F;&#x2F;函数体	
 &#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -647,8 +647,8 @@ arr.forEach(item &#x3D;&gt; &#123;
 
 
 
-<h5 id="4-filter方法过滤数组"><a href="#4-filter方法过滤数组" class="headerlink" title="(4)filter方法过滤数组"></a>(4)filter方法过滤数组</h5><p>​    返回一个符合条件的新数组，过滤不会影响原数组</p>
-<h6 id="基本语法-1"><a href="#基本语法-1" class="headerlink" title="基本语法"></a>基本语法</h6><p>​    语法：currentValue必须写，index可选</p>
+<h4 id="4-filter方法过滤数组"><a href="#4-filter方法过滤数组" class="headerlink" title="(4)filter方法过滤数组"></a>(4)filter方法过滤数组</h4><p>​    返回一个符合条件的新数组，过滤不会影响原数组</p>
+<h5 id="基本语法-1"><a href="#基本语法-1" class="headerlink" title="基本语法"></a>基本语法</h5><p>​    语法：currentValue必须写，index可选</p>
 <pre class="line-numbers language-none"><code class="language-none">被遍历的数组.filter(function(currentValue,index)&#123;
 	retun 筛选条件
 &#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -668,8 +668,8 @@ console.log(newArr)  &#x2F;&#x2F;[20,30]<span aria-hidden="true" class="line-num
 
 
 
-<h4 id="4-深入对象"><a href="#4-深入对象" class="headerlink" title="4. 深入对象"></a>4. 深入对象</h4><p>​    <strong>对象的定义可以用修饰符const、let、var，但是对象里面的属性和方法不可以用修饰符</strong>，只能直接通过对象引用来修改它们</p>
-<h5 id="1-创建对象的三种方式"><a href="#1-创建对象的三种方式" class="headerlink" title="(1)创建对象的三种方式"></a>(1)创建对象的三种方式</h5><ul>
+<h3 id="4-深入对象"><a href="#4-深入对象" class="headerlink" title="4. 深入对象"></a>4. 深入对象</h3><p>​    <strong>对象的定义可以用修饰符const、let、var，但是对象里面的属性和方法不可以用修饰符</strong>，只能直接通过对象引用来修改它们</p>
+<h4 id="1-创建对象的三种方式"><a href="#1-创建对象的三种方式" class="headerlink" title="(1)创建对象的三种方式"></a>(1)创建对象的三种方式</h4><ul>
 <li><p>利用对象字面量创建对象</p>
 <pre class="line-numbers language-none"><code class="language-none">const o &#x3D; &#123;
 	name:&#39;佩奇&#39;
@@ -687,11 +687,10 @@ console.log(o)  &#x2F;&#x2F;&#123;age:10&#125;<span aria-hidden="true" class="li
 <li><p>利用构造函数创建对象</p>
 </li>
 </ul>
-<h5 id="2-构造函数"><a href="#2-构造函数" class="headerlink" title="(2)构造函数"></a>(2)构造函数</h5><p>​    构造函数是一种特殊的函数，主要用来创建对象，通过构造函数可以快速创建多个类似的对象</p>
-<h6 id="构造函数的约定"><a href="#构造函数的约定" class="headerlink" title="构造函数的约定"></a>构造函数的约定</h6><pre><code>1. **构造函数的命名以大写字母开头**
-
-   2. 构造函数只能由“new”操作符来执行</code></pre>
-<h6 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h6><p>​    例子：创建一个猪对象</p>
+<h4 id="2-构造函数"><a href="#2-构造函数" class="headerlink" title="(2)构造函数"></a>(2)构造函数</h4><p>​    构造函数是一种特殊的函数，主要用来创建对象，通过构造函数可以快速创建多个类似的对象</p>
+<h5 id="构造函数的约定"><a href="#构造函数的约定" class="headerlink" title="构造函数的约定"></a>构造函数的约定</h5><p>​    1. <strong>构造函数的命名以大写字母开头</strong></p>
+<p>​    2. 构造函数只能由“new”操作符来执行</p>
+<h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><p>​    例子：创建一个猪对象</p>
 <pre class="line-numbers language-none"><code class="language-none">function Pig(uname,age)&#123;
 	this.uname &#x3D; uname
 	this.age &#x3D; age
@@ -700,14 +699,14 @@ const peiqi &#x3D; new Pig(&#39;佩奇&#39;,6)  &#x2F;&#x2F;实例化<span aria-
 
 
 
-<h5 id="3-对象的this和普通函数的this以及箭头函数的this"><a href="#3-对象的this和普通函数的this以及箭头函数的this" class="headerlink" title="(3)对象的this和普通函数的this以及箭头函数的this"></a>(3)对象的this和普通函数的this以及箭头函数的this</h5><ul>
+<h4 id="3-对象的this和普通函数的this以及箭头函数的this"><a href="#3-对象的this和普通函数的this以及箭头函数的this" class="headerlink" title="(3)对象的this和普通函数的this以及箭头函数的this"></a>(3)对象的this和普通函数的this以及箭头函数的this</h4><ul>
 <li>如果你调用一个函数时使用 <code>new</code> 关键字，JavaScript 会将 <code>this</code> 绑定到新创建的对象。</li>
 <li>如果函数是作为方法调用的，<code>this</code> 会指向调用该方法的对象。</li>
 <li>如果函数是直接调用的，<code>this</code> 会指向全局对象</li>
 </ul>
 <p>​    需要注意的是：箭头函数的 <code>this</code>继承自外部函数或上下文的 <code>this</code>，它没有自己的 <code>this</code></p>
-<h5 id="4-实例成员和静态成员"><a href="#4-实例成员和静态成员" class="headerlink" title="(4)实例成员和静态成员"></a>(4)实例成员和静态成员</h5><p>​    在 JavaScript 中，属性/方法不一定要在类或构造函数定义时就明确地定义，也可以在实例化对象后通过实例来添加和调用属性/方法</p>
-<h6 id="实例成员"><a href="#实例成员" class="headerlink" title="实例成员"></a>实例成员</h6><p>​    通过构造函数创建的对象称为实例对象，实例对象中的属性和方法称为实例成员（实例属性和实例方法）</p>
+<h4 id="4-实例成员和静态成员"><a href="#4-实例成员和静态成员" class="headerlink" title="(4)实例成员和静态成员"></a>(4)实例成员和静态成员</h4><p>​    在 JavaScript 中，属性/方法不一定要在类或构造函数定义时就明确地定义，也可以在实例化对象后通过实例来添加和调用属性/方法</p>
+<h5 id="实例成员"><a href="#实例成员" class="headerlink" title="实例成员"></a>实例成员</h5><p>​    通过构造函数创建的对象称为实例对象，实例对象中的属性和方法称为实例成员（实例属性和实例方法）</p>
 <p>​    样例：</p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;实例成员
 function Pig(name)&#123;
@@ -723,7 +722,7 @@ peiqi.sayHi &#x3D; () &#x3D;&gt; &#123;
 
 
 
-<h6 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h6><p>​    构造函数的属性和方法被称为静态成员(静态属性、静态方法)</p>
+<h5 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h5><p>​    构造函数的属性和方法被称为静态成员(静态属性、静态方法)</p>
 <p>​    说明：</p>
 <pre><code> 1. 静态成员只能构造函数访问
  2. 静态方法中的this指向构造函数</code></pre>
@@ -742,10 +741,10 @@ Pig.sayHi()<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 
 
 
-<h4 id="5-内置构造函数"><a href="#5-内置构造函数" class="headerlink" title="5. 内置构造函数"></a>5. 内置构造函数</h4><p>​    内置构造函数是 JavaScript 内部预定义的函数，允许你创建特定类型的对象，并提供了一些基本功能和属性</p>
-<h5 id="1-JS的包装类型"><a href="#1-JS的包装类型" class="headerlink" title="(1)JS的包装类型"></a>(1)JS的包装类型</h5><p>​    <strong>JS基本数据类型</strong>：字符串、数值、布尔、undefined、null</p>
+<h3 id="5-内置构造函数"><a href="#5-内置构造函数" class="headerlink" title="5. 内置构造函数"></a>5. 内置构造函数</h3><p>​    内置构造函数是 JavaScript 内部预定义的函数，允许你创建特定类型的对象，并提供了一些基本功能和属性</p>
+<h4 id="1-JS的包装类型"><a href="#1-JS的包装类型" class="headerlink" title="(1)JS的包装类型"></a>(1)JS的包装类型</h4><p>​    <strong>JS基本数据类型</strong>：字符串、数值、布尔、undefined、null</p>
 <p>​    只有对象才有方法，但是在js中定义字符串、数值、布尔的变量也可以调用写好的方法，是因为js底层做了封装，将这些基本数据类型转为了复杂数据类型(对象)</p>
-<h5 id="2-其他内置构造函数"><a href="#2-其他内置构造函数" class="headerlink" title="(2)其他内置构造函数"></a>(2)其他内置构造函数</h5><h6 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h6><p>​    定义：</p>
+<h4 id="2-其他内置构造函数"><a href="#2-其他内置构造函数" class="headerlink" title="(2)其他内置构造函数"></a>(2)其他内置构造函数</h4><h5 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h5><p>​    定义：</p>
 <pre class="line-numbers language-none"><code class="language-none">let obj &#x3D; new Object();
 &#x2F;&#x2F; 或者简写为：
 let obj &#x3D; &#123;&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -763,7 +762,7 @@ let obj &#x3D; &#123;&#125;;<span aria-hidden="true" class="line-numbers-rows"><
 </li>
 </ul>
 <p>​    </p>
-<h6 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h6><p>​    数组的核心方法如下图所示：传参都为回调函数，reduce多一个初始值</p>
+<h5 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h5><p>​    数组的核心方法如下图所示：传参都为回调函数，reduce多一个初始值</p>
 <p>​    map是对数组所有元素进行相同处理</p>
 <p>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/pAXt6I0"><img src="https://s21.ax1x.com/2024/12/22/pAXt6I0.png" alt="pAXt6I0.png"></a></p>
 <p>​    样例：</p>
@@ -1084,7 +1083,7 @@ console.log(sum);  &#x2F;&#x2F; 15<span aria-hidden="true" class="line-numbers-r
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4, h5'
+            headingSelector: 'h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -1096,7 +1095,7 @@ console.log(sum);  &#x2F;&#x2F; 15<span aria-hidden="true" class="line-numbers-r
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4, h5').each(function () {
+        $('#articleContent').children('h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 

@@ -789,7 +789,7 @@ bindtap&#x3D;&quot;&quot; bindinput&#x3D;&quot;&quot; 里面自己起名字是�
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4, h5'
+            headingSelector: 'h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -801,7 +801,7 @@ bindtap&#x3D;&quot;&quot; bindinput&#x3D;&quot;&quot; 里面自己起名字是�
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4, h5').each(function () {
+        $('#articleContent').children('h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
