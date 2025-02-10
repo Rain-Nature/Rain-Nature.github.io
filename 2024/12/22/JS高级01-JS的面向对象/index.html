@@ -789,7 +789,7 @@ let obj &#x3D; &#123;&#125;;<span aria-hidden="true" class="line-numbers-rows"><
 <h5 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h5><p>​    数组的核心方法如下图所示：传参都为回调函数，reduce多一个初始值</p>
 <p>​    map是对数组所有元素进行相同处理</p>
 <p>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/pAXt6I0"><img src="https://s21.ax1x.com/2024/12/22/pAXt6I0.png" alt="pAXt6I0.png"></a></p>
-<p>​    样例：</p>
+<p>​    样例：(forEach，filter，map，reduce)</p>
 <pre class="line-numbers language-none"><code class="language-none">const numbers &#x3D; [1, 2, 3, 4, 5];
 
 &#x2F;&#x2F; forEach:输出数组的每个元素
@@ -809,11 +809,12 @@ const doubled &#x3D; numbers.map(function(num) &#123;
 &#125;);
 console.log(doubled);  &#x2F;&#x2F; [2, 4, 6, 8, 10]
 
-&#x2F;&#x2F; reduce:计算数组所有元素的总和，初始值是0，可以省略但会以数组的第一个值为初始值所以最好不要省，accumulator是起始值，currentValue是当前值
+&#x2F;&#x2F; reduce:计算数组所有元素的总和，初始值是0，可以省略但会以数组的第一个值为初始值所以最好不要省
+&#x2F;&#x2F;accumulator是计数值(初始值由函数第二个参数决定)，currentValue是元素值(如果是对象就是完整对象)，计算时需要把数据拆出来
 const sum &#x3D; numbers.reduce(function(accumulator, currentValue) &#123;
   return accumulator + currentValue;
 &#125;, 0);
-console.log(sum);  &#x2F;&#x2F; 15<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+console.log(sum);  &#x2F;&#x2F; 15<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
