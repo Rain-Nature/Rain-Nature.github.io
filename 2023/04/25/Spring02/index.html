@@ -481,108 +481,449 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="数据库连接池与Spring注解"><a href="#数据库连接池与Spring注解" class="headerlink" title="数据库连接池与Spring注解"></a>数据库连接池与Spring注解</h2><h4 id="1-数据源-连接池-的作用"><a href="#1-数据源-连接池-的作用" class="headerlink" title="1. 数据源(连接池)的作用"></a>1. 数据源(连接池)的作用</h4><ul>
-<li>提高程序性能</li>
-<li>实例化数据源，初始化部分连接资源</li>
-<li>使用连接资源时从数据源中获取</li>
-<li>使用完毕后连接资源归还给数据源</li>
+                <h3 id="1-Spring配置连接池-数据源"><a href="#1-Spring配置连接池-数据源" class="headerlink" title="1. Spring配置连接池(数据源)"></a>1. Spring配置连接池(数据源)</h3><p>​    连接池是对数据库连接的管理工具，常见的连接池有：DBCP、C3P0、BoneCP、Druid等</p>
+<h4 id="1-连接池和数据库的区别"><a href="#1-连接池和数据库的区别" class="headerlink" title="(1)连接池和数据库的区别"></a>(1)连接池和数据库的区别</h4><h5 id="连接池"><a href="#连接池" class="headerlink" title="连接池"></a>连接池</h5><ul>
+<li>连接池是一种用于管理数据库连接的机制，它通过提前创建一定数量的数据库连接，并在应用程序中重复利用这些连接，从而减少了频繁创建和销毁数据库连接的开销</li>
+<li>当应用程序需要与数据库进行交互时，连接池会从池中获取一个可用的连接，当操作完成后，该连接会被归还给连接池，以便其他请求使用</li>
+<li>连接池的主要作用是提高数据库操作的效率，特别是在高并发环境下。</li>
 </ul>
-<p>​    常见的数据源(连接池)：DBCP、C3P0、BoneCP、Druid等</p>
-<h4 id="2-数据源的开发步骤"><a href="#2-数据源的开发步骤" class="headerlink" title="2. 数据源的开发步骤"></a>2. 数据源的开发步骤</h4><p>​    1. 导入数据源的坐标(jar)和数据库驱动坐标(jar)<br>​    2. 创建数据源对象<br>​    3. 设置数据源的基本连接数据库的数据<br>​    4. 使用数据源获取连接资源和归还连接资源</p>
-<p>​    在pom.xml文件中导入坐标，mysql、c3p0、druid</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppOCFxS"><img src="https://s1.ax1x.com/2023/04/11/ppOCFxS.png" alt="ppOCFxS.png"></a></p>
-<p>​    在java代码，创建c3p0数据源对象，以及给对应数据库的参数，获取数据库连接对象</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppOCdG6"><img src="https://s1.ax1x.com/2023/04/11/ppOCdG6.png" alt="ppOCdG6.png"></a></p>
-<p>​    番外：创建druid数据源对象</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppOCHds"><img src="https://s1.ax1x.com/2023/04/11/ppOCHds.png" alt="ppOCHds.png"></a></p>
-<h4 id="3-数据库参数的提取"><a href="#3-数据库参数的提取" class="headerlink" title="3. 数据库参数的提取"></a>3. 数据库参数的提取</h4><p>​    在上述数据库配置时，代码是耦合的，为了降低耦合需要将数据库参数字符串单独提取到一个(<code>XXXXX.properties</code>)文件存放</p>
-<p>​    在resource文件夹下创建jdbc.properties文件</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppjkMkQ"><img src="https://s1.ax1x.com/2023/04/12/ppjkMkQ.png" alt="ppjkMkQ.png"></a></p>
-<p>​    加载.properties文件来连接数据库，通过Java提供的ResourceBundle类以及该类提供的getBundle(“.properties文件的类加载路径，且该文件不需要写扩展名”)方法，来导入.properties文件。通过ResourceBundle对象的getString(“.properties文件中定义的key值”)，来获得对应的字符串</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppjA7G9"><img src="https://s1.ax1x.com/2023/04/12/ppjA7G9.png" alt="ppjA7G9.png"></a></p>
-<h4 id="4-Spring产生数据源对象"><a href="#4-Spring产生数据源对象" class="headerlink" title="4. Spring产生数据源对象"></a>4. Spring产生数据源对象</h4><p>​    对于c3p0连接池的对象dataSource的创建使用Spring容器完成</p>
-<p>​    创建xml文件把CombopooledDataSource类进行注入，并通过类中已编写的set方法(该类为第三方jar包的)注入参数</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppjEfSA"><img src="https://s1.ax1x.com/2023/04/12/ppjEfSA.png" alt="ppjEfSA.png"></a></p>
-<p>​    java文件完成对Spring的加载以及对数据库对象的打印</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppjVV61"><img src="https://s1.ax1x.com/2023/04/12/ppjVV61.png" alt="ppjVV61.png"></a></p>
-<h4 id="5-进一步优化，Spring抽取jdbc配置文件"><a href="#5-进一步优化，Spring抽取jdbc配置文件" class="headerlink" title="5. 进一步优化，Spring抽取jdbc配置文件"></a>5. 进一步优化，Spring抽取jdbc配置文件</h4><p>​     在spring的xml文件中加载.properties文件获得连接信息</p>
-<p>​    需要引入命名空间(beans标签下直接引入)和约束路径(在属性<code>xsi:schemaLocation</code>下作为属性值引入)</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppz0y8S"><img src="https://s1.ax1x.com/2023/04/14/ppz0y8S.png" alt="ppz0y8S.png"></a></p>
-<p>​    加载properties文件，其中<code>classpath:</code>表示该文件在类加载路径下</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppzBZIP"><img src="https://s1.ax1x.com/2023/04/14/ppzBZIP.png" alt="ppzBZIP.png"></a></p>
-<p>​    引入.properties文件中对应的值，通过<code>$&#123;&#125;</code>来引入</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppzBvLj"><img src="https://s1.ax1x.com/2023/04/14/ppzBvLj.png" alt="ppzBvLj.png"></a></p>
-<h4 id="6-Spring注解开发"><a href="#6-Spring注解开发" class="headerlink" title="6. Spring注解开发"></a>6. Spring注解开发</h4><p>​    Spring是轻代码重配置的框架，配置比较繁重影响开发效率，所以注解开发时一种趋势，注解代替xml配置文件可以简化配置，提高开发效率</p>
-<h4 id="7-Spring的原始注解-老一点注解"><a href="#7-Spring的原始注解-老一点注解" class="headerlink" title="7. Spring的原始注解(老一点注解)"></a>7. Spring的原始注解(老一点注解)</h4><p>​    Spring原始注解主要是代替<code>&lt;Bean&gt;</code> 的配置</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9SdWjJ"><img src="https://s1.ax1x.com/2023/04/14/p9SdWjJ.png" alt="p9SdWjJ.png"></a></p>
-<p>​    <strong>使用原始注解可以对xml文件内编写的内容进行替代，如果要使用注解需要在Spring的xml文件中进行声明</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9pMbDS"><img src="https://s1.ax1x.com/2023/04/15/p9pMbDS.png" alt="p9pMbDS.png"></a></p>
-<p>​    <code>base-package=&quot;包名&quot;</code>，其会扫描该包下所有的子包，包下所有使用了注解的都会被扫描到</p>
-<p>​    使用注解<code>@Component（&quot;唯一标识&quot;）</code>等同于对xml文件中的bean的配置，在需要Spring配置的类的上方写注解</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9pKqYR"><img src="https://s1.ax1x.com/2023/04/15/p9pKqYR.png" alt="p9pKqYR.png"></a></p>
-<p>​    如果需要进行注入，则可以使用<code>@Autowired</code>和<code>@Qualifier(&quot;要注入的对象&quot;)</code>进行注入，注入代码需要写在类的里面</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9pMJXT"><img src="https://s1.ax1x.com/2023/04/15/p9pMJXT.png" alt="p9pMJXT.png"></a></p>
-<p>​    在Spring的xml文件中配置组件扫描</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9pQ85d"><img src="https://s1.ax1x.com/2023/04/15/p9pQ85d.png" alt="p9pQ85d.png"></a></p>
-<h4 id="8-原始注解详解"><a href="#8-原始注解详解" class="headerlink" title="8. 原始注解详解"></a>8. 原始注解详解</h4><p><strong>1. 代码的可读性</strong></p>
-<p>​    在不同的层中都使用@Component会造成代码可读性下降，为了让可读性增加有了<code>@Controller</code>—web层；<code>@Service</code>—service层；<code>@Repository</code>—dao层，功能都是一样的只是方便读代码</p>
-<p><strong>2. set方法的省略</strong></p>
-<p>​    如果使用的是注解方式进行Spring配置，则可以省略set方法，因为注解直接写在java文件的属性上，所以不需要为属性再写set方法</p>
-<p>​    </p>
-<p><strong>3. <code>@Autowired</code>和<code>@Qualifier</code>的区别，以及注解<code>@Resource</code></strong></p>
-<p>​    <code>@Autowired</code>是按照数据类型从Spring容器中进行匹配</p>
-<p>​    如下面代码，其会在Spring容器中寻找一个UserDao类型的对象赋值给变量userDao</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
-<span class="token keyword">private</span> <span class="token class-name">UserDao</span> userDao<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<p>​    <code>@Qualifier</code>是按照id值从容器中进行匹配，但其要结合<code>@Autowired</code>一起使用</p>
-<p>​    <code>@Resource(name=&quot;id值&quot;)</code>，其相当于上述两个注解一起使用</p>
-<p><strong>4. <code>@Value</code></strong></p>
-<p>​    <code>@Value(&quot;要注入的值&quot;)</code>是对常量数据进行注入</p>
-<p>​    对变量driver进行注入</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"itcast"</span><span class="token punctuation">)</span>
-<span class="token keyword">private</span> <span class="token class-name">String</span> driver<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>​    除了注入常量还可以注入键值对，只要Spring容器中加载了.properties文件就可以直接通过<code>$&#123;&#125;</code>进行注入</p>
-<pre class="line-numbers language-none"><code class="language-none">@Value(&quot;$&#123;jdbc.drive&#125;&quot;)
-private String driver;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<p><strong>5. <code>@Scope</code></strong></p>
-<p>​    <code>@Scope(&quot;属性值&quot;)</code>，具体属性值见笔记<code>Spring01.md</code>，其写在类的上方，用来指定<code>&lt;bean&gt;</code> 是可以创造单例还是多例</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9pyj3t"><img src="https://s1.ax1x.com/2023/04/15/p9pyj3t.png" alt="p9pyj3t.png"></a></p>
-<p><strong>6. <code>@PostConstruct</code>和<code>@preDestroy</code></strong></p>
-<p>​    写在类中的方法前，表示对象在创建或者销毁时要执行的方法</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9p6l59"><img src="https://s1.ax1x.com/2023/04/15/p9p6l59.png" alt="p9p6l59.png"></a></p>
-<h4 id="9-Spring新注解"><a href="#9-Spring新注解" class="headerlink" title="9. Spring新注解"></a>9. Spring新注解</h4><p>​    原始注解不能完全代替xml配置文件，还需要使用注解替代的配置如下：</p>
-<ul>
-<li>非自定义的Bean的配置：如第三方jar包中的类</li>
-<li>加载properties文件的配置：<code>&lt;context:property-placeholder&gt;</code></li>
-<li>组件扫描的配置：<code>&lt;context:component-scan&gt;</code></li>
-<li>引入其他文件：<code>&lt;import&gt;</code> </li>
+<h5 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h5><ul>
+<li>数据库是一个系统，用来存储和管理数据。它允许用户通过SQL语句来进行数据的增、删、改、查等操作</li>
+<li>常见的数据库有关系型数据库（如MySQL、PostgreSQL）和非关系型数据库（如MongoDB、Redis）</li>
 </ul>
-<p>​    Spring新注解 </p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9p6xi9"><img src="https://s1.ax1x.com/2023/04/15/p9p6xi9.png" alt="p9p6xi9.png"></a></p>
-<h4 id="10-Spring新注解详解"><a href="#10-Spring新注解详解" class="headerlink" title="10. Spring新注解详解"></a>10. Spring新注解详解</h4><p>​    通过新建一个java类并在类中使用新注解来替代spring的xml文件</p>
-<p><strong>1. <code>@Configuration</code></strong></p>
-<p>​    写在类前标志该类为Spring核心配置类</p>
-<p><strong>2. <code>@ComponentScan(&quot;包名&quot;)</code></strong></p>
-<p>​    相当于xml文件中的配置组件扫描</p>
-<p><strong>3. <code>@PropertySource(&quot;路径&quot;)</code></strong></p>
-<p>​    <code>@PropertySource(&quot;路径&quot;)</code>为导入.properties文件到Spring容器中</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p99RpcR"><img src="https://s1.ax1x.com/2023/04/16/p99RpcR.png" alt="p99RpcR.png"></a></p>
-<p><strong>4. <code>@Bean(&quot;自己设定的id&quot;)</code></strong></p>
-<p>​    <code>@Bean(&quot;自己设定的id&quot;)</code>写在方法前，用于将当前方法的返回值以自己设定的id名称存储到Spring容器中</p>
-<p>​    下图代码已经将.properties文件抽取到Spring容器中，但是<code>$&#123;&#125;</code>是在xml文件中才可以这样写，所以需要使用<code>@value</code>来获取.properties文件的值，这个代码返回了数据库连接池c3p0的对象</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p99RqxA"><img src="https://s1.ax1x.com/2023/04/16/p99RqxA.png" alt="p99RqxA.png"></a></p>
-<p><strong>5. <code>@Import(&quot;需要加载的类的名字.class&quot;)</code></strong></p>
-<p>​    其本质是一个数组，可以一次多个添加</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p99Wco8"><img src="https://s1.ax1x.com/2023/04/16/p99Wco8.png" alt="p99Wco8.png"></a></p>
-<h4 id="11-main方法对于使用注解-配置类-后的加载"><a href="#11-main方法对于使用注解-配置类-后的加载" class="headerlink" title="11. main方法对于使用注解(配置类)后的加载"></a>11. main方法对于使用注解(配置类)后的加载</h4><p>​    因为之前充当web测试的main方法它引入的是xml文件，所以应改为<code>AnnotationConfigApplicationContext(要引入的类名.class)</code></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p99f9w6"><img src="https://s1.ax1x.com/2023/04/16/p99f9w6.png" alt="p99f9w6.png"></a></p>
+<h4 id="2-连接池的手动连接使用-非Spring"><a href="#2-连接池的手动连接使用-非Spring" class="headerlink" title="(2)连接池的手动连接使用(非Spring)"></a>(2)连接池的手动连接使用(非Spring)</h4><h5 id="手动连接步骤"><a href="#手动连接步骤" class="headerlink" title="手动连接步骤"></a>手动连接步骤</h5><p>​    1.添加连接池的依赖和数据库驱动的依赖（pom.xml）<br>​    2.配置连接池基本连接信息和数据库连接信息（jdbc.properties）<br>​    3.创建和初始化连接池（DataSourse.java）<br>​    4.获取连接并使用（DataSourse.java）<br>​    5.关闭连接（DataSourse.java）</p>
+<h5 id="手动连接实操"><a href="#手动连接实操" class="headerlink" title="手动连接实操"></a>手动连接实操</h5><p>​    1.在pom.xml文件中导入坐标，mysql、c3p0</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;pom.xml
+
+&lt;dependencies&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;
+		&lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;
+		&lt;version&gt;5.1.32&lt;&#x2F;version&gt;
+	&lt;&#x2F;dependency&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;c3p0&lt;&#x2F;groupId&gt;
+		&lt;artifactId&gt;c3p0&lt;&#x2F;artifactId&gt;
+		&lt;version&gt;0.9.1.2&lt;&#x2F;version&gt;
+	&lt;&#x2F;dependency&gt;
+&lt;&#x2F;dependencies&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.在resource文件夹下创建jdbc.properties文件，配置数据库连接信息</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;jdbc.properties
+
+jdbc.driver&#x3D;com.mysql.jdbc.Driver
+jdbc.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;test
+jdbc.username&#x3D;root
+jdbc.password&#x3D;root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    3.加载.properties文件来连接数据库，通过Java提供的ResourceBundle类以及该类提供的getBundle(“.properties文件的类加载路径且不需要写扩展名”)方法，来导入.properties文件。通过ResourceBundle对象的getString(“.properties文件中定义的key值”)，来获得对应的字符串</p>
+<p>​    4-5.获取连接/断开连接</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;DataSourse.java
+
+public void useDataSourse() throws Exception&#123;
+	&#x2F;&#x2F;读取jdbc.properties配置文件
+	ResourceBundle rb &#x3D; ResourceBundle.getBundle(&quot;jdbc&quot;);
+	String driver &#x3D; rb.getString(&quot;jdbc.driver&quot;);
+	String url &#x3D; rb.getString(&quot;jdbc.url&quot;);
+	String username &#x3D; rb.getString(&quot;jdbc.username&quot;);
+	String password &#x3D; rb.getString(&quot;jdbc.password&quot;);
+	
+	&#x2F;&#x2F;创建连接池对象，将连接参数配置
+	ComboPooledDataSource dataSource &#x3D; new ComboPooledDataSource();
+	dataSource.setDriverClass(driver);
+	dataSource.setJdbcUrl(url);
+	dataSource.setUser(username);
+	dataSource.setPassword(password);
+	
+	&#x2F;&#x2F;获取连接
+	Connection connection &#x3D; dataSource.getConnection();
+	System.out.println(connection);
+	
+	&#x2F;&#x2F;关闭连接
+	connection.close();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="3-连接池使用Spring容器连接"><a href="#3-连接池使用Spring容器连接" class="headerlink" title="(3)连接池使用Spring容器连接"></a>(3)连接池使用Spring容器连接</h4><p>​    对于c3p0连接池的对象dataSource的创建使用Spring容器完成</p>
+<h5 id="Spring容器连接步骤"><a href="#Spring容器连接步骤" class="headerlink" title="Spring容器连接步骤"></a>Spring容器连接步骤</h5><p>​    1.导入Spring坐标、连接池坐标、数据库坐标（pom.xml）<br>​    2.创建数据库连接的配置文件（jdbc.properties）<br>​    3.创建Spring的配置文件（applicationContext.xml）<br>​    4.使用Spring容器获得连接池对象（SpringDataSourse.java）<br>​    5.获取连接并使用（SpringDataSourse.java）<br>​    6.关闭连接(SpringDataSourse.java)</p>
+<h5 id="Spring连接实操"><a href="#Spring连接实操" class="headerlink" title="Spring连接实操"></a>Spring连接实操</h5><p>​    1.在pom.xml文件中导入坐标，mysql、c3p0、Spring</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;pom.xml
+
+&lt;dependencies&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;
+		&lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;
+		&lt;version&gt;5.1.32&lt;&#x2F;version&gt;
+	&lt;&#x2F;dependency&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;c3p0&lt;&#x2F;groupId&gt;
+		&lt;artifactId&gt;c3p0&lt;&#x2F;artifactId&gt;
+		&lt;version&gt;0.9.1.2&lt;&#x2F;version&gt;
+	&lt;&#x2F;dependency&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;org.springframework&lt;&#x2F;groupId&gt;
+		&lt;artifactId&gt;spring-context&lt;&#x2F;artifactId&gt;
+		&lt;version&gt;5.0.5.RELEASE&lt;&#x2F;version&gt;
+	&lt;&#x2F;dependency&gt;
+&lt;&#x2F;dependencies&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.在resource文件夹下创建jdbc.properties文件，配置数据库连接信息</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;jdbc.properties
+
+jdbc.driver&#x3D;com.mysql.jdbc.Driver
+jdbc.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;test
+jdbc.username&#x3D;root
+jdbc.password&#x3D;root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    3.在resource文件夹下创建Spring的applicationContext.xml配置文件，抽取properties文件，需要在命名空间添加引入Context，配置连接池的bean</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;beans xmlns:context&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&quot; &#x2F;&#x2F;命名空间添加这两句话用于引入Context
+	   xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&#x2F;spring-context.xsd&quot;&gt; 
+	
+	&#x2F;&#x2F;加载外部的properties文件到Spring容器中，当前文件在类加载路径下
+	&lt;context:property-placeholder location&#x3D;&quot;classpath:jdbc.properties&quot;&#x2F;&gt;
+	
+	&lt;bean id&#x3D;&quot;dataSource&quot; class&#x3D;&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;
+		&#x2F;&#x2F;name的值和set方法有关
+		&lt;property name&#x3D;&quot;driverClass&quot; value&#x3D;&quot;$&#123;jdbc.driver&#125;&quot;&gt;&lt;&#x2F;property&gt;
+		&lt;property name&#x3D;&quot;jdbcUrl&quot; value&#x3D;&quot;$&#123;jdbc.url&#125;&quot;&gt;&lt;&#x2F;property&gt;
+		&lt;property name&#x3D;&quot;user&quot; value&#x3D;&quot;$&#123;jdbc.username&#125;&quot;&gt;&lt;&#x2F;property&gt;
+		&lt;property name&#x3D;&quot;password&quot; value&#x3D;&quot;$&#123;jdbc.password&#125;&quot;&gt;&lt;&#x2F;property&gt;
+	&lt;&#x2F;bean&gt;
+&lt;&#x2F;beans&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    4.使用Spring容器获得连接池对象</p>
+<p>​    5-6.获取连接/断开连接</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;SpringDataSourse.java
+
+public void useSpringDataSourse throws Exception&#123;
+	&#x2F;&#x2F;获得连接池对象
+	ApplicationContext app &#x3D; new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+	DataSource dataSource &#x3D; (DataSource) app.getBean(&quot;dataSouce&quot;);
+	
+	&#x2F;&#x2F;获取连接
+	Connection connection &#x3D; dataSource.getConnection();
+	System.out.println(connection);
+	
+	&#x2F;&#x2F;关闭连接
+	connection.close();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="2-Spring注解开发"><a href="#2-Spring注解开发" class="headerlink" title="2. Spring注解开发"></a>2. Spring注解开发</h3><p>​    Spring是轻代码重配置的框架，配置比较繁重影响开发效率，<code>注解完全代替xml配置文件可以简化配置</code>，提高开发效率</p>
+<h4 id="1-Spring注解开发的准备工作"><a href="#1-Spring注解开发的准备工作" class="headerlink" title="(1)Spring注解开发的准备工作"></a>(1)Spring注解开发的准备工作</h4><p>​    要使用注解需要提前告诉Spring，通过在applicationContext.xml文件中配置组件扫描，指定哪个包及其子包下的Java文件需要进行扫描以便识别使用注解配置的类、字段和方法</p>
+<h5 id="语法：配置组件扫描"><a href="#语法：配置组件扫描" class="headerlink" title="语法：配置组件扫描"></a>语法：配置组件扫描</h5><p>​    <code>base-package=&quot;包名&quot;</code>，其会扫描该包下所有的子包，包下所有使用了注解的都会被扫描到</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;applicationContext.xml，是在下方，不是命名空间配置，这个也需要引入context命名空间
+
+&lt;context:component-scan base-package&#x3D;&quot;com.itheima&quot;&gt;&lt;&#x2F;context:component-scan&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-Spring原始注解-核心注解-的介绍"><a href="#2-Spring原始注解-核心注解-的介绍" class="headerlink" title="(2)Spring原始注解(核心注解)的介绍"></a>(2)Spring原始注解(核心注解)的介绍</h4><p>​    Spring原始注解主要用于<code>代替Spring的xml文件来配置和管理 Spring 容器中的 Bean</code>，处理依赖注入、事务管理、事件处理等任务</p>
+<h5 id="常用的原始注解"><a href="#常用的原始注解" class="headerlink" title="常用的原始注解"></a>常用的原始注解</h5><table>
+<thead>
+<tr>
+<th align="center">注解</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">@Component</td>
+<td align="center">写在类上，标记这个类作为 Spring 容器中的 Bean</td>
+</tr>
+<tr>
+<td align="center">@Controller</td>
+<td align="center">写在作为Spring MVC 控制器的类上，与@Component效果一样，仅作为语义区分</td>
+</tr>
+<tr>
+<td align="center">@Service</td>
+<td align="center">写在作为服务层的类上，与@Component效果一样，仅作为语义区分</td>
+</tr>
+<tr>
+<td align="center">@Repository</td>
+<td align="center">写在作为数据访问层的类上，与@Component效果一样，仅作为语义区分</td>
+</tr>
+<tr>
+<td align="center">@Autowired</td>
+<td align="center">写在字段、构造方法或set方法上，自动将一个Spring容器的Bean 注入到另一个 Bean</td>
+</tr>
+<tr>
+<td align="center">@Qualifier</td>
+<td align="center">@Autowired根据类型注入Bean，当有多个相同类型的Bean时，在其下方使用该注解指定要注入的 Bean 的名字</td>
+</tr>
+<tr>
+<td align="center">@Value</td>
+<td align="center">写在字段上，用于注入普通值或外部配置值（如 application.properties或 application.yml文件中的属性）</td>
+</tr>
+<tr>
+<td align="center">@Scope</td>
+<td align="center">写在类上，定义 Bean 的作用域</td>
+</tr>
+<tr>
+<td align="center">@PostConstruct</td>
+<td align="center">写在方法上，该方法在该类的Bean初始化后自动执行</td>
+</tr>
+<tr>
+<td align="center">@PreDestroy</td>
+<td align="center">写在方法上，该方法在容器销毁该类的Bean前自动执行</td>
+</tr>
+</tbody></table>
+<h4 id="3-Spring的原始注解详解"><a href="#3-Spring的原始注解详解" class="headerlink" title="(3)Spring的原始注解详解"></a>(3)Spring的原始注解详解</h4><h5 id="Component-“唯一标识”"><a href="#Component-“唯一标识”" class="headerlink" title="@Component(“唯一标识”)"></a>@Component(“唯一标识”)</h5><p>​    使用注解<code>@Component(&quot;唯一标识&quot;)</code>等同在xml文件中对bean的配置，在需要Spring容器管理的类上方写注解，</p>
+<p>​    <strong>注意：唯一标识可以不写，如@Component</strong></p>
+<p>样例：@Component的使用</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserDaoImpl.java
+
+&#x2F;&#x2F;等价于xml文件：&lt;bean id&#x3D;&quot;userDao&quot; class&#x3D;&quot;com.itheima.dao.impl.UserDaoImpl&quot;&gt;&lt;&#x2F;bean&gt;
+@Component(&quot;userDao&quot;)
+public class UserDaoImpl implements UserDao&#123;
+	public void save()&#123;
+		System.out.println(&quot;save running...&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h5><p>​    使用注解<code>@Autowired</code>等同于在xml文件中的propety属性的注入配置，写在字段上，Spring 会自动为该字段注入一个 Bean（前提是容器中有与字段类型匹配的 Bean），没有找到合适的或找到多个其会抛出异常</p>
+<p>​    一个bean可省：如果存在多个符合条件的 bean可以在其下方加<code>@Qualifier(&quot;唯一标识&quot;)</code>指定注入bean的名字</p>
+<p>样例：@Autowired的使用</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserServiceImpl.java
+
+&#x2F;&#x2F;等价于xml文件：&lt;bean id&#x3D;&quot;userService&quot; class&#x3D;&quot;com.itheima.service.impl.UserServiceImpl&quot;&gt;
+@Component(&quot;userService&quot;)
+public class UserServiceImpl implements UserService&#123;
+	&#x2F;&#x2F;等价于xml文件：&lt;property name&#x3D;&quot;userDao&quot; ref&#x3D;&quot;userDao&quot;&gt;&lt;&#x2F;property&gt;
+	@Autowired
+	@Qualifier(&quot;userDao&quot;)
+	private UserDao userDao;
+	
+	&#x2F;&#x2F;注入字段不需要额外写set方法
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="Controller，-Service，-Repository"><a href="#Controller，-Service，-Repository" class="headerlink" title="@Controller，@Service，@Repository"></a>@Controller，@Service，@Repository</h5><p>​    他们都属于特殊类型的@Component注解，功能与其一致，作用是增强代码的可读性：@Controller—web层；@Service—service层；@Repository—dao层</p>
+<p>​    <strong>注意：他们三个都可以写唯一标识，如@Controller(“userController”)</strong></p>
+<p>样例：@Controller，@Service，@Repository的使用</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+    &#x2F;&#x2F; 控制器逻辑
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserServiceImpl.java
+
+@Service
+public class UserServiceImpl implements UserService&#123;
+    &#x2F;&#x2F; 业务逻辑
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserDaoImpl.java
+
+@Repository
+public class UserDaoImpl implements UserDao&#123;
+    &#x2F;&#x2F; 数据访问逻辑
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="Value-“要注入的值”"><a href="#Value-“要注入的值”" class="headerlink" title="@Value(“要注入的值”)"></a>@Value(“要注入的值”)</h5><p>​    @Value用于注入属性值，可以值直接注入bean或者将外部的配置值（如application.properties或application.yml文件中的属性）注入到 Bean 的字段中，在值注入中虽然值是你提供的，但还是Spring来进行注入，而使用外部配置值需要将这些文件提前注入到Spring容器中</p>
+<p>样例：@Value(“要注入的值”)的使用</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserDaoImpl.java
+
+@Component(&quot;userDao&quot;)
+public class UserDaoImpl implements UserDao&#123;
+	&#x2F;&#x2F;将String类型的itcast注入it，直接注入
+	@Value(&quot;itcast&quot;)
+	private String it;
+	
+	&#x2F;&#x2F;Spring容器中要提前加载jdbc.properties文件才可以通过&#96;$&#123;&#125;&#96;对文件里的内容进行注入
+	@Value(&quot;$&#123;jdbc.drive&#125;&quot;)
+	private String driver;
+	
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="Scope-“属性值”"><a href="#Scope-“属性值”" class="headerlink" title="@Scope(“属性值”)"></a>@Scope(“属性值”)</h5><p>​    @Scope定义bean的范围，其写在类的上方，用来设置bean是单例还是多例</p>
+<p>样例：@Scope(“属性值”)的使用</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserServiceImpl.java
+
+@Component(&quot;userService&quot;)
+&#x2F;&#x2F;设置创建的bean是多例，单例设置为@Scope(&quot;singleton&quot;)
+@Scope(&quot;prototype&quot;)
+public class UserServiceImpl implements UserService&#123;
+	&#x2F;&#x2F;...
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="PostConstruct和-PreDestroy"><a href="#PostConstruct和-PreDestroy" class="headerlink" title="@PostConstruct和@PreDestroy"></a>@PostConstruct和@PreDestroy</h5><p>​    写在类中的方法前，用于设置bean在创建或者销毁时要执行的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserServiceImpl.java
+
+@Component(&quot;userService&quot;)
+public class UserServiceImpl implements UserService&#123;
+
+	&#x2F;&#x2F;配置该方法在bean创建时调用
+	@PostConstruct
+	public void init()&#123;
+		System.out.println(&quot;Service类的bean初始化调用&quot;);
+	&#125;
+	
+	&#x2F;&#x2F;配置该方法在bean销毁前调用
+	@PreDestroy
+	public void destroy()&#123;
+		System.out.println(&quot;Service类的bean销毁前调用&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-Spring3新注解-配置注解-介绍"><a href="#4-Spring3新注解-配置注解-介绍" class="headerlink" title="(4)Spring3新注解(配置注解)介绍"></a>(4)Spring3新注解(配置注解)介绍</h4><p>​    原始注解不能完全代替xml配置文件，<code>通过使用@Configuration注解的类可以充当Spring的Java配置文件，取代传统的 applicationContext.xml配置文件</code></p>
+<h5 id="使用Spring新注解替代的配置如下："><a href="#使用Spring新注解替代的配置如下：" class="headerlink" title="使用Spring新注解替代的配置如下："></a>使用Spring新注解替代的配置如下：</h5><ul>
+<li>非自定义的类的bean导入：如需要将第三方jar包中的类配置到Spring容器中</li>
+<li>加载properties文件的配置：&lt; context:property-placeholder &gt;</li>
+<li>组件扫描的配置：&lt; context:component-scan &gt;</li>
+<li>引入其他文件：&lt; import &gt; </li>
+</ul>
+<h5 id="Spring3的新注解"><a href="#Spring3的新注解" class="headerlink" title="Spring3的新注解"></a>Spring3的新注解</h5><table>
+<thead>
+<tr>
+<th align="center">注解</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">@Configuration</td>
+<td align="center">写在类上，用于标注该类为Java的配置类用于代替Spring的xml配置文件</td>
+</tr>
+<tr>
+<td align="center">@ComponentScan</td>
+<td align="center">写在Java的配置类上，用于指定自动扫描的包及子包</td>
+</tr>
+<tr>
+<td align="center">@Bean</td>
+<td align="center">写在方法上，将该方法的返回值交由Spring容器管理</td>
+</tr>
+<tr>
+<td align="center">@PropertySource</td>
+<td align="center">写在类上，用于加载外部的属性文件（如 .properties文件）</td>
+</tr>
+<tr>
+<td align="center">@Import</td>
+<td align="center">写在Java的配置类上，用于将其他的配置类导入到该配置类</td>
+</tr>
+</tbody></table>
+<h4 id="5-Spring新注解详解"><a href="#5-Spring新注解详解" class="headerlink" title="(5)Spring新注解详解"></a>(5)Spring新注解详解</h4><h5 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h5><p>​    @Configuration用于标识一个类作为配置类，Spring 容器就会自动扫描这个类，并将它作为配置类来处理。配置类是用来定义 Spring 容器中的bean 配置的，这些类通常包含了多个@Bean注解的方法，这些方法会创建并返回Spring 容器中的bean</p>
+<p>样例：@Configuration的使用</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;SpringConfiguration
+
+&#x2F;&#x2F;标志该类是Spring的核心配置类
+@Configuration
+public class SpringConfiguration&#123;
+	&#x2F;&#x2F;...
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="ComponentScan-“包名”"><a href="#ComponentScan-“包名”" class="headerlink" title="@ComponentScan(“包名”)"></a>@ComponentScan(“包名”)</h5><p>​    @ComponentScan用于指定自动扫描的包及其子包，其相当于xml文件中的组件扫描</p>
+<p>样例：@ComponentScan(“包名”)的使用</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;SpringConfiguration
+
+@Configuration
+&#x2F;&#x2F;等价于&lt;context:component-scan base-package&#x3D;&quot;com.itheima&quot;&#x2F;&gt;
+@ComponentScan(&quot;com.itheima&quot;)
+public class SpringConfiguration&#123;
+	&#x2F;&#x2F;...
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h5><p>​    @Bean用于将当前方法的返回值以当前方法名为id存储到Spring容器中，可以使用@Bean(“id”)来显示的指定存储的bean的唯一id</p>
+<p>样例：@Bean的使用</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;SpringConfiguration
+
+@Configuration
+@ComponentScan(&quot;com.itheima&quot;)
+public class SpringConfiguration&#123;
+	
+	&#x2F;&#x2F;将当前方法的返回值以id为getDataSource存储在Spring容器中
+	@Bean
+	public DataSource getDataSource() throws PropertyVetoException&#123;
+		&#x2F;&#x2F;这里与xml文件不同的是，xml是将ComboPooledDataSource的dataSource放入Spring容器，这里是执行后的返回值
+		ComboPooledDataSource dataSource &#x3D; new ComboPooledDataSource();
+        dataSource.setDriverClass(&quot;com.mysql.jdbc.Driver&quot;);
+        dataSource.setJdbcUrl(&quot;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;test&quot;);
+        dataSource.setUser(&quot;root&quot;);
+        dataSource.setPassword(&quot;root&quot;);
+        return dataSource;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="PropertySource-“文件路径”"><a href="#PropertySource-“文件路径”" class="headerlink" title="@PropertySource(“文件路径”)"></a>@PropertySource(“文件路径”)</h5><p>​    @PropertySource用于加载外部的属性文件（例如 .properties文件）到Spring容器中</p>
+<p>样例：@PropertySource(“文件路径”)的使用</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;SpringConfiguration
+
+@Configuration
+@ComponentScan(&quot;com.itheima&quot;)
+&#x2F;&#x2F;等价与：&lt;context:property-placeholder location&#x3D;&quot;classpath:jdbc.properties&quot;&#x2F;&gt;
+@PropertySource(&quot;classpath:jdbc.properties&quot;)
+public class SpringConfiguration&#123;
+	&#x2F;&#x2F;使用@value即可读取.properties文件里的信息
+	@Value(&quot;$&#123;jdbc.driver&#125;&quot;)
+    private String driver;
+    
+    @Value(&quot;$&#123;jdbc.url&#125;&quot;)
+    private String url;
+    
+    @Value(&quot;$&#123;jdbc.username&#125;&quot;)
+    private String username;
+    
+    @Value(&quot;$&#123;jdbc.password&#125;&quot;)
+    private String password;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="Import-“配置类的名字-class”"><a href="#Import-“配置类的名字-class”" class="headerlink" title="@Import(“配置类的名字.class”)"></a>@Import(“配置类的名字.class”)</h5><p>​    @Import用于将一个或多个外部的配置类或者资源（如 Bean 定义：bean定义会随着导入外部的配置类一起导入）导入到当前配置类中</p>
+<p>样例：@Import(“配置类的名字.class”)的使用</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;SpringConfiguration
+
+@Configuration
+@ComponentScan(&quot;com.itheima&quot;)
+&#x2F;&#x2F;等价与：&lt;import resource&#x3D;&quot;applicationContext-dataSource.xml&quot;&#x2F;&gt;
+@Import(DataSourceConfiguration.class)
+&#x2F;&#x2F;多个导入：@Import(&#123;xxx.class,yyy.class,zzz.class&#125;)
+public class SpringConfiguration&#123;
+	&#x2F;&#x2F;...
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="6-配置类来加载Spring容器对象"><a href="#6-配置类来加载Spring容器对象" class="headerlink" title="(6)配置类来加载Spring容器对象"></a>(6)配置类来加载Spring容器对象</h4><p>​    在使用applicationContext.xml文件时，是通过加载xml文件来获得Spring容器对象，而使用配置类后同样需要加载配置类</p>
+<p>样例：配置类的加载</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;main.java
+
+public static void main(String[] args)&#123;
+	&#x2F;&#x2F;获得Spring容器对象，之前用xml是：ApplicationContext app &#x3D; new ClassPathXmlApplicationContext(applicationContext.xml);
+	ApplicationContext app &#x3D; new AnnotationConfigApplicationContext(SpringConfiguration.class);
+	UserService u &#x3D; app.getBean(UserService.class);
+	u.save();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -741,13 +1082,13 @@ private String driver;<span aria-hidden="true" class="line-numbers-rows"><span><
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/04/25/Spring01/">
+                <a href="/2023/04/25/Spring01-Bean%E4%B8%8EIoC/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Spring01">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Spring01-Bean与IoC">
                         
-                        <span class="card-title">Spring01</span>
+                        <span class="card-title">Spring01-Bean与IoC</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
