@@ -481,83 +481,242 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="监听器的使用与Spring集成Web环境"><a href="#监听器的使用与Spring集成Web环境" class="headerlink" title="监听器的使用与Spring集成Web环境"></a>监听器的使用与Spring集成Web环境</h2><h4 id="1-应用上下文的创建"><a href="#1-应用上下文的创建" class="headerlink" title="1. 应用上下文的创建"></a>1. 应用上下文的创建</h4><p>​    因为上下文对象是通过<code>new ClasspathXmlApplicationContext(Spring配置文件)</code>获得，但每一次获取Bean时都要编写一次，这样会使得上下文对象创建多次</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9ipmxH"><img src="https://s1.ax1x.com/2023/04/18/p9ipmxH.png" alt="p9ipmxH.png"></a></p>
-<p>​    <strong>思想：将创建上下文对象的行为放在监听器中，并由监听器存储在ServletContext域中，需要使用对象时，通过ServletContext对象向ServletContext域中获取</strong></p>
-<p>​    <strong>监听器的配置</strong></p>
-<p>​    新建java文件，继承实现监听servletContext的接口</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9i9MpF"><img src="https://s1.ax1x.com/2023/04/18/p9i9MpF.png" alt="p9i9MpF.png"></a></p>
-<p>​    需要在web.xml文件，编写配置告知tomcat有这个监听器</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9i9JTx"><img src="https://s1.ax1x.com/2023/04/18/p9i9JTx.png" alt="p9i9JTx.png"></a></p>
-<p>​    从容器中获取上下文对象</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9i9hcQ"><img src="https://s1.ax1x.com/2023/04/18/p9i9hcQ.png" alt="p9i9hcQ.png"></a></p>
-<h4 id="2-监听器的优化"><a href="#2-监听器的优化" class="headerlink" title="2. 监听器的优化"></a>2. 监听器的优化</h4><p>​    使用web.xml配置**全局初始化参数<code>&lt;context-param&gt;</code> **，<code>&lt;param-name&gt;</code>写自定义的名字，<code>&lt;param-value&gt;</code> 写名字对应的值</p>
-<p>​    web.xml文件配置参数</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9iCPN6"><img src="https://s1.ax1x.com/2023/04/18/p9iCPN6.png" alt="p9iCPN6.png"></a></p>
-<p>​    java文件来读取参数</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9iCA3D"><img src="https://s1.ax1x.com/2023/04/18/p9iCA3D.png" alt="p9iCA3D.png"></a></p>
-<p>​    新建一个工具类将具体的名字，像代码中的<code>&quot;app&quot;</code>给隐藏掉，即当需要对象时直接给对象而不是通过名字获取对象，其实本质就是把那句话变成一个方法返回值，就是一个封装</p>
-<p>​    工具类封装</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EUBNQ"><img src="https://s1.ax1x.com/2023/04/21/p9EUBNQ.png" alt="p9EUBNQ.png"></a></p>
-<p>​    调用类直接使用，doGet为收到GET请求后调用</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EaFDf"><img src="https://s1.ax1x.com/2023/04/21/p9EaFDf.png" alt="p9EaFDf.png"></a></p>
-<h4 id="3-Spring提供上述监听器获取应用上下文工具"><a href="#3-Spring提供上述监听器获取应用上下文工具" class="headerlink" title="3. Spring提供上述监听器获取应用上下文工具"></a>3. Spring提供上述监听器获取应用上下文工具</h4><p>​    上面代码有个同名监听器是仿的，目的是要领会监听器内部的实现</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EdDln"><img src="https://s1.ax1x.com/2023/04/21/p9EdDln.png" alt="p9EdDln.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Ed4p9"><img src="https://s1.ax1x.com/2023/04/21/p9Ed4p9.png" alt="p9Ed4p9.png"></a></p>
-<p>​    在pom.xml文件导入spring-web坐标</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EdLkD"><img src="https://s1.ax1x.com/2023/04/21/p9EdLkD.png" alt="p9EdLkD.png"></a></p>
-<p>​    在web.xml文件下配置监听器，并设置全局初始化参数，因为要获取的是resource下的spring的xml文件的上下文，路径为<code>classpath:XXXX.xml</code></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EwUnx"><img src="https://s1.ax1x.com/2023/04/21/p9EwUnx.png" alt="p9EwUnx.png"></a></p>
-<p>​    通过调用Spring监听器对象提供的方法，如上面写的假的监听器一样，这个方法是static的，获得上下文对象</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EwvUU"><img src="https://s1.ax1x.com/2023/04/21/p9EwvUU.png" alt="p9EwvUU.png"></a></p>
-<h4 id="4-SpringMVC的概述"><a href="#4-SpringMVC的概述" class="headerlink" title="4. SpringMVC的概述"></a>4. SpringMVC的概述</h4><p>​    SpringMVC是一种基于Java的实现MVC设计模型的请求驱动类型的轻量级Web框架，<strong>SpringMVC是属于管项目的web层的</strong></p>
-<p>​    将共有行为抽取出来，由框架封装</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9E5Xlt"><img src="https://s1.ax1x.com/2023/04/21/p9E5Xlt.png" alt="p9E5Xlt.png"></a></p>
-<p>​    <strong>SpringMVC的使用</strong></p>
-<p>​    1. 导入SpringMVC包<br>​    2. 配置Servlet，先找共有行为再找特有行为<br>​    3. 编写POJO(普通JavaBean)，也称为Controller<br>​    4. 通过注解把POJO放到Spring容器中<br>​    5. 配置spring-mvc.xml文件(配置组件扫描)<br>​    6. 执行访问测试</p>
-<p>​    在pom.xml文件导入SpringMVC包</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EID1I"><img src="https://s1.ax1x.com/2023/04/21/p9EID1I.png" alt="p9EID1I.png"></a></p>
-<p>​    在web.xml中配置SpringMVC的前端控制器<code>&lt;servlet&gt;</code> ，<code>&lt;load-on-startup&gt;</code> 代表服务器启动时就去加载servlet，不配置则默认为第一次访问时创建对象；<code>&lt;servlet-mapping&gt;</code>为映射地址，  <code>&lt;url-pattern&gt;/&lt;url-pattern&gt;</code>，这个<code>/</code>表示缺省的servlet，即每次访问任何请求都要走这个servlet，也有<code>*.xxx</code>为扩展名为<code>*.xxx</code>时才走这个servlet</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EI53n"><img src="https://s1.ax1x.com/2023/04/21/p9EI53n.png" alt="p9EI53n.png"></a></p>
-<p>​    创建Controller的Java包，return后接要跳转的jsp，用注解将UserController存入spring容器中，注解<code>@RequestMapping(&quot;/quick&quot;)</code>为请求映射，当访问quick时映射到save方法，执行方法的逻辑</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EHSvn"><img src="https://s1.ax1x.com/2023/04/21/p9EHSvn.png" alt="p9EHSvn.png"></a></p>
-<p>​    创建SpringMVC的xml文件，进行组件扫描，SpringMVC只管Web层所以只扫描controller</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9E7HDP"><img src="https://s1.ax1x.com/2023/04/21/p9E7HDP.png" alt="p9E7HDP.png"></a></p>
-<p>​    配置组件扫描的这个Spring-mvc.xml文件没有加载，在Spring的xml文件加载时是<code>new ClassPathXmlApplicationContext(&quot;参数为resource文件夹的xml文件路径&quot;)</code>，在Spring-mvc.xml的组件扫描，需要在前端控制器声明有这个配置文件，在<code>&lt;init-param&gt;</code> 标签进行声明，<code>&lt;init-param&gt;</code>代表servlet在初始化时执行，<code>contextConfigLocation</code> 是一个常见的初始化参数，用于指定Spring MVC配置文件的位置，<code>&lt;param-value&gt;</code> 写Spring-mvc.xml文件的路径</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9EHart"><img src="https://s1.ax1x.com/2023/04/21/p9EHart.png" alt="p9EHart.png"></a></p>
-<h4 id="5-SpringMVC的执行流程解析"><a href="#5-SpringMVC的执行流程解析" class="headerlink" title="5. SpringMVC的执行流程解析"></a>5. SpringMVC的执行流程解析</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VNbaF"><img src="https://s1.ax1x.com/2023/04/22/p9VNbaF.png" alt="p9VNbaF.png"></a></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VNzKx"><img src="https://s1.ax1x.com/2023/04/22/p9VNzKx.png" alt="p9VNzKx.png"></a></p>
-<h4 id="6-SpringMVC的组件解析"><a href="#6-SpringMVC的组件解析" class="headerlink" title="6. SpringMVC的组件解析"></a>6. SpringMVC的组件解析</h4><p><code>@RequestMapping</code></p>
-<p><strong>作用：</strong>用于建立请求URL和处理请求方法之间的对应关系</p>
-<p><strong>位置：</strong></p>
+                <h3 id="1-Spring容器对象的管理"><a href="#1-Spring容器对象的管理" class="headerlink" title="1. Spring容器对象的管理"></a>1. Spring容器对象的管理</h3><h5 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h5><p>​    Spring容器对象需要通过<code>new ClasspathXmlApplicationContext(Spring的xml配置文件)</code>或<code>new AnnotationConfigApplicationContext(SpringConfiguration.class)</code>获得，但在编写Web项目，不同的类中，每当需要获得Bean时都要编写一次，这样会使得Spring容器对象创建多次</p>
+<h4 id="1-Web项目：使用自定义监听器管理Spring容器对象-非重点用于引出Spring自带的监听器"><a href="#1-Web项目：使用自定义监听器管理Spring容器对象-非重点用于引出Spring自带的监听器" class="headerlink" title="(1)Web项目：使用自定义监听器管理Spring容器对象(非重点用于引出Spring自带的监听器)"></a>(1)Web项目：使用自定义监听器管理Spring容器对象(非重点用于引出Spring自带的监听器)</h4><p>​    在Web项目中，可以使用ServletContextListener<strong>监听整个Web应用启动和销毁的生命周期</strong>，当Web应用启动时，就可创建Spring容器对象，将其存储在最大的域servletContext中，这样在任意位置都可以从域中获得Spring容器对象</p>
+<h5 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h5><p>​    1.在监听器的包内定义一个ServletContextListener类</p>
+<p>​    2.在web.xml将这个ServletContextListener类进行配置</p>
+<p>​    3.其他Servlet、Filter、Listener类通过this.getServletContext来获得存储在servletContext域中的Spring容器对象</p>
+<h5 id="样例代码"><a href="#样例代码" class="headerlink" title="样例代码"></a>样例代码</h5><p>​    1.在listener包下新建ContextLoaderListener.java，继承实现servletContextListener接口</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;ContextLoaderListener.java
+
+public class ContextLoaderListener implements ServletContextListener&#123;
+	&#x2F;&#x2F;上下文初始化时调用的方法
+	public void contextInitialized(ServletContextEvent servletContextEvent)&#123;
+		ApplicationContext app &#x3D; new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+		&#x2F;&#x2F;将app存储到最大的域（ServletContext）中
+		ServletContext servletContext &#x3D; servletContextEvent.getServletContext();
+		servletContext.setAttribute(&quot;app&quot;,app);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.在web.xml文件，配置ContextLoaderListener.java，告知tomcat有这个监听器</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;web.xml
+
+&lt;web-app version&#x3D;&quot;3.0&quot; ...&gt;
+	&#x2F;&#x2F;配置自定义监听器
+	&lt;listener&gt;
+		&lt;listener-class&gt;com.itheima.listener.ContextLoaderListener&lt;&#x2F;listener-class&gt;
+	&lt;&#x2F;listener&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    3.Web层代码-UserServlet类中，通过this.getServletContext来获得存储在servletContext域中的Spring容器对象</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserServlet.java
+
+public class UserServlet extends HttpServlet&#123;
+	
+	@Override
+	protected void doGet(HttpServletRequest req,HttpServletResponse resp) throws Exception&#123;
+		&#x2F;&#x2F;获取上下文
+		ServletContext servletContext &#x3D; this.getServletContext();
+		&#x2F;&#x2F;获取在servletContext里的Spring容器对象
+		ApplicationContext app &#x3D; (ApplicationContext)servletContext.getAttribute(&quot;app&quot;);
+		&#x2F;&#x2F;使用Spring容器对象，获得容器里的bean
+		UserService userService &#x3D; app.getBean(UserService.class);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-Web项目：使用Spring封装的监听器管理Spring容器对象（重点）"><a href="#2-Web项目：使用Spring封装的监听器管理Spring容器对象（重点）" class="headerlink" title="(2)Web项目：使用Spring封装的监听器管理Spring容器对象（重点）"></a>(2)Web项目：使用Spring封装的监听器管理Spring容器对象（重点）</h4><p>​    Spring提供了监听器ContextLoaderListener，其内部基于ServletContextListener进行封装，其还提供了工具类WebApplicationContextUtils用于获得Spring容器对象，在Web项目中的主要作用是：1.加载Spring容器对象，2.将该容器封装在Web的上下文对象中</p>
+<h5 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h5><p>​    1.在pom.xml文件导入spring-web坐标</p>
+<p>​    2.在web.xml中配置ContextLoaderListener监听器，以及导入Spring配置文件applicationContext.xml</p>
+<p>​    3.使用WebApplicationContextUtils获得Spring容器对象</p>
+<h5 id="样例代码-1"><a href="#样例代码-1" class="headerlink" title="样例代码"></a>样例代码</h5><p>​    1.在pom.xml文件导入spring-web坐标</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;pom.xml
+
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework&lt;&#x2F;groupId&gt;
+	&lt;artifactId&gt;&gt;spring-web&lt;&#x2F;artifactId&gt;
+	&lt;version&gt;5.0.5&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.在web.xml文件下配置Spring提供的监听器，并在配置前告知监听器加载Spring配置文件的路径，监听器会通过这个路径的文件自动创建Spring容器对象（该功能是Spring封装好的）</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;web.xml
+
+&lt;web-app version&#x3D;&quot;3.0&quot; ...&gt;
+	&#x2F;&#x2F;告知监听器加载Spring配置文件的路径，监听器会通过这个文件获得Spring容器对象
+	&lt;context-param&gt;
+		&lt;param-name&gt;contextConfigLocation&lt;&#x2F;param-name&gt;
+		&lt;param-value&gt;classpath:applicationContext.xml&lt;&#x2F;param-value&gt;
+	&lt;&#x2F;context-param&gt;
+	
+	&#x2F;&#x2F;配置Spring的监听器
+	&lt;listener&gt;
+		&lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;&#x2F;listener-class&gt;
+	&lt;&#x2F;listener&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    3.在UserServlet.java，编写获得Web上下文，再通过Web上下文获得Spring容器对象，再通过Spring容器对象获得bean</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserServlet.java
+
+public class UserServlet extends HttpServlet&#123;
+	
+	@Override
+	protected void doGet(HttpServletRequest req,HttpServletResponse resp) throws Exception&#123;
+		&#x2F;&#x2F;获取上下文
+		ServletContext servletContext &#x3D; this.getServletContext();
+		&#x2F;&#x2F;获取在servletContext里的Spring容器对象
+		WebApplicationContext app &#x3D; WebApplicationContextUtils.getWebApplicationContext(servletContext);
+		&#x2F;&#x2F;使用Spring容器对象，获得容器里的bean
+		UserService userService &#x3D; app.getBean(UserService.class);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="2-SpringMVC框架的概述"><a href="#2-SpringMVC框架的概述" class="headerlink" title="2. SpringMVC框架的概述"></a>2. SpringMVC框架的概述</h3><p>​    Spring MVC 基于Servlet，其通常作为Web层的一部分，它可以独立于其他Spring模块来运行，也可以结合Spring的其他功能，如Spring事务管理、数据访问、AOP等</p>
+<p>​    <code>SpringMVC可以通过一套注解让简单的Java类成为处理请求的控制器（servlet类）</code>，而无需实现任何接口，同时还支持RESTful编程风格的请求</p>
+<h4 id="1-SpringMVC框架的使用"><a href="#1-SpringMVC框架的使用" class="headerlink" title="(1)SpringMVC框架的使用"></a>(1)SpringMVC框架的使用</h4><p>​    Spring MVC 项目的设计上有一个 <strong>上下文分层</strong> 的概念，Web 上下文和 Root 上下文（Spring容器对象）是分开的。这种分层有助于提高模块化和可维护性。<code>applicationContext.xml</code> 通常用于定义非 Web 相关的服务和数据访问对象，而 <code>spring-mvc.xml</code> 负责配置 Web 相关的组件（例如，处理请求的控制器、视图解析器等）</p>
+<p>​    当 <code>DispatcherServlet</code> 加载 <code>spring-mvc.xml</code> 时，它会创建一个 <strong>Web Application Context</strong>，用于管理 Web 层相关的 Bean</p>
+<h5 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h5><p>​    1.导入SpringMVC坐标<br>​    2.在web.xml中配置SpringMVC前端控制器，并配置加载spring-mvc.xml<br>​    3.新建spring-mvc.xml作为SpringMVC的配置文件，在该文件中配置组件扫描，扫描web层的包<br>​    4.编写UserController.java，用注解将其配置到Spring容器中<br>​    5.运行后用浏览器访问资源测试</p>
+<h5 id="样例代码-2"><a href="#样例代码-2" class="headerlink" title="样例代码"></a>样例代码</h5><p>​    1.在pom.xml文件导入SpringMVC包</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;pom.xml
+
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework&lt;&#x2F;groupId&gt;
+	&lt;artifactId&gt;spring-webmvc&lt;&#x2F;artifactId&gt;
+	&lt;version&gt;5.0.5.RELEASE&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.在web.xml中配置SpringMVC的前端控制器 ，在 Spring MVC 项目中，spring-mvc.xml 是由 <strong><code>DispatcherServlet</code></strong> 来加载的，而不是 <code>ContextLoaderListener</code>。<code>DispatcherServlet</code> 是 Spring MVC 的核心，它充当前端控制器（Front Controller），负责处理所有 HTTP 请求。<code>DispatcherServlet</code> 会读取它自己的配置文件（通常是 <code>spring-mvc.xml</code>），初始化 Web 层相关的组件，例如控制器、视图解析器、请求映射等</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;web.xml
+
+&lt;servlet&gt;
+	&lt;servlet-name&gt;DispatcherServlet&lt;&#x2F;servlet-name&gt;
+	&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;&#x2F;servlet-class&gt;
+	&#x2F;&#x2F;init-param：用于告知前端控制器配置这个Servlet时配置文件在哪
+	&lt;init-param&gt;
+		&lt;param-name&gt;contextConfigLocation&lt;&#x2F;param-name&gt;
+		&lt;param-value&gt;classpath:spring-mvc.xml&lt;&#x2F;param-value&gt;
+	&lt;&#x2F;init-param&gt;
+	&#x2F;&#x2F;load-on-startup:代表服务器启动时就去加载servlet(优先级设置为1)
+	&lt;load-on-startup&gt;1&lt;&#x2F;load-on-startup&gt;
+&lt;&#x2F;servlet&gt;
+&#x2F;&#x2F;servlet-mapping:为映射地址
+&lt;servlet-mapping&gt;
+	&lt;servlet-name&gt;DispatcherServlet&lt;&#x2F;servlet-name&gt;
+	&#x2F;&#x2F;这个&#x2F;表示缺省的servlet，即每次访问任何请求都要走这个servlet，若为YYY.xxx为扩展名为YYY.xxx时才走这个servlet
+	&lt;url-pattern&gt;&#x2F;&lt;&#x2F;url-pattern&gt;
+&lt;&#x2F;servlet-mapping&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    3.创建SpringMVC的xml文件，进行组件扫描，按定义SpringMVC只管Web层所以只扫描controller</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;spring-mvc.xml
+
+&#x2F;&#x2F;需要在命名空间里补一个context的命名空间
+&lt;beans xmlns:context&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&quot;
+	   xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&quot; http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&#x2F;spring-context&gt;
+	 &#x2F;&#x2F;配置扫描controller层
+	 &lt;context:component-scan base-package&#x3D;&quot;com.itheima.controller&quot;&#x2F;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    4.编写UserController.java，用注解将其配置到Spring容器中</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	&#x2F;&#x2F;这个属于SpringMVC的注解，详细功能见下面
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	public String save()&#123;
+		System.out.println(&quot;运行成功&quot;);
+		return &quot;success.jsp&quot;;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-SpringMVC的注解：-RequestMapping-“请求路径”"><a href="#2-SpringMVC的注解：-RequestMapping-“请求路径”" class="headerlink" title="(2)SpringMVC的注解：@RequestMapping(“请求路径”)"></a>(2)SpringMVC的注解：@RequestMapping(“请求路径”)</h4><p>​    <code>@RequestMapping</code>是 Spring MVC 中用于处理 HTTP 请求的注解。<code>它可以用于类级别或者方法级别</code>，用来定义请求的 URL 映射、HTTP 方法（如 GET、POST 等）以及请求参数等信息</p>
 <ul>
-<li><p>类上，请求URL的第一级访问目录，此处不写的话，就相当于根目录</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VaD78"><img src="https://s1.ax1x.com/2023/04/22/p9VaD78.png" alt="p9VaD78.png"></a></p>
-</li>
-<li><p>方法上，请求URL的第二级访问目录，与类上的使用@ReqquestMapping标注的一级目录一起组成访问虚拟路径</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VaOj1"><img src="https://s1.ax1x.com/2023/04/22/p9VaOj1.png" alt="p9VaOj1.png"></a></p>
-<p>这个方式是为了区分是哪个模块的方法，此时return方法返回的是<code>http://localhost:8080/xxx/</code>下的<code>success.jsp</code>页面，如果jsp文件路径不对会报404，可以改为带<code>/success.jsp</code>表示要在当前web应用下找这个资源</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Vd25D"><img src="https://s1.ax1x.com/2023/04/22/p9Vd25D.png" alt="p9Vd25D.png"></a></p>
-</li>
+<li><strong>方法级别</strong>：用来映射具体的请求路径，并指定该方法处理哪些 HTTP 请求。</li>
+<li><strong>类级别</strong>：用来为控制器类定义一个基础的路径，方法级别的路径会在类级别路径的基础上追加。</li>
 </ul>
-<p><strong>属性：</strong></p>
+<h5 id="样例：方法级别"><a href="#样例：方法级别" class="headerlink" title="样例：方法级别"></a>样例：方法级别</h5><p>​    在浏览器请求路径：<code>http://localhost:8080/quick</code>可以访问success.jsp的资源</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	&#x2F;&#x2F;请求地址为 http:&#x2F;&#x2F;localhost:8080&#x2F;quick
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	public String save()&#123;
+		System.out.println(&quot;运行成功&quot;);
+		return &quot;success.jsp&quot;;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="样例：类级别"><a href="#样例：类级别" class="headerlink" title="样例：类级别"></a>样例：类级别</h5><p>​    在浏览器请求路径：<code>http://localhost:8080/user/quick</code>可以访问success.jsp的资源</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+@RequestMapping(&quot;&#x2F;user&quot;)
+public class UserController&#123;
+	&#x2F;&#x2F;请求地址为 http:&#x2F;&#x2F;localhost:8080&#x2F;user&#x2F;quick
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	public String save()&#123;
+		System.out.println(&quot;运行成功&quot;);
+		return &quot;success.jsp&quot;;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="请求路径的参数配置"><a href="#请求路径的参数配置" class="headerlink" title="请求路径的参数配置"></a>请求路径的参数配置</h5><p>​    通过请求路径的参数配置可以进一步细分请求的匹配条件</p>
 <ul>
-<li>value：用于指定请求的URL，在只有value的情况下可以省略，但多个属性不能省如上面代码完整的应该为<code>@RequestMapping(value=&quot;/quick&quot;)</code></li>
-<li>method：用于指定请求的方式，默认是GET，如果要改为POST，它存储方式是枚举类型为<code>@RequestMapping(value=&quot;/quick&quot;,method=RequestMethod.POST)</code>，注意：jsp表单提交是GET类型的，设置成POST会报错</li>
-<li>params：用于指定限制请求参数的条件，它支持简单的表达式，要求请求参数的key和value必须和配置的一模一样<ul>
-<li><code>params=&#123;&quot;accountName&quot;&#125;</code>，表示请求参数必须有accountName，没有这个参数则该资源不能被你访问</li>
-<li><code>params=&#123;&quot;money!100&quot;&#125;</code>，表示请求参数中money不能是100</li>
+<li>value：用于指定请求的URL，在只有value的情况下可以省略，但多个属性不能省，上面代码完整的应该为<code>@RequestMapping(value=&quot;/quick&quot;)</code></li>
+<li>method：用于指定请求的方式，默认是GET，如果要改为POST，它存储方式是枚举类型为<code>@RequestMapping(value=&quot;/quick&quot;,method=RequestMethod.POST)</code></li>
 </ul>
-</li>
+<h4 id="3-Spring新注解-代替-RequestMapping"><a href="#3-Spring新注解-代替-RequestMapping" class="headerlink" title="(3)Spring新注解-代替 @RequestMapping"></a>(3)Spring新注解-代替 @RequestMapping</h4><p>​    Spring 4.3 引入了几个更为具体的注解，用来代替 @RequestMapping，使代码更加语义化</p>
+<ul>
+<li><code>@GetMapping</code>：用于处理 GET 请求</li>
+<li><code>@PostMapping</code>：用于处理 POST 请求</li>
+<li><code>@PutMapping</code>：用于处理 PUT 请求</li>
+<li><code>@DeleteMapping</code>：用于处理 DELETE 请求</li>
+<li><code>@PatchMapping</code>：用于处理 PATCH 请求</li>
 </ul>
-<h4 id="7-SpringMVC的组件扫描"><a href="#7-SpringMVC的组件扫描" class="headerlink" title="7. SpringMVC的组件扫描"></a>7. SpringMVC的组件扫描</h4><p>​    springMVC是管理web层的，所以组件扫描时，只扫描web层相关，而其他的像dao层、service层归Spring来扫描</p>
-<p>​    为了让只扫springmvc，可以在其配置的xml文件中进行如下设置</p>
-<p>​    <code>include-filter</code>表示包括如果改为<code>exclude-filter</code>表示不包括，<code>type=&quot;annotation&quot;</code>表示扫描类型为注解，expression=”注解的全限定名”</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9V0b9g"><img src="https://s1.ax1x.com/2023/04/22/p9V0b9g.png" alt="p9V0b9g.png"></a></p>
-<h4 id="8-SpringMVC的xml文件配置"><a href="#8-SpringMVC的xml文件配置" class="headerlink" title="8. SpringMVC的xml文件配置"></a>8. SpringMVC的xml文件配置</h4><p>​    有点难，可以反复看<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1WZ4y1P7Bp/?p=49&spm_id_from=pageDriver&vd_source=41e90cead08809b70890e8713c58ac8b">13-SpringMVC组件解析-SpringMVC的XML配置解析（资源解析器）_哔哩哔哩_bilibili</a></p>
-<p>​    可以自行配置视图解析器，配置完后方法return时指定页面就可以少写页面的前缀和后缀</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VBXGD"><img src="https://s1.ax1x.com/2023/04/22/p9VBXGD.png" alt="p9VBXGD.png"></a></p>
-<h4 id="9-总结"><a href="#9-总结" class="headerlink" title="9. 总结"></a>9. 总结</h4><p>​    <a target="_blank" rel="noopener" href="https://imgse.com/i/p9VDMd0"><img src="https://s1.ax1x.com/2023/04/22/p9VDMd0.png" alt="p9VDMd0.png"></a></p>
+<h4 id="4-SpringMVC的执行流程"><a href="#4-SpringMVC的执行流程" class="headerlink" title="(4)SpringMVC的执行流程"></a>(4)SpringMVC的执行流程</h4><h5 id="图示"><a href="#图示" class="headerlink" title="图示"></a>图示</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pE1FvkV"><img src="https://s21.ax1x.com/2025/02/24/pE1FvkV.png" alt="SpringMVC的执行流程"></a></p>
+<h5 id="上图流程解释（重点）"><a href="#上图流程解释（重点）" class="headerlink" title="上图流程解释（重点）"></a>上图流程解释（重点）</h5><p>​    当你在浏览器中输入一个 URL（比如 <code>http://localhost:8080/quick</code>）并按下回车时，浏览器会向服务器发起一个 <strong>HTTP 请求</strong>。这个请求可能包含一些数据（如表单数据、请求头等）。服务器接收到请求后，会做出一个 <strong>HTTP 响应</strong>，将结果返回给浏览器，通常是网页内容、图片等。<strong>Servlet 容器（如 Tomcat）会在每次接收到请求时自动创建这两个对象</strong>【HttpServletRequest（简称 <strong>req</strong>）和 HttpServletResponse（简称 <strong>resp</strong>）】并将它们传递给 DispatcherServlet（Spring 的前端控制器），<strong>DispatcherServlet 将请求路由到对应的控制器方法并将 req和resp对象传递给控制器方法</strong>，然后控制器方法就可以使用它们来处理请求和构建响应，最后，控制器方法返回响应的视图或数据，DispatcherServlet会通过 resp将数据发送回浏览器</p>
+<h5 id="什么是servlet"><a href="#什么是servlet" class="headerlink" title="什么是servlet"></a>什么是servlet</h5><p>​    Servlet是 Java 提供的一种技术，用于在服务器端处理 HTTP 请求和生成 HTTP 响应。简单来说，Servlet 就是一个可以处理 Web 请求的 Java 类。当用户访问一个 Web 应用时，服务器会调用对应的 Servlet 来处理请求。</p>
+<h3 id="3-SpringMVC的其他组件"><a href="#3-SpringMVC的其他组件" class="headerlink" title="3. SpringMVC的其他组件"></a>3. SpringMVC的其他组件</h3><p>​    除了DispatcherServlet（前端控制器），要实现请求的处理和响应，Spring MVC 的其他组件还包括 HandlerMapping（请求映射）、Controller（请求处理）、HandlerAdapter（调用控制器）、ModelAndView（模型视图）、ViewResolver（视图解析器）等，这些其他组件都是由DispatcherServlet调用完成工作</p>
+<p>​    <code>这里所有组件的配置都是在spring-web.xml文件中配置</code></p>
+<h4 id="1-SpringMVC各组件执行流程"><a href="#1-SpringMVC各组件执行流程" class="headerlink" title="(1)SpringMVC各组件执行流程"></a>(1)SpringMVC各组件执行流程</h4><h5 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pE1ZJbj"><img src="https://s21.ax1x.com/2025/02/24/pE1ZJbj.png" alt="SpringMVC各组件执行流程"></a></p>
+<h5 id="SpringMVC代码层面的执行流程（各组件）"><a href="#SpringMVC代码层面的执行流程（各组件）" class="headerlink" title="SpringMVC代码层面的执行流程（各组件）"></a>SpringMVC代码层面的执行流程（各组件）</h5><p>​    1.web.xml加载：在Servlet容器启动时，web.xml配置文件加载加载，配置 DispatcherServlet 和 ContextLoaderListener<br>​    2.ContextLoaderListener加载：ContextLoaderListener初始化并加载 Root Web Context（例如 applicationContext.xml），通常包含服务层和数据源的配置<br>​    3.DispatcherServlet 加载：DispatcherServlet 加载并初始化 Web ApplicationContext（spring-mvc.xml）<br>​    4.请求到达 DispatcherServlet：请求由 DispatcherServlet 拦截，HandlerMapping 查找匹配的控制器（Controller）<br>​    5.HandlerAdapter 执行控制器：一旦找到匹配的控制器，DispatcherServlet使用HandlerAdapter来调用控制器方法。HandlerAdapter负责执行控制器方法，并处理控制器方法的返回值（比如视图名或数据）<br>​    6.视图解析与响应：DispatcherServlet 通过视图解析器（ViewResolver）渲染视图，将最终响应通过 HttpServletResponse返回给浏览器</p>
+<h4 id="2-SpringMVC组件在spring-web-xml的配置"><a href="#2-SpringMVC组件在spring-web-xml的配置" class="headerlink" title="(2)SpringMVC组件在spring-web.xml的配置"></a>(2)SpringMVC组件在spring-web.xml的配置</h4><p>​    SpringMVC组件在原生环境是配置好的，可以在spring-web.xml对组件再配置进行功能上增强（aop思想）</p>
+<h5 id="样例：视图解析器（viewResolver）的配置"><a href="#样例：视图解析器（viewResolver）的配置" class="headerlink" title="样例：视图解析器（viewResolver）的配置"></a>样例：视图解析器（viewResolver）的配置</h5><p>​    在进行视图跳转时，对每一次请求<code>u</code>进行<code>前缀+u+后缀</code>的拼接作为请求路径</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;spring-mvc.xml
+
+
+&#x2F;&#x2F;配置视图解析器
+&lt;bean id&#x3D;&quot;viewResolver&quot; class&#x3D;&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;
+	&#x2F;&#x2F;用其父类提供的set方法进行注入
+	&#x2F;&#x2F;设置视图路径的前缀
+	&lt;property name&#x3D;&quot;prefix&quot; value&#x3D;&quot;&#x2F;jsp&#x2F;&quot;&gt;
+	&#x2F;&#x2F;设置视图路径的后缀
+	&lt;property name&#x3D;&quot;suffix&quot; value&#x3D;&quot;.jsp&quot;&gt;
+&lt;&#x2F;bean&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 
                 
             </div>
@@ -584,7 +743,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2023/04/25/Spring03/">http://example.com/2023/04/25/Spring03/</a>
+                    <a href="http://example.com/2023/04/25/Spring03-%E7%9B%91%E5%90%AC%E5%99%A8%E5%AD%98%E5%82%A8spring%E5%AE%B9%E5%99%A8%E4%B8%8ESpringMVC%E7%9A%84%E4%BD%BF%E7%94%A8/">http://example.com/2023/04/25/Spring03-%E7%9B%91%E5%90%AC%E5%99%A8%E5%AD%98%E5%82%A8spring%E5%AE%B9%E5%99%A8%E4%B8%8ESpringMVC%E7%9A%84%E4%BD%BF%E7%94%A8/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -716,7 +875,7 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/04/25/Spring02/">
+                <a href="/2023/04/25/Spring02-%E8%BF%9E%E6%8E%A5%E6%B1%A0%E4%B8%8ESpring%E6%B3%A8%E8%A7%A3/">
                     <div class="card-image">
                         
                         

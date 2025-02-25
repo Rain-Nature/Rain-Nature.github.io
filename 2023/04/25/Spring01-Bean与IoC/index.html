@@ -822,9 +822,9 @@ public class UserDaoImpl implements UserDao&#123;
 <h5 id="样例图示："><a href="#样例图示：" class="headerlink" title="样例图示："></a>样例图示：</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppLLaXq"><img src="https://s1.ax1x.com/2023/04/11/ppLLaXq.png" alt="xml文件的分模块开发"></a></p>
 <h3 id="9-Spring相关API"><a href="#9-Spring相关API" class="headerlink" title="9. Spring相关API"></a>9. Spring相关API</h3><h4 id="1-ApplicationContext接口与它的实现类：用于获得Spring容器对象"><a href="#1-ApplicationContext接口与它的实现类：用于获得Spring容器对象" class="headerlink" title="(1)ApplicationContext接口与它的实现类：用于获得Spring容器对象"></a>(1)ApplicationContext接口与它的实现类：用于获得Spring容器对象</h4><p>​    applicationContext：接口类型，可以通过其来接Spring容器对象</p>
 <p>​    </p>
-<h5 id="ApplicationContext的实现类：获取Spring容器对象的三种方式"><a href="#ApplicationContext的实现类：获取Spring容器对象的三种方式" class="headerlink" title="ApplicationContext的实现类：获取Spring容器对象的三种方式"></a>ApplicationContext的实现类：获取Spring容器对象的三种方式</h5><p>​    1.<code>ClassPathXmlApplicationContext(&quot;参数为resource文件夹的xml文件路径&quot;)</code>：<br>​        它是从类的根路径下加载配置文件（常用）</p>
-<p>​    2.<code>FileSystemXmlApplicationContext(&quot;参数为xml文件在电脑中的磁盘路径&quot;)</code>：<br>​        它是从磁盘路径上加载配置文件，配置文件可以在磁盘的任意位置</p>
-<p>​    3.<code>AnnotationConfigApplicationContext</code>：<br>​    ​    当使用注解配置容器对象时，需要使用此类来创建spring容器，它用来读取注解</p>
+<h5 id="ApplicationContext的实现类：获取Spring容器对象的三种方式"><a href="#ApplicationContext的实现类：获取Spring容器对象的三种方式" class="headerlink" title="ApplicationContext的实现类：获取Spring容器对象的三种方式"></a>ApplicationContext的实现类：获取Spring容器对象的三种方式</h5><p>​    1.ClassPathXmlApplicationContext(“参数为resource文件夹的xml文件路径”)：它是从类的根路径下加载配置文件（常用）</p>
+<p>​    2.FileSystemXmlApplicationContext(“参数为xml文件在电脑中的磁盘路径”)：它是从磁盘路径上加载配置文件，配置文件可以在磁盘的任意位置</p>
+<p>​    3.AnnotationConfigApplicationContext：当使用注解配置容器对象时，需要使用此类来创建spring容器，它用来读取注解</p>
 <h4 id="2-getBean-方法"><a href="#2-getBean-方法" class="headerlink" title="(2)getBean()方法"></a>(2)getBean()方法</h4><p>​    getBean()有两个常用的API，一个是按id在spring容器中找，还要一个是按类型在spring容器中找</p>
 <p>​    官方文档见下图：</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/ppLjplj"><img src="https://s1.ax1x.com/2023/04/11/ppLjplj.png" alt="getBean()的API"></a></p>
@@ -951,7 +951,7 @@ public class UserDaoImpl implements UserDao&#123;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2023/04/25/Spring02/">
+                <a href="/2023/04/25/Spring02-%E8%BF%9E%E6%8E%A5%E6%B1%A0%E4%B8%8ESpring%E6%B3%A8%E8%A7%A3/">
                     <div class="card-image">
                         
                         
