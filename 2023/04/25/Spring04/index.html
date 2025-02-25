@@ -481,20 +481,14 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="SpringMVC的数据的请求和响应"><a href="#SpringMVC的数据的请求和响应" class="headerlink" title="SpringMVC的数据的请求和响应"></a>SpringMVC的数据的请求和响应</h2><h4 id="1-SpringMVC的数据相应方式"><a href="#1-SpringMVC的数据相应方式" class="headerlink" title="1. SpringMVC的数据相应方式"></a>1. SpringMVC的数据相应方式</h4><p><strong>1. 页面跳转</strong></p>
-<ul>
-<li>直接返回字符串</li>
-<li>通过ModelAndView对象返回</li>
-</ul>
-<p><strong>2.回写数据</strong></p>
-<ul>
-<li>直接返回字符串</li>
-<li>返回对象或集合</li>
-</ul>
-<h4 id="2-页面跳转"><a href="#2-页面跳转" class="headerlink" title="2. 页面跳转"></a>2. 页面跳转</h4><p>​    <strong>(1).返回字符串形式</strong></p>
-<p>​        此种方式会将返回的字符串与视图解析器的前后缀拼接后跳转</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Vqgdx"><img src="https://s1.ax1x.com/2023/04/22/p9Vqgdx.png" alt="p9Vqgdx.png"></a></p>
-<p>​    该种形式就是上面代码模拟的形式</p>
+                <h3 id="1-SpringMVC的数据响应方式"><a href="#1-SpringMVC的数据响应方式" class="headerlink" title="1. SpringMVC的数据响应方式"></a>1. SpringMVC的数据响应方式</h3><p>​    Spring MVC 的数据响应方式包括页面跳转（返回视图）、请求转发、重定向、JSON/XML 数据返回、文件下载、流数据响应、WebSocket 通信、自定义响应实体和异常处理，每种方式根据不同的需求返回不同类型的数据或资源</p>
+<h4 id="1-页面跳转"><a href="#1-页面跳转" class="headerlink" title="(1)页面跳转"></a>(1)页面跳转</h4><p>​    最常见的方式，用于传统的 Web 应用，通常配合 JSP来渲染 HTML 页面</p>
+<h5 id="根据请求路径跳转"><a href="#根据请求路径跳转" class="headerlink" title="根据请求路径跳转"></a>根据请求路径跳转</h5><pre class="line-numbers language-none"><code class="language-none"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+
+
 <p>​    <strong>(2).返回ModelAndView形式</strong></p>
 <p>​    Model表示模型，作用为封装数据；View表示视图，作用为展示数据。在返回视图给页面时可以不携带数据，只展示视图</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VOPjH"><img src="https://s1.ax1x.com/2023/04/22/p9VOPjH.png" alt="p9VOPjH.png"></a></p>
@@ -511,7 +505,8 @@
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VxqTs"><img src="https://s1.ax1x.com/2023/04/22/p9VxqTs.png" alt="p9VxqTs.png"></a></p>
 <p>​    在使用字符串形式时，也可以通过Model对象来传递参数，下面代码的model对象也是由SpringMVC自动创建</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9Vze1K"><img src="https://s1.ax1x.com/2023/04/22/p9Vze1K.png" alt="p9Vze1K.png"></a></p>
-<h4 id="3-回写数据"><a href="#3-回写数据" class="headerlink" title="3. 回写数据"></a>3. 回写数据</h4><p>​    <strong>(1).直接返回字符串</strong></p>
+<h4 id="3-回写数据"><a href="#3-回写数据" class="headerlink" title="3. 回写数据"></a>3. 回写数据</h4><p>​    主要用于 RESTful API 或 AJAX 请求，直接返回数据而不是页面</p>
+<p>​    <strong>(1).直接返回字符串</strong></p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9VzXHH"><img src="https://s1.ax1x.com/2023/04/22/p9VzXHH.png" alt="p9VzXHH.png"></a></p>
 <p>​    可以通过SpringMVC框架直接注入：通过形参声明response引用类型由SpringMVC分配对象</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9ZSVEj"><img src="https://s1.ax1x.com/2023/04/22/p9ZSVEj.png" alt="p9ZSVEj.png"></a></p>
@@ -811,9 +806,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Spring03">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Spring03-监听器存储spring容器与SpringMVC的使用">
                         
-                        <span class="card-title">Spring03</span>
+                        <span class="card-title">Spring03-监听器存储spring容器与SpringMVC的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
