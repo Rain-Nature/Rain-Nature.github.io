@@ -481,42 +481,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="JdbcTemplate与SpringMVC异常处理"><a href="#JdbcTemplate与SpringMVC异常处理" class="headerlink" title="JdbcTemplate与SpringMVC异常处理"></a>JdbcTemplate与SpringMVC异常处理</h2><h4 id="1-JdbcTemplate概述"><a href="#1-JdbcTemplate概述" class="headerlink" title="1. JdbcTemplate概述"></a>1. JdbcTemplate概述</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9m5UyR"><img src="https://s1.ax1x.com/2023/04/24/p9m5UyR.png" alt="p9m5UyR.png"></a></p>
-<h4 id="2-JdbcTemplate开发步骤"><a href="#2-JdbcTemplate开发步骤" class="headerlink" title="2. JdbcTemplate开发步骤"></a>2. JdbcTemplate开发步骤</h4><p>​    1. 导入spring-jdbc和spring-tx坐标<br>​    2. 创建数据库表和实体<br>​    3. 创建JdbcTemplate对象<br>​    4. 执行数据库操作</p>
-<p>​    在pom.xml文件下导入坐标</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9mbzA1"><img src="https://s1.ax1x.com/2023/04/24/p9mbzA1.png" alt="p9mbzA1.png"></a></p>
-<p>​     创建数据库表，编写实体类，编写实体类对象的get方法和set方法</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9mLyQS"><img src="https://s1.ax1x.com/2023/04/24/p9mLyQS.png" alt="p9mLyQS.png"></a></p>
-<p>​    使用数据源对象获取数据库相关参数，使用无参构造产生一个JdbcTemplate对象，通过<code>JdbcTemplate.setDataSource(数据源对象)</code>方法获得与数据库的连接，之后就可以通过JdbcTemplate对象对数据库进行操作(增删改查)，<strong>数据库进行操作(增删改)使用的方法都是这一个<code>update(sql语句)</code>只需要修改对应的sql语句即可</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9mzdoQ"><img src="https://s1.ax1x.com/2023/04/24/p9mzdoQ.png" alt="p9mzdoQ.png"></a></p>
-<h4 id="3-优化：使用Spring产生JdbcTenplate对象"><a href="#3-优化：使用Spring产生JdbcTenplate对象" class="headerlink" title="3. 优化：使用Spring产生JdbcTenplate对象"></a>3. 优化：使用Spring产生JdbcTenplate对象</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9nSGtJ"><img src="https://s1.ax1x.com/2023/04/24/p9nSGtJ.png" alt="p9nSGtJ.png"></a></p>
-<p>​    创建一个Spring的配置文件叫做applicationContext.xml，在里面配置数据源对象和jdbc模板对象，<strong>这里数据库端口号写错了应该为3306</strong></p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9n9Ezn"><img src="https://s1.ax1x.com/2023/04/24/p9n9Ezn.png" alt="p9n9Ezn.png"></a></p>
-<p>​    在Java代码中编写</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9n9UeK"><img src="https://s1.ax1x.com/2023/04/24/p9n9UeK.png" alt="p9n9UeK.png"></a></p>
-<p>​    当然，还可以进一步抽取jdbc.properties，前面笔记有过，这里不记了；先建立jdbc.properties文件，命名空间导入，然后加载jdbc.properties文件，最后用<code>$&#123;&#125;</code>引出数据</p>
-<p>​    注意：之后对于jdbc的配置，看见直接就是这样一套</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9nCvHf"><img src="https://s1.ax1x.com/2023/04/24/p9nCvHf.png" alt="p9nCvHf.png"></a></p>
-<h4 id="4-JdbcTemplate的查询操作"><a href="#4-JdbcTemplate的查询操作" class="headerlink" title="4. JdbcTemplate的查询操作"></a>4. JdbcTemplate的查询操作</h4><p><strong>查询全部</strong></p>
-<p>​    对于查询多个参数使用的query()方法有两个参数，第一个参数是sql语句，第二个参数是<code>RowMapper&lt;T&gt;</code> 它是一个接口，返回<code>List&lt;T&gt;</code>的数据，在使用时传递一个Spring已经实现好这个接口的实现类<code>BeanPropertyRowMapper</code>，当然这个接口<code>RowMapper&lt;T&gt;</code>的实现类还有其他的。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//泛型使用account，它是自己建的实体类的名称，方法传参传递该对象的字节码，即Account.class</span>
-<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Account</span><span class="token punctuation">></span></span> accountList <span class="token operator">=</span> jdbcTemplate<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token string">"select * from account"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">BeanPropertyRowMapper</span><span class="token generics"><span class="token punctuation">&lt;</span>account<span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token class-name">Account</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>​    <strong>总结</strong>：查询表中的对象，使用<code>queryForObject(sql语句,RowMapper&lt;&gt;(),Object args)</code>,第二个参数可以写RowMapper接口的实现类实例，<code>BeanPropertyRowMappe&lt;标注返回类类型&gt;(返回类.class)</code>；第三个参数是你想要放入sql中的条件；</p>
-<p><strong>查询一个对象</strong></p>
-<p>​    queryForObject方法第一个参数是sql，第二个参数是接口的实现类<code>BeanPropertyRowMapper</code>，第三个参数传递<code>?</code>的值</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Account</span> account <span class="token operator">=</span> jdbcTemplate<span class="token punctuation">.</span><span class="token function">queryForObject</span><span class="token punctuation">(</span><span class="token string">"select *from account where name=?"</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">BeanPropertyRowMapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Account</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token class-name">Account</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"Tom"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<p><strong>聚合查询</strong></p>
-<p>​    这个queryForObject方法第一个参数是sql，第二个参数是<code>Class&lt;T&gt; requiredType</code></p>
-<pre class="line-numbers language-none"><code class="language-none">jdbcTemplate.queryForObject(&quot;select count(*) from account&quot;,Long.class);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<h4 id="5-拦截器-interceptor"><a href="#5-拦截器-interceptor" class="headerlink" title="5. 拦截器(interceptor)"></a>5. 拦截器(interceptor)</h4><p><strong>(1)拦截器的作用</strong></p>
-<p>​    SpringMVC的拦截器类似于Servlet开发中的过滤器Filter，用于对处理器进行<strong>预处理</strong>和<strong>后处理</strong>，拦截器对访问目标资源(Controller)的方法时做一些相应的干预</p>
+                <h3 id="1-SpringMVC拦截器"><a href="#1-SpringMVC拦截器" class="headerlink" title="1. SpringMVC拦截器"></a>1. SpringMVC拦截器</h3><p>​    SpringMVC的拦截器类似于Servlet开发中的过滤器Filter，用于对处理器进行<strong>预处理</strong>和<strong>后处理</strong>，拦截器对访问目标资源(Controller)的方法时做一些相应的干预</p>
 <p><strong>(2)拦截器和过滤器的区别</strong></p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9K7YJx"><img src="https://s1.ax1x.com/2023/04/26/p9K7YJx.png" alt="p9K7YJx.png"></a></p>
 <p>​    拦截范围的配置是在web.xml文件中</p>
@@ -736,7 +701,7 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/04/25/Spring04/">
+                <a href="/2023/04/25/Spring04-SpringMVC%E5%AF%B9http%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8E%A5%E6%94%B6%E4%BB%A5%E5%8F%8A%E5%93%8D%E5%BA%94%E7%9A%84%E5%8F%91%E9%80%81/">
                     <div class="card-image">
                         
                         

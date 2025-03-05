@@ -584,7 +584,7 @@ public class UserServlet extends HttpServlet&#123;
 <p>​    <code>SpringMVC可以通过一套注解让简单的Java类成为处理请求的控制器（servlet类）</code>，而无需实现任何接口，同时还支持RESTful编程风格的请求</p>
 <h4 id="1-SpringMVC框架的使用"><a href="#1-SpringMVC框架的使用" class="headerlink" title="(1)SpringMVC框架的使用"></a>(1)SpringMVC框架的使用</h4><p>​    Spring MVC 项目的设计上有一个 <strong>上下文分层</strong> 的概念，Web 上下文和 Root 上下文（Spring容器对象）是分开的。这种分层有助于提高模块化和可维护性。<code>applicationContext.xml</code> 通常用于定义非 Web 相关的服务和数据访问对象，而 <code>spring-mvc.xml</code> 负责配置 Web 相关的组件（例如，处理请求的控制器、视图解析器等）</p>
 <p>​    当 <code>DispatcherServlet</code> 加载 <code>spring-mvc.xml</code> 时，它会创建一个 <strong>Web Application Context</strong>，用于管理 Web 层相关的 Bean</p>
-<h5 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h5><p>​    1.导入SpringMVC坐标<br>​    2.在web.xml中配置SpringMVC前端控制器，并配置加载spring-mvc.xml<br>​    3.新建spring-mvc.xml作为SpringMVC的配置文件，在该文件中配置组件扫描，扫描web层的包<br>​    4.编写UserController.java，用注解将其配置到Spring容器中<br>​    5.运行后用浏览器访问资源测试</p>
+<h5 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h5><p>​    1.导入SpringMVC坐标<br>​    2.在web.xml中配置SpringMVC前端控制器，并配置加载spring-mvc.xml<br>​    3.新建spring-mvc.xml作为SpringMVC的配置文件，在该文件中配置Spring组件扫描扫描web层的包，配置SpringMVC注解的启用<br>​    4.编写UserController.java，用注解将其配置到Spring容器中<br>​    5.运行后用浏览器访问资源测试</p>
 <h5 id="样例代码-2"><a href="#样例代码-2" class="headerlink" title="样例代码"></a>样例代码</h5><p>​    1.在pom.xml文件导入SpringMVC包</p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;pom.xml
 
@@ -619,14 +619,16 @@ public class UserServlet extends HttpServlet&#123;
 
 
 
-<p>​    3.创建SpringMVC的xml文件，进行组件扫描，按定义SpringMVC只管Web层所以只扫描controller</p>
+<p>​    3.创建SpringMVC的xml文件，进行Spring组件扫描，按定义SpringMVC只管Web层所以只扫描controller，同时启用SpringMVC的注解</p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;spring-mvc.xml
 
 &#x2F;&#x2F;需要在命名空间里补一个context的命名空间
 &lt;beans xmlns:context&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&quot;
 	   xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&quot; http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&#x2F;spring-context&gt;
 	 &#x2F;&#x2F;配置扫描controller层
-	 &lt;context:component-scan base-package&#x3D;&quot;com.itheima.controller&quot;&#x2F;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	 &lt;context:component-scan base-package&#x3D;&quot;com.itheima.controller&quot;&#x2F;&gt;
+	 &#x2F;&#x2F;启用Spring MVC的注解，和Spring组件扫描类似
+	 &lt;mvc:annotation-driven &#x2F;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -701,7 +703,7 @@ public class UserController&#123;
 <p>​    <code>这里所有组件的配置都是在spring-web.xml文件中配置</code></p>
 <h4 id="1-SpringMVC各组件执行流程"><a href="#1-SpringMVC各组件执行流程" class="headerlink" title="(1)SpringMVC各组件执行流程"></a>(1)SpringMVC各组件执行流程</h4><h5 id="图示-1"><a href="#图示-1" class="headerlink" title="图示"></a>图示</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pE1ZJbj"><img src="https://s21.ax1x.com/2025/02/24/pE1ZJbj.png" alt="SpringMVC各组件执行流程"></a></p>
 <h5 id="SpringMVC代码层面的执行流程（各组件）"><a href="#SpringMVC代码层面的执行流程（各组件）" class="headerlink" title="SpringMVC代码层面的执行流程（各组件）"></a>SpringMVC代码层面的执行流程（各组件）</h5><p>​    1.web.xml加载：在Servlet容器启动时，web.xml配置文件加载加载，配置 DispatcherServlet 和 ContextLoaderListener<br>​    2.ContextLoaderListener加载：ContextLoaderListener初始化并加载 Root Web Context（例如 applicationContext.xml），通常包含服务层和数据源的配置<br>​    3.DispatcherServlet 加载：DispatcherServlet 加载并初始化 Web ApplicationContext（spring-mvc.xml）<br>​    4.请求到达 DispatcherServlet：请求由 DispatcherServlet 拦截，HandlerMapping 查找匹配的控制器（Controller）<br>​    5.HandlerAdapter 执行控制器：一旦找到匹配的控制器，DispatcherServlet使用HandlerAdapter来调用控制器方法。HandlerAdapter负责执行控制器方法，并处理控制器方法的返回值（比如视图名或数据）<br>​    6.视图解析与响应：DispatcherServlet 通过视图解析器（ViewResolver）渲染视图，将最终响应通过 HttpServletResponse返回给浏览器</p>
-<h4 id="2-SpringMVC组件在spring-web-xml的配置"><a href="#2-SpringMVC组件在spring-web-xml的配置" class="headerlink" title="(2)SpringMVC组件在spring-web.xml的配置"></a>(2)SpringMVC组件在spring-web.xml的配置</h4><p>​    SpringMVC组件在原生环境是配置好的，可以在spring-web.xml对组件再配置进行功能上增强（aop思想）</p>
+<h4 id="2-SpringMVC组件在spring-mvc-xml的配置"><a href="#2-SpringMVC组件在spring-mvc-xml的配置" class="headerlink" title="(2)SpringMVC组件在spring-mvc.xml的配置"></a>(2)SpringMVC组件在spring-mvc.xml的配置</h4><p>​    SpringMVC组件在原生环境是配置好的，可以在spring-mvc.xml对组件再配置进行功能上增强（aop思想）</p>
 <h5 id="样例：视图解析器（viewResolver）的配置"><a href="#样例：视图解析器（viewResolver）的配置" class="headerlink" title="样例：视图解析器（viewResolver）的配置"></a>样例：视图解析器（viewResolver）的配置</h5><p>​    在进行视图跳转时，对每一次请求<code>u</code>进行<code>前缀+u+后缀</code>的拼接作为请求路径</p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;spring-mvc.xml
 
@@ -830,7 +832,7 @@ public class UserController&#123;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2023/04/25/Spring04/">
+                <a href="/2023/04/25/Spring04-SpringMVC%E5%AF%B9http%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8E%A5%E6%94%B6%E4%BB%A5%E5%8F%8A%E5%93%8D%E5%BA%94%E7%9A%84%E5%8F%91%E9%80%81/">
                     <div class="card-image">
                         
                         

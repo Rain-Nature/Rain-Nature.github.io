@@ -1,0 +1,1474 @@
+<!DOCTYPE HTML>
+<html lang="zh-&#39;CN&#39;">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Spring04, Rain">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Spring04 | Rain</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/Rain-Nature/Rain-Nature.github.io@master/medias/bg.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Rain</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Rain</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Spring04</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/SSM/">
+                                <span class="chip bg-color">SSM</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2023-04-25
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="1-SpringMVC注解功能的启用"><a href="#1-SpringMVC注解功能的启用" class="headerlink" title="1. SpringMVC注解功能的启用"></a>1. SpringMVC注解功能的启用</h3><p>​    如果要使用SpringMVC相关的注解，需要在spring-mvc.xml中进行配置，不写的话无法正常使用SpringMVC提供的注解</p>
+<p>​    <code>若是SpringBoot的项目默认自动启用</code></p>
+<h5 id="样例：SpringMVC注解的启用"><a href="#样例：SpringMVC注解的启用" class="headerlink" title="样例：SpringMVC注解的启用"></a>样例：SpringMVC注解的启用</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;spring-mvc.xml
+
+&#x2F;&#x2F;启用 Spring MVC 注解支持，和Spring注解开发的组件扫描类似
+&lt;mvc:annotation-driven &#x2F;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="2-SpringMVC与Http协议的关联"><a href="#2-SpringMVC与Http协议的关联" class="headerlink" title="2. SpringMVC与Http协议的关联"></a>2. SpringMVC与Http协议的关联</h3><p>​    SpringMVC 是服务器端的框架，在 SpringMVC 中，请求（Request）是指由客户端发起的 HTTP 请求，响应（Response）是服务器对请求的回应</p>
+<h4 id="1-HttpServletRequest和HttpServletResponse在SpringMVC的使用"><a href="#1-HttpServletRequest和HttpServletResponse在SpringMVC的使用" class="headerlink" title="(1)HttpServletRequest和HttpServletResponse在SpringMVC的使用"></a>(1)HttpServletRequest和HttpServletResponse在SpringMVC的使用</h4><p>​    在 SpringMVC 中，HttpServletRequest 和 HttpServletResponse 是处理 HTTP 请求和响应的核心对象，通常用于控制器(Controller)的方法中接收和处理 HTTP 请求，以及构建和发送 HTTP 响应。请求和响应分别代表了 HTTP 通信的两个重要阶段。请求阶段是从客户端到服务器的过程，响应阶段是从服务器到客户端的过程</p>
+<h5 id="样例：HttpServletRequest-和-HttpServletResponse的使用"><a href="#样例：HttpServletRequest-和-HttpServletResponse的使用" class="headerlink" title="样例：HttpServletRequest 和 HttpServletResponse的使用"></a>样例：HttpServletRequest 和 HttpServletResponse的使用</h5><p>​    写在形参，SpringMVC会自动注入这两个对象</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;&#x2F;&#x2F;UserController.java
+
+@RequestMapping(&quot;&#x2F;quick&quot;)
+public String quick(HttpServletRequest req, HttpServletResponse resp) &#123;
+    &#x2F;&#x2F; 这里的 req 和 resp 可以用来操作请求和响应
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="访问时的过程"><a href="#访问时的过程" class="headerlink" title="访问时的过程"></a>访问时的过程</h5><p>​    1.请求：当你访问 <code>http://localhost:8080/quick?name=lxs</code> 时，浏览器会向服务器发送一个 HTTP 请求。这个请求包含了 URL 和查询参数（例如 name=lxs），HttpServletRequest会接收这个请求，并提供你访问请求参数（如 req.getParameter(“name”)）的方式</p>
+<p>​    2.处理：控制器方法 handleRequest()会根据请求数据进行处理。例如，它从 req 获取查询参数 name，然后可能进行一些业务逻辑处理</p>
+<p>​    3.响应：控制器方法可以通过 HttpServletResponse设置响应的内容。你可以设置响应头、状态码，或者通过 req.setAttribute() 把数据存储到请求对象中（这是功能重叠的地方），并返回视图名</p>
+<p>​    4.视图渲染：SpringMVC 会根据返回的视图名（例如 “lxsPage”）来渲染对应的视图（比如 JSP 页面）。在该页面中，你可以访问之前存储在请求中的数据（如 ${message}）</p>
+<h4 id="2-HttpServletRequest对象"><a href="#2-HttpServletRequest对象" class="headerlink" title="(2)HttpServletRequest对象"></a>(2)HttpServletRequest对象</h4><p>​    表示客户端发送的 HTTP 请求。它包含了请求的各种信息，例如请求的 URL、请求参数、请求头、请求方法（如 GET 或 POST）、请求体等。通过 HttpServletRequest对象，你可以获取客户端提交的请求参数、请求头信息，甚至是请求体数据；还可以通过 req.setAttribute()存储数据，这些数据会在请求生命周期内有效，且可以通过请求转发传递给视图</p>
+<h5 id="req的常用方法"><a href="#req的常用方法" class="headerlink" title="req的常用方法"></a>req的常用方法</h5><ul>
+<li>req.getParameter(“paramName”)：获取请求中的参数</li>
+<li>req.getHeader(“headerName”)：获取请求中的头部信息</li>
+<li>req.getMethod()：获取请求的方法类型（如 GET 或 POST）</li>
+</ul>
+<h5 id="HttpServletRequest的生命周期"><a href="#HttpServletRequest的生命周期" class="headerlink" title="HttpServletRequest的生命周期"></a>HttpServletRequest的生命周期</h5><p>​    从 <strong>客户端发起请求</strong> 时开始，服务器接收到请求后，创建 <code>HttpServletRequest</code> 对象，并将其传递给 SpringMVC 控制器进行处理。在控制器处理请求并返回响应视图时，<code>HttpServletRequest</code> 对象是有效的。当请求完成并返回视图或重定向时，<code>HttpServletRequest</code> 对象的生命周期结束</p>
+<h4 id="3HttpServletResponse对象"><a href="#3HttpServletResponse对象" class="headerlink" title="(3HttpServletResponse对象"></a>(3HttpServletResponse对象</h4><p>​    表示 HTTP 响应。它是用来向客户端返回响应的对象，可以用来设置响应的状态码、响应头以及响应体的内容；还可以控制页面跳转，有重定向：response.sendRedirect() 会让浏览器发起一个新的请求，响应对象会将浏览器重定向到新的 URL，还有请求转发：RequestDispatcher.forward()用于将请求转发到另一个资源（比如 JSP 页面）并继续在当前请求生命周期内处理。</p>
+<h5 id="resp的常用方法"><a href="#resp的常用方法" class="headerlink" title="resp的常用方法"></a>resp的常用方法</h5><ul>
+<li>resp.setStatus(200)：设置响应状态码为 200（表示成功）</li>
+<li>resp.setHeader(“Content-Type”, “application/json”)：设置响应头</li>
+<li>resp.getWriter().write(“response data”)：服务器端向客户端发送响应数据，这个数据需要客户端用axios或fetch来接收</li>
+</ul>
+<h5 id="HttpServletResponse的生命周期"><a href="#HttpServletResponse的生命周期" class="headerlink" title="HttpServletResponse的生命周期"></a>HttpServletResponse的生命周期</h5><p>​    从 <strong>服务器开始处理请求</strong> 并准备响应时开始，<code>HttpServletResponse</code> 用于设置响应头、状态码和响应内容。当服务器准备好响应内容并将其发送给客户端后，<code>HttpServletResponse</code> 的生命周期结束</p>
+<h3 id="3-浏览器对于跳转还是数据的区分"><a href="#3-浏览器对于跳转还是数据的区分" class="headerlink" title="3. 浏览器对于跳转还是数据的区分"></a>3. 浏览器对于跳转还是数据的区分</h3><table>
+<thead>
+<tr>
+<th align="center">响应方式</th>
+<th align="center">状态码</th>
+<th align="center"><code>Location</code> 头</th>
+<th align="center">响应体</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">返回数据</td>
+<td align="center">200 OK</td>
+<td align="center">❌ 无</td>
+<td align="center">✅ 有数据（JSON、HTML、文本等）</td>
+</tr>
+<tr>
+<td align="center">跳转</td>
+<td align="center">301/302</td>
+<td align="center">✅ 有跳转 URL</td>
+<td align="center">❌ 通常没有（有也会被忽略）</td>
+</tr>
+</tbody></table>
+<h3 id="4-SpringMVC的数据响应"><a href="#4-SpringMVC的数据响应" class="headerlink" title="4. SpringMVC的数据响应"></a>4. SpringMVC的数据响应</h3><p>​    Spring MVC 的数据响应方式包括页面跳转（返回视图）、请求转发、重定向、JSON/XML 数据返回、文件下载、流数据响应、WebSocket 通信、自定义响应实体和异常处理，每种方式根据不同的需求返回不同类型的数据或资源</p>
+<h4 id="1-页面跳转-根据请求路径跳转"><a href="#1-页面跳转-根据请求路径跳转" class="headerlink" title="(1)页面跳转-根据请求路径跳转"></a>(1)页面跳转-根据请求路径跳转</h4><p>​    最常见的方式，用于传统的 Web 应用，通常配合 JSP来渲染 HTML 页面，<strong>跳转的页面一定要有</strong></p>
+<h5 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h5><p>​    浏览器访问：<code>http://localhost:8080/quick/success.jsp</code>，会跳转显示success.jsp页面</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	public String save()&#123;
+		System.out.println(&quot;运行成功&quot;);
+		&#x2F;&#x2F;默认是转发方式，要重定向需要写为redirect:success.jsp
+		return &quot;success.jsp&quot;;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-页面跳转-返回ModelAndView对象（了解）"><a href="#2-页面跳转-返回ModelAndView对象（了解）" class="headerlink" title="(2)页面跳转-返回ModelAndView对象（了解）"></a>(2)页面跳转-返回ModelAndView对象（了解）</h4><p>​    Model表示模型，作用为封装数据；View表示视图，作用为展示页面。如果在返回视图给页面时，只有View，没有Model，那么这种页面跳转方式和直接根据请求路径跳转没有区别</p>
+<h5 id="样例-1"><a href="#样例-1" class="headerlink" title="样例"></a>样例</h5><p>​    浏览器访问：<code>http://localhost:8080/quick/success.jsp</code>，会跳转显示success.jsp页面</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	public String quick()&#123;
+		&#x2F;&#x2F;创建ModelAndView对象，也可以通过形参quick(ModelAndView modelAndView)直接传递，SpringMVC会自动创建该对象
+		ModelAndView modelAndView &#x3D; new ModelAndView();
+		&#x2F;&#x2F;设置模型数据,addObject()第一个参数作为key，第二个参数为value，在jsp页面&lt;h1&gt;标签中用$&#123;username&#125;，获取到itcast
+		modelAndView.addObject(&quot;username&quot;,&quot;itcast&quot;);
+		&#x2F;&#x2F;设置视图名称，访问的时候是success.jsp
+		mdoelAndView.setViewName(&quot;success&quot;);
+		return modelAndView;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="3-SpringMVC注解-ResponseBody"><a href="#3-SpringMVC注解-ResponseBody" class="headerlink" title="(3)SpringMVC注解-@ResponseBody"></a>(3)SpringMVC注解-@ResponseBody</h4><p>​    @ResponseBody：该注解写在方法上，作用是告诉 Spring 框架，方法的返回值应该直接写入到 HTTP 响应体中，而不是放入视图或者模型中。该注解常用在构建 RESTful Web 服务时直接返回数据（比如 JSON 或 XML 格式）</p>
+<p>样例：直接返回字符串，不进行跳转显示其他页面</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	@ResponseBody
+	public String quick()&#123;
+		&#x2F;*
+			等价于手动操作HttpServletResponse对象
+			response.setContentType(&quot;text&#x2F;plain&quot;);
+    		response.getWriter().write(&quot;你好，世界！&quot;);
+		*&#x2F;
+		return &quot;你好，世界！&quot;;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-回写数据-手动封装Json数据"><a href="#4-回写数据-手动封装Json数据" class="headerlink" title="(4)回写数据-手动封装Json数据"></a>(4)回写数据-手动封装Json数据</h4><h5 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h5><p>​    1.导入Json相关的坐标，用于处理对象转Json</p>
+<p>​    2.编写controller逻辑</p>
+<h5 id="样例：将对象信息以Json格式回写"><a href="#样例：将对象信息以Json格式回写" class="headerlink" title="样例：将对象信息以Json格式回写"></a>样例：将对象信息以Json格式回写</h5><p>​    1.首先在pom.xml导json相关的坐标，用于将一个对象的数据转化为Json字符串</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;pom.xml
+
+&lt;dependency&gt;
+	&lt;groupId&gt;com.fasterxml.jackson.core&lt;&#x2F;groupId&gt;
+	&lt;artifactId&gt;jackson-core&lt;&#x2F;artifactId&gt;
+	&lt;version&gt;2.9.0&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;com.fasterxml.jackson.core&lt;&#x2F;groupId&gt;
+	&lt;artifactId&gt;jackson-databind&lt;&#x2F;artifactId&gt;
+	&lt;version&gt;2.9.0&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;com.fasterxml.jackson.core&lt;&#x2F;groupId&gt;
+	&lt;artifactId&gt;jackson-annotations&lt;&#x2F;artifactId&gt;
+	&lt;version&gt;2.9.0&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.编写Controller逻辑，通过ObjectMappe中方法writeValueAsString(要转成json格式字符串的对象)，将对象转换为Json格式</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	@ResponseBody
+	public String quick()&#123;
+		&#x2F;&#x2F;User是一个实体类
+		User user &#x3D; new User();
+		user.setName(&quot;张三&quot;);
+		user.setAge(24);
+		&#x2F;&#x2F;Jackson库的转换工具类
+		ObjectMapper objectMapper &#x3D; new ObjectMapper();
+		String json &#x3D; objectMapper.writeValueAsString(user);
+		return json;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="5-回写数据-直接返回对象-集合-SpringMVC封装好的功能会将对象或集合自动转为Json格式"><a href="#5-回写数据-直接返回对象-集合-SpringMVC封装好的功能会将对象或集合自动转为Json格式" class="headerlink" title="(5)回写数据-直接返回对象/集合-SpringMVC封装好的功能会将对象或集合自动转为Json格式"></a>(5)回写数据-直接返回对象/集合-SpringMVC封装好的功能会将对象或集合自动转为Json格式</h4><p>​    要使用SpringMVC自带的该功能需要在spring-mvc.xml（配置组件）文件中进行配置，对处理器适配器进行功能增强</p>
+<p>​    <code>注意：SpringMVC的组件在 Spring 容器启动时会自动加载并生效，不需要显式地注入</code></p>
+<h5 id="样例：配置处理器适配器，使其可以将返回对象自动转化为Json格式"><a href="#样例：配置处理器适配器，使其可以将返回对象自动转化为Json格式" class="headerlink" title="样例：配置处理器适配器，使其可以将返回对象自动转化为Json格式"></a>样例：配置处理器适配器，使其可以将返回对象自动转化为Json格式</h5><p>​    1.配置处理器适配器</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;spring-mvc.xml
+
+&#x2F;&#x2F;配置处理器适配器：使得对象会自动转为Json格式
+&lt;bean id&#x3D;&quot;jsonMessageConverter&quot; class&#x3D;&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter&quot;&gt;
+	&lt;property name&#x3D;&quot;massageConverters&quot;&gt;
+		&lt;list&gt;
+			&lt;bean class&#x3D;&quot;org.springframework.http.converter.json.MappingJackson2HttpMessageConverter&quot;&#x2F;&gt;
+		&lt;&#x2F;list&gt;
+	&lt;&#x2F;property&gt;
+&lt;&#x2F;bean&gt;
+
+&#x2F;&#x2F;以上处理器适配器的配置可以使用SpringMVC提供的注解驱动（也叫注解增强代替：增强@ResponseBody）
+&lt;mvc:annotation-driven&#x2F;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.在Controller中直接返回对象</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	@ResponseBody
+	public String quick()&#123;
+		&#x2F;&#x2F;User是一个实体类
+		User user &#x3D; new User();
+		user.setName(&quot;张三&quot;);
+		user.setAge(24);
+		return user;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="5-SpringMVC请求参数的获取"><a href="#5-SpringMVC请求参数的获取" class="headerlink" title="5. SpringMVC请求参数的获取"></a>5. SpringMVC请求参数的获取</h3><p>​    客户端发送请求时一般也会携带对应的参数，我们需要对请求参数进行获取，以便进一步对请求进行处理</p>
+<p>​    如果请求的数据是以 <strong>表单参数</strong> 或 <strong>查询参数</strong> 方式提交，Spring MVC <strong>可以自动绑定到对象，而不需要 @RequestBody</strong></p>
+<h4 id="1-从请求中获得普通类型参数"><a href="#1-从请求中获得普通类型参数" class="headerlink" title="(1)从请求中获得普通类型参数"></a>(1)从请求中获得普通类型参数</h4><p>​    对于SpringMVC而言，Controller中的业务方法的参数名称与请求的参数name值一致，参数会自动映射匹配（数据类型也会自动进行转换）</p>
+<blockquote>
+<p><code>http://localhost:8080/user/quick?username=zhangsan&amp;age=18中的name值分别为username、age</code> </p>
+</blockquote>
+<p>​    </p>
+<h5 id="样例：从请求中直接获得普通类型参数"><a href="#样例：从请求中直接获得普通类型参数" class="headerlink" title="样例：从请求中直接获得普通类型参数"></a>样例：从请求中直接获得普通类型参数</h5><p>​    请求为：<code>http://localhost:8080/user/quick?username=zhangsan&amp;age=18</code></p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	@ResponseBody
+	public void quick(String username , int age)&#123;
+		System.out.println(username);  &#x2F;&#x2F;张三
+		System.out.println(age);  &#x2F;&#x2F;18
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-从请求中将参数打包为对象类型获得"><a href="#2-从请求中将参数打包为对象类型获得" class="headerlink" title="(2)从请求中将参数打包为对象类型获得"></a>(2)从请求中将参数打包为对象类型获得</h4><p>​    对于SpringMVC而言，Controller中的业务方法的对象参数里的属性与请求参数的name一致，参数值会自动注入给对象的属性（机制：数据绑定）</p>
+<blockquote>
+<p><code>http://localhost:8080/user/quick?username=zhangsan&amp;age=18中的name值分别为username、age</code> </p>
+</blockquote>
+<h5 id="样例：从请求中直接把值注入给对象里的属性"><a href="#样例：从请求中直接把值注入给对象里的属性" class="headerlink" title="样例：从请求中直接把值注入给对象里的属性"></a>样例：从请求中直接把值注入给对象里的属性</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	@ResponseBody
+	public void quick(User user)&#123;
+		System.out.println(user.username);  &#x2F;&#x2F;张三
+		System.out.println(user.age);  &#x2F;&#x2F;18
+	&#125;
+&#125;
+
+&#x2F;&#x2F;User类略<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="3-SpringMVC注解-RequestBody"><a href="#3-SpringMVC注解-RequestBody" class="headerlink" title="(3)SpringMVC注解-@RequestBody"></a>(3)SpringMVC注解-@RequestBody</h4><p>​    @RequestBody：该注解写在形参前，用于处理 <code>POST</code>、<code>PUT</code> 等方法提交的 <strong>JSON 或 XML 数据</strong>，并将请求参数封装转换为 Java 对象</p>
+<h5 id="样例：获得ajax发送的请求，相应参数以List集合接收"><a href="#样例：获得ajax发送的请求，相应参数以List集合接收" class="headerlink" title="样例：获得ajax发送的请求，相应参数以List集合接收"></a>样例：获得ajax发送的请求，相应参数以List集合接收</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	@ResponseBody
+	public void quick(@RequestBody List&lt;User&gt; userlist)&#123;
+		System.out.println(userlist);  
+	&#125;
+&#125;
+
+&#x2F;&#x2F;仅需要User的类，List的类如果发的JSON是List数组就不需要，若发的JSON是包含List的对象就需要
+&#x2F;&#x2F;User类略<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="6-Spring-MVC-静态资源访问配置与数据乱码问题解决"><a href="#6-Spring-MVC-静态资源访问配置与数据乱码问题解决" class="headerlink" title="6. Spring MVC 静态资源访问配置与数据乱码问题解决"></a>6. Spring MVC 静态资源访问配置与数据乱码问题解决</h3><h4 id="1-SpringMVC对静态资源的处理方式"><a href="#1-SpringMVC对静态资源的处理方式" class="headerlink" title="(1)SpringMVC对静态资源的处理方式"></a>(1)SpringMVC对静态资源的处理方式</h4><p>​    <code>在SpringBoot是自动配置好的</code>，但是SpringMVC框架需要手动配置，如果不进行静态资源设置会使得访问静态资源（css、js等）不成功，因为在web.xml的文件中的前端控制器的配置是<code>/</code>，其是缺省的servlet，客户端发送请求找对应servlet进行处理，如果没有则全部交给缺省的进行处理，如下图所示：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9eU9aT"><img src="https://s1.ax1x.com/2023/04/23/p9eU9aT.png" alt="前端控制器配置"></a></p>
+<h5 id="配置静态资源处理器（spring-mvc-xml）"><a href="#配置静态资源处理器（spring-mvc-xml）" class="headerlink" title="配置静态资源处理器（spring-mvc.xml）"></a>配置静态资源处理器（spring-mvc.xml）</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;spring-mvc.xml
+
+&#x2F;&#x2F;可以设置多组,mapping是请求访问的地址，location是实际资源存在根目录的位置
+&lt;mvc:resources mapping&#x3D;&quot;&#x2F;js&#x2F;**&quot; location&#x3D;&quot;&#x2F;js&#x2F;&quot;&gt;
+&#x2F;&#x2F;&lt;mvc:resources mapping&#x3D;&quot;&#x2F;img&#x2F;**&quot; location&#x3D;&quot;&#x2F;img&#x2F;&quot;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-SpringMVC对请求中中文字符的处理配置"><a href="#2-SpringMVC对请求中中文字符的处理配置" class="headerlink" title="(2)SpringMVC对请求中中文字符的处理配置"></a>(2)SpringMVC对请求中中文字符的处理配置</h4><p>​    Tomcat8.5的服务器，对于GET请求是不会乱码的，但POST请求对于中文会出现乱码问题，通过配置全局过滤器可以解决乱码的问题</p>
+<p>​    CharacterEncodingFilter是一个 Spring 提供的过滤器，它会在请求进入 Spring MVC 之前和响应返回客户端之前，确保编码的一致性。这个过滤器处理所有传入的请求和响应，强制它们使用指定的字符编码</p>
+<h5 id="配置全局过滤器（web-xml）"><a href="#配置全局过滤器（web-xml）" class="headerlink" title="配置全局过滤器（web.xml）"></a>配置全局过滤器（web.xml）</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;web.xml
+
+&lt;filter&gt;
+	&lt;filter-name&gt;CharacterEncodingFilter&lt;&#x2F;filter-name&gt;
+	&lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;&#x2F;filter-class&gt;
+	&lt;init-param&gt;
+		&lt;param-name&gt;encoding&lt;&#x2F;param-name&gt;
+		&lt;param-value&gt;UTF-8&lt;&#x2F;param-value&gt;
+	&lt;&#x2F;init-param&gt;
+&lt;&#x2F;filter&gt;
+&#x2F;&#x2F;filter-mapping是配置请求映射指定什么请求通过，&#x2F;*表示所有请求
+&lt;filter-mapping&gt;
+	&lt;filter-name&gt;CharacterEncodingFilter&lt;&#x2F;filter-name&gt;
+	&lt;url-pattern&gt;&#x2F;*&lt;&#x2F;url-pattern&gt;
+&lt;&#x2F;filter-mapping&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="7-SpringMVC的其他注解"><a href="#7-SpringMVC的其他注解" class="headerlink" title="7. SpringMVC的其他注解"></a>7. SpringMVC的其他注解</h3><h4 id="1-RequestParam-请求参数与形参绑定"><a href="#1-RequestParam-请求参数与形参绑定" class="headerlink" title="(1)@RequestParam-请求参数与形参绑定"></a>(1)@RequestParam-请求参数与形参绑定</h4><p>​    @RequestParam：该注解写在形参前，用于当请求参数的名称和Controller的方法形参名称不一致时，通过@RequestParam(“请求参数名称一致的名称”)，让请求参数与方法形参进行绑定</p>
+<h5 id="样例：-RequestParam的使用"><a href="#样例：-RequestParam的使用" class="headerlink" title="样例：@RequestParam的使用"></a>样例：@RequestParam的使用</h5><p>​    请求为：<code>http://localhost:8080/user/quick?username=zhangsan</code></p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	@ResponseBody
+	&#x2F;&#x2F;当前参数只有一个且为value则可以省略value，写为@RequestParam(&quot;username&quot;)
+	public void quick(@RequestParam(value&#x3D;&quot;username&quot;) String name)&#123;
+		System.out.println(username);  &#x2F;&#x2F;张三
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="RequestParam的参数"><a href="#RequestParam的参数" class="headerlink" title="@RequestParam的参数"></a>@RequestParam的参数</h5><ul>
+<li>value：设置映射，指定请求参数，将其映射到方法形参</li>
+<li>required：指定请求时请求参数是否必须有，默认true，若请求中不包含此参数则报错</li>
+<li>defaultValue：当请求中没有指定的请求参数时，则映射给方法形参指定的默认值</li>
+</ul>
+<h4 id="2-PathVariable-占位符中变量与形参绑定"><a href="#2-PathVariable-占位符中变量与形参绑定" class="headerlink" title="(2)@PathVariable-占位符中变量与形参绑定"></a>(2)@PathVariable-占位符中变量与形参绑定</h4><p>​    @PathVariable：该注解写在形参前，用<code>占位符&#123;变量名&#125;</code>来获得请求中的常量，通过@PathVariable(“占位符的变量名”)，将占位符里的变量与方法形参进行绑定</p>
+<h5 id="样例：-PathVariable的使用"><a href="#样例：-PathVariable的使用" class="headerlink" title="样例：@PathVariable的使用"></a>样例：@PathVariable的使用</h5><p>​    请求为：<code>http://localhost:8080/user/quick/98</code>，这种请求是Restful风格的，你看没有这个?直接用/的</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	&#x2F;&#x2F;用占位符的变量来与请求中常量绑定
+	@RequestMapping(&quot;&#x2F;quick&#x2F;&#123;score&#125;&quot;)
+	@ResponseBody
+	&#x2F;&#x2F;用@PathVariable让占位符的变量与方法形参进行绑定
+	public void quick(@PathVariable(&quot;score&quot;) String myScore)&#123;
+		System.out.println(myScore);  &#x2F;&#x2F;98
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="3-RequestHeader-获取请求头"><a href="#3-RequestHeader-获取请求头" class="headerlink" title="(3)@RequestHeader-获取请求头"></a>(3)@RequestHeader-获取请求头</h4><p>​    @RequestHeader：写在方法形参前，通过@RequestHeader(“User-Agent”)获取请求头中的 <code>User-Agent</code> 值，并将该值与方法形参进行绑定，若请求头中没有该值，会抛异常</p>
+<h5 id="样例：-RequestHeader的使用"><a href="#样例：-RequestHeader的使用" class="headerlink" title="样例：@RequestHeader的使用"></a>样例：@RequestHeader的使用</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+public class UserController&#123;
+	@RequestMapping(&quot;&#x2F;quick&quot;)
+	@ResponseBody
+	&#x2F;&#x2F;用@RequestHeader来获得请求头信息
+	public void quick(@RequestHeader(&quot;User-Agent&quot;) String user_agent)&#123;
+		System.out.println(user_agent);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="8-自定义类型转换器"><a href="#8-自定义类型转换器" class="headerlink" title="8. 自定义类型转换器"></a>8. 自定义类型转换器</h3><p>​    SpringMVC提供有一些常用的类型转换器，如接收到请求时，请求参数都是String类型，SpringMVC可以根据方法形参的类型进行自动转型（常用类型），但有些类型SpringMVC没有提供，那么就需要自定义类型转换器，如日期类型的数据转换</p>
+<h5 id="自定义类型转换器的开发步骤"><a href="#自定义类型转换器的开发步骤" class="headerlink" title="自定义类型转换器的开发步骤"></a>自定义类型转换器的开发步骤</h5><p>​    1.定义转换器类实现Converter接口（这是SpringMVC提供的转换器接口）</p>
+<p>​    2.在Spring-mvc.xml配置文件声明并识别转换器</p>
+<h5 id="样例：自定义时间类型转换器"><a href="#样例：自定义时间类型转换器" class="headerlink" title="样例：自定义时间类型转换器"></a>样例：自定义时间类型转换器</h5><p>​    1.新建DateConverter.java，实现converter接口</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;DateConverter.java
+
+&#x2F;&#x2F;Converter&lt;S,T&gt;接口，S代表要转换前的类型，后面的T代表要转成的类型
+public class DataConverter implements Converter&lt;String,Date&gt;&#123;
+	&#x2F;&#x2F;这是该接口内部要实现的方法，将String转为Date
+	public Date convert(String dateStr)&#123;
+		SimpleDateFormat format &#x3D; new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+		Date date &#x3D; null;
+		try&#123;
+			date &#x3D; format.parse(dateStr);
+		&#125;catch(Exception e)&#123;
+			e.printStackTrace();
+		&#125;
+		return date;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.在Spring-mvc.xml配置文件中声明并识别自定义转换器，识别为替代原先SpringMVC提供的默认转换器</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;Spring-mvc.xml
+
+&#x2F;&#x2F;声明转换器
+&lt;bean id&#x3D;&quot;conversionService&quot; class&#x3D;&quot;org.springframework.context.support.ConversionServiceFactoryBean&quot;&gt;
+	&lt;property name&#x3D;&quot;converters&quot;&gt;
+		&lt;list&gt;
+			&#x2F;&#x2F;将DateConverter.java注入到转换器工厂
+			&lt;bean class&#x3D;&quot;com.itheima.converter.DateConverter&quot;&gt;&lt;&#x2F;bean&gt;
+		&lt;&#x2F;list&gt;
+	&lt;&#x2F;property&gt;
+&lt;&#x2F;bean&gt;
+
+&#x2F;&#x2F;识别转化器（与1的注解功能启用独立）：将转化器工厂bean替换默认转换器
+&lt;mvc:annotation-driven conversion-service&#x3D;&quot;conversionService&quot;&#x2F;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">拾雨</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2023/04/25/Spring04-SpringMVC%E5%AF%B9http%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8E%A5%E6%94%B6%E4%BB%A5%E5%8F%8A%E5%93%8D%E5%BA%94%E7%9A%84%E5%8F%91%E9%80%81/">http://example.com/2023/04/25/Spring04-SpringMVC%E5%AF%B9http%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8E%A5%E6%94%B6%E4%BB%A5%E5%8F%8A%E5%93%8D%E5%BA%94%E7%9A%84%E5%8F%91%E9%80%81/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">拾雨</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/SSM/">
+                                    <span class="chip bg-color">SSM</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2023/04/29/Spring05/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Spring05">
+                        
+                        <span class="card-title">Spring05</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-29
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            拾雨
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SSM/">
+                        <span class="chip bg-color">SSM</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/04/25/Spring03-%E7%9B%91%E5%90%AC%E5%99%A8%E5%AD%98%E5%82%A8spring%E5%AE%B9%E5%99%A8%E4%B8%8ESpringMVC%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Spring03-监听器存储spring容器与SpringMVC的使用">
+                        
+                        <span class="card-title">Spring03-监听器存储spring容器与SpringMVC的使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            拾雨
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SSM/">
+                        <span class="chip bg-color">SSM</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2025</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">拾雨</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
