@@ -1,0 +1,1902 @@
+<!DOCTYPE HTML>
+<html lang="zh-&#39;CN&#39;">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Spring05-restful开发风格、拦截器与异常处理, Rain">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Spring05-restful开发风格、拦截器与异常处理 | Rain</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/Rain-Nature/Rain-Nature.github.io@master/medias/bg.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Rain</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Rain</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Spring05-restful开发风格、拦截器与异常处理</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/SSM/">
+                                <span class="chip bg-color">SSM</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2023-04-29
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="1-RESTfulAPI"><a href="#1-RESTfulAPI" class="headerlink" title="1.RESTfulAPI"></a>1.RESTfulAPI</h3><p>​    API（接口）：Web应用暴露出来的让别人访问的请求路径</p>
+<h4 id="1-调用别人写好功能的方式"><a href="#1-调用别人写好功能的方式" class="headerlink" title="(1)调用别人写好功能的方式"></a>(1)调用别人写好功能的方式</h4><p>​    1.API：给第三方发请求，获取响应数据</p>
+<p>​    2.SDK：导入jar包</p>
+<h4 id="2-RESTful风格介绍"><a href="#2-RESTful风格介绍" class="headerlink" title="(2)RESTful风格介绍"></a>(2)RESTful风格介绍</h4><p>​    REST全称（Resource Representational State Transfer）主张万物皆资源，对Web的操作就是对资源的操作，在url中使用资源名作为路径，用http动词来表示对资源的操作</p>
+<ul>
+<li>Resource：资源</li>
+<li>Representational：表现形式，比如JSON、XML、JPEG等</li>
+<li>State Transfer：状态变化，通过http动词（GET、POST、PUT、DELETE）实现</li>
+</ul>
+<h4 id="3-REST风格的CRUD案例"><a href="#3-REST风格的CRUD案例" class="headerlink" title="(3)REST风格的CRUD案例"></a>(3)REST风格的CRUD案例</h4><h5 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h5><p>​    1.生成Spring boot项目</p>
+<p>​    2.在application.properties中配置数据库连接</p>
+<p>​    3.准备一个bean包（与启动类同目录，一下都一样），创建实体类employee.java</p>
+<p>​    4.准备dao包，创建Dao的接口以及在该包下新建impl包创建Dao接口的实现类</p>
+<p>​    5.准备service包，创建Service的接口以及在该包下新建impl包创建Service接口的实现类</p>
+<p>​    6.将项目的maven换成自己的maven，检查导入pom.xml的坐标是否冒红</p>
+<p>​    7.在Spring boot中编写测试代码</p>
+<p>​    8.编写Controller类，实现具体的增删改查功能，并通过PostMan发送请求进行测试</p>
+<h5 id="样例：REST风格的CRUD项目实战"><a href="#样例：REST风格的CRUD项目实战" class="headerlink" title="样例：REST风格的CRUD项目实战"></a>样例：REST风格的CRUD项目实战</h5><p>​    1.在idea中新建Spring boot项目，相应的配置如下图所示：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pEtmgDx"><img src="https://s21.ax1x.com/2025/03/07/pEtmgDx.png" alt="项目配置"></a></p>
+<p>​    2.在application.properties中配置数据库连接，<strong>注意：</strong>在 Spring Boot 中，JdbcTemplate 通常是通过 DataSource 配置自动注入的。如果你在应用中配置了 DataSource（比如通过 application.properties 文件配置数据库连接信息），Spring Boot 会自动为你创建一个 JdbcTemplate Bean，无需显式声明</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;application.properties
+
+spring.datasource.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;restful
+spring.datasource.username&#x3D;root
+spring.datasource.password&#x3D;123456
+spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driver<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    3.创建实体类employee.java</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;employee.java
+
+@Data
+public class Employee &#123;
+
+	private Long id;
+	private String name;
+	private Integer age;
+	private String email;
+	private String gender;
+	private String address;
+	private BigDecimal salary;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    4.创建EmployeeDao.java和EmployeeDaoImpl.java；注意：要Spring容器管理的bean注释写在实现类上；以下代码实现Dao层的CRUD</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;EmployeeDao.java
+
+public interface EmployeeDao &#123;
+
+	&#x2F;&#x2F;根据ID查询员工信息
+	Employee getEmployeeById(Long id);
+
+	&#x2F;&#x2F;新增员工
+	void addEmployee(Employee employee);
+
+	&#x2F;&#x2F;修改员工
+	void updateEmployee(Employee employee);
+
+	&#x2F;&#x2F;根据ID删除员工
+	void deleteEmployee(Long id);
+	
+	&#x2F;&#x2F;查询所有
+	List&lt;Employee&gt; getList();
+&#125;
+
+
+&#x2F;&#x2F;EmployeeDaoImpl.java
+
+@Component
+public class EmployeeDaoImpl implements EmployeeDao &#123;
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+
+	@Override
+	public Employee getEmployeeById(Long id) &#123;
+		String sql &#x3D; &quot;select * from employee where id &#x3D; ?&quot;;
+		Employee employee &#x3D; jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper&lt;&gt;(Employee.class), id);
+		return employee;
+	&#125;
+
+	@Override
+	public void addEmployee(Employee employee) &#123;
+		String sql &#x3D; &quot;insert into employee(name, age, email, gender, address,salary) values(?,?,?,?,?,?)&quot;;
+		int update &#x3D; jdbcTemplate.update(sql,
+						employee.getName(),
+						employee.getAge(),
+						employee.getEmail(),
+     					employee.getGender(),
+						employee.getAddress(),
+						employee.getSalary());
+		System.out.println(&quot;新增成功，影响行数&quot;+update);
+	&#125;
+
+	@Override
+	public void updateEmployee(Employee employee) &#123;
+		String sql &#x3D;&quot;update employee set name&#x3D;?,age&#x3D;?,email&#x3D;?,gender&#x3D;?,address&#x3D;?,salary&#x3D;? where id &#x3D; ?&quot;;
+		int update &#x3D; jdbcTemplate.update(sql,
+						employee.getName(),
+						employee.getAge(),
+						employee.getEmail(),
+						employee.getGender(),
+						employee.getAddress(),
+						employee.getSalary(),
+						employee.getId());
+		System.out.println(&quot;更新成功，影响行数：&quot;+update);
+	&#125;
+
+	@Override
+	public void deleteEmployee(Long id) &#123;
+		String sql &#x3D; &quot;delete from employee where id &#x3D; ?&quot;;
+		int update &#x3D; jdbcTemplate.update(sql, id);
+	&#125;
+	
+	@Override
+	public List&lt;Employee&gt; getList() &#123;
+		String sql &#x3D; &quot;select * from employee&quot;;
+		List&lt;Employee&gt; list &#x3D; jdbcTemplate.query(sql, new BeanPropertyRowMapper&lt;&gt;(Employee.class));
+		return list;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    5.创建EmployeeService.java和EmployeeServiceImpl.java；注意：要Spring容器管理的bean注释写在实现类上</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;EmployeeService.java
+
+public interface EmployeeService &#123;
+
+	&#x2F;&#x2F;根据id查询用户
+	Employee getEmployeeById(Long id);
+
+	&#x2F;&#x2F;保存用户
+	void saveEmployee(Employee employee);
+
+	&#x2F;&#x2F;删除用户
+	void deleteEmployee(Long id);
+
+	&#x2F;&#x2F;更新用户
+	void updateEmployee(Employee employee);
+	
+	&#x2F;&#x2F;查询所有用户
+	List&lt;Employee&gt; getList();
+&#125;
+
+&#x2F;&#x2F;EmployeeServiceImpl.java
+@Service
+public class EmployeeServiceImpl implements EmployeeService &#123;
+
+	@Autowired
+	EmployeeDao employeeDao;
+
+	@Override
+	public Employee getEmployeeById(Long id) &#123;
+		Employee employee &#x3D; employeeDao.getEmployeeById(id);
+		return employee;
+	&#125;
+
+	@Override
+	public void saveEmployee(Employee employee) &#123;
+		employeeDao.addEmployee(employee);
+	&#125;
+
+	@Override
+	public void deleteEmployee(Long id) &#123;
+		employeeDao.deleteEmployee(id);
+	&#125;
+
+	@Override
+	public void updateEmployee(Employee employee) &#123;
+		&#x2F;&#x2F;防null处理
+		Long id &#x3D; employee.getId();
+		if (id &#x3D;&#x3D; null) &#123;
+			return;
+		&#125;
+		&#x2F;&#x2F;1、去数据库查询employee原来的值
+		Employee employeeold &#x3D; employeeDao.getEmployeeById(id);
+
+		&#x2F;&#x2F;2、把页面带来的覆盖原来的值，页面没带来的值保持原状
+		&#x2F;&#x2F;姓名
+		if (StringUtils.hasText(employee.getName())) &#123;  &#x2F;&#x2F;判断name有值（不是null，不是空串，不是空白字符）
+			&#x2F;&#x2F;把数据库的值改为页面传来的值
+			employeeold.setName(employee.getName());
+		&#125;
+
+		&#x2F;&#x2F;邮箱
+		if (StringUtils.hasText(employee.getEmail())) &#123;
+			&#x2F;&#x2F;把数据库的值改为页面传来的值
+			employeeold.setEmail(employee.getEmail());
+		&#125;
+
+		&#x2F;&#x2F;性别
+		if (StringUtils.hasText(employee.getGender())) &#123;
+			&#x2F;&#x2F;把数据库的值改为页面传来的值
+			employeeold.setGender(employee.getGender());
+		&#125;
+
+		&#x2F;&#x2F;地址
+		if (StringUtils.hasText(employee.getAddress())) &#123;
+			&#x2F;&#x2F;把数据库的值改为页面传来的值
+			employeeold.setAddress(employee.getAddress());
+		&#125;
+
+		&#x2F;&#x2F;年龄
+		if (employee.getAge() !&#x3D; null) &#123;
+			employeeold.setAge(employee.getAge());
+		&#125;
+
+		&#x2F;&#x2F;工资
+		if (employee.getSalary() !&#x3D; null) &#123;
+			employeeold.setSalary(employee.getSalary());
+		&#125;
+
+		&#x2F;&#x2F;3、对数据库进行修改
+		employeeDao.updateEmployee(employeeold);
+	&#125;
+	
+	@Override
+	public List&lt;Employee&gt; getList() &#123;
+		return employeeDao.getList();
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    6.配置maven为自己的maven，自己的maven记得换镜像源，配置如下图所示</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pENSXxU"><img src="https://s21.ax1x.com/2025/03/09/pENSXxU.png" alt="配置为自己的maven"></a></p>
+<p>​    7.在test包里Spring运行Test同级下新建EmployeeDaoTest.java作为单元测试类，以下测试的仅为Dao层，Service层同理的测法</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;EmployeeDaoTest.java
+
+@SpringBootTest
+public class EmployeeDaoTest &#123;
+
+	@Autowired
+	EmployeeDao employeeDao;
+
+	@Test
+	void testEmployee() &#123;
+		&#x2F;&#x2F;测试通过id查询emp的方法
+		Employee emp &#x3D; employeeDao.getEmployeeById(1L);
+		System.out.println(emp.toString());
+
+		&#x2F;&#x2F;测试新增emp的方法
+		Employee emp2 &#x3D; new Employee();
+		emp2.setName(&quot;王五&quot;);
+		emp2.setAge(22);
+		emp2.setEmail(&quot;aaa&quot;);
+		emp2.setGender(&quot;男&quot;);
+		emp2.setAddress(&quot;广州&quot;);
+		emp2.setSalary(new BigDecimal(&quot;0.2&quot;));
+		employeeDao.addEmployee(emp2);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    8.编写EmployeeRestController.java，实现具体的增删改查功能</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;EmployeeRestController.java
+
+@RestController
+public class EmployeeRestController &#123;
+	@Autowired
+	EmployeeService employeeService;
+
+	@RequestMapping(value &#x3D; &quot;&#x2F;employee&#x2F;&#123;id&#125;&quot;,method &#x3D; RequestMethod.GET)
+	public Employee get(@PathVariable Long id) &#123;
+
+		Employee employee &#x3D; employeeService.getEmployeeById(id);
+		return employee;
+	&#125;
+
+	@RequestMapping(value &#x3D; &quot;&#x2F;employee&#x2F;&#123;id&#125;&quot;,method &#x3D; RequestMethod.DELETE)
+	public String deleteEmployee(@PathVariable(&quot;id&quot;) Long id) &#123;
+		employeeService.deleteEmployee(id);
+		return &quot;ok&quot;;
+	&#125;
+
+	&#x2F;&#x2F;新增员工，要求，前端把员工的Json放在请求体中
+	@RequestMapping(value &#x3D; &quot;&#x2F;employee&quot;,method &#x3D; RequestMethod.POST)
+	public String addEmployee(@RequestBody Employee employee) &#123;
+		employeeService.saveEmployee(employee);
+		return &quot;ok&quot;;
+	&#125;
+
+	&#x2F;&#x2F;修改员工，通过json请求，且需要包括id
+	@RequestMapping(value &#x3D; &quot;&#x2F;employee&quot;,method &#x3D; RequestMethod.PUT)
+	public String updateEmployee(@RequestBody Employee employee) &#123;
+		employeeService.updateEmployee(employee);
+		return &quot;ok&quot;;
+	&#125;
+	
+	&#x2F;&#x2F;查询所有员工
+	@RequestMapping(value&#x3D;&quot;&#x2F;employees&quot;,method &#x3D; RequestMethod.GET)
+	public List&lt;Employee&gt; all()&#123;
+		List&lt;Employee&gt; employees &#x3D; employeeService.getList();
+		return employees;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-REST风格的CRUD案例的优化-统一返回R对象"><a href="#4-REST风格的CRUD案例的优化-统一返回R对象" class="headerlink" title="(4)REST风格的CRUD案例的优化-统一返回R对象"></a>(4)REST风格的CRUD案例的优化-统一返回R对象</h4><p>​    Controller层方法返回值不统一，有String类型，也有Employee类型，对于前端而言希望得到的是一个统一返回</p>
+<h5 id="统一返回内容格式（R对象格式）"><a href="#统一返回内容格式（R对象格式）" class="headerlink" title="统一返回内容格式（R对象格式）"></a>统一返回内容格式（R对象格式）</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;code：业务的状态码，200是成功，其余都是失败，前后端会一起商定不同的业务状态码在前端需要显示的效果
+&#x2F;&#x2F;msg：服务端返回给前端的提示消息
+&#x2F;&#x2F;data：服务器返回给前端的数据，一个数据放对象，多个数据放数组
+
+&#x2F;&#x2F;返回内容格式
+&#123;
+	&quot;code&quot;:300,
+	&quot;msg&quot;:&quot;余额不足&quot;,
+	&quot;data&quot;:null
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="前端统一处理（R对象）"><a href="#前端统一处理（R对象）" class="headerlink" title="前端统一处理（R对象）"></a>前端统一处理（R对象）</h5><p>​    1.前端发送请求，接受服务器数据</p>
+<p>​    2.判断状态码，成功显示数据，失败显示提示信息或执行其他操作</p>
+<h5 id="使用R对象的开发步骤"><a href="#使用R对象的开发步骤" class="headerlink" title="使用R对象的开发步骤"></a>使用R对象的开发步骤</h5><p>​    1.新建common包，在包下新建类R</p>
+<p>​    2.在Controller的方法中将返回的数据封装为R返回</p>
+<h5 id="样例：使用统一返回对象（R）对Controller层优化"><a href="#样例：使用统一返回对象（R）对Controller层优化" class="headerlink" title="样例：使用统一返回对象（R）对Controller层优化"></a>样例：使用统一返回对象（R）对Controller层优化</h5><p>​    1.新建common包，新建类R.java</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;R.java
+
+@Data
+public class R&lt;T&gt; &#123;
+	private Integer code;
+	private String msg;
+	private T data;
+
+	&#x2F;&#x2F;为了不再Controller再组装R，所以R需要提供一个返回成功的静态方法
+	public static &lt;T&gt; R&lt;T&gt; ok(T data) &#123;
+		R&lt;T&gt; r &#x3D; new R&lt;T&gt;();
+		r.setCode(200);
+		r.setMsg(&quot;ok&quot;);
+		r.setData(data);
+		return r;
+	&#125;
+
+	&#x2F;&#x2F;重载一个不返回任何数据的方法
+	public static R ok() &#123;
+		R r &#x3D; new R();
+		r.setCode(200);
+		r.setMsg(&quot;ok&quot;);
+		return r;
+	&#125;
+	
+	&#x2F;&#x2F;有失败逻辑时调用的方法
+	public static &lt;T&gt; R&lt;T&gt; error(Integer code ,String msg , T data) &#123;
+		R&lt;T&gt; r &#x3D; new R&lt;T&gt;();
+		r.setCode(code);
+		r.setMsg(msg);
+		r.setData(data);
+		return r;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.优化Controller，在Controller的方法中将返回的数据封装为R返回</p>
+<pre class="line-numbers language-none"><code class="language-none">@RestController
+public class EmployeeRestController &#123;
+	@Autowired
+	EmployeeService employeeService;
+
+	@RequestMapping(value &#x3D; &quot;&#x2F;employee&#x2F;&#123;id&#125;&quot;,method &#x3D; RequestMethod.GET)
+	public R get(@PathVariable Long id) &#123;
+		Employee employee &#x3D; employeeService.getEmployeeById(id);
+		return R.ok(employee);
+	&#125;
+
+	@RequestMapping(value &#x3D; &quot;&#x2F;employee&#x2F;&#123;id&#125;&quot;,method &#x3D; RequestMethod.DELETE)
+	public R deleteEmployee(@PathVariable(&quot;id&quot;) Long id) &#123;
+		employeeService.deleteEmployee(id);
+		return R.ok();
+	&#125;
+
+	&#x2F;&#x2F;新增员工，要求，前端把员工的Json放在请求体中
+	@RequestMapping(value &#x3D; &quot;&#x2F;employee&quot;,method &#x3D; RequestMethod.POST)
+	public R addEmployee(@RequestBody Employee employee) &#123;
+		employeeService.saveEmployee(employee);
+		return R.ok();
+	&#125;
+
+	&#x2F;&#x2F;修改员工，通过json请求，且需要包括id
+	@RequestMapping(value &#x3D; &quot;&#x2F;employee&quot;,method &#x3D; RequestMethod.PUT)
+	public R updateEmployee(@RequestBody Employee employee) &#123;
+		employeeService.updateEmployee(employee);
+		return R.ok();
+	&#125;
+	
+	&#x2F;&#x2F;查询所有员工
+	@RequestMapping(value&#x3D;&quot;&#x2F;employees&quot;,method &#x3D; RequestMethod.GET)
+	public R all()&#123;
+		List&lt;Employee&gt; employees &#x3D; employeeService.getList();
+		return R.ok(employees);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2. 跨域"></a>2. 跨域</h3><p>​    <strong>跨域（CORS, Cross-Origin Resource Sharing）</strong> 是指 <strong>浏览器</strong> 出于 同源策略（Same-Origin Policy）的安全限制，阻止从一个域（A）向另一个域（B）发起请求</p>
+<h5 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h5><p>​    协议、域名、端口不完全相同，就会触发跨域问题</p>
+<table>
+<thead>
+<tr>
+<th><strong>请求地址（前端）</strong></th>
+<th><strong>后端 API 地址</strong></th>
+<th><strong>是否跨域？</strong></th>
+<th><strong>原因</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>http://localhost:3000</code></td>
+<td><code>http://localhost:8080</code></td>
+<td>✅ 跨域</td>
+<td>端口不同</td>
+</tr>
+<tr>
+<td><code>http://example.com</code></td>
+<td><code>https://example.com</code></td>
+<td>✅ 跨域</td>
+<td>协议不同</td>
+</tr>
+<tr>
+<td><code>http://sub.example.com</code></td>
+<td><code>http://example.com</code></td>
+<td>✅ 跨域</td>
+<td>子域名不同</td>
+</tr>
+<tr>
+<td><code>http://example.com:80</code></td>
+<td><code>http://example.com:8080</code></td>
+<td>✅ 跨域</td>
+<td>端口不同</td>
+</tr>
+<tr>
+<td><code>http://example.com</code></td>
+<td><code>http://example.com</code></td>
+<td>❌ <strong>同源</strong></td>
+<td>完全相同</td>
+</tr>
+</tbody></table>
+<h5 id="后端解决跨域问题-允许前端的请求跨域"><a href="#后端解决跨域问题-允许前端的请求跨域" class="headerlink" title="后端解决跨域问题-允许前端的请求跨域"></a>后端解决跨域问题-允许前端的请求跨域</h5><p>​    原理：在服务器给浏览器的响应头中添加字段，<code>Access-Control-Allow-Origin = *</code>，SpringBoot通过注释实现</p>
+<p>​    在SpringBoot中只需要在类名或方法上添加注释@CrossOrigin，该类或方法就可以跨域访问</p>
+<p>​    前端对复杂的跨域请求会发送两次</p>
+<p>​        1.options请求：预检请求，浏览器会先发送options请求，询问服务器是否允许当前域名进行跨域访问</p>
+<p>​        2.真正的请求：POST、DELETE、PUT等</p>
+<h3 id="3-Spring开发中的常用注解"><a href="#3-Spring开发中的常用注解" class="headerlink" title="3. Spring开发中的常用注解"></a>3. Spring开发中的常用注解</h3><h4 id="1-Data"><a href="#1-Data" class="headerlink" title="(1)@Data"></a>(1)@Data</h4><p>​    <code>@Data</code> 写在类前，它是 <strong>Lombok</strong> 提供的一个注解，用于自动生成常见的 Java 类方法，从而减少样板代码。该注解可以自动为你的类生成 getter、setter、toString()、equals() 和 hashCode()等方法</p>
+<h5 id="样例：-Data的使用"><a href="#样例：-Data的使用" class="headerlink" title="样例：@Data的使用"></a>样例：@Data的使用</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;Employee.java
+
+import lombok.Data;
+
+@Data
+public class User &#123;
+    private Long id;
+    private String name;
+    &#x2F;&#x2F;写包装类，这样值可以为null
+    private Integer age;
+    private String email;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-SpringBootTest"><a href="#2-SpringBootTest" class="headerlink" title="(2)@SpringBootTest"></a>(2)@SpringBootTest</h4><p>​    <code>@SpringBootTest</code>写在类前，它用于测试 Spring Boot 应用的集成测试（不是单元测试）。这个注解会启动整个 Spring 上下文，它支持依赖注入，通常用于 <strong>Web</strong>、<strong>服务层</strong>或 <strong>数据库层</strong>等需要集成测试的场景</p>
+<h5 id="样例：-SpringBootTest的使用"><a href="#样例：-SpringBootTest的使用" class="headerlink" title="样例：@SpringBootTest的使用"></a>样例：@SpringBootTest的使用</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;MyApplicationTests.java
+
+@SpringBootTest
+public class MyApplicationTests &#123;
+
+    @Test
+    void contextLoads() &#123;
+        &#x2F;&#x2F; 测试 Spring 应用是否成功启动
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="3-Test"><a href="#3-Test" class="headerlink" title="(3)@Test"></a>(3)@Test</h4><p>​    <code>@Test</code>写在方法前，它是 JUnit 框架的核心注解，用于标记测试方法。在 <strong>Spring Boot</strong> 中，常与<code>@SpringBootTest</code> 等注解配合使用，用于集成测试，<code>有该注解标记的方法可以直接运行</code></p>
+<h4 id="4-RestController"><a href="#4-RestController" class="headerlink" title="(4)@RestController"></a>(4)@RestController</h4><p>​    <code>@RestController</code>写在类前，它等价于<code>@Controller</code>+<code>@ResponseBody</code></p>
+<h4 id="5-CrossOrigin"><a href="#5-CrossOrigin" class="headerlink" title="(5)@CrossOrigin"></a>(5)@CrossOrigin</h4><p>​    <code>@CrossOrigin</code>写在类前或方法前，用于允许域（Origin）访问 Spring Boot 提供的 API，避免浏览器 CORS（跨域资源共享）限制，写类前允许整个类的API，写方法前则允许该方法</p>
+<h5 id="样例：-CrossOrigin的使用"><a href="#样例：-CrossOrigin的使用" class="headerlink" title="样例：@CrossOrigin的使用"></a>样例：@CrossOrigin的使用</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;BankController.java
+
+@RestController
+@CrossOrigin  &#x2F;&#x2F; 允许所有跨域请求
+public class BankController &#123;
+	&#x2F;&#x2F;...
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="4-JdbcTemplate（数据层）"><a href="#4-JdbcTemplate（数据层）" class="headerlink" title="4. JdbcTemplate（数据层）"></a>4. JdbcTemplate（数据层）</h3><p>​    <code>JdbcTemplate</code> 是 Spring 提供的一个核心类，它封装了常见的数据库操作，不再需要手动编写重复的代码来获取数据库连接、执行 SQL 和关闭连接。只需要写Sql语句，并用JdbcTemplate对象调用对应的API，即可获得查询结果。具体API要使用时用ChatGPT查</p>
+<p>​    如果项目已经使用了 <strong>MyBatis</strong>，通常 **不需要再使用 <code>JdbcTemplate</code>**，它们的功能是重叠的</p>
+<h3 id="5-SpringMVC拦截器"><a href="#5-SpringMVC拦截器" class="headerlink" title="5. SpringMVC拦截器"></a>5. SpringMVC拦截器</h3><p>​    <strong>Spring MVC 拦截器</strong>（<code>HandlerInterceptor</code>）用于在 <strong>请求到达 Controller 之前、执行 Controller 方法之后、视图渲染之前</strong> 进行拦截和处理</p>
+<p>​    <code>拦截器也是AOP思想的具体实现</code></p>
+<h4 id="1-SpringMVC对请求的处理流程"><a href="#1-SpringMVC对请求的处理流程" class="headerlink" title="(1)SpringMVC对请求的处理流程"></a>(1)SpringMVC对请求的处理流程</h4><blockquote>
+<p>请求 → 监听器（Listener） → 过滤器（Filter） → 拦截器（Interceptor） → Controller 处理请求</p>
+</blockquote>
+<ul>
+<li><strong>监听器（Listener）</strong>：监听应用/Session/请求的生命周期，全局事件处理</li>
+<li><strong>过滤器（Filter）</strong>：拦截 HTTP 请求/响应，处理权限、日志、编码、跨域</li>
+<li><strong>拦截器（Interceptor）</strong>：拦截 Spring MVC 方法（Spring业务逻辑），适用于权限校验、日志、AOP 逻辑</li>
+</ul>
+<h4 id="2-监听器、拦截器和过滤器的使用场景"><a href="#2-监听器、拦截器和过滤器的使用场景" class="headerlink" title="(2)监听器、拦截器和过滤器的使用场景"></a>(2)监听器、拦截器和过滤器的使用场景</h4><table>
+<thead>
+<tr>
+<th>需求</th>
+<th>监听器（Listener）</th>
+<th>过滤器（Filter）</th>
+<th>拦截器（Interceptor）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>统计在线人数</strong></td>
+<td>✅ 适用</td>
+<td>❌ 不适用</td>
+<td>❌ 不适用</td>
+</tr>
+<tr>
+<td><strong>初始化系统资源</strong></td>
+<td>✅ 适用</td>
+<td>❌ 不适用</td>
+<td>❌ 不适用</td>
+</tr>
+<tr>
+<td><strong>跨域（CORS）处理</strong></td>
+<td>❌ 不适用</td>
+<td>✅ 适用</td>
+<td>❌ 不适用</td>
+</tr>
+<tr>
+<td><strong>登录认证</strong></td>
+<td>❌ 不适用</td>
+<td>✅ 适用</td>
+<td>✅ 适用</td>
+</tr>
+<tr>
+<td><strong>权限控制</strong></td>
+<td>❌ 不适用</td>
+<td>✅ 适用</td>
+<td>✅ 适用（推荐）</td>
+</tr>
+<tr>
+<td><strong>请求日志记录</strong></td>
+<td>❌ 不适用</td>
+<td>✅ 适用</td>
+<td>✅ 适用</td>
+</tr>
+<tr>
+<td><strong>修改请求参数</strong></td>
+<td>❌ 不适用</td>
+<td>✅ 适用</td>
+<td>✅ 适用</td>
+</tr>
+</tbody></table>
+<h4 id="3-SpringMVC拦截器的使用"><a href="#3-SpringMVC拦截器的使用" class="headerlink" title="(3)SpringMVC拦截器的使用"></a>(3)SpringMVC拦截器的使用</h4><h5 id="SpringMVC拦截器使用步骤"><a href="#SpringMVC拦截器使用步骤" class="headerlink" title="SpringMVC拦截器使用步骤"></a>SpringMVC拦截器使用步骤</h5><p>​    1.创建拦截器类实现<code>HandlerInterceptor</code>接口</p>
+<p>​    2.在Spring-mvc.xml配置interceptor</p>
+<p>​    3.访问被拦截的Controller方法，测试拦截效果</p>
+<h5 id="样例：SpringMVC拦截器的使用"><a href="#样例：SpringMVC拦截器的使用" class="headerlink" title="样例：SpringMVC拦截器的使用"></a>样例：SpringMVC拦截器的使用</h5><p>​    1.新建MyInterceptor.java实现<code>HandlerInterceptor</code>接口，该接口中的方法都是使用default修饰符来空实现，所以需要将要使用的方法覆盖，一共有三个方法：<strong>preHandle()**：请求进入Controller之前执行（适用于权限校验、参数校验），<code>若返回false后面的所有流程都不会执行</code>；</strong>postHandle()<strong>：Controller方法执行后执行（适用于修改返回数据/视图）；</strong>afterCompletion()**： 视图渲染完成后执行（适用于日志记录、异常处理）</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;MyInterceptor.java
+
+public class MyInterceptor implements HandlerInterceptor&#123;
+	&#x2F;&#x2F;在Controller层方法执行之前执行
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)&#123;
+		&#x2F;&#x2F; 检查 Session 中是否有用户
+        String user &#x3D; (String) request.getSession().getAttribute(&quot;user&quot;);
+        if (user &#x3D;&#x3D; null) &#123;
+            response.sendRedirect(&quot;&#x2F;login&quot;); &#x2F;&#x2F; 未登录，重定向到登录页面
+            return false; &#x2F;&#x2F; 拦截请求：不会再执行Controller的方法
+        &#125;
+        return true; &#x2F;&#x2F; 继续请求
+	&#125;
+	
+	&#x2F;&#x2F;在Controller层方法执行之后，视图对象返回之前执行
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModeAndView modeAndView)&#123;
+		System.out.println(&quot;【拦截器】postHandle 执行...&quot;);
+	&#125;
+	
+	&#x2F;&#x2F;在视图渲染完成之后执行
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response,  Object handler, Exception ex)&#123;
+		System.out.println(&quot;【拦截器】afterCompletion 执行...&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.在spring-mvc.xml文件里配置拦截器，<code>&lt;mvc:interceptors&gt;</code> 标签内部可以配置多个拦截器，<code>&lt;mvc:interceptor&gt;</code>表示一个拦截器，<code>&lt;mvc:mapping&gt;</code>中配置对哪些资源执行拦截操作</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;spring-mvc.xml
+
+&#x2F;&#x2F;配置拦截器
+&lt;mvc:interceptors&gt;
+    &lt;mvc:interceptor&gt;
+    	&#x2F;&#x2F; &#x2F;**表示对所有的方法都进行拦截操作
+        &lt;mvc:mapping path&#x3D;&quot;&#x2F;secure&#x2F;**&quot;&#x2F;&gt;
+        &#x2F;&#x2F;放行&#x2F;login
+        &lt;mvc:exclude-mapping path&#x3D;&quot;&#x2F;login&quot;&#x2F;&gt;
+        &lt;bean class&#x3D;&quot;com.itheima.interceptor.MyInterceptor&quot;&#x2F;&gt;
+    &lt;&#x2F;mvc:interceptor&gt;
+&lt;&#x2F;mvc:interceptors&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    3.编写UserController.java，并在浏览器模拟请求</p>
+<blockquote>
+<p>请求路径：<code>http://localhost:8080/login</code></p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+
+@Controller
+@RequestMapping
+public class UserController &#123;
+
+    &#x2F;&#x2F;登录接口（模拟登录）
+    @GetMapping(&quot;&#x2F;login&quot;)
+    @ResponseBody
+    public String login(HttpServletRequest request) &#123;
+        HttpSession session &#x3D; request.getSession();
+        session.setAttribute(&quot;user&quot;, &quot;admin&quot;); &#x2F;&#x2F; 模拟登录，设置 Session
+        return &quot;登录成功！欢迎你，admin&quot;;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-多个拦截器拦截一个页面其中函数的运行效果"><a href="#4-多个拦截器拦截一个页面其中函数的运行效果" class="headerlink" title="(4)多个拦截器拦截一个页面其中函数的运行效果"></a>(4)多个拦截器拦截一个页面其中函数的运行效果</h4><p>​    在spring-mvc.xml的配置顺序决定了拦截器的率先执行顺序</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9M30Tf"><img src="https://s1.ax1x.com/2023/04/26/p9M30Tf.png" alt="运行结果"></a></p>
+<h3 id="6-异常处理"><a href="#6-异常处理" class="headerlink" title="6. 异常处理"></a>6. 异常处理</h3><h4 id="1-异常处理的方式"><a href="#1-异常处理的方式" class="headerlink" title="(1)异常处理的方式"></a>(1)异常处理的方式</h4><ul>
+<li>编程式异常处理<ul>
+<li>try-catch、throw、exception</li>
+</ul>
+</li>
+<li><strong>声明式异常处理（开发推荐）</strong><ul>
+<li>SpringMVC提供了@ExceptionHandle、@ControllerAdvice等便捷的声明式注解来进行异常处理</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-SpringMVC中本类异常处理的注解-ExceptionHandle-异常类的全限定名-class"><a href="#2-SpringMVC中本类异常处理的注解-ExceptionHandle-异常类的全限定名-class" class="headerlink" title="(2)SpringMVC中本类异常处理的注解-@ExceptionHandle(异常类的全限定名.class)"></a>(2)SpringMVC中本类异常处理的注解-@ExceptionHandle(异常类的全限定名.class)</h4><p>​    <code>@ExceptionHandle</code>写在Controller类中的方法上，如果这个Controller类中出现异常，其会自动在本类中找@ExceptionHandle标记的方法（<code>可以是多个</code>），有对应的异常处理则执行对应方法，如果多个能处理则精确的优先</p>
+<h5 id="样例：-ExceptionHandle的使用"><a href="#样例：-ExceptionHandle的使用" class="headerlink" title="样例：@ExceptionHandle的使用"></a>样例：@ExceptionHandle的使用</h5><p>​    <code>请求路径：http://localhost:8080/hello?i=0</code></p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;HelloController.java
+
+@RestController
+public class HelloController &#123;
+
+	@GetMapping(&quot;&#x2F;hello&quot;)
+	public R hello(Integer i)&#123;
+		int b &#x3D; 10&#x2F; i;
+		return R.ok(b);
+	&#125;
+
+	&#x2F;&#x2F;对算术异常 (ArithmeticException)进行管理，只要该Controller中发生算数异常则调用这个异常处理方法
+	@ExceptionHandler(ArithmeticException.class)
+	public R handleArithmeticException(ArithmeticException ex)&#123;
+		return R.error(100,&quot;执行异常&quot;,ex.getMessage());
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="3-SpringMVC中全局异常处理的注解-ControllerAdvice"><a href="#3-SpringMVC中全局异常处理的注解-ControllerAdvice" class="headerlink" title="(3)SpringMVC中全局异常处理的注解-@ControllerAdvice"></a>(3)SpringMVC中全局异常处理的注解-@ControllerAdvice</h4><p>​    <code>@ControllerAdvice</code>写在类上，表示这个类是一个全局“助手”类，专门用来辅助所有 <code>@Controller</code>处理一些通用逻辑。它是 <strong>Spring MVC 提供的全局控制增强机制</strong>（AOP思想），用于对所有 @Controller 进行统一处理，它的应用场景如下：</p>
+<ul>
+<li><strong>全局异常处理</strong>（最常见用法）</li>
+<li>全局数据绑定（给所有 Controller 统一绑定数据）</li>
+<li>全局数据格式转换（参数解析、类型转换）</li>
+</ul>
+<h5 id="样例：使用-ControllerAdvice-ExceptionHandle实现全局异常处理"><a href="#样例：使用-ControllerAdvice-ExceptionHandle实现全局异常处理" class="headerlink" title="样例：使用@ControllerAdvice+@ExceptionHandle实现全局异常处理"></a>样例：使用@ControllerAdvice+@ExceptionHandle实现全局异常处理</h5><p>​    新建advice包作为增强包，在该包下新建GlobalExceptionHandle.java作为全局异常处理类</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;GlobalExceptionHandle.java
+
+@ControllerAdvice
+public class GlobalExceptionHandle &#123;
+        
+	@ResponseBody
+	@ExceptionHandler(Exception.class)
+	public R error(Exception e)&#123;
+		return R.error(500,e.getMessage(),null);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-异常处理优先级与保底机制"><a href="#4-异常处理优先级与保底机制" class="headerlink" title="(4)异常处理优先级与保底机制"></a>(4)异常处理优先级与保底机制</h4><h5 id="异常处理的优先级"><a href="#异常处理的优先级" class="headerlink" title="异常处理的优先级"></a>异常处理的优先级</h5><blockquote>
+<p>本类 &gt; 全局</p>
+<p>精确 &gt; 模糊</p>
+</blockquote>
+<h5 id="异常处理的默认行为"><a href="#异常处理的默认行为" class="headerlink" title="异常处理的默认行为"></a>异常处理的默认行为</h5><p>​    如果出现了异常，本类和全局都不能处理，SpringBoot底层对SpringMVC有兜底处理机制，这是自适应的（如果是浏览器则返回错误页面，如果是Postman则返回以json为格式的错误数据）</p>
+<h4 id="5-异常处理在实际开发（商用）中的使用"><a href="#5-异常处理在实际开发（商用）中的使用" class="headerlink" title="(5)异常处理在实际开发（商用）中的使用"></a>(5)异常处理在实际开发（商用）中的使用</h4><p>​    前后端项目中，前端感知异常状态，后端只编写正确的业务逻辑，如果出现业务问题，后端通过抛业务异常（需要自定义）的方式提前中断业务逻辑</p>
+<h5 id="异常处理的使用步骤（商用）"><a href="#异常处理的使用步骤（商用）" class="headerlink" title="异常处理的使用步骤（商用）"></a>异常处理的使用步骤（商用）</h5><p>​    1.编写异常枚举类BizExceptionEnume，用于设定异常码以及对应的异常信息（这些是不变的）</p>
+<p>​    2.编写自定义异常类BizException，里面需要有异常码和异常信息字段，并通过构造器允许赋值</p>
+<p>​    3.在Sevice层中，对于非正常的业务流程new一个自定义异常对象</p>
+<p>​    4.在异常处理类中，获得自定义异常对象，并将状态码和信息返回给前端</p>
+<h5 id="样例：异常处理的实际使用"><a href="#样例：异常处理的实际使用" class="headerlink" title="样例：异常处理的实际使用"></a>样例：异常处理的实际使用</h5><p>​    1.编写枚举类BizExceptionEnume.java，设定异常码以及码对应的信息</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;BizExceptionEnume.java
+
+public enum BizExceptionEnume &#123;
+
+	&#x2F;&#x2F;ORDER_xxx：订单模块相关异常
+	ORDER_CLOSED(10001,&quot;订单已关闭&quot;),
+	ORDER_NOT_EXIST(10002,&quot;订单不存在&quot;),
+	ORDER_TIMEOUT(10003,&quot;订单超时&quot;);
+
+	@Getter
+	private Integer code;
+	@Getter
+	private String message;
+
+	private BizExceptionEnume(Integer code, String message) &#123;
+		this.code &#x3D; code;
+		this.message &#x3D; message;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.新建一个exception包，在里面自定义异常BizException.java</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;BizException.java
+
+@Data
+public class BizException extends RuntimeException &#123;
+
+	private Integer code;
+	private String message;
+
+	public BizException(Integer code, String message) &#123;
+		super(message);
+		this.code &#x3D; code;
+		this.message &#x3D; message;
+	&#125;
+
+	public BizException(BizExceptionEnume bizExceptionEnume) &#123;
+		super(bizExceptionEnume.getMessage());
+		this.code &#x3D; bizExceptionEnume.getCode();
+		this.message &#x3D; bizExceptionEnume.getMessage();
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    3.在service层中将错误流程new一个异常对象，并抛出异常，这里用的是 restfu开发的service作为样例，优化的是它的update方法，之前遇到错误是直接return</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;EmployeeServiceImpl
+
+public void updateEmployee(Employee employee) &#123;
+	&#x2F;&#x2F;防null处理
+	Long id &#x3D; employee.getId();
+	if (id &#x3D;&#x3D; null) &#123;
+		&#x2F;&#x2F;终端业务：这里原先是直接return
+		throw new BizException(BizExceptionEnume.ORDER_CLOSED);
+	&#125;
+	&#x2F;&#x2F;1、去数据库查询employee原来的值
+	Employee employeeold &#x3D; employeeDao.getEmployeeById(id);
+
+	&#x2F;&#x2F;2、把页面带来的覆盖原来的值，页面没带来的值保持原状
+	&#x2F;&#x2F;姓名
+	if (StringUtils.hasText(employee.getName())) &#123;  &#x2F;&#x2F;判断name有值（不是null，不是空串，不是空白字符）
+		&#x2F;&#x2F;把数据库的值改为页面传来的值
+		employeeold.setName(employee.getName());
+	&#125;
+
+	&#x2F;&#x2F;邮箱
+	if (StringUtils.hasText(employee.getEmail())) &#123;
+		&#x2F;&#x2F;把数据库的值改为页面传来的值
+		employeeold.setEmail(employee.getEmail());
+	&#125;
+
+	&#x2F;&#x2F;性别
+	if (StringUtils.hasText(employee.getGender())) &#123;
+		&#x2F;&#x2F;把数据库的值改为页面传来的值
+		employeeold.setGender(employee.getGender());
+	&#125;
+
+	&#x2F;&#x2F;地址
+	if (StringUtils.hasText(employee.getAddress())) &#123;
+		&#x2F;&#x2F;把数据库的值改为页面传来的值
+		employeeold.setAddress(employee.getAddress());
+	&#125;
+
+	&#x2F;&#x2F;年龄
+	if (employee.getAge() !&#x3D; null) &#123;
+		employeeold.setAge(employee.getAge());
+	&#125;
+
+	&#x2F;&#x2F;工资
+	if (employee.getSalary() !&#x3D; null) &#123;
+		employeeold.setSalary(employee.getSalary());
+	&#125;
+
+	&#x2F;&#x2F;3、对数据库进行修改
+		employeeDao.updateEmployee(employeeold);
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    4.通过异常处理类GlobalExceptionHandle.java，将异常处理并将异常信息发送给前端</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;GlobalExceptionHandle.java
+
+@ControllerAdvice
+public class GlobalExceptionHandle &#123;
+
+	@ResponseBody
+	@ExceptionHandler(BizException.class)
+	public R error(BizException be)&#123;
+		return R.error(be.getCode(), be.getMessage(), null);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    运行结果如下图所示，不带id发送请求</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pEUjspT"><img src="https://s21.ax1x.com/2025/03/14/pEUjspT.png" alt="错误的请求后，后端返回的请求结果"></a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">拾雨</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2023/04/29/Spring05-restful%E5%BC%80%E5%8F%91%E9%A3%8E%E6%A0%BC%E3%80%81%E6%8B%A6%E6%88%AA%E5%99%A8%E4%B8%8E%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">http://example.com/2023/04/29/Spring05-restful%E5%BC%80%E5%8F%91%E9%A3%8E%E6%A0%BC%E3%80%81%E6%8B%A6%E6%88%AA%E5%99%A8%E4%B8%8E%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">拾雨</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/SSM/">
+                                    <span class="chip bg-color">SSM</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2023/05/04/Java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Java动态代理">
+                        
+                        <span class="card-title">Java动态代理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-04
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            拾雨
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SSM/">
+                        <span class="chip bg-color">SSM</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/04/25/Spring04-SpringMVC%E5%AF%B9http%E8%AF%B7%E6%B1%82%E7%9A%84%E6%8E%A5%E6%94%B6%E4%BB%A5%E5%8F%8A%E5%93%8D%E5%BA%94%E7%9A%84%E5%8F%91%E9%80%81/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Spring04-SpringMVC对http请求的接收以及响应的发送">
+                        
+                        <span class="card-title">Spring04-SpringMVC对http请求的接收以及响应的发送</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            拾雨
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SSM/">
+                        <span class="chip bg-color">SSM</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2025</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">拾雨</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
