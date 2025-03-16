@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="操作系统02, Rain">
+    <meta name="keywords" content="http全-http协议的内容与通信方式详解, Rain">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>操作系统02 | Rain</title>
+    <title>http全-http协议的内容与通信方式详解 | Rain</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">操作系统02</h1>
+                    <h1 class="description center-align post-title">http全-http协议的内容与通信方式详解</h1>
                 </div>
             </div>
         </div>
@@ -441,8 +441,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-                                <span class="chip bg-color">操作系统</span>
+                            <a href="/tags/Web%E5%BC%80%E5%8F%91%E5%8D%8F%E8%AE%AE/">
+                                <span class="chip bg-color">Web开发协议</span>
                             </a>
                         
                     </div>
@@ -457,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-10-26
+                    2025-03-16
                 </div>
                 
 
@@ -481,43 +481,166 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="操作系统接口"><a href="#操作系统接口" class="headerlink" title="操作系统接口"></a>操作系统接口</h2><h4 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h4><p>​    连接两个东西、完成信号转换、屏蔽细节<br>​    接口表现为函数的调用，函数又由系统提供，也称为系统调用</p>
-<p>​    上层是调用底层（使用接口），而接口就是通过普通的C语言加上一些重要操作系统函数的调用</p>
-<p>​    <strong>操作系统接口表现为函数调用，又由系统提供，所以称为系统调用</strong>，系统调用是操作系统给上层提供的接口</p>
-<p>​    shell是一个永不停机的程序</p>
-<p>​    Linux 0.11没有图形界面</p>
-<h4 id="2-POSIX（统一的接口）"><a href="#2-POSIX（统一的接口）" class="headerlink" title="2. POSIX（统一的接口）"></a>2. POSIX（统一的接口）</h4><p>​    要知道去哪里去查，网上可以下载，如果开发的操作系统满足这个要求，则在Linux上开发的应用程序也可以在你的操作系统上跑</p>
-<h4 id="3-系统调用的实现"><a href="#3-系统调用的实现" class="headerlink" title="3. 系统调用的实现"></a>3. 系统调用的实现</h4><p>​    (1).不能随意的调用内核的数据，这样会使得操作系统不安全（像root被获取）</p>
-<p>​    (2).通过硬件来保证不能随意的调用内核的数据，即（区分内核态用户态(把内存割成两个区域)），<strong>内核态可以访问任何数据，用户态不能访问内核数据</strong>，0是内核态，3是用户态</p>
-<p>​    (3).通过段寄存器来实现(因为内存都是一段一段的)<br>​    DPL&gt;=CPL，只有满足才可以访问<br>​    DPL：(用来描述目标内存段的特权级)，即你要访问的目标段的特权级<br>​    CPL：(CS)，即当前所处在的特权级</p>
-<p>​    (4).硬件提供了主动进入内核的方法(中断指令int)<br>​    是计算机提供的唯一方法进入内核<br>​    int指令将使CS中的CPL改成0，进入内核</p>
-<h4 id="4-系统调用的核心"><a href="#4-系统调用的核心" class="headerlink" title="4. 系统调用的核心"></a>4. 系统调用的核心</h4><ol>
-<li>用户程序中一段包含int指令的代码，进去的话一定是(int 0x80)</li>
-<li>操作系统写中断处理，获取想调程序的编号</li>
-<li>操作系统根据编号执行相应代码</li>
-</ol>
-<h4 id="5-int-0x80的具体实现"><a href="#5-int-0x80的具体实现" class="headerlink" title="5. int 0x80的具体实现"></a>5. int 0x80的具体实现</h4><p>​    int指令通过查看idt表来选择中断需要转去哪里进行执行<br>​    idt表和gdt表长的非常相似<br>​    在系统进行初始化时，就已经对int 0x80进行处理定义</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">sched_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-<span class="token function">set_system_gate</span><span class="token punctuation">(</span><span class="token number">0x80</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>system_call<span class="token punctuation">)</span> <span class="token comment">//每次要调用时就取中断函数地址system_call调用0x80</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <h3 id="1-HTTP协议"><a href="#1-HTTP协议" class="headerlink" title="1. HTTP协议"></a>1. HTTP协议</h3><p>​    HTTP协议即按一定规则，向服务器要数据或发送数据，而服务器按一定规则回应数据</p>
+<p>​    HTTP协议主要约定了<code>请求</code> 和<code>响应</code></p>
+<h3 id="2-HTTP的连接"><a href="#2-HTTP的连接" class="headerlink" title="2. HTTP的连接"></a>2. HTTP的连接</h3><p>​    0：原始状态，客户端和服务器未连接</p>
+<p>​    1：客户端向服务器发送请求</p>
+<p>​    2：服务器沿着连接响应信息</p>
+<p>​    3：客户端将收到的内容显示，过了几秒后双方断开连接</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pAgp8FH"><img src="https://s21.ax1x.com/2024/11/13/pAgp8FH.png" alt="http头信息"></a></p>
+<h3 id="3-http请求信息和响应信息的格式"><a href="#3-http请求信息和响应信息的格式" class="headerlink" title="3. http请求信息和响应信息的格式"></a>3. http请求信息和响应信息的格式</h3><h4 id="1-使用telnet模拟HTTP请求（GET）"><a href="#1-使用telnet模拟HTTP请求（GET）" class="headerlink" title="(1)使用telnet模拟HTTP请求（GET）"></a>(1)使用telnet模拟HTTP请求（GET）</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pAgEvY8"><img src="https://s21.ax1x.com/2024/11/13/pAgEvY8.png" alt="HTTP的GET请求"></a></p>
+<h5 id="请求报文："><a href="#请求报文：" class="headerlink" title="请求报文："></a>请求报文：</h5><p>​    (1)请求行</p>
+<p>​    (2)请求头信息</p>
+<p>​    (3)空行</p>
+<p>​    (4)请求主体信息(可以没有)</p>
+<p>​    <strong>注意：头信息结束后要空一行，如果请求有主体信息需要配置请求的Content-Length，告知主体信息长度，然后空一行写主体信息</strong></p>
+<h5 id="请求行详解"><a href="#请求行详解" class="headerlink" title="请求行详解"></a>请求行详解</h5><p>​    请求行包括</p>
+<p>​    1.请求方法(GET)：还有（GET|POST|PUT|DELETE|TRACE|OPTIONS）</p>
+<p>​    2.请求路径(/0606/01.php) ：是URL的一部分</p>
+<p>​    3.所用协议(HTTP/1.1)：HTTP协议1.0，0.9基本没人用了</p>
+<p>​    注意：这些请求方法虽然HTTP协议规定，但WEB SERVER未必允许或支持这些方法</p>
+<h5 id="响应报文："><a href="#响应报文：" class="headerlink" title="响应报文："></a>响应报文：</h5><p>​    (1)响应行(协议 状态码 状态文字)</p>
+<p>​    (2)响应头信息(格式为 key：value)（可能有多行）</p>
+<p>​    (3)空行</p>
+<p>​    (4)主体信息(可能没有)：响应返回的结果一般是html</p>
+<h5 id="练习结果："><a href="#练习结果：" class="headerlink" title="练习结果："></a>练习结果：</h5><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45495315/article/details/143746783?spm=1001.2014.3001.5501">telnet的发送HTTP请求的使用-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pAgeEzF"><img src="https://s21.ax1x.com/2024/11/13/pAgeEzF.png" alt="通过5500端口访问"></a></p>
+<h4 id="2-发送请求时同时要发送数据给服务器-POST"><a href="#2-发送请求时同时要发送数据给服务器-POST" class="headerlink" title="(2)发送请求时同时要发送数据给服务器(POST)"></a>(2)发送请求时同时要发送数据给服务器(POST)</h4><p>​    一般在输入完<code>Host：localhost</code>后，就会向服务器发送请求，如果要发送数据的话，需要对请求做如下修改，且集中粘贴过去</p>
+<pre class="line-numbers language-none"><code class="language-none">POST &#x2F;0606&#x2F;02.php HTTP&#x2F;1.1
+Host:localhost
+Content-type:application&#x2F;x-www-form-urlencoded   &#x2F;&#x2F;告诉服务器会发送POST的数据包，没有此行服务器无法正确接受数据
+Content-length:23  &#x2F;&#x2F;告诉服务器请求主体的长度<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>​    int 0x80进入后将DPL制成3，CS为8，IP=system_call，CPL为CS的后两位为0</p>
-<p>​    从int 0x80返回后就一切恢复之前</p>
-<h4 id="6-操作系统历史"><a href="#6-操作系统历史" class="headerlink" title="6. 操作系统历史"></a>6. 操作系统历史</h4><h5 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h5><h6 id="1-操作系统的演变"><a href="#1-操作系统的演变" class="headerlink" title="1. 操作系统的演变"></a>1. 操作系统的演变</h6><p>​    随着计算机不断发展后，需要完成多道程序，要使得作业之间进行相互的切换和调度成为核心，如果不切换一定要一个一个等，计算机的速度就会非常的慢，<strong>此时多进程结构和进程管理概念萌芽</strong>，这时制作了OS/360</p>
-<p>​    在之后，任务不可以等到做不下去再进行切换，而是需要主动的进行切换，此时引入了<strong>分时系统</strong>的概念，此时一个计算机可以多个人进行使用，这时制作的是MULTICS</p>
-<p>​    再之后由MULTICS发明了UNIX</p>
-<h6 id="2-PC与DOS"><a href="#2-PC与DOS" class="headerlink" title="2. PC与DOS"></a>2. PC与DOS</h6><p>​    由DOS演变为Windows，Windows主要是磁盘、文件、命令令人使用方便</p>
-<p>​    再之后在Windows3.0加入图形界面</p>
-<p>​    </p>
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><h6 id="1-操作系统的演变-1"><a href="#1-操作系统的演变-1" class="headerlink" title="1. 操作系统的演变"></a>1. 操作系统的演变</h6><p>​    <strong>多进程结构是操作系统基本图谱，要掌握，并且实现它</strong></p>
-<p>​    多进程结构图示：**(当一个系统进入打印或其他操作使得CPU等待时，跳转到下一个作业，之后再转回来)**</p>
-<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/54jP0O"><img src="https://z3.ax1x.com/2021/10/25/54jP0O.png" alt="54jP0O.png"></a></p>
-<p>​    对于操作系统实现概念远比理解概念重要</p>
-<h6 id="2-PC与DOS-1"><a href="#2-PC与DOS-1" class="headerlink" title="2. PC与DOS"></a>2. PC与DOS</h6><p>​    文件、开发环境、图形界面对于OS的重要性，<strong>要掌握、实现操作系统的文件操作视图</strong></p>
-<h5 id="核心思想，技术"><a href="#核心思想，技术" class="headerlink" title="核心思想，技术"></a>核心思想，技术</h5><ul>
-<li>程序执行、多线程、程序执行带动其他设备使用的基本结构</li>
-<li>对用户的使用感觉：各种文件、编程环境、图形界面</li>
+<p>​    运行图示</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pAg1Lid"><img src="https://s21.ax1x.com/2024/11/13/pAg1Lid.png" alt="POST请求"></a></p>
+<h3 id="4-状态码，状态文字"><a href="#4-状态码，状态文字" class="headerlink" title="4. 状态码，状态文字"></a>4. 状态码，状态文字</h3><p>​    状态码是用来反应服务器响应情况的，状态文字是用来描述状态码，便于人观察的</p>
+<h4 id="1-状态码一共有5个系列，不用一个一个背"><a href="#1-状态码一共有5个系列，不用一个一个背" class="headerlink" title="(1)状态码一共有5个系列，不用一个一个背"></a>(1)状态码一共有5个系列，不用一个一个背</h4><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>定义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1XX</td>
+<td>信息</td>
+<td>接收到请求，继续处理</td>
+</tr>
+<tr>
+<td>2XX</td>
+<td>成功</td>
+<td>操作成功地收到，理解和接受</td>
+</tr>
+<tr>
+<td>3XX</td>
+<td>重定向</td>
+<td>为了完成请求，必须采取进一步措施</td>
+</tr>
+<tr>
+<td>4XX</td>
+<td>客户端错误</td>
+<td>请求的语法有错误或不能完全被满足</td>
+</tr>
+<tr>
+<td>5XX</td>
+<td>服务端错误</td>
+<td>服务器无法完成明显有效的请求</td>
+</tr>
+</tbody></table>
+<p>​    1XX：是给HTTP留着以后扩展用的</p>
+<h5 id="常见的状态码-背-："><a href="#常见的状态码-背-：" class="headerlink" title="常见的状态码(背)："></a>常见的状态码(背)：</h5><ul>
+<li><p>200  -  服务器成功返回网页（请求成功），在Spring中被用作数据成功返回</p>
+</li>
+<li><p>301/2  -  永久/临时<u>重定向</u>(服务器内部跳转)</p>
+<p>重定向的响应中有(Location)的属性来定位重定向的网页是谁</p>
+</li>
+<li><p>304  -  未修改（Not Modified），取的是缓存，多次加载同一界面会出现</p>
+<p>通过客户端向服务器发送时间锉信息和标签(第一次请求获得的响应)看时间是否过期，标签是否修改</p>
+</li>
+<li><p>307  -  重定向中保护原有的请求数据</p>
+<p>发送POST数据到05.php，05.php重定向到06.php显示数据，如果用301/2数据会丢失，但307可以保护数据，确保数据在06.php正常显示</p>
+</li>
+<li><p>404  -  请求的网页不存在</p>
+</li>
+<li><p>503  -  服务器暂时不可用</p>
+</li>
+<li><p>500  -  服务器内部错误</p>
+</li>
 </ul>
+<h3 id="5-HTTP和TCP（面试题）"><a href="#5-HTTP和TCP（面试题）" class="headerlink" title="5. HTTP和TCP（面试题）"></a>5. HTTP和TCP（面试题）</h3><p>​    HTTP是半双工的，TCP是全双工的，浏览器若需要打游戏需要使用全新的WebSocket来进行连接，第一次三次握手时，浏览器发送的是普通的HTTP请求，若要建立WebSocket需要在HTTP请求中带特殊的head头</p>
+<p>​    HTTP协议是基于TCP实现的</p>
+<h3 id="6-HTTP请求在浏览器的查看"><a href="#6-HTTP请求在浏览器的查看" class="headerlink" title="6. HTTP请求在浏览器的查看"></a>6. HTTP请求在浏览器的查看</h3><p>​    浏览器的核心功能之一就是发起 HTTP 请求并解析响应</p>
+<p>​    以打开百度搜索“刘大爷”为例</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pEZpqbR"><img src="https://s21.ax1x.com/2025/01/31/pEZpqbR.png" alt="使用浏览器发送HTTP"></a></p>
+<p>​    <strong>注意：请求体信息是在与Request Headers同级的叫Form Data中</strong></p>
+<h3 id="7-用户身份认证和状态保持"><a href="#7-用户身份认证和状态保持" class="headerlink" title="7. 用户身份认证和状态保持"></a>7. 用户身份认证和状态保持</h3><p>​    <code>Cookie</code>、<code>Session</code> 和 <code>Token</code> 都是用来管理<strong>用户身份认证</strong>和<strong>状态保持</strong>的</p>
+<table>
+<thead>
+<tr>
+<th align="center">方案</th>
+<th align="center">存储位置</th>
+<th align="center">状态管理</th>
+<th align="center">适用场景</th>
+<th align="center">优缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Cookie</td>
+<td align="center">浏览器（客户端的一种）</td>
+<td align="center">有状态</td>
+<td align="center">记录小型用户信息</td>
+<td align="center">易受攻击，大小受限</td>
+</tr>
+<tr>
+<td align="center">Session</td>
+<td align="center">服务器</td>
+<td align="center">有状态</td>
+<td align="center">适合中小型系统</td>
+<td align="center">服务器内存占用大</td>
+</tr>
+<tr>
+<td align="center">Token (JWT)</td>
+<td align="center">客户端（任何能发http的应用）</td>
+<td align="center">无状态</td>
+<td align="center">前后端分离、微服务</td>
+<td align="center">无法主动销毁，易泄露</td>
+</tr>
+</tbody></table>
+<p>​    注意：有状态和无状态，主要指的是服务器是否需要记住客户端的信息</p>
+<h4 id="1-Cookie"><a href="#1-Cookie" class="headerlink" title="(1)Cookie"></a>(1)Cookie</h4><p>​    <code>Cookie</code> 是存储在<strong>浏览器端</strong>的一小段数据，通常用于记录用户状态</p>
+<h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><ul>
+<li>存储在浏览器中，每次HTTP请求都会自动带上 <code>Cookie</code></li>
+<li>安全性较低，容易被劫持（已不再作为登录凭证）</li>
+</ul>
+<h5 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h5><ul>
+<li>自动登录（存储 <code>rememberMe</code> 标识）</li>
+<li><strong>存储简单的状态信息</strong>（如用户偏好）</li>
+</ul>
+<h4 id="2-Session"><a href="#2-Session" class="headerlink" title="(2)Session"></a>(2)Session</h4><p>​    <code>Session</code> 存储在<strong>服务器端</strong>，通常用来记录用户的登录状态。浏览器访问时，会通过 <code>Cookie</code> 传递 <code>SessionID</code>，服务器通过 <code>SessionID</code> 找到对应的 <code>Session</code> 数据</p>
+<h5 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h5><ul>
+<li>存储在服务器上</li>
+<li>需要 <code>Cookie</code> 或 URL 传递 <code>SessionID</code></li>
+<li>生命周期：默认情况下，<code>Session</code> 在用户关闭浏览器后会失效（但可以配置 <code>Session Timeout</code>）</li>
+</ul>
+<h5 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h5><ul>
+<li><strong>用户登录状态管理</strong>（适用于小规模应用，不适用微服务）</li>
+<li>存储临时的用户信息（如购物车）</li>
+</ul>
+<h4 id="3-Token（JWT）"><a href="#3-Token（JWT）" class="headerlink" title="(3)Token（JWT）"></a>(3)Token（JWT）</h4><p>​    <code>Token</code> 是一串加密字符串，通常用于<strong>无状态身份认证</strong>，不像 <code>Session</code> 依赖服务器，<code>Token</code> <strong>只在客户端存储</strong>，请求时通过 <code>Authorization</code> 头部发送给服务器</p>
+<h5 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h5><ul>
+<li>不需要服务器存储状态（无状态）</li>
+<li>可以跨域、适用于微服务架构</li>
+<li>一般存储在 <code>LocalStorage</code> 或 <code>Cookie</code> 中</li>
+</ul>
+<h5 id="适用场景-2"><a href="#适用场景-2" class="headerlink" title="适用场景"></a>适用场景</h5><ul>
+<li>前后端分离的身份认证</li>
+<li>移动端登录</li>
+<li>微服务架构</li>
+</ul>
+<h4 id="4-开发中的选择"><a href="#4-开发中的选择" class="headerlink" title="(4)开发中的选择"></a>(4)开发中的选择</h4><p>​    1.小型项目（单体应用）<br>​             → Session + Cookie（简单好用）</p>
+<p>​    2.前后端分离<br>​             → Token（JWT）+ <code>Authorization: Bearer token</code></p>
+<p>​    3.需要支持分布式（多个服务器）<br>​             → Redis 共享 Session 或 Token 方案</p>
 
                 
             </div>
@@ -544,7 +667,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/10/26/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02/">http://example.com/2021/10/26/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F02/</a>
+                    <a href="http://example.com/2025/03/16/http%E5%85%A8-http%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%86%85%E5%AE%B9%E4%B8%8E%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F%E8%AF%A6%E8%A7%A3/">http://example.com/2025/03/16/http%E5%85%A8-http%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%86%85%E5%AE%B9%E4%B8%8E%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F%E8%AF%A6%E8%A7%A3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -582,8 +705,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-                                    <span class="chip bg-color">操作系统</span>
+                                <a href="/tags/Web%E5%BC%80%E5%8F%91%E5%8D%8F%E8%AE%AE/">
+                                    <span class="chip bg-color">Web开发协议</span>
                                 </a>
                             
                         </div>
@@ -627,17 +750,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2021/11/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F03/">
+                <a href="/2025/03/16/http%E5%85%A8-http%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%86%85%E5%AE%B9%E4%B8%8E%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F%E8%AF%A6%E8%A7%A3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="操作系统03">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="http全-http协议的内容与通信方式详解">
                         
-                        <span class="card-title">操作系统03</span>
+                        <span class="card-title">http全-http协议的内容与通信方式详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -647,9 +771,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-03-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -658,11 +782,12 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-                        <span class="chip bg-color">操作系统</span>
+                    <a href="/tags/Web%E5%BC%80%E5%8F%91%E5%8D%8F%E8%AE%AE/">
+                        <span class="chip bg-color">Web开发协议</span>
                     </a>
                     
                 </div>
@@ -676,13 +801,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/25/Java14/">
+                <a href="/2025/02/10/Vue%E7%AC%94%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%8501-%E5%AD%90%E4%BC%A0%E7%88%B6props%E6%96%B9%E5%BC%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Java14">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Vue笔记的代码补充01-子传父props方式">
                         
-                        <span class="card-title">Java14</span>
+                        <span class="card-title">Vue笔记的代码补充01-子传父props方式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -693,7 +818,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-10
                             </span>
                         <span class="publish-author">
                             
@@ -706,8 +831,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/Vue%E4%BB%A3%E7%A0%81/">
+                        <span class="chip bg-color">Vue代码</span>
                     </a>
                     
                 </div>
