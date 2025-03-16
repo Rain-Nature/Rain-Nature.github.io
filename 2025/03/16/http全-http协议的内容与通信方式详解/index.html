@@ -574,7 +574,7 @@ Content-length:23  &#x2F;&#x2F;告诉服务器请求主体的长度<span aria-hi
 <p>​    以打开百度搜索“刘大爷”为例</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/pEZpqbR"><img src="https://s21.ax1x.com/2025/01/31/pEZpqbR.png" alt="使用浏览器发送HTTP"></a></p>
 <p>​    <strong>注意：请求体信息是在与Request Headers同级的叫Form Data中</strong></p>
-<h3 id="7-用户身份认证和状态保持"><a href="#7-用户身份认证和状态保持" class="headerlink" title="7. 用户身份认证和状态保持"></a>7. 用户身份认证和状态保持</h3><p>​    <code>Cookie</code>、<code>Session</code> 和 <code>Token</code> 都是用来管理<strong>用户身份认证</strong>和<strong>状态保持</strong>的</p>
+<h3 id="7-用户身份认证和状态保持"><a href="#7-用户身份认证和状态保持" class="headerlink" title="7. 用户身份认证和状态保持"></a>7. 用户身份认证和状态保持</h3><p>​    <code>Cookie</code>、<code>Session</code> 和 <code>Token</code> 都是用于管理用户身份认证和状态保持</p>
 <table>
 <thead>
 <tr>
@@ -607,27 +607,29 @@ Content-length:23  &#x2F;&#x2F;告诉服务器请求主体的长度<span aria-hi
 <td align="center">无法主动销毁，易泄露</td>
 </tr>
 </tbody></table>
-<p>​    注意：有状态和无状态，主要指的是服务器是否需要记住客户端的信息</p>
-<h4 id="1-Cookie"><a href="#1-Cookie" class="headerlink" title="(1)Cookie"></a>(1)Cookie</h4><p>​    <code>Cookie</code> 是存储在<strong>浏览器端</strong>的一小段数据，通常用于记录用户状态</p>
+<p>​    注意：有状态和无状态，主要指的是服务器是否需要记住客户端的信息，<strong>HTTP请求本身是无状态的</strong></p>
+<h4 id="1-Cookie"><a href="#1-Cookie" class="headerlink" title="(1)Cookie"></a>(1)Cookie</h4><p>​    <code>Cookie 是实现每次HTTP请求都自动带数据给服务器的技术</code>，它也是存储在浏览器端的一小段数据。<strong>等于有两个功能，一个是存储，另一个的发送HTTP自动携带这些数据</strong>。图如下所示</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pEajRZd"><img src="https://s21.ax1x.com/2025/03/16/pEajRZd.png" alt="Cookie"></a></p>
 <h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><ul>
-<li>存储在浏览器中，每次HTTP请求都会自动带上 <code>Cookie</code></li>
-<li>安全性较低，容易被劫持（已不再作为登录凭证）</li>
+<li>存储在浏览器中，打开浏览器可直接查看</li>
+<li>安全性较低，容易被劫持</li>
 </ul>
 <h5 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h5><ul>
-<li>自动登录（存储 <code>rememberMe</code> 标识）</li>
-<li><strong>存储简单的状态信息</strong>（如用户偏好）</li>
+<li>存储简单的状态信息（如用户偏好）</li>
 </ul>
-<h4 id="2-Session"><a href="#2-Session" class="headerlink" title="(2)Session"></a>(2)Session</h4><p>​    <code>Session</code> 存储在<strong>服务器端</strong>，通常用来记录用户的登录状态。浏览器访问时，会通过 <code>Cookie</code> 传递 <code>SessionID</code>，服务器通过 <code>SessionID</code> 找到对应的 <code>Session</code> 数据</p>
+<h4 id="2-Session"><a href="#2-Session" class="headerlink" title="(2)Session"></a>(2)Session</h4><p>​    <code>Session</code> 存储在服务器端。用户第一次访问服务器时，携带账号密码进行登录，服务器验证通过后，会生成一个 SessionID（随机字符串）和 Session 数据，并设定有效期，然后通过 <strong>Cookie</strong> 将 SessionID 发送给客户端。客户端会<strong>自动存储这个 Cookie</strong>，之后的请求无需再输入密码，而是用Cookie携带 SessionID发送。服务器收到请求后，通过 <strong>SessionID</strong> 查找对应的 Session 数据，确定用户身份。图如下所示</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pEavCyF"><img src="https://s21.ax1x.com/2025/03/16/pEavCyF.png" alt="Session"></a></p>
 <h5 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h5><ul>
 <li>存储在服务器上</li>
 <li>需要 <code>Cookie</code> 或 URL 传递 <code>SessionID</code></li>
 <li>生命周期：默认情况下，<code>Session</code> 在用户关闭浏览器后会失效（但可以配置 <code>Session Timeout</code>）</li>
 </ul>
 <h5 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h5><ul>
-<li><strong>用户登录状态管理</strong>（适用于小规模应用，不适用微服务）</li>
+<li>用户登录状态管理（适用于小规模应用，不适用微服务）</li>
 <li>存储临时的用户信息（如购物车）</li>
 </ul>
-<h4 id="3-Token（JWT）"><a href="#3-Token（JWT）" class="headerlink" title="(3)Token（JWT）"></a>(3)Token（JWT）</h4><p>​    <code>Token</code> 是一串加密字符串，通常用于<strong>无状态身份认证</strong>，不像 <code>Session</code> 依赖服务器，<code>Token</code> <strong>只在客户端存储</strong>，请求时通过 <code>Authorization</code> 头部发送给服务器</p>
+<h4 id="3-Token（JWT）"><a href="#3-Token（JWT）" class="headerlink" title="(3)Token（JWT）"></a>(3)Token（JWT）</h4><p>​    多服务器的条件下Session已经不再适用，当客户端发送密码后，服务器端生成<code>JWT</code>（服务器不保存），只保存JWT的密文，然后将JWT发送给客户端，用Cookie存储，再次请求服务器时，只需要发送JWT，与Session类似。图如下所示</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pEajYMF"><img src="https://s21.ax1x.com/2025/03/16/pEajYMF.png" alt="Token"></a></p>
 <h5 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h5><ul>
 <li>不需要服务器存储状态（无状态）</li>
 <li>可以跨域、适用于微服务架构</li>
