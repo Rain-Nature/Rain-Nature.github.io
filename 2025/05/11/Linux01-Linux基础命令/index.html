@@ -577,7 +577,7 @@
 <p>这三种写法都是一样的，表示同时应用-l和-a的功能</p>
 </li>
 </ul>
-<h3 id="4-目录切换相关命令-cd-pwd"><a href="#4-目录切换相关命令-cd-pwd" class="headerlink" title="4. 目录切换相关命令(cd/pwd)"></a>4. 目录切换相关命令(cd/pwd)</h3><p>​    <strong>可以通过cd命令更改当前所在的工作目录</strong></p>
+<h3 id="3-目录切换相关命令-cd-pwd"><a href="#3-目录切换相关命令-cd-pwd" class="headerlink" title="3. 目录切换相关命令(cd/pwd)"></a>3. 目录切换相关命令(cd/pwd)</h3><p>​    <strong>可以通过cd命令更改当前所在的工作目录</strong></p>
 <p>​    cd命令来自英文：Change Directory</p>
 <p>​    语法：<code>cd [Linux路径]</code></p>
 <ul>
@@ -590,7 +590,7 @@
 <ul>
 <li>pwd命令，无选项，无参数，可以直接使用，输入pwd即可</li>
 </ul>
-<h3 id="5-相对路径绝对路径和特殊路径符"><a href="#5-相对路径绝对路径和特殊路径符" class="headerlink" title="5. 相对路径绝对路径和特殊路径符"></a>5. 相对路径绝对路径和特殊路径符</h3><h5 id="cd命令的绝对路径与相对路径"><a href="#cd命令的绝对路径与相对路径" class="headerlink" title="cd命令的绝对路径与相对路径"></a>cd命令的绝对路径与相对路径</h5><ul>
+<h3 id="4-相对路径绝对路径和特殊路径符"><a href="#4-相对路径绝对路径和特殊路径符" class="headerlink" title="4. 相对路径绝对路径和特殊路径符"></a>4. 相对路径绝对路径和特殊路径符</h3><h5 id="cd命令的绝对路径与相对路径"><a href="#cd命令的绝对路径与相对路径" class="headerlink" title="cd命令的绝对路径与相对路径"></a>cd命令的绝对路径与相对路径</h5><ul>
 <li>绝对路径：是以根目录为起点；cd /home/itheima/Desktop</li>
 <li>相对路径：是以当前目录为起点；cd Desktop</li>
 </ul>
@@ -603,7 +603,7 @@
 <li><code>..</code> 表示上一级目录，比如：cd.. 即可切换到上一级目录，cd ../..切换到上二级目录，依此类推</li>
 <li>~ 表示HOME目录，比如：cd ~ 即可切换到HOME目录或cd ~/Decktop，切换到HOME内的Desktop目录</li>
 </ul>
-<h3 id="6-创建目录命令-mkdir"><a href="#6-创建目录命令-mkdir" class="headerlink" title="6. 创建目录命令(mkdir)"></a>6. 创建目录命令(mkdir)</h3><p>​    <strong>通过mkdir命令可以创建新的目录(文件夹)</strong></p>
+<h3 id="5-创建目录命令-mkdir"><a href="#5-创建目录命令-mkdir" class="headerlink" title="5. 创建目录命令(mkdir)"></a>5. 创建目录命令(mkdir)</h3><p>​    <strong>通过mkdir命令可以创建新的目录(文件夹)</strong></p>
 <p>​    mkdir来自英文：Make Directory</p>
 <p>​    语法：<code>mkdir [-p] Linux路径</code></p>
 <ul>
@@ -611,7 +611,7 @@
 <li>-p选项可选，表示自动创建不存在的父目录，适用于创建连续多层级的目录(层级需要表现在Linux路径中)</li>
 </ul>
 <p>​    <strong>注意：创建文件夹需要修改权限，请确保操作均在HOME目录内，不要在HOME外操作涉及到权限问题，HOME外无法成功，后面有权限相关知识</strong></p>
-<h3 id="7-文件操作命令-touch-cat-more"><a href="#7-文件操作命令-touch-cat-more" class="headerlink" title="7. 文件操作命令(touch,cat,more)"></a>7. 文件操作命令(touch,cat,more)</h3><p>​    <strong>通过touch命令创建文件(文件通过新建时的后缀加以区分)</strong></p>
+<h3 id="6-文件操作命令-touch-cat-more"><a href="#6-文件操作命令-touch-cat-more" class="headerlink" title="6. 文件操作命令(touch,cat,more)"></a>6. 文件操作命令(touch,cat,more)</h3><p>​    <strong>通过touch命令创建文件(文件通过新建时的后缀加以区分)</strong></p>
 <p>​    语法：<code>touch Linux路径</code></p>
 <ul>
 <li>touch命令无选项，参数必填，表示要创建的文件路径，相对、绝对、特殊路径符均可使用</li>
@@ -633,7 +633,7 @@
 <ul>
 <li>more没有选项，只有必填参数，参数表示：被查看的文件路径，相对、绝对、特殊路径符都可以使用</li>
 </ul>
-<h3 id="8-文件操作命令-cp，mv，rm"><a href="#8-文件操作命令-cp，mv，rm" class="headerlink" title="8. 文件操作命令(cp，mv，rm)"></a>8. 文件操作命令(cp，mv，rm)</h3><p>​    <strong>通过cp命令可以复制文件或文件夹</strong></p>
+<h3 id="7-文件操作命令-cp，mv，rm"><a href="#7-文件操作命令-cp，mv，rm" class="headerlink" title="7. 文件操作命令(cp，mv，rm)"></a>7. 文件操作命令(cp，mv，rm)</h3><p>​    <strong>通过cp命令可以复制文件或文件夹</strong></p>
 <p>​    cp来自英文：copy</p>
 <p>​    语法：<code>cp [-r] 参数1 参数2</code></p>
 <ul>
@@ -668,7 +668,7 @@
 </ul>
 <p>​    <strong>注意：普通用户使用su - root，密码是锁屏密码进入成为超级管理员，超级管理员使用exit退出成为普通用户</strong></p>
 <p>​    rm是非常危险的命令当成为root管理员的使用不要执行<code>rm -rf /</code>或者<code>rm -rf /*</code>，效果等于Windows上执行C盘格式化</p>
-<h3 id="9-查找命令-which、find"><a href="#9-查找命令-which、find" class="headerlink" title="9. 查找命令(which、find)"></a>9. 查找命令(which、find)</h3><p>​    <strong>通过which命令可以查看所使用的一系列命令的程序文件存放在哪里</strong></p>
+<h3 id="8-查找命令-which、find"><a href="#8-查找命令-which、find" class="headerlink" title="8. 查找命令(which、find)"></a>8. 查找命令(which、find)</h3><p>​    <strong>通过which命令可以查看所使用的一系列命令的程序文件存放在哪里</strong></p>
 <p>​    语法：<code>which 要查找的命令名</code></p>
 <p>​    <strong>通过find命令可以搜索指定的文件</strong></p>
 <p>​    find类似与Windows图形化界面中的搜索，如下图所示：</p>
@@ -687,7 +687,7 @@
 <li>查找大于100MB文件：find / -size +100M</li>
 <li>查找大于1GB的文件：find / -size +1G</li>
 </ul>
-<h3 id="10-grep、wc和管道符"><a href="#10-grep、wc和管道符" class="headerlink" title="10. grep、wc和管道符"></a>10. grep、wc和管道符</h3><p>​    <strong>通过grep命令可以从文件中通过关键字过滤文件行，有结果会将包含关键字的行在黑窗口输出</strong></p>
+<h3 id="9-grep、wc和管道符"><a href="#9-grep、wc和管道符" class="headerlink" title="9. grep、wc和管道符"></a>9. grep、wc和管道符</h3><p>​    <strong>通过grep命令可以从文件中通过关键字过滤文件行，有结果会将包含关键字的行在黑窗口输出</strong></p>
 <p>​    语法：<code>grep [-n] 关键字 文件路径</code></p>
 <ul>
 <li>-n，可选，表示在结果中显示匹配的行的行号</li>
@@ -708,7 +708,7 @@
 <p>​    管道符的含义：将管道符左边命令的结果，作为右边命令的输入，如下图所示</p>
 <p><img src="https://pic.imgdb.cn/item/6665a1155e6d1bfa05e3b1aa.png" alt="图示"></p>
 <p>​    注意：所有在黑窗口打印内容的命令都可以和管道符搭配使用，如ls等</p>
-<h3 id="11-echo、重定向符、tail"><a href="#11-echo、重定向符、tail" class="headerlink" title="11. echo、重定向符、tail"></a>11. echo、重定向符、tail</h3><p>​    <strong>通过echo命令可以在命令行内输出指定内容，有点像print方法</strong></p>
+<h3 id="10-echo、重定向符、tail"><a href="#10-echo、重定向符、tail" class="headerlink" title="10. echo、重定向符、tail"></a>10. echo、重定向符、tail</h3><p>​    <strong>通过echo命令可以在命令行内输出指定内容，有点像print方法</strong></p>
 <p>​    语法：<code>echo 输出内容</code></p>
 <ul>
 <li>注意：复杂内容可以用<code>&quot;&quot;</code>包围</li>
@@ -735,7 +735,7 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
 <li>-f，表示持续跟踪，任何其他人变动文件内容都会被追踪到，并在你的电脑显示变动内容，<code>ctrl+c</code>结束跟踪</li>
 <li>-n 数字，表示查看尾部多少行，不填默认10行 </li>
 </ul>
-<h3 id="12-vi编辑器"><a href="#12-vi编辑器" class="headerlink" title="12. vi编辑器"></a>12. vi编辑器</h3><p>​    vi/vim是Linux中最经典的文本编辑器，<strong>vi是命令行下对文本文件进行编辑的最佳选择</strong></p>
+<h3 id="11-vi编辑器"><a href="#11-vi编辑器" class="headerlink" title="11. vi编辑器"></a>11. vi编辑器</h3><p>​    vi/vim是Linux中最经典的文本编辑器，<strong>vi是命令行下对文本文件进行编辑的最佳选择</strong></p>
 <p>​    vim是vi的加强版，兼容vi所有指令，不仅可以编辑文本，而且还具有shell程序编辑的功能，可以不同颜色的字体来辨别语法的正确性。</p>
 <h5 id="vi-vim编辑器的三种工作模式"><a href="#vi-vim编辑器的三种工作模式" class="headerlink" title="vi\vim编辑器的三种工作模式"></a>vi\vim编辑器的三种工作模式</h5><ul>
 <li><p>命令模式</p>
