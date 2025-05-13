@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux01-Linux基础命令, Rain">
+    <meta name="keywords" content="Linux02-Linux系统的权限设置, Rain">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Linux01-Linux基础命令 | Rain</title>
+    <title>Linux02-Linux系统的权限设置 | Rain</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Linux01-Linux基础命令</h1>
+                    <h1 class="description center-align post-title">Linux02-Linux系统的权限设置</h1>
                 </div>
             </div>
         </div>
@@ -457,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2025-05-11
+                    2025-05-13
                 </div>
                 
 
@@ -481,277 +481,172 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1-Linux的目录结构"><a href="#1-Linux的目录结构" class="headerlink" title="1. Linux的目录结构"></a>1. Linux的目录结构</h3><p>​    Linux的目录结构是一个树型结构</p>
-<p>​    windows系统可以拥有多个盘符，如C盘、D盘、E盘，C、D、E分别为根目录，Linux没有盘符这个概念，只有一个根目录<code>/</code>，所有文件都在其下</p>
-<h5 id="目录结构图"><a href="#目录结构图" class="headerlink" title="目录结构图"></a>目录结构图</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pELBtVx"><img src="https://s21.ax1x.com/2025/05/08/pELBtVx.png" alt="Linux文件系统"></a></p>
-<h5 id="各目录的作用"><a href="#各目录的作用" class="headerlink" title="各目录的作用"></a>各目录的作用</h5><p>​    目录前面加/表示在根目录下的该文件夹</p>
-<table>
-<thead>
-<tr>
-<th>目录</th>
-<th>说明</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>/</td>
-<td>根目录</td>
-<td>根目录是整个文件系统的起点，所有其他目录和文件都位于根目录之下。</td>
-</tr>
-<tr>
-<td>/home</td>
-<td>家目录</td>
-<td>每个用户的个人目录都位于这个目录下，通常以用户名命名。例如，用户<code>john</code>的主目录路径为<code>/home/john</code>。</td>
-</tr>
-<tr>
-<td>/root</td>
-<td>root用户的家目录</td>
-<td>保存root用户的个人数据</td>
-</tr>
-<tr>
-<td>/boot</td>
-<td>引导文件所在目录</td>
-<td>保存系统启动时所需的各种文件</td>
-</tr>
-<tr>
-<td>/usr</td>
-<td>User System Resources的简写，说法不唯一</td>
-<td>存放用户可用的软件和程序文件，也包括了一些共享的数据和库文件。</td>
-</tr>
-<tr>
-<td>/bin</td>
-<td>binary的简写</td>
-<td>存放系统的基本命令（如ls、cp等）和其余可执行文件。</td>
-</tr>
-<tr>
-<td>/sbin</td>
-<td>system binary的简写</td>
-<td>存放系统管理和维护方面的二进制文件。</td>
-</tr>
-<tr>
-<td>/etc</td>
-<td>etcetera的简写</td>
-<td>存放系统的配置文件，包括各种程序的配置文件和系统的全局配置文件。</td>
-</tr>
-<tr>
-<td>/var</td>
-<td>variable的简写</td>
-<td>存放系统运行时产生的可变数据，如日志文件、数据库文件等。</td>
-</tr>
-<tr>
-<td>/opt</td>
-<td>optional的简写</td>
-<td>存放一些可选的软件包，通常由用户自行安装。</td>
-</tr>
-<tr>
-<td>/tmp</td>
-<td>temporary的简写</td>
-<td>存放临时文件，系统会定期清理该目录</td>
-</tr>
-</tbody></table>
-<h3 id="2-Linux命令入门"><a href="#2-Linux命令入门" class="headerlink" title="2. Linux命令入门"></a>2. Linux命令入门</h3><p>​    <strong>Linux命令本体是一个个二进制可执行程序和Windows系统中的.exe文件是一个意思</strong></p>
-<h4 id="1-Linux命令基础格式"><a href="#1-Linux命令基础格式" class="headerlink" title="(1) Linux命令基础格式"></a>(1) Linux命令基础格式</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFvqWjS"><img src="https://s21.ax1x.com/2024/04/15/pFvqWjS.png" alt="Linux命令基础格式"></a></p>
-<h4 id="2-ls命令入门"><a href="#2-ls命令入门" class="headerlink" title="(2) ls命令入门"></a>(2) ls命令入门</h4><p>​    ls命令的作用：列出目录下的内容</p>
-<p>​    语法细节：<code>ls [-a -l -h] [Linux路径]</code></p>
-<p>​    直接使用ls命令本体表示：以平铺形式，列出当前工作目录下的内容</p>
-<h4 id="3-HOME目录和工作目录"><a href="#3-HOME目录和工作目录" class="headerlink" title="(3) HOME目录和工作目录"></a>(3) HOME目录和工作目录</h4><p>​    home目录如下图所示：</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFvLw80"><img src="https://s21.ax1x.com/2024/04/15/pFvLw80.png" alt="HOME目录"></a></p>
-<p>​    Linux命令行在执行命令时，需要一个工作目录，打开命令行程序(终端)默认设置工作目录在用户的HOME目录</p>
-<h4 id="4-ls名称的参数和选项的使用"><a href="#4-ls名称的参数和选项的使用" class="headerlink" title="(4) ls名称的参数和选项的使用"></a>(4) ls名称的参数和选项的使用</h4><ul>
-<li>当ls不使用参数，表示列出当前工作目录的内容</li>
-<li>当使用参数，ls命令的参数表示指定一个Linux路径，列出指定路径的内容</li>
-</ul>
-<h5 id="ls命令的可以使用选项"><a href="#ls命令的可以使用选项" class="headerlink" title="ls命令的可以使用选项"></a>ls命令的可以使用选项</h5><ul>
-<li>-a选项，表示：all的意思，即列出全部文件(包含隐藏的文件/文件夹)</li>
-<li>-l选项，表示：以列表(竖向排列)的形式展示内容，并展示更多信息</li>
-<li>-h选项，表示：以易于阅读的形式，列出文件大小，如K、M、G；-h选项必须搭配-l选项使用</li>
-</ul>
-<h5 id="ls命令选项的组合使用"><a href="#ls命令选项的组合使用" class="headerlink" title="ls命令选项的组合使用"></a>ls命令选项的组合使用</h5><p>​    语法中的选项是可以组合使用的，可以多个一起使用，比如学习的-a和-l可以组合应用</p>
-<p>​    写法：</p>
+                <h3 id="1-Linux用户和权限"><a href="#1-Linux用户和权限" class="headerlink" title="1. Linux用户和权限"></a>1. Linux用户和权限</h3><h4 id="1-root用户和普通用户"><a href="#1-root用户和普通用户" class="headerlink" title="(1)root用户和普通用户"></a>(1)root用户和普通用户</h4><h5 id="root用户-超级管理员"><a href="#root用户-超级管理员" class="headerlink" title="root用户(超级管理员)"></a>root用户(超级管理员)</h5><p>​    在Linux系统中，拥有最大权限的账户名为：root(超级管理员)</p>
+<p>​    无论是Windows、MacOS、Linux均采用多用户的管理模式进行权限管理</p>
+<h5 id="普通用户"><a href="#普通用户" class="headerlink" title="普通用户"></a>普通用户</h5><p>​    普通用户的权限，在其HOME目录内是不受限制的，一旦出了HOME目录，大多数地方，普通用户仅有只读和执行权限，无修改权限</p>
+<h5 id="su命令-用于切换到root用户"><a href="#su命令-用于切换到root用户" class="headerlink" title="su命令-用于切换到root用户"></a>su命令-用于切换到root用户</h5><p>​    su来自英文：Switch User</p>
+<p>​    语法：<code>su [-] [用户名]</code></p>
 <ul>
-<li><p>ls -l -a</p>
+<li><code>-</code>符号是可选的表示是否在切换用户后加载环境变量(后续讲解)，建议带上</li>
+<li>用户名，表示要切换的用户，省略表示切换到root</li>
+<li>切换用户后，可以通过exit命令退回上一个用户，也可以使用快捷键：<code>ctrl+d</code></li>
+</ul>
+<h5 id="用户的切换"><a href="#用户的切换" class="headerlink" title="用户的切换"></a>用户的切换</h5><p>​    使用普通用户切换到其他用户需要输入密码，如切换到root用户</p>
+<p>​    使用root用户切换到其他用户，无需密码，可以直接切换</p>
+<h4 id="2-sudo命令的配置与使用"><a href="#2-sudo命令的配置与使用" class="headerlink" title="(2)sudo命令的配置与使用"></a>(2)sudo命令的配置与使用</h4><h5 id="sudo命令-用于为普通命令授权，临时以root身份执行"><a href="#sudo命令-用于为普通命令授权，临时以root身份执行" class="headerlink" title="sudo命令-用于为普通命令授权，临时以root身份执行"></a>sudo命令-用于为普通命令授权，临时以root身份执行</h5><p>​    语法：<code>sudo 其他命令</code>  </p>
+<ul>
+<li>在命令前带上sudo，视为这条命令临时赋予root权限</li>
+<li><strong>并不是所有的用户都有权利使用sudo，我们需要为普通用户配置sudo认证</strong></li>
+</ul>
+<h5 id="为普通用户配置sudo认证"><a href="#为普通用户配置sudo认证" class="headerlink" title="为普通用户配置sudo认证"></a>为普通用户配置sudo认证</h5><p>​    1.切换到root用户，执行visudo命令，会自动通过vi打开：/etc/sudoers</p>
+<p>​    2.在文件的最后添加</p>
+<pre class="line-numbers language-none"><code class="language-none"># sudo 权限配置格式（写在 &#x2F;etc&#x2F;sudoers 或 &#x2F;etc&#x2F;sudoers.d&#x2F; 文件中）：
+
+&lt;用户名&gt;  ALL&#x3D;(ALL)  NOPASSWD: ALL
+# 例：zhangsan  ALL&#x3D;(ALL)  NOPASSWD: ALL
+
+# 解释：
+# &lt;用户名&gt;         → 要配置 sudo 权限的用户
+# ALL             → 适用于所有主机（单机就写 ALL）
+# (ALL)           → 可以切换成所有用户（包括 root）
+# NOPASSWD:       → 使用 sudo 不需要输入密码
+# ALL             → 可以运行所有命令
+
+# 注意事项：
+# - 空格必须正确，不能省略或乱加
+# - 括号必须用英文括号 ()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​    3.最后通过wq保存退出</p>
+<h3 id="2-用户、用户组"><a href="#2-用户、用户组" class="headerlink" title="2. 用户、用户组"></a>2. 用户、用户组</h3><p>​    在Linux系统中注册的个体称为一个<strong>用户</strong>，例如root和atguigu；每个用户都可以属于一个或多个<strong>用户组</strong>，每个文件或者目录都有一个所属用户和一个所属组。</p>
+<h4 id="1-用户和用户组管理"><a href="#1-用户和用户组管理" class="headerlink" title="(1)用户和用户组管理"></a>(1)用户和用户组管理</h4><h5 id="用户组管理-需要root用户执行"><a href="#用户组管理-需要root用户执行" class="headerlink" title="用户组管理(需要root用户执行)"></a>用户组管理(需要root用户执行)</h5><ul>
+<li><p>创建用户组</p>
+<pre class="line-numbers language-none"><code class="language-none">groupadd 用户组名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
-<li><p>ls -al</p>
-</li>
-<li><p>ls -la</p>
-<p>这三种写法都是一样的，表示同时应用-l和-a的功能</p>
+<li><p>删除用户组</p>
+<pre class="line-numbers language-none"><code class="language-none">groupdel 用户组名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
 </li>
 </ul>
-<h3 id="3-目录切换相关命令-cd-pwd"><a href="#3-目录切换相关命令-cd-pwd" class="headerlink" title="3. 目录切换相关命令(cd/pwd)"></a>3. 目录切换相关命令(cd/pwd)</h3><p>​    <strong>可以通过cd命令更改当前所在的工作目录</strong></p>
-<p>​    cd命令来自英文：Change Directory</p>
-<p>​    语法：<code>cd [Linux路径]</code></p>
+<h5 id="用户管理-需要root用户执行"><a href="#用户管理-需要root用户执行" class="headerlink" title="用户管理(需要root用户执行)"></a>用户管理(需要root用户执行)</h5><ul>
+<li><p>创建用户</p>
+<pre class="line-numbers language-none"><code class="language-none">useradd [-g -d] 用户名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <ul>
-<li>cd命令无需选项，只有参数，表示要切换到哪个目录下</li>
-<li>cd命令直接执行，不写参数，表示回到用户的HOME目录</li>
-</ul>
-<p>​    <strong>可以通过pwd命令来查看当前所在的工作目录</strong></p>
-<p>​    pwd命令来自：Print Work Directory</p>
-<p>​    语法：<code>pwd</code></p>
-<ul>
-<li>pwd命令，无选项，无参数，可以直接使用，输入pwd即可</li>
-</ul>
-<h3 id="4-相对路径绝对路径和特殊路径符"><a href="#4-相对路径绝对路径和特殊路径符" class="headerlink" title="4. 相对路径绝对路径和特殊路径符"></a>4. 相对路径绝对路径和特殊路径符</h3><h5 id="cd命令的绝对路径与相对路径"><a href="#cd命令的绝对路径与相对路径" class="headerlink" title="cd命令的绝对路径与相对路径"></a>cd命令的绝对路径与相对路径</h5><ul>
-<li>绝对路径：是以根目录为起点；cd /home/itheima/Desktop</li>
-<li>相对路径：是以当前目录为起点；cd Desktop</li>
-</ul>
-<h5 id="返回上一级的两种方式"><a href="#返回上一级的两种方式" class="headerlink" title="返回上一级的两种方式"></a>返回上一级的两种方式</h5><ul>
-<li>可以直接通过cd回到HOME目录</li>
-<li>也可以通过特殊路径符来完成</li>
-</ul>
-<h5 id="特殊路径符："><a href="#特殊路径符：" class="headerlink" title="特殊路径符："></a>特殊路径符：</h5><ul>
-<li><code>.</code> 表示当前目录，比如cd ./Desktop表示切换到当前目录下的Decktop目录内，和cd Desktop效果一致</li>
-<li><code>..</code> 表示上一级目录，比如：cd.. 即可切换到上一级目录，cd ../..切换到上二级目录，依此类推</li>
-<li>~ 表示HOME目录，比如：cd ~ 即可切换到HOME目录或cd ~/Decktop，切换到HOME内的Desktop目录</li>
-</ul>
-<h3 id="5-创建目录命令-mkdir"><a href="#5-创建目录命令-mkdir" class="headerlink" title="5. 创建目录命令(mkdir)"></a>5. 创建目录命令(mkdir)</h3><p>​    <strong>通过mkdir命令可以创建新的目录(文件夹)</strong></p>
-<p>​    mkdir来自英文：Make Directory</p>
-<p>​    语法：<code>mkdir [-p] Linux路径</code></p>
-<ul>
-<li>参数必填，表示Linux路径即要创建的文件夹的路径，相对路径或绝对路径均可</li>
-<li>-p选项可选，表示自动创建不存在的父目录，适用于创建连续多层级的目录(层级需要表现在Linux路径中)</li>
-</ul>
-<p>​    <strong>注意：创建文件夹需要修改权限，请确保操作均在HOME目录内，不要在HOME外操作涉及到权限问题，HOME外无法成功，后面有权限相关知识</strong></p>
-<h3 id="6-文件操作命令-touch-cat-more"><a href="#6-文件操作命令-touch-cat-more" class="headerlink" title="6. 文件操作命令(touch,cat,more)"></a>6. 文件操作命令(touch,cat,more)</h3><p>​    <strong>通过touch命令创建文件(文件通过新建时的后缀加以区分)</strong></p>
-<p>​    语法：<code>touch Linux路径</code></p>
-<ul>
-<li>touch命令无选项，参数必填，表示要创建的文件路径，相对、绝对、特殊路径符均可使用</li>
-<li>路径后面接<code>文件名.文件类型</code></li>
-</ul>
-<p>​    当前没有学习vi编辑器，无法向文件内编辑内容，所以可以通过图形化界面编辑</p>
-<p>​    <strong>准备好文件内容后，可以通过cat查看内容</strong></p>
-<p>​    语法：<code>cat Linux路径</code></p>
-<ul>
-<li>cat没有选项，只有必填参数，参数表示：被查看的文件路径，相对、绝对、特殊路径符都可以使用</li>
-</ul>
-<p>​    <strong>more命令同样可以查看内容</strong></p>
-<p>​    与cat不同之处是：</p>
-<ul>
-<li>cat是直接将内容全部显示出来</li>
-<li>more支持翻页，如果文件内容过多，可以一页页的展示。通过单机空格翻页</li>
-</ul>
-<p>​    语法：<code>more Linux路径</code></p>
-<ul>
-<li>more没有选项，只有必填参数，参数表示：被查看的文件路径，相对、绝对、特殊路径符都可以使用</li>
-</ul>
-<h3 id="7-文件操作命令-cp，mv，rm"><a href="#7-文件操作命令-cp，mv，rm" class="headerlink" title="7. 文件操作命令(cp，mv，rm)"></a>7. 文件操作命令(cp，mv，rm)</h3><p>​    <strong>通过cp命令可以复制文件或文件夹</strong></p>
-<p>​    cp来自英文：copy</p>
-<p>​    语法：<code>cp [-r] 参数1 参数2</code></p>
-<ul>
-<li>-r选项，可选，复制文件夹使用，表示递归</li>
-<li>参数1，Linux路径/文件夹或文件名，表示被复制的文件或文件夹</li>
-<li>参数2，Linux路径/新的文件夹或文件名，表示要复制去的地方</li>
-</ul>
-<p>​    <strong>通过mv命令可以移动文件、文件夹</strong></p>
-<p>​    mv命令来自英文：move</p>
-<p>​    语法：<code>mv 参数1 参数2</code></p>
-<ul>
-<li>参数1，Linux路径/文件夹或文件名，表示被移动的文件或文件夹</li>
-<li>参数2，Linux路径/[文件夹或文件名]，表示要移动去的地方，如果有改名则对文件进行改名，确保目标存在</li>
-</ul>
-<p>​    <strong>通过rm命令可以删除文件、文件夹</strong></p>
-<p>​    rm命令来自英文：remove</p>
-<p>​    语法：<code>rm[-r -f] 参数1 参数2 ... 参数n</code></p>
-<ul>
-<li>同cp命令一样，-r选项用于删除文件夹</li>
-<li>-f表示force，强制删除(不会弹出提示确认信息)<ul>
-<li>普通用户删除内容不会弹出提示，只有root管理员用户删除内容会有提示，所以root管理员需要使用-f</li>
-<li>所以一般普通用户用不到-f选项</li>
+<li>-g：指定用户的组，不指定-g，会在创建用户时同时创建一个同名组并将用户自动加入，指定-g时组需要已经存在</li>
+<li>-d：指定用户HOME路径，不指定HOME目录默认在：/home/用户名</li>
 </ul>
 </li>
-<li>参数1、参数2、… 、参数N表示要删除的文件或文件夹路径，按照空格隔开</li>
-</ul>
-<p>​    **rm命令支持通配符<code>*</code> ，用来做模糊匹配。符号<code>*</code> 表示通配符，即匹配任意内容(包含空)**，示例：</p>
+<li><p>删除用户</p>
+<pre class="line-numbers language-none"><code class="language-none">userdel[-r] 用户名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <ul>
-<li><code>test*</code>，表示匹配任何以test开头的内容</li>
-<li><code>*test</code>，表示匹配任何以test结尾的内容</li>
-<li><code>*test*</code>，表示匹配任何包含test的内容</li>
+<li>-r：删除用户的HOME目录。不使用-r在删除用户时，HOME目录保留</li>
 </ul>
-<p>​    <strong>注意：普通用户使用su - root，密码是锁屏密码进入成为超级管理员，超级管理员使用exit退出成为普通用户</strong></p>
-<p>​    rm是非常危险的命令当成为root管理员的使用不要执行<code>rm -rf /</code>或者<code>rm -rf /*</code>，效果等于Windows上执行C盘格式化</p>
-<h3 id="8-查找命令-which、find"><a href="#8-查找命令-which、find" class="headerlink" title="8. 查找命令(which、find)"></a>8. 查找命令(which、find)</h3><p>​    <strong>通过which命令可以查看所使用的一系列命令的程序文件存放在哪里</strong></p>
-<p>​    语法：<code>which 要查找的命令名</code></p>
-<p>​    <strong>通过find命令可以搜索指定的文件</strong></p>
-<p>​    find类似与Windows图形化界面中的搜索，如下图所示：</p>
-<p><img src="https://pic.imgdb.cn/item/666192885e6d1bfa05dd7170.png" alt="Windows搜索"></p>
-<h5 id="1-按文件名查找"><a href="#1-按文件名查找" class="headerlink" title="1.按文件名查找"></a>1.按文件名查找</h5><p>​    语法：<code>find 起始路径 -name &quot;被查找文件名&quot;</code></p>
-<p>​    注意：<strong>起始路径表示从什么路径下开始搜索</strong>，为了能在整个系统完成搜索，可以进入root获取最大权限，<strong>被查找文件名支持使用通配符<code>*</code>来做模糊查询</strong></p>
-<h5 id="2-按文件大小查找"><a href="#2-按文件大小查找" class="headerlink" title="2.按文件大小查找"></a>2.按文件大小查找</h5><p>​    语法：find 起始路径 -size +|-n[kMG]</p>
+</li>
+<li><p>查看用户所属组</p>
+<pre class="line-numbers language-none"><code class="language-none">id [用户名]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <ul>
-<li>+、-表示大于和小于</li>
-<li>n表示大小数字</li>
-<li>kMG表示大小单位，k(小写字母)表示kb，M表示MB，G表示GB</li>
+<li>用户名：被查看的用户名，不提供则查看自身</li>
+</ul>
+</li>
+<li><p>修改用户所属组</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;将指定用户加入指定用户组
+usermod -aG 用户组 用户名
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+</li>
+</ul>
+<h4 id="2-getent命令"><a href="#2-getent命令" class="headerlink" title="(2)getent命令"></a>(2)getent命令</h4><h5 id="getent命令-查看当前系统中有那些用户"><a href="#getent命令-查看当前系统中有那些用户" class="headerlink" title="getent命令-查看当前系统中有那些用户"></a>getent命令-查看当前系统中有那些用户</h5><p>​    语法：<code>getent passwd</code></p>
+<p>​    返回的信息有七份，分别是：</p>
+<p>​    用户名：密码(x)：用户ID：组ID：描述信息(无用)：HOME目录：执行终端(默认bash)</p>
+<h5 id="getent命令-查看当前系统中有那些用户组"><a href="#getent命令-查看当前系统中有那些用户组" class="headerlink" title="getent命令-查看当前系统中有那些用户组"></a>getent命令-查看当前系统中有那些用户组</h5><p>​    语法：<code>getent group</code></p>
+<p>​    返回信息有三份，分别为：</p>
+<p>​    组名称：组认证(x)：组ID</p>
+<h3 id="3-文件权限"><a href="#3-文件权限" class="headerlink" title="3. 文件权限"></a>3. 文件权限</h3><h4 id="1-查看文件权限信息"><a href="#1-查看文件权限信息" class="headerlink" title="(1)查看文件权限信息"></a>(1)查看文件权限信息</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pkh6DyQ"><img src="https://s21.ax1x.com/2024/07/11/pkh6DyQ.png" alt="查看文件权限信息"></a></p>
+<h5 id="权限细节"><a href="#权限细节" class="headerlink" title="权限细节"></a>权限细节</h5><p>​    注意：三个权限有冲突的话取并集</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pkh6LY6"><img src="https://s21.ax1x.com/2024/07/11/pkh6LY6.png" alt="权限细节"></a></p>
+<h5 id="rwx的含义"><a href="#rwx的含义" class="headerlink" title="rwx的含义"></a>rwx的含义</h5><ul>
+<li>r ：表示读取权限（read）</li>
+<li>w ：表示写入权限（write）</li>
+<li>x ：表示执行权限（execute）</li>
+</ul>
+<h5 id="针对文件和文件夹，rwx-的含义有细微区别："><a href="#针对文件和文件夹，rwx-的含义有细微区别：" class="headerlink" title="针对文件和文件夹，rwx 的含义有细微区别："></a>针对文件和文件夹，rwx 的含义有细微区别：</h5><ol>
+<li><code>r</code> 权限</li>
+</ol>
+<ul>
+<li>对文件：可以查看文件内容</li>
+<li>对文件夹：可以查看文件夹内的文件列表（如 <code>ls</code> 命令）</li>
+</ul>
+<ol start="2">
+<li><code>w</code> 权限</li>
+</ol>
+<ul>
+<li>对文件：可以修改该文件内容</li>
+<li>对文件夹：可以在文件夹内创建、删除、重命名文件等操作</li>
+</ul>
+<ol start="3">
+<li><code>x</code> 权限</li>
+</ol>
+<ul>
+<li>对文件：可以将该文件作为程序执行</li>
+<li>对文件夹：可以进入该目录（<code>cd</code> 进入）</li>
+</ul>
+<h4 id="2-chmod-权限信息的修改"><a href="#2-chmod-权限信息的修改" class="headerlink" title="(2)chmod-权限信息的修改"></a>(2)chmod-权限信息的修改</h4><p>​    通过chmod命令可以修改文件、文件夹的权限信息</p>
+<p>​    <strong>注意：只有文件、文件夹的所属用户或root用户可以修改</strong></p>
+<p>​    语法：<code>chmod [-R] 权限 文件或文件夹</code></p>
+<ul>
+<li>-R：对文件夹内的全部内容应用同样的操作</li>
+<li>权限：[u/g/o/a]=[r/w/x]<ul>
+<li>u：user </li>
+<li>g：group</li>
+<li>o：order</li>
+<li>a：all</li>
+</ul>
+</li>
 </ul>
 <p>​    示例：</p>
 <ul>
-<li>查找小于10KB文件：find / -size -10k</li>
-<li>查找大于100MB文件：find / -size +100M</li>
-<li>查找大于1GB的文件：find / -size +1G</li>
+<li>chmod u=rwx,g=rx,o=x  hello.txt，将文件权限修改为：rwxr-x–x<ul>
+<li>其中：u表示user所属用户权限，g表示group组权限，o表示other其他用户权限</li>
 </ul>
-<h3 id="9-grep、wc和管道符"><a href="#9-grep、wc和管道符" class="headerlink" title="9. grep、wc和管道符"></a>9. grep、wc和管道符</h3><p>​    <strong>通过grep命令可以从文件中通过关键字过滤文件行，有结果会将包含关键字的行在黑窗口输出</strong></p>
-<p>​    语法：<code>grep [-n] 关键字 文件路径</code></p>
-<ul>
-<li>-n，可选，表示在结果中显示匹配的行的行号</li>
-<li>关键字，必填，表示过滤的关键字，带有空格或其他特殊符号，建议使用<code>&quot;&quot;</code>将关键字包围起来</li>
-<li>文件路径，必填，表示要过滤内容的文件路径，可用管道符内容输入</li>
-</ul>
-<p>​    </p>
-<p>​    <strong>通过wc命令可以统计文件的行数、单词数量等</strong></p>
-<p>​    语法：<code>wc [-c -m -l -w] 文件路径</code></p>
-<ul>
-<li>-c，统计bytes数量</li>
-<li>-m，统计字符数量</li>
-<li>-l，统计行数</li>
-<li>-w，统计单词数量</li>
-<li>文件路径，被统计的文件，可用管道符内容输入</li>
-</ul>
-<p>​    <strong>管道符：|</strong></p>
-<p>​    管道符的含义：将管道符左边命令的结果，作为右边命令的输入，如下图所示</p>
-<p><img src="https://pic.imgdb.cn/item/6665a1155e6d1bfa05e3b1aa.png" alt="图示"></p>
-<p>​    注意：所有在黑窗口打印内容的命令都可以和管道符搭配使用，如ls等</p>
-<h3 id="10-echo、重定向符、tail"><a href="#10-echo、重定向符、tail" class="headerlink" title="10. echo、重定向符、tail"></a>10. echo、重定向符、tail</h3><p>​    <strong>通过echo命令可以在命令行内输出指定内容，有点像print方法</strong></p>
-<p>​    语法：<code>echo 输出内容</code></p>
-<ul>
-<li>注意：复杂内容可以用<code>&quot;&quot;</code>包围</li>
-</ul>
-<p>​    通过反引号``` `(通常称为飘号)包围内容，被包围的内容会被当做命令执行，而非普通字符</p>
-<pre class="line-numbers language-Linux" data-language="Linux"><code class="language-Linux">如：echo &#96;pwd&#96;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<p>​    <strong>重定向符：<code>&gt;</code>和<code>&gt;&gt;</code></strong></p>
-<ul>
-<li><code>&gt;</code>：将左侧命令的结果，覆盖写入到符号右侧指定的文件中</li>
-<li><code>&gt;&gt;</code>：将左侧命令的结果，追加写入到符号右侧指定的文件中</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">echo &quot;hello&quot; &gt; test.txt    &#x2F;&#x2F;文件内容被覆盖为hello
-echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加写入world<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-
-
-<p>​    <strong>通过tail命令可以查看文件尾部内容（后10行），用于跟踪文件的最新更改</strong></p>
-<p>​    语法：<code>tail [-f -n 数字] Linux路径/文件名</code></p>
-<ul>
-<li>Linux路径，表示被跟踪文件的路径</li>
-<li>-f，表示持续跟踪，任何其他人变动文件内容都会被追踪到，并在你的电脑显示变动内容，<code>ctrl+c</code>结束跟踪</li>
-<li>-n 数字，表示查看尾部多少行，不填默认10行 </li>
-</ul>
-<h3 id="11-vi编辑器"><a href="#11-vi编辑器" class="headerlink" title="11. vi编辑器"></a>11. vi编辑器</h3><p>​    vi/vim是Linux中最经典的文本编辑器，<strong>vi是命令行下对文本文件进行编辑的最佳选择</strong></p>
-<p>​    vim是vi的加强版，兼容vi所有指令，不仅可以编辑文本，而且还具有shell程序编辑的功能，可以不同颜色的字体来辨别语法的正确性。</p>
-<h5 id="vi-vim编辑器的三种工作模式"><a href="#vi-vim编辑器的三种工作模式" class="headerlink" title="vi\vim编辑器的三种工作模式"></a>vi\vim编辑器的三种工作模式</h5><ul>
-<li><p>命令模式</p>
-<p>命令模式下，所敲的按键编辑器都理解为命令，以命令驱动执行不同的功能，此模式下，不能自由进行文本编辑，通过<code>/文本</code>，可以搜索到文本内容</p>
 </li>
-<li><p>输入模式</p>
-<p>也叫编辑模式、插入模式，此模式下，可以对文件内容进行自由编辑</p>
-</li>
-<li><p>底线命令模式</p>
-<p>以<code>:</code>为开始，用于文件的保存和退出</p>
-</li>
+<li>chmod -R u=rwx,g=rx,o=x test，将文件夹test以及文件夹内全部内容权限设置为：rwxr-x–x</li>
 </ul>
-<h5 id="三种工作模式图示"><a href="#三种工作模式图示" class="headerlink" title="三种工作模式图示"></a>三种工作模式图示</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pkUce1J"><img src="https://s21.ax1x.com/2024/06/11/pkUce1J.png" alt="vi\vim三种工作模式"></a></p>
-<h5 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h5><p>​    vi 文件路径</p>
-<p>​    <strong>vim 文件路径</strong></p>
-<p>​    因为vim兼容vi所有功能，推荐使用vim</p>
+<p>​    除了上述写法，Linux也提供简化的写法，使用数字来代表，第一位数字表示用户权限，第二位表示用户组权限，第三位表示其他用户权限。</p>
+<p>​    数字细节如下：</p>
+<ul>
+<li>0：无任何权限，即—</li>
+<li>1：仅有x权限，即–x</li>
+<li>2：仅有w权限，即-w-</li>
+<li>3：有w和x权限，即-wx</li>
+<li>4：仅有r权限，即r–</li>
+<li>5：有r和x权限，即r-x</li>
+<li>6：有r和w权限，即rw-</li>
+<li>7：有全部权限，即rwx</li>
+</ul>
+<p>​    所以上述例子的chmod u=rwx,g=rx,o=x  hello.txt可以用数字表示为chmod 751  hello.txt</p>
+<p>​    方便的记法可以记为：r记为4，w记为2，x记为1，需要时相加即可</p>
+<h4 id="3-chown-文件、文件夹的所属用户和用户组的修改"><a href="#3-chown-文件、文件夹的所属用户和用户组的修改" class="headerlink" title="(3)chown-文件、文件夹的所属用户和用户组的修改"></a>(3)chown-文件、文件夹的所属用户和用户组的修改</h4><p>​    通过chown命令可以修改文件、文件夹的所属用户和用户组</p>
+<p>​    <strong>注意：普通用户无法修改所属为其他用户或组，所以此命令只适用于root用户执行</strong></p>
+<p>​    语法：<code>chown [-R] [用户] [:] [用户组] 文件或文件夹</code></p>
+<ul>
+<li>-R，同chmod，对文件夹内全部内容应用相同规则</li>
+<li>用户，修改所属用户</li>
+<li>用户组，修改所属用户组</li>
+<li>:，用于分隔用户和用户组</li>
+</ul>
+<p>​    示例：</p>
+<ul>
+<li>chown root hello.txt，将hello.txt所属用户修改为root</li>
+<li>chown :root hello.txt，将hello.txt所属用户组修改为root</li>
+<li>chown root:rain hello.txt，将hello.txt所属用户修改为root，用户组修改为rain</li>
+<li>chown -R root test，将文件夹test的所属用户修改为root并对文件夹内全部内容应用同样规则</li>
+</ul>
 
                 
             </div>
@@ -778,7 +673,7 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2025/05/11/Linux01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/">http://example.com/2025/05/11/Linux01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</a>
+                    <a href="http://example.com/2025/05/13/Linux02-Linux%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/">http://example.com/2025/05/13/Linux02-Linux%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -861,9 +756,10 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2025/05/13/Linux02-Linux%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/">
                     <div class="card-image">
@@ -881,9 +777,9 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-05-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-05-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -892,6 +788,7 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -910,13 +807,13 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2025/05/03/%E8%AF%AD%E9%9B%8001-MybatisPlus/">
+                <a href="/2025/05/11/Linux01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="语雀01-MybatisPlus.md">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Linux01-Linux基础命令">
                         
-                        <span class="card-title">语雀01-MybatisPlus.md</span>
+                        <span class="card-title">Linux01-Linux基础命令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -927,7 +824,7 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-05-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-05-11
                             </span>
                         <span class="publish-author">
                             
@@ -940,8 +837,8 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%AF%AD%E9%9B%80/">
-                        <span class="chip bg-color">语雀</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
