@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux01-Linux基础命令, Rain">
+    <meta name="keywords" content="子网与子网掩码和DNS, Rain">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Linux01-Linux基础命令 | Rain</title>
+    <title>子网与子网掩码和DNS | Rain</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Linux01-Linux基础命令</h1>
+                    <h1 class="description center-align post-title">子网与子网掩码和DNS</h1>
                 </div>
             </div>
         </div>
@@ -441,8 +441,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux/">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                                <span class="chip bg-color">计算机网络</span>
                             </a>
                         
                     </div>
@@ -457,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2025-05-11
+                    2025-05-17
                 </div>
                 
 
@@ -481,277 +481,130 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1-Linux的目录结构"><a href="#1-Linux的目录结构" class="headerlink" title="1. Linux的目录结构"></a>1. Linux的目录结构</h3><p>​    Linux的目录结构是一个树型结构</p>
-<p>​    windows系统可以拥有多个盘符，如C盘、D盘、E盘，C、D、E分别为根目录，Linux没有盘符这个概念，只有一个根目录<code>/</code>，所有文件都在其下</p>
-<h5 id="目录结构图"><a href="#目录结构图" class="headerlink" title="目录结构图"></a>目录结构图</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pELBtVx"><img src="https://s21.ax1x.com/2025/05/08/pELBtVx.png" alt="Linux文件系统"></a></p>
-<h5 id="各目录的作用"><a href="#各目录的作用" class="headerlink" title="各目录的作用"></a>各目录的作用</h5><p>​    目录前面加/表示在根目录下的该文件夹</p>
-<table>
+                <h3 id="1-子网（Subnet）"><a href="#1-子网（Subnet）" class="headerlink" title="1. 子网（Subnet）"></a>1. 子网（Subnet）</h3><p>​    子网是大型网络被划分成多个较小网络的结果。划分子网的目的是为了更高效地利用 IP 地址和更灵活地进行网络管理。</p>
+<p>​    <strong>在私有网络（内网）中，子网 IP 是可以自己定的</strong></p>
+<blockquote>
+<p>一个子网就是一个“IP 地址范围”，属于同一个“网络地址”</p>
+</blockquote>
+<h3 id="2-子网掩码（Subnet-Mask）"><a href="#2-子网掩码（Subnet-Mask）" class="headerlink" title="2. 子网掩码（Subnet Mask）"></a>2. 子网掩码（Subnet Mask）</h3><p>​    子网掩码的作用是标识IP 地址中哪些是网络位，哪些是主机位</p>
+<p>​    子网掩码将一个 IP 地址分解成两部分：</p>
+<pre class="line-numbers language-none"><code class="language-none">IP地址 &#x3D; 网络地址 + 主机地址<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>​    <strong>子网掩码与子网IP按位与之后得出网络地址，比较网络地址是否相等即可判断是否同一子网。</strong></p>
+<h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h5><ul>
+<li>32 位的二进制数</li>
+<li>连续的 1 表示网络位，连续的 0 表示主机位</li>
+<li>常见表示形式：<ul>
+<li>点分十进制：<code>255.255.255.0</code></li>
+<li>CIDR 表示法：<code>/24</code>，表示前 24 位是网络位</li>
+</ul>
+</li>
+</ul>
+<h5 id="子网掩码的使用："><a href="#子网掩码的使用：" class="headerlink" title="子网掩码的使用："></a>子网掩码的使用：</h5><ul>
+<li>计算某个 IP 所在的网络地址</li>
+<li>判断两个 IP 是否在同一子网</li>
+<li>划分出多个子网段，方便管理和路由转发</li>
+</ul>
+<h3 id="3-子网划分的经典例子"><a href="#3-子网划分的经典例子" class="headerlink" title="3. 子网划分的经典例子"></a>3. 子网划分的经典例子</h3><h4 id="1-题目："><a href="#1-题目：" class="headerlink" title="(1)题目："></a>(1)题目：</h4><p>​    将 <code>192.168.1.0/24</code> 划分为 4 个子网，问每个子网的范围是多少？<code>192.168.1.62</code> 属于哪个子网？</p>
+<h5 id="步骤-1：分析子网数量"><a href="#步骤-1：分析子网数量" class="headerlink" title="步骤 1：分析子网数量"></a>步骤 1：分析子网数量</h5><ul>
+<li>原始：<code>/24</code> → 主机位 8 位，可容纳 2⁸ = 256 个地址</li>
+<li>目标：分成 4 个子网 → 需要多用 2 位作为网络位（2² = 4）</li>
+<li>新掩码：<code>/26</code> → 主机位变为 6 位 → 每个子网有 2⁶ = 64 个地址</li>
+</ul>
+<h5 id="步骤-2：列出子网范围（每个步长为-64）"><a href="#步骤-2：列出子网范围（每个步长为-64）" class="headerlink" title="步骤 2：列出子网范围（每个步长为 64）"></a>步骤 2：列出子网范围（每个步长为 64）</h5><table>
 <thead>
 <tr>
-<th>目录</th>
-<th>说明</th>
-<th>作用</th>
+<th>子网编号</th>
+<th>网络地址</th>
+<th>可用主机范围</th>
+<th>广播地址</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>/</td>
-<td>根目录</td>
-<td>根目录是整个文件系统的起点，所有其他目录和文件都位于根目录之下。</td>
+<td>子网 1</td>
+<td>192.168.1.0</td>
+<td>192.168.1.1 ~ 62</td>
+<td>192.168.1.63</td>
 </tr>
 <tr>
-<td>/home</td>
-<td>家目录</td>
-<td>每个用户的个人目录都位于这个目录下，通常以用户名命名。例如，用户<code>john</code>的主目录路径为<code>/home/john</code>。</td>
+<td>子网 2</td>
+<td>192.168.1.64</td>
+<td>192.168.1.65 ~ 126</td>
+<td>192.168.1.127</td>
 </tr>
 <tr>
-<td>/root</td>
-<td>root用户的家目录</td>
-<td>保存root用户的个人数据</td>
+<td>子网 3</td>
+<td>192.168.1.128</td>
+<td>192.168.1.129 ~ 190</td>
+<td>192.168.1.191</td>
 </tr>
 <tr>
-<td>/boot</td>
-<td>引导文件所在目录</td>
-<td>保存系统启动时所需的各种文件</td>
-</tr>
-<tr>
-<td>/usr</td>
-<td>User System Resources的简写，说法不唯一</td>
-<td>存放用户可用的软件和程序文件，也包括了一些共享的数据和库文件。</td>
-</tr>
-<tr>
-<td>/bin</td>
-<td>binary的简写</td>
-<td>存放系统的基本命令（如ls、cp等）和其余可执行文件。</td>
-</tr>
-<tr>
-<td>/sbin</td>
-<td>system binary的简写</td>
-<td>存放系统管理和维护方面的二进制文件。</td>
-</tr>
-<tr>
-<td>/etc</td>
-<td>etcetera的简写</td>
-<td>存放系统的配置文件，包括各种程序的配置文件和系统的全局配置文件。</td>
-</tr>
-<tr>
-<td>/var</td>
-<td>variable的简写</td>
-<td>存放系统运行时产生的可变数据，如日志文件、数据库文件等。</td>
-</tr>
-<tr>
-<td>/opt</td>
-<td>optional的简写</td>
-<td>存放一些可选的软件包，通常由用户自行安装。</td>
-</tr>
-<tr>
-<td>/tmp</td>
-<td>temporary的简写</td>
-<td>存放临时文件，系统会定期清理该目录</td>
+<td>子网 4</td>
+<td>192.168.1.192</td>
+<td>192.168.1.193 ~ 254</td>
+<td>192.168.1.255</td>
 </tr>
 </tbody></table>
-<h3 id="2-Linux命令入门"><a href="#2-Linux命令入门" class="headerlink" title="2. Linux命令入门"></a>2. Linux命令入门</h3><p>​    <strong>Linux命令本体是一个个二进制可执行程序和Windows系统中的.exe文件是一个意思</strong></p>
-<h4 id="1-Linux命令基础格式"><a href="#1-Linux命令基础格式" class="headerlink" title="(1) Linux命令基础格式"></a>(1) Linux命令基础格式</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFvqWjS"><img src="https://s21.ax1x.com/2024/04/15/pFvqWjS.png" alt="Linux命令基础格式"></a></p>
-<h4 id="2-ls命令入门"><a href="#2-ls命令入门" class="headerlink" title="(2) ls命令入门"></a>(2) ls命令入门</h4><p>​    ls命令的作用：列出目录下的内容</p>
-<p>​    语法细节：<code>ls [-a -l -h] [Linux路径]</code></p>
-<p>​    直接使用ls命令本体表示：以平铺形式，列出当前工作目录下的内容</p>
-<h4 id="3-HOME目录和工作目录"><a href="#3-HOME目录和工作目录" class="headerlink" title="(3) HOME目录和工作目录"></a>(3) HOME目录和工作目录</h4><p>​    home目录如下图所示：</p>
-<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFvLw80"><img src="https://s21.ax1x.com/2024/04/15/pFvLw80.png" alt="HOME目录"></a></p>
-<p>​    Linux命令行在执行命令时，需要一个工作目录，打开命令行程序(终端)默认设置工作目录在用户的HOME目录</p>
-<h4 id="4-ls名称的参数和选项的使用"><a href="#4-ls名称的参数和选项的使用" class="headerlink" title="(4) ls名称的参数和选项的使用"></a>(4) ls名称的参数和选项的使用</h4><ul>
-<li>当ls不使用参数，表示列出当前工作目录的内容</li>
-<li>当使用参数，ls命令的参数表示指定一个Linux路径，列出指定路径的内容</li>
-</ul>
-<h5 id="ls命令的可以使用选项"><a href="#ls命令的可以使用选项" class="headerlink" title="ls命令的可以使用选项"></a>ls命令的可以使用选项</h5><ul>
-<li>-a选项，表示：all的意思，即列出全部文件(包含隐藏的文件/文件夹)</li>
-<li>-l选项，表示：以列表(竖向排列)的形式展示内容，并展示更多信息</li>
-<li>-h选项，表示：以易于阅读的形式，列出文件大小，如K、M、G；-h选项必须搭配-l选项使用</li>
-</ul>
-<h5 id="ls命令选项的组合使用"><a href="#ls命令选项的组合使用" class="headerlink" title="ls命令选项的组合使用"></a>ls命令选项的组合使用</h5><p>​    语法中的选项是可以组合使用的，可以多个一起使用，比如学习的-a和-l可以组合应用</p>
-<p>​    写法：</p>
+<h5 id="步骤-3：判断-IP-是否属于某个子网"><a href="#步骤-3：判断-IP-是否属于某个子网" class="headerlink" title="步骤 3：判断 IP 是否属于某个子网"></a>步骤 3：判断 IP 是否属于某个子网</h5><p>查找 <code>192.168.1.62</code> 属于哪个子网？</p>
 <ul>
-<li><p>ls -l -a</p>
-</li>
-<li><p>ls -al</p>
-</li>
-<li><p>ls -la</p>
-<p>这三种写法都是一样的，表示同时应用-l和-a的功能</p>
-</li>
+<li>它在范围 <code>192.168.1.1 ~ 62</code> 中</li>
+<li>✅ 所以它属于子网 1，即 <code>192.168.1.0/26</code></li>
 </ul>
-<h3 id="3-目录切换相关命令-cd-pwd"><a href="#3-目录切换相关命令-cd-pwd" class="headerlink" title="3. 目录切换相关命令(cd/pwd)"></a>3. 目录切换相关命令(cd/pwd)</h3><p>​    <strong>可以通过cd命令更改当前所在的工作目录</strong></p>
-<p>​    cd命令来自英文：Change Directory</p>
-<p>​    语法：<code>cd [Linux路径]</code></p>
-<ul>
-<li>cd命令无需选项，只有参数，表示要切换到哪个目录下</li>
-<li>cd命令直接执行，不写参数，表示回到用户的HOME目录</li>
-</ul>
-<p>​    <strong>可以通过pwd命令来查看当前所在的工作目录</strong></p>
-<p>​    pwd命令来自：Print Work Directory</p>
-<p>​    语法：<code>pwd</code></p>
-<ul>
-<li>pwd命令，无选项，无参数，可以直接使用，输入pwd即可</li>
-</ul>
-<h3 id="4-相对路径绝对路径和特殊路径符"><a href="#4-相对路径绝对路径和特殊路径符" class="headerlink" title="4. 相对路径绝对路径和特殊路径符"></a>4. 相对路径绝对路径和特殊路径符</h3><h5 id="cd命令的绝对路径与相对路径"><a href="#cd命令的绝对路径与相对路径" class="headerlink" title="cd命令的绝对路径与相对路径"></a>cd命令的绝对路径与相对路径</h5><ul>
-<li>绝对路径：是以根目录为起点；cd /home/itheima/Desktop</li>
-<li>相对路径：是以当前目录为起点；cd Desktop</li>
-</ul>
-<h5 id="返回上一级的两种方式"><a href="#返回上一级的两种方式" class="headerlink" title="返回上一级的两种方式"></a>返回上一级的两种方式</h5><ul>
-<li>可以直接通过cd回到HOME目录</li>
-<li>也可以通过特殊路径符来完成</li>
-</ul>
-<h5 id="特殊路径符："><a href="#特殊路径符：" class="headerlink" title="特殊路径符："></a>特殊路径符：</h5><ul>
-<li><code>.</code> 表示当前目录，比如cd ./Desktop表示切换到当前目录下的Decktop目录内，和cd Desktop效果一致</li>
-<li><code>..</code> 表示上一级目录，比如：cd.. 即可切换到上一级目录，cd ../..切换到上二级目录，依此类推</li>
-<li>~ 表示HOME目录，比如：cd ~ 即可切换到HOME目录或cd ~/Decktop，切换到HOME内的Desktop目录</li>
-</ul>
-<h3 id="5-创建目录命令-mkdir"><a href="#5-创建目录命令-mkdir" class="headerlink" title="5. 创建目录命令(mkdir)"></a>5. 创建目录命令(mkdir)</h3><p>​    <strong>通过mkdir命令可以创建新的目录(文件夹)</strong></p>
-<p>​    mkdir来自英文：Make Directory</p>
-<p>​    语法：<code>mkdir [-p] Linux路径</code></p>
-<ul>
-<li>参数必填，表示Linux路径即要创建的文件夹的路径，相对路径或绝对路径均可</li>
-<li>-p选项可选，表示自动创建不存在的父目录，适用于创建连续多层级的目录(层级需要表现在Linux路径中)</li>
-</ul>
-<p>​    <strong>注意：创建文件夹需要修改权限，请确保操作均在HOME目录内，不要在HOME外操作涉及到权限问题，HOME外无法成功，后面有权限相关知识</strong></p>
-<h3 id="6-文件操作命令-touch-cat-more"><a href="#6-文件操作命令-touch-cat-more" class="headerlink" title="6. 文件操作命令(touch,cat,more)"></a>6. 文件操作命令(touch,cat,more)</h3><p>​    <strong>通过touch命令创建文件(文件通过新建时的后缀加以区分)</strong></p>
-<p>​    语法：<code>touch Linux路径</code></p>
-<ul>
-<li>touch命令无选项，参数必填，表示要创建的文件路径，相对、绝对、特殊路径符均可使用</li>
-<li>路径后面接<code>文件名.文件类型</code></li>
-</ul>
-<p>​    当前没有学习vi编辑器，无法向文件内编辑内容，所以可以通过图形化界面编辑</p>
-<p>​    <strong>准备好文件内容后，可以通过cat查看内容</strong></p>
-<p>​    语法：<code>cat Linux路径</code></p>
-<ul>
-<li>cat没有选项，只有必填参数，参数表示：被查看的文件路径，相对、绝对、特殊路径符都可以使用</li>
-</ul>
-<p>​    <strong>more命令同样可以查看内容</strong></p>
-<p>​    与cat不同之处是：</p>
-<ul>
-<li>cat是直接将内容全部显示出来</li>
-<li>more支持翻页，如果文件内容过多，可以一页页的展示。通过单机空格翻页</li>
-</ul>
-<p>​    语法：<code>more Linux路径</code></p>
-<ul>
-<li>more没有选项，只有必填参数，参数表示：被查看的文件路径，相对、绝对、特殊路径符都可以使用</li>
-</ul>
-<h3 id="7-文件操作命令-cp，mv，rm"><a href="#7-文件操作命令-cp，mv，rm" class="headerlink" title="7. 文件操作命令(cp，mv，rm)"></a>7. 文件操作命令(cp，mv，rm)</h3><p>​    <strong>通过cp命令可以复制文件或文件夹</strong></p>
-<p>​    cp来自英文：copy</p>
-<p>​    语法：<code>cp [-r] 参数1 参数2</code></p>
-<ul>
-<li>-r选项，可选，复制文件夹使用，表示递归</li>
-<li>参数1，Linux路径/文件夹或文件名，表示被复制的文件或文件夹</li>
-<li>参数2，Linux路径/新的文件夹或文件名，表示要复制去的地方</li>
-</ul>
-<p>​    <strong>通过mv命令可以移动文件、文件夹</strong></p>
-<p>​    mv命令来自英文：move</p>
-<p>​    语法：<code>mv 参数1 参数2</code></p>
-<ul>
-<li>参数1，Linux路径/文件夹或文件名，表示被移动的文件或文件夹</li>
-<li>参数2，Linux路径/[文件夹或文件名]，表示要移动去的地方，如果有改名则对文件进行改名，确保目标存在</li>
-</ul>
-<p>​    <strong>通过rm命令可以删除文件、文件夹</strong></p>
-<p>​    rm命令来自英文：remove</p>
-<p>​    语法：<code>rm[-r -f] 参数1 参数2 ... 参数n</code></p>
-<ul>
-<li>同cp命令一样，-r选项用于删除文件夹</li>
-<li>-f表示force，强制删除(不会弹出提示确认信息)<ul>
-<li>普通用户删除内容不会弹出提示，只有root管理员用户删除内容会有提示，所以root管理员需要使用-f</li>
-<li>所以一般普通用户用不到-f选项</li>
-</ul>
-</li>
-<li>参数1、参数2、… 、参数N表示要删除的文件或文件夹路径，按照空格隔开</li>
-</ul>
-<p>​    **rm命令支持通配符<code>*</code> ，用来做模糊匹配。符号<code>*</code> 表示通配符，即匹配任意内容(包含空)**，示例：</p>
-<ul>
-<li><code>test*</code>，表示匹配任何以test开头的内容</li>
-<li><code>*test</code>，表示匹配任何以test结尾的内容</li>
-<li><code>*test*</code>，表示匹配任何包含test的内容</li>
-</ul>
-<p>​    <strong>注意：普通用户使用su - root，密码是锁屏密码进入成为超级管理员，超级管理员使用exit退出成为普通用户</strong></p>
-<p>​    rm是非常危险的命令当成为root管理员的使用不要执行<code>rm -rf /</code>或者<code>rm -rf /*</code>，效果等于Windows上执行C盘格式化</p>
-<h3 id="8-查找命令-which、find"><a href="#8-查找命令-which、find" class="headerlink" title="8. 查找命令(which、find)"></a>8. 查找命令(which、find)</h3><p>​    <strong>通过which命令可以查看所使用的一系列命令的程序文件存放在哪里</strong></p>
-<p>​    语法：<code>which 要查找的命令名</code></p>
-<p>​    <strong>通过find命令可以搜索指定的文件</strong></p>
-<p>​    find类似与Windows图形化界面中的搜索，如下图所示：</p>
-<p><img src="https://pic.imgdb.cn/item/666192885e6d1bfa05dd7170.png" alt="Windows搜索"></p>
-<h5 id="1-按文件名查找"><a href="#1-按文件名查找" class="headerlink" title="1.按文件名查找"></a>1.按文件名查找</h5><p>​    语法：<code>find 起始路径 -name &quot;被查找文件名&quot;</code></p>
-<p>​    注意：<strong>起始路径表示从什么路径下开始搜索</strong>，为了能在整个系统完成搜索，可以进入root获取最大权限，<strong>被查找文件名支持使用通配符<code>*</code>来做模糊查询</strong></p>
-<h5 id="2-按文件大小查找"><a href="#2-按文件大小查找" class="headerlink" title="2.按文件大小查找"></a>2.按文件大小查找</h5><p>​    语法：find 起始路径 -size +|-n[kMG]</p>
-<ul>
-<li>+、-表示大于和小于</li>
-<li>n表示大小数字</li>
-<li>kMG表示大小单位，k(小写字母)表示kb，M表示MB，G表示GB</li>
-</ul>
-<p>​    示例：</p>
-<ul>
-<li>查找小于10KB文件：find / -size -10k</li>
-<li>查找大于100MB文件：find / -size +100M</li>
-<li>查找大于1GB的文件：find / -size +1G</li>
-</ul>
-<h3 id="9-grep、wc和管道符"><a href="#9-grep、wc和管道符" class="headerlink" title="9. grep、wc和管道符"></a>9. grep、wc和管道符</h3><p>​    <strong>通过grep命令可以从文件中通过关键字过滤文件行，有结果会将包含关键字的行在黑窗口输出</strong></p>
-<p>​    语法：<code>grep [-n] 关键字 文件路径</code></p>
-<ul>
-<li>-n，可选，表示在结果中显示匹配的行的行号</li>
-<li>关键字，必填，表示过滤的关键字，带有空格或其他特殊符号，建议使用<code>&quot;&quot;</code>将关键字包围起来</li>
-<li>文件路径，必填，表示要过滤内容的文件路径，可用管道符内容输入</li>
-</ul>
-<p>​    </p>
-<p>​    <strong>通过wc命令可以统计文件的行数、单词数量等</strong></p>
-<p>​    语法：<code>wc [-c -m -l -w] 文件路径</code></p>
-<ul>
-<li>-c，统计bytes数量</li>
-<li>-m，统计字符数量</li>
-<li>-l，统计行数</li>
-<li>-w，统计单词数量</li>
-<li>文件路径，被统计的文件，可用管道符内容输入</li>
-</ul>
-<p>​    <strong>管道符：|</strong></p>
-<p>​    管道符的含义：将管道符左边命令的结果，作为右边命令的输入，如下图所示</p>
-<p><img src="https://pic.imgdb.cn/item/6665a1155e6d1bfa05e3b1aa.png" alt="图示"></p>
-<p>​    注意：所有在黑窗口打印内容的命令都可以和管道符搭配使用，如ls等</p>
-<h3 id="10-echo、重定向符、tail"><a href="#10-echo、重定向符、tail" class="headerlink" title="10. echo、重定向符、tail"></a>10. echo、重定向符、tail</h3><p>​    <strong>通过echo命令可以在命令行内输出指定内容，有点像print方法</strong></p>
-<p>​    语法：<code>echo 输出内容</code></p>
-<ul>
-<li>注意：复杂内容可以用<code>&quot;&quot;</code>包围</li>
-</ul>
-<p>​    通过反引号``` `(通常称为飘号)包围内容，被包围的内容会被当做命令执行，而非普通字符</p>
-<pre class="line-numbers language-Linux" data-language="Linux"><code class="language-Linux">如：echo &#96;pwd&#96;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="2-用二进制演示子网划分（按位与）"><a href="#2-用二进制演示子网划分（按位与）" class="headerlink" title="(2)用二进制演示子网划分（按位与）"></a>(2)用二进制演示子网划分（按位与）</h4><p>IP1：192.168.1.62  </p>
+<p>子网掩码：255.255.255.192（即 <code>/26</code>）</p>
+<p>转成二进制：</p>
+<pre class="line-numbers language-none"><code class="language-none">IP       : 11000000.10101000.00000001.00111110
+子网掩码 : 11111111.11111111.11111111.11000000
+按位与结果:
+         &#x3D; 11000000.10101000.00000001.00000000
+         &#x3D; 192.168.1.0 （这是网络地址）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>再看另一个 IP，例如：192.168.1.100：</p>
+<pre class="line-numbers language-none"><code class="language-none">IP       : 11000000.10101000.00000001.01100100
+掩码     : 11111111.11111111.11111111.11000000
+结果     : 11000000.10101000.00000001.01000000
+         &#x3D; 192.168.1.64<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<p>​    <strong>重定向符：<code>&gt;</code>和<code>&gt;&gt;</code></strong></p>
-<ul>
-<li><code>&gt;</code>：将左侧命令的结果，覆盖写入到符号右侧指定的文件中</li>
-<li><code>&gt;&gt;</code>：将左侧命令的结果，追加写入到符号右侧指定的文件中</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">echo &quot;hello&quot; &gt; test.txt    &#x2F;&#x2F;文件内容被覆盖为hello
-echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加写入world<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h5 id="判断是否同一网段的口诀"><a href="#判断是否同一网段的口诀" class="headerlink" title="判断是否同一网段的口诀"></a>判断是否同一网段的口诀</h5><pre class="line-numbers language-none"><code class="language-none">IP1 &amp; 掩码 &#x3D;&#x3D; IP2 &amp; 掩码 → 同网段<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
-<p>​    <strong>通过tail命令可以查看文件尾部内容（后10行），用于跟踪文件的最新更改</strong></p>
-<p>​    语法：<code>tail [-f -n 数字] Linux路径/文件名</code></p>
-<ul>
-<li>Linux路径，表示被跟踪文件的路径</li>
-<li>-f，表示持续跟踪，任何其他人变动文件内容都会被追踪到，并在你的电脑显示变动内容，<code>ctrl+c</code>结束跟踪</li>
-<li>-n 数字，表示查看尾部多少行，不填默认10行 </li>
-</ul>
-<h3 id="11-vi编辑器"><a href="#11-vi编辑器" class="headerlink" title="11. vi编辑器"></a>11. vi编辑器</h3><p>​    vi/vim是Linux中最经典的文本编辑器，<strong>vi是命令行下对文本文件进行编辑的最佳选择</strong></p>
-<p>​    vim是vi的加强版，兼容vi所有指令，不仅可以编辑文本，而且还具有shell程序编辑的功能，可以不同颜色的字体来辨别语法的正确性。</p>
-<h5 id="vi-vim编辑器的三种工作模式"><a href="#vi-vim编辑器的三种工作模式" class="headerlink" title="vi\vim编辑器的三种工作模式"></a>vi\vim编辑器的三种工作模式</h5><ul>
-<li><p>命令模式</p>
-<p>命令模式下，所敲的按键编辑器都理解为命令，以命令驱动执行不同的功能，此模式下，不能自由进行文本编辑，通过<code>/文本</code>，可以搜索到文本内容</p>
-</li>
-<li><p>输入模式</p>
-<p>也叫编辑模式、插入模式，此模式下，可以对文件内容进行自由编辑</p>
-</li>
-<li><p>底线命令模式</p>
-<p>以<code>:</code>为开始，用于文件的保存和退出</p>
-</li>
-</ul>
-<h5 id="三种工作模式图示"><a href="#三种工作模式图示" class="headerlink" title="三种工作模式图示"></a>三种工作模式图示</h5><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pkUce1J"><img src="https://s21.ax1x.com/2024/06/11/pkUce1J.png" alt="vi\vim三种工作模式"></a></p>
-<h5 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h5><p>​    vi 文件路径</p>
-<p>​    <strong>vim 文件路径</strong></p>
-<p>​    因为vim兼容vi所有功能，推荐使用vim</p>
+<h2 id="4-DNS-与-hosts-区别"><a href="#4-DNS-与-hosts-区别" class="headerlink" title="4. DNS 与 hosts 区别"></a>4. DNS 与 hosts 区别</h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>hosts（本地）</th>
+<th>DNS（网络）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>本质</td>
+<td>本地静态 IP 域名映射文件</td>
+<td>分布式域名解析系统</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>手动指定 IP</td>
+<td>自动解析域名</td>
+</tr>
+<tr>
+<td>优先级</td>
+<td>高，系统先查 hosts</td>
+<td>后查 DNS</td>
+</tr>
+<tr>
+<td>控制权</td>
+<td>本地用户控制</td>
+<td>域名所有者控制</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>你可以把 DNS 理解为“云端大电话簿”，hosts 是你“本地私人通讯录”</p>
+</blockquote>
 
                 
             </div>
@@ -778,7 +631,7 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2025/05/11/Linux01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/">http://example.com/2025/05/11/Linux01-Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/</a>
+                    <a href="http://example.com/2025/05/17/%E5%AD%90%E7%BD%91%E4%B8%8E%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E5%92%8CDNS/">http://example.com/2025/05/17/%E5%AD%90%E7%BD%91%E4%B8%8E%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E5%92%8CDNS/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -816,8 +669,8 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                                    <span class="chip bg-color">计算机网络</span>
                                 </a>
                             
                         </div>
@@ -861,9 +714,56 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2025/05/17/%E5%AD%90%E7%BD%91%E4%B8%8E%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E5%92%8CDNS/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="子网与子网掩码和DNS">
+                        
+                        <span class="card-title">子网与子网掩码和DNS</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-05-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            拾雨
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">计算机网络</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2025/05/13/Linux02-Linux%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE/">
                     <div class="card-image">
@@ -881,9 +781,9 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-05-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-05-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -897,51 +797,6 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
                     
                     <a href="/tags/Linux/">
                         <span class="chip bg-color">Linux</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2025/05/03/%E8%AF%AD%E9%9B%8001-MybatisPlus/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="语雀01-MybatisPlus.md">
-                        
-                        <span class="card-title">语雀01-MybatisPlus.md</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-05-03
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            拾雨
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E8%AF%AD%E9%9B%80/">
-                        <span class="chip bg-color">语雀</span>
                     </a>
                     
                 </div>
