@@ -1,0 +1,1480 @@
+<!DOCTYPE HTML>
+<html lang="zh-&#39;CN&#39;">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Linux03-Linux系统高级配置及相关命令, Rain">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Linux03-Linux系统高级配置及相关命令 | Rain</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/Rain-Nature/Rain-Nature.github.io@master/medias/bg.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Rain</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Rain</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Linux03-Linux系统高级配置及相关命令</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2025-05-18
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="1-Linux终端的快捷操作"><a href="#1-Linux终端的快捷操作" class="headerlink" title="1. Linux终端的快捷操作"></a>1. Linux终端的快捷操作</h3><h4 id="1-强制停止（ctrl-c）"><a href="#1-强制停止（ctrl-c）" class="headerlink" title="(1) 强制停止（ctrl+c）"></a>(1) 强制停止（ctrl+c）</h4><ul>
+<li>用于强制停止某些卡住的命令</li>
+<li>退出当前命令的输入</li>
+</ul>
+<h4 id="2-退出或登出（ctrl-d）"><a href="#2-退出或登出（ctrl-d）" class="headerlink" title="(2) 退出或登出（ctrl+d）"></a>(2) 退出或登出（ctrl+d）</h4><ul>
+<li>退出账户的登录(如：root用户)</li>
+<li>退出编译器(注意：不能退出vi/vim)</li>
+</ul>
+<h4 id="3-光标移动快捷键"><a href="#3-光标移动快捷键" class="headerlink" title="(3) 光标移动快捷键"></a>(3) 光标移动快捷键</h4><ul>
+<li>ctrl+a，跳到命令开头</li>
+<li>ctrl+e，跳到命令结尾</li>
+<li>ctrl+键盘左键，向左跳一个单词</li>
+<li>ctrl+键盘右键，向右跳一个单词</li>
+</ul>
+<h4 id="4-清屏"><a href="#4-清屏" class="headerlink" title="(4) 清屏"></a>(4) 清屏</h4><ul>
+<li>通过快捷键ctrl+l，可以清空终端内容</li>
+<li>通过命令clear也可以得到同样效果</li>
+</ul>
+<h3 id="2-Linux的软件安装"><a href="#2-Linux的软件安装" class="headerlink" title="2. Linux的软件安装"></a>2. Linux的软件安装</h3><p>​    在软件安装中CentOS系统和Ubuntu是使用不同的包管理器</p>
+<h4 id="1-CentOS的软件安装"><a href="#1-CentOS的软件安装" class="headerlink" title="(1)CentOS的软件安装"></a>(1)CentOS的软件安装</h4><p>​    yum：PRM包软件管理器，用于自动化安装配置Linux软件，并可以自动解决依赖问题，类似于Windows的微软商店</p>
+<p>​    <strong>使用yum命令可以在CentOS的Linux环境下安装程序</strong></p>
+<p>​    语法：<code>yum [-y] [install | remove | search] 软件名称</code></p>
+<ul>
+<li>-y：自动确认，无需手动确认安装或卸载过程</li>
+<li>install：安装</li>
+<li>remove：卸载</li>
+<li>search：搜索网上有无这个软件</li>
+</ul>
+<p>​    注意：</p>
+<ol>
+<li>yum命令需要root权限，可以su切换到root，或使用sudo提取</li>
+<li>yum命令需要联网</li>
+</ol>
+<h4 id="2-Ubuntu的软件安装"><a href="#2-Ubuntu的软件安装" class="headerlink" title="(2)Ubuntu的软件安装"></a>(2)Ubuntu的软件安装</h4><p>​    <strong>使用apt命令可以在Ubuntu的Linux环境下安装程序</strong></p>
+<p>​    语法：<code>apt [-y] [install | remove | search] 软件名称</code></p>
+<p>​    用法和yum一致，注意事项也一致</p>
+<h3 id="3-Linux中服务的启动和关闭"><a href="#3-Linux中服务的启动和关闭" class="headerlink" title="3. Linux中服务的启动和关闭"></a>3. Linux中服务的启动和关闭</h3><p>​    Linux系统很多软件(内置或第三方)均支持使用systemctl命令控制：启动、停止、开机自启</p>
+<p>​    <strong>能够被systemctl管理的软件，一般被称为：服务</strong></p>
+<p>​    语法：<code>systemctl start | stop | status | enable | disable 服务名(内置、第三方)</code></p>
+<ul>
+<li>start：启动</li>
+<li>stop：关闭</li>
+<li>status：查看状态</li>
+<li>enable：开启开机自启</li>
+<li>disable：关闭开机自启</li>
+</ul>
+<h5 id="部分系统内置的服务-名-："><a href="#部分系统内置的服务-名-：" class="headerlink" title="部分系统内置的服务(名)："></a>部分系统内置的服务(名)：</h5><ul>
+<li>NetworkManager：主网络服务</li>
+<li>network：副网络服务</li>
+<li>firewalld：防火墙服务</li>
+<li>sshd，ssh服务：FinalShell远程登录Linux使用的服务</li>
+</ul>
+<p>​    <strong>注意：部分软件安装后没有自动集成到systemctl中，需要手动添加</strong></p>
+<h3 id="4-IP地址和主机名"><a href="#4-IP地址和主机名" class="headerlink" title="4. IP地址和主机名"></a>4. IP地址和主机名</h3><h4 id="1-IP地址"><a href="#1-IP地址" class="headerlink" title="(1)IP地址"></a>(1)IP地址</h4><p>​    每一台联网的电脑都会有一个地址，用于和其他计算机进行通讯</p>
+<p>​    IP地址主要有2个版本，V4版本和V6版本(V6很少用)</p>
+<p>​    IPv4版本的地址格式是：a.b.c.d，其中abcd表示0~255的数字，如192.168.88.101就是一个标准的IP地址</p>
+<p>​    <strong>可以通过命令：ifconfig，查看本机的ip地址，如无法使用ifconfig命令，可以安装：yum -y install net-tools</strong></p>
+<h5 id="特殊IP地址"><a href="#特殊IP地址" class="headerlink" title="特殊IP地址"></a>特殊IP地址</h5><ul>
+<li>127.0.0.1，这个IP地址用于指代本机</li>
+<li>0.0.0.0<ul>
+<li>可以用于指代本机</li>
+<li>可以在端口绑定中用来确定绑定关系</li>
+<li>在一些IP地址限制中，表示所有IP的意思，如放行规则设置为0.0.0.0，表示允许任意IP访问</li>
+</ul>
+</li>
+</ul>
+<p>​    Ubuntu的系统可能不会自动获取IP地址，使用以下命令手动获取</p>
+<blockquote>
+<p>sudo dhclient ens33</p>
+</blockquote>
+<h4 id="2-主机名"><a href="#2-主机名" class="headerlink" title="(2)主机名"></a>(2)主机名</h4><p>​    每一台电脑除了对外联络地址(IP地址)以外，也可以有一个名字，称为主机名</p>
+<p>​    无论是Windows或Linux系统，都可以给系统设置主机名</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pkoNpFO"><img src="https://s21.ax1x.com/2024/07/18/pkoNpFO.png" alt="主机名的查看"></a></p>
+<h5 id="在Linux中修改主机名"><a href="#在Linux中修改主机名" class="headerlink" title="在Linux中修改主机名"></a>在Linux中修改主机名</h5><ul>
+<li>查看主机名使用命令：<code>hostname</code></li>
+<li>修改主机名使用命令：<code>hostnamectl set-hostname 新主机名</code></li>
+</ul>
+<h3 id="5-Linux的远程ssh连接"><a href="#5-Linux的远程ssh连接" class="headerlink" title="5. Linux的远程ssh连接"></a>5. Linux的远程ssh连接</h3><p>​    知道IP地址和端口，配置了Linux的ssh连接（默认打开）后，就可以实现ssh远程连接</p>
+<h4 id="1-域名解析"><a href="#1-域名解析" class="headerlink" title="(1)域名解析"></a>(1)域名解析</h4><p>​    IP地址非常难记，事实上，我们一直都是通过字符化的地址去访问服务器，很少指定IP地址</p>
+<p>​    <strong>例如：在浏览器输入<code>www.baidu.com</code>，会打开百度的网址，我们称为域名</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pkTJzLt"><img src="https://s21.ax1x.com/2024/07/19/pkTJzLt.png" alt="访问流程图"></a></p>
+<p>​    注意：因为域名解析是先查本机再联网去查所以可以进行如下操作：<br>​    可以通过修改Windows系统的host文件，添加虚拟机Linux的IP和主机名，这样FinalShell可以不需要IP地址而通过主机名连接</p>
+<h4 id="2-配置主机名映射（windows系统）（可选）"><a href="#2-配置主机名映射（windows系统）（可选）" class="headerlink" title="(2)配置主机名映射（windows系统）（可选）"></a>(2)配置主机名映射（windows系统）（可选）</h4><p>​    Windows的修改</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pkTYsld"><img src="https://s21.ax1x.com/2024/07/20/pkTYsld.png" alt="位置"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pkTY6OI"><img src="https://s21.ax1x.com/2024/07/20/pkTY6OI.png" alt="修改内容"></a></p>
+<p>​    FinalShell中需要的修改，主机位置由ip地址改为刚刚配置的主机名centos</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pkTY4fg"><img src="https://s21.ax1x.com/2024/07/20/pkTY4fg.png" alt="把IP改为主机名"></a></p>
+<h4 id="3-Linux系统固定IP地址-内网IP固定-（需要在NAT模式）"><a href="#3-Linux系统固定IP地址-内网IP固定-（需要在NAT模式）" class="headerlink" title="(3)Linux系统固定IP地址(内网IP固定)（需要在NAT模式）"></a>(3)Linux系统固定IP地址(内网IP固定)（需要在NAT模式）</h4><p>​    NAT模式下，虚拟机的IP地址，默认情况下是由虚拟DHCP服务自动分配的，虚拟机的IP地址不固定，这对于SSH远程访问也不友好，所以通常情况下，我们不使用虚拟DHCP服务，而是手动为虚拟机配置静态的IP地址。具体操作如下</p>
+<p>​    <code>以下操作需要以root用户操作</code></p>
+<ol>
+<li><p>确定网络配置文件</p>
+<p>在终端输入如下命令<code>ifconfig</code>命令，查看当前的网络接口，内容如下</p>
+<pre class="line-numbers language-none"><code class="language-none">ens33: flags&#x3D;4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 192.168.10.100  netmask 255.255.255.0  broadcast 192.168.10.255
+        inet6 fe80::5fdd:f01e:a4fb:966  prefixlen 64  scopeid 0x20&lt;link&gt;
+        ether 00:0c:29:fc:a3:fe  txqueuelen 1000  (Ethernet)
+        RX packets 1526  bytes 136998 (133.7 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1907  bytes 136735 (133.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags&#x3D;73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 68  bytes 5916 (5.7 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 68  bytes 5916 (5.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags&#x3D;4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:ea:8a:fb  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其中ens33是目前的以太网接口，故其配置文件为<code>vim /etc/sysconfig/network-scripts/ifcfg-ens33</code>。</p>
+</li>
+<li><p>修改网络配置文件</p>
+<p>打开配置文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># vim /etc/sysconfig/network-scripts/ifcfg-ens33 </span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>内容如下</p>
+<pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token constant">TYPE</span><span class="token attr-value"><span class="token punctuation">=</span>Ethernet</span>
+<span class="token constant">PROXY_METHOD</span><span class="token attr-value"><span class="token punctuation">=</span>none</span>
+<span class="token constant">BROWSER_ONLY</span><span class="token attr-value"><span class="token punctuation">=</span>no</span>
+<span class="token constant">BOOTPROTO</span><span class="token attr-value"><span class="token punctuation">=</span>dhcp</span>
+<span class="token constant">DEFROUTE</span><span class="token attr-value"><span class="token punctuation">=</span>yes</span>
+<span class="token constant">IPV4_FAILURE_FATAL</span><span class="token attr-value"><span class="token punctuation">=</span>no</span>
+<span class="token constant">IPV6INIT</span><span class="token attr-value"><span class="token punctuation">=</span>yes</span>
+<span class="token constant">IPV6_AUTOCONF</span><span class="token attr-value"><span class="token punctuation">=</span>yes</span>
+<span class="token constant">IPV6_DEFROUTE</span><span class="token attr-value"><span class="token punctuation">=</span>yes</span>
+<span class="token constant">IPV6_FAILURE_FATAL</span><span class="token attr-value"><span class="token punctuation">=</span>no</span>
+<span class="token constant">IPV6_ADDR_GEN_MODE</span><span class="token attr-value"><span class="token punctuation">=</span>stable-privacy</span>
+<span class="token constant">NAME</span><span class="token attr-value"><span class="token punctuation">=</span>ens33</span>
+<span class="token constant">UUID</span><span class="token attr-value"><span class="token punctuation">=</span>bf788989-e095-4e58-865a-e6b07248a514</span>
+<span class="token constant">DEVICE</span><span class="token attr-value"><span class="token punctuation">=</span>ens33</span>
+<span class="token constant">ONBOOT</span><span class="token attr-value"><span class="token punctuation">=</span>yes</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>需要修改的内容如下</p>
+<ul>
+<li><p>修改<code>BOOTPROTO</code>参数为<code>static</code></p>
+</li>
+<li><p>修改<code>ONBOOT</code>参数为<code>yes</code></p>
+</li>
+<li><p>增加如下内容</p>
+<pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token comment"># 子网IP</span>
+<span class="token constant">IPADDR</span><span class="token attr-value"><span class="token punctuation">=</span>192.168.10.100</span>
+<span class="token comment"># 子网掩码</span>
+<span class="token constant">NETMASK</span><span class="token attr-value"><span class="token punctuation">=</span>255.255.255.0</span>
+<span class="token comment"># 网关IP</span>
+<span class="token constant">GATEWAY</span><span class="token attr-value"><span class="token punctuation">=</span>192.168.10.2</span>
+<span class="token comment"># DNS在虚拟机中由网关代为转发</span>
+<span class="token constant">DNS1</span><span class="token attr-value"><span class="token punctuation">=</span>192.168.10.2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>注意事项</strong></p>
+<p><code>IPADDR</code>需要位于VMnet8子网IP范围内，<code>GATEWAY</code>需要配置为的NAT服务的网关IP。</p>
+</li>
+</ul>
+</li>
+<li><p>重新启动网络服务</p>
+<p> 在终端执行以下命令，重启network服务</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost ~<span class="token punctuation">]</span><span class="token comment"># systemctl restart network</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>观察网络配置是否生效</p>
+<p>在终端执行<code>ifoconfig</code>命令，观察<code>ens33</code>的网络接口的IP地址是否为前文所配置的<code>IPADDR</code>。</p>
+</li>
+</ol>
+<h3 id="5-服务器连接和文件下载"><a href="#5-服务器连接和文件下载" class="headerlink" title="5. 服务器连接和文件下载"></a>5. 服务器连接和文件下载</h3><h4 id="1-Linux测试服务器连接"><a href="#1-Linux测试服务器连接" class="headerlink" title="(1)Linux测试服务器连接"></a>(1)Linux测试服务器连接</h4><p>​    <strong>通过ping命令可以检查指定的网络服务器是否是可联通状态</strong></p>
+<p>​    语法：<code>ping [-c num] ip或主机名</code></p>
+<ul>
+<li>-c：检查的次数，一般不使用-c选项，将无限次数持续检查</li>
+<li>ip或主机名，被检查的服务器的ip地址或主机名地址</li>
+</ul>
+<h4 id="2-文件下载"><a href="#2-文件下载" class="headerlink" title="(2)文件下载"></a>(2)文件下载</h4><h5 id="wget实现文件下载（更适合下载文件（尤其是大文件或网站镜像））"><a href="#wget实现文件下载（更适合下载文件（尤其是大文件或网站镜像））" class="headerlink" title="wget实现文件下载（更适合下载文件（尤其是大文件或网站镜像））"></a>wget实现文件下载（更适合下载文件（尤其是大文件或网站镜像））</h5><p>​    wget是非交互式的文件下载器</p>
+<p>​    <strong>通过wget命令可以在命令行内下载网络文件</strong></p>
+<p>​    语法：<code>wget [-b] url</code></p>
+<ul>
+<li><p>-b：后台下载，会将日志写入到当前工作目录的wget-log文件</p>
+</li>
+<li><p>url：下载链接</p>
+<p><strong>注意：无论下载是否完成，都会生成要下载的文件，如果下载未完成，请及时清理未完成的不可用文件</strong></p>
+</li>
+</ul>
+<h5 id="curl实现文件下载（更适合调试-HTTP-接口、处理复杂请求）"><a href="#curl实现文件下载（更适合调试-HTTP-接口、处理复杂请求）" class="headerlink" title="curl实现文件下载（更适合调试 HTTP 接口、处理复杂请求）"></a>curl实现文件下载（更适合调试 HTTP 接口、处理复杂请求）</h5><p>​    <strong>通过curl命令可以发送http网络请求(GET、POST等)，可用于：下载(小)文件、获取信息(网页源代码)等</strong></p>
+<p>​    语法：curl [-o] url</p>
+<ul>
+<li>-o：用于下载文件，当url是下载链接时，可以使用此选项保存文件</li>
+<li>url：要发起请求的网络地址</li>
+</ul>
+<h3 id="6-端口与进程管理"><a href="#6-端口与进程管理" class="headerlink" title="6. 端口与进程管理"></a>6. 端口与进程管理</h3><h4 id="1-端口"><a href="#1-端口" class="headerlink" title="(1)端口"></a>(1)端口</h4><p>​    端口是设备与外界通讯交流的出入口。端口可以分为：物理端口和虚拟端口两类</p>
+<ul>
+<li>物理端口：又称为接口，是可见的端口，如USB、HDMI等</li>
+<li>虚拟端口：指计算机内部的端口，是不可见的，是用来操作系统和外部进行交互使用的</li>
+</ul>
+<h5 id="计算机程序之间的通讯原理"><a href="#计算机程序之间的通讯原理" class="headerlink" title="计算机程序之间的通讯原理"></a>计算机程序之间的通讯原理</h5><p>​    通过IP只能锁定计算机，无法锁定具体的程序</p>
+<p>​    通过端口可以锁定计算机上具体的程序，确保程序之间进行沟通</p>
+<p>​    <strong>IP地址相当于小区地址，在小区内可以有许多住户（程序）而门牌号（端口）就是各个住户（程序）的联系地址</strong></p>
+<h5 id="Linux系统的端口范围"><a href="#Linux系统的端口范围" class="headerlink" title="Linux系统的端口范围"></a>Linux系统的端口范围</h5><p>​    Linux系统是一个超大号小区，可以支持65535个端口，这6万多个端口分为3类进行使用</p>
+<ul>
+<li>公认端口：0~1023：通常用于一些系统内置或知名程序的预留使用，如SSH服务的22端口，HTTPS服务的443端口，非特殊需要，不要占用这个范围的端口</li>
+<li>注册端口：1024~49151：通常可以随意使用，用于松散的绑定一些程序\服务</li>
+<li>动态端口：49151~65535：通常不会固定绑定程序，而是当程序对外进行网络链接时(即出口)，用于临时使用</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pk7FoT0"><img src="https://s21.ax1x.com/2024/07/21/pk7FoT0.png" alt="端口的作用(非真实微信)"></a></p>
+<h5 id="端口号的查看"><a href="#端口号的查看" class="headerlink" title="端口号的查看"></a>端口号的查看</h5><p>​    <strong>通过nmap命令可以查看某台机器的哪些端口开着</strong></p>
+<p>​    语法：<code>nmap IP地址</code></p>
+<p>​    注意：nmap命令不是系统自带的需要安装：yum -y install nmap</p>
+<p>​    <strong>通过netstat命令（监听本地机器）可以排查端口被哪个进程占用、本地服务是否监听</strong></p>
+<p>​    语法：<code>netstat -anp | grep 端口(进程)号</code></p>
+<p>​    注意：netstat命令不是系统自带的需要安装：yum -y install net-tools</p>
+<p>​    区别</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>nmap</th>
+<th>netstat</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>作用范围</strong></td>
+<td>扫描“别的机器”或本机的开放端口</td>
+<td>查看“本机”当前网络连接和端口占用情况</td>
+</tr>
+<tr>
+<td><strong>原理</strong></td>
+<td>通过发送网络探测包判断目标 IP 的开放端口（外部扫描）</td>
+<td>查看本地系统内核维护的网络连接表（内部查看）</td>
+</tr>
+<tr>
+<td><strong>用途</strong></td>
+<td>网络安全扫描、端口探测</td>
+<td>排查端口占用、网络连接、查看服务监听情况</td>
+</tr>
+<tr>
+<td><strong>权限要求</strong></td>
+<td>非 root 只能做基础扫描，root 权限下功能更强</td>
+<td>一般也需要 root 才能查看全部进程</td>
+</tr>
+<tr>
+<td><strong>是否显示进程名</strong></td>
+<td>不能直接看到服务名和进程（仅端口）</td>
+<td>能看到进程 PID 和程序名（加 <code>-p</code> 参数）</td>
+</tr>
+</tbody></table>
+<h4 id="2-进程管理"><a href="#2-进程管理" class="headerlink" title="(2)进程管理"></a>(2)进程管理</h4><p>​    程序运行在操作系统中是被操作系统管理的</p>
+<p>​    为管理运行的程序，每个程序在运行的时候，便被操作系统注册为系统中的一个：进程，并会为每一个进程都分配一个独有的：进程ID</p>
+<h5 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h5><p>​    <strong>通过ps命令可以查看Linux系统中的进程信息</strong></p>
+<p>​    语法：<code>ps [-e -f]</code></p>
+<ul>
+<li><p>-e：显示出全部的进程</p>
+</li>
+<li><p>-f：以完全格式化的形式展示信息(展示全部信息)</p>
+<p>固定用法为：<code>ps -ef</code>，列出全部进程的全部信息</p>
+</li>
+</ul>
+<p>​    全部进程的全部信息如下图所示：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pk7e6kn"><img src="https://s21.ax1x.com/2024/07/21/pk7e6kn.png" alt="**进程信息**"></a></p>
+<p>​    上图从左到右依次为：</p>
+<ul>
+<li>UID：进程所属的用户ID</li>
+<li>PID：进程的进程号ID</li>
+<li>PPID：进程的父ID(启动此进程的其他进程)</li>
+<li>C：此进程的CPU占用率(百分比)</li>
+<li>STIME：进程的启动时间</li>
+<li>TTY：启动此进程的终端序号，如显示<code>?</code> ，表示非终端启动</li>
+<li>TIME：进程占用CPU的时间</li>
+<li>CMD：进程对应的名称或启动路径或启动命令</li>
+</ul>
+<h5 id="ps的使用技巧"><a href="#ps的使用技巧" class="headerlink" title="ps的使用技巧"></a>ps的使用技巧</h5><p>​    配合grep可以查看想要查看的进程，例如</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;查看所有的Java进程
+ps -ef | grep java<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="终止进程"><a href="#终止进程" class="headerlink" title="终止进程"></a>终止进程</h5><p>​    在Windows系统中，可以通过任务管理器选择进程，点击结束进程来关闭它</p>
+<p>​    <strong>在Linux系统中，通过kill命令来终止进程</strong></p>
+<p>​    语法：<code>kill [-9] 进程ID</code></p>
+<ul>
+<li>-9：表示强制终止进程，不使用选项会向进程发送信号要求其关闭，但是否关闭要看进程自身的处理机制</li>
+</ul>
+<h3 id="7-主机状态"><a href="#7-主机状态" class="headerlink" title="7. 主机状态"></a>7. 主机状态</h3><h4 id="1-查看系统资源占用"><a href="#1-查看系统资源占用" class="headerlink" title="(1)查看系统资源占用"></a>(1)查看系统资源占用</h4><p>​    <strong>通过top命令查看CPU、内存使用情况，类似Windows系统的任务管理器</strong></p>
+<p>​    语法：<code>top</code></p>
+<p>​    注意：界面默认每5秒刷新一次，按q或ctrl+c退出</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pk7Nfc4"><img src="https://s21.ax1x.com/2024/07/22/pk7Nfc4.png" alt="交互式选项"></a></p>
+<p>​    </p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pk7NhjJ"><img src="https://s21.ax1x.com/2024/07/22/pk7NhjJ.png" alt="非交互式选项"></a></p>
+<h4 id="2-磁盘信息监控"><a href="#2-磁盘信息监控" class="headerlink" title="(2)磁盘信息监控"></a>(2)磁盘信息监控</h4><p>​    <strong>通过df命令可以查看硬盘的使用情况</strong></p>
+<p>​    语法：<code>df [-h]</code></p>
+<ul>
+<li>-h，以更加人性化的单位显示</li>
+</ul>
+<p>​    <strong>通过iostat命令可以查看CPU、磁盘的相关信息</strong></p>
+<p>​    语法：<code>iostat [-x] [num1] [num2]</code></p>
+<ul>
+<li>-x，显示更多信息</li>
+<li>num1，数字，刷新间隔</li>
+<li>num2，数字，刷新几次</li>
+</ul>
+<h4 id="3-网络状态监控"><a href="#3-网络状态监控" class="headerlink" title="(3)网络状态监控"></a>(3)网络状态监控</h4><p>​    <strong>通过sar命令可以查看网络的相关统计(sar命令非常复杂，这里仅简单用于统计网络)</strong></p>
+<p>​    语法：<code>sar -n DEV [num1] [num2]</code></p>
+<ul>
+<li>-n，查看网络</li>
+<li>DEV，查看网络接口</li>
+<li>num1，刷新间隔(不填就查看一次结束)</li>
+<li>num2，查看次数(不填无限次数)</li>
+</ul>
+<h3 id="8-环境变量"><a href="#8-环境变量" class="headerlink" title="8. 环境变量"></a>8. 环境变量</h3><p>​    <strong>通过env命令可以查看当前系统中记录的环境变量</strong></p>
+<p>​    语法：<code>env</code></p>
+<p>​    注意：环境变量是一种KeyValue结构</p>
+<p>​    <strong>使用echo <code>$&#123;Key&#125;</code> 可以直接在命令行输出Value，即<code>$&#123;Key&#125;</code> 可以取到环境变量的值</strong></p>
+<h5 id="Linux环境变量的自行设置"><a href="#Linux环境变量的自行设置" class="headerlink" title="Linux环境变量的自行设置"></a>Linux环境变量的自行设置</h5><ul>
+<li><p>临时设置，语法：<code>export 变量名=变量值</code></p>
+</li>
+<li><p>永久生效</p>
+<ul>
+<li><p>针对当前用户生效，配置在当前用户的：vi ~/.bashrc在文件中加export 变量名=变量值；保存后通过语法：source .bashrc生效</p>
+</li>
+<li><p>针对所有用户生效，配置在系统的：vim /etc/profile 文件中加export 变量名=变量值；保存后通过语法：source /etc/profile生效</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-Linux文件的压缩与解压"><a href="#9-Linux文件的压缩与解压" class="headerlink" title="9. Linux文件的压缩与解压"></a>9. Linux文件的压缩与解压</h3><h4 id="1-常用格式-tar和-gz"><a href="#1-常用格式-tar和-gz" class="headerlink" title="(1)常用格式.tar和.gz"></a>(1)常用格式.tar和.gz</h4><p>​    tar就是打包，gz才是压缩</p>
+<ul>
+<li>.tar，称为tarball，归档文件，即简单的将文件组装到一个.tar的文件内，并没有太多文件体积的减少，仅仅是简单的封装</li>
+<li>.gz，常见的为.tar.gz，gzip压缩文件，即使用gzip压缩算法将文件压缩到一个文件内，可以极大的减少压缩后的体积</li>
+</ul>
+<h5 id="书本语法"><a href="#书本语法" class="headerlink" title="书本语法"></a>书本语法</h5><p>​    针对上述两种格式，使用tar命令均可以进行压缩和解压缩的操作</p>
+<p>​    打包：<code>tar [-c -f] 包名 文件1 文件2 ... 文件N</code></p>
+<p>​    解包：<code>tar [-x -f] 包名 -C 指定目录</code></p>
+<ul>
+<li>-c，创建压缩文件，用于压缩模式</li>
+<li>-v，显示压缩、解压过程，用于查看进度</li>
+<li>-x，解压模式</li>
+<li>-f，要创建的文件，或要解压的文件，-f选项<strong>必须在所有选项中位置处于最后一个</strong></li>
+<li>-z，gzip模式。不使用-z就是普通的tarball格式，**-z选项一般使用时放在选项位第一个**</li>
+<li>-C 指定目录，选择解压的目的地，用于解压模式，**-C要单独在后面列出，和解压所需的其他参数分开**</li>
+</ul>
+<h5 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h5><ol>
+<li><p>压缩的例子：将1.txt，2.txt，3.txt压缩到test.tar文件内</p>
+ <pre class="line-numbers language-none"><code class="language-none">tar -cvf test.tar 1.txt 2.txt 3.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>解压的例子</p>
+<ul>
+<li><p>解压test.tar</p>
+<pre class="line-numbers language-none"><code class="language-none">tar -xvf test.tar<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>解压test.tar到指定目录(/home/rain)</p>
+<pre class="line-numbers language-none"><code class="language-none">tar -xvf test.tar -C &#x2F;home&#x2F;rain&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="2-ZIP格式的压缩和解压"><a href="#2-ZIP格式的压缩和解压" class="headerlink" title="(2)ZIP格式的压缩和解压"></a>(2)ZIP格式的压缩和解压</h4><h5 id="书本语法-1"><a href="#书本语法-1" class="headerlink" title="书本语法"></a>书本语法</h5><ul>
+<li>压缩的语法：<code>zip [-r] xxx.zip 要压缩的文件路径</code><ul>
+<li>-r，参数中有文件夹时使用</li>
+</ul>
+</li>
+<li>解压的语法：<code>unzip xxx.zip [-d 目录]</code><ul>
+<li>-d，指定解压去的目录。用法和上面的-C一样</li>
+</ul>
+</li>
+</ul>
+<h5 id="样例-1"><a href="#样例-1" class="headerlink" title="样例"></a>样例</h5><ol>
+<li><p>压缩的例子：将file1.txt和file2.txt，压缩为first.zip</p>
+ <pre class="line-numbers language-none"><code class="language-none">zip first.zip file1.txt file2.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="2">
+<li><p>解压缩的例子：将first.zip解压到zip目录</p>
+<pre class="line-numbers language-none"><code class="language-none">mkdir zip
+unzip first.zip -d zip&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+</li>
+</ol>
+</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">拾雨</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2025/05/18/Linux03-Linux%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">http://example.com/2025/05/18/Linux03-Linux%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">拾雨</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2025/05/18/Linux03-Linux%E7%B3%BB%E7%BB%9F%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Linux03-Linux系统高级配置及相关命令">
+                        
+                        <span class="card-title">Linux03-Linux系统高级配置及相关命令</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-05-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            拾雨
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/05/17/%E5%AD%90%E7%BD%91%E4%B8%8E%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E5%92%8CDNS/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="子网与子网掩码和DNS">
+                        
+                        <span class="card-title">子网与子网掩码和DNS</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-05-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            拾雨
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">计算机网络</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2025</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">拾雨</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
