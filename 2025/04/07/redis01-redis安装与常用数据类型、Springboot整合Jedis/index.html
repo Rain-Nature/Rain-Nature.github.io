@@ -1025,7 +1025,9 @@ public static String getCode() &#123;
 
 
 
-<h3 id="6-Springboot整合redis"><a href="#6-Springboot整合redis" class="headerlink" title="6. Springboot整合redis"></a>6. Springboot整合redis</h3><h5 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h5><p>​    1.在pom.xml中导入redis依赖以及redis连接池的依赖(这个好像可选不加)</p>
+<h3 id="6-Springboot整合redis"><a href="#6-Springboot整合redis" class="headerlink" title="6. Springboot整合redis"></a>6. Springboot整合redis</h3><h4 id="1-Spring-Data-Redis概述"><a href="#1-Spring-Data-Redis概述" class="headerlink" title="(1)Spring Data Redis概述"></a>(1)Spring Data Redis概述</h4><p>​    <strong>Spring Data Redis</strong> 是Spring大家族中的一个子项目，主要用于Spring程序和Redis的交互。它基于的Redis Java客户端（<a target="_blank" rel="noopener" href="https://github.com/redis/jedis">Jedis</a>和<a target="_blank" rel="noopener" href="https://lettuce.io/">Lettuce</a>）做了抽象，提供了一个统一的编程模型，使得Spring程序与Redis的交互变得十分简单</p>
+<p>​    <strong>Spring Data Redis</strong> 中有一个十分重要的类——<code>RedisTemplate</code>，它封装了与Redis进行的交互的各种方法，我们主要用使用它与Redis进行交互</p>
+<h4 id="2-Spring-Data-Redis快速入门"><a href="#2-Spring-Data-Redis快速入门" class="headerlink" title="(2)Spring Data Redis快速入门"></a>(2)Spring Data Redis快速入门</h4><h5 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h5><p>​    1.在pom.xml中导入redis依赖以及redis连接池的依赖(这个好像可选不加)</p>
 <p>​    2.在application.properties文件中配置redis的配置</p>
 <p>​    3.创建配置类RedisConfig.java，通过配置类来配置redis的高级用法（复杂场景需要：改序列化方式，Redis的高级都需要）</p>
 <p>​    4.在RedisController.java编写redis使用的测试代码</p>
@@ -1138,6 +1140,7 @@ public class RedisConfig extends CachingConfigurerSupport &#123;
 
 
 <p>​    4.在RedisController.java编写redis使用的测试代码</p>
+<p>​    注意：由于<code>spring-boot-starter-data-redis</code>中提供了<code>RedisTemplate</code>的自动配置，所以可以将<code>RedisTemplate</code>直接注入自己的类中</p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;RedisController.java
 
 @RestController
@@ -1155,7 +1158,45 @@ public class RedisController &#123;
 
 
 
-<p>​    </p>
+<h4 id="3-RedisTemplate的常用交互方式"><a href="#3-RedisTemplate的常用交互方式" class="headerlink" title="(3)RedisTemplate的常用交互方式"></a>(3)RedisTemplate的常用交互方式</h4><p>​    根据Redis的数据类型，RedisTemplate对各种交互方法做了分组，以下是常用的几个分组</p>
+<table>
+<thead>
+<tr>
+<th align="left">分组</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>redisTemplate.opsForValue()</code></td>
+<td align="left">操作string类型的方法</td>
+</tr>
+<tr>
+<td align="left"><code>redisTemplate.opsForList()</code></td>
+<td align="left">操作list类型的方法</td>
+</tr>
+<tr>
+<td align="left"><code>redisTemplate.opsForSet()</code></td>
+<td align="left">操作set类型的方法</td>
+</tr>
+<tr>
+<td align="left"><code>redisTemplate.opsForHash()</code></td>
+<td align="left">操作hash类型的方法</td>
+</tr>
+<tr>
+<td align="left"><code>redisTemplate.opsForZSet()</code></td>
+<td align="left">操作zset类型的方法</td>
+</tr>
+<tr>
+<td align="left"><code>redisTemplate</code></td>
+<td align="left">通用方法</td>
+</tr>
+</tbody></table>
+<h4 id="4-RedisTemplate的序列化问题"><a href="#4-RedisTemplate的序列化问题" class="headerlink" title="(4)RedisTemplate的序列化问题"></a>(4)RedisTemplate的序列化问题</h4><h5 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h5><p>​    在Redis中的key和value均是以二进制的形式存储的，因此客户端输入的key和value都会经过序列化之后才发往Redis服务端。而RedisTemplate所使用序列化方式和命令行客户端采用序列化方式不相同，进而导致序列化之后的二进制数据不同，此时就无法互通，即RedisTemplate存入的数据，在Redis客户端中无法正确读取</p>
+<h5 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h5><p>​    通过定义配置类，设置RedisTemplate的序列化方式解决以上问题，偷懒可以使用StringRedisTemplate，直接注入使用即可</p>
+<h5 id="RedisTemplate-和-StringRedisTemplate-的序列化器区别："><a href="#RedisTemplate-和-StringRedisTemplate-的序列化器区别：" class="headerlink" title="RedisTemplate 和 StringRedisTemplate 的序列化器区别："></a>RedisTemplate 和 StringRedisTemplate 的序列化器区别：</h5><ul>
+<li><code>RedisTemplate&lt;Object, Object&gt;</code> 默认使用的是 <strong>JDK 序列化器</strong>，可以存任意类型的对象，但存入的数据是二进制格式，Redis客户端中（使用redis-cli等）不可读，但程序不影响</li>
+<li><code>StringRedisTemplate</code> 是 <code>RedisTemplate&lt;String, String&gt;</code> 的封装，<strong>专门为操作字符串类型的 key 和 value 而设计</strong>，使用的是 <code>StringRedisSerializer</code>，存入的数据是纯字符串格式，Redis客户端中（使用redis-cli等）可读</li>
+</ul>
 
                 
             </div>

@@ -825,15 +825,51 @@ public class UserServiceImpl implements UserService&#123;
 <td align="center">写在Java的配置类上，用于将其他的配置类导入到该配置类</td>
 </tr>
 </tbody></table>
-<h4 id="5-Spring新注解详解"><a href="#5-Spring新注解详解" class="headerlink" title="(5)Spring新注解详解"></a>(5)Spring新注解详解</h4><h5 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h5><p>​    @Configuration用于标识一个类作为配置类，Spring 容器就会自动扫描这个类，并将它作为配置类来处理。配置类是用来定义 Spring 容器中的bean 配置的，这些类通常包含了多个@Bean注解的方法，这些方法会创建并返回Spring 容器中的bean</p>
+<h4 id="5-Spring新注解详解"><a href="#5-Spring新注解详解" class="headerlink" title="(5)Spring新注解详解"></a>(5)Spring新注解详解</h4><h5 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h5><p>​    @Configuration用于标识一个类作为配置类，Spring 容器就会自动扫描这个类，并将它作为配置类来处理。配置类是用来定义 Spring 容器中的bean 配置的，<code>这些类通常包含了多个@Bean注解的方法</code>，这些方法的返回值会交由Spring 容器管理</p>
 <p>样例：@Configuration的使用</p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;SpringConfiguration
 
 &#x2F;&#x2F;标志该类是Spring的核心配置类
 @Configuration
 public class SpringConfiguration&#123;
-	&#x2F;&#x2F;...
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	@Bean
+	&#x2F;&#x2F;方法...
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="面试题：-Configuration和-Component中-Bean的区别"><a href="#面试题：-Configuration和-Component中-Bean的区别" class="headerlink" title="面试题：@Configuration和@Component中@Bean的区别"></a>面试题：@Configuration和@Component中@Bean的区别</h5><p>​    @Configuration中的@Bean方法的返回值直接交给Spring管理（必定单例），而@Component中的Bean是作为普通方法调用，可能造成多例问题</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;情况1：@Configuration，推荐
+@Configuration
+public class MyConfig &#123;
+
+    @Bean
+    public B b() &#123;
+        System.out.println(&quot;new B()&quot;);
+        return new B();
+    &#125;
+
+    @Bean
+    public A a() &#123;
+        return new A(b()); &#x2F;&#x2F; ✅ 实际用的是 Spring 容器中的 B 实例（只 new 一次）
+    &#125;
+&#125;
+
+&#x2F;&#x2F;情况2：@Component，不推荐
+@Component
+public class MyComponent &#123;
+
+    @Bean
+    public B b() &#123;
+        System.out.println(&quot;new B()&quot;);
+        return new B();
+    &#125;
+
+    @Bean
+    public A a() &#123;
+        return new A(b()); &#x2F;&#x2F; ❌ 实际调用方法，会再 new 一个 B()
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
