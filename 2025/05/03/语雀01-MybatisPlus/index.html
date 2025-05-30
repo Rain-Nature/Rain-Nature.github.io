@@ -599,6 +599,7 @@ public class User &#123;
 
 
 <h5 id="d-gt-启动类"><a href="#d-gt-启动类" class="headerlink" title="d&gt;启动类"></a>d&gt;启动类</h5><p>在Spring Boot启动类中添加@MapperScan注解，扫描mapper包，<code>该注解是MybatisPlus提供的，必须添加</code></p>
+<p>​    注意：<code>@MapperScan</code> 注解既可以写在 <strong>Spring Boot 启动类</strong> 上，也可以写在 <strong>配置类</strong> 上。两者的本质作用是一样的：用于告诉 MyBatis 去扫描指定包路径下的 Mapper 接口</p>
 <pre class="line-numbers language-none"><code class="language-none">@SpringBootApplication
 @MapperScan(&quot;com.atguigu.mybatisplus.mapper&quot;)
 public class MybatisplusApplication &#123;
@@ -878,8 +879,274 @@ public void testSelectList()&#123;
 <li>建议如果存在自定义通用 Service 方法的可能，请创建自己的 IBaseService 继承Mybatis-Plus 提供的基类</li>
 <li>官网地址：<a target="_blank" rel="noopener" href="https://baomidou.com/pages/49cc81/#service-crud-%E6%8E%A5%E5%8F%A3">https://baomidou.com/pages/49cc81/#service-crud-%E6%8E%A5%E5%8F%A3</a></li>
 </ul>
-<h5 id="a-gt-IService"><a href="#a-gt-IService" class="headerlink" title="a&gt;IService"></a>a&gt;IService</h5><p>​    MyBatis-Plus中有一个接口 IService和其实现类 ServiceImpl，封装了常见的业务层逻辑</p>
-<p>​    详情查看源码IService和ServiceImpl</p>
+<h5 id="a-gt-IService"><a href="#a-gt-IService" class="headerlink" title="a&gt;IService"></a>a&gt;IService</h5><p>​    MyBatis-Plus中有一个接口 IService和其实现类 ServiceImpl，封装了常见的业务层逻辑，接口如下</p>
+<pre class="line-numbers language-none"><code class="language-none">package com.baomidou.mybatisplus.extension.service;
+
+public interface IService&lt;T&gt; &#123;
+    &#x2F;&#x2F; 默认批处理大小
+    int DEFAULT_BATCH_SIZE &#x3D; 1000;
+
+    &#x2F;&#x2F; 插入一条数据
+    default boolean save(T entity) &#123;
+        return SqlHelper.retBool(this.getBaseMapper().insert(entity));
+    &#125;
+
+    &#x2F;&#x2F; 批量插入（默认批次大小）
+    @Transactional(rollbackFor &#x3D; &#123;Exception.class&#125;)
+    default boolean saveBatch(Collection&lt;T&gt; entityList) &#123;
+        return this.saveBatch(entityList, 1000);
+    &#125;
+
+    &#x2F;&#x2F; 批量插入（自定义批次大小）
+    boolean saveBatch(Collection&lt;T&gt; entityList, int batchSize);
+
+    &#x2F;&#x2F; 批量保存或更新（默认批次大小）
+    @Transactional(rollbackFor &#x3D; &#123;Exception.class&#125;)
+    default boolean saveOrUpdateBatch(Collection&lt;T&gt; entityList) &#123;
+        return this.saveOrUpdateBatch(entityList, 1000);
+    &#125;
+
+    &#x2F;&#x2F; 批量保存或更新（自定义批次大小）
+    boolean saveOrUpdateBatch(Collection&lt;T&gt; entityList, int batchSize);
+
+    &#x2F;&#x2F; 根据主键删除一条记录
+    default boolean removeById(Serializable id) &#123;
+        return SqlHelper.retBool(this.getBaseMapper().deleteById(id));
+    &#125;
+
+    &#x2F;&#x2F; 根据主键删除（带填充功能，暂不支持）
+    default boolean removeById(Serializable id, boolean useFill) &#123;
+        throw new UnsupportedOperationException(&quot;不支持的方法!&quot;);
+    &#125;
+
+    &#x2F;&#x2F; 根据实体主键值删除记录
+    default boolean removeById(T entity) &#123;
+        return SqlHelper.retBool(this.getBaseMapper().deleteById(entity));
+    &#125;
+
+    &#x2F;&#x2F; 根据 Map 条件删除记录
+    default boolean removeByMap(Map&lt;String, Object&gt; columnMap) &#123;
+        Assert.notEmpty(columnMap, &quot;error: columnMap must not be empty&quot;, new Object[0]);
+        return SqlHelper.retBool(this.getBaseMapper().deleteByMap(columnMap));
+    &#125;
+
+    &#x2F;&#x2F; 根据 Wrapper 条件构造器删除记录
+    default boolean remove(Wrapper&lt;T&gt; queryWrapper) &#123;
+        return SqlHelper.retBool(this.getBaseMapper().delete(queryWrapper));
+    &#125;
+
+    &#x2F;&#x2F; 根据主键集合批量删除
+    default boolean removeByIds(Collection&lt;?&gt; list) &#123;
+        return CollectionUtils.isEmpty(list) ? false : SqlHelper.retBool(this.getBaseMapper().deleteBatchIds(list));
+    &#125;
+
+    &#x2F;&#x2F; 批量删除（是否使用填充）
+    @Transactional(rollbackFor &#x3D; &#123;Exception.class&#125;)
+    default boolean removeByIds(Collection&lt;?&gt; list, boolean useFill) &#123;
+        if (CollectionUtils.isEmpty(list)) &#123;
+            return false;
+        &#125; else &#123;
+            return useFill ? this.removeBatchByIds(list, true) : SqlHelper.retBool(this.getBaseMapper().deleteBatchIds(list));
+        &#125;
+    &#125;
+
+    &#x2F;&#x2F; 批量删除（默认批次大小）
+    @Transactional(rollbackFor &#x3D; &#123;Exception.class&#125;)
+    default boolean removeBatchByIds(Collection&lt;?&gt; list) &#123;
+        return this.removeBatchByIds(list, 1000);
+    &#125;
+
+    &#x2F;&#x2F; 批量删除（默认批次+使用填充）
+    @Transactional(rollbackFor &#x3D; &#123;Exception.class&#125;)
+    default boolean removeBatchByIds(Collection&lt;?&gt; list, boolean useFill) &#123;
+        return this.removeBatchByIds(list, 1000, useFill);
+    &#125;
+
+    &#x2F;&#x2F; 批量删除（自定义批次大小）
+    default boolean removeBatchByIds(Collection&lt;?&gt; list, int batchSize) &#123;
+        throw new UnsupportedOperationException(&quot;不支持的方法!&quot;);
+    &#125;
+
+    &#x2F;&#x2F; 批量删除（自定义批次大小 + 填充）
+    default boolean removeBatchByIds(Collection&lt;?&gt; list, int batchSize, boolean useFill) &#123;
+        throw new UnsupportedOperationException(&quot;不支持的方法!&quot;);
+    &#125;
+
+    &#x2F;&#x2F; 根据主键更新记录
+    default boolean updateById(T entity) &#123;
+        return SqlHelper.retBool(this.getBaseMapper().updateById(entity));
+    &#125;
+
+    &#x2F;&#x2F; 使用 Wrapper 条件更新，entity 传 null
+    default boolean update(Wrapper&lt;T&gt; updateWrapper) &#123;
+        return this.update((Object)null, updateWrapper);
+    &#125;
+
+    &#x2F;&#x2F; 条件更新：Wrapper 指定条件，entity 提供更新值
+    default boolean update(T entity, Wrapper&lt;T&gt; updateWrapper) &#123;
+        return SqlHelper.retBool(this.getBaseMapper().update(entity, updateWrapper));
+    &#125;
+
+    &#x2F;&#x2F; 批量更新（默认批次大小）
+    @Transactional(rollbackFor &#x3D; &#123;Exception.class&#125;)
+    default boolean updateBatchById(Collection&lt;T&gt; entityList) &#123;
+        return this.updateBatchById(entityList, 1000);
+    &#125;
+
+    &#x2F;&#x2F; 批量更新（自定义批次大小）
+    boolean updateBatchById(Collection&lt;T&gt; entityList, int batchSize);
+
+    &#x2F;&#x2F; 保存或更新单条记录，传入id为更新，不传id为保存
+    boolean saveOrUpdate(T entity);
+
+    &#x2F;&#x2F; 根据主键查询记录
+    default T getById(Serializable id) &#123;
+        return (T)this.getBaseMapper().selectById(id);
+    &#125;
+
+    &#x2F;&#x2F; 根据主键集合批量查询
+    default List&lt;T&gt; listByIds(Collection&lt;? extends Serializable&gt; idList) &#123;
+        return this.getBaseMapper().selectBatchIds(idList);
+    &#125;
+
+    &#x2F;&#x2F; 根据字段 map 查询
+    default List&lt;T&gt; listByMap(Map&lt;String, Object&gt; columnMap) &#123;
+        return this.getBaseMapper().selectByMap(columnMap);
+    &#125;
+
+    &#x2F;&#x2F; 查询一条记录（默认允许为空）
+    default T getOne(Wrapper&lt;T&gt; queryWrapper) &#123;
+        return (T)this.getOne(queryWrapper, true);
+    &#125;
+
+    &#x2F;&#x2F; 查询一条记录，是否抛异常由参数控制
+    T getOne(Wrapper&lt;T&gt; queryWrapper, boolean throwEx);
+
+    &#x2F;&#x2F; 查询一条记录并返回 Map
+    Map&lt;String, Object&gt; getMap(Wrapper&lt;T&gt; queryWrapper);
+
+    &#x2F;&#x2F; 查询一条记录并通过 mapper 转换返回值
+    &lt;V&gt; V getObj(Wrapper&lt;T&gt; queryWrapper, Function&lt;? super Object, V&gt; mapper);
+
+    &#x2F;&#x2F; 查询总记录数
+    default long count() &#123;
+        return this.count(Wrappers.emptyWrapper());
+    &#125;
+
+    &#x2F;&#x2F; 条件查询总数
+    default long count(Wrapper&lt;T&gt; queryWrapper) &#123;
+        return SqlHelper.retCount(this.getBaseMapper().selectCount(queryWrapper));
+    &#125;
+
+    &#x2F;&#x2F; 条件查询列表
+    default List&lt;T&gt; list(Wrapper&lt;T&gt; queryWrapper) &#123;
+        return this.getBaseMapper().selectList(queryWrapper);
+    &#125;
+
+    &#x2F;&#x2F; 查询所有记录
+    default List&lt;T&gt; list() &#123;
+        return this.list(Wrappers.emptyWrapper());
+    &#125;
+
+    &#x2F;&#x2F; 分页 + 条件查询
+    default &lt;E extends IPage&lt;T&gt;&gt; E page(E page, Wrapper&lt;T&gt; queryWrapper) &#123;
+        return (E)this.getBaseMapper().selectPage(page, queryWrapper);
+    &#125;
+
+    &#x2F;&#x2F; 简单分页查询
+    default &lt;E extends IPage&lt;T&gt;&gt; E page(E page) &#123;
+        return (E)this.page(page, Wrappers.emptyWrapper());
+    &#125;
+
+    &#x2F;&#x2F; 条件查询并返回 Map 列表
+    default List&lt;Map&lt;String, Object&gt;&gt; listMaps(Wrapper&lt;T&gt; queryWrapper) &#123;
+        return this.getBaseMapper().selectMaps(queryWrapper);
+    &#125;
+
+    &#x2F;&#x2F; 查询所有并返回 Map 列表
+    default List&lt;Map&lt;String, Object&gt;&gt; listMaps() &#123;
+        return this.listMaps(Wrappers.emptyWrapper());
+    &#125;
+
+    &#x2F;&#x2F; 查询所有对象
+    default List&lt;Object&gt; listObjs() &#123;
+        return this.listObjs(Function.identity());
+    &#125;
+
+    &#x2F;&#x2F; 查询所有对象并映射
+    default &lt;V&gt; List&lt;V&gt; listObjs(Function&lt;? super Object, V&gt; mapper) &#123;
+        return this.&lt;V&gt;listObjs(Wrappers.emptyWrapper(), mapper);
+    &#125;
+
+    &#x2F;&#x2F; 条件查询对象列表
+    default List&lt;Object&gt; listObjs(Wrapper&lt;T&gt; queryWrapper) &#123;
+        return this.&lt;Object&gt;listObjs(queryWrapper, Function.identity());
+    &#125;
+
+    &#x2F;&#x2F; 条件查询对象并映射
+    default &lt;V&gt; List&lt;V&gt; listObjs(Wrapper&lt;T&gt; queryWrapper, Function&lt;? super Object, V&gt; mapper) &#123;
+        return (List)this.getBaseMapper().selectObjs(queryWrapper).stream().filter(Objects::nonNull).map(mapper).collect(Collectors.toList());
+    &#125;
+
+    &#x2F;&#x2F; 分页查询并返回 Map 列表
+    default &lt;E extends IPage&lt;Map&lt;String, Object&gt;&gt;&gt; E pageMaps(E page, Wrapper&lt;T&gt; queryWrapper) &#123;
+        return (E)this.getBaseMapper().selectMapsPage(page, queryWrapper);
+    &#125;
+
+    &#x2F;&#x2F; 分页 Map 查询（无条件）
+    default &lt;E extends IPage&lt;Map&lt;String, Object&gt;&gt;&gt; E pageMaps(E page) &#123;
+        return (E)this.pageMaps(page, Wrappers.emptyWrapper());
+    &#125;
+
+    &#x2F;&#x2F; 获取底层 Mapper
+    BaseMapper&lt;T&gt; getBaseMapper();
+
+    &#x2F;&#x2F; 获取实体类的 Class 对象
+    Class&lt;T&gt; getEntityClass();
+
+    &#x2F;&#x2F; 返回 Query 链式封装器
+    default QueryChainWrapper&lt;T&gt; query() &#123;
+        return ChainWrappers.queryChain(this.getBaseMapper());
+    &#125;
+
+    &#x2F;&#x2F; 返回 LambdaQuery 链式封装器
+    default LambdaQueryChainWrapper&lt;T&gt; lambdaQuery() &#123;
+        return ChainWrappers.lambdaQueryChain(this.getBaseMapper(), this.getEntityClass());
+    &#125;
+
+    &#x2F;&#x2F; 返回 LambdaQuery 链式封装器，基于实体初始化
+    default LambdaQueryChainWrapper&lt;T&gt; lambdaQuery(T entity) &#123;
+        return ChainWrappers.lambdaQueryChain(this.getBaseMapper(), entity);
+    &#125;
+
+    &#x2F;&#x2F; Kotlin 风格查询封装器
+    default KtQueryChainWrapper&lt;T&gt; ktQuery() &#123;
+        return ChainWrappers.ktQueryChain(this.getBaseMapper(), this.getEntityClass());
+    &#125;
+
+    &#x2F;&#x2F; Kotlin 风格更新封装器
+    default KtUpdateChainWrapper&lt;T&gt; ktUpdate() &#123;
+        return ChainWrappers.ktUpdateChain(this.getBaseMapper(), this.getEntityClass());
+    &#125;
+
+    &#x2F;&#x2F; 普通链式更新封装器
+    default UpdateChainWrapper&lt;T&gt; update() &#123;
+        return ChainWrappers.updateChain(this.getBaseMapper());
+    &#125;
+
+    &#x2F;&#x2F; Lambda 链式更新封装器
+    default LambdaUpdateChainWrapper&lt;T&gt; lambdaUpdate() &#123;
+        return ChainWrappers.lambdaUpdateChain(this.getBaseMapper());
+    &#125;
+
+    &#x2F;&#x2F; 先尝试更新，不成功再插入
+    default boolean saveOrUpdate(T entity, Wrapper&lt;T&gt; updateWrapper) &#123;
+        return this.update(entity, updateWrapper) || this.saveOrUpdate(entity);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h5 id="b-gt-创建Service接口和实现类"><a href="#b-gt-创建Service接口和实现类" class="headerlink" title="b&gt;创建Service接口和实现类"></a>b&gt;创建Service接口和实现类</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;**
  * UserService继承IService模板提供的基础功能
  *&#x2F;
@@ -1039,7 +1306,7 @@ global-config:
 <li>逻辑删除：假删除，将对应数据中代表是否被删除字段的状态修改为“被删除状态”，之后在数据库中仍旧能看到此条数据记录</li>
 <li>使用场景：可以进行数据恢复</li>
 </ul>
-<h5 id="b-gt-实现逻辑删除"><a href="#b-gt-实现逻辑删除" class="headerlink" title="b&gt;实现逻辑删除"></a>b&gt;实现逻辑删除</h5><p>step1： 数据库中创建逻辑删除状态列，设置默认值为 0</p>
+<h5 id="b-gt-实现逻辑删除"><a href="#b-gt-实现逻辑删除" class="headerlink" title="b&gt;实现逻辑删除"></a>b&gt;实现逻辑删除</h5><p>step1： 数据库中创建逻辑删除状态列，需要给<code>设置默认值为 0</code>，不然插入数据后该字段为null则无法查询出该数据</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/pEoKEVS"><img src="https://s21.ax1x.com/2025/04/24/pEoKEVS.png" alt="步骤1"></a></p>
 <p>step2： 实体类中添加逻辑删除属性</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/pEoKZ5Q"><img src="https://s21.ax1x.com/2025/04/24/pEoKZ5Q.png" alt="实体类"></a></p>
@@ -1048,6 +1315,33 @@ global-config:
 <p>​    UPDATE t_user SET is_deleted=1 WHERE id=? AND is_deleted=0</p>
 <p>​    在Service层测试查询功能，被逻辑删除的数据默认不会被查询</p>
 <p>​    SELECT id,username AS name,age,email,is_deleted FROM t_user WHERE is_deleted=0</p>
+<h5 id="注意事项1：关于逻辑删除是否需要配置（被逻辑删除的字段不会被查询）"><a href="#注意事项1：关于逻辑删除是否需要配置（被逻辑删除的字段不会被查询）" class="headerlink" title="注意事项1：关于逻辑删除是否需要配置（被逻辑删除的字段不会被查询）"></a>注意事项1：关于逻辑删除是否需要配置（被逻辑删除的字段不会被查询）</h5><p>MybatisPlus 3.3.x 及以下版本</p>
+<ul>
+<li>默认支持逻辑删除，不需要在 <code>application.yml</code> 配置</li>
+<li>固定：未删除为0，已删除为1，使用 <code>@TableLogic</code> 注解生效</li>
+<li>不支持自定义</li>
+</ul>
+<p>MybatisPlus 3.4.x 及以上版本</p>
+<ul>
+<li><p>官方推荐在 <code>application.yml</code> 中显式配置逻辑删除的取值（非强制）</p>
+</li>
+<li><p>只要你字段值是 0/1且字段上加了 <code>@TableLogic</code>不配置yml也能用，但要自定义删除标识的值，就必须配置，否则无效</p>
+</li>
+<li><p>application.yml配置结构</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;application.yml
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: 要识别的字段名(Java) # 全局逻辑删除的实体字段名(配置后可以不配置@TableLogic注解)，这句非必须
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+</li>
+</ul>
+<h5 id="注意事项2"><a href="#注意事项2" class="headerlink" title="注意事项2"></a>注意事项2</h5><p>​    逻辑删除功能只对Mybatis-Plus自动注入的sql（mybatisPlus提供的API）起效，也就是说，对于手动在<code>Mapper.xml</code>文件配置的sql不会生效，需要单独考虑</p>
 <h3 id="六、条件构造器和常用接口"><a href="#六、条件构造器和常用接口" class="headerlink" title="六、条件构造器和常用接口"></a>六、条件构造器和常用接口</h3><h4 id="1-、wapper介绍"><a href="#1-、wapper介绍" class="headerlink" title="1 、wapper介绍"></a>1 、wapper介绍</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pEoKn8s"><img src="https://s21.ax1x.com/2025/04/24/pEoKn8s.png" alt="wappper"></a></p>
 <ul>
 <li>Wrapper ： 条件构造抽象类，最顶端父类<ul>
@@ -1388,10 +1682,10 @@ public void testPage()&#123;
 
 
 
-<h5 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h5><p>User(id=1, name=Jone, age=18, email= <a href="mailto:&#116;&#x65;&#115;&#x74;&#49;&#64;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#100;&#111;&#x75;&#x2e;&#99;&#111;&#109;">&#116;&#x65;&#115;&#x74;&#49;&#64;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#100;&#111;&#x75;&#x2e;&#99;&#111;&#109;</a>, isDeleted=0) </p>
-<p>User(id=2, name=Jack, age=20, email= <a href="mailto:&#116;&#101;&#x73;&#x74;&#x32;&#64;&#x62;&#x61;&#x6f;&#109;&#x69;&#x64;&#111;&#117;&#46;&#x63;&#111;&#x6d;">&#116;&#101;&#x73;&#x74;&#x32;&#64;&#x62;&#x61;&#x6f;&#109;&#x69;&#x64;&#111;&#117;&#46;&#x63;&#111;&#x6d;</a>, isDeleted=0) </p>
-<p>User(id=3, name=Tom, age=28, email= <a href="mailto:&#116;&#x65;&#115;&#116;&#51;&#x40;&#x62;&#97;&#111;&#109;&#105;&#100;&#111;&#117;&#46;&#99;&#x6f;&#x6d;">&#116;&#x65;&#115;&#116;&#51;&#x40;&#x62;&#97;&#111;&#109;&#105;&#100;&#111;&#117;&#46;&#99;&#x6f;&#x6d;</a>, isDeleted=0) </p>
-<p>User(id=4, name=Sandy, age=21, email= <a href="mailto:&#x74;&#101;&#115;&#116;&#x34;&#x40;&#x62;&#x61;&#x6f;&#109;&#105;&#x64;&#x6f;&#117;&#46;&#99;&#x6f;&#109;">&#x74;&#101;&#115;&#116;&#x34;&#x40;&#x62;&#x61;&#x6f;&#109;&#105;&#x64;&#x6f;&#117;&#46;&#99;&#x6f;&#109;</a>, isDeleted=0) </p>
+<h5 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h5><p>User(id=1, name=Jone, age=18, email= <a href="mailto:&#x74;&#x65;&#115;&#116;&#x31;&#x40;&#98;&#97;&#111;&#x6d;&#x69;&#100;&#x6f;&#x75;&#x2e;&#x63;&#x6f;&#109;">&#x74;&#x65;&#115;&#116;&#x31;&#x40;&#98;&#97;&#111;&#x6d;&#x69;&#100;&#x6f;&#x75;&#x2e;&#x63;&#x6f;&#109;</a>, isDeleted=0) </p>
+<p>User(id=2, name=Jack, age=20, email= <a href="mailto:&#116;&#101;&#115;&#x74;&#50;&#x40;&#x62;&#97;&#x6f;&#x6d;&#105;&#100;&#111;&#117;&#46;&#x63;&#x6f;&#109;">&#116;&#101;&#115;&#x74;&#50;&#x40;&#x62;&#97;&#x6f;&#x6d;&#105;&#100;&#111;&#117;&#46;&#x63;&#x6f;&#109;</a>, isDeleted=0) </p>
+<p>User(id=3, name=Tom, age=28, email= <a href="mailto:&#116;&#101;&#x73;&#x74;&#x33;&#64;&#x62;&#97;&#x6f;&#109;&#105;&#x64;&#111;&#x75;&#x2e;&#x63;&#111;&#x6d;">&#116;&#101;&#x73;&#x74;&#x33;&#64;&#x62;&#97;&#x6f;&#109;&#105;&#x64;&#111;&#x75;&#x2e;&#x63;&#111;&#x6d;</a>, isDeleted=0) </p>
+<p>User(id=4, name=Sandy, age=21, email= <a href="mailto:&#x74;&#x65;&#115;&#x74;&#52;&#64;&#x62;&#97;&#111;&#x6d;&#x69;&#x64;&#111;&#117;&#46;&#x63;&#111;&#x6d;">&#x74;&#x65;&#115;&#x74;&#52;&#64;&#x62;&#97;&#111;&#x6d;&#x69;&#x64;&#111;&#117;&#46;&#x63;&#111;&#x6d;</a>, isDeleted=0) </p>
 <p>User(id=5, name=Billie, age=24, email= test5@ba omidou.com, isDeleted=0) </p>
 <p>当前页：1 每页显示的条数：5 总记录数：17 总页数：4 是否有上一 页：false 是否有下一页：true</p>
 <h4 id="2-、xml自定义分页"><a href="#2-、xml自定义分页" class="headerlink" title="2 、xml自定义分页"></a>2 、xml自定义分页</h4><h5 id="a-gt-UserMapper中定义接口方法"><a href="#a-gt-UserMapper中定义接口方法" class="headerlink" title="a&gt;UserMapper中定义接口方法"></a>a&gt;UserMapper中定义接口方法</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;**
@@ -1431,9 +1725,9 @@ public void testSelectPageVo()&#123;
 
 
 
-<h5 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h5><p>User(id=3, name=Tom, age=28, email= <a href="mailto:&#x74;&#101;&#x73;&#x74;&#x33;&#64;&#98;&#x61;&#x6f;&#109;&#x69;&#100;&#x6f;&#x75;&#46;&#x63;&#x6f;&#x6d;">&#x74;&#101;&#x73;&#x74;&#x33;&#64;&#98;&#x61;&#x6f;&#109;&#x69;&#100;&#x6f;&#x75;&#46;&#x63;&#x6f;&#x6d;</a>, isDeleted=null) </p>
-<p>User(id=4, name=Sandy, age=21, email= <a href="mailto:&#116;&#101;&#115;&#116;&#52;&#x40;&#98;&#97;&#x6f;&#x6d;&#105;&#x64;&#x6f;&#x75;&#46;&#x63;&#111;&#x6d;">&#116;&#101;&#115;&#116;&#52;&#x40;&#98;&#97;&#x6f;&#x6d;&#105;&#x64;&#x6f;&#x75;&#46;&#x63;&#111;&#x6d;</a>, isDeleted=null) </p>
-<p>User(id=5, name=Billie, age=24, email= <a href="mailto:&#116;&#101;&#x73;&#x74;&#x35;&#x40;&#98;&#x61;&#111;&#x6d;&#105;&#100;&#x6f;&#117;&#x2e;&#x63;&#111;&#x6d;">&#116;&#101;&#x73;&#x74;&#x35;&#x40;&#98;&#x61;&#111;&#x6d;&#105;&#100;&#x6f;&#117;&#x2e;&#x63;&#111;&#x6d;</a>, isDeleted=null) </p>
+<h5 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h5><p>User(id=3, name=Tom, age=28, email= <a href="mailto:&#116;&#101;&#x73;&#x74;&#x33;&#x40;&#x62;&#x61;&#x6f;&#109;&#x69;&#100;&#111;&#x75;&#x2e;&#x63;&#x6f;&#x6d;">&#116;&#101;&#x73;&#x74;&#x33;&#x40;&#x62;&#x61;&#x6f;&#109;&#x69;&#100;&#111;&#x75;&#x2e;&#x63;&#x6f;&#x6d;</a>, isDeleted=null) </p>
+<p>User(id=4, name=Sandy, age=21, email= <a href="mailto:&#116;&#x65;&#115;&#116;&#52;&#x40;&#98;&#97;&#x6f;&#x6d;&#105;&#x64;&#x6f;&#117;&#46;&#99;&#x6f;&#109;">&#116;&#x65;&#115;&#116;&#52;&#x40;&#98;&#97;&#x6f;&#x6d;&#105;&#x64;&#x6f;&#117;&#46;&#99;&#x6f;&#109;</a>, isDeleted=null) </p>
+<p>User(id=5, name=Billie, age=24, email= <a href="mailto:&#x74;&#x65;&#115;&#x74;&#x35;&#x40;&#98;&#x61;&#111;&#109;&#x69;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#x6d;">&#x74;&#x65;&#115;&#x74;&#x35;&#x40;&#98;&#x61;&#111;&#109;&#x69;&#x64;&#x6f;&#117;&#46;&#99;&#111;&#x6d;</a>, isDeleted=null) </p>
 <p>User(id=8, name=ybc1, age=21, email=null, isDeleted=null) </p>
 <p>User(id=9, name=ybc2, age=22, email=null, isDeleted=null) </p>
 <p>当前 页：1 每页显示的条数：5 总记录数：12 总页数：3 是否有上一页：false 是否有下一页：true</p>
