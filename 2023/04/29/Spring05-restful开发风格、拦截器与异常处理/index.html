@@ -1119,6 +1119,7 @@ public class UserController &#123;
 </li>
 </ul>
 <h4 id="2-SpringMVC中本类异常处理的注解-ExceptionHandle-异常类的全限定名-class"><a href="#2-SpringMVC中本类异常处理的注解-ExceptionHandle-异常类的全限定名-class" class="headerlink" title="(2)SpringMVC中本类异常处理的注解-@ExceptionHandle(异常类的全限定名.class)"></a>(2)SpringMVC中本类异常处理的注解-@ExceptionHandle(异常类的全限定名.class)</h4><p>​    <code>@ExceptionHandle</code>写在Controller类中的方法上，如果这个Controller类中出现异常，其会自动在本类中找@ExceptionHandle标记的方法（<code>可以是多个</code>），有对应的异常处理则执行对应方法，如果多个能处理则精确的优先</p>
+<p>​    <code>其修饰的方法传入什么异常，就监管什么异常</code></p>
 <h5 id="样例：-ExceptionHandle的使用"><a href="#样例：-ExceptionHandle的使用" class="headerlink" title="样例：@ExceptionHandle的使用"></a>样例：@ExceptionHandle的使用</h5><p>​    <code>请求路径：http://localhost:8080/hello?i=0</code></p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;HelloController.java
 
@@ -1140,13 +1141,15 @@ public class HelloController &#123;
 
 
 
-<h4 id="3-SpringMVC中全局异常处理的注解-ControllerAdvice"><a href="#3-SpringMVC中全局异常处理的注解-ControllerAdvice" class="headerlink" title="(3)SpringMVC中全局异常处理的注解-@ControllerAdvice"></a>(3)SpringMVC中全局异常处理的注解-@ControllerAdvice</h4><p>​    <code>@ControllerAdvice</code>写在类上，表示这个类是一个全局“助手”类，专门用来辅助所有 <code>@Controller</code>处理一些通用逻辑。它是 <strong>Spring MVC 提供的全局控制增强机制</strong>（AOP思想），用于对所有 @Controller 进行统一处理，它的应用场景如下：</p>
+<h4 id="3-SpringMVC中全局异常处理的注解-ControllerAdvice"><a href="#3-SpringMVC中全局异常处理的注解-ControllerAdvice" class="headerlink" title="(3)SpringMVC中全局异常处理的注解-@ControllerAdvice"></a>(3)SpringMVC中全局异常处理的注解-@ControllerAdvice</h4><p>​    <code>@ControllerAdvice</code>写在类上，表示这个类是一个全局“助手”类，专门用来辅助所有 <code>@Controller</code>处理一些通用逻辑，它的应用场景如下：</p>
 <ul>
 <li><strong>全局异常处理</strong>（最常见用法）</li>
 <li>全局数据绑定（给所有 Controller 统一绑定数据）</li>
 <li>全局数据格式转换（参数解析、类型转换）</li>
 </ul>
+<p>​    <code>@ControllerAdvice</code> 默认对整个 Spring 容器中所有 Controller 有效，拦截所有 @Controller 或 @RestController 抛出的异常</p>
 <h5 id="样例：使用-ControllerAdvice-ExceptionHandle实现全局异常处理"><a href="#样例：使用-ControllerAdvice-ExceptionHandle实现全局异常处理" class="headerlink" title="样例：使用@ControllerAdvice+@ExceptionHandle实现全局异常处理"></a>样例：使用@ControllerAdvice+@ExceptionHandle实现全局异常处理</h5><p>​    新建advice包作为增强包，在该包下新建GlobalExceptionHandle.java作为全局异常处理类</p>
+<p>​    这里的返回值是继续交由前端处理，可以理解为向前端发送了一个异常，等价与service用try-catch处理异常的catch返回R.error()，由于可以监管所有controller，所以项目开发中必用到</p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;GlobalExceptionHandle.java
 
 @ControllerAdvice
@@ -1154,10 +1157,11 @@ public class GlobalExceptionHandle &#123;
         
 	@ResponseBody
 	@ExceptionHandler(Exception.class)
+	&#x2F;&#x2F;不一定返回R可以是其他类型String、Map等，看实际项目的前端需求
 	public R error(Exception e)&#123;
 		return R.error(500,e.getMessage(),null);
 	&#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
