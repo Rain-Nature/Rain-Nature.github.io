@@ -540,6 +540,64 @@
                     
 
                     
+                        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="music-player">
+    
+        <div class="title center-align">
+            <i class="fas fa-music"></i>&nbsp;&nbsp;刘大爷神教-学进司升
+        </div>
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="tencent"
+                   type="playlist"
+                   id="9518097293"
+                   fixed='false'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='list'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='false'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+                        
 
                     
 
@@ -562,6 +620,49 @@
     <!-- 所有文章卡片 -->
     <article id="articles" class="container articles">
         <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2025/07/09/%E9%A1%B9%E7%9B%AE01-%E5%B0%9A%E5%BA%AD%E5%85%AC%E5%AF%93%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="项目01-尚庭公寓后端项目">
+                            
+                            <span class="card-title">项目01-尚庭公寓后端项目</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、后台管理系统后端业务逻辑1. pom.xml文件中&lt;properties&gt; 的作用​    &lt;properties&gt; 是 Maven POM 文件中的一个 标准元素，用于定义项目中可以复用的 变量。这些变量在 p
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-07-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                拾雨
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E9%A1%B9%E7%9B%AE/">
+                            <span class="chip bg-color">项目</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -1065,50 +1166,6 @@ MybatisPlus的层级关系（
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2025/02/10/Vue%E7%AC%94%E8%AE%B0%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%8501-%E5%AD%90%E4%BC%A0%E7%88%B6props%E6%96%B9%E5%BC%8F/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Vue笔记的代码补充01-子传父props方式">
-                            
-                            <span class="card-title">Vue笔记的代码补充01-子传父props方式</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                组件数据直接传递方式-子传父props方式​    以下代码，通过传递父组件的addTodoObj()方法，用子组件接收并调用该方法，通过该方法将子组件的数据传给父组件实现todos的增加
-(1)父组件App.vue&lt;template
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-10
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                拾雨
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Vue%E4%BB%A3%E7%A0%81/">
-                            <span class="chip bg-color">Vue代码</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -1142,60 +1199,6 @@ MybatisPlus的层级关系（
 
 
     <footer class="page-footer bg-color">
-    
-        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        
-        display: none;
-        
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        
-        display: none;
-        
-        font-size: 15px;
-        color: #42b983;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
-</style>
-<div class="">
-    
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="tencent"
-                   type="playlist"
-                   id="9518097293"
-                   fixed='true'
-                   autoplay='true'
-                   theme='#42b983'
-                   loop='all'
-                   order='random'
-                   preload='auto'
-                   volume='0.7'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/libs/aplayer/APlayer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
     
     <div class="container row center-align" style="margin-bottom: 0px !important;">
         <div class="col s12 m8 l8 copy-right">
