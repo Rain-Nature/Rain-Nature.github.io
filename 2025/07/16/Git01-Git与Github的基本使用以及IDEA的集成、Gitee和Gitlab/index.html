@@ -1,0 +1,1538 @@
+<!DOCTYPE HTML>
+<html lang="zh-&#39;CN&#39;">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Git01-Git与Github的基本使用以及IDEA的集成、Gitee和Gitlab, Rain">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Git01-Git与Github的基本使用以及IDEA的集成、Gitee和Gitlab | Rain</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/Rain-Nature/Rain-Nature.github.io@master/medias/bg.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Rain</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Rain</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Git01-Git与Github的基本使用以及IDEA的集成、Gitee和Gitlab</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+        max-height: 400px;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Git/">
+                                <span class="chip bg-color">Git</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2025-07-16
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="1-git相关知识扫盲"><a href="#1-git相关知识扫盲" class="headerlink" title="1. git相关知识扫盲"></a>1. git相关知识扫盲</h3><p>​    1.GItLab 是一个基于局域网的代码托管系统，例如公司的项目是闭源项目，不愿意把代码放互联网上</p>
+<p>​    2.Git 是一个本地版本控制工具，本身并不涉及“账户”概念。你设置的user.name和 user.email只是作为每次提交记录的“作者标识”，与远程平台的账户无关。账户管理和权限控制属于远程托管平台（如 GitHub、GitLab），只有在执行推送（push）或拉取（pull）操作时，才需要提供凭证进行身份验证</p>
+<p>​    3.git安装好后，右键有个叫git bash，打开的黑窗口，里面敲的是Linux的命令</p>
+<h3 id="2-Git的工作机制"><a href="#2-Git的工作机制" class="headerlink" title="2. Git的工作机制"></a>2. Git的工作机制</h3><h4 id="1-本地操作"><a href="#1-本地操作" class="headerlink" title="(1)本地操作"></a>(1)本地操作</h4><p>​    工作区：代码存储在本地磁盘的地方，代码可以修改删除。可以将代码<code>添加</code>到暂存区</p>
+<p>​    暂存区：存储在本地仓库目录的 <code>.git/index</code> 文件中，相当于也是存储在磁盘，此时代码也是可以修改删除。可以将代码<code>提交</code>到本地库</p>
+<p>​    本地库：提交到本地库的代码会生成历史版本号，此时代码无法删除。想要删除要把本地库全删了</p>
+<p>​    <img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git1.jpg" alt="工作机制"></p>
+<p>​    项目被git管理后</p>
+<pre class="line-numbers language-none"><code class="language-none">你的项目&#x2F;
+├── .git&#x2F;           ← Git 的核心目录（隐藏）
+│   ├── index       ← 暂存区（Stage&#x2F;Index）就存这里
+│   ├── objects&#x2F;    ← 本地库，所有提交内容、快照
+│   ├── refs&#x2F;       ← 分支、标签
+│   └── HEAD        ← 当前分支指针
+├── 项目本身文件...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-远程管理（代码托管中心）"><a href="#2-远程管理（代码托管中心）" class="headerlink" title="(2)远程管理（代码托管中心）"></a>(2)远程管理（代码托管中心）</h4><p>​    代码托管中心是基于网络服务器的远程代码仓库，一般我们简单称为远程库。本地库的内容通过push操作可以<code>推送</code>到远程库</p>
+<ul>
+<li><p>局域网：GitLab</p>
+</li>
+<li><p>互联网：GitHub（外网）、Gitee码云（国内网站）</p>
+</li>
+</ul>
+<h3 id="3-Git的基本使用"><a href="#3-Git的基本使用" class="headerlink" title="3. Git的基本使用"></a>3. Git的基本使用</h3><h5 id="Git基本命令览概"><a href="#Git基本命令览概" class="headerlink" title="Git基本命令览概"></a>Git基本命令览概</h5><table>
+<thead>
+<tr>
+<th><strong>命令名称</strong></th>
+<th><strong>作用</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git config –global user.name &lt;用户名&gt;</td>
+<td>设置用户签名（必须且只设一次）</td>
+</tr>
+<tr>
+<td>git config –global user.email &lt;邮箱&gt;</td>
+<td>设置用户邮箱（必须且只设一次）</td>
+</tr>
+<tr>
+<td>git init</td>
+<td>初始化本地库</td>
+</tr>
+<tr>
+<td>git status</td>
+<td>查看本地库状态</td>
+</tr>
+<tr>
+<td>git add “文件名”</td>
+<td>添加到暂存区</td>
+</tr>
+<tr>
+<td>git commit -m &lt;”版本日志信息”&gt; &lt;文件名&gt;</td>
+<td>提交到本地库</td>
+</tr>
+<tr>
+<td>git reflog</td>
+<td>查看历史记录</td>
+</tr>
+<tr>
+<td>git reset –hard &lt;版本号&gt;</td>
+<td>版本穿梭</td>
+</tr>
+</tbody></table>
+<h4 id="1-从工作区-gt-本地库命令流程"><a href="#1-从工作区-gt-本地库命令流程" class="headerlink" title="(1)从工作区-&gt;本地库命令流程"></a>(1)从工作区-&gt;本地库命令流程</h4><h5 id="设置用户签名"><a href="#设置用户签名" class="headerlink" title="设置用户签名"></a>设置用户签名</h5><blockquote>
+<p>git config –global user.name &lt;用户名&gt;</p>
+<p>git config –global user.email &lt;邮箱&gt;</p>
+</blockquote>
+<p>​    说明：签名的作用是区分不同操作者身份。用户的签名信息在每一个版本的提交信息中能够看到，以此确认本次提交是谁做的。Git首次安装必须设置一下用户签名，否则无法提交代码</p>
+<p>​    注意：这里设置用户签名和将来登录GitHub（或其他代码托管中心）的账号没有任何关系</p>
+<h5 id="初始化本地库"><a href="#初始化本地库" class="headerlink" title="初始化本地库"></a>初始化本地库</h5><blockquote>
+<p>git init</p>
+</blockquote>
+<p>​    作用：让git获得当前目录的管理权，运行成功后会生成.git文件夹</p>
+<h5 id="查看本地库状态"><a href="#查看本地库状态" class="headerlink" title="查看本地库状态"></a>查看本地库状态</h5><blockquote>
+<p>git status</p>
+</blockquote>
+<p>​    作用：</p>
+<p>​        当文件是红色表面当前文件只存在于工作区</p>
+<p>​        当文件是绿色表面当前文件存入了暂存区</p>
+<p>​        没有文件显示working tree clean，表示当前文件已经提交成功，工作区的文件已经保存在本地库，暂存区无文件</p>
+<h5 id="将文件添加暂存区-将文件从暂存区移除"><a href="#将文件添加暂存区-将文件从暂存区移除" class="headerlink" title="将文件添加暂存区/将文件从暂存区移除"></a>将文件添加暂存区/将文件从暂存区移除</h5><blockquote>
+<p>git add &lt;工作区文件名&gt;</p>
+<p>git rm –cached &lt;暂存区文件名&gt;</p>
+</blockquote>
+<p>​    作用：将文件由工作区保存至暂存区/将文件从暂存区移除</p>
+<h5 id="暂存区文件提交到本地库"><a href="#暂存区文件提交到本地库" class="headerlink" title="暂存区文件提交到本地库"></a>暂存区文件提交到本地库</h5><blockquote>
+<p>git commit -m &lt;”版本日志信息”&gt; &lt;文件名&gt;</p>
+</blockquote>
+<p>​    作用：将暂存区文件提交至本地库</p>
+<h5 id="查看版本信息（提交记录）"><a href="#查看版本信息（提交记录）" class="headerlink" title="查看版本信息（提交记录）"></a>查看版本信息（提交记录）</h5><blockquote>
+<p>git reflog            //查看的是7位版本号（够用于版本切换）</p>
+<p>git log                 //查看的是完整版本号</p>
+</blockquote>
+<p>​    作用：第一个是查看提交记录，第二个是查看详细记录（有用户名和邮箱）</p>
+<h4 id="2-工作区文件修改后的情况"><a href="#2-工作区文件修改后的情况" class="headerlink" title="(2)工作区文件修改后的情况"></a>(2)工作区文件修改后的情况</h4><p>​    工作区文件修改后，修改的文件在查看状态时将再次变红，可以添加暂存区，再提交本地库，此时会新增一个新版本进入本地库。再查看版本信息，会发现拥有了两个版本，指针（HEAD-&gt;master）会指向最新版本</p>
+<p>​    <code>注意：同一文件不管提交多少个版本，在工作区只会显示1个版本的文件，当查看工作区文件时，此时指针（HEAD）指向本地库哪个版本的文件，工作区就显示那个版本的文件</code></p>
+<h4 id="3-版本穿梭（切换版本）"><a href="#3-版本穿梭（切换版本）" class="headerlink" title="(3)版本穿梭（切换版本）"></a>(3)版本穿梭（切换版本）</h4><blockquote>
+<p>git reset –hard &lt;版本号&gt;      //这个版本号可以用7位的，不一定要完整版</p>
+</blockquote>
+<p>​    当使用版本穿梭后，指针（HEAD）会移动到你指定版本号的版本上，如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git2.jpg" alt="穿梭操作以及日志信息"></p>
+<p>​    使用git完成版本穿梭后，原工作区的文件会变为指针（HEAD）指向的版本的文件，但注意，从暂存区上传文件到本地库后，会更新（HEAD-&gt;master）指针指向最新提交</p>
+<h5 id="HEAD和master两个指针区别"><a href="#HEAD和master两个指针区别" class="headerlink" title="HEAD和master两个指针区别"></a>HEAD和master两个指针区别</h5><p>​    提交到本地库移动的是master而Head本身就指向master即当前分支，master 是一个普通的分支指针，它指向你本地的最新提交。而版本穿梭是移动HEAD，此时HEAD指向的是要穿梭的版本，工作区显示的内容是HEAD指向版本的内容</p>
+<p>​    关系图</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git3.jpg" alt="HEAD和master两个指针图示"></p>
+<h3 id="4-分支（branch）"><a href="#4-分支（branch）" class="headerlink" title="4. 分支（branch）"></a>4. 分支（branch）</h3><p>​    在版本控制过程中，同时推进多个任务，为每个任务，我们就可以创建每个任务的单独分支。使用分支意味着程序员可以把自己的工作从开发主线上分离开来，开发自己分支的时候，不会影响主线分支的运行。对于初学者而言，分支可以简单理解为副本，一个分支就是 一个单独的副本。（分支底层其实也是指针的引用）</p>
+<p>​    下图是实际开发中的分支图，master为主分支，hot-fix是bug的热修分支，其余两个是功能分支</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git4.jpg" alt="分支图示"></p>
+<h5 id="分支相关的命令览概"><a href="#分支相关的命令览概" class="headerlink" title="分支相关的命令览概"></a>分支相关的命令览概</h5><table>
+<thead>
+<tr>
+<th>命令名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git branch &lt;分支名&gt;</td>
+<td>创建一条分支</td>
+</tr>
+<tr>
+<td>git branch -v</td>
+<td>查看所有本地分支</td>
+</tr>
+<tr>
+<td>git checkout &lt;分支名&gt;</td>
+<td>切换分支</td>
+</tr>
+<tr>
+<td>git merge &lt;分支名&gt;</td>
+<td>把指定的分支合并到当前分支上</td>
+</tr>
+</tbody></table>
+<h4 id="1-查看分支"><a href="#1-查看分支" class="headerlink" title="(1)查看分支"></a>(1)查看分支</h4><blockquote>
+<p>git branch -v</p>
+</blockquote>
+<p>​    作用：查看所有本地分支，并附带每个分支上最近一次提交的”版本日志信息”</p>
+<h4 id="2-创建分支"><a href="#2-创建分支" class="headerlink" title="(2)创建分支"></a>(2)创建分支</h4><blockquote>
+<p>git branch &lt;分支名&gt;</p>
+</blockquote>
+<p>​    作用：创建一条分支，并将主分支master 的内容复制了一份到新创建的分支上</p>
+<h4 id="3-切换分支"><a href="#3-切换分支" class="headerlink" title="(3)切换分支"></a>(3)切换分支</h4><blockquote>
+<p>git checkout &lt;分支名&gt;</p>
+</blockquote>
+<p>​    <code>*</code>代表的是当前分支，切换分支从master-&gt;hot-fix，如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git5.jpg" alt="切换分支"></p>
+<p>​    切换分支后，对hot-fix里的文件进行了修改后，同样需要先保存到暂存区，然后是提交到本地库，只有提交成功后，这次修改才会成为 <code>hot-fix</code> 分支的历史记录的一部分</p>
+<p>​    <code>注意：切换分支移动的是HEAD指针</code></p>
+<h4 id="4-合并分支"><a href="#4-合并分支" class="headerlink" title="(4)合并分支"></a>(4)合并分支</h4><blockquote>
+<p>git merge &lt;你要合并的分支名&gt;</p>
+</blockquote>
+<p>​    分支合并，需要首先将分支切换到主分支（master）上，然后合并hot-fix分支。合并后，若有相同名称的文件master 分支将包含 hot-fix 分支的改动（<code>master保留了自己原有的内容，同时 引入了 hot-fix 中新增的修改</code>）</p>
+<h5 id="情况一：正常合并"><a href="#情况一：正常合并" class="headerlink" title="情况一：正常合并"></a>情况一：正常合并</h5><p>​    每一个字母代表一个版本</p>
+<pre class="line-numbers language-none"><code class="language-none">A -- B ----------- E  (master)
+      \分支       &#x2F;合并成功
+       C -------D  (hot-fix)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>​    正常结果图：</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git6.jpg" alt="正常结果图"></p>
+<h5 id="情况二：合并冲突"><a href="#情况二：合并冲突" class="headerlink" title="情况二：合并冲突"></a>情况二：合并冲突</h5><p>​    每一个字母代表一个版本</p>
+<pre class="line-numbers language-none"><code class="language-none">A -- B ----E----- F  (master)
+      \分支       &#x2F;合并失败,需要手动合并才能生成F
+       C -------D (hot-fix)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>​    冲突结果图：</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git7.jpg" alt="冲突结果图"></p>
+<p>​    发生合并冲突后，需要打开到冲突的文件进行修改，此时打开文件如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git8.jpg" alt="冲突文件：hello.txt"></p>
+<p>​    此时把文件要保留的部分留下，把冲突的地方删除就行，如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git9.jpg" alt="hello.txt修改后"></p>
+<p>​    修改保存后，需要人为的在master分支下，再次将该文件添加到暂存区（添加暂存区是带文件名的），然后提交本地库（<strong>注意此时提交不能带文件名</strong>），下图中，第二次操作是演示错误示范（直接报错）</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git10.jpg" alt="将解决冲突的文件再次提交本地库"></p>
+<p>​    注意：合并的结果最后只会修改master分支，而hot-fix分支是不会被修改的</p>
+<h3 id="5-Git团队协作机制"><a href="#5-Git团队协作机制" class="headerlink" title="5. Git团队协作机制"></a>5. Git团队协作机制</h3><h4 id="1-团队内协作"><a href="#1-团队内协作" class="headerlink" title="(1)团队内协作"></a>(1)团队内协作</h4><p>​    图中：左边为师傅，右边为徒弟</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git11.jpg" alt="团队内协作"></p>
+<h4 id="2-跨团队协作"><a href="#2-跨团队协作" class="headerlink" title="(2)跨团队协作"></a>(2)跨团队协作</h4><p>​    图中：岳不群是一派，东方不败是令一派，但岳不群需要东方求败帮他改代码</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git12.jpg" alt="跨团队协作"></p>
+<h3 id="6-GitHub（远程库）的基本使用"><a href="#6-GitHub（远程库）的基本使用" class="headerlink" title="6. GitHub（远程库）的基本使用"></a>6. GitHub（远程库）的基本使用</h3><p>​    GitHub 网址：<a target="_blank" rel="noopener" href="https://github.com/">GitHub</a></p>
+<h4 id="1-GitHub远程仓库的创建"><a href="#1-GitHub远程仓库的创建" class="headerlink" title="(1)GitHub远程仓库的创建"></a>(1)GitHub远程仓库的创建</h4><p>​    创建步骤如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git13.jpg" alt="步骤1"></p>
+<p>​    远程库的名称最好和本地库一样，设置完名字后点击新建即可</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git14.jpg" alt="步骤2"></p>
+<h4 id="2-GitHub远程仓库的的基本操作"><a href="#2-GitHub远程仓库的的基本操作" class="headerlink" title="(2)GitHub远程仓库的的基本操作"></a>(2)GitHub远程仓库的的基本操作</h4><h5 id="命令览概"><a href="#命令览概" class="headerlink" title="命令览概"></a>命令览概</h5><table>
+<thead>
+<tr>
+<th>命令名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>git remote -v</td>
+<td>查看当前所有远程地址别名</td>
+</tr>
+<tr>
+<td>git remote add &lt;别名&gt; &lt;远程库地址&gt;</td>
+<td>起别名</td>
+</tr>
+<tr>
+<td>git push &lt;别名/远程库地址&gt; &lt;本地库的一个分支名&gt;:&lt;远程库的分支名&gt;</td>
+<td>推送本地分支上的内容到远程仓库</td>
+</tr>
+<tr>
+<td>git clone &lt;远程库地址&gt;</td>
+<td>将远程仓库的内容克隆到本地</td>
+</tr>
+<tr>
+<td>git pull &lt;别名/远程库地址&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</td>
+<td>将远程仓库的分支最新内容拉下来与当前本地分支直接合并</td>
+</tr>
+</tbody></table>
+<h5 id="远程仓库地址"><a href="#远程仓库地址" class="headerlink" title="远程仓库地址"></a>远程仓库地址</h5><p>​    打开仓库-&gt;code，远程仓库地址如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git15.jpg" alt="远程仓库地址"></p>
+<h5 id="创建别名"><a href="#创建别名" class="headerlink" title="创建别名"></a>创建别名</h5><blockquote>
+<p>git remote add &lt;别名&gt; &lt;远程库地址&gt;</p>
+</blockquote>
+<p>​    作用：为远程地址创建别名</p>
+<h5 id="查看别名"><a href="#查看别名" class="headerlink" title="查看别名"></a>查看别名</h5><blockquote>
+<p>git remote -v</p>
+</blockquote>
+<p>​    作用：查看当前所有远程地址别名</p>
+<p>​    注意：创建一个别名会生成两个，作用是一个拉取时使用，一个推送时使用</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git16.jpg" alt="创建、查看别名"></p>
+<h5 id="本地库代码推送远程库"><a href="#本地库代码推送远程库" class="headerlink" title="本地库代码推送远程库"></a>本地库代码推送远程库</h5><blockquote>
+<p>git push &lt;别名/远程库地址&gt; &lt;本地库的一个分支名&gt;:&lt;远程库的分支名&gt;</p>
+</blockquote>
+<p>​    作用：推送本地分支上的内容到远程仓库</p>
+<p>​    注意1：若推送的本地库的分支名和远程库分支名同名，可以简写为：git push &lt;别名/远程地址&gt; &lt;本地库的一个分支名&gt;</p>
+<p>​    注意2：第一次推送的话，会有GitHub验证，需要网页登录GitHub账号，登录后可以在Windows凭据管理器查看如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git17.jpg" alt="凭据管理器"></p>
+<p>​    推送结果如下图所示：</p>
+<p>​    <img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git18.jpg" alt="本地库推送远程库"></p>
+<p>​    注意3：推送到远程库的代码，本人和有开发权限的人点击代码处的🖊，可以直接对远程库内容进行修改</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git19.jpg" alt="注意3图示"></p>
+<h5 id="拉取远程库到本地库"><a href="#拉取远程库到本地库" class="headerlink" title="拉取远程库到本地库"></a>拉取远程库到本地库</h5><blockquote>
+<p>git pull &lt;别名/远程库地址&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</p>
+</blockquote>
+<p>​    作用：将远程仓库的分支最新内容拉下来与当前本地分支直接合并（<code>本地文件自推送后未更改，只是远程库有修改</code>）</p>
+<p>​    注意1：若推送的本地库的分支名和远程库分支名同名，可以简写为：git pull &lt;别名/远程库地址&gt; &lt;远程分支名&gt;</p>
+<p>​    注意2：拉取过程图示如下：</p>
+<p>​    <img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git20.jpg" alt="从远程库拉去文件并合并到本地库"></p>
+<p>​    注意3：拉取动作会帮你把文件自动提交至本地库</p>
+<p>​    注意4：若远程库和本地库对相同文件都做出了修改，拉取时会报拉取冲突</p>
+<h5 id="远程库的克隆"><a href="#远程库的克隆" class="headerlink" title="远程库的克隆"></a>远程库的克隆</h5><blockquote>
+<p>git clone &lt;远程库地址&gt;</p>
+</blockquote>
+<p>​    作用：将远程仓库的内容克隆到本地（本地新建个空目录用来装就行，且克隆代码不需要登录账号）</p>
+<p>​    注意1：克隆操作会：1、拉取代码，2、初始化本地仓库，3、创建别名（别名是GitHub默认取的(origin)）</p>
+<p>​    <img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git21.jpg" alt="远程库克隆到本地"></p>
+<h4 id="3-使用Github进行团队内协作（其他人推送我远程库的权限设置）"><a href="#3-使用Github进行团队内协作（其他人推送我远程库的权限设置）" class="headerlink" title="(3)使用Github进行团队内协作（其他人推送我远程库的权限设置）"></a>(3)使用Github进行团队内协作（其他人推送我远程库的权限设置）</h4><p>​    自己建立的公开远程库，别人只能拉取，不能往上推送代码，要实现团队内的协作，需要给团队成员添加权限</p>
+<h5 id="Github团队内协作的步骤-给成员添加权限"><a href="#Github团队内协作的步骤-给成员添加权限" class="headerlink" title="Github团队内协作的步骤-给成员添加权限"></a>Github团队内协作的步骤-给成员添加权限</h5><p>​    1.首先打开GitHub网页</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git22.jpg" alt="项目设置"></p>
+<p>​    2.输入合作人的GitHub账号名</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git23.jpg" alt="步骤2"></p>
+<p>​    3.点击添加，此时该成员拥有向代码库推送代码的权限</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git24.jpg" alt="步骤3"></p>
+<p>​    4.添加成功后，要将链接复制下来，然后将链接发送给令狐冲</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git25.jpg" alt="步骤4"></p>
+<p>​    5.令狐冲登录GitHub后，将该邀请链接复制到地址栏访问，最后同意邀请即可</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git26.jpg" alt="步骤5"></p>
+<p>​    6.同意后，该项目在令狐冲的GitHub上也能看见该仓库并访问</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git27.jpg" alt="步骤6"></p>
+<h4 id="4-Github的跨团队协作"><a href="#4-Github的跨团队协作" class="headerlink" title="(4)Github的跨团队协作"></a>(4)Github的跨团队协作</h4><p>​    跨团队开发时，不需要在项目中直接赋予权限，而是在提交时审核</p>
+<h5 id="Github的跨团队协作的步骤"><a href="#Github的跨团队协作的步骤" class="headerlink" title="Github的跨团队协作的步骤"></a>Github的跨团队协作的步骤</h5><p>​    1.首先打开要协助开发的GitHub仓库，当前登录的是东方不败的账号，看的是岳不群的仓库，点击fork，将岳不群的项目拷贝到东方不败的账号上</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git28.jpg" alt="步骤1"></p>
+<p>​    2.当前在东方不败的账号下，可以看见该项目了，此时可以对项目进行修改，<code>注意：此时项目修改后不会影响岳不群的项目，可以理解为一份拷贝</code>，当前东方不败对于这个git-demo已经完成修改</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git29.jpg" alt="步骤2"></p>
+<p>​    3.代码修改完成后，点击Pull request，然后点New pull request，新建推送请求</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git30.jpg" alt="步骤3"></p>
+<p>​    4.点击Create pull request</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git31.jpg" alt="步骤4"></p>
+<p>​    5.类似邮件格式写标题、文本，最后点击Create pull request</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git32.jpg" alt="步骤5"></p>
+<p>​    此时，在岳不群的账号下的Pull Request，可以看到东方不败的请求，点击请求即可查看详细信息</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git33.jpg" alt="查看请求"></p>
+<p>​    点开后可以看到以下几个圈的地方，第一个圈：当时提交的信件。第二个圈：修改后的文件，点击可以查看。第三个圈是同意将修改的文件与当前远程库合并（需要确认两次）（<code>远程库在东方不败fork之后同一文件未进行更改，否则会导致合并冲突</code>）。第四个圈是实时聊天功能，发送的信息继续像第一个圈那样给东方不败，这个是实时的，不需要刷新网页</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git34.jpg" alt="Pull Request的详细信息"></p>
+<p>​    合并完成后，此时远程库是可以看到东方不败修改的代码了</p>
+<h4 id="5-Github的ssh免密登录"><a href="#5-Github的ssh免密登录" class="headerlink" title="(5)Github的ssh免密登录"></a>(5)Github的ssh免密登录</h4><p>​    在之前推送和拉取远程库代码时，使用的是https的远程库地址进行操作的，除了使用https外，还可以使用ssh来进行拉取和推送</p>
+<h5 id="ssh免密登录配置步骤"><a href="#ssh免密登录配置步骤" class="headerlink" title="ssh免密登录配置步骤"></a>ssh免密登录配置步骤</h5><ol>
+<li>在终端（Git Bash ）执行(可任意目录)：</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">ssh-keygen -t rsa -b 4096 -C &quot;你的GitHub邮箱&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>​    <code>注意：执行该命令后需要敲三次回车</code></p>
+<ol start="2">
+<li><p>在路径：<code>C:\Users\lausisen\.ssh</code>可以看到公钥文件<code>id_rsa.pub</code>和私钥文件id_rsa</p>
+</li>
+<li><p>使用Git Bash 里的cat命令打开公钥文件<code>id_rsa.pub</code>，复制公钥密钥信息（里面全部内容）</p>
+</li>
+<li><p>打开 GitHub网站 → 右上头像 → Settings</p>
+</li>
+<li><p>左边栏点击 <strong>SSH and GPG keys</strong></p>
+</li>
+<li><p>点击 <strong>New SSH key</strong></p>
+</li>
+<li><p>Title 随便填，比如 “lxs-SSH-key”</p>
+</li>
+<li><p>Key里把公钥信息粘贴进去，最后点击Add SSH key即添加成功，如下图所示</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git35.jpg" alt="SSH key添加成功后的页面"></p>
+<h5 id="ssh免密登录的使用"><a href="#ssh免密登录的使用" class="headerlink" title="ssh免密登录的使用"></a>ssh免密登录的使用</h5><p>​    使用即把远程库地址由https的网址替换为ssh即可</p>
+<pre class="line-numbers language-none"><code class="language-none">git pull &lt;别名&#x2F;远程库地址&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h3 id="7-IDEA集成Git（本地库中操作）"><a href="#7-IDEA集成Git（本地库中操作）" class="headerlink" title="7. IDEA集成Git（本地库中操作）"></a>7. IDEA集成Git（本地库中操作）</h3><p>​    在IDEA使用Git之前，首先要配置Git的忽略文件</p>
+<h4 id="1-配置Git的忽略文件"><a href="#1-配置Git的忽略文件" class="headerlink" title="(1)配置Git的忽略文件"></a>(1)配置Git的忽略文件</h4><p>​    Git的忽略文件为：xxxx.ignore，建议定义为git.ignore。同时，为了方便让~/.gitconfig文件引用，建议将该xxxx.ignore放在家目录下</p>
+<h5 id="git-ignore文件模板（适用于-Java-项目）"><a href="#git-ignore文件模板（适用于-Java-项目）" class="headerlink" title="git.ignore文件模板（适用于 Java 项目）"></a>git.ignore文件模板（适用于 Java 项目）</h5><p>​    注意：该文件应放在：<code>C:\Users\lausisen\</code>目录下</p>
+<pre class="line-numbers language-gitignore" data-language="gitignore"><code class="language-gitignore"># 编译后的类文件
+*.class
+
+# 日志文件
+*.log
+
+# BlueJ 项目文件
+*.ctxt
+
+# 移动 Java 工具生成的临时目录
+.mtj.tmp&#x2F;
+
+# Java 打包文件
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# 虚拟机崩溃日志
+# 参考: http:&#x2F;&#x2F;www.java.com&#x2F;en&#x2F;download&#x2F;help&#x2F;error_hotspot.xml
+hs_err_pid*
+
+# Eclipse 配置文件
+.classpath
+.project
+.settings&#x2F;
+
+# Maven 构建输出
+target&#x2F;
+
+# IntelliJ IDEA 配置文件
+.idea&#x2F;
+*.iml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="gitconfig文件配置git-ignore文件"><a href="#gitconfig文件配置git-ignore文件" class="headerlink" title="~/.gitconfig文件配置git.ignore文件"></a>~/.gitconfig文件配置git.ignore文件</h5><p>​    注意1：该.gitconfig文件也在：<code>C:\Users\lausisen\</code>目录下</p>
+<p>​    注意2：excludesfile配置的路径要使用“正斜线（/）”，不要使用“反斜线（\）”</p>
+<pre class="line-numbers language-none"><code class="language-none">[user]
+	name &#x3D; 拾雨
+	email &#x3D; 2644911087@qq.com
+
+[core]
+    excludesfile &#x3D; C:&#x2F;Users&#x2F;lausisen&#x2F;git.ignore<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-IDEA使用Git"><a href="#2-IDEA使用Git" class="headerlink" title="(2)IDEA使用Git"></a>(2)IDEA使用Git</h4><p>​    打开设置-&gt;版本控制-&gt;Git进行如下图配置，配置方式和maven类似</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git36new1.jpg" alt="IDEA的Git配置"></p>
+<p>​    弄完该步骤后，IDEA就可以使用Git了</p>
+<h4 id="3-IDEA中初始化Git仓库、添加、提交"><a href="#3-IDEA中初始化Git仓库、添加、提交" class="headerlink" title="(3)IDEA中初始化Git仓库、添加、提交"></a>(3)IDEA中初始化Git仓库、添加、提交</h4><p>​    注意：未被追踪的文件其名字是红色，保存到暂存区文件的名字是绿色，保存到本地库文件的名字还原为原先文件颜色（黑色），保存后有修改是蓝色，被忽略是灰绿色</p>
+<p>​    具体配置文件-&gt;设置-&gt;版本控制-&gt;文件状态颜色，如下图所示（可以自行修改）</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git39.jpg" alt="Git管理后文件颜色设置"></p>
+<h5 id="初始化本地库-1"><a href="#初始化本地库-1" class="headerlink" title="初始化本地库"></a>初始化本地库</h5><p>​    在右上角点击版本控制-&gt;创建Git仓库-&gt;选择当前目录-&gt;确定</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git37.jpg" alt="初始化本地库"></p>
+<h5 id="添加到暂存区-提交到本地库"><a href="#添加到暂存区-提交到本地库" class="headerlink" title="添加到暂存区/提交到本地库"></a>添加到暂存区/提交到本地库</h5><p>​    右键文件/文件夹-&gt;找到Git即可看到相关命令</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git38.jpg" alt="IDEA使用Git管理文件"></p>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>​    IDEA可以不add就commit主要原因是Settings → Version Control → Commit里的Use non-modal commit interface是勾选的</p>
+<h4 id="4-IDEA切换本地库代码版本"><a href="#4-IDEA切换本地库代码版本" class="headerlink" title="(4)IDEA切换本地库代码版本"></a>(4)IDEA切换本地库代码版本</h4><p>​    为方便演示，当前我是一共提交了三个版本到本地库</p>
+<h5 id="查看代码版本信息"><a href="#查看代码版本信息" class="headerlink" title="查看代码版本信息"></a>查看代码版本信息</h5><p>​    点击IDEA左下方的分支按钮，其中可以看到HRAD是黄色标签，master是绿色标签</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git40.jpg" alt="查看版本信息"></p>
+<p>​    列出的版本中，右键要切换的版本，选择签出修订（英文版：checkout Revision “版本号7位”），如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git41.jpg" alt="切换版本"></p>
+<h4 id="5-IDEA创建分支与切换分支"><a href="#5-IDEA创建分支与切换分支" class="headerlink" title="(5)IDEA创建分支与切换分支"></a>(5)IDEA创建分支与切换分支</h4><h5 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h5><p>​    右键项目文件夹-&gt;Git-&gt;新建分支</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git42.jpg" alt="新建分支1"></p>
+<p>​    勾选的话，会将HEAD指针移动到hot-fix分支，不勾选则保持在原分支</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git43.jpg" alt="新建分支2"></p>
+<h5 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h5><p>​    右键要切换到的分支-&gt;签出</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git44.jpg" alt="切换分支"></p>
+<h4 id="6-IDEA合并分支"><a href="#6-IDEA合并分支" class="headerlink" title="(6)IDEA合并分支"></a>(6)IDEA合并分支</h4><h5 id="正常合并"><a href="#正常合并" class="headerlink" title="正常合并"></a>正常合并</h5><p>​    正常合并分支图</p>
+<pre class="line-numbers language-none"><code class="language-none">A -- B -- C --------- F  (master)
+           \分支      &#x2F;合并成功
+            D ------E(hot-fix修改版)  (hot-fix)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>​    hot-fix修改完后，需将hot-fix修改后的版本合并到master。首先HEAD切换到master分支，然后右键hot-fix-&gt;将hot-fix合并到master中，如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git45.jpg" alt="正常合并"></p>
+<h5 id="合并冲突"><a href="#合并冲突" class="headerlink" title="合并冲突"></a>合并冲突</h5><p>​    合并冲突分支图</p>
+<pre class="line-numbers language-none"><code class="language-none">A -- B -- C ----- E(修改过) ----- G  (master)
+           \分支                &#x2F;合并失败,需要手动合并
+            D --------------- F(修改过) (hot-fix)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>​    当前hot-fix分支和master分支都做过修改，需要将hot-fix分支合并master分支。首先还是先将HEAD切换到master分支，右键hot-fix-&gt;将hot-fix合并到master中，此时会弹出冲突，点击merge进行手动更改</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git46.jpg" alt="冲突"></p>
+<p>​    此时使用IDEA可以对冲突进行修改，不要的代码点红色框，要的代码点蓝色框，最后点击应用，冲突修改完毕</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git47.jpg" alt="冲突修改"></p>
+<p>​    <code>合并完成后，代码会自动提交至本地库</code>，合并完成后图示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git48.jpg" alt="冲突合并完成"></p>
+<h3 id="8-IDEA集成Github"><a href="#8-IDEA集成Github" class="headerlink" title="8. IDEA集成Github"></a>8. IDEA集成Github</h3><h4 id="1-设置GitHub账号"><a href="#1-设置GitHub账号" class="headerlink" title="(1)设置GitHub账号"></a>(1)设置GitHub账号</h4><p>​    打开IDEA-&gt;文件-&gt;设置-&gt;版本控制-&gt;GitHub-&gt;+，此时可以使用账号密码登录，但是因为网络原因，最好使用Token登录</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git49.jpg" alt="登录Github"></p>
+<p>​    Token的获取需要打开Github网页-&gt;头像-&gt;settings-&gt;Developer Settings-&gt;Personal access tokens-&gt;Tokens (classic)</p>
+<p>-&gt;Generate new token-&gt;Generate new token(classic)，最后设置号权限，点击生成即可</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git50new1.jpg" alt="Github的Token设置"></p>
+<p>​    注意：生成的Token要及时保存或配置，其只显示这一次</p>
+<p>​    最后添加账户即可，如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git51.jpg" alt="添加GitHub账户"></p>
+<h4 id="2-在IDEA上创建远程库（创建后会自动将项目推送）"><a href="#2-在IDEA上创建远程库（创建后会自动将项目推送）" class="headerlink" title="(2)在IDEA上创建远程库（创建后会自动将项目推送）"></a>(2)在IDEA上创建远程库（创建后会自动将项目推送）</h4><p>​    点击三条横线-&gt;Git-&gt;Github-&gt;在GitHub上共享项目</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git52.jpg"></p>
+<p>​    其中，第一个是设置远程仓库名，不勾选私有则默认为公共仓库。远程是设置别名。描述可以不填</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git53.jpg"></p>
+<h4 id="3-使用IDEA推送、拉取和克隆代码"><a href="#3-使用IDEA推送、拉取和克隆代码" class="headerlink" title="(3)使用IDEA推送、拉取和克隆代码"></a>(3)使用IDEA推送、拉取和克隆代码</h4><h5 id="推送"><a href="#推送" class="headerlink" title="推送"></a>推送</h5><p>​    项目已经全部提交至本地库后，右键项目-&gt;Git-&gt;推送</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git54.jpg" alt="IDEA推送到Github"></p>
+<p>​    IDEA默认是使用https进行推送但速度会偏慢，下图直接点击红色即为https推送。可以修改为使用ssh进行推送，如下图蓝色所示，定义后从仓库复制ssh地址配置，配置好后再点击git-learn选择刚刚配置的ssh再点推送</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git55.jpg" alt="ssh配置流程"></p>
+<p>​    注意：push是将本地库代码推送到远程库，如果本地库代码跟远程库代码版本不一致， push 的操作是会被拒绝的。也就是说，要想push成功，一定要保证本地库的版本要比远程库的版本高！因此一个成熟的程序员在动手改本地代码之前，一定会先检查下远程库跟本地代码的区别！如果本地的代码版本已经落后，切记要先pull拉取一下远程库的代码，将本地代码更新到最新以后，然后再修改，提交，推送！</p>
+<h5 id="拉取"><a href="#拉取" class="headerlink" title="拉取"></a>拉取</h5><p>​    注意：本地代码修改，远程代码也修改，拉取时会有合并冲突，需要手动解决</p>
+<p>​    项目在远程库被别人更新后，需要拉取同步到本地。右键项目-&gt;Git-&gt;拉取</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git56.jpg" alt="拉取"></p>
+<p>​    其中，git-learn是默认的https链接，git-learn2是刚刚配置的ssh链接，后面master是分支。选择好后点击拉取</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git57.jpg" alt="拉取时的设置"></p>
+<h5 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h5><p>​    打开IDEA的项目界面，点击克隆仓库</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git58.jpg" alt="IDEA项目界面"></p>
+<p>​    其中，URL可以为https或者ssh，配置好后查看目录路径无误，点击克隆</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git59.jpg" alt="克隆仓库配置"></p>
+<h3 id="9-Gitee"><a href="#9-Gitee" class="headerlink" title="9. Gitee"></a>9. Gitee</h3><p>​    Gitee是国内的项目托管平台，也叫码云</p>
+<h4 id="1-Gitee的基本使用"><a href="#1-Gitee的基本使用" class="headerlink" title="(1)Gitee的基本使用"></a>(1)Gitee的基本使用</h4><p>​    Gitee的网站和Github的非常相似，这里不做过多展开</p>
+<h4 id="2-IDEA集成Gitee"><a href="#2-IDEA集成Gitee" class="headerlink" title="(2)IDEA集成Gitee"></a>(2)IDEA集成Gitee</h4><p>​    IDEA默认不带码云插件，所以要使用Gitee，首先需要去搜索下载对应的插件</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git60.jpg" alt="IDEA集成Gitee"></p>
+<p>​    之后重启IDEA可以在版本控制看到Gitee，使用和Github类似</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git61.jpg" alt="Gitee使用"></p>
+<h5 id="IDEA集成多远程库"><a href="#IDEA集成多远程库" class="headerlink" title="IDEA集成多远程库"></a>IDEA集成多远程库</h5><p>​    IDEA集成多远程库是不冲突的，只要在推送和拉取的时候指定好远程库地址即可，如图是设置远程库地址，设置好后推送时再选择刚刚设置的远程库地址进行推送</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git62.jpg" alt="设置远程库地址"></p>
+<h4 id="3-Gitee导入Github项目"><a href="#3-Gitee导入Github项目" class="headerlink" title="(3)Gitee导入Github项目"></a>(3)Gitee导入Github项目</h4><h5 id="Gitee导入Github项目"><a href="#Gitee导入Github项目" class="headerlink" title="Gitee导入Github项目"></a>Gitee导入Github项目</h5><p>​    Github国内访问不畅时，可以把项目导入到Gitee进行访问。在码云-&gt;+-&gt;新建仓库-&gt;（不用输入任何名字配置等）-&gt;导入已有仓库-&gt;GitHub仓库链接（https）-&gt;创建</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git63.jpg" alt="Gitee导入项目"></p>
+<h5 id="Gitee更新Github项目"><a href="#Gitee更新Github项目" class="headerlink" title="Gitee更新Github项目"></a>Gitee更新Github项目</h5><p>​    已经导入的项目，可能在Github发生修改，如下图所做可以对项目进行更新同步</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/git/git64.jpg" alt="更新项目"></p>
+<h3 id="10-Gitlab"><a href="#10-Gitlab" class="headerlink" title="10. Gitlab"></a>10. Gitlab</h3><p>​    Gitlab的使用方法和GitHub大差不差，甚至IDEA直接集成了Gitlab的插件。Gitlab通常用于企业内部私有部署，作为局域网或内网环境下的代码托管平台</p>
+<h4 id="1-Gitlab的安装"><a href="#1-Gitlab的安装" class="headerlink" title="(1)Gitlab的安装"></a>(1)Gitlab的安装</h4><p>​    Gitlab需要安装在Linux操作系统中</p>
+<h5 id="帮助文档"><a href="#帮助文档" class="headerlink" title="帮助文档"></a>帮助文档</h5><p>​    官网地址：<a target="_blank" rel="noopener" href="https://about.gitlab.com/">https://about.gitlab.com/</a>  </p>
+<p>​    安装说明：<a target="_blank" rel="noopener" href="https://docs.gitlab.com/install/">安装 GitLab 文档</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">拾雨</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2025/07/16/Git01-Git%E4%B8%8EGithub%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8AIDEA%E7%9A%84%E9%9B%86%E6%88%90%E3%80%81Gitee%E5%92%8CGitlab/">http://example.com/2025/07/16/Git01-Git%E4%B8%8EGithub%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8AIDEA%E7%9A%84%E9%9B%86%E6%88%90%E3%80%81Gitee%E5%92%8CGitlab/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">拾雨</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Git/">
+                                    <span class="chip bg-color">Git</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2025/07/16/Git01-Git%E4%B8%8EGithub%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8AIDEA%E7%9A%84%E9%9B%86%E6%88%90%E3%80%81Gitee%E5%92%8CGitlab/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Git01-Git与Github的基本使用以及IDEA的集成、Gitee和Gitlab">
+                        
+                        <span class="card-title">Git01-Git与Github的基本使用以及IDEA的集成、Gitee和Gitlab</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-07-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            拾雨
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/07/09/%E9%A1%B9%E7%9B%AE01-%E5%B0%9A%E5%BA%AD%E5%85%AC%E5%AF%93%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="项目01-尚庭公寓后端项目">
+                        
+                        <span class="card-title">项目01-尚庭公寓后端项目</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-07-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            拾雨
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%A1%B9%E7%9B%AE/">
+                        <span class="chip bg-color">项目</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="tencent"
+                   type="playlist"
+                   id="9518097293"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='list'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='false'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2025</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">拾雨</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
