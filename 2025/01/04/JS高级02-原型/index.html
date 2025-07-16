@@ -915,7 +915,7 @@ console.log(obj)   &#x2F;&#x2F;18<span aria-hidden="true" class="line-numbers-ro
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h1, h3, h4'
+            headingSelector: 'h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -927,7 +927,7 @@ console.log(obj)   &#x2F;&#x2F;18<span aria-hidden="true" class="line-numbers-ro
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h1, h3, h4').each(function () {
+        $('#articleContent').children('h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 

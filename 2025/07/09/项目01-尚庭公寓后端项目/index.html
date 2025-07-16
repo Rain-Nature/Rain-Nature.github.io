@@ -2855,7 +2855,7 @@ le(String column, Object val)<span aria-hidden="true" class="line-numbers-rows">
 
 <p><code>至此后台管理系统业务逻辑完结</code></p>
 <hr>
-<h1 id="二、移动端用户后端业务逻辑"><a href="#二、移动端用户后端业务逻辑" class="headerlink" title="二、移动端用户后端业务逻辑"></a>二、移动端用户后端业务逻辑</h1><h3 id="1-MapperScan-“包路径”-注解"><a href="#1-MapperScan-“包路径”-注解" class="headerlink" title="1. @MapperScan(“包路径”)注解"></a>1. @MapperScan(“包路径”)注解</h3><p>​    <code>@MapperScan</code> 注解写在springboot启动类或mybatis配置类上，使用后可以自动扫描指定包下的所有 Mapper 接口类，该包下每个 Mapper 接口类上，不再需要写 <code>@Mapper</code> 注解</p>
+<h2 id="二、移动端用户后端业务逻辑"><a href="#二、移动端用户后端业务逻辑" class="headerlink" title="二、移动端用户后端业务逻辑"></a>二、移动端用户后端业务逻辑</h2><h3 id="1-MapperScan-“包路径”-注解"><a href="#1-MapperScan-“包路径”-注解" class="headerlink" title="1. @MapperScan(“包路径”)注解"></a>1. @MapperScan(“包路径”)注解</h3><p>​    <code>@MapperScan</code> 注解写在springboot启动类或mybatis配置类上，使用后可以自动扫描指定包下的所有 Mapper 接口类，该包下每个 Mapper 接口类上，不再需要写 <code>@Mapper</code> 注解</p>
 <h3 id="2-ConditionalOnProperty注解"><a href="#2-ConditionalOnProperty注解" class="headerlink" title="2. @ConditionalOnProperty注解"></a>2. @ConditionalOnProperty注解</h3><p>​    <code>@ConditionalOnProperty注解</code>一般写在有 <code>@Configuration</code> 注解的配置类上或有<code>@Bean</code> 方法上，其作用是<strong>按配置文件（application.ynl）中的属性值是否存在</strong>来决定配置类或bean是否生效</p>
 <h5 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h5><p>​    name对应属性值，当yml中属性值存在，@ConditionalOnProperty注解下的配置类生效，当yml中属性值不存在，则配置类不生效</p>
 <pre class="line-numbers language-none"><code class="language-none">@ConditionalOnProperty(name &#x3D; &quot;feature.captcha&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -3576,7 +3576,7 @@ browsingHistoryService<span class="token punctuation">.</span><span class="token
 
 <p><code>至此，APP的业务逻辑完结</code></p>
 <hr>
-<h1 id="三、性能优化（redis缓存优化）"><a href="#三、性能优化（redis缓存优化）" class="headerlink" title="三、性能优化（redis缓存优化）"></a>三、性能优化（redis缓存优化）</h1><h3 id="1-redis缓存优化"><a href="#1-redis缓存优化" class="headerlink" title="1. redis缓存优化"></a>1. redis缓存优化</h3><h4 id="1-缓存优化的概述"><a href="#1-缓存优化的概述" class="headerlink" title="(1)缓存优化的概述"></a>(1)缓存优化的概述</h4><p>​    缓存优化的核心思想就是将一些原本保存在磁盘（例如MySQL）中的、经常访问并且查询开销比较大的数据，临时保存到内存（例如Redis）中。后序再访问相同数据时，就可直接从内存中获取结果，而无需再访问磁盘，由于内存的读写速度远高于磁盘，因此就能极大的提高程序的性能</p>
+<h2 id="三、性能优化（redis缓存优化）"><a href="#三、性能优化（redis缓存优化）" class="headerlink" title="三、性能优化（redis缓存优化）"></a>三、性能优化（redis缓存优化）</h2><h3 id="1-redis缓存优化"><a href="#1-redis缓存优化" class="headerlink" title="1. redis缓存优化"></a>1. redis缓存优化</h3><h4 id="1-缓存优化的概述"><a href="#1-缓存优化的概述" class="headerlink" title="(1)缓存优化的概述"></a>(1)缓存优化的概述</h4><p>​    缓存优化的核心思想就是将一些原本保存在磁盘（例如MySQL）中的、经常访问并且查询开销比较大的数据，临时保存到内存（例如Redis）中。后序再访问相同数据时，就可直接从内存中获取结果，而无需再访问磁盘，由于内存的读写速度远高于磁盘，因此就能极大的提高程序的性能</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/pVKFuB4"><img src="https://s21.ax1x.com/2025/07/03/pVKFuB4.jpg" alt="缓存优化图示"></a></p>
 <p>​    使用缓存时，会面临一个问题：<strong>如何让数据库和缓存数据的一致</strong>，当数据库中的数据发生变化时，缓存中的数据也要同步更新，否则就会出现数据不一致的问题，解决该问题的方案有如下几个</p>
 <ul>
@@ -3873,7 +3873,7 @@ browsingHistoryService<span class="token punctuation">.</span><span class="token
 
 <p>可以使用压力测试，测试添加缓存前后系统的性能</p>
 <hr>
-<h1 id="四、项目部署"><a href="#四、项目部署" class="headerlink" title="四、项目部署"></a>四、项目部署</h1><h3 id="1-Nginx的使用"><a href="#1-Nginx的使用" class="headerlink" title="1. Nginx的使用"></a>1. Nginx的使用</h3><h4 id="1-Nginx在项目部署的作用"><a href="#1-Nginx在项目部署的作用" class="headerlink" title="(1)Nginx在项目部署的作用"></a>(1)Nginx在项目部署的作用</h4><p>​    本项目使用虚拟机模拟服务器，完成前后端项目的部署，一共使用两台虚拟机分别部署前端和后端项目，具体的部署方案如下图所示：</p>
+<h2 id="四、项目部署"><a href="#四、项目部署" class="headerlink" title="四、项目部署"></a>四、项目部署</h2><h3 id="1-Nginx的使用"><a href="#1-Nginx的使用" class="headerlink" title="1. Nginx的使用"></a>1. Nginx的使用</h3><h4 id="1-Nginx在项目部署的作用"><a href="#1-Nginx在项目部署的作用" class="headerlink" title="(1)Nginx在项目部署的作用"></a>(1)Nginx在项目部署的作用</h4><p>​    本项目使用虚拟机模拟服务器，完成前后端项目的部署，一共使用两台虚拟机分别部署前端和后端项目，具体的部署方案如下图所示：</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/pVMwvLV"><img src="https://s21.ax1x.com/2025/07/07/pVMwvLV.jpg" alt="Nginx的作用"></a></p>
 <p>​    图中，<code>server-01</code>用于部署移动端和后台管理系统的两个后端服务。<code>server02</code>部署Nginx，作为移动端和后台管理系统两个前端项目的web服务器，同时也作为两个后端服务的反向代理。也就是说Nginx作为所有请求的入口，若请求内容是静态资源，Nginx便直接返回；若请求的内容为动态资源（后端服务接口），Nginx便代理请求后端服务，然后将结果响应给客户端</p>
 <h4 id="2-正向代理与反向代理"><a href="#2-正向代理与反向代理" class="headerlink" title="(2)正向代理与反向代理"></a>(2)正向代理与反向代理</h4><p>​    代理：是指在网络通信中，介于客户端和服务端之间的一个服务，客户端将请求发往代理服务，代理服务将请求转发到服务端，得到服务端响应后，再将结果响应为客户端，这一过程如下图所示：</p>
@@ -4543,7 +4543,7 @@ systemctl start lease-admin<span aria-hidden="true" class="line-numbers-rows"><s
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h1, h3, h4'
+            headingSelector: 'h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -4555,7 +4555,7 @@ systemctl start lease-admin<span aria-hidden="true" class="line-numbers-rows"><s
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h1, h3, h4').each(function () {
+        $('#articleContent').children('h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 

@@ -1001,7 +1001,7 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('0'),
-            headingSelector: 'h1, h3, h4'
+            headingSelector: 'h2, h3, h4'
         });
 
         // modify the toc link href to support Chinese.
@@ -1013,7 +1013,7 @@ echo &quot;world&quot; &gt;&gt; test.txt   &#x2F;&#x2F;文件内容换行追加�
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h1, h3, h4').each(function () {
+        $('#articleContent').children('h2, h3, h4').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
