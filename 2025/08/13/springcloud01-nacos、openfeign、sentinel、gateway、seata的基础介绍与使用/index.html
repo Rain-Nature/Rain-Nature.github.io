@@ -1,0 +1,2020 @@
+<!DOCTYPE HTML>
+<html lang="zh-&#39;CN&#39;">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="springcloud01-nacos、openfeign、sentinel、gateway、seata的基础介绍与使用, Rain">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>springcloud01-nacos、openfeign、sentinel、gateway、seata的基础介绍与使用 | Rain</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+
+   <style>
+    body{
+       background-image: url(https://cdn.jsdelivr.net/gh/Rain-Nature/Rain-Nature.github.io@master/medias/bg.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Rain</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Rain</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">springcloud01-nacos、openfeign、sentinel、gateway、seata的基础介绍与使用</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+        max-height: 400px;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/springcloud/">
+                                <span class="chip bg-color">springcloud</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2025-08-13
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​    本项目为小demo，用于学习springcloud</p>
+<p>​    <strong>项目地址：</strong><a target="_blank" rel="noopener" href="https://github.com/Rain-Nature/springcloud-demo">https://github.com/Rain-Nature/springcloud-demo</a>    </p>
+<h3 id="1-分布式基础与微服务相关概念"><a href="#1-分布式基础与微服务相关概念" class="headerlink" title="1. 分布式基础与微服务相关概念"></a>1. 分布式基础与微服务相关概念</h3><h4 id="1-微服务与分布式"><a href="#1-微服务与分布式" class="headerlink" title="(1)微服务与分布式"></a>(1)微服务与分布式</h4><h5 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h5><p>​    微服务架构风格，就是把每个模块单独出来，如订单服务、商品服务。每个服务使用轻量级机制通信，<code>HTTP+JSON</code>。这些服务围绕业务能力来构建，独立部署。他们可以使用不同的编程语言实现功能，但依旧可以协同工作</p>
+<h5 id="分布式系统"><a href="#分布式系统" class="headerlink" title="分布式系统"></a>分布式系统</h5><p>​    把一个系统的不同功能部署在不同机器上，彼此通过网络通信协作完成任务</p>
+<h4 id="2-远程调用（OpenFeign）"><a href="#2-远程调用（OpenFeign）" class="headerlink" title="(2)远程调用（OpenFeign）"></a>(2)远程调用（OpenFeign）</h4><p>​    在分布式系统中，各个服务若处于不同主机，而服务又需要互相调用，在SpringCloud 中各个服务使用 HTTP+JSON 的方式完成远程调用</p>
+<h4 id="3-负载均衡"><a href="#3-负载均衡" class="headerlink" title="(3)负载均衡"></a>(3)负载均衡</h4><p>​    分布式系统中，A服务需要调用B服务，B服务在多台机器中都存在，A调用B的任意一个服务器均可完成功能。为了使每一个服务器都不要太忙或者太闲，通常负载均衡的进行调用</p>
+<h5 id="常见的负载均衡算法："><a href="#常见的负载均衡算法：" class="headerlink" title="常见的负载均衡算法："></a>常见的负载均衡算法：</h5><ul>
+<li>轮询：为第一个请求选择健康池中的第一个后端服务器，然后按顺序往后依次选择，直到最后一个，然后循环</li>
+<li>最小连接：优先选择连接数最少，也就是压力最小的后端服务器，在会话较⻓的情况下可以考虑采取这种方式。</li>
+<li>散列：根据请求源的IP的散列（hash）来选择要转发的服务器。这种方式可以一定程度上保证特定用户能连接到相同的服务器。如果你的应用需要处理状态而要求用户能连接到和之前相同的服务器，可以考虑采取这种方式</li>
+</ul>
+<h4 id="4-服务注册-发现-amp-注册中心（Nacos）"><a href="#4-服务注册-发现-amp-注册中心（Nacos）" class="headerlink" title="(4)服务注册/发现&amp;注册中心（Nacos）"></a>(4)服务注册/发现&amp;注册中心（Nacos）</h4><h5 id="服务发现功能"><a href="#服务发现功能" class="headerlink" title="服务发现功能"></a>服务发现功能</h5><p>​    A服务调用B服务，A服务并不知道B服务当前在哪台服务器有，服务发现会提供功能告知A服务，B服务所在的服务器</p>
+<h5 id="服务注册功能"><a href="#服务注册功能" class="headerlink" title="服务注册功能"></a>服务注册功能</h5><p>​    当A服务部署在服务器上时，注册中心监测服务上线，如果服务器宕机A服务下线则注册中心检测服务下线</p>
+<h4 id="5-配置中心（Nacos）"><a href="#5-配置中心（Nacos）" class="headerlink" title="(5)配置中心（Nacos）"></a>(5)配置中心（Nacos）</h4><p>​    每一个服务一般都会有大量的配置，且这个服务都可能部署在多台机器上。当需要变更配置，可以直接在配置中心更改，让该服务在配置中心获取自己的相关配置</p>
+<h4 id="6-服务熔断-amp-服务降级（Sentinel）"><a href="#6-服务熔断-amp-服务降级（Sentinel）" class="headerlink" title="(6)服务熔断&amp;服务降级（Sentinel）"></a>(6)服务熔断&amp;服务降级（Sentinel）</h4><h5 id="服务熔断：防止服务雪崩"><a href="#服务熔断：防止服务雪崩" class="headerlink" title="服务熔断：防止服务雪崩"></a>服务熔断：防止服务雪崩</h5><p>​    设置服务的超时，当被调用的服务经常调用失败到达设定阈值，该功能自动开启断路保护机制，后来的请求直接返回失败，防止请求积压造成整个微服务雪崩</p>
+<h5 id="服务降级"><a href="#服务降级" class="headerlink" title="服务降级"></a>服务降级</h5><p>​    在运维期间，当系统处于高峰期资源紧张，可以让非核心业务降级运行。降级：某些服务不处理，或者简单处理（抛异常、返回 NULL、调用 Mock 数据、调用 Fallback 处理逻辑）</p>
+<h4 id="7-API-网关（Gateway）"><a href="#7-API-网关（Gateway）" class="headerlink" title="(7)API 网关（Gateway）"></a>(7)API 网关（Gateway）</h4><p>​    在微服务架构中，API Gateway是整体架构的重要组件，网关实际上代表整个微服务系统，客户对于该系统的所有请求都交由网关处理，请求进入后先经过网关，再由网关通过注册中心找到对应的微服务</p>
+<h4 id="8-分布式事务（Seata）"><a href="#8-分布式事务（Seata）" class="headerlink" title="(8)分布式事务（Seata）"></a>(8)分布式事务（Seata）</h4><p>​    一个操作涉及多个服务或多个数据库，要保证它们要么一起成功，要么一起失败</p>
+<h3 id="2-Spring-Cloud"><a href="#2-Spring-Cloud" class="headerlink" title="2. Spring Cloud"></a>2. Spring Cloud</h3><h4 id="1-当前学习的Spring-Cloud技术栈"><a href="#1-当前学习的Spring-Cloud技术栈" class="headerlink" title="(1)当前学习的Spring Cloud技术栈"></a>(1)当前学习的Spring Cloud技术栈</h4><p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud1.jpg" alt="spring cloud技术栈"></p>
+<h5 id="Spring-Cloud-系列"><a href="#Spring-Cloud-系列" class="headerlink" title="Spring Cloud 系列"></a>Spring Cloud 系列</h5><p>​    官网：<a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud">https://spring.io/projects/spring-cloud</a></p>
+<p>​    远程调用：OpenFeign</p>
+<p>​    网关：Gateway</p>
+<h5 id="Spring-Cloud-Alibaba-系列（本文档）"><a href="#Spring-Cloud-Alibaba-系列（本文档）" class="headerlink" title="Spring Cloud Alibaba 系列（本文档）"></a>Spring Cloud Alibaba 系列（本文档）</h5><p>​    官网：<a target="_blank" rel="noopener" href="https://sca.aliyun.com/">https://sca.aliyun.com/</a></p>
+<p>​    注册中心/配置中心：Nacos</p>
+<p>​    服务保护：Sentinel</p>
+<p>​    分布式事务：Seata</p>
+<h4 id="2-项目结构图"><a href="#2-项目结构图" class="headerlink" title="(2)项目结构图"></a>(2)项目结构图</h4><p>​    父项目做版本控制，用service管理公共依赖，这两个的pom.xml的打包方式都要设置为pom，剩下的实现微服务具体功能，具体项目见Github</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud2.jpg" alt="项目结构图"></p>
+<h4 id="3-lt-packaging-gt-标签的使用"><a href="#3-lt-packaging-gt-标签的使用" class="headerlink" title="(3)&lt;packaging&gt; 标签的使用"></a>(3)<code>&lt;packaging&gt;</code> 标签的使用</h4><p>​    <code>&lt;packaging&gt;</code>  标签写在项目模块的pom.xml文件中，它就是用来告诉 Maven：这个模块打包成什么类型，比如 jar、war、pom 等，不写的话默认是 jar</p>
+<blockquote>
+<p><packaging>jar</packaging>     <!-- 打包成 jar，用于通用模块或 Web 项目 --><br><packaging>war</packaging>     <!-- 打包成 war，用于 Web 项目 --><br><packaging>pom</packaging>     <!-- 聚合模块，不打代码，只管依赖 --></p>
+</blockquote>
+<h4 id="4-不同模块在Idea的分组"><a href="#4-不同模块在Idea的分组" class="headerlink" title="(4)不同模块在Idea的分组"></a>(4)不同模块在Idea的分组</h4><p>​    点Maven右上角三个点，然后选择将模块分组，这样模块有包含关系才会以树的格式显示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud3.jpg" alt="Maven设置"></p>
+<h3 id="3-Nacos-注册中心"><a href="#3-Nacos-注册中心" class="headerlink" title="3. Nacos - 注册中心"></a>3. Nacos - 注册中心</h3><p>​    官网：<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/v2/quickstart/quick-start.html">https://nacos.io/zh-cn/docs/v2/quickstart/quick-start.html</a></p>
+<p>​    Nacos /nɑ:kəʊs/ 是 Dynamic Naming and Configuration Service的首字母简称，一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud4.jpg" alt="注册中心在微服务中的作用"></p>
+<h4 id="1-Nacos的安装与启动（Windows的zip）"><a href="#1-Nacos的安装与启动（Windows的zip）" class="headerlink" title="(1)Nacos的安装与启动（Windows的zip）"></a>(1)Nacos的安装与启动（Windows的zip）</h4><p>​    去官网下载版本为[2.4.3]的压缩包，解压到无中文目录，我是放在<code>D:\work\Cloud\</code></p>
+<p>​    定位路径：<code>D:\work\Cloud\nacos\bin</code>，输入cmd，然后输入启动命令： startup.cmd -m standalone</p>
+<p>​    启动后输入地址访问：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://localhost:8848/nacos/">https://localhost:8848/nacos/</a></p>
+</blockquote>
+<h4 id="2-Nacos-服务注册的使用"><a href="#2-Nacos-服务注册的使用" class="headerlink" title="(2)Nacos-服务注册的使用"></a>(2)Nacos-服务注册的使用</h4><p>​    首先要把Nacos运行起来</p>
+<h5 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h5><p>​    1.引入Nacos服务发现依赖</p>
+<p>​    2.在application.yml文件中配置Nacos地址</p>
+<p>​    3.启动springboot项目</p>
+<p>​    4.访问<a target="_blank" rel="noopener" href="https://localhost:8848/nacos/%EF%BC%8C%E6%9F%A5%E7%9C%8B%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%95%88%E6%9E%9C">https://localhost:8848/nacos/，查看注册中心效果</a></p>
+<h5 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h5><p>​    在services模块的pom.xml引入相关依赖（之后所有services模块下的模块全都继承该依赖）</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-nacos-discovery<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    在application.properties文件中配置Nacos地址</p>
+<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">service-product</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">9000</span>
+<span class="token comment"># 这句是对应配置</span>
+<span class="token attr-name">spring.cloud.nacos.server-addr</span><span class="token punctuation">=</span><span class="token attr-value">127.0.0.1:8848</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="3-Nacos-服务发现的使用"><a href="#3-Nacos-服务发现的使用" class="headerlink" title="(3)Nacos-服务发现的使用"></a>(3)Nacos-服务发现的使用</h4><p>​    想要通过代码获取Nacos中所有微服务，以及它所在机器的IP地址和端口列表</p>
+<p>​    <code>以下为底层实现，实际服务发现是自动的，只需要加注解开启服务发现功能就行</code></p>
+<h5 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h5><p>​    1.使用<code>@EnableDiscoveryClient</code>注解（写在启动类上），开启服务发现功能</p>
+<p>​    2.使用DiscoveryClient或NacosServiceDiscovery，调用它的服务发现方法</p>
+<h5 id="具体实现-1"><a href="#具体实现-1" class="headerlink" title="具体实现"></a>具体实现</h5><p>​    在商品服务中的启动类上添加注释</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@EnableDiscoveryClient</span> <span class="token comment">//开启服务发现</span>
+<span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ProductMainApplication</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">ProductMainApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    在商品服务中编写测试类（需要导入Springboot测试类依赖），在测试类中测试服务发现功能</p>
+<pre class="line-numbers language-none"><code class="language-none">@SpringBootTest
+public class DiscoveryTest &#123;
+
+    @Autowired
+    DiscoveryClient discoveryClient;
+
+    @Test
+    void discoveryClientTest() &#123;
+        for (String serviceName : discoveryClient.getServices()) &#123;
+            &#x2F;&#x2F;获取服务名
+            System.out.println(serviceName);
+
+            &#x2F;&#x2F;获取ip+port
+            List&lt;ServiceInstance&gt; instances &#x3D; discoveryClient.getInstances(serviceName);
+            for (ServiceInstance instance : instances) &#123;
+                System.out.println(&quot;ip：&quot; + instance.getHost() + &quot;:&quot; + instance.getPort());
+            &#125;
+
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-微服务案例：用户下订单"><a href="#4-微服务案例：用户下订单" class="headerlink" title="(4)微服务案例：用户下订单"></a>(4)微服务案例：用户下订单</h4><p>​    用户先给订单服务下单，然后订单服务再远程调用商品服务获得商品列表和总金额，不连数据库是死数据，具体图示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud5.jpg" alt="业务逻辑示意图"></p>
+<p>​    <code>具体代码实现看GitHub</code></p>
+<h5 id="技术细节"><a href="#技术细节" class="headerlink" title="技术细节"></a>技术细节</h5><p>​    要想进行远程调用，需要</p>
+<p>​    1.使用DiscoveryClient从注册中心获取商品服务（product）列表，<code>拼接远程调用的url</code></p>
+<p>​    2.在配置类中配置RestTemplate，将RestTemplate对象交由spring容器管理，<code>使用RestTemplate和拼接的url进行远程调用</code></p>
+<p>​    3(优化1).在xml中引入依赖（spring-cloud-starter-loadbalancer），直接注入LoadBalancerClient，用其代替DiscoveryClient，使用其可以负载均衡的获取一个商品服务对象（再通过该对象拼接远程调用的url）</p>
+<p>​    4(优化2，不使用1).使用注解式的远程调用，只需要在配置类中配置的RestTemplate上写注释<code>@LoadBalanced</code>，然后第一步就不需要，url直接用微服务名代替IP+端口号，再将这个url给RestTemplate进行远程调用。调用时会根据微服务名动态的替换为IP+端口号同时负载均衡的调用该服务（<code>第4也是当前主要实现思路，123都为原理</code>）</p>
+<h5 id="面试题（对4）：注册中心宕机，远程调用还能成功吗？"><a href="#面试题（对4）：注册中心宕机，远程调用还能成功吗？" class="headerlink" title="面试题（对4）：注册中心宕机，远程调用还能成功吗？"></a>面试题（对4）：注册中心宕机，远程调用还能成功吗？</h5><p>​    以下为4的原理图，主要核心是有个实例缓存（这是它自己设计的）：实际上不可能每次发请求都去问注册中心，所以第一次访问注册中心后会将服务存储在实例缓存中，右上角为问题答案</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud6.jpg" alt="4的原理图"></p>
+<h3 id="4-Nacos-配置中心"><a href="#4-Nacos-配置中心" class="headerlink" title="4. Nacos - 配置中心"></a>4. Nacos - 配置中心</h3><p>​    在微服务中，配置中心可以统一管理所有微服务的配置，只需要在配置中心进行修改，就可以实时的将变更的配置推送给指定的微服务，从而实现不停机配置更新</p>
+<h4 id="1-Nacos-配置中心的使用"><a href="#1-Nacos-配置中心的使用" class="headerlink" title="(1)Nacos-配置中心的使用"></a>(1)Nacos-配置中心的使用</h4><p>​    <code>首先还是得启动Nacos的服务</code></p>
+<h5 id="步骤-2"><a href="#步骤-2" class="headerlink" title="步骤"></a>步骤</h5><p>​    1.在services的pom.xml中导入配置中心的依赖</p>
+<p>​    2.在service-order的application.properties文件中进行配置</p>
+<p>​    3.访问Nacos，创建data-id（数据集）</p>
+<h5 id="具体实现-2"><a href="#具体实现-2" class="headerlink" title="具体实现"></a>具体实现</h5><p>​    在services的pom.xml中导入配置中心的依赖</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-nacos-config<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    在service-order的application.properties文件中进行如下配置</p>
+<pre class="line-numbers language-none"><code class="language-none">spring.cloud.nacos.server-addr&#x3D;127.0.0.1:8848
+# 项目启动后要导入的文件
+spring.config.import&#x3D;nacos:service-order.properties<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    访问Nacos，创建data-id（数据集）：如创建service-order.properties，如下图所示，写好后划到最下点发布，即可生效</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud7.jpg" alt="创建数据集"></p>
+<h5 id="配置的动态刷新：注解-RefreshScope"><a href="#配置的动态刷新：注解-RefreshScope" class="headerlink" title="配置的动态刷新：注解@RefreshScope"></a>配置的动态刷新：注解@RefreshScope</h5><p>​    注释<code>@RefreshScope</code>写在controller类上，当你不想关停服务再启动刷新配置，但是需要让服务的配置随nacos配置设置的变化而变化，可以使用该注解实现</p>
+<h5 id="关闭配置中心依赖导入检查"><a href="#关闭配置中心依赖导入检查" class="headerlink" title="关闭配置中心依赖导入检查"></a>关闭配置中心依赖导入检查</h5><p>​    当引入了配置中心相关的依赖，但是没有在application.properties文件中进行任意配置，在启动springboot项目时会报错</p>
+<p>​    如：在商品服务的application.properties文件中加入以下配置</p>
+<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 禁用nacos配置中心的导入检查功能</span>
+<span class="token attr-name">spring.cloud.nacos.config.import-check.enabled</span><span class="token punctuation">=</span><span class="token attr-value">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>​    之后就可以成功启动springboot项目</p>
+<h5 id="面试题：Nacos中的数据集和application-properties有相同的配置项，哪个生效？"><a href="#面试题：Nacos中的数据集和application-properties有相同的配置项，哪个生效？" class="headerlink" title="面试题：Nacos中的数据集和application.properties有相同的配置项，哪个生效？"></a>面试题：Nacos中的数据集和application.properties有相同的配置项，哪个生效？</h5><blockquote>
+<p>优先级：Nacos配置中心&gt;微服务自己的配置；而同Nacos的不同配置则按先导入优先</p>
+</blockquote>
+<h4 id="2-配置的动态刷新"><a href="#2-配置的动态刷新" class="headerlink" title="(2)配置的动态刷新"></a>(2)配置的动态刷新</h4><p>​    除了使用注解@RefreshScope+@Value的形式，还可以使用@ConfigurationProperties+@Component+@Data直接写一个配置类绑定配置文件的属性，然后再通过直接注入配置类的对象来使用具体属性值。其也可以实现动态更新，不需要再指定注解@RefreshScope</p>
+<p>​    <code>详细见代码的service-order的properties包和controller包</code></p>
+<h4 id="3-监听Nacos中配置文件的变化-监听到后发送邮件"><a href="#3-监听Nacos中配置文件的变化-监听到后发送邮件" class="headerlink" title="(3)监听Nacos中配置文件的变化-监听到后发送邮件"></a>(3)监听Nacos中配置文件的变化-监听到后发送邮件</h4><p>​    可以使用NacosConfigManager监听配置变化</p>
+<h5 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤"></a>步骤</h5><p>​    1.项目启动就监听配置文件变化</p>
+<p>​    2.发生变化后拿到变化值</p>
+<p>​    3.发送邮件</p>
+<h5 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h5><p>​    这个监听是写在springboot启动类里面的，只要一启动就会开始监听</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//OrderMainApplication.java</span>
+
+<span class="token comment">//该方法的作用：在项目启动完成之后，注册一个 Nacos 的配置监听器，只要某个配置项（service-order.properties）有变化，我就打印一条日志，还可以发邮件通知</span>
+<span class="token comment">// 告诉Spring：项目启动后运行这个代码</span>
+<span class="token annotation punctuation">@Bean</span>
+<span class="token class-name">ApplicationRunner</span> <span class="token function">applicationRunner</span><span class="token punctuation">(</span><span class="token class-name">NacosConfigManager</span> nacosConfigManager<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 启动后执行这段逻辑</span>
+    <span class="token keyword">return</span> args <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 获取 Nacos 配置服务</span>
+        <span class="token class-name">ConfigService</span> configService <span class="token operator">=</span> nacosConfigManager<span class="token punctuation">.</span><span class="token function">getConfigService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 添加一个监听器，监听某个配置文件变化</span>
+        configService<span class="token punctuation">.</span><span class="token function">addListener</span><span class="token punctuation">(</span><span class="token string">"service-order.properties"</span><span class="token punctuation">,</span> <span class="token string">"DEFAULT_GROUP"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Listener</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 指定回调线程池</span>
+            <span class="token keyword">public</span> <span class="token class-name">Executor</span> <span class="token function">getExecutor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">return</span> <span class="token class-name">Executors</span><span class="token punctuation">.</span><span class="token function">newFixedThreadPool</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+
+            <span class="token comment">// 配置变化时调用</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">receiveConfigInfo</span><span class="token punctuation">(</span><span class="token class-name">String</span> s<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"变化的信息是："</span> <span class="token operator">+</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"邮件通知"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"监听器已注册完成"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-数据隔离"><a href="#4-数据隔离" class="headerlink" title="(4)数据隔离"></a>(4)数据隔离</h4><p>​    一个项目一般会有多个环境：dev（开发），test（测试），prod（生产），而在不同的环境中相同的配置的值可能是不一样的，则需要配置中心通过切换环境，加载本环境的配置</p>
+<h5 id="Nacos的数据隔离"><a href="#Nacos的数据隔离" class="headerlink" title="Nacos的数据隔离"></a>Nacos的数据隔离</h5><p>​    Nacos通过名称空间（NameSpace）区分环境，通过分组（Group）区别微服务，通过分组下的多数据集来给某一微服务进行配置，如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud8.jpg" alt="Nacos的数据隔离"></p>
+<h5 id="Nacos数据隔离的使用"><a href="#Nacos数据隔离的使用" class="headerlink" title="Nacos数据隔离的使用"></a>Nacos数据隔离的使用</h5><p>​    在nacos中新建名称空间</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud9.jpg" alt="新建名称空间"></p>
+<p>​    再点击配置列表，之后在创建配置，里面有对group相关的配置，如下两图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud10.jpg" alt="图1"></p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud11new1.jpg" alt="图2"></p>
+<p>​    配置完成后，在项目的yml进行导入（注意：之前的application.properties文件的内容也换为这个yml了，其被废弃）</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">server:
+  port: 8000
+
+spring:
+  application:
+    name: service-order
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      config:
+        namespace: dev
+
+config:
+  import:
+    - nacos:common.properties?group&#x3D;order
+    - nacos:database.properties?group&#x3D;order<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​    注意：完全详细的多环境配置见项目的（<code>services/service-order/src/main/resources/application.yml</code>），<strong>上述代码只为单环境配置</strong></p>
+<h3 id="5-OpenFeign"><a href="#5-OpenFeign" class="headerlink" title="5. OpenFeign"></a>5. OpenFeign</h3><p>​    OpenFeign是声明式的REST客户端，而REST客户端是指能发送http请求能实现远程调用的工具。上文使用的RestTemplate是编程式的REST客户端</p>
+<p>​    <code>注意：OpenFeign的远程调用是自动负载均衡的</code></p>
+<h4 id="1-OpenFeign远程调用微服务的使用"><a href="#1-OpenFeign远程调用微服务的使用" class="headerlink" title="(1)OpenFeign远程调用微服务的使用"></a>(1)OpenFeign远程调用微服务的使用</h4><p>​    远程调用逻辑的图示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud12.jpg" alt="远程调用图"></p>
+<h5 id="步骤-4"><a href="#步骤-4" class="headerlink" title="步骤"></a>步骤</h5><p>​    1.引入OpenFeign的依赖</p>
+<p>​    2.在启动类上添加@EnableFeignClients注解，开启feign远程调用功能（只要该微服务调用了其他微服务就需要，如果只是被调用就不需要）</p>
+<p>​    3.新建一个feign客户端的接口类，实现feign客户端的逻辑。其中注解@FeignClient是用于声明一个远程调用的客户端</p>
+<p>​    4.在需要发请求的业务逻辑中，注入这个feign客户端，使其调用该客户端实现的方法完成远程调用</p>
+<h5 id="具体实现-3"><a href="#具体实现-3" class="headerlink" title="具体实现"></a>具体实现</h5><p>​    在services的pom.xml文件中引入OpenFeign的依赖</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;
+	&lt;artifactId&gt;spring-cloud-starter-openfeign&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​    在订单模块启动类上添加@EnableFeignClients注解，开启feign远程调用功能</p>
+<pre class="line-numbers language-none"><code class="language-none">@EnableFeignClients  &#x2F;&#x2F;开启feign远程调用功能
+@SpringBootApplication
+public class OrderMainApplication &#123;
+    public static void main(String[] args) &#123;
+        SpringApplication.run(OrderMainApplication.class, args);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​    新建一个feign客户端的接口类，实现feign客户端的逻辑</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;com&#x2F;rain&#x2F;order&#x2F;feign&#x2F;ProductFeignClient.java
+
+@FeignClient(value &#x3D; &quot;service-product&quot;) &#x2F;&#x2F;声明远程调用客户端，是给微服务service-product发送请求
+public interface ProductFeignClient &#123;
+
+    &#x2F;**
+     * mvc注解的两套使用逻辑
+     * 1、标注在Controller上，是接受这样的请求
+     * 2、标注在FeignClient上，是发生这样的请求
+     *&#x2F;
+
+    &#x2F;&#x2F;将JSON自动转为Product对象
+    @GetMapping(&quot;&#x2F;product&#x2F;&#123;id&#125;&quot;)
+    Product getProductById(@PathVariable(&quot;id&quot;) Long id);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​    在需要发请求的业务逻辑中，注入这个feign客户端，使其调用该客户端实现的方法完成远程调用</p>
+<pre class="line-numbers language-none"><code class="language-none">@Autowired
+private ProductFeignClient productFeignClient;
+
+Product product &#x3D; productFeignClient.getProductById(productId);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-OpenFeign远程调用第三方API"><a href="#2-OpenFeign远程调用第三方API" class="headerlink" title="(2)OpenFeign远程调用第三方API"></a>(2)OpenFeign远程调用第三方API</h4><p>​    步骤与1一致，只是第三步需要进行更改（创建调用第三方的FeignClient）</p>
+<h5 id="样例：编写FeignClient调用墨迹天气"><a href="#样例：编写FeignClient调用墨迹天气" class="headerlink" title="样例：编写FeignClient调用墨迹天气"></a>样例：编写FeignClient调用墨迹天气</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;WeatherFeignClient.java
+
+@FeignClient(value &#x3D; &quot;weather-client&quot;, url &#x3D; &quot;http:&#x2F;&#x2F;aliv18.data.moji.com&quot;)
+public interface WeatherFeignClient &#123;
+
+    @PostMapping(&quot;&#x2F;whapi&#x2F;json&#x2F;alicityweather&#x2F;condition&quot;)
+    String getWeather(@RequestHeader(&quot;Authorization&quot;) String auth,
+                      @RequestParam(&quot;token&quot;) String token,
+                      @RequestParam(&quot;cityId&quot;) String cityId);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="面试题：客户端负载均衡和服务端负载均衡的区别"><a href="#面试题：客户端负载均衡和服务端负载均衡的区别" class="headerlink" title="面试题：客户端负载均衡和服务端负载均衡的区别"></a>面试题：客户端负载均衡和服务端负载均衡的区别</h5><p>​    具体区别如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud13.jpg" alt="区别"></p>
+<h4 id="3-OpenFeign的日志-请求日志"><a href="#3-OpenFeign的日志-请求日志" class="headerlink" title="(3)OpenFeign的日志-请求日志"></a>(3)OpenFeign的日志-请求日志</h4><h5 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h5><p>​    1.在OrderConfig配置类中放一个feignLoggerLevel的@Bean组件</p>
+<p>​    2.在Spring项目的application.yml文件中开启OpenFeign日志（全局配置，若不写需要在对应Feign客户端类上指定如：@FeignClient(configuration = OrderConfig.class)）</p>
+<h5 id="具体实现-4"><a href="#具体实现-4" class="headerlink" title="具体实现"></a>具体实现</h5><p>​    在OrderConfig.java配置类中编写feignLoggerLevel的@Bean组件</p>
+<pre class="line-numbers language-none"><code class="language-none">@Configuration
+public class OrderConfig &#123;
+
+    &#x2F;&#x2F;配置feign的日志功能
+    @Bean
+    Logger.Level feignLoggerLevel() &#123;
+        return Logger.Level.FULL;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    在Spring项目的application.yml文件中添加如下内容开启OpenFeign日志</p>
+<pre class="line-numbers language-none"><code class="language-none"># 开启feign的日志功能，扫描包为com.rain.order.feign里的feign客户端
+logging:
+  level:
+    com.rain.order.feign: debug<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-OpenFeign的超时控制"><a href="#4-OpenFeign的超时控制" class="headerlink" title="(4)OpenFeign的超时控制"></a>(4)OpenFeign的超时控制</h4><p>​    OpenFeign在发送请求后，如果长时间联系不上，或API返回速度慢，导致读取不到远程处理结果。则需要进行超时控制-增加限时等待逻辑</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud14.jpg" alt="超时控制逻辑"></p>
+<p>​    而OpenFeign的限时等待设置的时间为连接超时和读取超时，右上角为系统默认配置，单位：秒。建立连接对应的是连接超时。处理业务对应的是读取超时。<strong>对于超时后的处理：默认为返回错误信息</strong></p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud15.jpg"></p>
+<h5 id="OpenFeign超时控制的自定义配置"><a href="#OpenFeign超时控制的自定义配置" class="headerlink" title="OpenFeign超时控制的自定义配置"></a>OpenFeign超时控制的自定义配置</h5><p>​    <code>配置连接超时和读取超时</code></p>
+<p>​    新建一个application-feign.yml，并在主配置文件application.yml中include这个配置文件</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;application-feign.yml
+
+## 对service-product客户端的发起请求进行配置
+spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            logger-level: full
+            connect-timeout: 1000
+            read-timeout: 2000
+          service-product:
+            logger-level: full
+            connect-timeout: 3000
+            read-timeout: 5000
+            
+            
+&#x2F;&#x2F;application.yml
+
+spring:
+  profiles:
+    include: feign<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    注意：文件命名规则</p>
+<ul>
+<li><code>application.yml</code> → 主配置</li>
+<li><code>application-&#123;profile&#125;.yml</code> → 某个 profile 的附加配置，引入就引入profile </li>
+</ul>
+<h4 id="5-OpenFeign的重试机制"><a href="#5-OpenFeign的重试机制" class="headerlink" title="(5)OpenFeign的重试机制"></a>(5)OpenFeign的重试机制</h4><p>​    在调用超时后可以设置重试机制再次调用，但OpenFeign默认是从不重试</p>
+<h5 id="自定义重试器"><a href="#自定义重试器" class="headerlink" title="自定义重试器"></a>自定义重试器</h5><p>​    在配置类OrderConfig.java中定义重试器的Bean组件</p>
+<pre class="line-numbers language-none"><code class="language-none">public class OrderConfig &#123;
+
+	&#x2F;&#x2F;请求重试器
+	&#x2F;&#x2F;这个重试器定义为间隔100毫秒，最大间隔1s，次数5次，每次间隔秒数*1.5
+	@Bean
+	Retryer retry() &#123;
+		return new Retryer.Default();
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​    注意：启用 Feign 的重试机制后，调用失败时会自动进行多次重试，只有在所有重试都失败后，才会抛出异常或返回错误信息</p>
+<h4 id="6-OpenFeign拦截器"><a href="#6-OpenFeign拦截器" class="headerlink" title="(6)OpenFeign拦截器"></a>(6)OpenFeign拦截器</h4><p>​    OpenFeign的拦截器为<code>请求拦截器（重要）</code>和响应拦截器（用的不多），如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud16new1.jpg" alt="OpenFeign拦截器"></p>
+<h5 id="请求拦截器的使用-添加token"><a href="#请求拦截器的使用-添加token" class="headerlink" title="请求拦截器的使用-添加token"></a>请求拦截器的使用-添加token</h5><p>​    OpenFeign在启动时，会自动从spring容器中找拦截器，当然，也可以不放spring容器，而在yml中对某个微服务进行定制配置</p>
+<pre class="line-numbers language-none"><code class="language-none">@Component
+&#x2F;&#x2F;请求拦截器
+public class TokenRequestInterceptor implements RequestInterceptor &#123;
+
+    &#x2F;&#x2F;template是请求模板，以下对其操作相当于添加请求头
+    @Override
+    public void apply(RequestTemplate template) &#123;
+        System.out.println(&quot;TokenRequestInterceptor已启动.....&quot;);
+        template.header(&quot;X-Token&quot;, UUID.randomUUID().toString());
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="7-OpenFeign-fallback（兜底回调）"><a href="#7-OpenFeign-fallback（兜底回调）" class="headerlink" title="(7)OpenFeign-fallback（兜底回调）"></a>(7)OpenFeign-fallback（兜底回调）</h4><p>​    当OpenFeign调用API失败后，除了执行返回错误信息外（<strong>默认返回</strong>），还可以执行返回兜底回调（程序员设置的假数据）</p>
+<p>​    兜底回调的作用是当远程调用失败时能拿到一个默认数据，让业务继续往下推进</p>
+<p>​    <code>注意：该功能需要导入Sentinel才能实现</code></p>
+<h5 id="步骤-5"><a href="#步骤-5" class="headerlink" title="步骤"></a>步骤</h5><p>​    1.新建一个兜底回调类实现要兜底回调的feignclient接口</p>
+<p>​    2.在要兜底回调的feignclient接口使用@FeignClient(fallback = 兜底回调类.class)指定兜底回调类兜底</p>
+<p>​    3.在订单服务中导入Sentinel的依赖</p>
+<p>​    4.在application-feign.yml文件中开启Feign客户端熔断功能</p>
+<h5 id="具体实现-5"><a href="#具体实现-5" class="headerlink" title="具体实现"></a>具体实现</h5><p>​    1.新建ProductFeignClientFallback.java类实现接口ProductFeignClient.java，为实现方法编写假数据</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//远程请求失败后的兜底回调</span>
+<span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ProductFeignClientFallback</span> <span class="token keyword">implements</span> <span class="token class-name">ProductFeignClient</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">Product</span> <span class="token function">getProductById</span><span class="token punctuation">(</span><span class="token class-name">Long</span> id<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"兜底回调"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Product</span> product <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Product</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        product<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        product<span class="token punctuation">.</span><span class="token function">setPrice</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BigDecimal</span><span class="token punctuation">(</span><span class="token string">"0"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        product<span class="token punctuation">.</span><span class="token function">setProductName</span><span class="token punctuation">(</span><span class="token string">"未知商品"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        product<span class="token punctuation">.</span><span class="token function">setNum</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> product<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.在ProductFeignClient.java中，指定ProductFeignClientFallback.java进行兜底</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"service-product"</span><span class="token punctuation">,</span>fallback <span class="token operator">=</span> <span class="token class-name">ProductFeignClientFallback</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ProductFeignClient</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/product/&#123;id&#125;"</span><span class="token punctuation">)</span>
+    <span class="token class-name">Product</span> <span class="token function">getProductById</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> <span class="token class-name">Long</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    3.在订单服务的pom.xml导入Sentinel的依赖</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-sentinel<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    4.在application-feign.yml文件中开启Feign客户端熔断功能</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">feign:
+  sentinel:
+    enabled: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="6-Sentinel"><a href="#6-Sentinel" class="headerlink" title="6. Sentinel"></a>6. Sentinel</h3><p>​    Sentinel主要用于服务保护，而保护的方式主要为限流、熔断降级</p>
+<p>​    <code>注意：规则可以存储在内存中（重启微服务后该微服务的规则会丢失），也可以存储到nacos的配置中心里</code></p>
+<p>​    <strong>资源：</strong>所有的Web接口</p>
+<p>​    <strong>规则：</strong>流量控制、熔断降级、系统保护、来源访问控制、热点参数</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud17.jpg" alt="服务保护图示"></p>
+<h5 id="Sentinel的工作原理"><a href="#Sentinel的工作原理" class="headerlink" title="Sentinel的工作原理"></a>Sentinel的工作原理</h5><p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud18.jpg" alt="Sentinel工作原理"></p>
+<h4 id="1-Sentinel的使用"><a href="#1-Sentinel的使用" class="headerlink" title="(1)Sentinel的使用"></a>(1)Sentinel的使用</h4><p>​    可以直接通过Sentinel的控制台设置规则控制台</p>
+<h5 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h5><p>​    官⽹：<a target="_blank" rel="noopener" href="https://sentinelguard.io/zh-cn/index.html">https://sentinelguard.io/zh-cn/index.html</a> </p>
+<p>​    获取Sentinel控制台：<a target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel/releases">Releases · alibaba/Sentinel</a></p>
+<h5 id="Sentinel控制台的启用"><a href="#Sentinel控制台的启用" class="headerlink" title="Sentinel控制台的启用"></a>Sentinel控制台的启用</h5><p>​    1.打开jar包所在的目录，输入cmd打开黑窗口，输入：<code>java -jar sentinel.jar</code></p>
+<p>​    2.打开浏览器访问：localhost:8080，默认的账号和密码都是Sentinel</p>
+<p>​    3.此时Sentinel并没有接入代码，所以页面为空白</p>
+<h5 id="Web应用接入Sentinel控制台开发步骤"><a href="#Web应用接入Sentinel控制台开发步骤" class="headerlink" title="Web应用接入Sentinel控制台开发步骤"></a>Web应用接入Sentinel控制台开发步骤</h5><p>​    1.在services模块重新引入Sentinel依赖</p>
+<p>​    2.在需要管理的微服务的yml文件中配置连接上Sentinel控制台</p>
+<p>​    <code>注意：启用后可以看到微服务，可以对HTTP请求链路进行追踪</code></p>
+<h5 id="Web应用接入Sentinel控制台具体实现"><a href="#Web应用接入Sentinel控制台具体实现" class="headerlink" title="Web应用接入Sentinel控制台具体实现"></a>Web应用接入Sentinel控制台具体实现</h5><p>​    在services模块重新引入Sentinel依赖</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
+	&lt;groupId&gt;com.alibaba.cloud&lt;&#x2F;groupId&gt;
+	&lt;artifactId&gt;spring-cloud-starter-alibaba-sentinel&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    在order服务和product服务的yml文件中配置连接上Sentinel控制台</p>
+<pre class="line-numbers language-none"><code class="language-none">spring:
+  cloud:
+    # 配置连接上sentinel的控制台
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      # 项目启动自动连上控制台，而不是等发送请求后才连接控制台
+      eager: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-SentinelResource-监听方法设置规则"><a href="#2-SentinelResource-监听方法设置规则" class="headerlink" title="(2)@SentinelResource-监听方法设置规则"></a>(2)@SentinelResource-监听方法设置规则</h4><p>​    <code>@SentinelResource(value=&quot;方法名&quot;)</code>注解，写在方法上（一般是非Controller层的方法），使得sentinel控制台可以追踪该方法，当方法处理请求时，可以<code>在sentinel控制台的簇点电路查看到该方法并手动的对方法实现熔断机制、流量控制、和降级</code></p>
+<p>​    使用方式</p>
+<pre class="line-numbers language-none"><code class="language-none">@SentinelResource(value &#x3D; &quot;createOrder&quot;)
+@Override
+public Order createOrder(Long productId, Long userId) &#123;
+    Product product &#x3D; productFeignClient.getProductById(productId);
+
+    Order order &#x3D; new Order();
+    order.setId(1L);
+    &#x2F;&#x2F; 总金额
+    BigDecimal all &#x3D; product.getPrice().multiply(new BigDecimal(product.getNum()));
+    order.setTotalAmount(all);
+    order.setUserId(userId);
+    order.setNickName(&quot;winky&quot;);
+    order.setAddress(&quot;广州&quot;);
+    &#x2F;&#x2F;远程查询商品列表（当前设定就一个商品，但是还是放列表里）
+    order.setProductList(Arrays.asList(product));
+
+    return order;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="3-Sentinel-异常处理"><a href="#3-Sentinel-异常处理" class="headerlink" title="(3)Sentinel-异常处理"></a>(3)Sentinel-异常处理</h4><p>​    当使用流控规则约束后，多余的请求会被Sentinel阻止，返回一个默认错误页。如果前后端分离系统需要返回JSON数据，则需要进行异常处理。即当访问资源违背规则后，Sentinel会直接抛出异常（BlockException），如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud19new1.jpg" alt="Sentinel-异常处理"></p>
+<p>​    而在控制台的监听结果，如下图所示，蓝色框依次为web、@SentinelResource、OpenFeign。可以对监听到的链路设置相关规则</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud20.jpg" alt="Sentinel监听结果"></p>
+<h5 id="处理Spring-Web接口的异常由默认改为自定义"><a href="#处理Spring-Web接口的异常由默认改为自定义" class="headerlink" title="处理Spring Web接口的异常由默认改为自定义"></a>处理Spring Web接口的异常由默认改为自定义</h5><p>​    只需要自定义类继承BlockExceptionHandler，然后实现其中方法handle，在方法中修改要返回给页面的参数</p>
+<pre class="line-numbers language-none"><code class="language-none">@Component
+public class MyBlockExceptionHandler implements BlockExceptionHandler &#123;
+    private final View error;
+    private ObjectMapper objectMapper &#x3D; new ObjectMapper();
+
+    public MyBlockExceptionHandler(View error) &#123;
+        this.error &#x3D; error;
+    &#125;
+
+    @Override
+    &#x2F;&#x2F;触发sentinel限流时，拦截请求并给出自定义JSON响应
+    public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, String s, BlockException e) throws Exception &#123;
+        httpServletResponse.setContentType(&quot;application&#x2F;json;charset&#x3D;utf-8&quot;);
+        PrintWriter writer &#x3D; httpServletResponse.getWriter();
+        R error &#x3D; R.error(500, s + &quot;被Sentinel限制了，原因：&quot; + e.getClass());
+        &#x2F;&#x2F;将R对象转为JSON
+        String json &#x3D; objectMapper.writeValueAsString(error);
+        writer.write(json);
+        writer.flush();
+        writer.close();
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="处理-SentinelResource的异常-blockHandle"><a href="#处理-SentinelResource的异常-blockHandle" class="headerlink" title="处理@SentinelResource的异常-blockHandle"></a>处理@SentinelResource的异常-blockHandle</h5><p>​    @SentinelResource的异常是不断上抛的，如果该注解只指定了value，则会上抛到springboot处理返回默认错误页。可以给注解添加blockHandle属性值是方法名指定当异常发生时处理异常的方法。还可以定义全局异常处理器返回相关结果</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;OrderServcieImpl.java
+
+@SentinelResource(value &#x3D; &quot;createOrder&quot;,blockHandler &#x3D; &quot;createOrderFallback&quot;)
+@Override
+public Order createOrder(Long productId, Long userId) &#123;
+    &#x2F;&#x2F;改用feign发送请求
+    Product product &#x3D; productFeignClient.getProductById(productId);
+
+    Order order &#x3D; new Order();
+    order.setId(1L);
+    &#x2F;&#x2F; 总金额
+    BigDecimal all &#x3D; product.getPrice().multiply(new BigDecimal(product.getNum()));
+    order.setTotalAmount(all);
+    order.setUserId(userId);
+    order.setNickName(&quot;winky&quot;);
+    order.setAddress(&quot;广州&quot;);
+    &#x2F;&#x2F;远程查询商品列表（当前设定就一个商品，但是还是放列表里）
+    order.setProductList(Arrays.asList(product));
+
+    return order;
+&#125;
+
+&#x2F;&#x2F;SentinelResource限制后的兜底回调-限流使用，如果为业务异常可以使用fallback，这两个可以结合使用
+public Order createOrderFallback(Long productId, Long userId, BlockException exception) &#123;
+    Order order &#x3D; new Order();
+    order.setId(0L);
+    order.setTotalAmount(new BigDecimal(&quot;0&quot;));
+    order.setUserId(userId);
+    order.setNickName(&quot;未知用户&quot;);
+    order.setAddress(&quot;异常信息：&quot;+exception.getClass());
+    return order;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="处理OpenFeign远程调用的异常-fallback"><a href="#处理OpenFeign远程调用的异常-fallback" class="headerlink" title="处理OpenFeign远程调用的异常-fallback"></a>处理OpenFeign远程调用的异常-fallback</h5><p>​    当给远程调用添加流控规则并违反后，再次请求会调用fallback指定的兜底回调方法。这个上面已经写过了</p>
+<h5 id="fallback和blockHandle的区别"><a href="#fallback和blockHandle的区别" class="headerlink" title="fallback和blockHandle的区别"></a>fallback和blockHandle的区别</h5><table>
+<thead>
+<tr>
+<th>特性</th>
+<th><code>fallback</code></th>
+<th><code>blockHandler</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>处理异常类型</td>
+<td>业务异常（运行时错误等）</td>
+<td>Sentinel 规则异常 (<code>BlockException</code>)</td>
+</tr>
+<tr>
+<td>触发时机</td>
+<td>方法执行中出错</td>
+<td>命中限流、熔断、降级规则</td>
+</tr>
+<tr>
+<td>参数要求</td>
+<td>可接收 <code>Throwable</code></td>
+<td>必须接收 <code>BlockException</code></td>
+</tr>
+<tr>
+<td>用途</td>
+<td>在方法出错时返回一个备用结果，防止错误直接抛给调用方</td>
+<td>定义被 Sentinel 拦截时的处理逻辑，返回备用结果</td>
+</tr>
+</tbody></table>
+<h4 id="4-规则设置-流控规则"><a href="#4-规则设置-流控规则" class="headerlink" title="(4)规则设置-流控规则"></a>(4)规则设置-流控规则</h4><p>​    流控规则：限制多余请求，从而保护系统资源不被耗尽，如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud21.jpg" alt="流控规则"></p>
+<h5 id="阈值类型"><a href="#阈值类型" class="headerlink" title="阈值类型"></a>阈值类型</h5><p>​    QPS：统计每秒请求数  （常用）</p>
+<p>​    并发线程数：统计并发线程数 （有线程池时使用）</p>
+<h5 id="流控模式"><a href="#流控模式" class="headerlink" title="流控模式"></a>流控模式</h5><p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud22.jpg" alt="流控模式"></p>
+<p>​    直接策略：直接限制资源的访问（之前的限流都是使用直接策略）</p>
+<p>​    链路策略：两个接口都需要调用同一个方法，可以设置接口A不限制，而接口B限制（即对那一条链路进行限制）</p>
+<p>​        <code>注意：使用链路策略时，配置的yml文件需要添加如下配置</code></p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none"># 要分割请求链路设置为false
+web-context-unify: false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</blockquote>
+<p>​    关联策略：A 资源的限流触发，不是因为 A 自己访问量大，而是因为资源 B的访问量超了阈值。图中为对读操作限流，当写操作流量大时则限制读操作（优先写）</p>
+<h5 id="流控效果"><a href="#流控效果" class="headerlink" title="流控效果"></a>流控效果</h5><p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud23.jpg" alt="流控效果"></p>
+<p>​    快速失败：超出的QPS直接拒绝丢弃（<code>注意：只有快速失败才支持流控模式的设置</code>）</p>
+<p>​    warm up：超出的QPS直接拒绝丢弃，同时逐渐提升系统对QPS的处理数量，Period是冷启动周期单位s，峰值是QPS设置的值，初始处理的QPS为：QPS设置的值/Period</p>
+<p>​    匀速排队：设定每秒处理的QPS，超出的进入排队，当最长排队时间结束(timeout)，剩余的QPS全部丢弃</p>
+<h4 id="5-规则设置-熔断规则"><a href="#5-规则设置-熔断规则" class="headerlink" title="(5)规则设置-熔断规则"></a>(5)规则设置-熔断规则</h4><p>​    有无熔断规则的区别：远程出问题后，使用熔断规则可以节约时间和远程资源，如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud26.jpg" alt="熔断规则"></p>
+<h5 id="熔断降级"><a href="#熔断降级" class="headerlink" title="熔断降级"></a>熔断降级</h5><p>​    <code>注意：熔断降级作为保护自身的手段，通常在客户端（远程调用）进行配置</code></p>
+<p>​    G调用D，但是D一直不返回结果，则会导致G也陷入等待，此时需要快速切断不稳定的调用，并进行快速返回。由此防止发生雪崩效应</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud24.jpg" alt="微服务调用图示"></p>
+<h5 id="断路器"><a href="#断路器" class="headerlink" title="断路器"></a>断路器</h5><p>​    断路器工作原理：默认闭合，当需要熔断时断开，熔断时间过后进入半开状态重新测试连接是否稳定，进而确认是闭合还是断开</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud25.jpg" alt="断路器工作原理"></p>
+<h5 id="熔断降级-触发熔断的三种统计类型"><a href="#熔断降级-触发熔断的三种统计类型" class="headerlink" title="熔断降级-触发熔断的三种统计类型"></a>熔断降级-触发熔断的三种统计类型</h5><p>​    慢调用比例：在统计时间内，请求响应的时间超过设定慢调用设置的时间则为慢调用，慢调用次数÷总调用数 超过阈值就熔断</p>
+<p>​    异常比例：在统计时间内，异常调用的比例（异常数 ÷ 总调用数）超过阈值就熔断</p>
+<p>​    异常数：在统计时间内，调用异常的次数超过设定值就熔断</p>
+<h4 id="6-规则设置-热点规则"><a href="#6-规则设置-热点规则" class="headerlink" title="(6)规则设置-热点规则"></a>(6)规则设置-热点规则</h4><p>​    热点规则：可以对方法传递的参数名进行限流，设定参数名A，则对带有该参数名A的请求进行限流。还可以对该参数名A的某个值进行特定限(不限)流</p>
+<p>​    <code>注意：热点规则对web应用默认不支持，要想使用需要用@SentinelResource注解，对该注解下的方法设置热点规则</code></p>
+<h3 id="7-Gateway"><a href="#7-Gateway" class="headerlink" title="7. Gateway"></a>7. Gateway</h3><p>​    API Gateway 是微服务架构的入口，统一接收外部请求，然后根据路由规则分发到对应的后端服务，流程如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud27.jpg" alt="Gateway的流程"></p>
+<p>​    Gateway的生命周期</p>
+<blockquote>
+<p>客户端请求 → Predicate 匹配路由 → Pre Filter（请求前处理） → 路由到服务 → Post Filter（响应后处理） → 返回给客户端</p>
+</blockquote>
+<h4 id="1-Gateway的基本使用"><a href="#1-Gateway的基本使用" class="headerlink" title="(1)Gateway的基本使用"></a>(1)Gateway的基本使用</h4><h5 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h5><ol>
+<li>客户端发送 <code>/api/order/**</code> 转到 <code>service-order</code></li>
+<li>客户端发送 <code>/api/product/**</code> 转到 <code>service-product</code></li>
+<li>以上转发有负载均衡效果</li>
+</ol>
+<h5 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h5><p>​    注意：nacos要启动起来</p>
+<p>​    1.在项目的目录创建一个新模块gateway和services同级别</p>
+<p>​    2.在该模块的pom.xml中导入gateway相关依赖，和nacos注册中心相关依赖，以及负载均衡依赖</p>
+<p>​    3.创建springboot启动类</p>
+<p>​    4.编写application.yml文件，编写应用名称和nacos地址</p>
+<p>​    5.新建路由表配置文件application-route.yml，配置路由规则</p>
+<h5 id="具体实现-6"><a href="#具体实现-6" class="headerlink" title="具体实现"></a>具体实现</h5><p>​    1.见项目：略</p>
+<p>​    2.在该模块的pom.xml中导入gateway相关依赖，和nacos注册中心相关依赖，以及负载均衡依赖</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
+    &lt;groupId&gt;com.alibaba.cloud&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;
+    &lt;artifactId&gt;spring-cloud-starter-gateway&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;
+	&lt;artifactId&gt;spring-cloud-starter-loadbalancer&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    3.创建springboot启动类</p>
+<pre class="line-numbers language-none"><code class="language-none">@EnableDiscoveryClient
+@SpringBootApplication
+public class GatewayMainApplication &#123;
+    public static void main(String[] args) &#123;
+        SpringApplication.run(GatewayMainApplication.class, args);
+    &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    4.编写application.yml文件，编写应用名称和nacos地址</p>
+<pre class="line-numbers language-none"><code class="language-none">spring:
+# 导入路由配置文件
+  profiles:
+    include: route
+  application:
+    name: gateway
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+# 更换端口8080-&gt;为80
+server:
+  port: 80<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    5.新建路由表配置文件application-route.yml，配置路由规则。<code>注意：网关是会将路径请求直接转给服务，所以在controller和OpenFeign中应当增加路径前缀如：/api/order/</code></p>
+<pre class="line-numbers language-none"><code class="language-none">spring:
+  cloud:
+    gateway:
+      routes:
+        # 以下规则是有顺序的，按照从上向下进行路由，若先匹配上后面不会继续匹配，可以用order改变顺序
+        - id: order-route
+          # 转给订单服务，lb表负载均衡
+          uri: lb:&#x2F;&#x2F;service-order
+          # 断言：请求遵守什么规则才转
+          predicates:
+            - Path&#x3D;&#x2F;api&#x2F;order&#x2F;**
+          # 指定顺序，越小的优先级越高
+          order: 0
+        - id: product-route
+          uri: lb:&#x2F;&#x2F;service-product
+          predicates:
+            - Path&#x3D;&#x2F;api&#x2F;product&#x2F;**
+          order: 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-断言（predicates）"><a href="#2-断言（predicates）" class="headerlink" title="(2)断言（predicates）"></a>(2)断言（predicates）</h4><p>​    断言的作用：看请求是否匹配我们设定的断言规则（请求头、请求参数、请求路径）</p>
+<h5 id="常见断言参数"><a href="#常见断言参数" class="headerlink" title="常见断言参数"></a>常见断言参数</h5><table>
+<thead>
+<tr>
+<th>Predicate 名称</th>
+<th>作用</th>
+<th>常用参数</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Path</td>
+<td>按 URL 路径匹配</td>
+<td>路径模式（支持 <code>*</code>一级、<code>**</code>多级）</td>
+<td><code>Path=/api/order/**</code></td>
+</tr>
+<tr>
+<td>Query</td>
+<td>按请求参数匹配</td>
+<td><code>param</code>（参数名）、<code>regexp</code>（可选正则）</td>
+<td><code>Query=foo, bar</code>（匹配 <code>?foo=bar</code>）</td>
+</tr>
+<tr>
+<td>Method</td>
+<td>按 HTTP 方法匹配</td>
+<td>方法名（GET、POST 等）</td>
+<td><code>Method=GET</code></td>
+</tr>
+<tr>
+<td>Header</td>
+<td>按请求头匹配</td>
+<td><code>headerName</code>、<code>regexp</code>（可选）</td>
+<td><code>Header=X-Request-Id, \d+</code></td>
+</tr>
+<tr>
+<td>Host</td>
+<td>按请求的 Host 匹配</td>
+<td>域名模式（支持 <code>*</code>）</td>
+<td><code>Host=**.example.com</code></td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>按 Cookie 匹配</td>
+<td><code>cookieName</code>、<code>regexp</code></td>
+<td><code>Cookie=sessionId, abc.*</code></td>
+</tr>
+</tbody></table>
+<h5 id="断言的全写法和短写法"><a href="#断言的全写法和短写法" class="headerlink" title="断言的全写法和短写法"></a>断言的全写法和短写法</h5><pre class="line-numbers language-none"><code class="language-none"># 短写法
+predicates:
+  - Path&#x3D;&#x2F;api&#x2F;order&#x2F;**
+
+# 全写法
+predicates:
+  - name: Path
+    args:
+      # 配置路径
+      Pattern: &#x2F;search<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="参数Query的使用"><a href="#参数Query的使用" class="headerlink" title="参数Query的使用"></a>参数Query的使用</h5><p>​    多个断言必须完全匹配才能转到uri的目录，访问<code>localhost://80/search?q=haha</code>，即可转到<code>https://cn.bing.com/search?q=haha</code></p>
+<pre class="line-numbers language-none"><code class="language-none">- id: bing-route
+  uri: https:&#x2F;&#x2F;cn.bing.com&#x2F;
+  predicates:
+    - name: Path
+      args:
+        # 配置路径
+        Pattern: &#x2F;search
+    # 指定路径携带参数，http:&#x2F;&#x2F;lxs?后面的内容
+    - name: Query
+      args:
+        # Key与Value，必须完全匹配才能有
+        param: q
+        regexp: haha<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="自定义断言工厂"><a href="#自定义断言工厂" class="headerlink" title="自定义断言工厂"></a>自定义断言工厂</h5><p>​    可以参考QueryRoutePredicateFactory.java类，模仿写自定义断言工厂</p>
+<p>​    <code>具体实现见代码gateway模块的predicate包下的VipRoutePredicateFactory.java</code></p>
+<h4 id="3-过滤器（filter）"><a href="#3-过滤器（filter）" class="headerlink" title="(3)过滤器（filter）"></a>(3)过滤器（filter）</h4><p>​    过滤器的作用：在请求被转发到目标服务前（pre）或从目标服务返回后（post），对 HTTP 请求与响应进行拦截、修改或处理</p>
+<h5 id="过滤器使用-路径重写"><a href="#过滤器使用-路径重写" class="headerlink" title="过滤器使用-路径重写"></a>过滤器使用-路径重写</h5><p>​    因为Gateway会将请求路径直接发送给微服务，所以所有微服务在处理前，除了写原路径，还要在前面加网关的前缀路径，如/api/order/。可以使用filter省略掉网关加的路径</p>
+<p>​    在route.yml增加过滤器，修改代码如下</p>
+<pre class="line-numbers language-none"><code class="language-none">- id: order-route
+  # 转给订单服务，lb表负载均衡
+  uri: lb:&#x2F;&#x2F;service-order
+  # 断言：请求遵守什么规则才转
+  predicates:
+    - Path&#x3D;&#x2F;api&#x2F;order&#x2F;**
+  # 指定顺序，越小的优先级越高
+  order: 0
+  filters: 
+  	#&#x2F;api&#x2F;order&#x2F;ab&#x2F;c &#x3D;&gt; &#x2F;ab&#x2F;c 注意：,表示转化。这个正则是去官网找的
+    - RewritePath&#x3D;&#x2F;api&#x2F;order&#x2F;?(?&lt;segment&gt;.*),&#x2F;$\&#123;segment&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="设置默认过滤器"><a href="#设置默认过滤器" class="headerlink" title="设置默认过滤器"></a>设置默认过滤器</h5><p>​    当设置默认过滤器后，所有的路由规则都会使用这个过滤器，具体使用如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;在application-route.yml的gateway下
+
+routes:
+  - id: order-route
+    uri: lb:&#x2F;&#x2F;service-order
+    predicates:
+      - Path&#x3D;&#x2F;api&#x2F;order&#x2F;**
+    filters:
+      - RewritePath&#x3D;&#x2F;api&#x2F;order&#x2F;?(?&lt;segment&gt;.*),&#x2F;$\&#123;segment&#125;
+# 配置默认过滤器。只过滤所有路由
+default-filters:
+  # 给响应加上响应头
+  - AddResponseHeader&#x3D;X-Response-Abc,123<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="全局过滤器"><a href="#全局过滤器" class="headerlink" title="全局过滤器"></a>全局过滤器</h5><p>​    执行流程</p>
+<blockquote>
+<p>请求进来<br>↓<br>[ 全局过滤器（GlobalFilter） ]<br>↓<br>路由匹配（Predicates）<br>↓<br>[ 路由过滤器链（GatewayFilter） ]<br>├─ default-filters（所有路由都有）<br>├─ route-filters（该路由专属的）<br>↓<br>目标服务调用</p>
+</blockquote>
+<p>​    样例：见项目的gateway模块的RtGlobalFilter.java</p>
+<h5 id="自定义过滤器（路由过滤器）"><a href="#自定义过滤器（路由过滤器）" class="headerlink" title="自定义过滤器（路由过滤器）"></a>自定义过滤器（路由过滤器）</h5><p>​    样例：见项目的gateway模块的 OnceTokenGatewayFilterFactory.java 和 application-route.yml</p>
+<h4 id="4-跨域"><a href="#4-跨域" class="headerlink" title="(4)跨域"></a>(4)跨域</h4><p>​    在之前解决前后端跨域问题是在controller增加注解@CrossOrigin实现跨域，而在微服务中，一般在gateway解决跨域问题</p>
+<h5 id="跨域的解决"><a href="#跨域的解决" class="headerlink" title="跨域的解决"></a>跨域的解决</h5><p>​    在application-route.yml配置文件中添加如下配置</p>
+<pre class="line-numbers language-none"><code class="language-none">spring:
+  cloud:
+    gateway:
+      globalcors: # 全局跨域配置入口
+        cors-configurations: # 定义跨域规则
+          &#39;[&#x2F;**]&#39;: # 允许所有的请求进行跨域
+            allowed-origin-patterns: &#39;*&#39;  # 允许的所有请求来源
+            allowed-headers: &#39;*&#39;          # 允许的所有请求头
+            allowed-methods: &#39;*&#39;          # 允许所有的请求方式<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="5-面试题"><a href="#5-面试题" class="headerlink" title="(5)面试题"></a>(5)面试题</h4><h5 id="微服务之间的调用经过网关吗？"><a href="#微服务之间的调用经过网关吗？" class="headerlink" title="微服务之间的调用经过网关吗？"></a>微服务之间的调用经过网关吗？</h5><p>​    答：如果直接用OpenFeign调用微服务名就不需要，直接去注册中心那要调用的地址。如果OpenFeign调用网关就需要，给网关发请求需要加基准路径。<code>一般微服务之间的调用不需要过网关，网关是给前端调后端服务用的。后端服务之间通常直接调用</code></p>
+<h3 id="8-Seata"><a href="#8-Seata" class="headerlink" title="8. Seata"></a>8. Seata</h3><p>​    <strong>Seata</strong>（Simple Extensible Autonomous Transaction Architecture）是一个开源的分布式事务解决方案，用来保证跨多个微服务或数据源的操作在事务上一致性（要么全部成功，要么全部回滚）</p>
+<p>​    项目中学习Seata使用的项目结构，采购是项目调用入口，<code>RPC是指远程调用</code>，如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud28.jpg" alt="Seata学习的项目结构"></p>
+<p>​    注意：运行项目时，nacos也需要启动</p>
+<h4 id="1-本地事务"><a href="#1-本地事务" class="headerlink" title="(1)本地事务"></a>(1)本地事务</h4><p>​    本地事务只针对单个微服务的内部操作执行统一管理（全部提交 or 全部回滚）。一般只要做了数据库操作都需要使用本地事务</p>
+<h5 id="本地事务的使用步骤"><a href="#本地事务的使用步骤" class="headerlink" title="本地事务的使用步骤"></a>本地事务的使用步骤</h5><p>​    1.在service层的类中需要事务管理的方法上使用注解@Transactional开启事务（开启后若方法执行异常则全方法回滚）</p>
+<p>​    2.在springboot启动类上，添加注解@EnableTransactionManagement开启 Spring 的注解驱动事务管理功能</p>
+<h5 id="本地事务的具体实现"><a href="#本地事务的具体实现" class="headerlink" title="本地事务的具体实现"></a>本地事务的具体实现</h5><p>​    1.在service层的类中需要事务管理的方法上使用注解@Transactional开启事务（开启后若方法执行异常则全方法回滚）</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;StorageServiceImpl.java
+
+@Service
+public class StorageServiceImpl implements StorageService &#123;
+
+    @Autowired
+    StorageTblMapper storageTblMapper;
+
+    @Transactional
+    @Override
+    public void deduct(String commodityCode, int count) &#123;
+
+        storageTblMapper.deduct(commodityCode, count);
+        int i &#x3D;10&#x2F;0;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    2.在springboot启动类上，添加注解@EnableTransactionManagement开启 Spring 的注解驱动事务管理功能</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;SeataStorageMainApplication.java
+
+@EnableTransactionManagement
+@MapperScan(&quot;com.atguigu.storage.mapper&quot;)
+@EnableDiscoveryClient
+@SpringBootApplication
+public class SeataStorageMainApplication &#123;
+
+    public static void main(String[] args) &#123;
+        SpringApplication.run(SeataStorageMainApplication.class, args);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="2-当前项目状态"><a href="#2-当前项目状态" class="headerlink" title="(2)当前项目状态"></a>(2)当前项目状态</h4><p>​    当前项目单微服务基础逻辑已经写好，OpenFeign远程调用是自己实现，详细见项目（都在各个微服务的service层）。但是整个链路的事务未实现</p>
+<h4 id="3-Seata-解决分布式事务"><a href="#3-Seata-解决分布式事务" class="headerlink" title="(3)Seata-解决分布式事务"></a>(3)Seata-解决分布式事务</h4><p>​    Seata = TM + TC + RM + 其它组件</p>
+<h5 id="seata工作示意图"><a href="#seata工作示意图" class="headerlink" title="seata工作示意图"></a>seata工作示意图</h5><p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud29.jpg" alt="seata工作"></p>
+<h5 id="seata的使用步骤"><a href="#seata的使用步骤" class="headerlink" title="seata的使用步骤"></a>seata的使用步骤</h5><p>​    1.下载seata，启动seata服务器</p>
+<p>​    2.在项目services模块的pom.xml文件中引入seata的依赖</p>
+<p>​    3.在每一个微服务中创建<code>file.conf</code>文件（完整版见seata官网）</p>
+<p>​    4.在事务管理器（项目的Business微服务）添加@GlobalTransactional注解，开启全局事务</p>
+<h5 id="具体实现-7"><a href="#具体实现-7" class="headerlink" title="具体实现"></a>具体实现</h5><p>​    1.下载seata，启动seata服务器</p>
+<p>​    下载<a target="_blank" rel="noopener" href="https://www.apache.org/dyn/closer.lua/incubator/seata/2.5.0/apache-seata-2.5.0-incubating-src.tar.gz?action=download">apache-seata-2.5.0-incubating-src.tar.gz</a>，解压缩后，打开bin目录，输入cmd，在黑窗口输<code>seata-server.bat</code>启动</p>
+<p>​    打开<a target="_blank" rel="noopener" href="http://127.0.0.1/7091%EF%BC%8C%E8%AE%BF%E9%97%AEseata%E7%9A%84web%E9%A1%B5%E9%9D%A2%EF%BC%8C%E8%B4%A6%E5%8F%B7%E5%92%8C%E5%AF%86%E7%A0%81%E9%83%BD%E6%98%AFseata%E3%80%82%E7%95%8C%E9%9D%A2%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA">http://127.0.0.1/7091，访问seata的web页面，账号和密码都是seata。界面如下图所示</a></p>
+<p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/springcloud/springcloud30.jpg" alt="seata界面"></p>
+<p>​    2.在项目services模块的pom.xml文件中引入seata的依赖</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;dependency&gt;
+	&lt;groupId&gt;com.alibaba.cloud&lt;&#x2F;groupId&gt;
+	&lt;artifactId&gt;spring-cloud-starter-alibaba-seata&lt;&#x2F;artifactId&gt;
+&lt;&#x2F;dependency&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    3.在每一个微服务中创建<code>file.conf</code>文件（完整版见seata官网），并保存如下内容。<code>注意：如果只导入依赖，不创建该文件，微服务将无法启动</code></p>
+<pre class="line-numbers language-none"><code class="language-none"># 该文件用于配置seata
+service &#123;
+  # 设置默认组，默认就是default_tx_group
+  vgroupMapping.default_tx_group &#x3D; &quot;default&quot;
+  # 8091是TC的端口，7091是seata的web端口
+  default.grouplist &#x3D; &quot;127.0.0.1:8091&quot;
+  #degrade, current not support
+  enableDegrade &#x3D; false
+  #disable seata
+  disableGlobalTransaction &#x3D; false
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    4.在事务管理器（项目的Business微服务）添加@GlobalTransactional注解，开启全局事务。<code>注意：只需要控制入口，就可控制全局</code></p>
+<pre class="line-numbers language-none"><code class="language-none">@Service
+public class BusinessServiceImpl implements BusinessService &#123;
+
+    @Autowired
+    StorageFeignClient storageFeignClient;
+
+    @Autowired
+    OrderFeignClient orderFeignClient;
+
+    &#x2F;&#x2F;注解使用Seata开启全局事务，注意：异常要弄到account服务才能明显看到seata的作用
+    @GlobalTransactional
+    @Override
+    public void purchase(String userId, String commodityCode, int orderCount) &#123;
+        &#x2F;&#x2F;一下均为远程调用微服务
+        &#x2F;&#x2F;1. 扣减库存
+        storageFeignClient.deduct(commodityCode, orderCount);
+        &#x2F;&#x2F;2. 创建订单
+        orderFeignClient.create(userId, commodityCode, orderCount);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-Seata实现分布式事务的原理"><a href="#4-Seata实现分布式事务的原理" class="headerlink" title="(4)Seata实现分布式事务的原理"></a>(4)Seata实现分布式事务的原理</h4><p>​    Seata使用的是⼆阶提交协议。具体原理重看视频P70，当前我看不懂</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">拾雨</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://example.com/2025/08/13/springcloud01-nacos%E3%80%81openfeign%E3%80%81sentinel%E3%80%81gateway%E3%80%81seata%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/">http://example.com/2025/08/13/springcloud01-nacos%E3%80%81openfeign%E3%80%81sentinel%E3%80%81gateway%E3%80%81seata%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">拾雨</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/springcloud/">
+                                    <span class="chip bg-color">springcloud</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2025/08/13/springcloud01-nacos%E3%80%81openfeign%E3%80%81sentinel%E3%80%81gateway%E3%80%81seata%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="springcloud01-nacos、openfeign、sentinel、gateway、seata的基础介绍与使用">
+                        
+                        <span class="card-title">springcloud01-nacos、openfeign、sentinel、gateway、seata的基础介绍与使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-08-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            拾雨
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/springcloud/">
+                        <span class="chip bg-color">springcloud</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/07/16/Git01-Git%E4%B8%8EGithub%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8AIDEA%E7%9A%84%E9%9B%86%E6%88%90%E3%80%81Gitee%E5%92%8CGitlab/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Git01-Git与Github的基本使用以及IDEA的集成、Gitee和Gitlab">
+                        
+                        <span class="card-title">Git01-Git与Github的基本使用以及IDEA的集成、Gitee和Gitlab</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-07-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            拾雨
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('1'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="tencent"
+                   type="playlist"
+                   id="9518097293"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='list'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='false'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2025</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">拾雨</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
