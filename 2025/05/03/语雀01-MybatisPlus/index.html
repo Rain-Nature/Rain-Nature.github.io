@@ -1206,11 +1206,76 @@ public void testSaveBatch()&#123;
 
 
 <h5 id="e-gt-当前只做这两个方法作为样例"><a href="#e-gt-当前只做这两个方法作为样例" class="headerlink" title="e&gt;当前只做这两个方法作为样例"></a>e&gt;当前只做这两个方法作为样例</h5><p>​    <strong>具体的所有方法可以打开类的structure进行查看</strong></p>
-<h3 id="四、Mybatis和MybatisPlus的混合开发"><a href="#四、Mybatis和MybatisPlus的混合开发" class="headerlink" title="四、Mybatis和MybatisPlus的混合开发"></a>四、Mybatis和MybatisPlus的混合开发</h3><h4 id="1、开发步骤"><a href="#1、开发步骤" class="headerlink" title="1、开发步骤"></a>1、开发步骤</h4><p>​    1.在application.yml中进行配置（这是默认配置可以省略）：<code>mybatis-plus.plus.mapper-location=classpath*:/mapper/**/*.xml</code></p>
-<p>​    2.在resource目录创建mapper，然后再写mapper类的映射文件xxxx.xml(Mybatis)</p>
-<p>​    3.找到开发目录mapper包，这个就是mybatisPlus的那个包，对要的那个类定义需要的接口</p>
-<p>​    4.在xxxx.xml中配置该接口的sql</p>
-<h4 id="2、项目结构图"><a href="#2、项目结构图" class="headerlink" title="2、项目结构图"></a>2、项目结构图</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pEoRjZq"><img src="https://s21.ax1x.com/2025/04/25/pEoRjZq.png" alt="样例"></a></p>
+<h3 id="四、Mybatis和MybatisPlus的基于spring的开发流程"><a href="#四、Mybatis和MybatisPlus的基于spring的开发流程" class="headerlink" title="四、Mybatis和MybatisPlus的基于spring的开发流程"></a>四、Mybatis和MybatisPlus的基于spring的开发流程</h3><p>​    核心是要记住要扫描两个地方，一个是扫描自定义xml文件，还有一个是mapper.java文件</p>
+<h4 id="1、Spring-SpringMVC-MyBatis的开发步骤（纯Mybatis）"><a href="#1、Spring-SpringMVC-MyBatis的开发步骤（纯Mybatis）" class="headerlink" title="1、Spring + SpringMVC + MyBatis的开发步骤（纯Mybatis）"></a>1、Spring + SpringMVC + MyBatis的开发步骤（纯Mybatis）</h4><p>​    <code>详细操作见23年牢博客Mybatis01</code></p>
+<ol>
+<li><p>引入Mybatis依赖与JDBC依赖</p>
+<ol start="2">
+<li>配置Mybatis的核心xml文件（用于配置）</li>
+<li>配置自定义xml文件</li>
+<li>配置mapper接口</li>
+<li>通过获得sqlSession来调用mapper，执行xml中配置的sql语句</li>
+</ol>
+</li>
+</ol>
+<h4 id="2、Spring-Boot-MyBatis的开发步骤（基于spring）"><a href="#2、Spring-Boot-MyBatis的开发步骤（基于spring）" class="headerlink" title="2、Spring Boot + MyBatis的开发步骤（基于spring）"></a>2、Spring Boot + MyBatis的开发步骤（基于spring）</h4><ol>
+<li><p>引入Mybatis依赖与JDBC依赖</p>
+<ol start="2">
+<li>配置yml文件</li>
+<li>配置mapper接口，使用@Mapper、或者在启动类加 @MapperScan 扫描mapper包</li>
+<li>配置自定义xml文件</li>
+<li>在 Service 层直接注入使用</li>
+</ol>
+</li>
+</ol>
+<h5 id="其中第二步详解"><a href="#其中第二步详解" class="headerlink" title="其中第二步详解"></a>其中第二步详解</h5><p>​    配置yml内容如下：</p>
+<pre class="line-numbers language-none"><code class="language-none"># 配置mysql数据源
+spring:
+  datasource:
+    url: jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;test
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# mybatis的自定义xml路径，mapper的扫描通过注解在第三步完成
+mybatis:
+  mapper-locations: classpath:mapper&#x2F;*.xml   # XML 路径
+  type-aliases-package: com.example.pojo   # （可省）实体类包路径，这样写xml，不用写全限定名，写类别名即可
+  configuration:
+  	# 配置驼峰命名与数据库_映射
+    map-underscore-to-camel-case: true
+    # 开启日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    <code>注意：如果是MyBatis的复杂配置，还是要用Mybatis的核心xml文件来配，如分页等</code>，配置代码如下：</p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">&gt;mybatis:
+ config-location: classpath:&#x2F;mybatis-config.xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="3、Spring-Boot-MyBatisPlus的开发步骤（基于spring，MyBatisPlus默认整合了MyBatis）"><a href="#3、Spring-Boot-MyBatisPlus的开发步骤（基于spring，MyBatisPlus默认整合了MyBatis）" class="headerlink" title="3、Spring Boot + MyBatisPlus的开发步骤（基于spring，MyBatisPlus默认整合了MyBatis）"></a>3、Spring Boot + MyBatisPlus的开发步骤（基于spring，MyBatisPlus默认整合了MyBatis）</h4><pre><code> 1. 引入MybatisPlus依赖与JDBC依赖
+ 2. 配置yml文件
+ 3. 配置mapper接口，使用@Mapper、或者在启动类加 @MapperScan 扫描mapper包
+ 4. 配置自定义xml文件（常用sql可以直接用BaseMapper解决）
+ 5. 在 Service 层直接注入使用</code></pre>
+<h5 id="其中第二步详解-1"><a href="#其中第二步详解-1" class="headerlink" title="其中第二步详解"></a>其中第二步详解</h5><p>​    一般的配置都默认配好了，只需要开启日志即可</p>
+<pre class="line-numbers language-none"><code class="language-none"># 配置mysql数据源
+spring:
+  datasource:
+    url: jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;test
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# 以下为开启日志，至于自定义xml的扫描默认路径：mapper-locations: classpath:mapper&#x2F;*.xml，驼峰命名默认也是开启
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4、实际开发的项目结构图（Spring-Boot-MyBatisPlus（包含MyBatis））"><a href="#4、实际开发的项目结构图（Spring-Boot-MyBatisPlus（包含MyBatis））" class="headerlink" title="4、实际开发的项目结构图（Spring Boot + MyBatisPlus（包含MyBatis））"></a>4、实际开发的项目结构图（Spring Boot + MyBatisPlus（包含MyBatis））</h4><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pEoRjZq"><img src="https://s21.ax1x.com/2025/04/25/pEoRjZq.png" alt="样例"></a></p>
 <h3 id="五、MybatisPlus常用注解"><a href="#五、MybatisPlus常用注解" class="headerlink" title="五、MybatisPlus常用注解"></a>五、MybatisPlus常用注解</h3><h4 id="1-、-TableName"><a href="#1-、-TableName" class="headerlink" title="1 、@TableName"></a>1 、@TableName</h4><p>​    经过以上的测试，在使用MyBatis-Plus实现基本的CRUD时，我们并没有指定要操作的表，只是在Mapper接口继承BaseMapper时，设置了泛型User，而操作的表为user表</p>
 <p>​    由此得出结论，MyBatis-Plus在确定操作的表时，由BaseMapper的泛型决定，即实体类型决定，且默认操作的表名和实体类型的类名一致</p>
 <h5 id="a-gt-问题"><a href="#a-gt-问题" class="headerlink" title="a&gt;问题"></a>a&gt;问题</h5><p>​    若实体类类型的类名和要操作的表的表名不一致，会出现什么问题？</p>
@@ -1737,10 +1802,10 @@ public class MybatisPlusConfig &#123;
 
 
 
-<h5 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h5><p>​    User(id=1, name=Jone, age=18, email= <a href="mailto:&#x74;&#x65;&#x73;&#x74;&#x31;&#64;&#98;&#x61;&#111;&#109;&#105;&#x64;&#111;&#x75;&#46;&#x63;&#111;&#x6d;">&#x74;&#x65;&#x73;&#x74;&#x31;&#64;&#98;&#x61;&#111;&#109;&#105;&#x64;&#111;&#x75;&#46;&#x63;&#111;&#x6d;</a>, isDeleted=0) </p>
-<p>​    User(id=2, name=Jack, age=20, email= <a href="mailto:&#116;&#101;&#x73;&#116;&#x32;&#x40;&#98;&#x61;&#111;&#x6d;&#105;&#x64;&#111;&#117;&#46;&#x63;&#x6f;&#109;">&#116;&#101;&#x73;&#116;&#x32;&#x40;&#98;&#x61;&#111;&#x6d;&#105;&#x64;&#111;&#117;&#46;&#x63;&#x6f;&#109;</a>, isDeleted=0) </p>
-<p>​    User(id=3, name=Tom, age=28, email= <a href="mailto:&#116;&#101;&#x73;&#116;&#x33;&#64;&#x62;&#x61;&#x6f;&#109;&#x69;&#x64;&#x6f;&#x75;&#46;&#x63;&#x6f;&#109;">&#116;&#101;&#x73;&#116;&#x33;&#64;&#x62;&#x61;&#x6f;&#109;&#x69;&#x64;&#x6f;&#x75;&#46;&#x63;&#x6f;&#109;</a>, isDeleted=0) </p>
-<p>​    User(id=4, name=Sandy, age=21, email= <a href="mailto:&#x74;&#101;&#x73;&#x74;&#52;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#105;&#100;&#111;&#x75;&#46;&#99;&#111;&#109;">&#x74;&#101;&#x73;&#x74;&#52;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#105;&#100;&#111;&#x75;&#46;&#99;&#111;&#109;</a>, isDeleted=0) </p>
+<h5 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h5><p>​    User(id=1, name=Jone, age=18, email= <a href="mailto:&#116;&#x65;&#x73;&#x74;&#49;&#x40;&#x62;&#97;&#111;&#109;&#x69;&#x64;&#111;&#x75;&#46;&#99;&#111;&#109;">&#116;&#x65;&#x73;&#x74;&#49;&#x40;&#x62;&#97;&#111;&#109;&#x69;&#x64;&#111;&#x75;&#46;&#99;&#111;&#109;</a>, isDeleted=0) </p>
+<p>​    User(id=2, name=Jack, age=20, email= <a href="mailto:&#x74;&#x65;&#x73;&#x74;&#50;&#x40;&#x62;&#97;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#117;&#46;&#x63;&#x6f;&#109;">&#x74;&#x65;&#x73;&#x74;&#50;&#x40;&#x62;&#97;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#117;&#46;&#x63;&#x6f;&#109;</a>, isDeleted=0) </p>
+<p>​    User(id=3, name=Tom, age=28, email= <a href="mailto:&#116;&#101;&#115;&#116;&#51;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#105;&#x64;&#x6f;&#117;&#46;&#x63;&#x6f;&#109;">&#116;&#101;&#115;&#116;&#51;&#x40;&#x62;&#x61;&#x6f;&#x6d;&#105;&#x64;&#x6f;&#117;&#46;&#x63;&#x6f;&#109;</a>, isDeleted=0) </p>
+<p>​    User(id=4, name=Sandy, age=21, email= <a href="mailto:&#116;&#101;&#x73;&#x74;&#52;&#64;&#x62;&#97;&#x6f;&#109;&#105;&#100;&#x6f;&#x75;&#x2e;&#99;&#111;&#x6d;">&#116;&#101;&#x73;&#x74;&#52;&#64;&#x62;&#97;&#x6f;&#109;&#105;&#100;&#x6f;&#x75;&#x2e;&#99;&#111;&#x6d;</a>, isDeleted=0) </p>
 <p>​    User(id=5, name=Billie, age=24, email= test5@ba omidou.com, isDeleted=0) </p>
 <p>​    当前页：1 每页显示的条数：5 总记录数：17 总页数：4 是否有上一 页：false 是否有下一页：true</p>
 <h4 id="2-、xml自定义分页"><a href="#2-、xml自定义分页" class="headerlink" title="2 、xml自定义分页"></a>2 、xml自定义分页</h4><p>​    自定义分页，只需要在mapper层的方法，将page对象作为参数传，然后在xml中实现这个带page的方法，即可实现自定义分页</p>
@@ -1780,9 +1845,9 @@ public void testSelectPageVo()&#123;
 
 
 
-<h5 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h5><p>User(id=3, name=Tom, age=28, email= <a href="mailto:&#x74;&#101;&#115;&#116;&#51;&#64;&#98;&#97;&#x6f;&#109;&#x69;&#100;&#x6f;&#117;&#46;&#99;&#x6f;&#109;">&#x74;&#101;&#115;&#116;&#51;&#64;&#98;&#97;&#x6f;&#109;&#x69;&#100;&#x6f;&#117;&#46;&#99;&#x6f;&#109;</a>, isDeleted=null) </p>
-<p>User(id=4, name=Sandy, age=21, email= <a href="mailto:&#116;&#101;&#x73;&#x74;&#x34;&#x40;&#x62;&#97;&#111;&#109;&#105;&#100;&#x6f;&#x75;&#x2e;&#x63;&#x6f;&#109;">&#116;&#101;&#x73;&#x74;&#x34;&#x40;&#x62;&#97;&#111;&#109;&#105;&#100;&#x6f;&#x75;&#x2e;&#x63;&#x6f;&#109;</a>, isDeleted=null) </p>
-<p>User(id=5, name=Billie, age=24, email= <a href="mailto:&#116;&#x65;&#x73;&#116;&#53;&#64;&#x62;&#x61;&#111;&#x6d;&#x69;&#x64;&#111;&#x75;&#x2e;&#99;&#111;&#x6d;">&#116;&#x65;&#x73;&#116;&#53;&#64;&#x62;&#x61;&#111;&#x6d;&#x69;&#x64;&#111;&#x75;&#x2e;&#99;&#111;&#x6d;</a>, isDeleted=null) </p>
+<h5 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h5><p>User(id=3, name=Tom, age=28, email= <a href="mailto:&#x74;&#101;&#x73;&#116;&#x33;&#x40;&#x62;&#97;&#x6f;&#109;&#105;&#x64;&#x6f;&#x75;&#x2e;&#x63;&#x6f;&#109;">&#x74;&#101;&#x73;&#116;&#x33;&#x40;&#x62;&#97;&#x6f;&#109;&#105;&#x64;&#x6f;&#x75;&#x2e;&#x63;&#x6f;&#109;</a>, isDeleted=null) </p>
+<p>User(id=4, name=Sandy, age=21, email= <a href="mailto:&#x74;&#x65;&#x73;&#116;&#52;&#64;&#x62;&#97;&#111;&#x6d;&#x69;&#100;&#x6f;&#117;&#x2e;&#99;&#111;&#109;">&#x74;&#x65;&#x73;&#116;&#52;&#64;&#x62;&#97;&#111;&#x6d;&#x69;&#100;&#x6f;&#117;&#x2e;&#99;&#111;&#109;</a>, isDeleted=null) </p>
+<p>User(id=5, name=Billie, age=24, email= <a href="mailto:&#116;&#101;&#115;&#116;&#53;&#64;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#x64;&#111;&#x75;&#46;&#99;&#x6f;&#x6d;">&#116;&#101;&#115;&#116;&#53;&#64;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#x64;&#111;&#x75;&#46;&#99;&#x6f;&#x6d;</a>, isDeleted=null) </p>
 <p>User(id=8, name=ybc1, age=21, email=null, isDeleted=null) </p>
 <p>User(id=9, name=ybc2, age=22, email=null, isDeleted=null) </p>
 <p>当前 页：1 每页显示的条数：5 总记录数：12 总页数：3 是否有上一页：false 是否有下一页：true</p>

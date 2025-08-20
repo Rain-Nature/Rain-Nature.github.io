@@ -537,7 +537,15 @@ yum remove docker \
 
 
 
-<h5 id="2-安装docker"><a href="#2-安装docker" class="headerlink" title="2. 安装docker"></a>2. 安装docker</h5><p>​    首先需要虚拟机联网，安装yum工具</p>
+<h5 id="2-安装docker"><a href="#2-安装docker" class="headerlink" title="2. 安装docker"></a>2. 安装docker</h5><p>​    <code>注意：如果yml没有换源的话需要执行此步，否则下载会连接失败报错：Cannot find a valid baseurl for repo: base/7/x86_64</code></p>
+<pre class="line-numbers language-none"><code class="language-none"># 换整个 CentOS 系统源
+curl -o &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;repo&#x2F;Centos-7.repo
+yum clean all
+yum makecache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>​    首先需要虚拟机联网，安装yum工具</p>
 <pre class="line-numbers language-none"><code class="language-none">yum install -y yum-utils \
 	device-mapper-persistent-data \
 	lvm2 --skip-broken<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -563,7 +571,24 @@ docker version<span aria-hidden="true" class="line-numbers-rows"><span></span><s
 
 
 
-<h5 id="3-配置镜像"><a href="#3-配置镜像" class="headerlink" title="3. 配置镜像"></a>3. 配置镜像</h5><p>​    docker官方镜像仓库网速较差，我们需要设置国内镜像，参考阿里云的镜像加速文档：<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors</a></p>
+<h5 id="3-镜像拉取（docker-pull）超时问题"><a href="#3-镜像拉取（docker-pull）超时问题" class="headerlink" title="3. 镜像拉取（docker pull）超时问题"></a>3. 镜像拉取（docker pull）超时问题</h5><p>​    不管是DockerWindows桌面版本的Docker引擎配置，或是Linux系统的/etc/docker/daemon.json文件，都是如下配置，安装docker后，中国国内拉不了官网镜像的。必须配置后能正常拉取</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;
+  &quot;builder&quot;: &#123;
+    &quot;gc&quot;: &#123;
+      &quot;defaultKeepStorage&quot;: &quot;20GB&quot;,
+      &quot;enabled&quot;: true
+    &#125;
+  &#125;,
+  &quot;experimental&quot;: false,
+  &quot;registry-mirrors&quot;: [
+    &quot;https:&#x2F;&#x2F;docker.m.daocloud.io&quot;,
+    &quot;https:&#x2F;&#x2F;docker.1panel.live&quot;,
+    &quot;https:&#x2F;&#x2F;hub.rat.dev&quot;
+  ]
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="3-Docker基本操作"><a href="#3-Docker基本操作" class="headerlink" title="3. Docker基本操作"></a>3. Docker基本操作</h3><h4 id="1-镜像"><a href="#1-镜像" class="headerlink" title="(1) 镜像"></a>(1) 镜像</h4><ul>
 <li>镜像一般分两部分组成：[repository]:[tag]，例如：<code>mysql:5.7</code></li>
 <li>在没有指定tag时，默认是latest，代表最新版本的镜像</li>

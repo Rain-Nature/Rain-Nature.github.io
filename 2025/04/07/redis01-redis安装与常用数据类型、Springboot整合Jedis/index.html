@@ -1195,8 +1195,8 @@ public class RedisController &#123;
 <h4 id="4-RedisTemplate的序列化问题"><a href="#4-RedisTemplate的序列化问题" class="headerlink" title="(4)RedisTemplate的序列化问题"></a>(4)RedisTemplate的序列化问题</h4><h5 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h5><p>​    在Redis中的key和value均是以二进制的形式存储的，因此客户端输入的key和value都会经过序列化之后才发往Redis服务端。而RedisTemplate所使用序列化方式和命令行客户端采用序列化方式不相同，进而导致序列化之后的二进制数据不同，此时就无法互通，即RedisTemplate存入的数据，在Redis客户端中无法正确读取</p>
 <h5 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h5><p>​    通过定义配置类，设置RedisTemplate的序列化方式解决以上问题，偷懒可以使用StringRedisTemplate，直接注入使用即可</p>
 <h5 id="RedisTemplate-和-StringRedisTemplate-的序列化器区别："><a href="#RedisTemplate-和-StringRedisTemplate-的序列化器区别：" class="headerlink" title="RedisTemplate 和 StringRedisTemplate 的序列化器区别："></a>RedisTemplate 和 StringRedisTemplate 的序列化器区别：</h5><ul>
-<li><code>RedisTemplate&lt;Object, Object&gt;</code> 默认使用的是 <strong>JDK 序列化器</strong>，可以存任意类型的对象，但存入的数据是二进制格式，Redis客户端中（使用redis-cli等）不可读，但程序不影响</li>
-<li><code>StringRedisTemplate</code> 是 <code>RedisTemplate&lt;String, String&gt;</code> 的封装，<strong>专门为操作字符串类型的 key 和 value 而设计</strong>，使用的是 <code>StringRedisSerializer</code>，存入的数据是纯字符串格式，Redis客户端中（使用redis-cli等）可读</li>
+<li><code>RedisTemplate&lt;Object, Object&gt;</code> <strong>默认使用的序列化器是 JDK 序列化器</strong>，可以存任意类型的对象，但存入的数据是二进制格式，Redis客户端中（使用redis-cli等）不可读，但程序不影响</li>
+<li><code>StringRedisTemplate</code> 是 <code>RedisTemplate&lt;String, String&gt;</code> 的封装，<strong>专门为操作字符串类型的 key 和 value 而设计</strong>，<strong>其序列化器使用的是 StringRedisSerializer</strong>，存入的数据是纯字符串格式，Redis客户端中（使用redis-cli等）可读</li>
 </ul>
 
                 
