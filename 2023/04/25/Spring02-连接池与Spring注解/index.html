@@ -826,7 +826,7 @@ public class UserServiceImpl implements UserService&#123;
 <td align="center">写在Java的配置类上，用于将其他的配置类导入到该配置类</td>
 </tr>
 </tbody></table>
-<h4 id="5-Spring新注解详解"><a href="#5-Spring新注解详解" class="headerlink" title="(5)Spring新注解详解"></a>(5)Spring新注解详解</h4><h5 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h5><p>​    @Configuration用于标识一个类作为配置类，Spring 容器就会自动扫描这个类，并将它作为配置类来处理。配置类是用来定义 Spring 容器中的bean 配置的，<code>这些类通常包含了多个@Bean注解的方法</code>，这些方法的返回值会交由Spring 容器管理</p>
+<h4 id="5-Spring新注解详解"><a href="#5-Spring新注解详解" class="headerlink" title="(5)Spring新注解详解"></a>(5)Spring新注解详解</h4><h5 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h5><p>​    @Configuration 继承自@Component，具备并增强了@Component的功能，其用于标识一个类作为配置类，Spring 容器就会自动扫描这个类，并将它作为配置类来处理。配置类是用来定义 Spring 容器中的bean 配置的，<code>这些类通常包含了多个@Bean注解的方法</code>，@Configuration会启用 CGLIB 代理，保证 @Bean 方法返回的是同一个 Bean 实例，这些方法的返回值（单例）会交由Spring容器管理</p>
 <p>样例：@Configuration的使用</p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;SpringConfiguration
 

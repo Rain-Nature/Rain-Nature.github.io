@@ -1208,26 +1208,16 @@ public void testSaveBatch()&#123;
 <h5 id="e-gt-当前只做这两个方法作为样例"><a href="#e-gt-当前只做这两个方法作为样例" class="headerlink" title="e&gt;当前只做这两个方法作为样例"></a>e&gt;当前只做这两个方法作为样例</h5><p>​    <strong>具体的所有方法可以打开类的structure进行查看</strong></p>
 <h3 id="四、Mybatis和MybatisPlus的基于spring的开发流程"><a href="#四、Mybatis和MybatisPlus的基于spring的开发流程" class="headerlink" title="四、Mybatis和MybatisPlus的基于spring的开发流程"></a>四、Mybatis和MybatisPlus的基于spring的开发流程</h3><p>​    核心是要记住要扫描两个地方，一个是扫描自定义xml文件，还有一个是mapper.java文件</p>
 <h4 id="1、Spring-SpringMVC-MyBatis的开发步骤（纯Mybatis）"><a href="#1、Spring-SpringMVC-MyBatis的开发步骤（纯Mybatis）" class="headerlink" title="1、Spring + SpringMVC + MyBatis的开发步骤（纯Mybatis）"></a>1、Spring + SpringMVC + MyBatis的开发步骤（纯Mybatis）</h4><p>​    <code>详细操作见23年牢博客Mybatis01</code></p>
-<ol>
-<li><p>引入Mybatis依赖与JDBC依赖</p>
-<ol start="2">
-<li>配置Mybatis的核心xml文件（用于配置）</li>
-<li>配置自定义xml文件</li>
-<li>配置mapper接口</li>
-<li>通过获得sqlSession来调用mapper，执行xml中配置的sql语句</li>
-</ol>
-</li>
-</ol>
-<h4 id="2、Spring-Boot-MyBatis的开发步骤（基于spring）"><a href="#2、Spring-Boot-MyBatis的开发步骤（基于spring）" class="headerlink" title="2、Spring Boot + MyBatis的开发步骤（基于spring）"></a>2、Spring Boot + MyBatis的开发步骤（基于spring）</h4><ol>
-<li><p>引入Mybatis依赖与JDBC依赖</p>
-<ol start="2">
-<li>配置yml文件</li>
-<li>配置mapper接口，使用@Mapper、或者在启动类加 @MapperScan 扫描mapper包</li>
-<li>配置自定义xml文件</li>
-<li>在 Service 层直接注入使用</li>
-</ol>
-</li>
-</ol>
+<p>​    1.引入Mybatis依赖与JDBC依赖</p>
+<p>​    2.配置Mybatis的核心xml文件（用于配置）</p>
+<p>​    3.配置自定义xml文件</p>
+<p>​    4.配置mapper接口</p>
+<p>​    5.通过获得sqlSession来调用mapper，执行xml中配置的sql语句</p>
+<h4 id="2、Spring-Boot-MyBatis的开发步骤（基于spring）"><a href="#2、Spring-Boot-MyBatis的开发步骤（基于spring）" class="headerlink" title="2、Spring Boot + MyBatis的开发步骤（基于spring）"></a>2、Spring Boot + MyBatis的开发步骤（基于spring）</h4><p>​    1.引入Mybatis依赖与JDBC依赖</p>
+<p>​    2.配置yml文件</p>
+<p>​    3.配置mapper接口，使用@Mapper、或者在启动类加 @MapperScan 扫描mapper包</p>
+<p>​    4.配置自定义xml文件</p>
+<p>​    5.在 Service 层直接注入使用</p>
 <h5 id="其中第二步详解"><a href="#其中第二步详解" class="headerlink" title="其中第二步详解"></a>其中第二步详解</h5><p>​    配置yml内容如下：</p>
 <pre class="line-numbers language-none"><code class="language-none"># 配置mysql数据源
 spring:
@@ -1254,11 +1244,11 @@ mybatis:
 <pre class="line-numbers language-none"><code class="language-none">&gt;mybatis:
  config-location: classpath:&#x2F;mybatis-config.xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </blockquote>
-<h4 id="3、Spring-Boot-MyBatisPlus的开发步骤（基于spring，MyBatisPlus默认整合了MyBatis）"><a href="#3、Spring-Boot-MyBatisPlus的开发步骤（基于spring，MyBatisPlus默认整合了MyBatis）" class="headerlink" title="3、Spring Boot + MyBatisPlus的开发步骤（基于spring，MyBatisPlus默认整合了MyBatis）"></a>3、Spring Boot + MyBatisPlus的开发步骤（基于spring，MyBatisPlus默认整合了MyBatis）</h4><pre><code> 1. 引入MybatisPlus依赖与JDBC依赖
- 2. 配置yml文件
- 3. 配置mapper接口，使用@Mapper、或者在启动类加 @MapperScan 扫描mapper包
- 4. 配置自定义xml文件（常用sql可以直接用BaseMapper解决）
- 5. 在 Service 层直接注入使用</code></pre>
+<h4 id="3、Spring-Boot-MyBatisPlus的开发步骤（基于spring，MyBatisPlus默认整合了MyBatis）"><a href="#3、Spring-Boot-MyBatisPlus的开发步骤（基于spring，MyBatisPlus默认整合了MyBatis）" class="headerlink" title="3、Spring Boot + MyBatisPlus的开发步骤（基于spring，MyBatisPlus默认整合了MyBatis）"></a>3、Spring Boot + MyBatisPlus的开发步骤（基于spring，MyBatisPlus默认整合了MyBatis）</h4><p>​    1.引入MybatisPlus依赖与JDBC依赖</p>
+<p>​    2.配置yml文件</p>
+<p>​    3.配置mapper接口，使用@Mapper、或者在启动类加 @MapperScan 扫描mapper包</p>
+<p>​    4.配置自定义xml文件（常用sql可以直接用BaseMapper解决）</p>
+<p>​    5.在 Service 层直接注入使用</p>
 <h5 id="其中第二步详解-1"><a href="#其中第二步详解-1" class="headerlink" title="其中第二步详解"></a>其中第二步详解</h5><p>​    一般的配置都默认配好了，只需要开启日志即可</p>
 <pre class="line-numbers language-none"><code class="language-none"># 配置mysql数据源
 spring:
@@ -1802,10 +1792,10 @@ public class MybatisPlusConfig &#123;
 
 
 
-<h5 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h5><p>​    User(id=1, name=Jone, age=18, email= <a href="mailto:&#x74;&#101;&#x73;&#116;&#x31;&#x40;&#98;&#x61;&#x6f;&#109;&#x69;&#100;&#x6f;&#x75;&#x2e;&#x63;&#111;&#109;">&#x74;&#101;&#x73;&#116;&#x31;&#x40;&#98;&#x61;&#x6f;&#109;&#x69;&#100;&#x6f;&#x75;&#x2e;&#x63;&#111;&#109;</a>, isDeleted=0) </p>
-<p>​    User(id=2, name=Jack, age=20, email= <a href="mailto:&#x74;&#x65;&#x73;&#116;&#x32;&#64;&#x62;&#x61;&#111;&#x6d;&#x69;&#100;&#x6f;&#117;&#x2e;&#x63;&#111;&#109;">&#x74;&#x65;&#x73;&#116;&#x32;&#64;&#x62;&#x61;&#111;&#x6d;&#x69;&#100;&#x6f;&#117;&#x2e;&#x63;&#111;&#109;</a>, isDeleted=0) </p>
-<p>​    User(id=3, name=Tom, age=28, email= <a href="mailto:&#x74;&#101;&#x73;&#x74;&#x33;&#64;&#98;&#97;&#x6f;&#109;&#x69;&#100;&#111;&#117;&#46;&#99;&#111;&#x6d;">&#x74;&#101;&#x73;&#x74;&#x33;&#64;&#98;&#97;&#x6f;&#109;&#x69;&#100;&#111;&#117;&#46;&#99;&#111;&#x6d;</a>, isDeleted=0) </p>
-<p>​    User(id=4, name=Sandy, age=21, email= <a href="mailto:&#x74;&#x65;&#115;&#x74;&#52;&#x40;&#x62;&#x61;&#x6f;&#109;&#105;&#x64;&#111;&#x75;&#x2e;&#x63;&#x6f;&#x6d;">&#x74;&#x65;&#115;&#x74;&#52;&#x40;&#x62;&#x61;&#x6f;&#109;&#105;&#x64;&#111;&#x75;&#x2e;&#x63;&#x6f;&#x6d;</a>, isDeleted=0) </p>
+<h5 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h5><p>​    User(id=1, name=Jone, age=18, email= <a href="mailto:&#x74;&#101;&#x73;&#x74;&#x31;&#64;&#x62;&#x61;&#111;&#109;&#x69;&#x64;&#111;&#x75;&#46;&#x63;&#x6f;&#109;">&#x74;&#101;&#x73;&#x74;&#x31;&#64;&#x62;&#x61;&#111;&#109;&#x69;&#x64;&#111;&#x75;&#46;&#x63;&#x6f;&#109;</a>, isDeleted=0) </p>
+<p>​    User(id=2, name=Jack, age=20, email= <a href="mailto:&#x74;&#x65;&#x73;&#116;&#50;&#64;&#98;&#x61;&#x6f;&#x6d;&#105;&#x64;&#x6f;&#x75;&#x2e;&#x63;&#x6f;&#109;">&#x74;&#x65;&#x73;&#116;&#50;&#64;&#98;&#x61;&#x6f;&#x6d;&#105;&#x64;&#x6f;&#x75;&#x2e;&#x63;&#x6f;&#109;</a>, isDeleted=0) </p>
+<p>​    User(id=3, name=Tom, age=28, email= <a href="mailto:&#x74;&#x65;&#115;&#116;&#x33;&#64;&#98;&#x61;&#x6f;&#x6d;&#105;&#x64;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#109;">&#x74;&#x65;&#115;&#116;&#x33;&#64;&#98;&#x61;&#x6f;&#x6d;&#105;&#x64;&#x6f;&#117;&#x2e;&#x63;&#x6f;&#109;</a>, isDeleted=0) </p>
+<p>​    User(id=4, name=Sandy, age=21, email= <a href="mailto:&#x74;&#101;&#115;&#x74;&#52;&#64;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#x75;&#x2e;&#99;&#111;&#x6d;">&#x74;&#101;&#115;&#x74;&#52;&#64;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#x75;&#x2e;&#99;&#111;&#x6d;</a>, isDeleted=0) </p>
 <p>​    User(id=5, name=Billie, age=24, email= test5@ba omidou.com, isDeleted=0) </p>
 <p>​    当前页：1 每页显示的条数：5 总记录数：17 总页数：4 是否有上一 页：false 是否有下一页：true</p>
 <h4 id="2-、xml自定义分页"><a href="#2-、xml自定义分页" class="headerlink" title="2 、xml自定义分页"></a>2 、xml自定义分页</h4><p>​    自定义分页，只需要在mapper层的方法，将page对象作为参数传，然后在xml中实现这个带page的方法，即可实现自定义分页</p>
@@ -1845,9 +1835,9 @@ public void testSelectPageVo()&#123;
 
 
 
-<h5 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h5><p>User(id=3, name=Tom, age=28, email= <a href="mailto:&#x74;&#x65;&#x73;&#116;&#51;&#x40;&#x62;&#x61;&#111;&#x6d;&#x69;&#x64;&#111;&#117;&#x2e;&#99;&#111;&#x6d;">&#x74;&#x65;&#x73;&#116;&#51;&#x40;&#x62;&#x61;&#111;&#x6d;&#x69;&#x64;&#111;&#117;&#x2e;&#99;&#111;&#x6d;</a>, isDeleted=null) </p>
-<p>User(id=4, name=Sandy, age=21, email= <a href="mailto:&#x74;&#101;&#115;&#116;&#x34;&#x40;&#x62;&#97;&#111;&#109;&#105;&#100;&#111;&#x75;&#46;&#x63;&#111;&#x6d;">&#x74;&#101;&#115;&#116;&#x34;&#x40;&#x62;&#97;&#111;&#109;&#105;&#100;&#111;&#x75;&#46;&#x63;&#111;&#x6d;</a>, isDeleted=null) </p>
-<p>User(id=5, name=Billie, age=24, email= <a href="mailto:&#x74;&#x65;&#x73;&#x74;&#53;&#64;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#117;&#46;&#x63;&#111;&#x6d;">&#x74;&#x65;&#x73;&#x74;&#53;&#64;&#x62;&#x61;&#x6f;&#x6d;&#x69;&#100;&#x6f;&#117;&#46;&#x63;&#111;&#x6d;</a>, isDeleted=null) </p>
+<h5 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h5><p>User(id=3, name=Tom, age=28, email= <a href="mailto:&#x74;&#101;&#115;&#x74;&#51;&#x40;&#98;&#x61;&#x6f;&#x6d;&#x69;&#x64;&#x6f;&#x75;&#46;&#99;&#111;&#109;">&#x74;&#101;&#115;&#x74;&#51;&#x40;&#98;&#x61;&#x6f;&#x6d;&#x69;&#x64;&#x6f;&#x75;&#46;&#99;&#111;&#109;</a>, isDeleted=null) </p>
+<p>User(id=4, name=Sandy, age=21, email= <a href="mailto:&#x74;&#x65;&#x73;&#116;&#x34;&#64;&#98;&#x61;&#x6f;&#109;&#105;&#100;&#x6f;&#117;&#x2e;&#x63;&#111;&#x6d;">&#x74;&#x65;&#x73;&#116;&#x34;&#64;&#98;&#x61;&#x6f;&#109;&#105;&#100;&#x6f;&#117;&#x2e;&#x63;&#111;&#x6d;</a>, isDeleted=null) </p>
+<p>User(id=5, name=Billie, age=24, email= <a href="mailto:&#x74;&#x65;&#115;&#x74;&#53;&#x40;&#x62;&#97;&#x6f;&#109;&#105;&#100;&#111;&#x75;&#46;&#x63;&#x6f;&#109;">&#x74;&#x65;&#115;&#x74;&#53;&#x40;&#x62;&#97;&#x6f;&#109;&#105;&#100;&#111;&#x75;&#46;&#x63;&#x6f;&#109;</a>, isDeleted=null) </p>
 <p>User(id=8, name=ybc1, age=21, email=null, isDeleted=null) </p>
 <p>User(id=9, name=ybc2, age=22, email=null, isDeleted=null) </p>
 <p>当前 页：1 每页显示的条数：5 总记录数：12 总页数：3 是否有上一页：false 是否有下一页：true</p>
@@ -2189,6 +2179,48 @@ public void testDynamicDataSource()&#123;
 <p>​    但是在真正开发过程中，MyBatis-Plus并不能为我们解决所有问题，例如一些复杂的SQL，多表联查，我们就需要自己去编写代码和SQL语句，我们该如何快速的解决这个问题呢，这个时候可以使用MyBatisX插件</p>
 <p>​    MyBatisX一款基于 IDEA 的快速开发插件，为效率而生。</p>
 <p>​    MyBatisX插件用法：<a target="_blank" rel="noopener" href="https://baomidou.com/pages/ba5b24/">https://baomidou.com/pages/ba5b24/</a> </p>
+<h3 id="十二、mapper层向xml文件的传参-对象-（Mybatis和MybatisPlus的区别）"><a href="#十二、mapper层向xml文件的传参-对象-（Mybatis和MybatisPlus的区别）" class="headerlink" title="十二、mapper层向xml文件的传参(对象)（Mybatis和MybatisPlus的区别）"></a>十二、mapper层向xml文件的传参(对象)（Mybatis和MybatisPlus的区别）</h3><p>​    对于参数的封装可以使用<code>@Param</code>注解完成</p>
+<h4 id="1、传递单个参数对象"><a href="#1、传递单个参数对象" class="headerlink" title="1、传递单个参数对象"></a>1、传递单个参数对象</h4><h5 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;mapper层
+List&lt;SysRole&gt; getSysRoleList(SysRoleDto sysRoleDto);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li><strong>MB 处理</strong>：把这个对象拆开，直接暴露字段。</li>
+<li><strong>XML 用法</strong>：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&lt;if test&#x3D;&quot;roleName !&#x3D; null&quot;&gt; role_name &#x3D; #&#123;roleName&#125; &lt;&#x2F;if&gt;
+&lt;if test&#x3D;&quot;roleCode !&#x3D; null&quot;&gt; role_code &#x3D; #&#123;roleCode&#125; &lt;&#x2F;if&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>​    字段可以直接用，不需要写 <code>sysRoleDto.roleName</code></p>
+<h5 id="MyBatis-Plus"><a href="#MyBatis-Plus" class="headerlink" title="MyBatis-Plus"></a>MyBatis-Plus</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;mapper层
+List&lt;SysRole&gt; getSysRoleList(SysRoleDto sysRoleDto);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li><strong>MP 本质还是继承 MB</strong>，所以规则一模一样。</li>
+<li><strong>XML 用法</strong>也一样，直接用字段名：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&lt;if test&#x3D;&quot;roleName !&#x3D; null&quot;&gt; role_name &#x3D; #&#123;roleName&#125; &lt;&#x2F;if&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>​    <strong>单参数对象，MP 和 MB 没区别</strong>。</p>
+<h4 id="2、传递两个及以上参数"><a href="#2、传递两个及以上参数" class="headerlink" title="2、传递两个及以上参数"></a>2、传递两个及以上参数</h4><h5 id="MyBatis-1"><a href="#MyBatis-1" class="headerlink" title="MyBatis"></a>MyBatis</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;mapper层
+List&lt;SysRole&gt; getSysRoleList(SysRoleDto sysRoleDto, PageDto pageDto);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li>没加 <code>@Param</code> → XML 要写 <code>param1.xxx</code> / <code>param2.xxx</code>（要使用对象中的属性）</li>
+<li>加了 <code>@Param(&quot;sysRoleDto&quot;)</code> → 通过 <code>sysRoleDto.roleName</code>使用</li>
+</ul>
+<h5 id="MyBatis-Plus-1"><a href="#MyBatis-Plus-1" class="headerlink" title="MyBatis-Plus"></a>MyBatis-Plus</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;mapper层
+Page&lt;SysRole&gt; getSysRoleList(Page&lt;SysRole&gt; page, SysRoleDto sysRoleDto);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li>MP 的分页插件会<strong>单独识别 <code>Page</code> 参数</strong>，不用你管</li>
+<li>其余参数（比如 <code>sysRoleDto</code>），会按你方法里的变量名来用</li>
+</ul>
+<p>​    所以 XML 里可以直接写：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;if test&#x3D;&quot;sysRoleDto.roleName !&#x3D; null&quot;&gt;
+    role_name &#x3D; #&#123;sysRoleDto.roleName&#125;
+&lt;&#x2F;if&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>​    而不用写 <code>param2.roleName</code></p>
 
                 
             </div>
