@@ -678,6 +678,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><strong>编写如下内容</strong></p>
+<p>注意：这里上传图片是使用Object上传（官网示例）。若要使用Stream流上传，看尚庭公寓项目对于MinIO的使用</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span><span class="token punctuation">,</span> <span class="token class-name">NoSuchAlgorithmException</span><span class="token punctuation">,</span> <span class="token class-name">InvalidKeyException</span> <span class="token punctuation">&#123;</span>
 
@@ -709,7 +710,7 @@
                 <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Bucket 'hello-minio' already exists."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token punctuation">&#125;</span>
 
-            <span class="token comment">//上传图片</span>
+            <span class="token comment">//上传图片：使用Object上传</span>
             minioClient<span class="token punctuation">.</span><span class="token function">uploadObject</span><span class="token punctuation">(</span>
                     <span class="token class-name">UploadObjectArgs</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
                             <span class="token punctuation">.</span><span class="token function">bucket</span><span class="token punctuation">(</span><span class="token string">"hello-minio"</span><span class="token punctuation">)</span>
@@ -727,6 +728,26 @@
 <p>运行上述代码，然后查看MinIO管理页面，观察是否上传成功</p>
 </li>
 </ol>
+<h3 id="3-在CentOS7上使用docker安装部署MinIO"><a href="#3-在CentOS7上使用docker安装部署MinIO" class="headerlink" title="3. 在CentOS7上使用docker安装部署MinIO"></a>3. 在CentOS7上使用docker安装部署MinIO</h3><p>​    部署成功后访问路径：http://【主机IP】:9091</p>
+<p>​    <code>注意：拉取镜像的时候不要拉最新版的</code></p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;拉取镜像
+&#x2F;&#x2F;不要这样拉最新版的，最新版被阉割了 docker pull quay.io&#x2F;minio&#x2F;minio
+docker pull minio&#x2F;minio:RELEASE.2023-08-09T23-30-22Z
+
+&#x2F;&#x2F; 创建数据存储目录
+mkdir -p ~&#x2F;minio&#x2F;data
+
+&#x2F;&#x2F; 创建minio
+docker run \
+   -p 9001:9000 \
+   -p 9090:9090 \
+   --name minio \
+   -v ~&#x2F;minio&#x2F;data:&#x2F;data \
+   -e &quot;MINIO_ROOT_USER&#x3D;admin&quot; \
+   -e &quot;MINIO_ROOT_PASSWORD&#x3D;admin123456&quot; \
+   -d \
+   minio&#x2F;minio:RELEASE.2023-08-09T23-30-22Z server &#x2F;data --console-address &quot;:9090&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>

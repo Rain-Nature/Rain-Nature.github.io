@@ -1321,6 +1321,7 @@ public class MinioConfiguration <span class="token punctuation">&#123;</span>
     <span class="token annotation punctuation">@Operation</span><span class="token punctuation">(</span>summary <span class="token operator">=</span> <span class="token string">"上传文件"</span><span class="token punctuation">)</span>
     <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"upload"</span><span class="token punctuation">)</span>
     <span class="token comment">//MultipartFile是spring提供的上传文件的类，该方法返回值是文件的网络url</span>
+    <span class="token comment">//注意：这个file是&lt;input type="file" name="file" />要与name中的名字一致</span>
     <span class="token keyword">public</span> <span class="token class-name">Result</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> <span class="token function">upload</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span> <span class="token class-name">MultipartFile</span> file<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
             <span class="token class-name">String</span> url <span class="token operator">=</span> fileService<span class="token punctuation">.</span><span class="token function">upload</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1330,7 +1331,7 @@ public class MinioConfiguration <span class="token punctuation">&#123;</span>
             <span class="token keyword">return</span> <span class="token class-name">Result</span><span class="token punctuation">.</span><span class="token function">fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">&#125;</span>
     <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
