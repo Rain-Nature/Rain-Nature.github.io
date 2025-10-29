@@ -622,7 +622,7 @@ select * from tb_brandwhere id &lt;![CDATA[ &lt; ]]&gt; #&#123;id&#125;<span ari
 <p>​    注意，<code>collection</code> 属性的值是传递集合应该与要传递的集合的名字一致，该集合可以是Java自带的，也可以是自定义的，以便 MyBatis 可以正确地将参数值传递给 <code>foreach</code> 元素进行循环迭代。</p>
 <p>​    <code>open</code> 属性指定在循环开始时要输出的字符串，<code>separator</code> 属性指定在每个元素之间要输出的字符串，<code>close</code> 属性指定在循环结束时要输出的字符串。</p>
 <p>​    <code>foreach</code> 元素的 <code>item</code> 属性指定循环中的当前元素变量名，其类似于增强for循环的x，作循环输出使用。<code>#&#123;id&#125;</code> 是一个占位符，代表当前循环的元素，这里使用了 MyBatis 的参数注入方式。</p>
-<p>​    <code>item=&quot;id&quot;</code> 表示在循环中每个元素的变量名是 <code>id</code>。<code>#&#123;id&#125;</code> 则用于在 SQL 语句中引用这个变量，并将它替换为实际的元素值</p>
+<p>​    <code>item=&quot;id&quot;</code> 表示在循环中每个元素的变量名是 <code>id</code>，这个值的名字自定义，但是遍历时要一致。<code>#&#123;id&#125;</code> 则用于在 SQL 语句中引用这个变量，并将它替换为实际的元素值</p>
 <h4 id="4-MyBatis的添加操作"><a href="#4-MyBatis的添加操作" class="headerlink" title="4. MyBatis的添加操作"></a>4. MyBatis的添加操作</h4><h5 id="修改操作"><a href="#修改操作" class="headerlink" title="修改操作"></a>修改操作</h5><p>​    修改操作和增加操作很像</p>
 <p>​    在UserMapper.xml文件中编写修改操作</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/p9BDgfJ"><img src="https://s1.ax1x.com/2023/05/09/p9BDgfJ.png" alt="p9BDgfJ.png"></a></p>
