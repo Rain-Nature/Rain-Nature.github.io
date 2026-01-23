@@ -724,7 +724,7 @@ public class UserController&#123;
 
 
 <h4 id="3-SpringMVC注解-RequestBody"><a href="#3-SpringMVC注解-RequestBody" class="headerlink" title="(3)SpringMVC注解-@RequestBody"></a>(3)SpringMVC注解-@RequestBody</h4><p>​    @RequestBody：该注解写在形参前，用于处理 <code>POST</code>、<code>PUT</code> 等方法提交的 <strong>JSON 或 XML 数据</strong>，并将请求参数封装转换为 Java 对象</p>
-<h5 id="样例：获得ajax发送的请求，相应参数以List集合接收"><a href="#样例：获得ajax发送的请求，相应参数以List集合接收" class="headerlink" title="样例：获得ajax发送的请求，相应参数以List集合接收"></a>样例：获得ajax发送的请求，相应参数以List集合接收</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
+<h5 id="样例：获得ajax发送的请求-json格式，相应参数以List集合接收"><a href="#样例：获得ajax发送的请求-json格式，相应参数以List集合接收" class="headerlink" title="样例：获得ajax发送的请求-json格式，相应参数以List集合接收"></a>样例：获得ajax发送的请求-json格式，相应参数以List集合接收</h5><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;UserController.java
 
 @Controller
 public class UserController&#123;
@@ -735,8 +735,8 @@ public class UserController&#123;
 	&#125;
 &#125;
 
-&#x2F;&#x2F;仅需要User的类，List的类如果发的JSON是List数组就不需要，若发的JSON是包含List的对象就需要
-&#x2F;&#x2F;User类略<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F;@RequestBody的映射此时需要定义User的类，如果发的JSON是普通List数组就不需要，若发的JSON是包含List的对象就需要
+&#x2F;&#x2F;User类定义略<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -1244,7 +1244,7 @@ public class DataConverter implements Converter&lt;String,Date&gt;&#123;
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021-2025</span>
+                <span id="year">2021-2026</span>
             
             <span id="year">2021</span>
             <a href="/about" target="_blank">拾雨</a>

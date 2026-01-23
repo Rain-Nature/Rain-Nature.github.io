@@ -1456,9 +1456,16 @@ public class MinioConfiguration <span class="token punctuation">&#123;</span>
 <p>​    保存等于说把vo变成数据库表结构然后存储，而回显数据，则是把表结构变成vo传给前端</p>
 <h4 id="1-保存或更新公寓信息"><a href="#1-保存或更新公寓信息" class="headerlink" title="(1)保存或更新公寓信息"></a>(1)保存或更新公寓信息</h4><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>​    对于这种复杂的保存或更新操作的核心思路为：首先公寓管理是ApartmentSubmitVo，它继承公寓的基础表，并连接了图片、配套、标签、杂费的关联表，那么此时可以先获取id判断是保存操作还是更新操作，然后首先使用MybatisPlus的saveorupdate()把公寓的基础表先保存，然后对于这些关联表，判断更新则采用先删除后增加的操作，若为增加正常执行就行</p>
 <h5 id="易错点"><a href="#易错点" class="headerlink" title="易错点"></a>易错点</h5><ul>
-<li>Spring 中，Service 最好不要注入自己；如果你要调用自己继承来的父类通用方法（如 MyBatis-Plus 的 ServiceImpl），用 super.xxx()更合适</li>
-<li>对于这个业务，不要想改传递的ApartmentSubmitVo，核心是截取ApartmentSubmitVo的数据，并将数据保存到应该保存到的表中，目前不考虑数据回显</li>
-<li>操作的表都是与公寓的关联表，不要去操作图片、配套、标签、杂费的本身数据表</li>
+<li><p>Spring 中，Service 不要注入自己；如果你要调用自己继承来的父类通用方法（如 MyBatis-Plus 的 ServiceImpl），用 super.xxx()。核心记住：<strong>Bean是代理的，和普通new的对象不一样</strong></p>
+<blockquote>
+<p>Bean不能自调用（类中再注入自己）这样百分百死循环（代理引发的），例如：apartmentInfoService.saveOrUpdate(apartmentSubmitVo)【死循环】</p>
+<p>可以使用this和super关键字来绕过代理，例如super.saveOrUpdate(apartmentSubmitVo);【绕过代理，正常执行】</p>
+</blockquote>
+</li>
+<li><p>对于这个业务，不要想改传递的ApartmentSubmitVo，核心是截取ApartmentSubmitVo的数据，并将数据保存到应该保存到的表中，目前不考虑数据回显</p>
+</li>
+<li><p>操作的表都是与公寓的关联表，不要去操作图片、配套、标签、杂费的本身数据表</p>
+</li>
 </ul>
 <h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><p>​    ApartmentSubmitVo.java</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Schema</span><span class="token punctuation">(</span>description <span class="token operator">=</span> <span class="token string">"公寓信息"</span><span class="token punctuation">)</span>
@@ -1973,7 +1980,7 @@ public class MinioConfiguration <span class="token punctuation">&#123;</span>
 
 
 
-<h3 id="16-查询的组装（不管是否分页）"><a href="#16-查询的组装（不管是否分页）" class="headerlink" title="16. 查询的组装（不管是否分页）"></a>16. 查询的组装（不管是否分页）</h3><p>​    对于查询的结果如果是vo类型，但是呢，vo中定义的属性有复杂类型（对象或集合），则需要使用resultMap进行封装，而具体到那个复杂类型的属性的封装有<code>&lt;association&gt;</code> 一对一和<code>&lt;collection&gt;</code> 一对多封装，这两个标签中有properties（必填），这个properties就写vo中复杂类型的属性名（不管是Info还是List），如果是一对一用<code>javaType</code>指定这个属性名的全限定名，如果是一对多用<code>ofType</code>来指定这个多的item的全限定名</p>
+<h3 id="16-ResultMap查询的组装的使用场景（不管是否分页）"><a href="#16-ResultMap查询的组装的使用场景（不管是否分页）" class="headerlink" title="16. ResultMap查询的组装的使用场景（不管是否分页）"></a>16. ResultMap查询的组装的使用场景（不管是否分页）</h3><p>​    <strong>简单说只要查询结果和原实体类对不上，就需要使用ResultMap进行封装</strong>，而如果vo类（实体类的映射前端返回类）中定义的属性有<strong>自定义复杂类型</strong>（对象或集合），则需要使用<code>&lt;association&gt;</code> 或 <code>&lt;collection&gt;</code>进行自定义复杂类型的映射，具体到那个自定义复杂类型的属性的封装有<code>&lt;association&gt;</code> 一对一和<code>&lt;collection&gt;</code> 一对多封装，这两个标签中有property（必填），这个property就写vo中自定义复杂类型的属性名（不管是Info还是List），如果是一对一用<code>javaType</code>指定这个属性名的全限定名，如果是一对多用<code>ofType</code>来指定这个多的item的全限定名</p>
 <table>
 <thead>
 <tr>
@@ -1993,6 +2000,7 @@ public class MinioConfiguration <span class="token punctuation">&#123;</span>
 <td>✅ 指定集合元素类型</td>
 </tr>
 </tbody></table>
+<p>​    MyBatis 的 <code>&lt;association&gt;</code> 和 <code>&lt;collection&gt;</code>，本质是为 VO 中的「自定义复杂类型」服务的</p>
 <h5 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h5><p>​    RoomVO.java</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RoomVO</span> <span class="token punctuation">&#123;</span>
 	<span class="token keyword">private</span> <span class="token class-name">Long</span> num<span class="token punctuation">;</span>  <span class="token comment">//普通类型，不需要映射</span>
@@ -2172,7 +2180,9 @@ public class MinioConfiguration <span class="token punctuation">&#123;</span>
 </li>
 </ul>
 <p>推荐格式按照字段单独配置，时区全局配置。</p>
-<h3 id="18-定时任务-器-的使用"><a href="#18-定时任务-器-的使用" class="headerlink" title="18. 定时任务(器)的使用"></a>18. 定时任务(器)的使用</h3><h5 id="业务需求"><a href="#业务需求" class="headerlink" title="业务需求"></a>业务需求</h5><p>​    每天都要定时的检查租约是否到期，如果到期了则将租约的状态改为已到期</p>
+<h3 id="18-定时任务-器-的使用（Spring-Task）"><a href="#18-定时任务-器-的使用（Spring-Task）" class="headerlink" title="18. 定时任务(器)的使用（Spring Task）"></a>18. 定时任务(器)的使用（Spring Task）</h3><h5 id="业务需求"><a href="#业务需求" class="headerlink" title="业务需求"></a>业务需求</h5><p>​    每天都要定时的检查租约是否到期，如果到期了则将租约的状态改为已到期</p>
+<h5 id="Spring-Task简介"><a href="#Spring-Task简介" class="headerlink" title="Spring Task简介"></a>Spring Task简介</h5><p>​    Spring Task是Spring框架中的一个定时任务调度模块，它提供了一种简单的方式来实现基于时间的调度任务</p>
+<p>​    官网地址：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-framework/reference/6.1-SNAPSHOT/integration/scheduling.html">https://docs.spring.io/spring-framework/reference/6.1-SNAPSHOT/integration/scheduling.html</a></p>
 <h5 id="定时任务的使用步骤"><a href="#定时任务的使用步骤" class="headerlink" title="定时任务的使用步骤"></a>定时任务的使用步骤</h5><p>​    1.在Springboot启动类上增加<code>@EnableScheduling</code>注解</p>
 <p>​    2.在保证类由spring容器管理的情况下，在方法上使用@Scheduled(cron = “0 0 0 * * *”)开启定时任务</p>
 <h5 id="SpringBoot中的cron表达式语法"><a href="#SpringBoot中的cron表达式语法" class="headerlink" title="SpringBoot中的cron表达式语法"></a>SpringBoot中的cron表达式语法</h5><pre class="line-numbers language-none"><code class="language-none">┌───────────── second (0-59)
@@ -4679,7 +4689,7 @@ systemctl start lease-admin<span aria-hidden="true" class="line-numbers-rows"><s
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021-2025</span>
+                <span id="year">2021-2026</span>
             
             <span id="year">2021</span>
             <a href="/about" target="_blank">拾雨</a>
