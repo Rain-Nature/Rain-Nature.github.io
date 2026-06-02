@@ -3992,7 +3992,7 @@ browsingHistoryService<span class="token punctuation">.</span><span class="token
 <li><p><strong>server block（可直接写，也可通过include引入）</strong></p>
 <p>一般是一个server block放在一个.conf文件用include引入</p>
 <p><code>server block</code>位于<code>http block</code>，用于配置虚拟主机（部署网站和项目），一个Nginx服务（master process）可包含多个虚拟主机，每个虚拟主机都可以独立的提供服务，因此借助Nginx，我们可以在一台服务器部署多个独立的网站，如下图所示</p>
-<p>​    以下三个域名还是映射在同一个IP地址（放在同一个Nginx中），即一台服务器部署多个网站，当然，虽然能直接通过 IP+端口访问网站，但请求头的 Host 是 IP，Nginx 会尝试匹配 <code>server_name</code> 是 IP 的配置，找不到就走第一个 <code>server</code>（默认站点），不会自动识别你想访问哪个域名的站点，更不会串</p>
+<p>​    以下三个域名还是映射在同一个IP地址（放在同一个Nginx中），即一台服务器部署多个网站。当通过域名访问时，Nginx 根据请求头中的 Host 与 <code>server_name</code> 进行匹配，从而定位对应的 server（网站）。如果直接通过 IP 访问网站，即请求头中的 Host 为 IP，若没有配置 <code>server_name</code> 为该 IP 的 server，则会匹配默认 server（即第一个或标记为 default_server 的 server）（注意以下三个域名是不一样的）</p>
 <p><a target="_blank" rel="noopener" href="https://imgse.com/i/pVMD929"><img src="https://s21.ax1x.com/2025/07/07/pVMD929.png" alt="虚拟主机在nginx的配置"></a></p>
 <p>每个虚拟主机使用一个<code>server block</code>进行配置，配置的内容包括</p>
 <ul>

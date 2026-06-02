@@ -935,18 +935,26 @@ public class SpringConfiguration&#123;
 
 
 
-<h5 id="Import-“配置类的名字-class”"><a href="#Import-“配置类的名字-class”" class="headerlink" title="@Import(“配置类的名字.class”)"></a>@Import(“配置类的名字.class”)</h5><p>​    @Import用于将一个或多个外部的配置类或者资源（如 Bean 定义：bean定义会随着导入外部的配置类一起导入）导入到当前配置类中</p>
+<h5 id="Import-“类-class”"><a href="#Import-“类-class”" class="headerlink" title="@Import(“类.class”)"></a>@Import(“类.class”)</h5><p>作用：</p>
+<p>​    <code>@Import</code>将指定的类“直接注册”为 Spring 容器中的 Bean，不依赖包扫描（@ComponentScan）</p>
+<p>本质：</p>
+<p>​    @Import ≠ 扫描包，而是“手动注册 Bean”。即@ComponentScan：自动扫描并注册，@Import：指定类，直接注册</p>
+<p>注意事项：</p>
+<p>​    1.被导入的类不一定必须是 @Configuration，也可以是普通类（如切面类、组件类等）</p>
+<p>​    2.如果导入的是配置类（@Configuration），则该类中定义的 Bean（@Bean）也会一并注册</p>
+<p>​    3.可以同时导入多个类：@Import({A.class, B.class, C.class})</p>
 <p>样例：@Import(“配置类的名字.class”)的使用</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;SpringConfiguration
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//SpringConfiguration</span>
 
-@Configuration
-@ComponentScan(&quot;com.itheima&quot;)
-&#x2F;&#x2F;等价与：&lt;import resource&#x3D;&quot;applicationContext-dataSource.xml&quot;&#x2F;&gt;
-@Import(DataSourceConfiguration.class)
-&#x2F;&#x2F;多个导入：@Import(&#123;xxx.class,yyy.class,zzz.class&#125;)
-public class SpringConfiguration&#123;
-	&#x2F;&#x2F;...
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token annotation punctuation">@ComponentScan</span><span class="token punctuation">(</span><span class="token string">"com.itheima"</span><span class="token punctuation">)</span>
+<span class="token comment">//等价与：&lt;import resource="applicationContext-dataSource.xml"/></span>
+<span class="token comment">//这里 DataSourceConfiguration 会被直接注册为 Bean，其内部 @Bean 方法也会生效</span>
+<span class="token annotation punctuation">@Import</span><span class="token punctuation">(</span><span class="token class-name">DataSourceConfiguration</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token comment">//多个导入：@Import(&#123;xxx.class,yyy.class,zzz.class&#125;)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringConfiguration</span><span class="token punctuation">&#123;</span>
+	<span class="token comment">//...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
