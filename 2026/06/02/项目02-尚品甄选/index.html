@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="尚品甄选, Rain">
+    <meta name="keywords" content="项目02-尚品甄选, Rain">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>尚品甄选 | Rain</title>
+    <title>项目02-尚品甄选 | Rain</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -320,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">尚品甄选</h1>
+                    <h1 class="description center-align post-title">项目02-尚品甄选</h1>
                 </div>
             </div>
         </div>
@@ -630,40 +630,40 @@ import &#123; TOKEN &#125; from &#39;@&#x2F;pinia&#x2F;modules&#x2F;app&#39; &#x
 <p>​    3.创建实体类（已导入）</p>
 <p>​    4.创建登录的controller、service、mapper、xml文件（实现登录逻辑）</p>
 <h5 id="具体实现-1"><a href="#具体实现-1" class="headerlink" title="具体实现"></a>具体实现</h5><p>​    1.创建配置文件application.yml和application-dev.yml</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># application.yml文件内容&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token comment"># application.yml文件内容==================================================================================</span>
 
-spring:
-  application:
-    name: service-manager
-  profiles:
-    active: dev		# 激活dev的yml文件
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">application</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> service<span class="token punctuation">-</span>manager
+  <span class="token key atrule">profiles</span><span class="token punctuation">:</span>
+    <span class="token key atrule">active</span><span class="token punctuation">:</span> dev		<span class="token comment"># 激活dev的yml文件</span>
 
 
-#  application-dev.yml文件内容&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+<span class="token comment">#  application-dev.yml文件内容=============================================================================</span>
 
-# 配置服务端口号
-server:
-  port: 8501
+<span class="token comment"># 配置服务端口号</span>
+<span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8501</span>
 
-# 配置数据库连接信息
-spring:
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;db_spzx?characterEncoding&#x3D;utf-8&amp;useSSL&#x3D;false&amp;allowPublicKeyRetrieval&#x3D;true
-    username: root
-    password: root
-  # Redis的相关配置
-  data:
-    redis:
-      host: localhost
-      port: 6379
-#  password: 1234
+<span class="token comment"># 配置数据库连接信息</span>
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">datasource</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> com.zaxxer.hikari.HikariDataSource
+    <span class="token key atrule">driver-class-name</span><span class="token punctuation">:</span> com.mysql.cj.jdbc.Driver
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>3306/db_spzx<span class="token punctuation">?</span>characterEncoding=utf<span class="token punctuation">-</span>8<span class="token important">&amp;useSSL=false&amp;allowPublicKeyRetrieval=true</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> root
+  <span class="token comment"># Redis的相关配置</span>
+  <span class="token key atrule">data</span><span class="token punctuation">:</span>
+    <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+      <span class="token key atrule">host</span><span class="token punctuation">:</span> localhost
+      <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">6379</span>
+<span class="token comment">#  password: 1234</span>
 
-# mybatis的配置
-mybatis:
-  config-location: classpath:&#x2F;mybatis-config.xml
-  mapper-locations: classpath:&#x2F;mapper&#x2F;*&#x2F;*.xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># mybatis的配置</span>
+<span class="token key atrule">mybatis</span><span class="token punctuation">:</span>
+  <span class="token key atrule">config-location</span><span class="token punctuation">:</span> classpath<span class="token punctuation">:</span>/mybatis<span class="token punctuation">-</span>config.xml
+  <span class="token key atrule">mapper-locations</span><span class="token punctuation">:</span> classpath<span class="token punctuation">:</span>/mapper/<span class="token important">*/*.xml</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -3911,7 +3911,7 @@ const fetchData &#x3D; async () &#x3D;&gt; &#123;
 
 
 <h5 id="开发步骤-3"><a href="#开发步骤-3" class="headerlink" title="开发步骤"></a>开发步骤</h5><pre><code>   1. **定时任务程序**每天凌晨2点运行一次，从order_info表中查询出前一天的订单总金额数据，然后将总金额数据写入到order_statistics表中
-      2. 当用户发起查询订单统计结果请求的时候，此时后端系统从统计结果表中查询到对应的数据返回给前端系统
+            2. 当用户发起查询订单统计结果请求的时候，此时后端系统从统计结果表中查询到对应的数据返回给前端系统
          3. 前端系统通过Echarts的柱状图展示数据</code></pre>
 <h5 id="【步骤1】定时任务实现每天计算并存储订单数据：Spring-Task（m乘2）"><a href="#【步骤1】定时任务实现每天计算并存储订单数据：Spring-Task（m乘2）" class="headerlink" title="【步骤1】定时任务实现每天计算并存储订单数据：Spring Task（m乘2）"></a>【步骤1】定时任务实现每天计算并存储订单数据：Spring Task（m乘2）</h5><p>​    新建包manage并在包下创建类OrderStatisticsTask.java，<code>并在启动类上添加注解@EnableScheduling</code></p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//OrderStatisticsTask.java</span>
@@ -4566,13 +4566,13 @@ const fetchData &#x3D; async () &#x3D;&gt; &#123;
 
 
 <p>​    2.在application.yml文件中添加如下配置</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">spring:
-  application:
-    name: service-product
-  cloud:
-    nacos:
-      discovery:
-        server-addr: localhost:8848<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">application</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> service<span class="token punctuation">-</span>product
+  <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
+    <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+      <span class="token key atrule">discovery</span><span class="token punctuation">:</span>
+        <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8848</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -4630,42 +4630,42 @@ const fetchData &#x3D; async () &#x3D;&gt; &#123;
 
 
 <p>​    2.编写两个配置文件：application.yml、application-dev.yml，文件内容分别如下所示：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># application.yml
-spring:
-  profiles:
-    active: dev<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token comment"># application.yml</span>
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">profiles</span><span class="token punctuation">:</span>
+    <span class="token key atrule">active</span><span class="token punctuation">:</span> dev<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"># application-dev.yml
-server:
-  port: 8500
-spring:
-  application:
-    name: spzx-server-gateway
-  cloud:
-    nacos:
-      discovery:
-        server-addr: localhost:8848
-    gateway:
-      # 路由发现
-      discovery:
-        locator:
-          enabled: true
-      # 网关层面解决跨域问题，使用该方式后，controller的跨域注解要去掉
-      globalcors:
-        cors-configurations:
-          &#39;[&#x2F;**]&#39;:
-            allowedOriginPatterns: &quot;*&quot;
-            # 允许请求中携带的头信息
-            allowedHeaders: &quot;*&quot;
-            # 运行跨域的请求方式
-            allowedMethods: &quot;*&quot;
-            # 跨域检测的有效期,单位s
-            maxAge: 36000
-      routes:
-        - id: service-product
-          uri: lb:&#x2F;&#x2F;service-product
-          predicates:
-            - Path&#x3D;&#x2F;*&#x2F;product&#x2F;**<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token comment"># application-dev.yml</span>
+<span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8500</span>
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">application</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> spzx<span class="token punctuation">-</span>server<span class="token punctuation">-</span>gateway
+  <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
+    <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+      <span class="token key atrule">discovery</span><span class="token punctuation">:</span>
+        <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8848</span>
+    <span class="token key atrule">gateway</span><span class="token punctuation">:</span>
+      <span class="token comment"># 路由发现</span>
+      <span class="token key atrule">discovery</span><span class="token punctuation">:</span>
+        <span class="token key atrule">locator</span><span class="token punctuation">:</span>
+          <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+      <span class="token comment"># 网关层面解决跨域问题，使用该方式后，controller的跨域注解要去掉</span>
+      <span class="token key atrule">globalcors</span><span class="token punctuation">:</span>
+        <span class="token key atrule">cors-configurations</span><span class="token punctuation">:</span>
+          <span class="token key atrule">'[/**]'</span><span class="token punctuation">:</span>
+            <span class="token key atrule">allowedOriginPatterns</span><span class="token punctuation">:</span> <span class="token string">"*"</span>
+            <span class="token comment"># 允许请求中携带的头信息</span>
+            <span class="token key atrule">allowedHeaders</span><span class="token punctuation">:</span> <span class="token string">"*"</span>
+            <span class="token comment"># 运行跨域的请求方式</span>
+            <span class="token key atrule">allowedMethods</span><span class="token punctuation">:</span> <span class="token string">"*"</span>
+            <span class="token comment"># 跨域检测的有效期,单位s</span>
+            <span class="token key atrule">maxAge</span><span class="token punctuation">:</span> <span class="token number">36000</span>
+      <span class="token key atrule">routes</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> service<span class="token punctuation">-</span>product
+          <span class="token key atrule">uri</span><span class="token punctuation">:</span> lb<span class="token punctuation">:</span>//service<span class="token punctuation">-</span>product
+          <span class="token key atrule">predicates</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> Path=/<span class="token important">*/product/**</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -4921,12 +4921,12 @@ Spring Boot：
 
 
 <p>​    2.在application-dev.yml文件中添加如下Redis的相关配置：</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">spring:
-  # Redis的相关配置
-  data:
-    redis:
-      host: localhost
-      port: 6379<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token comment"># Redis的相关配置</span>
+  <span class="token key atrule">data</span><span class="token punctuation">:</span>
+    <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+      <span class="token key atrule">host</span><span class="token punctuation">:</span> localhost
+      <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">6379</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -6552,16 +6552,16 @@ HttpServletRequest（真正HTTP请求对象）<span aria-hidden="true" class="li
 <p>​    支付宝沙箱网址：<a target="_blank" rel="noopener" href="https://open.alipay.com/develop/sandbox/app">https://open.alipay.com/develop/sandbox/app</a></p>
 <p>​    <code>注意：支付宝中，商户使用应用私钥进行加密，发送到支付宝服务后，支付宝使用支付宝公钥进行解密（即非对称加密）</code></p>
 <h5 id="项目中的使用"><a href="#项目中的使用" class="headerlink" title="项目中的使用"></a>项目中的使用</h5><p>​    在项目中，需要有这些配置来使用支付宝的Client，我直接把这些配置抽象为一个yml文件，并使用配置类抽取，已方便在项目中的使用</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">&#x2F;&#x2F;application-alipay.yml
-&#x2F;&#x2F;注意：该文件需要被import到dev中：  spring.config.import: application-alipay.yml
-spzx:
-  alipay:
-    alipay_url: https:&#x2F;&#x2F;openapi-sandbox.dl.alipaydev.com&#x2F;gateway.do
-    app_id: 9021000164607404
-    app_private_key: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCBNH&#x2F;gGWyY7wAH0E&#x2F;EXZgoZkH8h2BudlNWctDxJuhBKSPhprJEOYGdVukBBzOOKdy5QFkBnxLiTYmyEUQ4FYTbWXDoiCBEJZ8QLqndch7kbTTLft0NkxAgPIj9WD8orgdsU7cl7EBnn&#x2F;KruwHpsW8IXpJgael1XRUcLi41tAcS0S4KsDYMuJ6E1NVfjuTvcKSQKYff5AT8cWmIpDJa6u1wnhZcgCQ4tFZnWH86dK&#x2F;o4E3sY1OFh3a0tLZpZpdGvcudqmJafU34ivgJYMStlZ+XoAw3p8XPcsi3Aexlgfp48baMWZPlY9ZZmnrxFYXELNgb74m7t0zL3JS7hhvk4RPLAgMBAAECggEACUsnb40knJOEYwt+0VcSHMXONUXfj9J&#x2F;CBbWJKJxzk4RQKfm5rVkN1cLB4HnGXC1abXRMSaqCxEcuGw5hfc2STjTwEYaXAyAtn9ExKLyyed5BrInYFSVslvoVqDEWj66VfZnlBi8QTfmEqgu6QpUPDvhN4ImwsRhQleoB0DdyWKcIH&#x2F;9mexuAyEubxqMQnXi5k0I3td4ZOet2LvVPIoJWYuFa9fftckr&#x2F;fl5J+OX7&#x2F;fH2ItEehdekPxio+mPsh2KtlmEPYEz4ichJ4m&#x2F;hShLkx&#x2F;pzLlsRKR6b33GverM+NoRnN0082yMxEJxW&#x2F;yBiZYyJ9AkfPTLK+&#x2F;XqJE1wKtMsQKBgQDMJ54eQ5nDRPca8yY6DRQ0irEoGyGmddo5898WOijgaEAD&#x2F;fUuBKjj&#x2F;LarcGNZISkDNQEMzaPaPm6hEZfgjJQrKWs4vRd2cSrwYKbsmHlcEIOxpCstFqClQYXJY7FNLE&#x2F;n5wtT9qdifL6aP43vSlQoay4FdlT4kZE58GwtZp4g7wKBgQCiBEy8&#x2F;XhbU+UHahMdhj&#x2F;oPtI9416YgSfs+qqAW3LFC5Qbvpg8mk9XhuaEiWcLNaW07AAkwePK7c36ZBHbkH8rKIgCdXVoIJKSidS4+FaMjAawkA2mL7YO0v0n6UskysiOg3uNHzRZwHIARsVOPldXtrajmbTeIEfmqgkwGhBC5QKBgDSEgIVyiGyWIicZo5zNXoRBpV8W06o5qQC9fob+QSOxTb55JwhGhJfZm7gwei4kfKNpkDKV9++dneHrX7GRGFCeIAoBgraiWBRsGKTGeHm5eddJzx2TM5Ivb9YlwieDHa8fXWelDNwmEPYnIUEMUufu4nDfRu6Gq+BGu91WB5mbAoGAYWhIYs&#x2F;Zzr7P0fdaasPOJGmwqXjL5NCyGm5SmD1i8UkW0N90U+tKjIsUiNa7Vyf36qCBLZhMxjLXRhVoDyP+8Qm7TA8meWYr+WJYvKTCFFoTo4&#x2F;YRPQmdx8vCRHgFcy9a8FtRNlf9h4X7EagVXxxstCtWgsNjQbHc80DHSJuaGkCgYB5qUJT1KpPCyAI5Ci4MaGY6gux2F774Fd9ZmrqmMOA8XNtT24DDP73NQF86wgliMoXBImy2zPyiikFQ9Ee1P6wIkDbo6CNgY4+2DTAhbzPkrt1LPAhGPQFlgRWvAqfw0wQdnLulK0Vw3EsvmM0O8Qyf5HHphbFxfObSo&#x2F;0fF34qg&#x3D;&#x3D;
-    alipay_public_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjqk90IeL3Bp78nb5CopMF9P1U734pKbbPbHxuPQQb6CqpRBXfc1kcfEfiM&#x2F;6GcvjaJTgxA&#x2F;PoFIw7HGL52uPh8xWUf9xhtIbkbCQ2ptRAslh51srtHtKJWydh3eu4m9BERIu+Il6lDIOhUkMzTzshOwysj2AJYlq8pAUu2hnLavb2FUY2l&#x2F;rQ4WbBcNnkF&#x2F;zpwfYiPTytxWjyFGKdD9KtGIWIxzKkq738DrxrMKKKKTPCYJIAficLlobXqfyIiNCFTynS4GR5MwpiiDV4gPfzR7ngru3abzkFZp1zQU56zv2UqfFrEBtg9d+N+yxAHhStW5LyXrRWCxFPTbsMbyafwIDAQAB
-    return_payment_url: http:&#x2F;&#x2F;localhost&#x2F;#&#x2F;
-    notify_payment_url: http:&#x2F;&#x2F;17ceb46f.r7.cpolar.cn&#x2F;api&#x2F;order&#x2F;alipay&#x2F;callback&#x2F;notify<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">//application<span class="token punctuation">-</span>alipay.yml
+<span class="token key atrule">//注意：该文件需要被import到dev中：  spring.config.import</span><span class="token punctuation">:</span> application<span class="token punctuation">-</span>alipay.yml
+<span class="token key atrule">spzx</span><span class="token punctuation">:</span>
+  <span class="token key atrule">alipay</span><span class="token punctuation">:</span>
+    <span class="token key atrule">alipay_url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//openapi<span class="token punctuation">-</span>sandbox.dl.alipaydev.com/gateway.do
+    <span class="token key atrule">app_id</span><span class="token punctuation">:</span> <span class="token number">9021000164607404</span>
+    <span class="token key atrule">app_private_key</span><span class="token punctuation">:</span> MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCBNH/gGWyY7wAH0E/EXZgoZkH8h2BudlNWctDxJuhBKSPhprJEOYGdVukBBzOOKdy5QFkBnxLiTYmyEUQ4FYTbWXDoiCBEJZ8QLqndch7kbTTLft0NkxAgPIj9WD8orgdsU7cl7EBnn/KruwHpsW8IXpJgael1XRUcLi41tAcS0S4KsDYMuJ6E1NVfjuTvcKSQKYff5AT8cWmIpDJa6u1wnhZcgCQ4tFZnWH86dK/o4E3sY1OFh3a0tLZpZpdGvcudqmJafU34ivgJYMStlZ+XoAw3p8XPcsi3Aexlgfp48baMWZPlY9ZZmnrxFYXELNgb74m7t0zL3JS7hhvk4RPLAgMBAAECggEACUsnb40knJOEYwt+0VcSHMXONUXfj9J/CBbWJKJxzk4RQKfm5rVkN1cLB4HnGXC1abXRMSaqCxEcuGw5hfc2STjTwEYaXAyAtn9ExKLyyed5BrInYFSVslvoVqDEWj66VfZnlBi8QTfmEqgu6QpUPDvhN4ImwsRhQleoB0DdyWKcIH/9mexuAyEubxqMQnXi5k0I3td4ZOet2LvVPIoJWYuFa9fftckr/fl5J+OX7/fH2ItEehdekPxio+mPsh2KtlmEPYEz4ichJ4m/hShLkx/pzLlsRKR6b33GverM+NoRnN0082yMxEJxW/yBiZYyJ9AkfPTLK+/XqJE1wKtMsQKBgQDMJ54eQ5nDRPca8yY6DRQ0irEoGyGmddo5898WOijgaEAD/fUuBKjj/LarcGNZISkDNQEMzaPaPm6hEZfgjJQrKWs4vRd2cSrwYKbsmHlcEIOxpCstFqClQYXJY7FNLE/n5wtT9qdifL6aP43vSlQoay4FdlT4kZE58GwtZp4g7wKBgQCiBEy8/XhbU+UHahMdhj/oPtI9416YgSfs+qqAW3LFC5Qbvpg8mk9XhuaEiWcLNaW07AAkwePK7c36ZBHbkH8rKIgCdXVoIJKSidS4+FaMjAawkA2mL7YO0v0n6UskysiOg3uNHzRZwHIARsVOPldXtrajmbTeIEfmqgkwGhBC5QKBgDSEgIVyiGyWIicZo5zNXoRBpV8W06o5qQC9fob+QSOxTb55JwhGhJfZm7gwei4kfKNpkDKV9++dneHrX7GRGFCeIAoBgraiWBRsGKTGeHm5eddJzx2TM5Ivb9YlwieDHa8fXWelDNwmEPYnIUEMUufu4nDfRu6Gq+BGu91WB5mbAoGAYWhIYs/Zzr7P0fdaasPOJGmwqXjL5NCyGm5SmD1i8UkW0N90U+tKjIsUiNa7Vyf36qCBLZhMxjLXRhVoDyP+8Qm7TA8meWYr+WJYvKTCFFoTo4/YRPQmdx8vCRHgFcy9a8FtRNlf9h4X7EagVXxxstCtWgsNjQbHc80DHSJuaGkCgYB5qUJT1KpPCyAI5Ci4MaGY6gux2F774Fd9ZmrqmMOA8XNtT24DDP73NQF86wgliMoXBImy2zPyiikFQ9Ee1P6wIkDbo6CNgY4+2DTAhbzPkrt1LPAhGPQFlgRWvAqfw0wQdnLulK0Vw3EsvmM0O8Qyf5HHphbFxfObSo/0fF34qg==
+    <span class="token key atrule">alipay_public_key</span><span class="token punctuation">:</span> MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjqk90IeL3Bp78nb5CopMF9P1U734pKbbPbHxuPQQb6CqpRBXfc1kcfEfiM/6GcvjaJTgxA/PoFIw7HGL52uPh8xWUf9xhtIbkbCQ2ptRAslh51srtHtKJWydh3eu4m9BERIu+Il6lDIOhUkMzTzshOwysj2AJYlq8pAUu2hnLavb2FUY2l/rQ4WbBcNnkF/zpwfYiPTytxWjyFGKdD9KtGIWIxzKkq738DrxrMKKKKTPCYJIAficLlobXqfyIiNCFTynS4GR5MwpiiDV4gPfzR7ngru3abzkFZp1zQU56zv2UqfFrEBtg9d+N+yxAHhStW5LyXrRWCxFPTbsMbyafwIDAQAB
+    <span class="token key atrule">return_payment_url</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost/<span class="token comment">#/</span>
+    <span class="token key atrule">notify_payment_url</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//17ceb46f.r7.cpolar.cn/api/order/alipay/callback/notify<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li><p>alipay_url：对应的是支付宝沙箱网址中的APPID，公钥私钥同理，如下图所示</p>
@@ -6709,45 +6709,45 @@ spzx:
 
 
 <p>​    主要配置dev的yml，以及自定义yml</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">&#x2F;&#x2F;application-dev.yml
-server:
-  port: 8515
-spring:
-  application:
-    name: service-pay
-  cloud:
-    nacos:
-      discovery:
-        server-addr: localhost:8848
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql:&#x2F;&#x2F;192.168.10.129:3306&#x2F;db_spzx?characterEncoding&#x3D;utf-8&amp;useSSL&#x3D;false&amp;allowPublicKeyRetrieval&#x3D;true
-    username: root
-    password: 123456
-  data:
-    redis:
-      host: localhost
-      port: 6379
-  config:
-    import: application-alipay.yml
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">//application<span class="token punctuation">-</span>dev.yml
+<span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8515</span>
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">application</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> service<span class="token punctuation">-</span>pay
+  <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
+    <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+      <span class="token key atrule">discovery</span><span class="token punctuation">:</span>
+        <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8848</span>
+  <span class="token key atrule">datasource</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> com.zaxxer.hikari.HikariDataSource
+    <span class="token key atrule">driver-class-name</span><span class="token punctuation">:</span> com.mysql.cj.jdbc.Driver
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//192.168.10.129<span class="token punctuation">:</span>3306/db_spzx<span class="token punctuation">?</span>characterEncoding=utf<span class="token punctuation">-</span>8<span class="token important">&amp;useSSL=false&amp;allowPublicKeyRetrieval=true</span>
+    <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+    <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123456</span>
+  <span class="token key atrule">data</span><span class="token punctuation">:</span>
+    <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+      <span class="token key atrule">host</span><span class="token punctuation">:</span> localhost
+      <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">6379</span>
+  <span class="token key atrule">config</span><span class="token punctuation">:</span>
+    <span class="token key atrule">import</span><span class="token punctuation">:</span> application<span class="token punctuation">-</span>alipay.yml
 
-mybatis:
-  config-location: classpath:mybatis-config.xml
-  mapper-locations: classpath:mapper&#x2F;*&#x2F;*.xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token key atrule">mybatis</span><span class="token punctuation">:</span>
+  <span class="token key atrule">config-location</span><span class="token punctuation">:</span> classpath<span class="token punctuation">:</span>mybatis<span class="token punctuation">-</span>config.xml
+  <span class="token key atrule">mapper-locations</span><span class="token punctuation">:</span> classpath<span class="token punctuation">:</span>mapper/<span class="token important">*/*.xml</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">&#x2F;&#x2F;application-alipay.yml
-&#x2F;&#x2F;自定义配置类，在(1)中有解释各字段功能
-spzx:
-  alipay:
-    alipay_url: https:&#x2F;&#x2F;openapi-sandbox.dl.alipaydev.com&#x2F;gateway.do
-    app_id: 9021000164607404
-    app_private_key: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCBNH&#x2F;gGWyY7wAH0E&#x2F;EXZgoZkH8h2BudlNWctDxJuhBKSPhprJEOYGdVukBBzOOKdy5QFkBnxLiTYmyEUQ4FYTbWXDoiCBEJZ8QLqndch7kbTTLft0NkxAgPIj9WD8orgdsU7cl7EBnn&#x2F;KruwHpsW8IXpJgael1XRUcLi41tAcS0S4KsDYMuJ6E1NVfjuTvcKSQKYff5AT8cWmIpDJa6u1wnhZcgCQ4tFZnWH86dK&#x2F;o4E3sY1OFh3a0tLZpZpdGvcudqmJafU34ivgJYMStlZ+XoAw3p8XPcsi3Aexlgfp48baMWZPlY9ZZmnrxFYXELNgb74m7t0zL3JS7hhvk4RPLAgMBAAECggEACUsnb40knJOEYwt+0VcSHMXONUXfj9J&#x2F;CBbWJKJxzk4RQKfm5rVkN1cLB4HnGXC1abXRMSaqCxEcuGw5hfc2STjTwEYaXAyAtn9ExKLyyed5BrInYFSVslvoVqDEWj66VfZnlBi8QTfmEqgu6QpUPDvhN4ImwsRhQleoB0DdyWKcIH&#x2F;9mexuAyEubxqMQnXi5k0I3td4ZOet2LvVPIoJWYuFa9fftckr&#x2F;fl5J+OX7&#x2F;fH2ItEehdekPxio+mPsh2KtlmEPYEz4ichJ4m&#x2F;hShLkx&#x2F;pzLlsRKR6b33GverM+NoRnN0082yMxEJxW&#x2F;yBiZYyJ9AkfPTLK+&#x2F;XqJE1wKtMsQKBgQDMJ54eQ5nDRPca8yY6DRQ0irEoGyGmddo5898WOijgaEAD&#x2F;fUuBKjj&#x2F;LarcGNZISkDNQEMzaPaPm6hEZfgjJQrKWs4vRd2cSrwYKbsmHlcEIOxpCstFqClQYXJY7FNLE&#x2F;n5wtT9qdifL6aP43vSlQoay4FdlT4kZE58GwtZp4g7wKBgQCiBEy8&#x2F;XhbU+UHahMdhj&#x2F;oPtI9416YgSfs+qqAW3LFC5Qbvpg8mk9XhuaEiWcLNaW07AAkwePK7c36ZBHbkH8rKIgCdXVoIJKSidS4+FaMjAawkA2mL7YO0v0n6UskysiOg3uNHzRZwHIARsVOPldXtrajmbTeIEfmqgkwGhBC5QKBgDSEgIVyiGyWIicZo5zNXoRBpV8W06o5qQC9fob+QSOxTb55JwhGhJfZm7gwei4kfKNpkDKV9++dneHrX7GRGFCeIAoBgraiWBRsGKTGeHm5eddJzx2TM5Ivb9YlwieDHa8fXWelDNwmEPYnIUEMUufu4nDfRu6Gq+BGu91WB5mbAoGAYWhIYs&#x2F;Zzr7P0fdaasPOJGmwqXjL5NCyGm5SmD1i8UkW0N90U+tKjIsUiNa7Vyf36qCBLZhMxjLXRhVoDyP+8Qm7TA8meWYr+WJYvKTCFFoTo4&#x2F;YRPQmdx8vCRHgFcy9a8FtRNlf9h4X7EagVXxxstCtWgsNjQbHc80DHSJuaGkCgYB5qUJT1KpPCyAI5Ci4MaGY6gux2F774Fd9ZmrqmMOA8XNtT24DDP73NQF86wgliMoXBImy2zPyiikFQ9Ee1P6wIkDbo6CNgY4+2DTAhbzPkrt1LPAhGPQFlgRWvAqfw0wQdnLulK0Vw3EsvmM0O8Qyf5HHphbFxfObSo&#x2F;0fF34qg&#x3D;&#x3D;
-    alipay_public_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjqk90IeL3Bp78nb5CopMF9P1U734pKbbPbHxuPQQb6CqpRBXfc1kcfEfiM&#x2F;6GcvjaJTgxA&#x2F;PoFIw7HGL52uPh8xWUf9xhtIbkbCQ2ptRAslh51srtHtKJWydh3eu4m9BERIu+Il6lDIOhUkMzTzshOwysj2AJYlq8pAUu2hnLavb2FUY2l&#x2F;rQ4WbBcNnkF&#x2F;zpwfYiPTytxWjyFGKdD9KtGIWIxzKkq738DrxrMKKKKTPCYJIAficLlobXqfyIiNCFTynS4GR5MwpiiDV4gPfzR7ngru3abzkFZp1zQU56zv2UqfFrEBtg9d+N+yxAHhStW5LyXrRWCxFPTbsMbyafwIDAQAB
-    return_payment_url: http:&#x2F;&#x2F;localhost&#x2F;#&#x2F;
-    notify_payment_url: http:&#x2F;&#x2F;17ceb46f.r7.cpolar.cn&#x2F;api&#x2F;order&#x2F;alipay&#x2F;callback&#x2F;notify<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">//application<span class="token punctuation">-</span>alipay.yml
+//自定义配置类，在(1)中有解释各字段功能
+<span class="token key atrule">spzx</span><span class="token punctuation">:</span>
+  <span class="token key atrule">alipay</span><span class="token punctuation">:</span>
+    <span class="token key atrule">alipay_url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//openapi<span class="token punctuation">-</span>sandbox.dl.alipaydev.com/gateway.do
+    <span class="token key atrule">app_id</span><span class="token punctuation">:</span> <span class="token number">9021000164607404</span>
+    <span class="token key atrule">app_private_key</span><span class="token punctuation">:</span> MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCBNH/gGWyY7wAH0E/EXZgoZkH8h2BudlNWctDxJuhBKSPhprJEOYGdVukBBzOOKdy5QFkBnxLiTYmyEUQ4FYTbWXDoiCBEJZ8QLqndch7kbTTLft0NkxAgPIj9WD8orgdsU7cl7EBnn/KruwHpsW8IXpJgael1XRUcLi41tAcS0S4KsDYMuJ6E1NVfjuTvcKSQKYff5AT8cWmIpDJa6u1wnhZcgCQ4tFZnWH86dK/o4E3sY1OFh3a0tLZpZpdGvcudqmJafU34ivgJYMStlZ+XoAw3p8XPcsi3Aexlgfp48baMWZPlY9ZZmnrxFYXELNgb74m7t0zL3JS7hhvk4RPLAgMBAAECggEACUsnb40knJOEYwt+0VcSHMXONUXfj9J/CBbWJKJxzk4RQKfm5rVkN1cLB4HnGXC1abXRMSaqCxEcuGw5hfc2STjTwEYaXAyAtn9ExKLyyed5BrInYFSVslvoVqDEWj66VfZnlBi8QTfmEqgu6QpUPDvhN4ImwsRhQleoB0DdyWKcIH/9mexuAyEubxqMQnXi5k0I3td4ZOet2LvVPIoJWYuFa9fftckr/fl5J+OX7/fH2ItEehdekPxio+mPsh2KtlmEPYEz4ichJ4m/hShLkx/pzLlsRKR6b33GverM+NoRnN0082yMxEJxW/yBiZYyJ9AkfPTLK+/XqJE1wKtMsQKBgQDMJ54eQ5nDRPca8yY6DRQ0irEoGyGmddo5898WOijgaEAD/fUuBKjj/LarcGNZISkDNQEMzaPaPm6hEZfgjJQrKWs4vRd2cSrwYKbsmHlcEIOxpCstFqClQYXJY7FNLE/n5wtT9qdifL6aP43vSlQoay4FdlT4kZE58GwtZp4g7wKBgQCiBEy8/XhbU+UHahMdhj/oPtI9416YgSfs+qqAW3LFC5Qbvpg8mk9XhuaEiWcLNaW07AAkwePK7c36ZBHbkH8rKIgCdXVoIJKSidS4+FaMjAawkA2mL7YO0v0n6UskysiOg3uNHzRZwHIARsVOPldXtrajmbTeIEfmqgkwGhBC5QKBgDSEgIVyiGyWIicZo5zNXoRBpV8W06o5qQC9fob+QSOxTb55JwhGhJfZm7gwei4kfKNpkDKV9++dneHrX7GRGFCeIAoBgraiWBRsGKTGeHm5eddJzx2TM5Ivb9YlwieDHa8fXWelDNwmEPYnIUEMUufu4nDfRu6Gq+BGu91WB5mbAoGAYWhIYs/Zzr7P0fdaasPOJGmwqXjL5NCyGm5SmD1i8UkW0N90U+tKjIsUiNa7Vyf36qCBLZhMxjLXRhVoDyP+8Qm7TA8meWYr+WJYvKTCFFoTo4/YRPQmdx8vCRHgFcy9a8FtRNlf9h4X7EagVXxxstCtWgsNjQbHc80DHSJuaGkCgYB5qUJT1KpPCyAI5Ci4MaGY6gux2F774Fd9ZmrqmMOA8XNtT24DDP73NQF86wgliMoXBImy2zPyiikFQ9Ee1P6wIkDbo6CNgY4+2DTAhbzPkrt1LPAhGPQFlgRWvAqfw0wQdnLulK0Vw3EsvmM0O8Qyf5HHphbFxfObSo/0fF34qg==
+    <span class="token key atrule">alipay_public_key</span><span class="token punctuation">:</span> MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjqk90IeL3Bp78nb5CopMF9P1U734pKbbPbHxuPQQb6CqpRBXfc1kcfEfiM/6GcvjaJTgxA/PoFIw7HGL52uPh8xWUf9xhtIbkbCQ2ptRAslh51srtHtKJWydh3eu4m9BERIu+Il6lDIOhUkMzTzshOwysj2AJYlq8pAUu2hnLavb2FUY2l/rQ4WbBcNnkF/zpwfYiPTytxWjyFGKdD9KtGIWIxzKkq738DrxrMKKKKTPCYJIAficLlobXqfyIiNCFTynS4GR5MwpiiDV4gPfzR7ngru3abzkFZp1zQU56zv2UqfFrEBtg9d+N+yxAHhStW5LyXrRWCxFPTbsMbyafwIDAQAB
+    <span class="token key atrule">return_payment_url</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost/<span class="token comment">#/</span>
+    <span class="token key atrule">notify_payment_url</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//17ceb46f.r7.cpolar.cn/api/order/alipay/callback/notify<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -6835,56 +6835,56 @@ spzx:
 
 
 <h5 id="具体实现4：在网关中添加路由（每个微服务都是需要的，我之前忘记做笔记了，这里全部一起补上）"><a href="#具体实现4：在网关中添加路由（每个微服务都是需要的，我之前忘记做笔记了，这里全部一起补上）" class="headerlink" title="具体实现4：在网关中添加路由（每个微服务都是需要的，我之前忘记做笔记了，这里全部一起补上）"></a>具体实现4：在网关中添加路由（每个微服务都是需要的，我之前忘记做笔记了，这里全部一起补上）</h5><p>​    网关的yml文件</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">&#x2F;&#x2F;src&#x2F;main&#x2F;resources&#x2F;application-dev.yml
-server:
-  port: 8500
-spring:
-  application:
-    name: spzx-server-gateway
-  cloud:
-    nacos:
-      discovery:
-        server-addr: localhost:8848
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      # 网关层面解决跨域问题
-      globalcors:
-        cors-configurations:
-          &#39;[&#x2F;**]&#39;:
-            allowedOriginPatterns: &quot;*&quot;
-            # 允许请求中携带的头信息
-            allowedHeaders: &quot;*&quot;
-            # 运行跨域的请求方式
-            allowedMethods: &quot;*&quot;
-            # 跨域检测的有效期,单位s
-            maxAge: 36000
-      routes:
-        - id: service-product
-          uri: lb:&#x2F;&#x2F;service-product
-          predicates:
-            - Path&#x3D;&#x2F;*&#x2F;product&#x2F;**
-        - id: service-user
-          uri: lb:&#x2F;&#x2F;service-user
-          predicates:
-            - Path&#x3D;&#x2F;*&#x2F;user&#x2F;**
-        - id: service-cart
-          uri: lb:&#x2F;&#x2F;service-cart
-          predicates:
-            - Path&#x3D;&#x2F;api&#x2F;order&#x2F;cart&#x2F;**
-        - id: service-order
-          uri: lb:&#x2F;&#x2F;service-order
-          predicates:
-            - Path&#x3D;&#x2F;api&#x2F;order&#x2F;orderInfo&#x2F;**
-        - id: service-pay
-          uri: lb:&#x2F;&#x2F;service-pay
-          predicates:
-            - Path&#x3D;&#x2F;api&#x2F;order&#x2F;alipay&#x2F;**
-  data:
-    redis:
-      host: localhost
-      port: 6379<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">//src/main/resources/application<span class="token punctuation">-</span>dev.yml
+<span class="token key atrule">server</span><span class="token punctuation">:</span>
+  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8500</span>
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">application</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> spzx<span class="token punctuation">-</span>server<span class="token punctuation">-</span>gateway
+  <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
+    <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+      <span class="token key atrule">discovery</span><span class="token punctuation">:</span>
+        <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8848</span>
+    <span class="token key atrule">gateway</span><span class="token punctuation">:</span>
+      <span class="token key atrule">discovery</span><span class="token punctuation">:</span>
+        <span class="token key atrule">locator</span><span class="token punctuation">:</span>
+          <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+      <span class="token comment"># 网关层面解决跨域问题</span>
+      <span class="token key atrule">globalcors</span><span class="token punctuation">:</span>
+        <span class="token key atrule">cors-configurations</span><span class="token punctuation">:</span>
+          <span class="token key atrule">'[/**]'</span><span class="token punctuation">:</span>
+            <span class="token key atrule">allowedOriginPatterns</span><span class="token punctuation">:</span> <span class="token string">"*"</span>
+            <span class="token comment"># 允许请求中携带的头信息</span>
+            <span class="token key atrule">allowedHeaders</span><span class="token punctuation">:</span> <span class="token string">"*"</span>
+            <span class="token comment"># 运行跨域的请求方式</span>
+            <span class="token key atrule">allowedMethods</span><span class="token punctuation">:</span> <span class="token string">"*"</span>
+            <span class="token comment"># 跨域检测的有效期,单位s</span>
+            <span class="token key atrule">maxAge</span><span class="token punctuation">:</span> <span class="token number">36000</span>
+      <span class="token key atrule">routes</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> service<span class="token punctuation">-</span>product
+          <span class="token key atrule">uri</span><span class="token punctuation">:</span> lb<span class="token punctuation">:</span>//service<span class="token punctuation">-</span>product
+          <span class="token key atrule">predicates</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> Path=/<span class="token important">*/product/**</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> service<span class="token punctuation">-</span>user
+          <span class="token key atrule">uri</span><span class="token punctuation">:</span> lb<span class="token punctuation">:</span>//service<span class="token punctuation">-</span>user
+          <span class="token key atrule">predicates</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> Path=/<span class="token important">*/user/**</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> service<span class="token punctuation">-</span>cart
+          <span class="token key atrule">uri</span><span class="token punctuation">:</span> lb<span class="token punctuation">:</span>//service<span class="token punctuation">-</span>cart
+          <span class="token key atrule">predicates</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> Path=/api/order/cart/<span class="token important">**</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> service<span class="token punctuation">-</span>order
+          <span class="token key atrule">uri</span><span class="token punctuation">:</span> lb<span class="token punctuation">:</span>//service<span class="token punctuation">-</span>order
+          <span class="token key atrule">predicates</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> Path=/api/order/orderInfo/<span class="token important">**</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> service<span class="token punctuation">-</span>pay
+          <span class="token key atrule">uri</span><span class="token punctuation">:</span> lb<span class="token punctuation">:</span>//service<span class="token punctuation">-</span>pay
+          <span class="token key atrule">predicates</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> Path=/api/order/alipay/<span class="token important">**</span>
+  <span class="token key atrule">data</span><span class="token punctuation">:</span>
+    <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+      <span class="token key atrule">host</span><span class="token punctuation">:</span> localhost
+      <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">6379</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -7007,29 +7007,29 @@ docker compose -f docker-compose.yml restart<span aria-hidden="true" class="line
 
 
 <h5 id="docker-compose-yml配置文件样例"><a href="#docker-compose-yml配置文件样例" class="headerlink" title="docker-compose.yml配置文件样例"></a>docker-compose.yml配置文件样例</h5><p>​    <code>注意：docker-compose.yml需要自己创建，同时没有具体规定的位置，当你要启动时，在有这个文件的目录下启动就行</code>，或者可以指定目录</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">services:
-  mysql:
-    container_name: mysql02
-    image: mysql:8.0.30
-    ports:
-      - &quot;3307:3306&quot;
-    volumes:
-      - mysql_data:&#x2F;var&#x2F;lib&#x2F;mysql
-      - mysql_conf:&#x2F;etc&#x2F;mysql
-    privileged: true
-    environment:
-      - &quot;MYSQL_ROOT_PASSWORD&#x3D;1234&quot;
-  redis:
-    image: redis:7.0.10
-    container_name: redis02
-    ports:
-      - &quot;6389:6379&quot;
-    volumes:
-      - redis-data:&#x2F;data
-volumes:
-  mysql_data: &#123;&#125;
-  mysql_conf: &#123;&#125;
-  redis-data: &#123;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mysql</span><span class="token punctuation">:</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> mysql02
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql<span class="token punctuation">:</span>8.0.30
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"3307:3306"</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> mysql_data<span class="token punctuation">:</span>/var/lib/mysql
+      <span class="token punctuation">-</span> mysql_conf<span class="token punctuation">:</span>/etc/mysql
+    <span class="token key atrule">privileged</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"MYSQL_ROOT_PASSWORD=1234"</span>
+  <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis<span class="token punctuation">:</span>7.0.10
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> redis02
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"6389:6379"</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> redis<span class="token punctuation">-</span>data<span class="token punctuation">:</span>/data
+<span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mysql_data</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+  <span class="token key atrule">mysql_conf</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+  <span class="token key atrule">redis-data</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -7154,14 +7154,14 @@ docker run --name nacos -e <span class="token assign-left variable">MODE</span><
 
 <h5 id="在nacos添加配置文件"><a href="#在nacos添加配置文件" class="headerlink" title="在nacos添加配置文件"></a>在nacos添加配置文件</h5><p>​    打开nacos页面添加配置文件，将application-dev.yml文件中的内容复制到nacos的service-user-dev.yml配置中</p>
 <p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/spzx/spzx27.png" alt="nacos服务页面"></p>
-<h5 id="在项目user模块的application-yml中远程引入上述配置"><a href="#在项目user模块的application-yml中远程引入上述配置" class="headerlink" title="在项目user模块的application.yml中远程引入上述配置"></a>在项目user模块的application.yml中远程引入上述配置</h5><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">spring:
-  cloud:
-    nacos:
-      config:
-        server-addr: 192.168.6.131:8848
-  config:
-    import:
-      - nacos:service-user-dev.yml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="在项目user模块的application-yml中远程引入上述配置"><a href="#在项目user模块的application-yml中远程引入上述配置" class="headerlink" title="在项目user模块的application.yml中远程引入上述配置"></a>在项目user模块的application.yml中远程引入上述配置</h5><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
+    <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+      <span class="token key atrule">config</span><span class="token punctuation">:</span>
+        <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> 192.168.6.131<span class="token punctuation">:</span><span class="token number">8848</span>
+  <span class="token key atrule">config</span><span class="token punctuation">:</span>
+    <span class="token key atrule">import</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> nacos<span class="token punctuation">:</span>service<span class="token punctuation">-</span>user<span class="token punctuation">-</span>dev.yml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    <code>注意：项目开发中也可以通过这种方式直接远程引入配置文件</code></p>
 <h4 id="3-步骤3：基于docker环境及Harbor部署（核心）"><a href="#3-步骤3：基于docker环境及Harbor部署（核心）" class="headerlink" title="(3) 步骤3：基于docker环境及Harbor部署（核心）"></a>(3) 步骤3：基于docker环境及Harbor部署（核心）</h4><p>​    以service-user为例，其他模块类似</p>
@@ -7292,12 +7292,12 @@ mvn clean package -DskipTests -DskipdockerBuild				# 打包跳过测试的同时
 <p>​    Harbor查看镜像</p>
 <p><img src="https://raw.githubusercontent.com/Rain-Nature/rain-blog-img/master/img/spzx/spzx32.png" alt="Harbor中的镜像"></p>
 <h5 id="docker-compose部署-amp-启动"><a href="#docker-compose部署-amp-启动" class="headerlink" title="docker compose部署&amp;启动"></a>docker compose部署&amp;启动</h5><p>​    使用vim新建一个service-user.yml文件，内容如下所示</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">services:
-  service-user:
-    container_name: service-user
-    image: 192.168.6.131&#x2F;spzx&#x2F;service-user:1.0-SNAPSHOT
-    ports:
-      - &quot;8512:8512&quot; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">service-user</span><span class="token punctuation">:</span>
+    <span class="token key atrule">container_name</span><span class="token punctuation">:</span> service<span class="token punctuation">-</span>user
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> 192.168.6.131/spzx/service<span class="token punctuation">-</span>user<span class="token punctuation">:</span>1.0<span class="token punctuation">-</span>SNAPSHOT
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"8512:8512"</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>​    启动容器</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">docker compose -f service-user.yml up -d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -7337,7 +7337,7 @@ mvn clean package -DskipTests -DskipdockerBuild				# 打包跳过测试的同时
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2026/06/02/%E5%B0%9A%E5%93%81%E7%94%84%E9%80%89/">http://example.com/2026/06/02/%E5%B0%9A%E5%93%81%E7%94%84%E9%80%89/</a>
+                    <a href="http://example.com/2026/06/02/%E9%A1%B9%E7%9B%AE02-%E5%B0%9A%E5%93%81%E7%94%84%E9%80%89/">http://example.com/2026/06/02/%E9%A1%B9%E7%9B%AE02-%E5%B0%9A%E5%93%81%E7%94%84%E9%80%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -7425,13 +7425,13 @@ mvn clean package -DskipTests -DskipdockerBuild				# 打包跳过测试的同时
                 <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/2026/06/02/%E5%B0%9A%E5%93%81%E7%94%84%E9%80%89/">
+                <a href="/2026/06/02/%E9%A1%B9%E7%9B%AE02-%E5%B0%9A%E5%93%81%E7%94%84%E9%80%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="尚品甄选">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="项目02-尚品甄选">
                         
-                        <span class="card-title">尚品甄选</span>
+                        <span class="card-title">项目02-尚品甄选</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
